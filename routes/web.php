@@ -17,8 +17,8 @@ Route::get('/about', function () {
         'canRegister' => Route::has('register'),
     ]);
 });
-Route::get('/rezepte', function () {
-    return Inertia::render('Rezepte', [
+Route::get('/gerichte', function () {
+    return Inertia::render('Gerichte', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
     ]);

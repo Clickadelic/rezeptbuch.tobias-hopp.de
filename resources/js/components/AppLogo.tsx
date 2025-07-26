@@ -9,7 +9,7 @@ const AppLogo = () => {
             <span>
                 <BsBookmarkHeart className="mt-1" />
             </span>
-            <span className="mb-0 font-medium">Kochbuch</span>
+            <span className="mb-0 font-medium">Rezeptbuch</span>
         </Link>
     </h1>
   )

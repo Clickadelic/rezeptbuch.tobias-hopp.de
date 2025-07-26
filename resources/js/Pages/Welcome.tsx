@@ -1,11 +1,19 @@
-import PublicLayout from '@/Layouts/PublicLayout';
+import FullWidthLayout from '@/Layouts/FullWidthLayout';
 import { Head } from '@inertiajs/react';
 
-export default function Dashboard() {
+import { PageProps } from "@/types";
+
+interface CustomPageProps extends PageProps {
+  breadcrumbs: {
+    label: string;
+    url: string | null;
+  }[];
+}
+export default function Dashboard({ props }: { props: CustomPageProps }) {
     return (
-        <PublicLayout>
+        <FullWidthLayout>
             <Head title="Willkommen" />
             <p>Test für die Webseite. Hallo Welt!</p>
-        </PublicLayout>
+        </FullWidthLayout>
     );
 }

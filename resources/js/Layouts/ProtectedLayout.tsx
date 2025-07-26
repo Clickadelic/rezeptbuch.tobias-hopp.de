@@ -1,10 +1,10 @@
-import AppLogo from '@/Components/AppLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import AppLogo from '@/components/AppLogo';
+import Dropdown from '@/components/Dropdown';
+import NavLink from '@/components/NavLink';
+import ResponsiveNavLink from '@/components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
-import Footer from '@/Components/Footer';
+import Footer from '@/components/Footer';
 export default function Authenticated({
     header,
     children,
@@ -23,12 +23,8 @@ export default function Authenticated({
                             <div className="flex shrink-0 items-center">
                                 <AppLogo/>
                             </div>
-
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
-                                >
+                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
                             </div>

@@ -8,13 +8,13 @@ import { IoIosRibbon } from "react-icons/io";
 import { FaQ } from "react-icons/fa6";
 import { GrNavigate } from "react-icons/gr";
 
-import AddButton from '@/components/AddButton';
+import CreateButtonModal from '@/components/CreateButtonModal';
 
 export default function Footer() {
   return (
     <>
-        <div className="bg-stone-800 border border-t-4 border-t-emerald-800 text-slate-100">
-            <footer className="container mx-auto py-8">
+        <footer className="bg-stone-800 border border-t-4 border-t-emerald-800 text-slate-100">
+            <div className="container mx-auto py-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div>
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><GrNavigate className="mt-1" />Navigation</h2>
@@ -59,9 +59,9 @@ export default function Footer() {
                         <li><Link href="/impressum" className="hover:text-slate-400" title="Impressum">Impressum</Link></li>
                     </ul>
                 </div>
-            </footer>
-        </div>
-        <AddButton />
+            </div>
+        </footer>
+        <CreateButtonModal />
     </>
   )
 }

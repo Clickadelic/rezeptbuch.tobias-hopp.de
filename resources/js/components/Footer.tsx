@@ -8,8 +8,7 @@ import { IoIosRibbon } from "react-icons/io";
 import { FaQ } from "react-icons/fa6";
 import { GrNavigate } from "react-icons/gr";
 
-import AddButton from '@/Components/AddButton';
-
+import AddButton from '@/components/AddButton';
 
 export default function Footer() {
   return (
@@ -21,7 +20,7 @@ export default function Footer() {
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><GrNavigate className="mt-1" />Navigation</h2>
                         <ul className="space-y-2">
                             <li><Link href="/" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Start</Link></li>
-                            <li><Link href="/rezepte" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Rezepte</Link></li>
+                            <li><Link href="/gerichte" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Gerichte</Link></li>
                             <li><Link href="/cocktails" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Cocktails</Link></li>
                             <li><Link href="/impressum" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Impressum</Link></li>
                         </ul>
@@ -53,7 +52,7 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-row justify-center items-center border-t border-t-stone-800 pt-6 mt-12">
                     <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">
-                        <li>Toby's Kochbuch</li>
+                        <li>Toby's Rezeptbuch</li>
                         <li className="hidden sm:inline-block">&middot;</li>
                         <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}</li>
                         <li className="hidden sm:inline-block">&middot;</li>

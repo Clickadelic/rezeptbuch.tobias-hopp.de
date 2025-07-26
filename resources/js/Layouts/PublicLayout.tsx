@@ -8,7 +8,10 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 
+import { PiHouseLineThin } from "react-icons/pi";
 import { RiSearchLine } from "react-icons/ri";
+import { BiDish } from "react-icons/bi";
+import { LiaCocktailSolid } from "react-icons/lia";
 
 export default function Public({ children }: PropsWithChildren) {
     const { auth } = usePage().props as { auth: { user?: any } };
@@ -26,14 +29,14 @@ export default function Public({ children }: PropsWithChildren) {
                                 <AppLogo classNames="my-8 sm:mr-4 md:mr-8 lg:mr-12" href="/" title="Toby&apos;s Rezeptbuch" />
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href="/" active={window.location.pathname === '/'}>
-                                    Start
+                                <NavLink href="/" active={window.location.pathname === '/'} className="flex flex-row gap-2 items-center">
+                                    <PiHouseLineThin />Start
                                 </NavLink>
-                                <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'}>
-                                    Gerichte
+                                <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'} className="flex flex-row gap-2 items-center">
+                                    <BiDish />Gerichte
                                 </NavLink>
-                                <NavLink href="/cocktails" active={window.location.pathname === '/cocktails'}>
-                                    Cocktails
+                                <NavLink href="/cocktails" active={window.location.pathname === '/cocktails'} className="flex flex-row gap-2 items-center">
+                                    <LiaCocktailSolid />Cocktails
                                 </NavLink>
                                 {/* {user && (
                                     <Button className="mt-2">
@@ -89,11 +92,11 @@ export default function Public({ children }: PropsWithChildren) {
                                 </div>
                             ) : (
                                 <div className="space-x-2">
-                                    <Link href="/login" className="text-gray-500 hover:text-gray-700">
+                                    <Link href="/login" className="text-gray-700 hover:text-emerald-800">
                                         Login
                                     </Link>
-                                    <Link href="/register" className="text-gray-500 hover:text-gray-700">
-                                        Register
+                                    <Link href="/register" className="text-gray-700 hover:text-emerald-800">
+                                        Registrierung
                                     </Link>
                                 </div>
                             )}

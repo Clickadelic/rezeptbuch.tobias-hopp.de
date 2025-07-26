@@ -1,5 +1,6 @@
-import PrimaryButton from '@/components/PrimaryButton';
 import AuthLayout from '@/layouts/AuthLayout';
+
+import PrimaryButton from '@/components/PrimaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 

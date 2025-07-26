@@ -1,4 +1,4 @@
-import FullWidthLayout from '@/Layouts/FullWidthLayout';
+import FullWidthLayout from '@/layouts/FullWidthLayout';
 import { Head } from '@inertiajs/react';
 
 import { PageProps } from "@/types";

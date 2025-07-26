@@ -1,4 +1,4 @@
-import ProtectedLayout from '@/Layouts/ProtectedLayout';
+import ProtectedLayout from '@/layouts/ProtectedLayout';
 import { PageProps } from '@/types';
 import { Head } from '@inertiajs/react';
 import DeleteUserForm from './Partials/DeleteUserForm';

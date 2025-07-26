@@ -1,4 +1,4 @@
-import TwoColumnLayout from '@/Layouts/TwoColumnLayout';
+import TwoColumnLayout from '@/layouts/TwoColumnLayout';
 import { Head } from '@inertiajs/react';
 
 export default function About() {

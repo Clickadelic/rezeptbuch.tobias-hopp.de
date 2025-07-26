@@ -16,7 +16,10 @@ export default defineConfig({
             '@': path.resolve(__dirname, './resources/js'),
             '@pages': path.resolve(__dirname, 'resources/js/Pages'),
             '@images': path.resolve(__dirname, 'resources/images'),
+            '@layouts': path.resolve(__dirname, 'resources/js/layouts'),
+            '@components': path.resolve(__dirname, 'resources/js/components'),
             '@lib': path.resolve(__dirname, 'resources/js/lib'),
+            '@types': path.resolve(__dirname, 'resources/js/types'),
         },
     },
 });

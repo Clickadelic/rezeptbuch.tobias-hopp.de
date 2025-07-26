@@ -1,4 +1,4 @@
-import ThreeColumnLayout from '@/Layouts/ThreeColumnLayout';
+import ThreeColumnLayout from '@/layouts/ThreeColumnLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Zutaten() {

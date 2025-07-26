@@ -1,15 +1,21 @@
 import { Link } from '@inertiajs/react';
 import { BsBookmarkHeart } from "react-icons/bs";
 
-const AppLogo = () => {
+import { cn } from '@/lib/utils';
+
+interface AppLogoProps {
+  classNames?: string
+  href?: string
+  title?: string
+}
+
+const AppLogo = ({ classNames = '', href = '/', title = 'Toby&apos;s Rezeptbuch' }: AppLogoProps) => {
   return (
     <h1>
-        <Link href="/" className="text-stone-900 flex flex-row justify-between gap-2 hover:text-emerald-700">
-            <span className="text-la-belle-aurore">Toby&apos;s</span>
-            <span>
-                <BsBookmarkHeart className="mt-1" />
-            </span>
-            <span className="mb-0 font-medium">Rezeptbuch</span>
+        <Link href={href} className={cn('text-stone-900 flex flex-row justify-between gap-2 hover:text-emerald-700 max-w-[168px] mx-auto', classNames)}>
+            <span><BsBookmarkHeart className="size-5 mt-1" /></span>
+            <span className="mb-0 text-xl font-light">Toby's</span>
+            <span className="mb-0 text-xl font-medium">Rezeptbuch</span>
         </Link>
     </h1>
   )

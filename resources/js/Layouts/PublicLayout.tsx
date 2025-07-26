@@ -2,7 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
 import { Button } from "@/Components/ui/button";
-import AppLogo from '@/Components/AppLogo';
+import AppLogo from '@/components/AppLogo';
 import Footer from '@/Components/Footer';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
@@ -23,7 +23,7 @@ export default function Public({ children }: PropsWithChildren) {
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
-                                <AppLogo/>
+                                <AppLogo classNames="my-8 sm:mr-4 md:mr-8 lg:mr-12" href="/" title="Toby&apos;s Rezeptbuch" />
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href="/" active={window.location.pathname === '/'}>
@@ -42,7 +42,6 @@ export default function Public({ children }: PropsWithChildren) {
                                 )} */}
                             </div>
                         </div>
-
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             {user ? (
                                 <div className="relative ms-3">
@@ -99,7 +98,6 @@ export default function Public({ children }: PropsWithChildren) {
                                 </div>
                             )}
                         </div>
-
                         <div className="-me-2 flex items-center sm:hidden">
                             <button
                                 onClick={() =>

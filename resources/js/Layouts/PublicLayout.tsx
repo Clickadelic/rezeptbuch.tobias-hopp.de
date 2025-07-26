@@ -14,8 +14,8 @@ export default function Public({ children }: PropsWithChildren) {
     const { auth } = usePage().props as { auth: { user?: any } };
     const user = auth?.user;
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    
     return (
         <div className="min-h-screen flex flex-col justify-start bg-gray-100">
             <nav className="border-b border-gray-100 bg-white">
@@ -29,17 +29,17 @@ export default function Public({ children }: PropsWithChildren) {
                                 <NavLink href="/" active={window.location.pathname === '/'}>
                                     Start
                                 </NavLink>
-                                <NavLink href="/rezepte" active={window.location.pathname === '/rezepte'}>
-                                    Rezepte
+                                <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'}>
+                                    Gerichte
                                 </NavLink>
                                 <NavLink href="/cocktails" active={window.location.pathname === '/cocktails'}>
                                     Cocktails
                                 </NavLink>
-                                {user && (
-                                    <Button>
+                                {/* {user && (
+                                    <Button className="mt-2">
                                         Neues Rezept
                                     </Button>
-                                )}
+                                )} */}
                             </div>
                         </div>
 
@@ -198,7 +198,7 @@ export default function Public({ children }: PropsWithChildren) {
                     </div>
                 )}
             </nav>
-            <div className="w-full h-64 lg:h-96 bg-[url('../images/slides/Spaghetti-Ingredients.jpg')] bg-cover bg-center flex flex-col justify-center items-center">
+            <div className="w-full h-48 lg:h-64 bg-[url('../images/slides/Spaghetti-Ingredients.jpg')] bg-cover bg-center flex flex-col justify-center items-center">
                 <div className="bg-white/30 p-1 rounded w-96">
                     <form className="flex flex-row justify-end bg-white p-1 rounded space-x-1">
                         <input type="text" className="w-full border-none rounded  focus:border-emerald-800" placeholder="Was essen wir heute?" />

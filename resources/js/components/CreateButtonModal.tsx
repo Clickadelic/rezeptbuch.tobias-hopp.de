@@ -19,7 +19,7 @@ export default function CreateButtonModal () {
             className="fixed bottom-10 right-8 rounded-full py-8 px-6 shadow-xl"
             onClick={toggleCreateModal}
           >
-            <LuPlus className="size-16" />
+            <LuPlus className="size-8" />
           </Button>
 
           <ResponsiveDialog

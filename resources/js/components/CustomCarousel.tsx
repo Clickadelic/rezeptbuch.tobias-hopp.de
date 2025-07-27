@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/Components/ui/card"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/Components/ui/carousel"
+import { Card, CardContent } from "@/components/ui/card"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
 import footSrc from '@images/Hauptgerichte-416x234.jpg';
 

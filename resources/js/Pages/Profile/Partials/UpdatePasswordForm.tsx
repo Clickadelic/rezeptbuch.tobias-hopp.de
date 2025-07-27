@@ -1,6 +1,6 @@
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
-import PrimaryButton from '@/components/PrimaryButton';
+import { Button } from '@/components/ui/button';
 import TextInput from '@/components/TextInput';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
@@ -52,7 +52,7 @@ export default function UpdatePasswordForm({
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Update Password
+                    Passwort aktualisieren
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
@@ -126,7 +126,7 @@ export default function UpdatePasswordForm({
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <Button disabled={processing}>Save</Button>
 
                     <Transition
                         show={recentlySuccessful}
@@ -135,7 +135,7 @@ export default function UpdatePasswordForm({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-emerald-600 border border-emerald-300 bg-emerald-50 rounded-md p-2">
                             Saved.
                         </p>
                     </Transition>

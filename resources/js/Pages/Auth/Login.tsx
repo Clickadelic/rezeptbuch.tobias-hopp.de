@@ -3,7 +3,7 @@ import AuthLayout from '@/layouts/AuthLayout';
 import Checkbox from '@/components/Checkbox';
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
-import PrimaryButton from '@/components/PrimaryButton';
+import { Button } from '@/components/ui/button';
 import TextInput from '@/components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -95,9 +95,9 @@ export default function Login({
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="w-full rounded-lg text-center px-4 py-3 font-normal bg-emerald-900 justify-center items-center" disabled={processing}>
+                    <Button className="w-full rounded-lg text-center px-4 py-3 font-normal bg-emerald-900 justify-center items-center" disabled={processing}>
                         Login
-                    </PrimaryButton>
+                    </Button>
                 </div>
                 {canResetPassword && (
                     <div className="w-full mt-4 text-center">

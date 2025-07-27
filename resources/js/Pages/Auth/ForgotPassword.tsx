@@ -1,7 +1,7 @@
 import AuthLayout from '@/layouts/AuthLayout';
 
 import InputError from '@/components/InputError';
-import PrimaryButton from '@/components/PrimaryButton';
+import { Button } from '@/components/ui/button';
 import TextInput from '@/components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -45,9 +45,9 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 <InputError message={errors.email} className="mt-2" />
 
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button className="ms-4" disabled={processing}>
                         Email Password Reset Link
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </AuthLayout>

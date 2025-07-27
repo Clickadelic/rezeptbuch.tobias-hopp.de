@@ -1,5 +1,7 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
+import { useLayoutStore } from "@/stores/use-layout-store";
 
 import { Button } from "@/components/ui/button";
 import AppLogo from '@/components/AppLogo';
@@ -12,12 +14,14 @@ import { VscAccount } from "react-icons/vsc";
 import { PiHouseLineThin } from "react-icons/pi";
 import { BiDish } from "react-icons/bi";
 import { LiaCocktailSolid } from "react-icons/lia";
-import { BiPlus } from "react-icons/bi";
-
+import { LuPlus } from "react-icons/lu";
+import { CiLogin } from "react-icons/ci";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 export default function AppHeader () {
     const { auth } = usePage().props as { auth: { user?: any } };
     const user = auth?.user;
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const { toggleCreateModal } = useLayoutStore();
     return (
         <header className="border-b border-gray-100 bg-white">
             <div className="mx-auto container px-4 sm:px-6 lg:px-8">
@@ -41,10 +45,9 @@ export default function AppHeader () {
                     <div className="hidden sm:ms-6 sm:flex sm:items-center">
                         {user ? (
                             <>
-                                <Button variant="primary" size="sm" className="font-normal" onClick={() => alert("Add new recipe")}>
-                                    <BiPlus />Neues Rezept
+                                <Button variant="primary" size="sm" onClick={toggleCreateModal}>
+                                    <LuPlus />Neues Rezept
                                 </Button>
-                                
                                 <div className="relative ms-3">
                                     <Dropdown>
                                         <Dropdown.Trigger>
@@ -92,11 +95,12 @@ export default function AppHeader () {
                             </>
                         ) : (
                             <div className="space-x-2">
-                                <Link href="/login" className="text-gray-700 hover:text-emerald-800">
-                                    Login
+                                <Link href="/register" className="inline-flex gap-2 border border-emerald-800 px-2 py-1 text-emerald-800 rounded hover:text-emerald-800">
+                                    <IoMdCheckmarkCircleOutline className="mt-1" />Registrieren
                                 </Link>
-                                <Link href="/register" className="text-gray-700 hover:text-emerald-800">
-                                    Registrierung
+                                <Link href="/login" className="inline-flex gap-2 bg-emerald-800 px-2 py-1 text-white rounded hover:bg-emerald-800">
+                                    <CiLogin className="mt-1" />
+                                    Login
                                 </Link>
                             </div>
                         )}

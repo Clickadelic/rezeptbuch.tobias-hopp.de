@@ -1,6 +1,6 @@
 import AuthLayout from '@/layouts/AuthLayout';
 
-import PrimaryButton from '@/components/PrimaryButton';
+import { Button } from '@/components/ui/button';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -29,9 +29,9 @@ export default function VerifyEmail({ status }: { status?: string }) {
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <PrimaryButton disabled={processing}>
+                    <Button disabled={processing}>
                         E-Mail erneut senden
-                    </PrimaryButton>
+                    </Button>
 
                     <Link
                         href={route('logout')}

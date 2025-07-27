@@ -2,7 +2,7 @@ import AuthLayout from '@/layouts/AuthLayout';
 
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
-import PrimaryButton from '@/components/PrimaryButton';
+import { Button } from '@/components/ui/button';
 import TextInput from '@/components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -91,9 +91,9 @@ export default function ResetPassword({
                 </div>
 
                 <div className="mt-4 flex items-center justify-center">
-                    <PrimaryButton className="ms-4 font-normal w-full" disabled={processing}>
+                    <Button className="ms-4 font-normal w-full" disabled={processing}>
                         Reset Password
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </AuthLayout>

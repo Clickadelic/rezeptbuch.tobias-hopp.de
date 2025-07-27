@@ -2,7 +2,7 @@ import AuthLayout from '@/layouts/AuthLayout';
 
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
-import PrimaryButton from '@/components/PrimaryButton';
+import { Button } from '@/components/ui/button';
 import TextInput from '@/components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -115,9 +115,9 @@ export default function Register() {
                         Bereits registriert?
                     </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button className="ms-4" disabled={processing}>
                         Registrieren
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </AuthLayout>

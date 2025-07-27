@@ -2,10 +2,10 @@ import AuthLayout from '@/layouts/AuthLayout';
 
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
-import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
+import { Button } from '@/components/ui/button';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -44,11 +44,11 @@ export default function ConfirmPassword() {
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
-
+                
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button variant="destructive" disabled={processing}>
                         Bestätigen
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </AuthLayout>

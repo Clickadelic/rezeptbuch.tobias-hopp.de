@@ -6,9 +6,9 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Drawer, DrawerContent, DrawerHeader, DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
 
 interface ResponsiveDialogProps {
-	icon: React.ReactNode;
+	icon?: React.ReactNode;
 
-	title: string;
+	title?: string;
 	editTitle?: string;
 
 	description?: string;

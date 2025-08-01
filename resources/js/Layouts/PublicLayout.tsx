@@ -1,12 +1,12 @@
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import AppLogo from '@/components/AppLogo';
-import Footer from '@/Components/Footer';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import Footer from '@/components/Footer';
+import Dropdown from '@/components/Dropdown';
+import NavLink from '@/components/NavLink';
+import ResponsiveNavLink from '@/components/ResponsiveNavLink';
 
 import { RiSearchLine } from "react-icons/ri";
 

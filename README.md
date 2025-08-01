@@ -1,11 +1,87 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Toby's Rezeptbuch
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern recipe application built with Laravel, Inertia.js, React, and ShadCN UI components.
+
+## Live Application
+
+🌐 **Production URL:** [https://rezeptbuch.tobias-hopp.de](https://rezeptbuch.tobias-hopp.de)
+
+## Tech Stack
+
+- **Backend:** Laravel 12
+- **Frontend:** React with TypeScript
+- **Full-Stack Framework:** Inertia.js
+- **UI Components:** ShadCN UI
+- **Styling:** Tailwind CSS
+- **Build Tool:** Vite
+- **Database:** MySQL
+
+## Deployment Guide
+
+### Prerequisites
+
+Ensure that you have the following set up:
+
+- SSH access to the production server
+- A bare git repository on your web server located at `/home/www/repos/rezeptbuch.tobias-hopp.de.git`
+- Your subdomain pointing to the correct `/public` folder
+
+### Deployment Steps
+
+1. **Make sure your working directory is clean:**
+
+   ```bash
+   git status
+   ```
+
+   Commit any changes before deploying.
+
+2. **Switch to the master branch and pull the latest changes:**
+
+   ```bash
+   git checkout master
+   git pull origin master
+   ```
+
+3. **Merge changes into the production branch:**
+
+   ```bash
+   git checkout production
+   git merge master -m "Merging changes for deployment"
+   ```
+
+4. **Build the assets for production:**
+
+   ```bash
+   npm ci
+   npm run build
+   ```
+
+5. **Commit the built assets:**
+
+   ```bash
+   git add public/build -f
+   git commit -m "Build assets for production deployment"
+   ```
+
+6. **Push to the production server:**
+
+   ```bash
+   git push production production
+   ```
+
+   This will trigger the deployment script to:
+   - Check out the production code
+   - Install dependencies
+   - Cache configurations
+   - Run migrations
+   - Set file permissions
+
+7. **Switch back to the master branch:**
+
+   ```bash
+   git checkout master
+   ```
 
 ## About Laravel
 

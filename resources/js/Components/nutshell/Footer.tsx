@@ -9,8 +9,7 @@ import { FaQ } from "react-icons/fa6";
 import { GrNavigate } from "react-icons/gr";
 
 export default function Footer() {
-  return (
-    <>
+    return (
         <div className="bg-stone-800 border-t-4 border-t-emerald-800 text-slate-100">
             <footer className="container mx-auto py-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -59,6 +58,5 @@ export default function Footer() {
                 </div>
             </footer>
         </div>
-    </>
-  )
+    )
 }

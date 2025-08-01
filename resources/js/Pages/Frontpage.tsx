@@ -1,11 +1,9 @@
-import { PageProps } from '@/types';
-import { Head, Link } from '@inertiajs/react';
 import FullWidthLayout from '@/Layouts/FullWidthLayout';
+import { Head } from '@inertiajs/react';
+import { PageProps } from '@/types';
+
 export default function Welcome({
     auth
-    // TODO: remove any
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // @ts-ignore
 }: PageProps<{ auth: { user: any } }>) {
 
     return (
@@ -13,6 +11,7 @@ export default function Welcome({
             <Head title="Willkommen" />
             <FullWidthLayout>
                 <h1>Rezeptbuch Public Startseite</h1>
+
             </FullWidthLayout>
         </>
     );

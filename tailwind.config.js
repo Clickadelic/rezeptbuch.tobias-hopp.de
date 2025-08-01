@@ -15,7 +15,8 @@ export default {
     	extend: {
     		fontFamily: {
     			sans: [
-    				'Figtree',
+                    // 'Open Sans',
+                    'Oswald',
                     ...defaultTheme.fontFamily.sans
                 ]
     		},

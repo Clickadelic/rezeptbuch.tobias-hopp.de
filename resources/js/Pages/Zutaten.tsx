@@ -1,0 +1,14 @@
+import PublicLayout from '@/layouts/PublicLayout';
+import { Head } from '@inertiajs/react';
+
+export default function Zutaten() {
+    return (
+        <PublicLayout>
+            <Head title="Zutaten" />
+            <div className="bg-white rounded p-4 my-4">
+                <h2 className="text-3xl mb-3">Zutaten</h2>
+                <p>Zutaten Inhalt.</p>
+            </div>
+        </PublicLayout>
+    );
+}

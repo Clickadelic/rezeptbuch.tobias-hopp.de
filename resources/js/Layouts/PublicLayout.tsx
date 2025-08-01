@@ -1,13 +1,15 @@
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
+import { Button } from "@/components/ui/button";
 import AppLogo from '@/components/AppLogo';
-
+import Footer from '@/components/Footer';
 import Dropdown from '@/components/Dropdown';
 import NavLink from '@/components/NavLink';
 import ResponsiveNavLink from '@/components/ResponsiveNavLink';
 
 import { BsHouseHeart } from "react-icons/bs";
+import { RiSearchLine } from "react-icons/ri";
 
 export default function Public({ children }: PropsWithChildren) {
     const { auth } = usePage().props as { auth: { user?: any } };
@@ -27,6 +29,12 @@ export default function Public({ children }: PropsWithChildren) {
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href="/" active={window.location.pathname === '/'} icon={<BsHouseHeart />}>
                                     Start
+                                </NavLink>
+                                <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'}>
+                                    Gerichte
+                                </NavLink>
+                                <NavLink href="/cocktails" active={window.location.pathname === '/cocktails'}>
+                                    Cocktails
                                 </NavLink>
                                 {/* {user && (
                                     <Button className="mt-2">
@@ -147,6 +155,12 @@ export default function Public({ children }: PropsWithChildren) {
                             <ResponsiveNavLink href="/" active={window.location.pathname === '/'}>
                                 Start
                             </ResponsiveNavLink>
+                            <ResponsiveNavLink href="/rezepte" active={window.location.pathname === '/rezepte'}>
+                                Rezepte
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink href="/cocktails" active={window.location.pathname === '/cocktails'}>
+                                Cocktails
+                            </ResponsiveNavLink>
                         </div>
 
                         {user ? (
@@ -191,6 +205,18 @@ export default function Public({ children }: PropsWithChildren) {
                     </div>
                 )}
             </nav>
+            <div className="w-full h-48 lg:h-64 bg-[url('../images/slides/Spaghetti-Ingredients.jpg')] bg-cover bg-center flex flex-col justify-center items-center">
+                <div className="bg-white/30 p-1 rounded w-96">
+                    <form className="flex flex-row justify-end bg-white p-1 rounded space-x-1">
+                        <input type="text" className="w-full border-none rounded  focus:border-emerald-800" placeholder="Was essen wir heute?" />
+                        <Button type="submit" className="bg-emerald-800 text-slate-100 rounded border-none px-3 py-2"><RiSearchLine className="size-6" /></Button>
+                    </form>
+                </div>
+            </div>
+            <main className="container mx-auto min-h-[calc(100vh-830px)]">
+                {children}
+            </main>
+            <Footer />
         </div>
     );
 }

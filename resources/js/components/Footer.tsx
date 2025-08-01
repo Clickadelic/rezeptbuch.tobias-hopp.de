@@ -8,7 +8,7 @@ import { IoIosRibbon } from "react-icons/io";
 import { FaQ } from "react-icons/fa6";
 import { GrNavigate } from "react-icons/gr";
 
-import AddButton from '@/Components/AddButton';
+import AddButton from '@/components/AddButton';
 
 
 export default function Footer() {

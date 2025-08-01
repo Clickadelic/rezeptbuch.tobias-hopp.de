@@ -8,6 +8,7 @@ import Dropdown from '@/components/Dropdown';
 import NavLink from '@/components/NavLink';
 import ResponsiveNavLink from '@/components/ResponsiveNavLink';
 
+import { BsHouseHeart } from "react-icons/bs";
 import { RiSearchLine } from "react-icons/ri";
 
 export default function Public({ children }: PropsWithChildren) {
@@ -26,7 +27,7 @@ export default function Public({ children }: PropsWithChildren) {
                                 <AppLogo classNames="my-8 sm:mr-4 md:mr-8 lg:mr-12" href="/" title="Toby&apos;s Rezeptbuch" />
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href="/" active={window.location.pathname === '/'}>
+                                <NavLink href="/" active={window.location.pathname === '/'} icon={<BsHouseHeart />}>
                                     Start
                                 </NavLink>
                                 <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'}>

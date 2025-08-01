@@ -1,5 +1,5 @@
 import { Button } from '@/Components/ui/button';
-import GuestLayout from '@/Layouts/GuestLayout';
+import GuestLayout from '@/Layouts/FullWidthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 

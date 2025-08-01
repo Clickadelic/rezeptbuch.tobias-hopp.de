@@ -14,7 +14,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './resources/js'),
-            '@pages': path.resolve(__dirname, 'resources/js/Pages'),
+            '@pages': path.resolve(__dirname, 'resources/js/pages'),
             '@images': path.resolve(__dirname, 'resources/images'),
             '@lib': path.resolve(__dirname, 'resources/js/lib'),
         },

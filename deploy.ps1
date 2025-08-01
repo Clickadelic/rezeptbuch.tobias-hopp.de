@@ -61,8 +61,10 @@ if ($LASTEXITCODE -ne 0) {
 # Commit built assets if any changes
 Write-Host "📦 Checking for built asset changes..." -ForegroundColor Blue
 git add public/build -f
-$buildStatus = git diff --cached --quiet; $hasBuildChanges = $LASTEXITCODE -ne 0
-if ($hasBuildChanges) {
+
+# Check if there are staged changes
+$stagedChanges = git diff --cached --name-only
+if ($stagedChanges) {
     Write-Host "📦 Committing built assets..." -ForegroundColor Blue
     git commit -m "Build assets for deployment: $Message"
 } else {

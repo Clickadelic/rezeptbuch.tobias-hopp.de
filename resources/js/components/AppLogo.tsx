@@ -6,13 +6,13 @@ import { cn } from '@/lib/utils';
 interface AppLogoProps {
   classNames?: string
   href?: string
-  title?: string 
+  title?: string
 }
 
 const AppLogo = ({ classNames = '', href = '/', title = 'Toby&apos;s Rezeptbuch' }: AppLogoProps) => {
   return (
     <h1>
-        <Link href={href} className={cn('text-emerald-800 flex flex-row justify-between gap-2 hover:text-emerald-600 max-w-[168px] mx-auto', classNames)} title={title}>
+        <Link href={href} className={cn('text-stone-900 flex flex-row justify-between gap-2 hover:text-emerald-700 max-w-[168px] mx-auto', classNames)}>
             <span><BsBookmarkHeart className="size-5 mt-1" /></span>
             <span className="mb-0 text-xl font-light">Toby's</span>
             <span className="mb-0 text-xl font-medium">Rezeptbuch</span>

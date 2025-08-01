@@ -1,10 +1,12 @@
+import DangerButton from '@/components/DangerButton';
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import Modal from '@/components/Modal';
+import SecondaryButton from '@/components/SecondaryButton';
 import TextInput from '@/components/TextInput';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef, useState } from 'react';
-import { Button } from '@/components/ui/button';
+
 export default function DeleteUserForm({
     className = '',
 }: {
@@ -62,9 +64,9 @@ export default function DeleteUserForm({
                 </p>
             </header>
 
-            <Button variant="destructive" onClick={confirmUserDeletion}>
-                Account löschen
-            </Button>
+            <DangerButton onClick={confirmUserDeletion}>
+                Delete Account
+            </DangerButton>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
@@ -107,13 +109,13 @@ export default function DeleteUserForm({
                     </div>
 
                     <div className="mt-6 flex justify-end">
-                        <Button variant="secondary" onClick={closeModal}>
+                        <SecondaryButton onClick={closeModal}>
                             Cancel
-                        </Button>
+                        </SecondaryButton>
 
-                        <Button variant="destructive" className="bg-rose-200" disabled={processing}>
-                            Account löschen
-                        </Button>
+                        <DangerButton className="ms-3" disabled={processing}>
+                            Delete Account
+                        </DangerButton>
                     </div>
                 </form>
             </Modal>

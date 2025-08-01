@@ -1,19 +1,14 @@
-import FullWidthLayout from '@/layouts/FullWidthLayout';
+import PublicLayout from '@/layouts/PublicLayout';
 import { Head } from '@inertiajs/react';
 
-import { PageProps } from "@/types";
+import CustomCarousel from '@/components/CustomCarousel';
 
-interface CustomPageProps extends PageProps {
-  breadcrumbs: {
-    label: string;
-    url: string | null;
-  }[];
-}
-export default function Dashboard({ props }: { props: CustomPageProps }) {
+export default function Dashboard() {
     return (
-        <FullWidthLayout>
-            <Head title="Willkommen" />
-            <p>Test für die Webseite. Hallo Welt!</p>
-        </FullWidthLayout>
+        <PublicLayout>
+            <Head title="Welcome" />
+            <h2 className="text-2xl my-4">Willkommen</h2>
+            <CustomCarousel />
+        </PublicLayout>
     );
 }

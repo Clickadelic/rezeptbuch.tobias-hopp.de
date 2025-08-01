@@ -1,9 +1,8 @@
-import AuthLayout from '@/layouts/AuthLayout';
-
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
-import { Button } from '@/components/ui/button';
+import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
+import AuthLayout from '@/layouts/AuthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -25,11 +24,8 @@ export default function Register() {
 
     return (
         <AuthLayout>
-            <Head title="Registrierung" />
-            <div className="flex flex-col justify-center items-center my-12 space-y-2">
-                <h2 className="text-3xl text-gray-900 text-center">Registrierung</h2>
-                <h3 className="text-xl text-gray-500 text-center">Werde Teil der Community</h3>
-            </div>
+            <Head title="Register" />
+
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
@@ -85,7 +81,7 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Passwort bestätigen"
+                        value="Confirm Password"
                     />
 
                     <TextInput
@@ -110,14 +106,14 @@ export default function Register() {
                 <div className="mt-4 flex items-center justify-end">
                     <Link
                         href={route('login')}
-                        className="rounded-md text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                        Bereits registriert?
+                        Already registered?
                     </Link>
 
-                    <Button className="ms-4" disabled={processing}>
-                        Registrieren
-                    </Button>
+                    <PrimaryButton className="ms-4" disabled={processing}>
+                        Register
+                    </PrimaryButton>
                 </div>
             </form>
         </AuthLayout>

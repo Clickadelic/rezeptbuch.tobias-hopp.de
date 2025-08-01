@@ -39,31 +39,36 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-# Check if package.json exists and build assets
-if (Test-Path "package.json") {
-    Write-Host "📦 Installing npm dependencies..." -ForegroundColor Blue
-    npm install --production=false
-    
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "⚠️ npm install failed, continuing anyway..." -ForegroundColor Yellow
-    }
-    
-    Write-Host "🔨 Building production assets..." -ForegroundColor Blue
-    npm run build
-    
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "❌ Failed to build assets" -ForegroundColor Red
-        git checkout $currentBranch
-        exit 1
-    }
-    
-    # Commit built assets if any changes
-    $buildStatus = git status --porcelain
-    if ($buildStatus) {
-        Write-Host "📦 Committing built assets..." -ForegroundColor Blue
-        git add .
-        git commit -m "Build assets for deployment: $Message"
-    }
+# Build assets locally
+Write-Host "📦 Installing npm dependencies..." -ForegroundColor Blue
+npm ci
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ Failed to install npm dependencies" -ForegroundColor Red
+    git checkout $currentBranch
+    exit 1
+}
+
+Write-Host "🔨 Building production assets..." -ForegroundColor Blue
+npm run build
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ Failed to build assets" -ForegroundColor Red
+    git checkout $currentBranch
+    exit 1
+}
+
+# Commit built assets if any changes
+Write-Host "📦 Checking for built asset changes..." -ForegroundColor Blue
+git add public/build -f
+
+# Check if there are staged changes
+$stagedChanges = git diff --cached --name-only
+if ($stagedChanges) {
+    Write-Host "📦 Committing built assets..." -ForegroundColor Blue
+    git commit -m "Build assets for deployment: $Message"
+} else {
+    Write-Host "📦 No build changes detected" -ForegroundColor Green
 }
 
 # Push to production remote

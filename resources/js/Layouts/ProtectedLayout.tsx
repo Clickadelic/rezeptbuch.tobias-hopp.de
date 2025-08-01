@@ -23,8 +23,12 @@ export default function Authenticated({
                             <div className="flex shrink-0 items-center">
                                 <AppLogo/>
                             </div>
+
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                <NavLink
+                                    href={route('dashboard')}
+                                    active={route().current('dashboard')}
+                                >
                                     Dashboard
                                 </NavLink>
                             </div>

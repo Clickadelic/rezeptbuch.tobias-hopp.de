@@ -1,9 +1,9 @@
-import FullWidthLayout from '@/layouts/FullWidthLayout';
+import PublicLayout from '@/layouts/PublicLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Impressum() {
     return (
-        <FullWidthLayout>
+        <PublicLayout>
             <Head title="Impressum" />
             <div className="bg-white rounded p-4 my-4">
                 <h2 className="text-3xl mb-3">Impressum</h2>
@@ -28,6 +28,6 @@ export default function Impressum() {
                     </li>
                 </ul>
             </div>
-        </FullWidthLayout>
+        </PublicLayout>
     );
 }

@@ -1,8 +1,7 @@
-import AuthLayout from '@/layouts/AuthLayout';
-
 import InputError from '@/components/InputError';
-import { Button } from '@/components/ui/button';
+import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
+import AuthLayout from '@/layouts/AuthLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -19,10 +18,12 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
     return (
         <AuthLayout>
-            <Head title="Passwort vergessen" />
+            <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-600">
-                <p>Passwort vergessen? Passiert und allen ab und zu. Hier kannst Du Dein Passwort zurücksetzen.</p>
+                Forgot your password? No problem. Just let us know your email
+                address and we will email you a password reset link that will
+                allow you to choose a new one.
             </div>
 
             {status && (
@@ -45,9 +46,9 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 <InputError message={errors.email} className="mt-2" />
 
                 <div className="mt-4 flex items-center justify-end">
-                    <Button className="ms-4" disabled={processing}>
+                    <PrimaryButton className="ms-4" disabled={processing}>
                         Email Password Reset Link
-                    </Button>
+                    </PrimaryButton>
                 </div>
             </form>
         </AuthLayout>

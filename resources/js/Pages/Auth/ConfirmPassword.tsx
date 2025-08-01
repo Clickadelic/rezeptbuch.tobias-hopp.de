@@ -1,11 +1,10 @@
-import AuthLayout from '@/layouts/AuthLayout';
-
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
+import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
+import AuthLayout from '@/layouts/AuthLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
-import { Button } from '@/components/ui/button';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -24,8 +23,9 @@ export default function ConfirmPassword() {
         <AuthLayout>
             <Head title="Confirm Password" />
 
-            <div className="mb-4 text-gray-600">
-               <p>Dies ist ein geschützer Teil des Rezeptbuches. Bitte schließe zuerst Deine Registrierung ab in dem Du Deinen Account bestätigt.</p>
+            <div className="mb-4 text-sm text-gray-600">
+                This is a secure area of the application. Please confirm your
+                password before continuing.
             </div>
 
             <form onSubmit={submit}>
@@ -44,11 +44,11 @@ export default function ConfirmPassword() {
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
-                
+
                 <div className="mt-4 flex items-center justify-end">
-                    <Button variant="destructive" disabled={processing}>
-                        Bestätigen
-                    </Button>
+                    <PrimaryButton className="ms-4" disabled={processing}>
+                        Confirm
+                    </PrimaryButton>
                 </div>
             </form>
         </AuthLayout>

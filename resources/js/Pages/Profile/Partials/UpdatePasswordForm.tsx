@@ -1,6 +1,10 @@
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
+<<<<<<< Updated upstream
 import { Button } from '@/components/ui/button';
+=======
+import PrimaryButton from '@/components/PrimaryButton';
+>>>>>>> Stashed changes
 import TextInput from '@/components/TextInput';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';

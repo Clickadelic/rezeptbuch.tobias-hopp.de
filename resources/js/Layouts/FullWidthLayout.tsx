@@ -9,7 +9,7 @@ export default function FullWidthLayout({ children }: PropsWithChildren) {
 
         <div className="min-h-screen flex flex-col justify-between bg-slate-100">
             <Header />
-            <main className="container mx-auto">
+            <main className="mx-auto container px-4 sm:px-6 lg:px-8">
                 {children}
             </main>
             <Footer />

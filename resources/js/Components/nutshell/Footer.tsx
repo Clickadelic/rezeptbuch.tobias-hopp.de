@@ -11,24 +11,24 @@ import { GrNavigate } from "react-icons/gr";
 export default function Footer() {
     return (
         <div className="bg-stone-800 border-t-4 border-t-emerald-800 text-slate-100">
-            <footer className="container mx-auto py-8">
+            <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div>
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><GrNavigate className="mt-1" />Navigation</h2>
                         <ul className="space-y-2">
-                            <li><Link href="/" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Start</Link></li>
-                            <li><Link href="/rezepte" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Rezepte</Link></li>
-                            <li><Link href="/cocktails" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Cocktails</Link></li>
-                            <li><Link href="/impressum" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Impressum</Link></li>
+                            <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Start</Link></li>
+                            <li><Link href="/gerichte" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Gerichte</Link></li>
+                            <li><Link href="/cocktails" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Cocktails</Link></li>
+                            <li><Link href="/impressum" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Impressum</Link></li>
                         </ul>
                     </div>
                     <div>
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><FaQ className="mt-1" />FAQ</h2>
                         <ul className="space-y-2">
-                            <li><Link href="/about" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />About</Link></li>
-                            <li><Link href="/zutaten" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Zutaten</Link></li>
-                            <li><Link href="/" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
-                            <li><Link href="/" className="flex gap-1 font-normal text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
+                            <li><Link href="/about" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />About</Link></li>
+                            <li><Link href="/zutaten" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Zutaten</Link></li>
+                            <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
+                            <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
                         </ul>
                     </div>
                     <div>

@@ -1,11 +1,14 @@
-import AppLogo from '@/Components/AppLogo';
-import Dropdown from '@/Components/Dropdown';
+import AppLogo from '@/Components/nutshell/AppLogo';
 import NavLink from '@/Components/NavLink';
+import AuthLink from '@/Components/AuthLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-
+import Dropdown from '@/Components/Dropdown';
+import { BsHouse } from "react-icons/bs";
 import { useState } from 'react';
-import { Link, usePage } from '@inertiajs/react';
-
+import { usePage } from '@inertiajs/react';
+import { BsJournalBookmark } from "react-icons/bs";
+import { LiaCocktailSolid } from "react-icons/lia";
+import { FiCheckCircle } from "react-icons/fi";
 
 const Header = () => {
     const user = usePage().props.auth.user;
@@ -13,21 +16,21 @@ const Header = () => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
     return (
-        <nav className="border-b border-gray-100 bg-white">
-            <div className="mx-auto container px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 justify-between">
-                    <div className="flex">
-                        <div className="flex shrink-0 items-center">
+        <header className="border-b border-gray-100 bg-white shadow">
+            <div className="mx-auto container px-4 py-3 sm:px-6 lg:px-8">
+                <div className="flex justify-between">
+                    <div className="flex justify-between sm:space-x-4 md:space-x-8 lg:space-x-12">
+                        <div className="flex shrink-0">
                             <AppLogo />
                         </div>
-                        <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <NavLink href="/" active={window.location.pathname === '/'}>
+                        <div className="hidden sm:-my-px sm:flex space-x-2 md:space-x-4 lg:space-x-6">
+                            <NavLink href="/" active={window.location.pathname === '/'} icon={<BsHouse />}>
                                 Start
                             </NavLink>
-                            <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'}>
+                            <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'} icon={<BsJournalBookmark />}>
                                 Gerichte
                             </NavLink>
-                            <NavLink href="/cocktails" active={window.location.pathname === '/cocktails'}>
+                            <NavLink href="/cocktails" active={window.location.pathname === '/cocktails'} icon={<LiaCocktailSolid />}>
                                 Cocktails
                             </NavLink>
                             {/* {user && (
@@ -37,7 +40,6 @@ const Header = () => {
                             )} */}
                         </div>
                     </div>
-
                     <div className="hidden sm:ms-6 sm:flex sm:items-center">
                         {user ? (
                             <div className="relative ms-3">
@@ -85,16 +87,15 @@ const Header = () => {
                             </div>
                         ) : (
                             <div className="space-x-2">
-                                <Link href="/login" className="text-gray-500 hover:text-gray-700">
-                                    Login
-                                </Link>
-                                <Link href="/register" className="text-gray-500 hover:text-gray-700">
+                                <AuthLink href="/register" className="text-slate-700 hover:text-slate-500" icon={<FiCheckCircle />}>
                                     Register
-                                </Link>
+                                </AuthLink>
+                                <AuthLink href="/login" className="text-emerald-700 hover:text-slate-500" icon={<BsJournalBookmark />}>
+                                    Login
+                                </AuthLink>
                             </div>
                         )}
                     </div>
-
                     <div className="-me-2 flex items-center sm:hidden">
                         <button
                             onClick={() =>
@@ -192,7 +193,7 @@ const Header = () => {
                     )}
                 </div>
             )}
-        </nav>
+        </header>
   )
 }
 

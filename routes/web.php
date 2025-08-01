@@ -12,12 +12,21 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/rezepte', function () {
-    return Inertia::render('Rezepte', [
+Route::get('/gerichte', function () {
+    return Inertia::render('Gerichte/Index', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register')
     ]);
 });
+
+Route::get('/cocktails', function () {
+    return Inertia::render('Cocktails/Index', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register')
+    ]);
+});
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

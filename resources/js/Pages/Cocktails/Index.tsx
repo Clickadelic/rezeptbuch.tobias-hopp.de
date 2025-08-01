@@ -2,15 +2,15 @@ import FullWidthLayout from '@/Layouts/FullWidthLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
-export default function Welcome({
+export default function Gerichte({
     auth
 }: PageProps<{ auth: { user: any } }>) {
 
     return (
         <>
-            <Head title="Willkommen" />
+            <Head title="Cocktails" />
             <FullWidthLayout>
-                <h1>Rezeptbuch Startseite</h1>
+                <h1>Cocktails</h1>
             </FullWidthLayout>
         </>
     );

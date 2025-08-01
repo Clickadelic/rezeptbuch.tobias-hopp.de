@@ -1,4 +1,4 @@
-import PublicLayout from '@/Layouts/PublicLayout';
+import PublicLayout from '@/layouts/PublicLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Zutaten() {

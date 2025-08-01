@@ -1,4 +1,4 @@
-import ProtectedLayout from '@/Layouts/ProtectedLayout';
+import ProtectedLayout from '@/layouts/ProtectedLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Dashboard() {

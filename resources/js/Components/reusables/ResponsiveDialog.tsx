@@ -3,8 +3,8 @@ import * as React from "react";
 import { useMediaQuery } from "@/Hooks/use-media-query";
 
 // TODO gleich Installieren :-)
-// import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/Components/ui/dialog";
-// import { Drawer, DrawerContent, DrawerHeader, DrawerDescription, DrawerTitle } from "@/Components/ui/drawer";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/Components/ui/dialog";
+import { Drawer, DrawerContent, DrawerHeader, DrawerDescription, DrawerTitle } from "@/Components/ui/drawer";
 
 interface ResponsiveDialogProps {
 	icon: React.ReactNode;

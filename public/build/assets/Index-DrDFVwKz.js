@@ -1,1 +1,0 @@
-import{j as t,H as e}from"./app-u5WhY81n.js";import{F as r}from"./FullWidthLayout-C_Bgio45.js";import"./Dropdown-C6qjDJc4.js";import"./transition-Bf1MkcUL.js";function l({auth:i}){return t.jsxs(t.Fragment,{children:[t.jsx(e,{title:"Gerichte"}),t.jsx(r,{children:t.jsx("h1",{children:"Gerichte"})})]})}export{l as default};

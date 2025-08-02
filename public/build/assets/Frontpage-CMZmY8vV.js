@@ -1,0 +1,1 @@
+import{j as t,H as e}from"./app-DlDk1ypC.js";import{F as r}from"./FullWidthLayout-DKYbX2Wc.js";import"./AppLogo-DOq3iOdJ.js";import"./utils-CBfrqCZ4.js";import"./transition-CugIVBxZ.js";function n({auth:i}){return t.jsxs(t.Fragment,{children:[t.jsx(e,{title:"Willkommen"}),t.jsx(r,{children:t.jsx("h1",{children:"Rezeptbuch Startseite"})})]})}export{n as default};

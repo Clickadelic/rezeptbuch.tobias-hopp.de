@@ -1,1 +1,0 @@
-import{j as t}from"./app-CoyVjqLn.js";import{G as e}from"./Footer-CR8ASzYJ.js";function i(){return t.jsxs("aside",{children:[t.jsxs("h2",{className:"text-2xl my-3 flex flex-row gap-2",children:[t.jsx(e,{className:"mt-1"}),"Navigation"]}),t.jsx("h2",{className:"text-slate-600 text-2xl my-3",children:"Subtitle"})]})}export{i as R};

@@ -45,10 +45,9 @@ export default function Welcome({
                 </header>
 
                 <main className="mt-6">
-                    <h1>Rezeptbuch Public Startseite</h1>
+                    <h1>Rezepte Liste</h1>
                 </main>
-
-                    
+                
             </div>
         </>
     );

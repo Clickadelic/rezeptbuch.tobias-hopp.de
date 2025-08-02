@@ -10,7 +10,7 @@ import { BsJournalBookmark } from "react-icons/bs";
 import { LiaCocktailSolid } from "react-icons/lia";
 import { FiCheckCircle } from "react-icons/fi";
 import { BsDoorOpen } from "react-icons/bs";
-
+import { TbSalt } from "react-icons/tb";
 /**
  * The application header.
  *
@@ -39,6 +39,9 @@ const Header = () => {
                             </NavLink>
                             <NavLink href="/cocktails" active={window.location.pathname === '/cocktails'} icon={<LiaCocktailSolid />}>
                                 Cocktails
+                            </NavLink>
+                            <NavLink href="/zutaten" active={window.location.pathname === '/zutaten'} icon={<TbSalt />}>
+                                Zutaten
                             </NavLink>
                             {/* {user && (
                                 <Button className="mt-2">

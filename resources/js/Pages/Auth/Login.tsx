@@ -3,7 +3,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import { Button } from '@/Components/ui/button';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/FullWidthLayout';
+import AuthLayout from '@/Layouts/AuthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -29,11 +29,11 @@ export default function Login({
     };
 
     return (
-        <GuestLayout>
-            <Head title="Log in" />
+        <AuthLayout title="Login" subtitle="Willkommen zurück!">
+            <Head title="Login" />
 
             {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
+                <div className="mb-4 text-sm font-medium text-emerald-00">
                     {status}
                 </div>
             )}
@@ -72,7 +72,7 @@ export default function Login({
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4 block">
+                <div className="my-6 block">
                     <label className="flex items-center">
                         <Checkbox
                             name="remember"
@@ -85,26 +85,39 @@ export default function Login({
                             }
                         />
                         <span className="ms-2 text-sm text-gray-600">
-                            Remember me
+                            Erinnere Dich an mich
                         </span>
                     </label>
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
+                <div className="my-4 flex items-center justify-end">
+                    <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+                        Login
+                    </Button>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                    <p>Noch kein Account?&nbsp;
+                    
+                        <Link
+                            href={route('register')}
+                            className="rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Registrieren
+                        </Link>
+                    </p>
+                </div>
+                <div className="text-center my-3">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="rounded-md text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Forgot your password?
+                            Passwort vergessen?
                         </Link>
                     )}
-
-                    <Button className="ms-4" disabled={processing}>
-                        Log in
-                    </Button>
                 </div>
+                
             </form>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

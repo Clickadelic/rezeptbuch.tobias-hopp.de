@@ -9,6 +9,17 @@ interface AppLogoProps {
     title?: string
 }
 
+/**
+ * Renders the application logo as a heading element containing a link.
+ * 
+ * @param {Object} props - Component properties.
+ * @param {string} [props.className] - Additional CSS classes to apply to the link element.
+ * @param {string} [props.href='/'] - URL to navigate to when the logo is clicked.
+ * @param {string} [props.title='Toby\'s Rezeptbuch'] - Title attribute for the link element.
+ * 
+ * @returns {JSX.Element} The rendered application logo component.
+ */
+
 const AppLogo = ({ className = '', href = '/', title = 'Toby\'s Rezeptbuch' }: AppLogoProps) => {
   return (
     <h1>

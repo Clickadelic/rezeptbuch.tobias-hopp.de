@@ -2,7 +2,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import { Button } from '@/Components/ui/button';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/FullWidthLayout';
+import AuthLayout from '@/Layouts/AuthLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -29,8 +29,8 @@ export default function ResetPassword({
     };
 
     return (
-        <GuestLayout>
-            <Head title="Reset Password" />
+        <AuthLayout title="Passwort zurücksetzen" subtitle="Passiert jedem von uns!">
+            <Head title="Passwort zurücksetzen"  />
 
             <form onSubmit={submit}>
                 <div>
@@ -69,7 +69,7 @@ export default function ResetPassword({
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
+                        value="Passwort bestätigen"
                     />
 
                     <TextInput
@@ -95,6 +95,6 @@ export default function ResetPassword({
                     </Button>
                 </div>
             </form>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

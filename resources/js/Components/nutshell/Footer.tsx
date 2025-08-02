@@ -23,19 +23,19 @@ export default function Footer() {
                     <div>
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><GrNavigate className="mt-1" />Navigation</h2>
                         <ul className="space-y-2">
-                            <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Start</Link></li>
-                            <li><Link href="/gerichte" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Gerichte</Link></li>
-                            <li><Link href="/cocktails" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Cocktails</Link></li>
-                            <li><Link href="/impressum" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Impressum</Link></li>
+                            <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Startseite"><BsChevronCompactRight className="mt-1" />Startseite</Link></li>
+                            <li><Link href="/gerichte" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Gerichte"><BsChevronCompactRight className="mt-1" />Gerichte</Link></li>
+                            <li><Link href="/cocktails" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Cocktails"><BsChevronCompactRight className="mt-1" />Cocktails</Link></li>
+                            <li><Link href="/zutaten" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Zutaten"><BsChevronCompactRight className="mt-1" />Zutaten</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><FaQ className="mt-1" />FAQ</h2>
+                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><FaQ className="mt-1" />Weiteres</h2>
                         <ul className="space-y-2">
-                            <li><Link href="/about" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />About</Link></li>
-                            <li><Link href="/zutaten" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Zutaten</Link></li>
-                            <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
-                            <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
+                            <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
+                            <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
+                            <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
+                            <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
                         </ul>
                     </div>
                     <div>

@@ -26,6 +26,20 @@ Route::get('/cocktails', function () {
     ]);
 });
 
+Route::get('/zutaten', function () {
+    return Inertia::render('Zutaten', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register')
+    ]);
+});
+
+Route::get('/impressum', function () {
+    return Inertia::render('Impressum', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register')
+    ]);
+});
+
 
 
 Route::get('/dashboard', function () {

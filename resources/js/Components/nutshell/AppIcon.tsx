@@ -1,6 +1,6 @@
 import { SVGAttributes } from 'react';
 
-export default function ApplicationLogo(props: SVGAttributes<SVGElement>) {
+export default function AppIcon(props: SVGAttributes<SVGElement>) {
     return (
         <svg
             {...props}

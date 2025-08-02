@@ -1,7 +1,7 @@
-import ApplicationLogo from '@/components/ApplicationLogo';
-import Dropdown from '@/components/Dropdown';
-import NavLink from '@/components/NavLink';
-import ResponsiveNavLink from '@/components/ResponsiveNavLink';
+import AppLogo from '@/Components/nutshell/AppLogo';
+import Dropdown from '@/Components/Dropdown';
+import NavLink from '@/Components/reusables/NavLink';
+import ResponsiveNavLink from '@/Components/reusables/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
@@ -22,7 +22,7 @@ export default function Authenticated({
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <AppLogo />
                                 </Link>
                             </div>
 

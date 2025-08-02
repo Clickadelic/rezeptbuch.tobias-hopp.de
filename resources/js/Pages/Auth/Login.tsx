@@ -49,6 +49,7 @@ export default function Login({
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
+                        placeholder="E-Mail Adresse"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                     />
@@ -66,6 +67,7 @@ export default function Login({
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="current-password"
+                        placeholder="**********"
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
@@ -100,7 +102,7 @@ export default function Login({
                     
                         <Link
                             href={route('register')}
-                            className="rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
                         >
                             Registrieren
                         </Link>
@@ -110,7 +112,7 @@ export default function Login({
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="rounded-md text-sm text-slate-600 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
                         >
                             Passwort vergessen?
                         </Link>

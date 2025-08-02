@@ -10,6 +10,13 @@ import { BsJournalBookmark } from "react-icons/bs";
 import { LiaCocktailSolid } from "react-icons/lia";
 import { FiCheckCircle } from "react-icons/fi";
 import { BsDoorOpen } from "react-icons/bs";
+
+/**
+ * The application header.
+ *
+ * @return {JSX.Element} The header.
+ */
+
 const Header = () => {
     const user = usePage().props.auth.user;
 

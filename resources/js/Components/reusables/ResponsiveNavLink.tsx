@@ -1,5 +1,13 @@
 import { InertiaLinkProps, Link } from '@inertiajs/react';
 
+/**
+ * A responsive navigation link component that uses the Inertia Link component.
+ * @param {boolean} active - Whether the link is active or not. Default is false.
+ * @param {string} className - Additional classnames to add to the link.
+ * @param {React.ReactNode} children - The link text.
+ * @param {InertiaLinkProps} props - Any additional props to pass to the Inertia Link component.
+ * @returns {React.ReactElement}
+ */
 export default function ResponsiveNavLink({
     active = false,
     className = '',

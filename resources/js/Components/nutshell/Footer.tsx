@@ -8,6 +8,13 @@ import { IoIosRibbon } from "react-icons/io";
 import { FaQ } from "react-icons/fa6";
 import { GrNavigate } from "react-icons/gr";
 
+/**
+ * Renders the footer section of the website, containing navigation links, FAQ, 
+ * quality assurance badge, and a newsletter subscription form. It also includes
+ * site information and legal links at the bottom. The footer is responsive and 
+ * adapts to different screen sizes using a grid layout.
+ */
+
 export default function Footer() {
     return (
         <div className="bg-stone-800 border-t-4 border-t-emerald-800 text-slate-100">

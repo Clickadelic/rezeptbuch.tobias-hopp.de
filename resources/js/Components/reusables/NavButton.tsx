@@ -4,6 +4,17 @@ interface NavButtonProps extends InertiaLinkProps {
     icon?: React.ReactNode;
 }
 
+/**
+ * A link component that is styled like a button.
+ *
+ * @prop {string} [className] - Additional classnames to apply to the component.
+ * @prop {React.ReactNode} [icon] - An icon to render before the text of the button.
+ * @prop {InertiaLinkProps} ...props - Any props you would pass to the `Link` component from `@inertiajs/react`.
+ *
+ * @example
+ * <NavButton href="/Home" icon={<BsHouse />}>Home/NavButton>
+ */
+
 export default function NavButton({
     className = '',
     icon,

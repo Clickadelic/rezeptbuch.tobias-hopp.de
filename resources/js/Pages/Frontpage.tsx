@@ -9,8 +9,8 @@ export default function Frontpage({
     return (
         <>
             <Head title="Willkommen" />
-            <FullWidthLayout>
-                <h2 className="font-normal text-slate-800 text-2xl my-3">Startseite</h2>
+            <FullWidthLayout title="Willkommen" subtitle="Toby's Rezeptbuch">
+                Startseite Cards und Content
             </FullWidthLayout>
         </>
     );

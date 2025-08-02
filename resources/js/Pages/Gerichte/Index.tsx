@@ -9,8 +9,7 @@ export default function Gerichte({
     return (
         <>
             <Head title="Gerichte" />
-            <SidebarLeftLayout>
-                <h1>Gerichte</h1>
+            <SidebarLeftLayout title="Gerichte" subtitle="Toby's Rezeptbuch">
                 Liste mit Gerichten
             </SidebarLeftLayout>
         </>

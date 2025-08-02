@@ -1,4 +1,4 @@
-import FullWidthLayout from '@/Layouts/FullWidthLayout';
+import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
@@ -9,9 +9,9 @@ export default function Gerichte({
     return (
         <>
             <Head title="Cocktails" />
-            <FullWidthLayout>
-                <h1>Cocktails</h1>
-            </FullWidthLayout>
+            <SidebarRightLayout title="Cocktails" subtitle="Toby's Rezeptbuch">
+                <div>Cocktails Content</div>
+            </SidebarRightLayout>
         </>
     );
 }

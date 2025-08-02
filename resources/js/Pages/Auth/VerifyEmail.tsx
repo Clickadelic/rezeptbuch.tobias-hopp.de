@@ -1,5 +1,5 @@
 import { Button } from '@/Components/ui/button';
-import GuestLayout from '@/Layouts/FullWidthLayout';
+import AuthLayout from '@/Layouts/AuthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -13,39 +13,35 @@ export default function VerifyEmail({ status }: { status?: string }) {
     };
 
     return (
-        <GuestLayout>
+        <AuthLayout>
             <Head title="Email Verification" />
 
-            <div className="mb-4 text-sm text-gray-600">
-                Thanks for signing up! Before getting started, could you verify
-                your email address by clicking on the link we just emailed to
-                you? If you didn't receive the email, we will gladly send you
-                another.
+            <div className="mb-4 text-slate-800">
+                <p>Danke für Deine Registrierung. Bitte bestätige zuerst Deine E-Mail Adresse bevor Du weiter machst. Danke.</p>
             </div>
 
             {status === 'verification-link-sent' && (
-                <div className="mb-4 text-sm font-medium text-green-600">
-                    A new verification link has been sent to the email address
-                    you provided during registration.
+                <div className="mb-4 font-medium text-emerald-700 border border-emerald-700 rounded-md p-4 text-center bg-emerald-200">
+                    <p>Ein neuer Bestätigungslink wurde an Deine E-Mail Adresse gesendet.</p>
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
                     <Button disabled={processing}>
-                        Resend Verification Email
+                        E-Mai erneut senden
                     </Button>
 
                     <Link
                         href={route('logout')}
                         method="post"
                         as="button"
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="rounded text-slate-800 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                     >
-                        Log Out
+                        Logout
                     </Link>
                 </div>
             </form>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

@@ -1,7 +1,7 @@
 import InputError from '@/Components/InputError';
 import { Button } from '@/Components/ui/button';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/FullWidthLayout';
+import AuthLayout from '@/Layouts/AuthLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -17,22 +17,21 @@ export default function ForgotPassword({ status }: { status?: string }) {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Forgot Password" />
+        <AuthLayout title="Passwort vergessen" subtitle="Passiert jedem von uns?">
+            <Head title="Passwort vergessen" />
 
-            <div className="mb-4 text-sm text-gray-600">
-                Forgot your password? No problem. Just let us know your email
-                address and we will email you a password reset link that will
-                allow you to choose a new one.
+            <div className="my-6 text-slate-700 text-center">
+                <p>Gib' Deine E-Mail Adresse ein, um Dein Passwort zurückzusetzen.</p>
+                <p>Du bekommst einen Link per E-Mail mit dem Du ein neues Passwort erstellen kannst.</p>
             </div>
 
             {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
+                <div className="mb-4 font-medium text-green-600">
                     {status}
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="space-y-4">
                 <TextInput
                     id="email"
                     type="email"
@@ -40,17 +39,18 @@ export default function ForgotPassword({ status }: { status?: string }) {
                     value={data.email}
                     className="mt-1 block w-full"
                     isFocused={true}
+                    placeholder="Deine E-Mail Adresse"
                     onChange={(e) => setData('email', e.target.value)}
                 />
 
                 <InputError message={errors.email} className="mt-2" />
 
-                <div className="mt-4 flex items-center justify-end">
-                    <Button className="ms-4" disabled={processing}>
-                        Email Password Reset Link
+                <div className="flex items-center justify-end">
+                    <Button variant="primary" size="lg" disabled={processing}>
+                        E-Mail senden
                     </Button>
                 </div>
             </form>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

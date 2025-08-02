@@ -1,20 +1,20 @@
 import { InertiaLinkProps, Link } from '@inertiajs/react';
 
-interface AuthNavLinkProps extends InertiaLinkProps {
+interface NavButtonProps extends InertiaLinkProps {
     icon?: React.ReactNode;
 }
 
-export default function AuthLink({
+export default function NavButton({
     className = '',
     icon,
     children,
     ...props
-}: AuthNavLinkProps) {
+}: NavButtonProps) {
     return (
         <Link
             {...props}
             className={
-                'inline-flex items-center border-b-2 border-transparent space-x-2 px-2 py-3 text-sm font-medium leading-5 rounded-sm mt-[2px] ' +
+                'inline-flex items-center space-x-1 md:space-x-2 px-2 md:px-4 py-2 text-sm font-medium leading-5 rounded-sm shadow-sm mt-[3px] ' +
                 className
             }
         >

@@ -2,7 +2,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import { Button } from '@/Components/ui/button';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/FullWidthLayout';
+import AuthLayout from '@/Layouts/AuthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -23,9 +23,8 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
-
+        <AuthLayout title="Registrierung" subtitle="Werde Teil der Community!">
+            <Head title="Registrierung" />
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
@@ -45,7 +44,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="E-Mail" />
 
                     <TextInput
                         id="email"
@@ -62,7 +61,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Passwort" />
 
                     <TextInput
                         id="password"
@@ -81,7 +80,7 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
+                        value="Passwort Bestätigung"
                     />
 
                     <TextInput
@@ -103,19 +102,24 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <Button className="ms-4" disabled={processing}>
-                        Register
+                <div className="mt-4">
+                    <Button variant="primary" size="lg" disabled={processing}>
+                        Registrieren
                     </Button>
                 </div>
+
+                <div className="flex items-center justify-center space-x-2 mt-4">
+                    <p>Bereits einen Account?&nbsp;
+                    
+                        <Link
+                            href={route('login')}
+                            className="rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                        >
+                            Login
+                        </Link>.
+                    </p>
+                </div>
             </form>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

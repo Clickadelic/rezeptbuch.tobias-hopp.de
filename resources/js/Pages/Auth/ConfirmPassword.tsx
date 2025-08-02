@@ -2,7 +2,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import { Button } from '@/Components/ui/button';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/FullWidthLayout';
+import AuthLayout from '@/Layouts/AuthLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -20,12 +20,11 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Confirm Password" />
+        <AuthLayout>
+            <Head title="Passwort bestätigen" />
 
-            <div className="mb-4 text-sm text-gray-600">
-                This is a secure area of the application. Please confirm your
-                password before continuing.
+            <div className="mb-4 text-slate-800">
+                <p>Dies ist ein geschützer Bereich des Rezeptbuches. Bitte bestätige zuerst Deine E-Mail Adresse bevor Du weiter machst. Danke.</p>
             </div>
 
             <form onSubmit={submit}>
@@ -45,12 +44,12 @@ export default function ConfirmPassword() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
-                    <Button className="ms-4" disabled={processing}>
-                        Confirm
+                <div className="mt-4 flex items-center">
+                    <Button disabled={processing}>
+                        Bestätigen
                     </Button>
                 </div>
             </form>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

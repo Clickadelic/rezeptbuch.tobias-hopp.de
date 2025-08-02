@@ -29,7 +29,7 @@ export default function Login({
     };
 
     return (
-        <AuthLayout>
+        <AuthLayout title="Login" subtitle="Willkommen zurück!">
             <Head title="Login" />
 
             {status && (
@@ -95,16 +95,28 @@ export default function Login({
                         Login
                     </Button>
                 </div>
-                <div className="text-center">
+                <div className="flex items-center justify-center space-x-2">
+                    <p>Noch kein Account?&nbsp;
+                    
+                        <Link
+                            href={route('register')}
+                            className="rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Registrieren
+                        </Link>
+                    </p>
+                </div>
+                <div className="text-center my-3">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="rounded-md text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             Passwort vergessen?
                         </Link>
                     )}
                 </div>
+                
             </form>
         </AuthLayout>
     );

@@ -93,11 +93,11 @@ const Header = () => {
                                 </Dropdown>
                             </div>
                         ) : (
-                            <div className="space-x-2 lg:space-x-4">
-                                <NavButton href="/register" className="text-slate-800 hover:text-slate-500 border border-emerald-600 " icon={<FiCheckCircle />}>
-                                    Register
+                            <div className="space-x-3">
+                                <NavButton href="/register" className="text-slate-800 hover:text-slate-500 border border-emerald-600 " icon={<FiCheckCircle className="text-slate-800" />}>
+                                    Registrierung
                                 </NavButton>
-                                <NavButton href="/login" className="text-white bg-emerald-700 hover:bg-emerald-600 hover:text-slate-200" icon={<BsDoorOpen />}>
+                                <NavButton href="/login" className="text-white border border-emerald-700 bg-emerald-700 hover:bg-emerald-600 hover:text-slate-200 hover:border-emerald-600" icon={<BsDoorOpen />}>
                                     Login
                                 </NavButton>
                             </div>

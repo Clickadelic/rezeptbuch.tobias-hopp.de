@@ -66,7 +66,10 @@ export default {
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
     			}
-    		}
+    		},
+			backgroundImage: {
+				"auth-screen": "url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')",
+			}
     	}
     },
 

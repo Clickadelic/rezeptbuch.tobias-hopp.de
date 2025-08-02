@@ -1,18 +1,31 @@
 import { PropsWithChildren } from 'react';
 
-
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
-import RightSidebar from '@/Components/reusables/sidebars/RightSidebar';
 import Footer from '@/Components/nutshell/Footer';
 
 interface SidebarRightLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
     title?: string;
     subtitle?: string;
+    sidebar?: React.ReactNode;
 }
 
-export default function SidebarRightLayout({ children, title, subtitle }: SidebarRightLayoutProps) {
+/**
+ * A layout component that displays a sidebar on the right on desktop devices
+ * and on top on mobile devices.
+ *
+ * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
+ * @prop {string} [title] - The title of the page.
+ * @prop {string} [subtitle] - The subtitle of the page.
+ * @prop {React.ReactNode} children - The content to render in the main area.
+ *
+ * @example
+ * <SidebarLeftLayout sidebar={<LeftSidebar />} title="My Page" subtitle="My Subtitle">
+ *     <div>My Main Content</div>
+ * </SidebarLeftLayout>
+ */
+export default function SidebarRightLayout({ children, title, subtitle, sidebar }: SidebarRightLayoutProps) {
     
     return (
 
@@ -27,7 +40,7 @@ export default function SidebarRightLayout({ children, title, subtitle }: Sideba
                     {subtitle && <h2 className="text-slate-600 text-xl my-3">{subtitle}</h2>}
                     {children}
                 </main>
-                <RightSidebar />
+                {sidebar}
             </div>
             <Footer />
         </div>

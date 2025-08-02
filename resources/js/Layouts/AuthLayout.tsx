@@ -8,6 +8,18 @@ interface AuthLayoutProps extends PropsWithChildren {
     subtitle?: string;
 }
 
+/**
+ * A layout component for pages that are part of the authentication flow.
+ *
+ * @prop {React.ReactNode} children - The content to render in the main area.
+ * @prop {string} [title] - The title of the page.
+ * @prop {string} [subtitle] - The subtitle of the page.
+ *
+ * @example
+ * <AuthLayout title="Login" subtitle="Welcome back">
+ *     <div>My Login Content</div>
+ * </AuthLayout>
+ */
 export default function AuthLayout({
     children,
     title,

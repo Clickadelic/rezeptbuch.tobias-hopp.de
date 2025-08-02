@@ -4,13 +4,15 @@ import { Head } from '@inertiajs/react';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
+import LeftSidebar from '@/Components/reusables/sidebars/LeftSidebar';
+import RightSidebar from '@/Components/reusables/sidebars/RightSidebar';
 
 export default function Edit({
     mustVerifyEmail,
     status,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
-        <TwoSidebarsLayout title="Profil bearbeiten" subtitle="Toby's Rezeptbuch">
+        <TwoSidebarsLayout title="Profil bearbeiten" subtitle="Toby's Rezeptbuch" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
             <Head title="Profil" />
 
             <div className=" space-y-4">

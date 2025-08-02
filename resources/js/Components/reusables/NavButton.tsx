@@ -12,9 +12,8 @@ interface NavButtonProps extends InertiaLinkProps {
  * @prop {InertiaLinkProps} ...props - Any props you would pass to the `Link` component from `@inertiajs/react`.
  *
  * @example
- * <NavButton href="/Home" icon={<BsHouse />}>Home/NavButton>
+ * <NavButton href="/Home" icon={<BsHouse />}>Home</NavButton>
  */
-
 export default function NavButton({
     className = '',
     icon,

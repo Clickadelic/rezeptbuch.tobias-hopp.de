@@ -53,7 +53,7 @@ export default function Footer() {
                         <li className="hidden sm:inline-block">&middot;</li>
                         <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}</li>
                         <li className="hidden sm:inline-block">&middot;</li>
-                        <li><Link href="/impressum" className="hover:text-slate-400" title="Impressum">Impressum</Link></li>
+                        <li><Link href="/impressum" className="hover:text-slate-400 text-sm" title="Impressum">Impressum</Link></li>
                     </ul>
                 </div>
             </footer>

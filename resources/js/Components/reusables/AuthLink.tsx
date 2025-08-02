@@ -14,7 +14,7 @@ export default function AuthLink({
         <Link
             {...props}
             className={
-                'inline-flex items-center border-b-2 border-transparent space-x-2 px-2 py-3 text-sm font-medium leading-5 rounded-sm' +
+                'inline-flex items-center border-b-2 border-transparent space-x-2 px-2 py-3 text-sm font-medium leading-5 rounded-sm mt-[2px] ' +
                 className
             }
         >

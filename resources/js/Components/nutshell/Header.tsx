@@ -1,7 +1,7 @@
 import AppLogo from '@/Components/nutshell/AppLogo';
-import NavLink from '@/Components/NavLink';
-import AuthLink from '@/Components/AuthLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import NavLink from '@/Components/reusables/NavLink';
+import AuthLink from '@/Components/reusables/AuthLink';
+import ResponsiveNavLink from '@/Components/reusables/ResponsiveNavLink';
 import Dropdown from '@/Components/Dropdown';
 import { BsHouse } from "react-icons/bs";
 import { useState } from 'react';
@@ -17,14 +17,14 @@ const Header = () => {
         useState(false);
     return (
         <header className="border-b border-gray-100 bg-white shadow">
-            <div className="mx-auto container px-4 py-3 sm:px-6 lg:px-8">
+            <div className="mx-auto container px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between">
-                    <div className="flex justify-between sm:space-x-4 md:space-x-8 lg:space-x-12">
+                    <div className="flex justify-between sm:space-x-8 md:space-x-24 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo />
+                            <AppLogo className="py-2md:py-3 lg:py-4" />
                         </div>
-                        <div className="hidden sm:-my-px sm:flex space-x-2 md:space-x-4 lg:space-x-6">
-                            <NavLink href="/" active={window.location.pathname === '/'} icon={<BsHouse />}>
+                        <div className="hidden sm:-my-px sm:flex space-x-2 md:space-x-4 lg:space-x-8">
+                            <NavLink href="/" active={window.location.pathname === '/'} className="py-4" icon={<BsHouse />}>
                                 Start
                             </NavLink>
                             <NavLink href="/gerichte" active={window.location.pathname === '/gerichte'} icon={<BsJournalBookmark />}>

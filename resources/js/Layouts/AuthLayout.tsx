@@ -32,8 +32,9 @@ export default function AuthLayout({
                     </div>
                 </div>
             </main>
-            <p className="absolute bottom-4 mx-auto text-sm text-slate-900 bg-white/30 backdrop-blur px-4 py-2">Foto von <a href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Brooke Lark</a> auf <a href="https://unsplash.com/de/fotos/green-vegetable-beside-ceramic-bowl-kXQ3J7_2fpc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-      </p>
+            <p className="absolute bottom-4 mx-auto text-sm text-slate-900 bg-white/30 backdrop-blur px-4 py-2">
+                Foto von <a href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Brooke Lark</a> auf <a href="https://unsplash.com/de/fotos/green-vegetable-beside-ceramic-bowl-kXQ3J7_2fpc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+            </p>
         </div>
     );
 }

@@ -2,9 +2,8 @@ import InputError from '@/Components/InputError';
 import { Button } from '@/Components/ui/button';
 import TextInput from '@/Components/TextInput';
 import AuthLayout from '@/Layouts/AuthLayout';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
-
 export default function ForgotPassword({ status }: { status?: string }) {
     const { data, setData, post, processing, errors } = useForm({
         email: '',
@@ -46,11 +45,23 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 <InputError message={errors.email} className="mt-2" />
 
                 <div className="flex items-center justify-end">
-                    <Button variant="primary" size="lg" disabled={processing}>
+                    <Button variant="primary" className="w-full" size="lg" disabled={processing}>
                         E-Mail senden
                     </Button>
                 </div>
+                
             </form>
+            <div className="flex items-center justify-center space-x-2 mt-4">
+                <p>
+                
+                    <Link
+                        href={route('login')}
+                        className="text-sm text-slate-800 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2"
+                    >
+                        zurück zum Login
+                    </Link>
+                </p>
+            </div>
         </AuthLayout>
     );
 }

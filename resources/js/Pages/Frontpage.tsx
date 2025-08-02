@@ -2,7 +2,7 @@ import FullWidthLayout from '@/Layouts/FullWidthLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
-export default function Welcome({
+export default function Frontpage({
     auth
 }: PageProps<{ auth: { user: any } }>) {
 
@@ -10,7 +10,7 @@ export default function Welcome({
         <>
             <Head title="Willkommen" />
             <FullWidthLayout>
-                <h1>Rezeptbuch Startseite</h1>
+                <h2 className="font-normal text-slate-800 text-2xl my-3">Startseite</h2>
             </FullWidthLayout>
         </>
     );

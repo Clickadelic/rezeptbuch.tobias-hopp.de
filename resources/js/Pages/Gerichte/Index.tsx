@@ -1,4 +1,4 @@
-import FullWidthLayout from '@/Layouts/FullWidthLayout';
+import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
@@ -9,9 +9,10 @@ export default function Gerichte({
     return (
         <>
             <Head title="Gerichte" />
-            <FullWidthLayout>
+            <SidebarLeftLayout>
                 <h1>Gerichte</h1>
-            </FullWidthLayout>
+                Liste mit Gerichten
+            </SidebarLeftLayout>
         </>
     );
 }

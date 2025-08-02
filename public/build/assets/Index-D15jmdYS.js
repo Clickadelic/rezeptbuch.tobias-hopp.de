@@ -1,1 +1,0 @@
-import{j as t,H as r}from"./app-DlDk1ypC.js";import{F as i}from"./FullWidthLayout-DKYbX2Wc.js";import"./AppLogo-DOq3iOdJ.js";import"./utils-CBfrqCZ4.js";import"./transition-CugIVBxZ.js";function n({auth:e}){return t.jsxs(t.Fragment,{children:[t.jsx(r,{title:"Cocktails"}),t.jsx(i,{children:t.jsx("h1",{children:"Cocktails"})})]})}export{n as default};

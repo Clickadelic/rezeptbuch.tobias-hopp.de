@@ -1,4 +1,4 @@
-import { GrNavigate } from "react-icons/gr";
+import SidebarLink from "@/Components/reusables/sidebars/SidebarLink"
 
 /**
  * A component that renders a right sidebar with a title and a subtitle.
@@ -8,9 +8,14 @@ import { GrNavigate } from "react-icons/gr";
  */
 export default function RightSidebar() {
     return (
-        <aside>
-            <h2 className="text-2xl my-3 flex flex-row gap-2"><GrNavigate className="mt-1" />Navigation</h2>
-            <h2 className="text-slate-600 text-2xl my-3">Subtitle</h2>
+        <aside className="asd">
+            <h2 className="text-2xl my-3 flex">Navigation</h2>
+            <hr className="my-3 border-slate-300" />
+            <ul className="flex flex-col space-y-2 divide-y divide-slate-300">
+                <SidebarLink  href="/" active={window.location.pathname === '/'} title="Startseite" />
+                <SidebarLink  href="/gerichte" active={window.location.pathname === '/gerichte'} title="Gerichte" />
+                <SidebarLink  href="/cocktails" active={window.location.pathname === '/cocktails'} title="Cocktails" />
+            </ul>
         </aside>
     );
 }

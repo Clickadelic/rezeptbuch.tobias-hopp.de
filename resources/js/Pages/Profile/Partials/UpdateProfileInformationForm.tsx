@@ -33,11 +33,11 @@ export default function UpdateProfileInformation({
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Profile Information
+                    Profil Informationen
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
+                    Aktualisiere Deinen Namen und Deine E-Mail Adresse hier.
                 </p>
             </header>
 
@@ -59,7 +59,7 @@ export default function UpdateProfileInformation({
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="E-Mail" />
 
                     <TextInput
                         id="email"
@@ -84,14 +84,13 @@ export default function UpdateProfileInformation({
                                 as="button"
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
-                                Click here to re-send the verification email.
+                                Klicke hier um die E-Mail-Bestätigung erneut zu senden.
                             </Link>
                         </p>
 
                         {status === 'verification-link-sent' && (
                             <div className="mt-2 text-sm font-medium text-green-600">
-                                A new verification link has been sent to your
-                                email address.
+                                Ein neuer Bestätigungslink wurde an Deine E-Mail Adresse gesendet.
                             </div>
                         )}
                     </div>
@@ -107,8 +106,8 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
-                            Saved.
+                        <p className="text-sm text-emerald-700 bg-emerald-200 border-emerald-700 rounded px-2 py-1">
+                            Gespeichert.
                         </p>
                     </Transition>
                 </div>

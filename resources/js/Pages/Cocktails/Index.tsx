@@ -11,7 +11,7 @@ export default function Gerichte({
     return (
         <>
             <Head title="Cocktails" />
-            <SidebarRightLayout title="Cocktails" subtitle="Toby's Rezeptbuch" sidebar={<RightSidebar />}>
+            <SidebarRightLayout title="Cocktails" sidebar={<RightSidebar />}>
                 <div>Cocktails Content</div>
             </SidebarRightLayout>
         </>

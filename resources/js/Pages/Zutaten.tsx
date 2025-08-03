@@ -12,7 +12,7 @@ export default function Zutaten({
     return (
         <>
             <Head title="Zutaten" />
-            <TwoSidebarsLayout title="Zutaten" subtitle="Was kommt rein, was ist wichtig ?!" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
+            <TwoSidebarsLayout title="Zutaten" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
                 Liste und Philosophy bezüglich Zutaten.
             </TwoSidebarsLayout>
         </>

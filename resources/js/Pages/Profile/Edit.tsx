@@ -12,7 +12,7 @@ export default function Edit({
     status,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
-        <TwoSidebarsLayout title="Profil bearbeiten" subtitle="Toby's Rezeptbuch" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
+        <TwoSidebarsLayout title="Profil bearbeiten" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
             <Head title="Profil" />
 
             <div className=" space-y-4">

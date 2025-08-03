@@ -5,7 +5,7 @@ export default function Dashboard() {
     return (
         <>
             <Head title="Willkommen" />
-            <FullWidthLayout>
+            <FullWidthLayout title="Willkommen">
                 <h1>Dashboard</h1>
             </FullWidthLayout>
         </>

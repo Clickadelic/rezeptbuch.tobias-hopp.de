@@ -9,7 +9,7 @@ export default function Gerichte({
     return (
         <>
             <Head title="Gerichte" />
-            <SidebarLeftLayout title="Gerichte" subtitle="Toby's Rezeptbuch" sidebar={<LeftSidebar />}>
+            <SidebarLeftLayout title="Gerichte" sidebar={<LeftSidebar />}>
                 Liste mit Gerichten
             </SidebarLeftLayout>
         </>

@@ -9,7 +9,7 @@ export default function Frontpage({
     return (
         <>
             <Head title="Willkommen" />
-            <FullWidthLayout title="Willkommen" subtitle="Toby's Rezeptbuch">
+            <FullWidthLayout title="Willkommen">
                 Startseite Cards und Content
             </FullWidthLayout>
         </>

@@ -12,7 +12,7 @@ export default function Impressum({
     return (
         <>
             <Head title="Impressum" />
-            <TwoSidebarsLayout title="Impressum" subtitle="Rechtliche Hinweise" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
+            <TwoSidebarsLayout title="Impressum" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
                 Diese Subdomain wird betrieben von Tobias Hopp.
                 
             </TwoSidebarsLayout>

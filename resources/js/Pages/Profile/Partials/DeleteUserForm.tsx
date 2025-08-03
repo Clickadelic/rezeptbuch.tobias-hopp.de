@@ -52,10 +52,10 @@ export default function DeleteUserForm({
         <section className={`space-y-6 ${className}`}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Delete Account
+                    Profil löschen
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-slate-800">
                     Once your account is deleted, all of its resources and data
                     will be permanently deleted. Before deleting your account,
                     please download any data or information that you wish to
@@ -63,27 +63,22 @@ export default function DeleteUserForm({
                 </p>
             </header>
 
-            <Button onClick={confirmUserDeletion}>
-                Delete Account
+            <Button variant="destructive" className="w-full" onClick={confirmUserDeletion}>
+                Profil löschen
             </Button>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
                     <h2 className="text-lg font-medium text-gray-900">
-                        Are you sure you want to delete your account?
+                        Möchtest Du Dein Profil wirklich löschen?
                     </h2>
-
                     <p className="mt-1 text-sm text-gray-600">
-                        Once your account is deleted, all of its resources and
-                        data will be permanently deleted. Please enter your
-                        password to confirm you would like to permanently delete
-                        your account.
+                        Wenn Dein Profil gelöscht wird, werden alle Deine Daten und Einstellungen permanent gelöscht. Dies kann nicht wiederhergestellt werden. Bitte gib' daher Dein Passwort ein um Dein Profil wirklich zu löschen.
                     </p>
-
                     <div className="mt-6">
                         <InputLabel
                             htmlFor="password"
-                            value="Password"
+                            value="Passwort"
                             className="sr-only"
                         />
 
@@ -98,7 +93,7 @@ export default function DeleteUserForm({
                             }
                             className="mt-1 block w-3/4"
                             isFocused
-                            placeholder="Password"
+                            placeholder="Passwort"
                         />
 
                         <InputError
@@ -109,11 +104,11 @@ export default function DeleteUserForm({
 
                     <div className="mt-6 flex justify-end">
                         <Button onClick={closeModal}>
-                            Cancel
+                            abbrechen
                         </Button>
 
                         <Button className="ms-3" disabled={processing}>
-                            Delete Account
+                            Profil löschen
                         </Button>
                     </div>
                 </form>

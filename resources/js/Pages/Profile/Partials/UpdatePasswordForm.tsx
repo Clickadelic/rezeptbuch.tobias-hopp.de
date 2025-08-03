@@ -52,12 +52,11 @@ export default function UpdatePasswordForm({
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Update Password
+                    Passwort aktualisieren
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay
-                    secure.
+                    Stelle sicher, dass Du ein langes, sicheres Passwort verwendest.
                 </p>
             </header>
 
@@ -65,7 +64,7 @@ export default function UpdatePasswordForm({
                 <div>
                     <InputLabel
                         htmlFor="current_password"
-                        value="Current Password"
+                        value="Aktuelles Passwort"
                     />
 
                     <TextInput
@@ -87,8 +86,7 @@ export default function UpdatePasswordForm({
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="password" value="New Password" />
-
+                    <InputLabel htmlFor="password" value="Neues Passwort" />
                     <TextInput
                         id="password"
                         ref={passwordInput}
@@ -105,7 +103,7 @@ export default function UpdatePasswordForm({
                 <div>
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
+                        value="Passwort bestätigen"
                     />
 
                     <TextInput
@@ -135,8 +133,8 @@ export default function UpdatePasswordForm({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
-                            Saved.
+                        <p className="text-sm text-emerald-700 bg-emerald-200 border-emerald-700 rounded px-2 py-1">
+                            Gespeichert.
                         </p>
                     </Transition>
                 </div>

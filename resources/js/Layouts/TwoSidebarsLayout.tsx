@@ -4,13 +4,12 @@ import { useMediaQuery } from '@/Hooks/use-media-query';
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
-import RightSidebar from '@/Components/reusables/sidebars/RightSidebar';
-import LeftSidebar from '@/Components/reusables/sidebars/LeftSidebar';
+
+// TODO: Read state sharing Inertia Documentation
 
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
     title?: string;
-    subtitle?: string;
     leftSidebar?: React.ReactNode;
     rightSidebar?: React.ReactNode;
 }
@@ -22,14 +21,12 @@ interface TwoSidebarsLayoutProps extends PropsWithChildren {
  *
  * @prop {React.ReactNode} children - The main content to render in the layout.
  * @prop {string} [title] - The title of the page, displayed above the main content.
- * @prop {string} [subtitle] - The subtitle of the page, displayed below the title.
  * @prop {React.ReactNode} [leftSidebar] - The sidebar you can pass in to be rendered in the left sidebar.
  * @prop {React.ReactNode} [rightSidebar] - The sidebar you can pass in to be rendered in the right sidebar.
  *
  * @example
  * <TwoSidebarsLayout
  *   title="Dashboard"
- *   subtitle="Welcome to your dashboard"
  *   leftSidebar={<LeftSidebar />}
  *   rightSidebar={<RightSidebar />}
  * >
@@ -37,7 +34,7 @@ interface TwoSidebarsLayoutProps extends PropsWithChildren {
  * </TwoSidebarsLayout>
  */
 
-export default function TwoSidebarsLayout({ children, title, subtitle, leftSidebar, rightSidebar }: TwoSidebarsLayoutProps) {
+export default function TwoSidebarsLayout({ children, title, leftSidebar, rightSidebar }: TwoSidebarsLayoutProps) {
     // TODO: Add media queries to ENV file > global control
     const isDesktop = useMediaQuery("(min-width: 768px)");
     return (
@@ -51,7 +48,7 @@ export default function TwoSidebarsLayout({ children, title, subtitle, leftSideb
                 {isDesktop && leftSidebar}
                 <main className="col-span-3">
                     {title && <h2 className="text-2xl my-3">{title}</h2>}
-                    {subtitle && <h2 className="text-slate-600 text-xl my-3">{subtitle}</h2>}
+                    {title && <hr className="my-3 border-slate-300" />}
                     {children}
                 </main>
                 {!isDesktop && leftSidebar}

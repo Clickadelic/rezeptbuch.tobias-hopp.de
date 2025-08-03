@@ -23,14 +23,14 @@ const Header = () => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
     return (
-        <header className="border-b border-gray-100 bg-white shadow">
+        <header className="bg-white shadow-lg">
             <div className="mx-auto container px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between">
-                    <div className="flex justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
+                    <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo className="py-3" />
+                            <AppLogo className="my-4" />
                         </div>
-                        <div className="hidden sm:-my-px sm:flex space-x-1 md:space-x-2 lg:space-x-8">
+                        <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink href="/" active={window.location.pathname === '/'} className="py-4" icon={<BsHouse />}>
                                 Start
                             </NavLink>
@@ -43,11 +43,6 @@ const Header = () => {
                             <NavLink href="/zutaten" active={window.location.pathname === '/zutaten'} icon={<TbSalt />}>
                                 Zutaten
                             </NavLink>
-                            {/* {user && (
-                                <Button className="mt-2">
-                                    Neues Rezept
-                                </Button>
-                            )} */}
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center">
@@ -96,7 +91,7 @@ const Header = () => {
                                 </Dropdown>
                             </div>
                         ) : (
-                            <div className="space-x-3">
+                            <div className="space-x-1 sm:space-x-2 md:space-x-3">
                                 <NavButton href="/register" className="text-slate-800 hover:text-slate-500 border border-emerald-600 " icon={<FiCheckCircle className="text-slate-800" />}>
                                     Registrierung
                                 </NavButton>

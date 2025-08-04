@@ -19,10 +19,10 @@ interface TwoSidebarsLayoutProps extends PropsWithChildren {
  * The left sidebar appears on the left side of the main content on desktop and below it on mobile screens.
  * The right sidebar is consistently displayed to the right of the main content on desktop and below on mobile screen.
  *
- * @prop {React.ReactNode} children - The main content to render in the layout.
  * @prop {string} [title] - The title of the page, displayed above the main content.
  * @prop {React.ReactNode} [leftSidebar] - The sidebar you can pass in to be rendered in the left sidebar.
  * @prop {React.ReactNode} [rightSidebar] - The sidebar you can pass in to be rendered in the right sidebar.
+ * @prop {React.ReactNode} children - The main content to render in the layout.
  *
  * @example
  * <TwoSidebarsLayout
@@ -34,7 +34,7 @@ interface TwoSidebarsLayoutProps extends PropsWithChildren {
  * </TwoSidebarsLayout>
  */
 
-export default function TwoSidebarsLayout({ children, title, leftSidebar, rightSidebar }: TwoSidebarsLayoutProps) {
+export default function TwoSidebarsLayout({ title, leftSidebar, rightSidebar, children }: TwoSidebarsLayoutProps) {
     // TODO: Add media queries to ENV file > global control
     const isDesktop = useMediaQuery("(min-width: 768px)");
     return (

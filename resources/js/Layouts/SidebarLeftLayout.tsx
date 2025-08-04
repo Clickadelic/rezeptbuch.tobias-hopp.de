@@ -8,8 +8,8 @@ import Footer from '@/Components/nutshell/Footer';
 // TODO: Read state sharing Inertia Documentation
 
 interface SidebarLeftLayoutProps extends PropsWithChildren {
-    sidebar?: React.ReactNode;
     title?: string;
+    sidebar?: React.ReactNode;
     children: React.ReactNode;
 }
 
@@ -17,8 +17,8 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  * A layout component that displays a sidebar on the left on desktop devices
  * and on the bottom on mobile devices.
  *
- * @prop {React.ReactNode} [sidebar] - The sidebar you can pass in to render.
  * @prop {string} [title] - The title of the page.
+ * @prop {React.ReactNode} [sidebar] - The sidebar you can pass in to render.
  * @prop {React.ReactNode} children - The content to render in the main area.
  *
  * @example
@@ -26,7 +26,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  *     <div>My Main Content</div>
  * </SidebarLeftLayout>
  */
-export default function SidebarLeftLayout({ children, title, sidebar }: SidebarLeftLayoutProps) {
+export default function SidebarLeftLayout({ title, sidebar, children }: SidebarLeftLayoutProps) {
     const isDesktop = useMediaQuery("(min-width: 768px)");
     return (
         <div className="min-h-screen flex flex-col justify-between bg-slate-100">

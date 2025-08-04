@@ -14,7 +14,7 @@
 /auth.json
 /node_modules
 /public/hot
-/public/assets
+/public/build/assets
 /public/storage
 /storage/*.key
 /storage/pail

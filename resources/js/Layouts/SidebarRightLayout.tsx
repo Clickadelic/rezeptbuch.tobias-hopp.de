@@ -7,17 +7,17 @@ import Footer from '@/Components/nutshell/Footer';
 // TODO: Read state sharing Inertia Documentation
 
 interface SidebarRightLayoutProps extends PropsWithChildren {
-    children: React.ReactNode;
     title?: string;
     sidebar?: React.ReactNode;
+    children: React.ReactNode;
 }
 
 /**
  * A layout component that displays a sidebar on the right on desktop devices
  * and on top on mobile devices.
  *
- * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
  * @prop {string} [title] - The title of the page.
+ * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
  * @prop {React.ReactNode} children - The content to render in the main area.
  *
  * @example
@@ -25,7 +25,7 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  *     <div>My Main Content</div>
  * </SidebarLeftLayout>
  */
-export default function SidebarRightLayout({ children, title, sidebar }: SidebarRightLayoutProps) {
+export default function SidebarRightLayout({ title, sidebar, children }: SidebarRightLayoutProps) {
     
     return (
 

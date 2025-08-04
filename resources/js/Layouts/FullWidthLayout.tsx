@@ -6,15 +6,15 @@ import Footer from '@/Components/nutshell/Footer';
 // TODO: Read state shadring Inertia Documentation
 
 interface FullWidthLayoutProps extends PropsWithChildren {
-    children: React.ReactNode;
     title?: string;
+    children: React.ReactNode;
 }
 
 /**
  * A layout component that occupies the full width of the screen.
  *
- * @prop {React.ReactNode} children - The content to render in the main area.
  * @prop {string} [title] - The title to display at the top of the content area.
+ * @prop {React.ReactNode} children - The content to render in the main area.
  *
  * @example
  * <FullWidthLayout title="My Page">
@@ -22,7 +22,7 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  * </FullWidthLayout>
  */
 
-export default function FullWidthLayout({ children, title }: FullWidthLayoutProps) {
+export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
     return (
 
         <div className="min-h-screen flex flex-col justify-between bg-slate-100">

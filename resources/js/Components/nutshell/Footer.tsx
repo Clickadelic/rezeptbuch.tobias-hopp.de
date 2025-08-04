@@ -31,7 +31,7 @@ export default function Footer() {
                     </div>
                     <div>
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><FaQ className="mt-1" />Weiteres</h2>
-                        <ul className="space-y-4 flex flex-col justify-center items-center sm:justify-start sm:items-start">
+                        <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
                             <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
                             <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
                             <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>

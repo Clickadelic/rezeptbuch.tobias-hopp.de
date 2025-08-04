@@ -11,6 +11,7 @@ import { LiaCocktailSolid } from "react-icons/lia";
 import { FiCheckCircle } from "react-icons/fi";
 import { BsDoorOpen } from "react-icons/bs";
 import { TbSalt } from "react-icons/tb";
+import { RxAvatar } from "react-icons/rx";
 /**
  * The application header.
  *
@@ -53,8 +54,9 @@ const Header = () => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none gap-2"
                                             >
+                                                <RxAvatar className="size-5 hidden md:flex" />
                                                 {user.name}
 
                                                 <svg

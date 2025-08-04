@@ -1,29 +1,21 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import { PageProps } from '@/types';
-import { usePage } from '@inertiajs/react';
 
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import LeftSidebar from '@/Components/reusables/sidebars/LeftSidebar';
 
-export interface Dish {
-    id: number;
-    name: string;
-    description?: string;
-    // Füge weitere Felder hinzu, die in deiner DB-Tabelle existieren
-}
+export default function Gerichte() {
+    const { dishes, auth } = usePage<PageProps>().props;
 
-export default function Gerichte({
-    auth
-}: PageProps<{ auth: { user: any } }>) {
-    const { dishes } = usePage().props;
     return (
         <>
             <Head title="Gerichte" />
             <SidebarLeftLayout title="Gerichte" sidebar={<LeftSidebar />}>
-                <ul>
+                <ul className="grid grid-cols-5 gap-4">
                     {dishes.map((dish) => (
-                        <li key={dish.id}>
-                            {dish.name} – {dish.description}
+                        <li key={dish.id} className="bg-white rounded shadow p-4 hover:cursor-pointer">
+                            <h3>{dish.name}</h3>
+                            <p>{dish.description}</p>
                         </li>
                     ))}
                 </ul>

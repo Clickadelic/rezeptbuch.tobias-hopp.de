@@ -1,1 +1,0 @@
-import{j as r,H as t}from"./app-D0Wm8jc7.js";import{F as o}from"./FullWidthLayout-Ctrf0oep.js";import"./Footer-a_sxWMlD.js";import"./AppLogo-Dor05Zza.js";import"./button-e-2loYmz.js";import"./transition-Dk_9xMlm.js";function d(){return r.jsxs(r.Fragment,{children:[r.jsx(t,{title:"Willkommen"}),r.jsx(o,{children:r.jsx("h1",{children:"Dashboard"})})]})}export{d as default};

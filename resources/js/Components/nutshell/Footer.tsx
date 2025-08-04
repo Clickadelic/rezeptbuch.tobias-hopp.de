@@ -17,7 +17,7 @@ import { GrNavigate } from "react-icons/gr";
 
 export default function Footer() {
     return (
-        <div className="bg-stone-800 border-t-4 border-t-emerald-800 text-slate-100">
+        <div className="bg-gradient-to-b from-stone-800 to-stone-900 border-t-4 border-t-emerald-800 text-slate-100">
             <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div>
@@ -32,7 +32,7 @@ export default function Footer() {
                     <div>
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><FaQ className="mt-1" />Weiteres</h2>
                         <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
-                            <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
+                            <li><a href="https://www.tobias-hopp.de" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Portfolio" target="_blank"><BsChevronCompactRight className="mt-1" />Portfolio</a></li>
                             <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
                             <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
                             <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
@@ -40,6 +40,7 @@ export default function Footer() {
                     </div>
                     <div>
                         <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><IoIosRibbon className="mt-1" />100% Qualit&auml;t</h2>
+                        <p className="mb-6 sm:mb-1">Alle Gerichte wurden selbstverständlich vorher von mir gekocht, probiert und verfeinert.</p>
                         <img src={badgeSrc} alt="100% Qualit&auml;t" className="mx-auto" />
                     </div>
                     <div>
@@ -54,7 +55,7 @@ export default function Footer() {
                         </form>
                     </div>
                 </div>
-                <div className="flex flex-row justify-center items-center border-t border-t-stone-800 pt-6 mt-12">
+                <div className="flex flex-row justify-center items-center border-t border-t-stone-500 pt-6 mt-12">
                     <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">
                         <li>Toby's Kochbuch</li>
                         <li className="hidden sm:inline-block">&middot;</li>

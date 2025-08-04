@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\DishController;
+
 Route::get('/', function () {
     return Inertia::render('Frontpage', [
         'canLogin' => Route::has('login'),
@@ -12,12 +14,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/gerichte', function () {
-    return Inertia::render('Gerichte/Index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
-});
+// ✅ Hier dein neuer Eintrag für die Gerichte
+Route::get('/gerichte', [DishController::class, 'index']);
 
 Route::get('/cocktails', function () {
     return Inertia::render('Cocktails/Index', [

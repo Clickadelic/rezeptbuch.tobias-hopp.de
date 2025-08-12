@@ -16,6 +16,7 @@ Route::get('/', function () {
 
 // ✅ Hier dein neuer Eintrag für die Gerichte
 Route::get('/gerichte', [DishController::class, 'index']);
+Route::get('/gerichte/neues-gericht', [DishController::class, 'create']);
 
 Route::get('/cocktails', function () {
     return Inertia::render('Cocktails/Index', [

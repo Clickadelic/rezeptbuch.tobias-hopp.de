@@ -21,7 +21,7 @@ export default function Footer() {
             <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div>
-                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><GrNavigate className="mt-1" />Navigation</h2>
+                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary"><GrNavigate className="mt-1" />Navigation</h2>
                         <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
                             <li><Link href="/" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Startseite"><BsChevronCompactRight className="mt-1" />Startseite</Link></li>
                             <li><Link href="/gerichte" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Gerichte"><BsChevronCompactRight className="mt-1" />Gerichte</Link></li>
@@ -30,7 +30,7 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><FaQ className="mt-1" />Weiteres</h2>
+                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary"><FaQ className="mt-1" />Weiteres</h2>
                         <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
                             <li><a href="https://www.tobias-hopp.de" className="flex gap-1 text-slate-100 hover:text-slate-400" title="Portfolio" target="_blank"><BsChevronCompactRight className="mt-1" />Portfolio</a></li>
                             <li><Link href="#" className="flex gap-1 text-slate-100 hover:text-slate-400"><BsChevronCompactRight className="mt-1" />Link</Link></li>
@@ -39,13 +39,13 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><IoIosRibbon className="mt-1" />100% Qualit&auml;t</h2>
+                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary"><IoIosRibbon className="mt-1" />100% Qualit&auml;t</h2>
                         <p className="mb-6 sm:mb-1">Alle Gerichte wurden selbstverständlich vorher von mir gekocht, probiert und verfeinert.</p>
                         <img src={badgeSrc} alt="100% Qualit&auml;t" className="mx-auto" />
                     </div>
                     <div>
-                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2"><TbMailHeart className="mt-1" />Newsletter</h2>
-                        <p className="mb-6">Bleib' auf dem Laufenden, wenn es Neuigkeiten gibt.</p>
+                        <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary"><TbMailHeart className="mt-1" />Newsletter</h2>
+                        <p className="mb-6">Bleib' auf dem Laufenden, wenn es Neuigkeiten zu meinem Rezeptbuch gibt.</p>
                         <form>
                             <div className="flex flex-col space-y-2">
                                 <input type="text" placeholder="Name" className="px-2 py-1 rounded w-full bg-slate-200 text-slate-100" />

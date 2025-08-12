@@ -1,4 +1,11 @@
-import { useForm } from '@inertiajs/react';
+import Checkbox from '@/Components/Checkbox';
+import InputError from '@/Components/InputError';
+import InputLabel from '@/Components/InputLabel';
+import { Button } from '@/Components/ui/button';
+import TextInput from '@/Components/TextInput';
+import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
+import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
 
 export default function DishCreate() {
     const { data, setData, post, processing, errors } = useForm({
@@ -14,25 +21,64 @@ export default function DishCreate() {
     return (
         <form onSubmit={submit}>
             <div>
-                <label>Name:</label>
-                <input
-                value={data.name}
-                onChange={e => setData('name', e.target.value)}
-                type="text"
+                <InputLabel htmlFor="email" value="Email" />
+
+                <TextInput
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={data.email}
+                    className="mt-1 block w-full"
+                    autoComplete="username"
+                    placeholder="E-Mail Adresse"
+                    isFocused={true}
+                    onChange={(e) => setData('email', e.target.value)}
                 />
-                {errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
+
+                <InputError message={errors.email} className="mt-2" />
             </div>
 
-            <div>
-                <label>Beschreibung:</label>
-                <textarea
-                value={data.description}
-                onChange={e => setData('description', e.target.value)}
+            <div className="mt-4">
+                <InputLabel htmlFor="password" value="Password" />
+
+                <TextInput
+                    id="password"
+                    type="password"
+                    name="password"
+                    value={data.password}
+                    className="mt-1 block w-full"
+                    autoComplete="current-password"
+                    placeholder="**********"
+                    onChange={(e) => setData('password', e.target.value)}
                 />
-                {errors.description && <div style={{ color: 'red' }}>{errors.description}</div>}
+
+                <InputError message={errors.password} className="mt-2" />
             </div>
 
-            <button type="submit" disabled={processing}>Speichern</button>
+            <div className="my-6 block">
+                <label className="flex items-center">
+                    <Checkbox
+                        name="remember"
+                        checked={data.remember}
+                        onChange={(e) =>
+                            setData(
+                                'remember',
+                                (e.target.checked || false) as false,
+                            )
+                        }
+                    />
+                    <span className="ms-2 text-sm text-gray-600">
+                        Erinnere Dich an mich
+                    </span>
+                </label>
+            </div>
+
+            <div className="my-4 flex items-center justify-end">
+                <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+                    Login
+                </Button>
+            </div>
+            
         </form>
     );
 }

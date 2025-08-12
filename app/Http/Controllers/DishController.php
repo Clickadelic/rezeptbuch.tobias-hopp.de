@@ -16,6 +16,11 @@ class DishController extends Controller
             'dishes' => $dishes,
         ]);
     }
+
+    public function create()
+    {
+        return Inertia::render('Gerichte/Create');
+    }
 }
 
 

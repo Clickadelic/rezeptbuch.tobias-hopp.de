@@ -33,10 +33,10 @@ export default function AuthLayout({
                     <div className="bg-white rounded-lg">
                         <div className="px-8 py-8 lg:py-12 text-gray-900">
                             <div className="flex flex-col items-center justify-center">
-                                <AppLogo />
+                                <AppLogo className="font-secondary" />
                                 <div className="my-6 text-center space-y-2">
-                                    <h2 className="text-2xl font-medium text-slate-700">{title}</h2>
-                                    <h3 className="text-xl font-light text-slate-500">{subtitle}</h3>
+                                    <h2 className="text-2xl font-medium text-slate-700 font-secondary">{title}</h2>
+                                    <h3 className="text-xl font-light text-slate-500 font-secondary">{subtitle}</h3>
                                 </div>
                             </div>
                             {children}

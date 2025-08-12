@@ -21,61 +21,26 @@ export default function DishCreate() {
     return (
         <form onSubmit={submit}>
             <div>
-                <InputLabel htmlFor="email" value="Email" />
+                <InputLabel htmlFor="name" value="name" />
 
                 <TextInput
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={data.email}
+                    id="name"
+                    type="name"
+                    name="name"
+                    value={data.name}
                     className="mt-1 block w-full"
                     autoComplete="username"
                     placeholder="E-Mail Adresse"
                     isFocused={true}
-                    onChange={(e) => setData('email', e.target.value)}
+                    onChange={(e) => setData('name', e.target.value)}
                 />
 
-                <InputError message={errors.email} className="mt-2" />
-            </div>
-
-            <div className="mt-4">
-                <InputLabel htmlFor="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    name="password"
-                    value={data.password}
-                    className="mt-1 block w-full"
-                    autoComplete="current-password"
-                    placeholder="**********"
-                    onChange={(e) => setData('password', e.target.value)}
-                />
-
-                <InputError message={errors.password} className="mt-2" />
-            </div>
-
-            <div className="my-6 block">
-                <label className="flex items-center">
-                    <Checkbox
-                        name="remember"
-                        checked={data.remember}
-                        onChange={(e) =>
-                            setData(
-                                'remember',
-                                (e.target.checked || false) as false,
-                            )
-                        }
-                    />
-                    <span className="ms-2 text-sm text-gray-600">
-                        Erinnere Dich an mich
-                    </span>
-                </label>
+                <InputError message={errors.name} className="mt-2" />
             </div>
 
             <div className="my-4 flex items-center justify-end">
                 <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                    Login
+                    Neues Gericht
                 </Button>
             </div>
             

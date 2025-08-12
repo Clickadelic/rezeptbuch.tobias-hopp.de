@@ -12,10 +12,10 @@ export default function Edit({
     status,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
-        <TwoSidebarsLayout title="Profil bearbeiten" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
+        <TwoSidebarsLayout title="Profil" leftSidebar={<LeftSidebar />} rightSidebar={<RightSidebar />}>
             <Head title="Profil" />
 
-            <div className=" space-y-4">
+            <div className="space-y-4">
                 <div className="bg-white rounded p-4 shadow sm:rounded-lg sm:p-8">
                     <UpdateProfileInformationForm
                         mustVerifyEmail={mustVerifyEmail}

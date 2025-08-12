@@ -6,6 +6,7 @@ import TextInput from '@/Components/TextInput';
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
+import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 
 export default function Login({
     status,
@@ -15,9 +16,8 @@ export default function Login({
     canResetPassword: boolean;
 }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
-        remember: false as boolean,
+        name: '',
+        description: ''
     });
 
     const submit: FormEventHandler = (e) => {
@@ -29,7 +29,7 @@ export default function Login({
     };
 
     return (
-        <SidebarLeftLayout title="Neues Gericht">
+        <SidebarLeftLayout title="Neues Gericht" sidebar={<DishesSidebar />}>
             <Head title="Neues Gericht" />
 
             {status && (
@@ -37,64 +37,28 @@ export default function Login({
                     {status}
                 </div>
             )}
-
+            <p>Gib' Dein Gericht hier ein. Denke an eine passende, aussagekräftige Beschreibung der Zubereitung und der Zutaten.</p>
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="name" value="Name" />
 
                     <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
+                        id="name"
+                        type="name"
+                        name="name"
+                        value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="username"
-                        placeholder="E-Mail Adresse"
+                        placeholder="Reispfanne mit Gemüse"
                         isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
+                        onChange={(e) => setData('name', e.target.value)}
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        placeholder="**********"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="my-6 block">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) =>
-                                setData(
-                                    'remember',
-                                    (e.target.checked || false) as false,
-                                )
-                            }
-                        />
-                        <span className="ms-2 text-sm text-gray-600">
-                            Erinnere Dich an mich
-                        </span>
-                    </label>
+                    <InputError message={errors.name} className="mt-2" />
                 </div>
 
                 <div className="my-4 flex items-center justify-end">
                     <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                        Login
+                        Gericht erstellen
                     </Button>
                 </div>
                 

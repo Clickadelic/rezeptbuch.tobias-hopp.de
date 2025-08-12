@@ -1,4 +1,4 @@
-import SidebarLink from "@/Components/reusables/sidebars/SidebarLink"
+import SidebarLink from "@/Components/sidebars/SidebarLink"
 
 /**
  * A component that renders a right sidebar with a title and a subtitle.

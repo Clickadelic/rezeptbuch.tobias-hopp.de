@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
-use App\Models\Dish;
+use App\Models\Dishes;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         Vite::prefetch(concurrency: 3);
             Inertia::share([
             'dishes' => function () {
-                return Dish::all();
+                return Dishes::all();
             }
             // weitere globale Daten hier...
         ]);

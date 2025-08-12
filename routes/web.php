@@ -5,7 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-use App\Http\Controllers\DishController;
+use App\Http\Controllers\DishesController;
 
 Route::get('/', function () {
     return Inertia::render('Frontpage', [
@@ -15,8 +15,8 @@ Route::get('/', function () {
 });
 
 // ✅ Hier dein neuer Eintrag für die Gerichte
-Route::get('/gerichte', [DishController::class, 'index']);
-Route::get('/gerichte/neues-gericht', [DishController::class, 'create']);
+Route::get('/gerichte', [DishesController::class, 'index']);
+Route::get('/gerichte/neues-gericht', [DishesController::class, 'create']);
 
 Route::get('/cocktails', function () {
     return Inertia::render('Cocktails/Index', [
@@ -38,8 +38,6 @@ Route::get('/impressum', function () {
         'canRegister' => Route::has('register')
     ]);
 });
-
-
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

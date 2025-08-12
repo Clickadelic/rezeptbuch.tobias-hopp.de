@@ -13,9 +13,9 @@
 
 @theme {
   --font-sans: "Oswald";
-  --font-primary: "Roboto Condensed", "sans-serif";
-  --font-secondary: "Oswald";
-  --font-tertiary: "Open Sans";
+  --font-roboto-condensed: "Roboto Condensed", "sans-serif";
+  --font-oswald: "Oswald";
+  --font-open-sans: "Open Sans", "sans-serif";
   --font-la-belle-aurore: "La Belle Aurore";
   --font-yellowtail: "Yellowtail";
   --color-background: hsl(var(--background));
@@ -42,7 +42,6 @@
   --color-chart-3: hsl(var(--chart-3));
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
-  
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);

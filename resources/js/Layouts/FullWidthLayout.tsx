@@ -32,8 +32,8 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
             </div>
             <div className="mx-auto container px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)]">
                 <main>
-                    {title && <h2 className="text-2xl my-3 font-secondary">{title}</h2>}
-                    {title && <hr className="my-3 border-slate-300 font-secondary" />}
+                    {title && <h2 className="text-2xl my-3">{title}</h2>}
+                    {title && <hr className="my-3 border-slate-300" />}
                     {children}
                 </main>
             </div>

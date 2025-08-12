@@ -37,7 +37,7 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
             <div className="mx-auto container px-4 sm:px-3 lg:px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3">
                 {isDesktop && sidebar}
                 <main className="col-span-4">
-                    {title && <h2 className="text-2xl my-3 font-secondary">{title}</h2>}
+                    {title && <h2 className="text-2xl my-3">{title}</h2>}
                     {title && <hr className="my-3 border-slate-300" />}
                     {children}
                 </main>

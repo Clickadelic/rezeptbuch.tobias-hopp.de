@@ -29,7 +29,7 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo className="my-4" />
+                            <AppLogo className="my-4 font-secondary" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink href="/" active={window.location.pathname === '/'} className="py-4" icon={<BsHouse />}>
@@ -56,7 +56,7 @@ const Header = () => {
                                                 type="button"
                                                 className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none gap-2"
                                             >
-                                                <RxAvatar className="size-5 hidden md:flex" />
+                                                <RxAvatar className="size-4 hidden md:flex" />
                                                 {user.name}
 
                                                 <svg
@@ -151,11 +151,14 @@ const Header = () => {
                         <ResponsiveNavLink href="/" active={window.location.pathname === '/'}>
                             Start
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href="/rezepte" active={window.location.pathname === '/rezepte'}>
-                            Rezepte
+                        <ResponsiveNavLink href="/gerichte" active={window.location.pathname === '/gerichte'}>
+                            Gerichte
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href="/cocktails" active={window.location.pathname === '/cocktails'}>
                             Cocktails
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href="/zutaten" active={window.location.pathname === '/zutaten'}>
+                            Zutaten
                         </ResponsiveNavLink>
                     </div>
 

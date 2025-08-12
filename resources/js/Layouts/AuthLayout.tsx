@@ -33,10 +33,10 @@ export default function AuthLayout({
                     <div className="bg-white rounded-lg">
                         <div className="px-8 py-8 lg:py-12 text-gray-900">
                             <div className="flex flex-col items-center justify-center">
-                                <AppLogo />
+                                <AppLogo className="font-secondary" />
                                 <div className="my-6 text-center space-y-2">
-                                    <h2 className="text-2xl font-medium text-slate-700">{title}</h2>
-                                    <h3 className="text-xl font-light text-slate-500">{subtitle}</h3>
+                                    <h2 className="text-2xl font-medium text-slate-700 font-secondary">{title}</h2>
+                                    <h3 className="text-xl font-light text-slate-500 font-secondary">{subtitle}</h3>
                                 </div>
                             </div>
                             {children}
@@ -45,7 +45,7 @@ export default function AuthLayout({
                 </div>
             </main>
             <p className="absolute bottom-4 mx-auto text-sm text-slate-900 bg-white/30 backdrop-blur px-4 py-2">
-                Foto von <a href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="hover:underline" title="Author des Fotos">Brooke Lark</a> auf <a href="https://unsplash.com/de/fotos/green-vegetable-beside-ceramic-bowl-kXQ3J7_2fpc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="hover:underline" title="Unsplash">Unsplash</a>
+                Foto von <a href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="hover:underline" title="Author des Fotos" target="_blank">Brooke Lark</a> auf <a href="https://unsplash.com/de/fotos/green-vegetable-beside-ceramic-bowl-kXQ3J7_2fpc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="hover:underline" title="Unsplash" target="_blank">Unsplash</a>
             </p>
         </div>
     );

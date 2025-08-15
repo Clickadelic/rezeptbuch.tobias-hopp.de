@@ -4,6 +4,7 @@ import { useMediaQuery } from '@/Hooks/use-media-query';
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+import { Toaster } from "@/Components/ui/sonner"
 
 // TODO: Read state sharing Inertia Documentation
 
@@ -13,12 +14,13 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
 }
 
+
 /**
  * A layout component that displays a sidebar on the left on desktop devices
- * and on the bottom on mobile devices.
+ * and on top on mobile devices. It also contains a toaster.
  *
  * @prop {string} [title] - The title of the page.
- * @prop {React.ReactNode} [sidebar] - The sidebar you can pass in to render.
+ * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
  * @prop {React.ReactNode} children - The content to render in the main area.
  *
  * @example
@@ -44,6 +46,7 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
                 {!isDesktop && sidebar}
             </div>
             <Footer />
+            <Toaster position="bottom-right" />
         </div>
     );
 }

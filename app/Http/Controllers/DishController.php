@@ -21,8 +21,21 @@ class DishController extends Controller
     {
         return Inertia::render('Gerichte/Create');
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'rating' => 'nullable|numeric',
+        ]);
+
+        Dish::create($validated);
+
+        return redirect()
+            ->route('dishes.index')
+            ->with('toast', 'Gericht erfolgreich erstellt!');
+    }
+
+
 }
-
-
-
-

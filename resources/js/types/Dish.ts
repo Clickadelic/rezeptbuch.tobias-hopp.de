@@ -2,7 +2,7 @@ export interface Dish {
   id: number;
   name: string;
   description?: string;
-  price?: number;
+  rating?: number;
   image_url?: string;
   created_at?: string;
   updated_at?: string;

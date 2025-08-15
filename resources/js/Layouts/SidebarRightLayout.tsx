@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+import { Toaster } from "@/Components/ui/sonner"
 
 // TODO: Read state sharing Inertia Documentation
 
@@ -43,6 +44,7 @@ export default function SidebarRightLayout({ title, sidebar, children }: Sidebar
                 {sidebar}
             </div>
             <Footer />
+            <Toaster position="bottom-right" />
         </div>
     );
 }

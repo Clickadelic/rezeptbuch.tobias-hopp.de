@@ -4,7 +4,7 @@ import { useMediaQuery } from '@/Hooks/use-media-query';
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
-
+import { Toaster } from "@/Components/ui/sonner"
 // TODO: Read state sharing Inertia Documentation
 
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
@@ -55,6 +55,7 @@ export default function TwoSidebarsLayout({ title, leftSidebar, rightSidebar, ch
                 {rightSidebar}
             </div>
             <Footer />
+            <Toaster position="bottom-right" />
         </div>
     );
 }

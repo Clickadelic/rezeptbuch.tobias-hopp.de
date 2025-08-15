@@ -4,6 +4,7 @@ import { useMediaQuery } from '@/Hooks/use-media-query';
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+import { Toaster } from "@/Components/ui/sonner"
 
 // TODO: Read state sharing Inertia Documentation
 
@@ -44,6 +45,7 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
                 {!isDesktop && sidebar}
             </div>
             <Footer />
+            <Toaster position="bottom-right" />
         </div>
     );
 }

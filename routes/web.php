@@ -14,11 +14,17 @@ Route::get('/', function () {
     ]);
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
+    Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
+});
+
+
 // ✅ Hier dein neuer Eintrag für die Gerichte
 // ✅ Gerichte-Routen mit Namen
 Route::get('/gerichte', [DishController::class, 'index'])->name('dishes.index');
-Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
-Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
+// Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
+// Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
 
 
 Route::get('/cocktails', function () {

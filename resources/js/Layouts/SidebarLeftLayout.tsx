@@ -14,12 +14,13 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
 }
 
+
 /**
  * A layout component that displays a sidebar on the left on desktop devices
- * and on the bottom on mobile devices.
+ * and on top on mobile devices. It also contains a toaster.
  *
  * @prop {string} [title] - The title of the page.
- * @prop {React.ReactNode} [sidebar] - The sidebar you can pass in to render.
+ * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
  * @prop {React.ReactNode} children - The content to render in the main area.
  *
  * @example

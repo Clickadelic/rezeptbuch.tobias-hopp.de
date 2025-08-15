@@ -25,16 +25,17 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'rating'      => 'nullable|integer|min:1|max:5',
-            'image_url'   => 'nullable|url'
+            'rating' => 'nullable|numeric',
         ]);
 
         Dish::create($validated);
 
-        return redirect()->route('dishes.index')
-            ->with('success', 'Gericht erfolgreich erstellt ✅');
+        return redirect()
+            ->route('dishes.index')
+            ->with('toast', 'Gericht erfolgreich erstellt!');
     }
+
 
 }

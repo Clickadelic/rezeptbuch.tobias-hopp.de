@@ -84,7 +84,7 @@ export default function CreateDish() {
                 {/* Submit */}
                 <div className="flex justify-end">
                     <Button
-                        variant="default"
+                        variant="primary"
                         size="lg"
                         className="w-full"
                         disabled={processing}

@@ -1,5 +1,5 @@
 import SidebarLink from "@/Components/sidebars/SidebarLink"
-
+import { usePage } from "@inertiajs/react";
 /**
  * A component that renders a sidebar with a title and a subtitle.
  *
@@ -7,6 +7,7 @@ import SidebarLink from "@/Components/sidebars/SidebarLink"
  * <LeftSidebar />
  */
 export default function LeftSidebar() {
+    const { auth } = usePage().props;
     return (
         <aside>
             <h2 className="text-2xl my-3 flex">Navigation</h2>

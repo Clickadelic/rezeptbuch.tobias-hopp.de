@@ -1,12 +1,20 @@
 import { Head, usePage } from '@inertiajs/react';
 import { PageProps } from '@/types';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components//sidebars/DishesSidebar';
 
 export default function Gerichte() {
     const { dishes, auth } = usePage<PageProps>().props;
+    const { toast: toastMessage } = usePage().props as { toast?: string };
 
+    useEffect(() => {
+        if (toastMessage) {
+            toast.success(toastMessage);
+        }
+    }, [toastMessage]);
     return (
         <>
             <Head title="Gerichte" />

@@ -7,7 +7,7 @@ import { usePage } from "@inertiajs/react";
  * <RightSidebar />
  */
 export default function RightSidebar() {
-    const { auth } = usePage().props;
+    const user = usePage().props.auth.user;
     return (
         <aside className="asd">
             <h2 className="text-2xl my-3 flex">Navigation</h2>

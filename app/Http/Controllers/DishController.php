@@ -33,9 +33,7 @@ class DishController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048', // max 2MB
             'description' => 'nullable|string',
-            'rating' => 'nullable|numeric',
         ]);
 
         // $path = $request->file('image')->store('uploads', 'public');

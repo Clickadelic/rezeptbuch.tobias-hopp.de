@@ -59,7 +59,7 @@ export default function CreateDish() {
                         id="description"
                         value={data.description}
                         onChange={(e) => setData('description', e.target.value)}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-700 focus:ring-emerald-700 sm:text-sm"
                         rows={4}
                         placeholder="Zubereitung und Zutaten..."
                     />

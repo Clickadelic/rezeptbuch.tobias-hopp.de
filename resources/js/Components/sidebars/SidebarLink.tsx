@@ -24,7 +24,7 @@ export default function NavLink({
             className={
                 'inline-flex flex-row items-start gap-3 py-3 focus:outline-none ' +
                 (active
-                    ? 'text-emerald-700 hover:text-emerald-600 focus:text-emerald-600 '
+                    ? 'text-emerald-700 hover:text-emerald-600 focus:text-emerald-600 font-medium '
                     : 'text-slate-800 hover:text-slate-600 focus:text-slate-600') + className
             }
             title={props.title}

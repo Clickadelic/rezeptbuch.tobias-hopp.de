@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+// use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,9 +14,18 @@ Route::get('/', function () {
     ]);
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
+    Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
+});
+
+
 // ✅ Hier dein neuer Eintrag für die Gerichte
-Route::get('/gerichte', [DishController::class, 'index']);
-Route::get('/gerichte/neues-gericht', [DishController::class, 'create']);
+// ✅ Gerichte-Routen mit Namen
+Route::get('/gerichte', [DishController::class, 'index'])->name('dishes.index');
+// Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
+// Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
+
 
 Route::get('/cocktails', function () {
     return Inertia::render('Cocktails/Index', [
@@ -38,8 +47,6 @@ Route::get('/impressum', function () {
         'canRegister' => Route::has('register')
     ]);
 });
-
-
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

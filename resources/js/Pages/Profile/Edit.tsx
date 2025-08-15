@@ -4,8 +4,8 @@ import { Head } from '@inertiajs/react';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import LeftSidebar from '@/Components/reusables/sidebars/LeftSidebar';
-import RightSidebar from '@/Components/reusables/sidebars/RightSidebar';
+import LeftSidebar from '@/Components/sidebars/LeftSidebar';
+import RightSidebar from '@/Components/sidebars/RightSidebar';
 
 export default function Edit({
     mustVerifyEmail,

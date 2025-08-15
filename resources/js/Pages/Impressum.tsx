@@ -2,8 +2,8 @@ import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
 import TwoSidebarsLayout from '@/Layouts/TwoSidebarsLayout';
-import LeftSidebar from '@/Components/reusables/sidebars/LeftSidebar';
-import RightSidebar from '@/Components/reusables/sidebars/RightSidebar';
+import LeftSidebar from '@/Components/sidebars/LeftSidebar';
+import RightSidebar from '@/Components/sidebars/RightSidebar';
 
 export default function Impressum({
     auth

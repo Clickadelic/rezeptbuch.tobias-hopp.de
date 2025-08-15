@@ -12,6 +12,10 @@ import { FiCheckCircle } from "react-icons/fi";
 import { BsDoorOpen } from "react-icons/bs";
 import { TbSalt } from "react-icons/tb";
 import { RxAvatar } from "react-icons/rx";
+import { Button } from '@/Components/ui/button';
+import { Link } from '@inertiajs/react';
+
+
 /**
  * The application header.
  *
@@ -48,7 +52,12 @@ const Header = () => {
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center">
                         {user ? (
-                            <div className="relative ms-3">
+                            <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
+                                <Button variant="primary" asChild>
+                                    <Link href="/gerichte/neues-gericht" className="flex items-center gap-2">
+                                        Neues Gericht
+                                    </Link>
+                                </Button>
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">

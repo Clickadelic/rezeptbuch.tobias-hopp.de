@@ -2,7 +2,7 @@ import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
-import RightSidebar from '@/Components/reusables/sidebars/RightSidebar';
+import RightSidebar from '@/Components/sidebars/RightSidebar';
 
 export default function Gerichte({
     auth

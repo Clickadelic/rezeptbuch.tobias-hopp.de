@@ -8,13 +8,14 @@ import { FormEventHandler, useEffect } from 'react';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import { toast } from 'sonner';
 
-export default function CreateDish() {
+export default function CreateDish({ dish }:any) {
     const { flash } = usePage().props as { flash: { success?: string } };
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        description: '',
-        rating: ''
+        name: dish.name,
+        image: dish.image,
+        description: dish.description,
+        rating: dish.rating
     });
 
     useEffect(() => {
@@ -52,6 +53,19 @@ export default function CreateDish() {
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
+                {/* Bild */}
+                <div>
+                    <InputLabel htmlFor="image" value="Beschreibung" />
+                    <input type="file"
+                        id="image"
+                        value={data.image}
+                        onChange={(e) => setData('image', e.target.value)}
+                        className="mt-1 block w-full rounded border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4 "
+                        placeholder="Zubereitung und Zutaten..."
+                    />
+                    <InputError message={errors.description} className="mt-2" />
+                </div>
+
                 {/* Beschreibung */}
                 <div>
                     <InputLabel htmlFor="description" value="Beschreibung" />
@@ -59,7 +73,7 @@ export default function CreateDish() {
                         id="description"
                         value={data.description}
                         onChange={(e) => setData('description', e.target.value)}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-700 focus:ring-emerald-700 sm:text-sm"
+                        className="mt-1 block w-full rounded border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4 "
                         rows={4}
                         placeholder="Zubereitung und Zutaten..."
                     />
@@ -89,7 +103,7 @@ export default function CreateDish() {
                         className="w-full"
                         disabled={processing}
                     >
-                        Gericht erstellen
+                        Gericht bearbeiten
                     </Button>
                 </div>
             </form>

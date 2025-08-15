@@ -39,7 +39,7 @@ export default function TwoSidebarsLayout({ title, leftSidebar, rightSidebar, ch
     const isDesktop = useMediaQuery("(min-width: 768px)");
     return (
 
-        <div className="min-h-screen flex flex-col justify-between bg-slate-100">
+        <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
                 <Header />
                 <RecipeSearch />

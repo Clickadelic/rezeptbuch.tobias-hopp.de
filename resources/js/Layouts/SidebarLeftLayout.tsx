@@ -31,7 +31,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
 export default function SidebarLeftLayout({ title, sidebar, children }: SidebarLeftLayoutProps) {
     const isDesktop = useMediaQuery("(min-width: 768px)");
     return (
-        <div className="min-h-screen flex flex-col justify-between bg-slate-100">
+        <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
                 <Header />
                 <RecipeSearch />

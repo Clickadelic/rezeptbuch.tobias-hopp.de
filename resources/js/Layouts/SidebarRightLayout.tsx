@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+import { Toaster } from "@/Components/ui/sonner"
 
 // TODO: Read state sharing Inertia Documentation
 
@@ -29,20 +30,21 @@ export default function SidebarRightLayout({ title, sidebar, children }: Sidebar
     
     return (
 
-        <div className="min-h-screen flex flex-col justify-between bg-slate-100">
+        <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
                 <Header />
                 <RecipeSearch />
             </div>
             <div className="mx-auto container px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] grid grid-cols-5 grid-rows-1 gap-4">
                 <main className="col-span-4">
-                    {title && <h2 className="text-2xl my-3">{title}</h2>}
+                    {title && <h2 className="text-2xl my-3 font-secondary">{title}</h2>}
                     {title && <hr className="my-3 border-slate-300" />}
                     {children}
                 </main>
                 {sidebar}
             </div>
             <Footer />
+            <Toaster position="bottom-right" />
         </div>
     );
 }

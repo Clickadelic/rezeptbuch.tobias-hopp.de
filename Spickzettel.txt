@@ -1,0 +1,2 @@
+1) Models und Tables immer Plural bennen
+2) 

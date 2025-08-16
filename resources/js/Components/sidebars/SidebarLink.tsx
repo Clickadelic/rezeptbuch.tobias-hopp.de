@@ -1,0 +1,35 @@
+import { InertiaLinkProps, Link } from '@inertiajs/react';
+import { BsChevronCompactRight } from "react-icons/bs";
+interface SidebarNavLinkProps extends InertiaLinkProps {
+    icon?: React.ReactNode;
+}
+
+/**
+ * A simple nav link component that uses the Inertia Link component.
+ * @param {boolean} active - Whether the link is active or not.
+ * @param {string} className - Additional classnames to add to the link.
+ * @param {React.ReactNode} icon - An icon to display before the link text.
+ * @param {React.ReactNode} children - The link text.
+ * @param {InertiaLinkProps} props - Any additional props to pass to the Inertia Link component.
+ * @returns {React.ReactElement}
+ */
+export default function NavLink({
+    active = false,
+    className = '',
+    ...props
+}: SidebarNavLinkProps & { active: boolean }) {
+    return (
+        <Link
+            {...props}
+            className={
+                'inline-flex flex-row items-start gap-3 py-3 focus:outline-none ' +
+                (active
+                    ? 'text-emerald-700 hover:text-emerald-600 focus:text-emerald-600 font-medium '
+                    : 'text-slate-800 hover:text-slate-600 focus:text-slate-600') + className
+            }
+            title={props.title}
+        >
+            <BsChevronCompactRight className="inline-flex mt-1" />{props.title}
+        </Link>
+    );
+}

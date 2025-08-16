@@ -1,11 +1,23 @@
-@import url("./google-fonts.css");
+@import "./google-fonts.css";
+
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 @plugin "tailwindcss-animate";
 
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
 @theme {
-  --font-family-sans: "Oswald", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  
+  --font-sans: "Oswald";
+  --font-primary: "Roboto Condensed", "sans-serif";
+  --font-secondary: "Oswald";
+  --font-tertiary: "Open Sans";
+  --font-la-belle-aurore: "La Belle Aurore";
+  --font-yellowtail: "Yellowtail";
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
@@ -92,11 +104,23 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+
+
+a[target="_blank"]:after {
+	content: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' fill='inherit' class='bi bi-box-arrow-up-right' viewBox='0 0 16 16' %3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z' /%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z' /%3E%3C/svg%3E");
+	width: .75rem;
+	height: .75rem;
+	position: relative;
+	display: inline-block;
+	color: inherit;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.arrow-emerald-700 {
+	fill: #388E3C;
+}
+
+footer a[target="_blank"]:after {
+  color: @apply text-slate-200;
 }

@@ -25,15 +25,15 @@ interface FullWidthLayoutProps extends PropsWithChildren {
 export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
     return (
 
-        <div className="min-h-screen flex flex-col justify-between bg-slate-100">
+        <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
                 <Header />
                 <RecipeSearch />
             </div>
             <div className="mx-auto container px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)]">
                 <main>
-                    {title && <h2 className="text-2xl my-3">{title}</h2>}
-                    {title && <hr className="my-3 border-slate-300" />}
+                    {title && <h2 className="text-2xl my-3 font-secondary">{title}</h2>}
+                    {title && <hr className="my-3 border-slate-300 font-secondary" />}
                     {children}
                 </main>
             </div>

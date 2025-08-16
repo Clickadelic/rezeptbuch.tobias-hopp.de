@@ -12,6 +12,10 @@ import { FiCheckCircle } from "react-icons/fi";
 import { BsDoorOpen } from "react-icons/bs";
 import { TbSalt } from "react-icons/tb";
 import { RxAvatar } from "react-icons/rx";
+import { Button } from '@/Components/ui/button';
+import { Link } from '@inertiajs/react';
+
+
 /**
  * The application header.
  *
@@ -29,7 +33,7 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo className="my-4" />
+                            <AppLogo className="my-4 font-secondary" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink href="/" active={window.location.pathname === '/'} className="py-4" icon={<BsHouse />}>
@@ -48,7 +52,12 @@ const Header = () => {
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center">
                         {user ? (
-                            <div className="relative ms-3">
+                            <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
+                                <Button variant="primary" asChild>
+                                    <Link href="/gerichte/neues-gericht" className="flex items-center gap-2">
+                                        Neues Gericht
+                                    </Link>
+                                </Button>
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
@@ -56,7 +65,7 @@ const Header = () => {
                                                 type="button"
                                                 className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none gap-2"
                                             >
-                                                <RxAvatar className="size-5 hidden md:flex" />
+                                                <RxAvatar className="size-4 hidden md:flex" />
                                                 {user.name}
 
                                                 <svg
@@ -110,7 +119,7 @@ const Header = () => {
                                     (previousState) => !previousState,
                                 )
                             }
-                            className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
+                            className="inline-flex items-center justify-center rounded p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
                         >
                             <svg
                                 className="h-6 w-6"
@@ -151,11 +160,14 @@ const Header = () => {
                         <ResponsiveNavLink href="/" active={window.location.pathname === '/'}>
                             Start
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href="/rezepte" active={window.location.pathname === '/rezepte'}>
-                            Rezepte
+                        <ResponsiveNavLink href="/gerichte" active={window.location.pathname === '/gerichte'}>
+                            Gerichte
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href="/cocktails" active={window.location.pathname === '/cocktails'}>
                             Cocktails
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href="/zutaten" active={window.location.pathname === '/zutaten'}>
+                            Zutaten
                         </ResponsiveNavLink>
                     </div>
 

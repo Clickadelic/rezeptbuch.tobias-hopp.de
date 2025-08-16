@@ -117,7 +117,7 @@ export default function Register() {
                     
                         <Link
                             href={route('login')}
-                            className="rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                            className="rounded-md text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                         >
                             Login
                         </Link>.

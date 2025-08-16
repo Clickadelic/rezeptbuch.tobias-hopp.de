@@ -4,14 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Dish extends Model
 {
      use HasFactory;
-     protected $fillable = ['name', 'description', 'rating', 'image_url'];
+     protected $keyType = 'string';
 
-     // Mit protected $table = "dishes"; kann man quasi den bestehenden Tabellennamen überschreiben und z.B. von Singular auf Plural setzen.
-     // Dieser wird dann von Laravel automatisch erkannt und verwendet.
-     // protected $table = "dishes";
-     // protected $table = "dish";
+     protected $fillable = ['name', 'description'];
+
+     public $incrementing = false;
+
+
+    /**
+     * Boot the model.
+     *
+     * @return void
+     */
+     protected static function booted()
+     {
+          static::creating(function ($model) {
+               if (empty($model->id)) {
+                    $model->id = (string) Str::uuid();
+               }
+          });
+     }
 }

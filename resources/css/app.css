@@ -116,6 +116,10 @@ a[target="_blank"]:after {
 	margin-right: 5px;
 }
 
+.arrow-emerald-700 {
+	fill: #388E3C;
+}
+
 footer a[target="_blank"]:after {
   color: @apply text-slate-200;
 }

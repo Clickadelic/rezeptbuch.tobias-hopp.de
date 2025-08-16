@@ -14,7 +14,6 @@ export default function CreateDish() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         description: '',
-        rating: ''
     });
 
     useEffect(() => {
@@ -59,26 +58,11 @@ export default function CreateDish() {
                         id="description"
                         value={data.description}
                         onChange={(e) => setData('description', e.target.value)}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-700 focus:ring-emerald-700 sm:text-sm"
+                        className="mt-1 block w-full rounded border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4 "
                         rows={4}
                         placeholder="Zubereitung und Zutaten..."
                     />
                     <InputError message={errors.description} className="mt-2" />
-                </div>
-
-                {/* Bewertung */}
-                <div>
-                    <InputLabel htmlFor="rating" value="Bewertung (1–5)" />
-                    <TextInput
-                        id="rating"
-                        type="number"
-                        value={data.rating}
-                        min="1"
-                        max="5"
-                        onChange={(e) => setData('rating', e.target.value)}
-                        className="mt-1 block w-full"
-                    />
-                    <InputError message={errors.rating} className="mt-2" />
                 </div>
 
                 {/* Submit */}

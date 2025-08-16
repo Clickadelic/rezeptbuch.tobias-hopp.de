@@ -30,7 +30,7 @@ export default function SidebarRightLayout({ title, sidebar, children }: Sidebar
     
     return (
 
-        <div className="min-h-screen flex flex-col justify-between bg-slate-100">
+        <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
                 <Header />
                 <RecipeSearch />

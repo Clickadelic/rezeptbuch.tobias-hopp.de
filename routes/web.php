@@ -14,17 +14,17 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth'])->group(function () {
+// Reihenfolge beachten, wird von oben nach unten abgearbeitet
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
     Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
 });
 
-
-// ✅ Hier dein neuer Eintrag für die Gerichte
-// ✅ Gerichte-Routen mit Namen
 Route::get('/gerichte', [DishController::class, 'index'])->name('dishes.index');
-// Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
-// Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
+Route::get('/gerichte/{dish}', [DishController::class, 'show'])->name('dishes.show');
+Route::get('/gerichte/{dish}/edit', [DishController::class, 'edit'])->name('dishes.edit');
+
+Route::resource('dishes', DishController::class);
 
 
 Route::get('/cocktails', function () {
@@ -33,6 +33,10 @@ Route::get('/cocktails', function () {
         'canRegister' => Route::has('register')
     ]);
 });
+
+
+
+
 
 Route::get('/zutaten', function () {
     return Inertia::render('Zutaten', [

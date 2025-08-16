@@ -102,7 +102,7 @@ export default function Login({
                     
                         <Link
                             href={route('register')}
-                            className="rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+                            className="rounded-md text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
                         >
                             Registrieren
                         </Link>
@@ -112,7 +112,7 @@ export default function Login({
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-slate-600 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+                            className="rounded-md text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
                         >
                             Passwort vergessen?
                         </Link>

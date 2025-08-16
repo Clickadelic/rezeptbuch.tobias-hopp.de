@@ -57,13 +57,19 @@ class DishController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'image'=> 'nullable|image|max:2048',
             'description' => 'nullable|string',
         ]);
 
         $dish->update($validated);
 
         return redirect()->route('dishes.index')->with('success', 'Gericht aktualisiert!');
+    }
+
+    public function destroy(Dish $dish)
+    {
+        $dish->delete();
+
+        return redirect()->route('dishes.index')->with('success', 'Gericht gelöscht!');
     }
 
 }

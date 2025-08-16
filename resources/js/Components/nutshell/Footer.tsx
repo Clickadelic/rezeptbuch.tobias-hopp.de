@@ -8,7 +8,6 @@ import { IoIosRibbon } from "react-icons/io";
 import { FaQ } from "react-icons/fa6";
 import { GrNavigate } from "react-icons/gr";
 
-import { CircularMenu } from './CircularMenu';
 
 
 
@@ -71,7 +70,6 @@ export default function Footer() {
                     </div>
                 </footer>
             </div>
-            <CircularMenu />
         </>
     )
 }

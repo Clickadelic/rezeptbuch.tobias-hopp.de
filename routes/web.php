@@ -24,12 +24,19 @@ Route::get('/gerichte', [DishController::class, 'index'])->name('dishes.index');
 Route::get('/gerichte/{dish}', [DishController::class, 'show'])->name('dishes.show');
 Route::get('/gerichte/{dish}/edit', [DishController::class, 'edit'])->name('dishes.edit');
 
+Route::resource('dishes', DishController::class);
+
+
 Route::get('/cocktails', function () {
     return Inertia::render('Cocktails/Index', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register')
     ]);
 });
+
+
+
+
 
 Route::get('/zutaten', function () {
     return Inertia::render('Zutaten', [

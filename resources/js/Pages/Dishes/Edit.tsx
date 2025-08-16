@@ -8,12 +8,21 @@ import { FormEventHandler, useEffect } from 'react';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import { toast } from 'sonner';
 
-export default function CreateDish({ dish }:any) {
+interface EditDishProps {
+    dish: {
+        id: number;
+        name: string;
+        description: string;
+    };
+}
+
+export default function EditDish({ dish }: EditDishProps) {
     const { flash } = usePage().props as { flash: { success?: string } };
 
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: dish.name,
-        description: dish.description,
+    // useForm mit PUT-Unterstützung für Edit
+    const { data, setData, put, processing, errors } = useForm({
+        name: dish.name || '',
+        description: dish.description || '',
     });
 
     useEffect(() => {
@@ -24,17 +33,17 @@ export default function CreateDish({ dish }:any) {
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        post(route('dishes.store'), {
+        put(route('dishes.update', dish.id), {
             onSuccess: () => {
-                reset();
+                toast.success('Gericht erfolgreich aktualisiert!');
             },
         });
     };
 
     return (
         <>
-            <Head title="Neues Gericht" />
-            <SidebarLeftLayout title="Neues Gericht" sidebar={<DishesSidebar />}>
+            <Head title="Gericht bearbeiten" />
+            <SidebarLeftLayout title="Gericht bearbeiten" sidebar={<DishesSidebar />}>
                 <form onSubmit={submit} className="space-y-4">
                     {/* Name */}
                     <div>
@@ -51,19 +60,6 @@ export default function CreateDish({ dish }:any) {
                         <InputError message={errors.name} className="mt-2" />
                     </div>
 
-                    {/* Bild */}
-                    <div>
-                        <InputLabel htmlFor="image" value="Beschreibung" />
-                        <input type="file"
-                            id="image"
-                            value={data.image}
-                            onChange={(e) => setData('image', e.target.value)}
-                            className="mt-1 block w-full rounded border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4 "
-                            placeholder="Zubereitung und Zutaten..."
-                        />
-                        <InputError message={errors.description} className="mt-2" />
-                    </div>
-
                     {/* Beschreibung */}
                     <div>
                         <InputLabel htmlFor="description" value="Beschreibung" />
@@ -71,26 +67,11 @@ export default function CreateDish({ dish }:any) {
                             id="description"
                             value={data.description}
                             onChange={(e) => setData('description', e.target.value)}
-                            className="mt-1 block w-full rounded border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4 "
+                            className="mt-1 block w-full rounded border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4"
                             rows={4}
                             placeholder="Zubereitung und Zutaten..."
                         />
                         <InputError message={errors.description} className="mt-2" />
-                    </div>
-
-                    {/* Bewertung */}
-                    <div>
-                        <InputLabel htmlFor="rating" value="Bewertung (1–5)" />
-                        <TextInput
-                            id="rating"
-                            type="number"
-                            value={data.rating}
-                            min="1"
-                            max="5"
-                            onChange={(e) => setData('rating', e.target.value)}
-                            className="mt-1 block w-full"
-                        />
-                        <InputError message={errors.rating} className="mt-2" />
                     </div>
 
                     {/* Submit */}

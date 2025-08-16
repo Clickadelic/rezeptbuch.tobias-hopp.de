@@ -15,6 +15,12 @@ class Dish extends Model
 
      public $incrementing = false;
 
+
+    /**
+     * Boot the model.
+     *
+     * @return void
+     */
      protected static function booted()
      {
           static::creating(function ($model) {

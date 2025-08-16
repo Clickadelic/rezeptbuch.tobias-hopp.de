@@ -31,6 +31,7 @@ export default function Gerichte() {
                             <Link href={route('dishes.edit', dish.id)}>
                                 edit
                             </Link>
+                            <Link href={route('dishes.destroy', dish.id)}>delete</Link>
                         </li>
                     ))}
                 </ul>

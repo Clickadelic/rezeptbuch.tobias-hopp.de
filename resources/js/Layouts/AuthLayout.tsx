@@ -29,7 +29,7 @@ export default function AuthLayout({
 
     return (
         <>
-            <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')] bg-cover bg-no-repeat bg-center">
+            <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
                 <main className="mx-auto container">
                     <div className="m-6 sm:max-w-md lg:max-w-lg sm:mx-auto bg-white/30 p-2 rounded-xl shadow backdrop-blur">
                         <div className="bg-white rounded-lg">

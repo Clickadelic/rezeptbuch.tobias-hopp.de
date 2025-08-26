@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Http\Requests\StoreDishRequest;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DishController extends Controller

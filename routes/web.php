@@ -36,8 +36,6 @@ Route::get('/cocktails', function () {
 
 
 
-
-
 Route::get('/zutaten', function () {
     return Inertia::render('Zutaten', [
         'canLogin' => Route::has('login'),

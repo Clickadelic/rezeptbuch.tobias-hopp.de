@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Dish;
+use App\Http\Requests\StoreDishRequest;
 use Inertia\Inertia;
 
 class DishController extends Controller
@@ -29,21 +29,13 @@ class DishController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        // $path = $request->file('image')->store('uploads', 'public');
-        // $validated['image'] = $path;
-
-        Dish::create($validated);
+        Dish::create($request->validated());
 
         return redirect()
             ->route('dishes.index')
-            ->with('toast', 'Gericht erfolgreich erstellt!');
+            ->with('success', 'Gericht erstellt!');
     }
 
     public function edit(Dish $dish)
@@ -53,23 +45,21 @@ class DishController extends Controller
         ]);
     }
 
-    public function update(Request $request, Dish $dish)
+    public function update(StoreDishRequest $request, Dish $dish)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
+        $dish->update($request->validated());
 
-        $dish->update($validated);
-
-        return redirect()->route('dishes.index')->with('success', 'Gericht aktualisiert!');
+        return redirect()
+            ->route('dishes.index')
+            ->with('toast', 'Gericht aktualisiert!');
     }
 
     public function destroy(Dish $dish)
     {
         $dish->delete();
 
-        return redirect()->route('dishes.index')->with('success', 'Gericht gelöscht!');
+        return redirect()
+            ->route('dishes.index')
+            ->with('success', 'Gericht gelöscht!');
     }
-
 }

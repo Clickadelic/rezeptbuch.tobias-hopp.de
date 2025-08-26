@@ -5,11 +5,12 @@ import { toast } from 'sonner';
 import { Link } from '@inertiajs/react';
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components//sidebars/DishesSidebar';
+import { useForm } from '@inertiajs/react';
 
 export default function Gerichte() {
     const { dishes, auth } = usePage<PageProps>().props;
     const { toast: toastMessage } = usePage().props as { toast?: string };
-
+    const { delete: destroy } = useForm();
     useEffect(() => {
         if (toastMessage) {
             toast.success(toastMessage);
@@ -31,7 +32,14 @@ export default function Gerichte() {
                             <Link href={route('dishes.edit', dish.id)}>
                                 edit
                             </Link>
-                            <Link href={route('dishes.destroy', dish.id)}>delete</Link>
+                            <button
+                                onClick={() =>
+                                    destroy(route('dishes.destroy', dish.id))
+                                }
+                                className="text-red-600"
+                            >
+                                delete
+                            </button>
                         </li>
                     ))}
                 </ul>

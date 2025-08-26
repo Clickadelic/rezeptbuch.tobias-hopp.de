@@ -9,13 +9,8 @@ import { useForm } from '@inertiajs/react';
 
 export default function Gerichte() {
     const { dishes, auth } = usePage<PageProps>().props;
-    const { toast: toastMessage } = usePage().props as { toast?: string };
+
     const { delete: destroy } = useForm();
-    useEffect(() => {
-        if (toastMessage) {
-            toast.success(toastMessage);
-        }
-    }, [toastMessage]);
     return (
         <>
             <Head title="Gerichte" />

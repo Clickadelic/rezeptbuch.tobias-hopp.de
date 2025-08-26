@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Http\Requests\StoreDishRequest;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DishController extends Controller
@@ -52,7 +51,7 @@ class DishController extends Controller
 
         return redirect()
             ->route('dishes.index')
-            ->with('toast', 'Gericht aktualisiert!');
+            ->with('success', 'Gericht aktualisiert!');
     }
 
     public function destroy(Dish $dish)

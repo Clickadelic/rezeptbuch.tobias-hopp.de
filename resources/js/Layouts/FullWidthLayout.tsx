@@ -2,8 +2,8 @@ import { PropsWithChildren } from 'react';
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
-
-// TODO: Read state shadring Inertia Documentation
+import { Toaster } from "sonner";
+// TODO: Read "state sharing" Inertia Documentation
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
@@ -23,6 +23,7 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  */
 
 export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
+    
     return (
 
         <div className="min-h-screen flex flex-col justify-between bg-white">
@@ -38,6 +39,7 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
                 </main>
             </div>
             <Footer />
+            <Toaster position="bottom-right" />
         </div>
     );
 }

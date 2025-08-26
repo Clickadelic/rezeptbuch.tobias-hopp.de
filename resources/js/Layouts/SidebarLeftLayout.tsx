@@ -1,10 +1,9 @@
 import { PropsWithChildren } from 'react';
 import { useMediaQuery } from '@/Hooks/use-media-query';
-
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
-import { Toaster } from "@/Components/ui/sonner"
+import { Toaster } from "sonner";
 
 // TODO: Read state sharing Inertia Documentation
 
@@ -13,7 +12,6 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
     sidebar?: React.ReactNode;
     children: React.ReactNode;
 }
-
 
 /**
  * A layout component that displays a sidebar on the left on desktop devices
@@ -30,6 +28,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  */
 export default function SidebarLeftLayout({ title, sidebar, children }: SidebarLeftLayoutProps) {
     const isDesktop = useMediaQuery("(min-width: 768px)");
+    
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>

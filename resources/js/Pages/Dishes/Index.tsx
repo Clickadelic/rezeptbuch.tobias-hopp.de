@@ -9,12 +9,6 @@ import { useForm } from '@inertiajs/react';
 
 export default function Gerichte() {
     const { dishes, auth } = usePage<PageProps>().props;
-    const { flash } = usePage().props as { flash: { success?: string, error?: string } };
-
-    useEffect(() => {
-        if (flash?.success) toast.success(flash.success);
-        if (flash?.error) toast.error(flash.error);
-    }, [flash]);
 
     const { delete: destroy } = useForm();
     return (

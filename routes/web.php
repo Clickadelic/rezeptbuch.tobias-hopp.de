@@ -16,15 +16,12 @@ Route::get('/', function () {
 
 // Reihenfolge beachten, wird von oben nach unten abgearbeitet
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
-    Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
+    Route::group(['prefix' => 'gerichte'], function () {
+        
+    });
 });
 
-Route::get('/gerichte', [DishController::class, 'index'])->name('dishes.index');
-Route::get('/gerichte/{dish}', [DishController::class, 'show'])->name('dishes.show');
-Route::get('/gerichte/{dish}/edit', [DishController::class, 'edit'])->name('dishes.edit');
-Route::put('/gerichte/{dish}', [DishController::class, 'update'])->name('dishes.update');
-Route::delete('/gerichte/{dish}', [DishController::class, 'destroy'])->name('dishes.destroy');
+
 
 
 Route::get('/cocktails', function () {

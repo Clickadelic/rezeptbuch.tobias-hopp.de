@@ -4,16 +4,13 @@ import { PageProps } from '@/types';
 
 import RightSidebar from '@/Components/sidebars/RightSidebar';
 
-export default function Gerichte({
-    auth
-}: PageProps<{ auth: { user: any } }>) {
-
-    return (
-        <>
-            <Head title="Cocktails" />
-            <SidebarRightLayout title="Cocktails" sidebar={<RightSidebar />}>
-                <div>Cocktails Content</div>
-            </SidebarRightLayout>
-        </>
-    );
+export default function Gerichte({ auth }: PageProps<{ auth: { user: any } }>) {
+  return (
+    <>
+      <Head title="Cocktails" />
+      <SidebarRightLayout title="Cocktails" sidebar={<RightSidebar />}>
+        <div>Cocktails Content</div>
+      </SidebarRightLayout>
+    </>
+  );
 }

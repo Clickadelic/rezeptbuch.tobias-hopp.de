@@ -14,17 +14,17 @@ Route::get('/', function () {
     ]);
 });
 
-// Reihenfolge beachten, wird von oben nach unten abgearbeitet
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/gerichte/neues-gericht', [DishController::class, 'create'])->name('dishes.create');
-    Route::post('/gerichte', [DishController::class, 'store'])->name('dishes.store');
+Route::prefix('/gerichte')->group(function () {
+    Route::get('/', [DishController::class, 'index'])->name('dishes.index');
+    Route::post('/', [DishController::class, 'store'])->middleware(['auth', 'verified'])->name('dishes.store');
+    Route::get('/neues-gericht', [DishController::class, 'create'])->middleware(['auth', 'verified'])->name('dishes.create');
+    Route::get('/{dish}', [DishController::class, 'show'])->name('dishes.show');
+    Route::get('/{dish}/edit', [DishController::class, 'edit'])->middleware(['auth', 'verified'])->name('dishes.edit');
+    Route::put('/{dish}', [DishController::class, 'update'])->middleware(['auth', 'verified'])->name('dishes.update');
+    Route::delete('/{dish}', [DishController::class, 'destroy'])->middleware(['auth', 'verified'])->name('dishes.destroy');
 });
 
-Route::get('/gerichte', [DishController::class, 'index'])->name('dishes.index');
-Route::get('/gerichte/{dish}', [DishController::class, 'show'])->name('dishes.show');
-Route::get('/gerichte/{dish}/edit', [DishController::class, 'edit'])->name('dishes.edit');
 
-Route::resource('dishes', DishController::class);
 
 
 Route::get('/cocktails', function () {
@@ -33,8 +33,6 @@ Route::get('/cocktails', function () {
         'canRegister' => Route::has('register')
     ]);
 });
-
-
 
 
 

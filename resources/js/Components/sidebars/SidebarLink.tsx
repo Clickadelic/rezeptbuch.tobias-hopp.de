@@ -1,7 +1,7 @@
 import { InertiaLinkProps, Link } from '@inertiajs/react';
-import { BsChevronCompactRight } from "react-icons/bs";
+import { BsChevronCompactRight } from 'react-icons/bs';
 interface SidebarNavLinkProps extends InertiaLinkProps {
-    icon?: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 /**
@@ -14,22 +14,24 @@ interface SidebarNavLinkProps extends InertiaLinkProps {
  * @returns {React.ReactElement}
  */
 export default function NavLink({
-    active = false,
-    className = '',
-    ...props
+  active = false,
+  className = '',
+  ...props
 }: SidebarNavLinkProps & { active: boolean }) {
-    return (
-        <Link
-            {...props}
-            className={
-                'inline-flex flex-row items-start gap-3 py-3 focus:outline-none ' +
-                (active
-                    ? 'text-emerald-700 hover:text-emerald-600 focus:text-emerald-600 font-medium '
-                    : 'text-slate-800 hover:text-slate-600 focus:text-slate-600') + className
-            }
-            title={props.title}
-        >
-            <BsChevronCompactRight className="inline-flex mt-1" />{props.title}
-        </Link>
-    );
+  return (
+    <Link
+      {...props}
+      className={
+        'inline-flex flex-row items-start gap-3 py-3 focus:outline-none ' +
+        (active
+          ? 'text-emerald-700 hover:text-emerald-600 focus:text-emerald-600 font-medium '
+          : 'text-slate-800 hover:text-slate-600 focus:text-slate-600') +
+        className
+      }
+      title={props.title}
+    >
+      <BsChevronCompactRight className="inline-flex mt-1" />
+      {props.title}
+    </Link>
+  );
 }

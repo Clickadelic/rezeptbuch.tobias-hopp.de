@@ -31,7 +31,9 @@ export default function Show({ dish }: any) {
                     <Button asChild variant="ghost" className="w-full">
                         <Link href={route('dishes.edit', dish.id)}>Bearbeiten</Link>
                     </Button>
-                    <Button onClick={deleteDish}>Gericht löschen</Button>
+                    <Button onClick={deleteDish} variant="destructive" className="w-full">
+                        Gericht löschen
+                    </Button>
                 </div>
             </SidebarLeftLayout>
         </>

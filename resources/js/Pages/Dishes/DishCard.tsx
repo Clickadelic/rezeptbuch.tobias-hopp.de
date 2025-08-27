@@ -22,11 +22,11 @@ interface DishCardProps {
     dish: Dish;
 }
 
-export default function DemoCard({ dish }: DishCardProps) {
+export default function DishCard({ dish }: DishCardProps) {
     const user = usePage().props.auth?.user;
 
     return (
-        <Link href={route('dishes.show', dish.id)} className="group flex w-full sm:w-64 mb-3">
+        <Link href={route('dishes.show', dish.id)} className="group flex w-96 mb-3">
             <Card className="relative overflow-hidden">
                 {/* Bild mit Scale Transition */}
                 <CardHeader className="h-72 overflow-hidden p-0 rounded-xl">

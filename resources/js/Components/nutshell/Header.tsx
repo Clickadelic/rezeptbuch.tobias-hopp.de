@@ -14,7 +14,7 @@ import { TbSalt } from 'react-icons/tb';
 import { RxAvatar } from 'react-icons/rx';
 import { Button } from '@/Components/ui/button';
 import { Link } from '@inertiajs/react';
-
+import { GoPlus } from 'react-icons/go';
 /**
  * The application header.
  *
@@ -73,7 +73,8 @@ const Header = () => {
                                         href="/gerichte/neues-gericht"
                                         className="flex items-center gap-2"
                                     >
-                                        Neues Gericht
+                                        <GoPlus className="size-4" />
+                                        Neu
                                     </Link>
                                 </Button>
                                 <Dropdown>

@@ -10,7 +10,7 @@ export default function Gerichte() {
         <>
             <Head title="Gerichte" />
             <SidebarLeftLayout title="Gerichte" sidebar={<DishesSidebar />}>
-                <ul className="flex flex-row flex-wrap gap-3">
+                <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {dishes.map((dish) => (
                         <DishCard key={dish.id} dish={dish} />
                     ))}

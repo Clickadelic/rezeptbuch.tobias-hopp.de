@@ -1,6 +1,7 @@
 import FullWidthLayout from '@/Layouts/FullWidthLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
+import DishCard from './Dishes/DishCard';
 
 export default function Frontpage({
     auth
@@ -8,16 +9,19 @@ export default function Frontpage({
 
     return (
         <>
-            <Head title="Willkommen" />
-            <FullWidthLayout title="Willkommen">
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-slate-200 p-4 rounded-lg">
-                        <h2 className="text-2xl mb-2">Willkommen</h2>
-                        <p className="text-lg">Willkommen auf Toby's Rezeptbuch!</p>
-                        <p className="text-lg">Bald gibt's mehr!</p>
-                    </div>
+            <Head title="Startseite" />
+            <FullWidthLayout title="Startseite">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
+                    <DishCard dish={{ id: '95e2f333-0e5d-4b90-9104-b28d3dd3099x', name: 'Spaghetti Bolognese', description: 'Hackfleisch anbraten, Zwiebeln dazu, Knoblauch dazu, Paprika dazu, Tomaten dazu, Tomatensauce und Milch dazu.' }} />
                 </div>
-                
             </FullWidthLayout>
         </>
     );

@@ -2,7 +2,6 @@ import { Head, usePage } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components//sidebars/DishesSidebar';
-import { useForm } from '@inertiajs/react';
 import DishCard from './DishCard';
 
 export default function Gerichte() {

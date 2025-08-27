@@ -1,7 +1,7 @@
 import SidebarLink from "@/Components/sidebars/SidebarLink"
 import { usePage } from "@inertiajs/react";
 /**
- * A component that renders a sidebar with a title and a subtitle.
+ * A component that renders a sidebar with a title.
  *
  * @example
  * <LeftSidebar />

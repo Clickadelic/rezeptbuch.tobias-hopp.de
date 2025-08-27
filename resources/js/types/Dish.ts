@@ -1,9 +1,8 @@
-export interface Dish {
-  id: number;
+// types.ts
+export default interface Dish {
+  id: string;          // oder number, je nachdem
   name: string;
-  image?: string;
   description?: string;
   rating?: number;
-  created_at?: string;
-  updated_at?: string;
+  image?: string;      // falls dynamische Bilder
 }

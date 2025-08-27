@@ -7,6 +7,7 @@ import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler, useEffect } from 'react';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import { toast } from 'sonner';
+import { Link } from '@inertiajs/react';
 
 interface EditDishProps {
     dish: {
@@ -18,7 +19,7 @@ interface EditDishProps {
 
 export default function EditDish({ dish }: EditDishProps) {
     const { flash } = usePage().props as { flash: { success?: string } };
-
+    const { delete: destroy } = useForm();
     // useForm mit PUT-Unterstützung für Edit
     const { data, setData, put, processing, errors } = useForm({
         name: dish.name || '',
@@ -86,6 +87,22 @@ export default function EditDish({ dish }: EditDishProps) {
                         </Button>
                     </div>
                 </form>
+                <div>
+                    <Link href={route('dishes.show', dish.id)}>
+                        {dish.name}
+                    </Link>
+                    <Link href={route('dishes.edit', dish.id)}>
+                        edit
+                    </Link>
+                    <button
+                        onClick={() =>
+                            destroy(route('dishes.destroy', dish.id))
+                        }
+                        className="text-rose-600"
+                    >
+                        delete
+                    </button>
+                </div>
             </SidebarLeftLayout>
         </>
     );

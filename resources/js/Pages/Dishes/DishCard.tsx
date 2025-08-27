@@ -31,12 +31,12 @@ export default function DishCard({ dish }: DishCardProps) {
                 {/* Bild mit Scale Transition */}
                 <CardHeader
                 className="flex flex-col items-center justify-center h-72 overflow-hidden p-0 rounded-xl 
-                            bg-slate-100 text-slate-700 
+                            bg-slate-100 text-slate-500 
                             border border-transparent transition-colors duration-300 
                             group-hover:bg-slate-200 group-hover:border-emerald-700"
                 >
-                    <BiDish className="size-8" />
-                    <SaveToFavoritesButton className="absolute top-3 left-3" />
+                    <BiDish className="size-10" />
+                    <SaveToFavoritesButton className="absolute top-3 left-3 hover:text-emerald-700 z-50" />
                     <DropdownMenu>
                         <DropdownMenuTrigger className="absolute top-3 right-2 text-white border border-white p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700">
                             <HiOutlineDotsVertical className="size-5" />

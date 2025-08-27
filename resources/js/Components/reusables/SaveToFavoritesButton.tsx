@@ -11,9 +11,9 @@ function SaveToFavoritesButton({ className }: SaveToFavoritesButtonProps) {
     let isFavorite = false;
 
     return (
-        <Button variant="ghostPrimary"
+        <Button variant="ghost"
             aria-label="In Favoriten speichern"
-            className={cn('absolute flex justify-center items-center z-50', className)}
+            className={cn('absolute flex justify-center items-center', className)}
         >
             {isFavorite ? (
                 <IoMdHeart className="text-white size-6" />

@@ -8,17 +8,16 @@ import { InputHTMLAttributes } from 'react';
  * @returns {JSX.Element}
  */
 export default function Checkbox({
-    className = '',
-    ...props
+  className = '',
+  ...props
 }: InputHTMLAttributes<HTMLInputElement>) {
-    return (
-        <input
-            {...props}
-            type="checkbox"
-            className={
-                'rounded border-gray-300 text-emerald-800 shadow-sm focus:ring-emerald-800 ' +
-                className
-            }
-        />
-    );
+  return (
+    <input
+      {...props}
+      type="checkbox"
+      className={
+        'rounded border-gray-300 text-emerald-800 shadow-sm focus:ring-emerald-800 ' + className
+      }
+    />
+  );
 }

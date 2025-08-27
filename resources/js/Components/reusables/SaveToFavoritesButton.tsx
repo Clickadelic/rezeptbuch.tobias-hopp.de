@@ -1,24 +1,33 @@
-
 import { IoIosHeartEmpty } from 'react-icons/io';
 import { IoMdHeart } from 'react-icons/io';
 import { cn } from '@/lib/utils';
 import { Button } from '@/Components/ui/button';
+
+import { useState, useEffect } from 'react';
+
 interface SaveToFavoritesButtonProps {
     className: string;
 }
 
 function SaveToFavoritesButton({ className }: SaveToFavoritesButtonProps) {
     let isFavorite = false;
-
+    const toggleFavorite = () => {
+        isFavorite = !isFavorite;
+    };
+    useEffect(() => {
+        toggleFavorite();
+    }, []);
+    
     return (
-        <Button variant="ghost"
+        <Button
+            variant="ghost"
             aria-label="In Favoriten speichern"
-            className={cn('absolute flex justify-center items-center', className)}
+            className={cn('absolute flex justify-center items-center hover:text-red-500 focus:text-red-500', className)}
         >
             {isFavorite ? (
-                <IoMdHeart className="text-white size-6" />
+                <IoMdHeart className="size-6 text-red-500" />
             ) : (
-                <IoIosHeartEmpty className="text-white size-6" />
+                <IoIosHeartEmpty className="size-6" />
             )}
         </Button>
     );

@@ -22,6 +22,7 @@ const buttonVariants = cva(
                     'bg-transparent border border-rose-700 text-rose-700 shadow-sm hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
                 secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
+                ghostPrimary: 'hover:text-emerald-700',
                 link: 'text-primary underline-offset-4 hover:underline',
             },
             size: {

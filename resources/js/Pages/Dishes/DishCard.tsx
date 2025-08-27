@@ -14,7 +14,7 @@ import { VscSymbolEvent } from 'react-icons/vsc';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { GoTrash } from 'react-icons/go';
-
+import { BiDish } from "react-icons/bi";
 import SaveToFavoritesButton from '@/Components/reusables/SaveToFavoritesButton';
 import Dish from '@/types/Dish';
 
@@ -26,15 +26,20 @@ export default function DishCard({ dish }: DishCardProps) {
     const user = usePage().props.auth?.user;
 
     return (
-        <Link href={route('dishes.show', dish.id)} className="group flex w-96 mb-3">
+        <Link href={route('dishes.show', dish.id)} className="group w-64 mb-3">
             <Card className="relative overflow-hidden">
                 {/* Bild mit Scale Transition */}
-                <CardHeader className="h-72 overflow-hidden p-0 rounded-xl">
-                    <div className="w-full h-full bg-[url('../../images/Hauptgerichte-416x234.jpg')] bg-cover bg-center transition-transform duration-200 ease-in group-hover:scale-103 group-hover:shadow" />
+                <CardHeader
+                className="flex flex-col items-center justify-center h-72 overflow-hidden p-0 rounded-xl 
+                            bg-slate-100 text-slate-700 
+                            border border-transparent transition-colors duration-300 
+                            group-hover:bg-slate-200 group-hover:border-emerald-700"
+                >
+                    <BiDish className="size-8" />
                     <SaveToFavoritesButton className="absolute top-3 left-3" />
                     <DropdownMenu>
-                        <DropdownMenuTrigger className="absolute top-3 right-2 border border-slate-400 p-1 rounded hover:border-white hover:text-white hover:cursor-pointer">
-                            <HiOutlineDotsVertical className="size-5 text-slate-200" />
+                        <DropdownMenuTrigger className="absolute top-3 right-2 text-white border border-white p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700">
+                            <HiOutlineDotsVertical className="size-5" />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuItem>
@@ -54,12 +59,16 @@ export default function DishCard({ dish }: DishCardProps) {
                     </DropdownMenu>
                 </CardHeader>
 
+
                 {/* Titel */}
-                <CardContent className="p-2">
-                    <h3 className="text-xl text-slate-700 font-medium text-yellowtail transition-colors duration-500 ease-in-out group-hover:text-emerald-700">
-                        {dish.name}
-                    </h3>
+                <CardContent className="p-2 block min-h-18 text-xl text-slate-700 font-medium text-yellowtail 
+                                transition-colors duration-500 ease-in-out group-hover:text-emerald-700 
+                                line-clamp-2 leading-snug">
+                    {dish.name}
                 </CardContent>
+
+
+
 
                 {/* Footer */}
                 <CardFooter className="flex flex-row items-center justify-start space-x-2">

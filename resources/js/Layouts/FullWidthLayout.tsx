@@ -30,7 +30,7 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
                 <RecipeSearch />
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)]">
-                <main className="pt-4">
+                <main className="pb-6">
                     {title && <h2 className="text-2xl">{title}</h2>}
                     {title && <hr className="my-4 border-slate-300" />}
                     {children}

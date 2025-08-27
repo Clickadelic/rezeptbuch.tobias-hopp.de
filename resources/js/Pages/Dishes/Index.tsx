@@ -11,7 +11,7 @@ export default function Gerichte() {
         <>
             <Head title="Gerichte" />
             <SidebarLeftLayout title="Gerichte" sidebar={<DishesSidebar />}>
-                <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
                     {dishes.map((dish: Dish) => (
                         <DishCard key={dish.id} dish={dish} />
                     ))}

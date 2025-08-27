@@ -8,12 +8,12 @@ export default function Frontpage({ auth }: PageProps<{ auth: { user: any } }>) 
         <>
             <Head title="Startseite" />
             <FullWidthLayout title="Startseite">
-                <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+                <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
                     <DishCard
                         dish={{ id: '123', name: 'Spaghetti Bolognese', subtitle: 'Nudelklassiker', description: 'Test' }}
                     />
                     <DishCard
-                        dish={{ id: '123', name: 'Test', subtitle: 'Test', description: 'Test' }}
+                        dish={{ id: '234', name: 'Lasagne', subtitle: 'Italienisch gute Lasagne', description: 'Wie bei Oma in Italien, hier das Rezept.' }}
                     />
                     <DishCard
                         dish={{ id: '123', name: 'Test', subtitle: 'Test', description: 'Test' }}

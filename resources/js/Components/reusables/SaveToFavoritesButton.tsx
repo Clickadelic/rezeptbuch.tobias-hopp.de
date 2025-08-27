@@ -11,18 +11,21 @@ interface SaveToFavoritesButtonProps {
 
 function SaveToFavoritesButton({ className }: SaveToFavoritesButtonProps) {
     let isFavorite = false;
+    
     const toggleFavorite = () => {
         isFavorite = !isFavorite;
     };
+    
     useEffect(() => {
         toggleFavorite();
-    }, []);
+    }, [isFavorite]);
     
     return (
         <Button
             variant="ghost"
             aria-label="In Favoriten speichern"
             className={cn('absolute flex justify-center items-center hover:text-red-500 focus:text-red-500', className)}
+            onClick={toggleFavorite}
         >
             {isFavorite ? (
                 <IoMdHeart className="size-6 text-red-500" />

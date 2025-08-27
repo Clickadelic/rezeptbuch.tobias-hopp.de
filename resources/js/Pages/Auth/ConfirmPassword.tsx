@@ -7,50 +7,50 @@ import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
 export default function ConfirmPassword() {
-  const { data, setData, post, processing, errors, reset } = useForm({
-    password: '',
-  });
-
-  const submit: FormEventHandler = (e) => {
-    e.preventDefault();
-
-    post(route('password.confirm'), {
-      onFinish: () => reset('password'),
+    const { data, setData, post, processing, errors, reset } = useForm({
+        password: '',
     });
-  };
 
-  return (
-    <AuthLayout>
-      <Head title="Passwort bestätigen" />
+    const submit: FormEventHandler = (e) => {
+        e.preventDefault();
 
-      <div className="mb-4 text-slate-800">
-        <p>
-          Dies ist ein geschützer Bereich des Rezeptbuches. Bitte bestätige zuerst Deine E-Mail
-          Adresse bevor Du weiter machst. Danke.
-        </p>
-      </div>
+        post(route('password.confirm'), {
+            onFinish: () => reset('password'),
+        });
+    };
 
-      <form onSubmit={submit}>
-        <div className="mt-4">
-          <InputLabel htmlFor="password" value="Password" />
+    return (
+        <AuthLayout>
+            <Head title="Passwort bestätigen" />
 
-          <TextInput
-            id="password"
-            type="password"
-            name="password"
-            value={data.password}
-            className="mt-1 block w-full"
-            isFocused={true}
-            onChange={(e) => setData('password', e.target.value)}
-          />
+            <div className="mb-4 text-slate-800">
+                <p>
+                    Dies ist ein geschützer Bereich des Rezeptbuches. Bitte bestätige zuerst Deine
+                    E-Mail Adresse bevor Du weiter machst. Danke.
+                </p>
+            </div>
 
-          <InputError message={errors.password} className="mt-2" />
-        </div>
+            <form onSubmit={submit}>
+                <div className="mt-4">
+                    <InputLabel htmlFor="password" value="Password" />
 
-        <div className="mt-4 flex items-center">
-          <Button disabled={processing}>Bestätigen</Button>
-        </div>
-      </form>
-    </AuthLayout>
-  );
+                    <TextInput
+                        id="password"
+                        type="password"
+                        name="password"
+                        value={data.password}
+                        className="mt-1 block w-full"
+                        isFocused={true}
+                        onChange={(e) => setData('password', e.target.value)}
+                    />
+
+                    <InputError message={errors.password} className="mt-2" />
+                </div>
+
+                <div className="mt-4 flex items-center">
+                    <Button disabled={processing}>Bestätigen</Button>
+                </div>
+            </form>
+        </AuthLayout>
+    );
 }

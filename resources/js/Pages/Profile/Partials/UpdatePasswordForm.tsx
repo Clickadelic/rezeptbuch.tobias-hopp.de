@@ -7,108 +7,108 @@ import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef } from 'react';
 
 export default function UpdatePasswordForm({ className = '' }: { className?: string }) {
-  const passwordInput = useRef<HTMLInputElement>(null);
-  const currentPasswordInput = useRef<HTMLInputElement>(null);
+    const passwordInput = useRef<HTMLInputElement>(null);
+    const currentPasswordInput = useRef<HTMLInputElement>(null);
 
-  const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
-    current_password: '',
-    password: '',
-    password_confirmation: '',
-  });
-
-  const updatePassword: FormEventHandler = (e) => {
-    e.preventDefault();
-
-    put(route('password.update'), {
-      preserveScroll: true,
-      onSuccess: () => reset(),
-      onError: (errors) => {
-        if (errors.password) {
-          reset('password', 'password_confirmation');
-          passwordInput.current?.focus();
-        }
-
-        if (errors.current_password) {
-          reset('current_password');
-          currentPasswordInput.current?.focus();
-        }
-      },
+    const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
+        current_password: '',
+        password: '',
+        password_confirmation: '',
     });
-  };
 
-  return (
-    <section className={className}>
-      <header>
-        <h2 className="text-lg font-medium text-gray-900">Passwort aktualisieren</h2>
+    const updatePassword: FormEventHandler = (e) => {
+        e.preventDefault();
 
-        <p className="mt-1 text-sm text-gray-600">
-          Stelle sicher, dass Du ein langes, sicheres Passwort verwendest.
-        </p>
-      </header>
+        put(route('password.update'), {
+            preserveScroll: true,
+            onSuccess: () => reset(),
+            onError: (errors) => {
+                if (errors.password) {
+                    reset('password', 'password_confirmation');
+                    passwordInput.current?.focus();
+                }
 
-      <form onSubmit={updatePassword} className="mt-6 space-y-6">
-        <div>
-          <InputLabel htmlFor="current_password" value="Aktuelles Passwort" />
+                if (errors.current_password) {
+                    reset('current_password');
+                    currentPasswordInput.current?.focus();
+                }
+            },
+        });
+    };
 
-          <TextInput
-            id="current_password"
-            ref={currentPasswordInput}
-            value={data.current_password}
-            onChange={(e) => setData('current_password', e.target.value)}
-            type="password"
-            className="mt-1 block w-full"
-            autoComplete="current-password"
-          />
+    return (
+        <section className={className}>
+            <header>
+                <h2 className="text-lg font-medium text-gray-900">Passwort aktualisieren</h2>
 
-          <InputError message={errors.current_password} className="mt-2" />
-        </div>
+                <p className="mt-1 text-sm text-gray-600">
+                    Stelle sicher, dass Du ein langes, sicheres Passwort verwendest.
+                </p>
+            </header>
 
-        <div>
-          <InputLabel htmlFor="password" value="Neues Passwort" />
-          <TextInput
-            id="password"
-            ref={passwordInput}
-            value={data.password}
-            onChange={(e) => setData('password', e.target.value)}
-            type="password"
-            className="mt-1 block w-full"
-            autoComplete="new-password"
-          />
+            <form onSubmit={updatePassword} className="mt-6 space-y-6">
+                <div>
+                    <InputLabel htmlFor="current_password" value="Aktuelles Passwort" />
 
-          <InputError message={errors.password} className="mt-2" />
-        </div>
+                    <TextInput
+                        id="current_password"
+                        ref={currentPasswordInput}
+                        value={data.current_password}
+                        onChange={(e) => setData('current_password', e.target.value)}
+                        type="password"
+                        className="mt-1 block w-full"
+                        autoComplete="current-password"
+                    />
 
-        <div>
-          <InputLabel htmlFor="password_confirmation" value="Passwort bestätigen" />
+                    <InputError message={errors.current_password} className="mt-2" />
+                </div>
 
-          <TextInput
-            id="password_confirmation"
-            value={data.password_confirmation}
-            onChange={(e) => setData('password_confirmation', e.target.value)}
-            type="password"
-            className="mt-1 block w-full"
-            autoComplete="new-password"
-          />
+                <div>
+                    <InputLabel htmlFor="password" value="Neues Passwort" />
+                    <TextInput
+                        id="password"
+                        ref={passwordInput}
+                        value={data.password}
+                        onChange={(e) => setData('password', e.target.value)}
+                        type="password"
+                        className="mt-1 block w-full"
+                        autoComplete="new-password"
+                    />
 
-          <InputError message={errors.password_confirmation} className="mt-2" />
-        </div>
+                    <InputError message={errors.password} className="mt-2" />
+                </div>
 
-        <div className="flex items-center gap-4">
-          <Button disabled={processing}>Save</Button>
+                <div>
+                    <InputLabel htmlFor="password_confirmation" value="Passwort bestätigen" />
 
-          <Transition
-            show={recentlySuccessful}
-            enter="transition ease-in-out"
-            enterFrom="opacity-0"
-            leave="transition ease-in-out"
-            leaveTo="opacity-0"
-          >
-            <p className="text-sm text-emerald-700 bg-emerald-200 border-emerald-700 rounded px-2 py-1">
-              Gespeichert.
-            </p>
-          </Transition>
-        </div>
-      </form>
-    </section>
-  );
+                    <TextInput
+                        id="password_confirmation"
+                        value={data.password_confirmation}
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                        type="password"
+                        className="mt-1 block w-full"
+                        autoComplete="new-password"
+                    />
+
+                    <InputError message={errors.password_confirmation} className="mt-2" />
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <Button disabled={processing}>Save</Button>
+
+                    <Transition
+                        show={recentlySuccessful}
+                        enter="transition ease-in-out"
+                        enterFrom="opacity-0"
+                        leave="transition ease-in-out"
+                        leaveTo="opacity-0"
+                    >
+                        <p className="text-sm text-emerald-700 bg-emerald-200 border-emerald-700 rounded px-2 py-1">
+                            Gespeichert.
+                        </p>
+                    </Transition>
+                </div>
+            </form>
+        </section>
+    );
 }

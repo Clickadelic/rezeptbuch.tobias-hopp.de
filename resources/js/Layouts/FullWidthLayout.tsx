@@ -6,8 +6,8 @@ import { Toaster } from 'sonner';
 // TODO: Read "state sharing" Inertia Documentation
 
 interface FullWidthLayoutProps extends PropsWithChildren {
-  title?: string;
-  children: React.ReactNode;
+    title?: string;
+    children: React.ReactNode;
 }
 
 /**
@@ -23,21 +23,21 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  */
 
 export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
-  return (
-    <div className="min-h-screen flex flex-col justify-between bg-white">
-      <div>
-        <Header />
-        <RecipeSearch />
-      </div>
-      <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)]">
-        <main className="pt-4">
-          {title && <h2 className="text-2xl">{title}</h2>}
-          {title && <hr className="my-4 border-slate-300" />}
-          {children}
-        </main>
-      </div>
-      <Footer />
-      <Toaster position="bottom-right" />
-    </div>
-  );
+    return (
+        <div className="min-h-screen flex flex-col justify-between bg-white">
+            <div>
+                <Header />
+                <RecipeSearch />
+            </div>
+            <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)]">
+                <main className="pt-4">
+                    {title && <h2 className="text-2xl">{title}</h2>}
+                    {title && <hr className="my-4 border-slate-300" />}
+                    {children}
+                </main>
+            </div>
+            <Footer />
+            <Toaster position="bottom-right" />
+        </div>
+    );
 }

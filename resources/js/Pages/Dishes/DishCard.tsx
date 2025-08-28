@@ -69,7 +69,7 @@ export default function DishCard({ dish }: DishCardProps) {
                         className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-emerald-700 leading-snug"
                     >
                         <span className="text-xs text-slate-400">{dish.punchline}</span>
-                        <h3 className="line-clamp-2 min-h-[calc(3rem+2px)]">{dish.name}</h3>
+                        <h3 className="group-hover:text-emerald-700 line-clamp-2 text-slate-800 min-h-[calc(3rem+2px)]">{dish.name}</h3>
                     </CardContent>
 
                     {/* Footer */}

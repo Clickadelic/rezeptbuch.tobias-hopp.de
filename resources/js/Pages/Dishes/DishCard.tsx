@@ -10,11 +10,9 @@ import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { GoTrash } from 'react-icons/go';
 import { BiDish } from 'react-icons/bi';
-import { CiStar } from "react-icons/ci";
 
 import Dish from '@/types/Dish';
 
-import SaveToFavoritesButton from '@/Components/reusables/SaveToFavoritesButton';
 interface DishCardProps {
     dish: Dish;
 }
@@ -43,9 +41,8 @@ export default function DishCard({ dish }: DishCardProps) {
                                 group-hover:bg-slate-200 group-hover:border-emerald-700 shadow-transparent hover:shadow-emerald-700"
                     >
                         <BiDish className="size-10" />
-                        <SaveToFavoritesButton className="absolute top-3 left-3 z-50" />
                         <DropdownMenu>
-                            <DropdownMenuTrigger className="absolute top-3 right-2 text-slate-300 border border-slate-300 p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700 shadow-transparent">
+                            <DropdownMenuTrigger className="absolute top-2 right-2 text-slate-300 border border-slate-300 p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700 shadow-transparent">
                                 <HiOutlineDotsVertical className="size-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -64,22 +61,15 @@ export default function DishCard({ dish }: DishCardProps) {
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <div className="absolute bottom-2 left-3 z-50">
-                            <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
-                            <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
-                            <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
-                            <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
-                            <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
-                        </div>
+                        
                     </CardHeader>
 
                     {/* Titel */}
                     <CardContent
-                        className="p-2 block min-h-17 text-lg font-medium 
-                                    transition-colors duration-500 ease-in-out group-hover:text-emerald-700 
-                                    line-clamp-2 leading-snug"
+                        className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-emerald-700 leading-snug"
                     >
-                        {dish.name}
+                        <span className="text-xs text-slate-400">{dish.punchline}</span>
+                        <h3 className="line-clamp-2 min-h-[calc(3rem+2px)]">{dish.name}</h3>
                     </CardContent>
 
                     {/* Footer */}

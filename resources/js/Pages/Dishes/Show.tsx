@@ -15,8 +15,8 @@ export default function Show({ dish }: any) {
     };
     return (
         <>
-            <Head title="Gerichte" />
-            <SidebarLeftLayout title={dish.name} sidebar={<DishesSidebar />}>
+            <Head title="Gericht Details" />
+            <SidebarLeftLayout title="Gericht Details" sidebar={<DishesSidebar />}>
                 <div className="space-y-4 mb-3">
                     <div className="bg-white rounded p-4 shadow sm:rounded-lg sm:p-8">
                         <h2 className="text-2xl">{dish.name}</h2>

@@ -24,7 +24,7 @@ function SaveToFavoritesButton({ className }: SaveToFavoritesButtonProps) {
         <Button
             variant="ghost"
             aria-label="In Favoriten speichern"
-            className={cn('absolute flex justify-center items-center hover:text-red-500 focus:text-red-500', className)}
+            className={cn('absolute flex justify-center items-center text-slate-400 hover:text-red-500 focus:text-red-500', className)}
             onClick={toggleFavorite}
         >
             {isFavorite ? (

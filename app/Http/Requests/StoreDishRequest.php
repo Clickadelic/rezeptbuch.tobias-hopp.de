@@ -16,7 +16,12 @@ class StoreDishRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'punchline' => 'nullable|string',
             'description' => 'nullable|string',
+            'rating' => 'nullable|string',
+            'difficulty' => 'nullable|string',
+            'image' => 'nullable|string',
+            'preparation_time' => 'nullable|string',
         ];
     }
 

@@ -11,7 +11,16 @@ class Dish extends Model
      use HasFactory;
      protected $keyType = 'string';
 
-     protected $fillable = ['name', 'description'];
+     protected $fillable = [
+          'name',
+          'punchline',
+          'description',
+          'image',
+          'difficulty',
+          'rating',
+          'preparation_time',
+          'deleted_at'
+     ];
 
      public $incrementing = false;
 

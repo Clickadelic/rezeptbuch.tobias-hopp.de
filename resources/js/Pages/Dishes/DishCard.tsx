@@ -2,12 +2,7 @@ import { usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/Components/ui/card';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@/Components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
 
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
@@ -32,7 +27,7 @@ interface DishCardProps {
  *
  * @returns {JSX.Element} The dish card component.
  * @example
- * <DishCard dish={{ id: 1, name: 'Dish name', subtitle: 'Dish subtitle' }} />
+ * <DishCard dish={{ id: 1, name: 'Dish name', punchline: 'Dish punchline', description: 'Dish description', image: 'Dish image', rating: 'Dish rating', preparation_time: 'Dish preparation time' }} />
  */
 export default function DishCard({ dish }: DishCardProps) {
     const user = usePage().props.auth?.user;
@@ -50,8 +45,8 @@ export default function DishCard({ dish }: DishCardProps) {
                         <BiDish className="size-10" />
                         <SaveToFavoritesButton className="absolute top-3 left-3 z-50" />
                         <DropdownMenu>
-                            <DropdownMenuTrigger className="absolute top-3 right-2 text-slate-400 border border-slate-400 p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700">
-                                <HiOutlineDotsVertical className="size-5" />
+                            <DropdownMenuTrigger className="absolute top-3 right-2 text-slate-300 border border-slate-300 p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700 shadow-transparent">
+                                <HiOutlineDotsVertical className="size-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuItem>
@@ -69,7 +64,7 @@ export default function DishCard({ dish }: DishCardProps) {
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <div className="absolute bottom-3 left-3 z-50">
+                        <div className="absolute bottom-2 left-3 z-50">
                             <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
                             <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
                             <CiStar className="inline-flex size-4 mr-1 text-yellow-400 hover:text-yellow-700" />
@@ -80,7 +75,7 @@ export default function DishCard({ dish }: DishCardProps) {
 
                     {/* Titel */}
                     <CardContent
-                        className="p-2 block min-h-17 text-xl font-medium 
+                        className="p-2 block min-h-17 text-lg font-medium 
                                     transition-colors duration-500 ease-in-out group-hover:text-emerald-700 
                                     line-clamp-2 leading-snug"
                     >
@@ -89,17 +84,14 @@ export default function DishCard({ dish }: DishCardProps) {
 
                     {/* Footer */}
                     <CardFooter className="flex flex-row items-center justify-between space-x-2">
-                        <div className="flex flex-row items-center justify-between space-x-2">
-                            <div>
-                                <GoClock className="inline-flex size-4 mr-1 text-emerald-700" />
-                                <span className="text-sm text-muted-foreground">10 Min.</span>
-                            </div>
-                            <div>
-                                <VscSymbolEvent className="inline-flex size-4 mr-1 text-emerald-700" />
-                                <span className="text-sm text-muted-foreground">einfach</span>
-                            </div>
+                        <div>
+                            <GoClock className="inline-flex size-4 mr-1 text-emerald-700" />
+                            <span className="text-sm text-muted-foreground">{dish.preparation_time} Min.</span>
                         </div>
-                        
+                        <div>
+                            <VscSymbolEvent className="inline-flex size-4 mr-1 text-emerald-700" />
+                            <span className="text-sm text-muted-foreground">{dish.difficulty}</span>
+                        </div>
                     </CardFooter>
                 </Card>
             </Link>

@@ -34,8 +34,8 @@ const AppLogo = ({ className = '', href = '/', title = "Toby's Rezeptbuch" }: Ap
                 <span>
                     <BsBookmarkHeart className="size-5 mt-1" />
                 </span>
-                <span className="mb-0 text-xl font-light">Toby's</span>
-                <span className="mb-0 text-xl font-medium">Rezeptbuch</span>
+                <span className="mb-0 text-xl font-light leading-snug">Toby's</span>
+                <span className="mb-0 text-xl font-medium leading-snug">Rezeptbuch</span>
             </Link>
         </h1>
     );

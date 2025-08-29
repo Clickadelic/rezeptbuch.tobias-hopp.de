@@ -23,23 +23,30 @@ interface DishFormProps {
 
 export default function DishForm({ dish, className }: DishFormProps) {
     const { data, setData, post, processing, errors } = useForm({
-        id: dish.id,
-        name: dish.name || '',
-        punchline: dish.punchline || '',
-        description: dish.description || '',
-        image: dish.image || '',
-        difficulty: dish.difficulty || 0,
-        rating: dish.rating || 0,
-        preparation_time: dish.preparation_time || 0,
+        id: dish?.id ?? '',
+        name: dish?.name ?? '',
+        punchline: dish?.punchline ?? '',
+        description: dish?.description ?? '',
+        image: null as File | null,
+        difficulty: dish?.difficulty ?? 'einfach',
+        rating: Number(dish?.rating ?? 0),
+        preparation_time: Number(dish?.preparation_time ?? 0),
     });
 
     function submit(e: React.FormEvent) {
         e.preventDefault();
-        post('/gerichte'); // Post Route, die dein Controller erwartet
+        post('/gerichte', { forceFormData: true }); // Inertia baut dann FormData
     }
 
     return (
         <form onSubmit={submit} className={cn('space-y-3', className)}>
+            {data.image && (
+                <img
+                    src={URL.createObjectURL(data.image)}
+                    alt="Preview"
+                    className="mt-2 max-h-40 rounded border"
+                />
+            )}
             <div>
                 <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
                 <label
@@ -59,7 +66,12 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         type="file"
                         accept="image/*"
                         className="hidden"
+                        tabIndex={0}
                         aria-label="Datei auswählen"
+                        onChange={(e) => {
+                            const file = e.currentTarget.files?.[0] ?? null;
+                            setData('image', file);
+                        }}
                     />
                 </label>
             </div>
@@ -106,9 +118,9 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         autoComplete="punchline"
                         placeholder="25"
                         isFocused={true}
-                        onChange={(e) => setData('preparation_time', e.target.value)}
+                        onChange={(e) => setData('preparation_time', Number(e.target.value))}
                     />
-                    <InputError message={errors.description} className="mt-2" />
+                    <InputError message={errors.preparation_time} className="mt-2" />
                 </div>
                 <div>
                     <InputLabel htmlFor="rating" value="Bewertung" />
@@ -121,13 +133,17 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         value={data.rating}
                         className="mt-1 flex w-full"
                         isFocused={true}
-                        onChange={(e) => setData('rating', e.target.value)}
+                        onChange={(e) => setData('rating', Number(e.target.value))}
                     />
                     <InputError message={errors.rating} className="mt-2" />
                 </div>
                 <div>
                     <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
-                    <Select name="difficulty" defaultValue="einfach" onValueChange={(e) => setData('difficulty', e)}>
+                    <Select
+                        name="difficulty"
+                        value={data.difficulty}
+                        onValueChange={(val) => setData('difficulty', val)}
+                    >
                         <SelectTrigger className="w-full text-base rounded bg-white py-6 border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 mt-1">
                             <SelectValue placeholder="Schwierigkeitsgrad" />
                         </SelectTrigger>

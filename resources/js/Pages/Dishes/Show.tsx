@@ -3,9 +3,10 @@ import { Link } from '@inertiajs/react';
 
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
+import { IoIosStarOutline } from "react-icons/io";
+import { MdOutlineStarPurple500 } from "react-icons/md";
 
 import { Button } from '@/Components/ui/button';
-
 export default function Show({ dish }: any) {
     const deleteDish = () => {
         if (confirm('Wirklich löschen?')) {
@@ -18,7 +19,14 @@ export default function Show({ dish }: any) {
             <Head title="Gericht Details" />
             <SidebarLeftLayout title="Gericht Details" sidebar={<DishesSidebar />}>
                 <h3 className="text-xl mb-3 leading-snug">{dish.name}</h3>
-                <img src="https://img.chefkoch-cdn.de/rezepte/2172551348653384/bilder/505366/crop-640x360/haehnchen-chorizo-pfanne.jpg" className="rounded-xl" alt={dish.name} />
+                <div className="flex flex-row mb-4">
+                    <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
+                    <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
+                    <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
+                    <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
+                    <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
+                </div>
+                <img src="#" className="rounded-xl aspect-video border border-slate-200" alt={dish.name} title={dish.name} />
             </SidebarLeftLayout>
         </>
     );

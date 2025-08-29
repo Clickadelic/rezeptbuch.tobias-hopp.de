@@ -20,7 +20,8 @@ class Dish extends Model
           'preparation_time',
           'rating',
           'difficulty',
-          'image'
+          'image',
+          'user_id'
      ];
 
      protected $casts = [
@@ -50,8 +51,15 @@ class Dish extends Model
           });
      }
 
+     
+
      public function getImageUrlAttribute(): ?string
      {
           return $this->image ? asset($this->image) : null;
+     }
+
+     public function user()
+     {
+          return $this->belongsTo(User::class);
      }
 }

@@ -12,17 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         // Dish Table
-        Schema::create("dishes", function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string("name");
-            $table->string("punchline")->default(null)->nullable();
-            $table->string("description")->default(null)->nullable();
-            $table->string("image")->default(null)->nullable();
-            $table->string("difficulty")->default(null)->nullable();
-            $table->string("rating")->default(null)->nullable();
-            $table->string("preparation_time")->default(null)->nullable();
+        Schema::create('dishes', function (Blueprint $table) {
+            $table->uuid('id')->primary(); // Dish PK als UUID
+            $table->string('name');
+            $table->string('punchline')->nullable();
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('difficulty')->default('einfach');
+            $table->integer('rating')->nullable();
+            $table->integer('preparation_time')->nullable();
+
+            $table->foreignId('user_id')->constrained('users');
+            
             $table->timestamps();
-            $table->dateTime("deleted_at")->default(null)->nullable();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('dishes');
     }
 };

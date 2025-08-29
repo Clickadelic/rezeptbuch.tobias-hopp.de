@@ -1,0 +1,1 @@
+import{r as s}from"./app-BSt7Cnw0.js";function o(t){const[r,a]=s.useState(!1);return s.useEffect(()=>{function n(c){a(c.matches)}const e=matchMedia(t);return e.addEventListener("change",n),a(e.matches),()=>e.removeEventListener("change",n)},[t]),r}export{o as u};

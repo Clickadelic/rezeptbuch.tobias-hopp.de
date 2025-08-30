@@ -22,6 +22,7 @@ Route::prefix('/gerichte')->group(function () {
     Route::get('/{dish}/edit', [DishController::class, 'edit'])->middleware(['auth', 'verified'])->name('dishes.edit');
 
     Route::put('/{dish}', [DishController::class, 'update'])->middleware(['auth', 'verified'])->name('dishes.update');
+    
     Route::delete('/{dish}', [DishController::class, 'destroy'])->middleware(['auth', 'verified'])->name('dishes.destroy');
     Route::get('/{dish}', [DishController::class, 'show'])->name('dishes.show');
 });

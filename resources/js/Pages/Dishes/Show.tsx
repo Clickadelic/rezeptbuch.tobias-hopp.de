@@ -6,7 +6,13 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 
 import { toHumanDate } from '@/lib/utils';
 
-export default function Show({ dish }: any) {
+import Dish from '@/types/Dish';
+
+interface ShowDishProps {
+    dish: Dish
+}
+
+export default function Show({ dish }: ShowDishProps) {
     
     const { props } = usePage();
 
@@ -25,7 +31,7 @@ export default function Show({ dish }: any) {
                     </div>
                     <div className="flex flex-row space-x-2 ml-2">
                         <p className="text-slate-500">{props.auth.user.name}</p>
-                        <p>{toHumanDate(dish.created_at)} Uhr</p>
+                        
                     </div>
                 </div>
                 <div className="flex flex-row my-3">

@@ -14,8 +14,6 @@ export default function Edit({
     return (
         <NoSidebarsLayout
             title="Profil"
-            leftSidebar={<LeftSidebar />}
-            rightSidebar={<RightSidebar />}
         >
             <Head title="Profil" />
 

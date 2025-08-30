@@ -87,11 +87,9 @@ class DishController extends Controller
             Storage::disk('public')->delete($dish->image);
         }
 
-        $dish->delete();
+        Dish::destroy($dish->id);
 
-        return redirect()
-            ->route('dishes.index')
-            ->with('success', 'Gericht gelöscht!');
+        return redirect()->route('dishes.index')->with('success', 'Gericht gelöscht!');
     }
 
 }

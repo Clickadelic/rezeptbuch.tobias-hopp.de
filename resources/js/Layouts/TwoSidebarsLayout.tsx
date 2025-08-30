@@ -1,11 +1,14 @@
 import { PropsWithChildren } from 'react';
 import { useMediaQuery } from '@/Hooks/use-media-query';
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+
 import { Toaster } from '@/Components/ui/sonner';
-// TODO: Read state sharing Inertia Documentation
+import { toast } from "sonner";
 
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
@@ -40,8 +43,25 @@ export default function TwoSidebarsLayout({
     rightSidebar,
     children,
 }: TwoSidebarsLayoutProps) {
-    // TODO: Add media queries to ENV file > global control
+    
     const isDesktop = useMediaQuery('(min-width: 768px)');
+
+    const { props } = usePage();
+    const { flash } = props;
+
+    useEffect(() => {
+        if (flash?.success) {
+            toast.success(flash.success, {
+                duration: 3000,
+            });
+        }
+        if (flash?.error) {
+            toast.error(flash.error, {
+                duration: 4000,
+            });
+        }
+    }, [flash]);
+    
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
@@ -50,7 +70,7 @@ export default function TwoSidebarsLayout({
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4">
                 {isDesktop && leftSidebar}
-                <main className="pb-6 col-span-3 pt-3">
+                <main className="py-4 col-span-3">
                     {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}
                     {title && <hr className="my-3 border-slate-300" />}
                     {children}

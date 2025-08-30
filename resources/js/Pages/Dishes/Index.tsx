@@ -6,7 +6,9 @@ import DishesSidebar from '@/Components//sidebars/DishesSidebar';
 import DishCard from './DishCard';
 import Dish from '@/types/Dish';
 export default function Gerichte() {
-    const { dishes } = usePage<PageProps>().props;
+    const { props } = usePage();
+    const { dishes } = props;
+    
     return (
         <>
             <Head title="Gerichte" />

@@ -1,4 +1,4 @@
-import TwoSidebarsLayout from '@/Layouts/TwoSidebarsLayout';
+import NoSidebarsLayout from '@/Layouts/NoSidebarsLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
@@ -9,13 +9,11 @@ export default function Zutaten({ auth }: PageProps<{ auth: { user: any } }>) {
     return (
         <>
             <Head title="Zutaten" />
-            <TwoSidebarsLayout
+            <NoSidebarsLayout
                 title="Zutaten"
-                leftSidebar={<LeftSidebar />}
-                rightSidebar={<RightSidebar />}
             >
                 Liste und Philosophy bezüglich Zutaten.
-            </TwoSidebarsLayout>
+            </NoSidebarsLayout>
         </>
     );
 }

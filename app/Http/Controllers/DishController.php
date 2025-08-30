@@ -62,16 +62,16 @@ class DishController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
-            $data['image'] = 'uploads/dishes/' . $filename;
+        // if ($request->hasFile('image')) {
+        //     $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+        //     $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
+        //     $data['image'] = 'uploads/dishes/' . $filename;
 
-            // Optional altes Bild löschen
-            if ($dish->image && file_exists(public_path($dish->image))) {
-                unlink(public_path($dish->image));
-            }
-        }
+        //     // Optional altes Bild löschen
+        //     if ($dish->image && file_exists(public_path($dish->image))) {
+        //         unlink(public_path($dish->image));
+        //     }
+        // }
 
         $dish->update($data);
 
@@ -82,10 +82,10 @@ class DishController extends Controller
 
     public function destroy(Dish $dish)
     {
-        // Bild löschen (falls vorhanden)
-        if ($dish->image && Storage::disk('public')->exists($dish->image)) {
-            Storage::disk('public')->delete($dish->image);
-        }
+        // // Bild löschen (falls vorhanden)
+        // if ($dish->image && Storage::disk('public')->exists($dish->image)) {
+        //     Storage::disk('public')->delete($dish->image);
+        // }
 
         $dish->delete();
 

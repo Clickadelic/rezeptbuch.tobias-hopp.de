@@ -16,7 +16,7 @@ export default function CreateDish() {
     return (
         <SidebarLeftLayout title="Neues Gericht" sidebar={<DishesSidebar />}>
             <Head title="Neues Gericht" />
-            <DishForm dish={{ id: '', name: '', description: '' }} />
+            <DishForm />
         </SidebarLeftLayout>
     );
 }

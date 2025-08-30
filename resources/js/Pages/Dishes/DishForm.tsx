@@ -13,6 +13,7 @@ import {
 
 import { Button } from '@/Components/ui/button';
 import { GoPlus } from 'react-icons/go';
+import { GoPencil } from 'react-icons/go';
 import Dish from '@/types/Dish';
 import { cn } from '@/lib/utils';
 
@@ -27,7 +28,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
         name: dish?.name ?? '',
         punchline: dish?.punchline ?? '',
         description: dish?.description ?? '',
-        image: null as File | null,
+        //image: null as File | null,
         difficulty: dish?.difficulty ?? 'einfach',
         rating: Number(dish?.rating ?? 0),
         preparation_time: Number(dish?.preparation_time ?? 0),
@@ -35,52 +36,20 @@ export default function DishForm({ dish, className }: DishFormProps) {
 
     function submit(e: React.FormEvent) {
         e.preventDefault();
-        if (dish) {
-            put(route('dishes.update', dish.id), { forceFormData: true });
-        } else {
-            post(route('dishes.store'), { forceFormData: true });
-        }
+        post(route('dishes.store'));
+        // if(dish) {
+        // } else {
+        //     put(route('dishes.update', dish.id));
+        // }
     }
-
+    
     return (
-        <form onSubmit={submit} className={cn('space-y-3', className)}>
+        <form onSubmit={submit} className={cn('flex flex-col justify-between items-center space-y-3', className)}>
 
-            {/* Upload */}
-            <div>
-                <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
-                <label
-                    htmlFor="file-upload"
-                    className={cn(
-                        "w-full flex items-center aspect-video justify-center rounded-lg border-2 border-dotted border-slate-400 focus-within:border-emerald-700 focus-within:ring-emerald-700 text-4xl text-slate-500 hover:cursor-pointer hover:text-emerald-700 hover:border-emerald-700",
-                        className
-                    )}
-                >   {!data.image && (
-                        <div className="flex flex-col items-center space-y-2 my-12">
-                            <GoPlus />
-                            <span className="text-sm">Bild auswählen</span>
-                        </div>
-                    )}
-                    {/* Image Preview */}
-                    {data.image && (
-                        <img
-                            src={URL.createObjectURL(data.image)}
-                            alt="Preview"
-                            className="size-full rounded border"
-                        />
-                    )}
-                    <input
-                        id="file-upload"
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={(e) => setData('image', e.currentTarget.files?.[0] ?? null)}
-                    />
-                </label>
-                <InputError message={errors.image} className="mt-2" />
-            </div>
+            
 
             {/* Name */}
-            <div>
+            <div className="w-full">
                 <InputLabel htmlFor="name" value="Name" />
                 <TextInput
                     id="name"
@@ -95,7 +64,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
             </div>
 
             {/* Punchline */}
-            <div>
+            <div className="w-full">
                 <InputLabel htmlFor="punchline" value="Punchline" />
                 <TextInput
                     id="punchline"
@@ -109,7 +78,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
             </div>
 
             {/* Zahlenfelder */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <InputLabel htmlFor="preparation-time" value="Zubereitungszeit in Minuten" />
                     <TextInput
@@ -156,7 +125,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
             </div>
 
             {/* Beschreibung */}
-            <div>
+            <div className="w-full">
                 <InputLabel htmlFor="description" value="Beschreibung" />
                 <Textarea
                     value={data.description}
@@ -169,10 +138,9 @@ export default function DishForm({ dish, className }: DishFormProps) {
             </div>
 
             {/* Submit */}
-            <div className="my-4 flex items-center justify-end">
+            <div className="w-full my-4 flex items-center justify-end">
                 <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                    <GoPlus />
-                    {dish ? 'Gericht aktualisieren' : 'Neues Gericht'}
+                    {dish ? <GoPlus /> : <GoPencil />} {dish ? 'Gericht hinzufügen' : 'Gericht aktualisieren'}
                 </Button>
             </div>
         </form>

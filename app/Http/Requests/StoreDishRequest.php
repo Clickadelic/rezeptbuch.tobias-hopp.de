@@ -25,9 +25,11 @@ class StoreDishRequest extends FormRequest
                 'string',
                 'in:einfach,normal,mittel,fortgeschritten,zeitaufwendig,expert,schwer'
             ],
+            /*
             'image' => $this->isMethod('post')
                 ? ['required','image','mimes:jpg,jpeg,png,webp,gif','max:2048']
                 : ['nullable','image','mimes:jpg,jpeg,png,webp,gif','max:2048'],
+            */
         ];
     }
 

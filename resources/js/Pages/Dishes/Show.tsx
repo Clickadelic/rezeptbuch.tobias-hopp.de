@@ -26,7 +26,7 @@ export default function Show({ dish }: any) {
                     <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
                     <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
                 </div>
-                <img src="#" className="rounded-xl aspect-video border border-slate-200" alt={dish.name} title={dish.name} />
+                <img src={dish.image} className="rounded-xl aspect-video border border-slate-200" alt={dish.name} title={dish.name} />
             </SidebarLeftLayout>
         </>
     );

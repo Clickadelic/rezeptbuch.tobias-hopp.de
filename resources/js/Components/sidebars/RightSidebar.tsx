@@ -7,24 +7,28 @@ import { usePage } from '@inertiajs/react';
  * <RightSidebar />
  */
 export default function RightSidebar() {
-  const user = usePage().props.auth.user;
-  return (
-    <aside className="asd">
-      <h2 className="text-2xl my-3 flex">Navigation</h2>
-      <hr className="my-3 border-slate-300" />
-      <ul className="flex flex-col space-y-2 divide-y divide-slate-300">
-        <SidebarLink href="/" active={window.location.pathname === '/'} title="Startseite" />
-        <SidebarLink
-          href="/gerichte"
-          active={window.location.pathname === '/gerichte'}
-          title="Gerichte"
-        />
-        <SidebarLink
-          href="/cocktails"
-          active={window.location.pathname === '/cocktails'}
-          title="Cocktails"
-        />
-      </ul>
-    </aside>
-  );
+    const user = usePage().props.auth.user;
+    return (
+        <aside className="py-4">
+            <h2 className="text-lg font-medium leading-snug">Navigation</h2>
+            <hr className="my-3 border-slate-300" />
+            <ul className="flex flex-col space-y-2 divide-y divide-slate-300">
+                <SidebarLink
+                    href="/"
+                    active={window.location.pathname === '/'}
+                    title="Startseite"
+                />
+                <SidebarLink
+                    href="/gerichte"
+                    active={window.location.pathname === '/gerichte'}
+                    title="Gerichte"
+                />
+                <SidebarLink
+                    href="/cocktails"
+                    active={window.location.pathname === '/cocktails'}
+                    title="Cocktails"
+                />
+            </ul>
+        </aside>
+    );
 }

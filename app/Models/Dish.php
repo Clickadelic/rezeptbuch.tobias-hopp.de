@@ -5,13 +5,34 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Dish extends Model
 {
      use HasFactory;
      protected $keyType = 'string';
 
-     protected $fillable = ['name', 'description'];
+     
+     protected $fillable = [
+          'name',
+          'punchline',
+          'description',
+          'preparation_time',
+          'rating',
+          'difficulty',
+          // 'image',
+          'user_id'
+     ];
+
+     protected $casts = [
+          'preparation_time' => 'integer',
+          'rating' => 'integer',
+     ];
+
+     protected $attributes = [
+          'difficulty' => 'einfach',
+     ];
+
 
      public $incrementing = false;
 
@@ -28,5 +49,17 @@ class Dish extends Model
                     $model->id = (string) Str::uuid();
                }
           });
+     }
+
+     
+
+     public function getImageUrlAttribute(): ?string
+     {
+          return $this->image ? asset($this->image) : null;
+     }
+
+     public function user()
+     {
+          return $this->belongsTo(User::class);
      }
 }

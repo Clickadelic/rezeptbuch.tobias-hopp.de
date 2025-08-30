@@ -4,9 +4,9 @@ import { BsBookmarkHeart } from 'react-icons/bs';
 import { cn } from '@/lib/utils';
 
 interface AppLogoProps {
-  className?: string;
-  href?: string;
-  title?: string;
+    className?: string;
+    href?: string;
+    title?: string;
 }
 
 /**
@@ -21,24 +21,24 @@ interface AppLogoProps {
  */
 
 const AppLogo = ({ className = '', href = '/', title = "Toby's Rezeptbuch" }: AppLogoProps) => {
-  return (
-    <h1>
-      <Link
-        href={href}
-        className={cn(
-          'flex flex-row justify-between gap-2 text-emerald-700 hover:text-emerald-600 max-w-[168px] mx-auto',
-          className,
-        )}
-        title={title}
-      >
-        <span>
-          <BsBookmarkHeart className="size-5 mt-1" />
-        </span>
-        <span className="mb-0 text-xl font-light">Toby's</span>
-        <span className="mb-0 text-xl font-medium">Rezeptbuch</span>
-      </Link>
-    </h1>
-  );
+    return (
+        <h1>
+            <Link
+                href={href}
+                className={cn(
+                    'flex flex-row justify-between gap-2 text-emerald-700 hover:text-emerald-600 max-w-[168px] mx-auto',
+                    className,
+                )}
+                title={title}
+            >
+                <span>
+                    <BsBookmarkHeart className="size-5 mt-1" />
+                </span>
+                <span className="mb-0 text-xl font-light leading-snug">Toby's</span>
+                <span className="mb-0 text-xl font-medium leading-snug">Rezeptbuch</span>
+            </Link>
+        </h1>
+    );
 };
 
 export default AppLogo;

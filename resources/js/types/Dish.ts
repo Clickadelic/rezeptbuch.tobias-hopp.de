@@ -1,8 +1,15 @@
 // types.ts
 export default interface Dish {
-  id: string; // oder number, je nachdem
-  name: string;
-  description?: string;
-  rating?: number;
-  image?: string; // falls dynamische Bilder
+    id: string;
+    name: string;
+    punchline?: string;
+    description?: string;
+    image?: string;
+    rating?: string;
+    preparation_time?: string;
+    difficulty?: string;
+    user_id?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    deletedAt?: string;
 }

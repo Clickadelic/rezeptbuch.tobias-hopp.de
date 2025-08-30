@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Http\Requests\StoreDishRequest;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
     public function index()
     {
         $dishes = Dish::all();
-
         return Inertia::render('Dishes/Index', [
             'dishes' => $dishes,
         ]);
@@ -31,7 +32,19 @@ class DishController extends Controller
 
     public function store(StoreDishRequest $request)
     {
-        Dish::create($request->validated());
+        $data = $request->validated();
+
+        // Bild speichern
+        if ($request->hasFile('image')) {
+            $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+            $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
+            $data['image'] = 'uploads/dishes/' . $filename;
+        }
+
+        // Aktuellen User automatisch zuweisen
+        $data['user_id'] = Auth::id();
+
+        Dish::create($data);
 
         return redirect()
             ->route('dishes.index')
@@ -47,7 +60,20 @@ class DishController extends Controller
 
     public function update(StoreDishRequest $request, Dish $dish)
     {
-        $dish->update($request->validated());
+        $data = $request->validated();
+
+        // if ($request->hasFile('image')) {
+        //     $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+        //     $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
+        //     $data['image'] = 'uploads/dishes/' . $filename;
+
+        //     // Optional altes Bild löschen
+        //     if ($dish->image && file_exists(public_path($dish->image))) {
+        //         unlink(public_path($dish->image));
+        //     }
+        // }
+
+        $dish->update($data);
 
         return redirect()
             ->route('dishes.index')
@@ -56,10 +82,14 @@ class DishController extends Controller
 
     public function destroy(Dish $dish)
     {
-        $dish->delete();
+        // Bild löschen (falls vorhanden)
+        if ($dish->image && Storage::disk('public')->exists($dish->image)) {
+            Storage::disk('public')->delete($dish->image);
+        }
 
-        return redirect()
-            ->route('dishes.index')
-            ->with('success', 'Gericht gelöscht!');
+        Dish::destroy($dish->id);
+
+        return redirect()->route('dishes.index')->with('success', 'Gericht gelöscht!');
     }
+
 }

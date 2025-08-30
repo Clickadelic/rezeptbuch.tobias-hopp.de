@@ -1,15 +1,18 @@
 import { PropsWithChildren } from 'react';
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+
 import { Toaster } from 'sonner';
-// TODO: Read state sharing Inertia Documentation
+import { toast } from "sonner";
 
 interface SidebarRightLayoutProps extends PropsWithChildren {
-  title?: string;
-  sidebar?: React.ReactNode;
-  children: React.ReactNode;
+    title?: string;
+    sidebar?: React.ReactNode;
+    children: React.ReactNode;
 }
 
 /**
@@ -26,22 +29,39 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  * </SidebarLeftLayout>
  */
 export default function SidebarRightLayout({ title, sidebar, children }: SidebarRightLayoutProps) {
-  return (
-    <div className="min-h-screen flex flex-col justify-between bg-white">
-      <div>
-        <Header />
-        <RecipeSearch />
-      </div>
-      <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] grid grid-cols-5 grid-rows-1 gap-4">
-        <main className="col-span-4">
-          {title && <h2 className="text-2xl my-3">{title}</h2>}
-          {title && <hr className="my-3 border-slate-300" />}
-          {children}
-        </main>
-        {sidebar}
-      </div>
-      <Footer />
-      <Toaster position="bottom-right" />
-    </div>
-  );
+    
+    const { props } = usePage();
+    const { flash } = props;
+    
+    useEffect(() => {
+        if (flash?.success) {
+            toast.success(flash.success, {
+                duration: 3000,
+            });
+        }
+        if (flash?.error) {
+            toast.error(flash.error, {
+                duration: 4000,
+            });
+        }
+    }, [flash]);
+
+    return (
+        <div className="min-h-screen flex flex-col justify-between bg-white">
+            <div>
+                <Header />
+                <RecipeSearch />
+            </div>
+            <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] grid grid-cols-5 grid-rows-1 gap-4">
+                <main className="py-4 col-span-4">
+                    {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}
+                    {title && <hr className="my-3 border-slate-300" />}
+                    {children}
+                </main>
+                {sidebar}
+            </div>
+            <Footer />
+            <Toaster position="bottom-right" />
+        </div>
+    );
 }

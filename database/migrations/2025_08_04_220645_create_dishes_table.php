@@ -11,12 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create("dishes", function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string("name");
-            $table->string("description");
+        // Dish Table
+        Schema::create('dishes', function (Blueprint $table) {
+            $table->uuid('id')->primary(); // Dish PK als UUID
+            $table->string('name');
+            $table->string('punchline')->nullable();
+            $table->text('description')->nullable();
+            // $table->string('image')->nullable();
+            $table->string('difficulty')->default('einfach');
+            $table->integer('rating')->nullable();
+            $table->integer('preparation_time')->nullable();
+
+            $table->foreignId('user_id')->constrained('users');
+            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('dishes');
     }
 };

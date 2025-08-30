@@ -5,24 +5,25 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 export default defineConfig({
-  plugins: [
-    laravel({
-      input: 'resources/js/app.tsx',
-      refresh: true,
-    }),
-    react(),
-    tailwindcss(),
-  ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './resources/js'),
-      '@components': path.resolve(__dirname, 'resources/js/Components'),
-      '@images': path.resolve(__dirname, 'resources/images'),
-      '@pages': path.resolve(__dirname, 'resources/js/Pages'),
-      '@layouts': path.resolve(__dirname, 'resources/js/Layouts'),
-      '@hooks': path.resolve(__dirname, 'resources/js/hooks'),
-      '@utils': path.resolve(__dirname, 'resources/js/utils'),
-      '@lib': path.resolve(__dirname, 'resources/js/lib'),
+    plugins: [
+        laravel({
+            input: 'resources/js/app.tsx',
+            refresh: true,
+        }),
+        react(),
+        tailwindcss(),
+    ],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './resources/js'),
+            '@components': path.resolve(__dirname, 'resources/js/Components'),
+            '@images': path.resolve(__dirname, 'resources/images'),
+            '@pages': path.resolve(__dirname, 'resources/js/Pages'),
+            '@layouts': path.resolve(__dirname, 'resources/js/Layouts'),
+            '@hooks': path.resolve(__dirname, 'resources/js/hooks'),
+            '@utils': path.resolve(__dirname, 'resources/js/utils'),
+            '@lib': path.resolve(__dirname, 'resources/js/lib'),
+            'ziggy-js': path.resolve('vendor/tightenco/ziggy/dist/react'),
+        },
     },
-  },
 });

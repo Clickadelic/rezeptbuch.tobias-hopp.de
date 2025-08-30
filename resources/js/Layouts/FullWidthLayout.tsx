@@ -8,6 +8,7 @@ import Footer from '@/Components/nutshell/Footer';
 
 import { Toaster } from 'sonner';
 import { toast } from "sonner";
+import Breadcrumbs from "@/Components/nutshell/Breadcrumbs";
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;

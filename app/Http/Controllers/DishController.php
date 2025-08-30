@@ -82,10 +82,10 @@ class DishController extends Controller
 
     public function destroy(Dish $dish)
     {
-        // // Bild löschen (falls vorhanden)
-        // if ($dish->image && Storage::disk('public')->exists($dish->image)) {
-        //     Storage::disk('public')->delete($dish->image);
-        // }
+        // Bild löschen (falls vorhanden)
+        if ($dish->image && Storage::disk('public')->exists($dish->image)) {
+            Storage::disk('public')->delete($dish->image);
+        }
 
         $dish->delete();
 
@@ -93,4 +93,5 @@ class DishController extends Controller
             ->route('dishes.index')
             ->with('success', 'Gericht gelöscht!');
     }
+
 }

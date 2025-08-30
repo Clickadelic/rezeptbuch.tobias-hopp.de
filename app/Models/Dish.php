@@ -20,7 +20,7 @@ class Dish extends Model
           'preparation_time',
           'rating',
           'difficulty',
-          'image',
+          // 'image',
           'user_id'
      ];
 

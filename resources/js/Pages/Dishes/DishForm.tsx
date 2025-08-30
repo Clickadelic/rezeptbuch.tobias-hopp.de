@@ -1,17 +1,13 @@
 import { useForm } from '@inertiajs/react';
-import { Textarea } from '@/Components/ui/textarea';
+
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/Components/ui/select';
 
 import { Button } from '@/Components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
+import { Textarea } from '@/Components/ui/textarea';
+
 import { GoPlus } from 'react-icons/go';
 import { GoPencil } from 'react-icons/go';
 import Dish from '@/types/Dish';
@@ -23,6 +19,9 @@ interface DishFormProps {
 }
 
 export default function DishForm({ dish, className }: DishFormProps) {
+
+    const isEditing = Boolean(dish);
+
     const { data, setData, post, put, processing, errors } = useForm({
         id: dish?.id ?? null,
         name: dish?.name ?? '',
@@ -34,19 +33,18 @@ export default function DishForm({ dish, className }: DishFormProps) {
         preparation_time: Number(dish?.preparation_time ?? 0),
     });
 
-    function submit(e: React.FormEvent) {
+    function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         post(route('dishes.store'));
-        // if(dish) {
-        // } else {
-        //     put(route('dishes.update', dish.id));
-        // }
+    }
+    
+    function update(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        put(route('dishes.update'));
     }
     
     return (
-        <form onSubmit={submit} className={cn('flex flex-col justify-between items-center space-y-3', className)}>
-
-            
+        <form onSubmit={isEditing ? update : submit} className={cn('flex flex-col justify-between items-center space-y-3', className)}>
 
             {/* Name */}
             <div className="w-full">
@@ -140,7 +138,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
             {/* Submit */}
             <div className="w-full my-4 flex items-center justify-end">
                 <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                    {dish ? <GoPlus /> : <GoPencil />} {dish ? 'Gericht hinzufügen' : 'Gericht aktualisieren'}
+                    {dish ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />} {dish ? 'Bearbeiten' : 'Erstellen'}
                 </Button>
             </div>
         </form>

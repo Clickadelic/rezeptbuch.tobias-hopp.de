@@ -7,6 +7,10 @@ import Footer from '@/Components/nutshell/Footer';
 import { Toaster } from '@/Components/ui/sonner';
 // TODO: Read state sharing Inertia Documentation
 
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
+import { toast } from "sonner";
+
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
     title?: string;
@@ -40,8 +44,25 @@ export default function TwoSidebarsLayout({
     rightSidebar,
     children,
 }: TwoSidebarsLayoutProps) {
-    // TODO: Add media queries to ENV file > global control
+    
     const isDesktop = useMediaQuery('(min-width: 768px)');
+
+    const { props } = usePage();
+    const { flash } = props;
+
+    useEffect(() => {
+        if (flash?.success) {
+        toast.success(flash.success, {
+            duration: 3000,
+        });
+        }
+        if (flash?.error) {
+        toast.error(flash.error, {
+            duration: 4000,
+        });
+        }
+    }, [flash]);
+    
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>

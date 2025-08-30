@@ -1,8 +1,10 @@
-import { usePage } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/Components/ui/card';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
+
+import { toast } from "sonner";
 
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
@@ -30,6 +32,12 @@ interface DishCardProps {
 export default function DishCard({ dish }: DishCardProps) {
     const user = usePage().props.auth?.user;
 
+    const deleteDish = () => {
+        if (confirm("Willst du dieses Gericht wirklich löschen?")) {
+            router.delete(route("dishes.destroy", dish.id));
+        }
+    };
+
     return (
         <li className="group w-full max-w-72 mb-5">
             <Link href={route('dishes.show', dish.id)} className="block">
@@ -55,7 +63,7 @@ export default function DishCard({ dish }: DishCardProps) {
                                         Bearbeiten
                                     </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="text-red-500">
+                                <DropdownMenuItem className="text-red-500" onClick={deleteDish}>
                                     <GoTrash className="size-5 mr-2" />
                                     Löschen
                                 </DropdownMenuItem>

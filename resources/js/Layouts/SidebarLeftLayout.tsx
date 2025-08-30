@@ -7,6 +7,10 @@ import { Toaster } from 'sonner';
 
 // TODO: Read state sharing Inertia Documentation
 
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
+import { toast } from "sonner";
+
 interface SidebarLeftLayoutProps extends PropsWithChildren {
     title?: string;
     sidebar?: React.ReactNode;
@@ -27,8 +31,25 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  * </SidebarLeftLayout>
  */
 export default function SidebarLeftLayout({ title, sidebar, children }: SidebarLeftLayoutProps) {
-    const isDesktop = useMediaQuery('(min-width: 768px)');
 
+    const isDesktop = useMediaQuery('(min-width: 768px)');
+    
+    const { props } = usePage();
+    const { flash } = props;
+
+    useEffect(() => {
+        if (flash?.success) {
+        toast.success(flash.success, {
+            duration: 3000,
+        });
+        }
+        if (flash?.error) {
+        toast.error(flash.error, {
+            duration: 4000,
+        });
+        }
+    }, [flash]);
+    
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>

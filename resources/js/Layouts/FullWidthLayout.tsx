@@ -4,7 +4,9 @@ import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
 import { Toaster } from 'sonner';
 // TODO: Read "state sharing" Inertia Documentation
-
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
+import { toast } from "sonner";
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
     children: React.ReactNode;
@@ -23,6 +25,23 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  */
 
 export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
+    
+    const { props } = usePage();
+    const { flash } = props;
+
+    useEffect(() => {
+        if (flash?.success) {
+        toast.success(flash.success, {
+            duration: 3000,
+        });
+        }
+        if (flash?.error) {
+        toast.error(flash.error, {
+            duration: 4000,
+        });
+        }
+    }, [flash]);
+    
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>

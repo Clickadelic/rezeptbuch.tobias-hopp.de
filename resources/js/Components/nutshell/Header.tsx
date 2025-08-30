@@ -44,7 +44,7 @@ const Header = () => {
                             </NavLink>
                             <NavLink
                                 href="/gerichte"
-                                active={window.location.pathname === '/gerichte'}
+                                active={window.location.pathname === '/gerichte' || window.location.pathname === '/gerichte/neues-gericht'}
                                 icon={<BsJournalBookmark />}
                             >
                                 Gerichte

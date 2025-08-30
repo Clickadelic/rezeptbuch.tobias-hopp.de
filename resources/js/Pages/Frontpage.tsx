@@ -9,12 +9,10 @@ export default function Frontpage({ auth }: PageProps<{ auth: { user: any } }>) 
         <>
             <Head title="Startseite" />
             <FullWidthLayout title="Startseite">
-                <h1>Hallo Startseite</h1>
                 <ul className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5'>
-
-                {fakeDishes.map((dish: any) => (
-                    <DishCard key={dish.id} dish={dish} />
-                ))}
+                    {fakeDishes.map((dish: any) => (
+                        <DishCard key={dish.id} dish={dish} />
+                    ))}
                 </ul>
             </FullWidthLayout>
         </>

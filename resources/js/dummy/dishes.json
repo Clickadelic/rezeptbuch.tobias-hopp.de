@@ -5,7 +5,7 @@
         "punchline": "Lecker und schnell gemacht",
         "description": "Leckeres Gericht für jeden Tag der Woche",
         "image": "",
-        "difficulty": "difficulty",
+        "difficulty": "einfach",
         "rating": 4,
         "preparation_time": 35
     },
@@ -15,7 +15,7 @@
         "punchline": "Lecker und schnell gemacht",
         "description": "Einer der Klassiker aus Italien",
         "image": "",
-        "difficulty": "difficulty",
+        "difficulty": "medium",
         "rating": 4,
         "preparation_time": 35
     },
@@ -25,7 +25,7 @@
         "punchline": "Hackfleisch und Nudeln",
         "description": "Geht immer und schmeckt einfach lecker",
         "image": "",
-        "difficulty": "easy",
+        "difficulty": "einfach",
         "rating": 5,
         "preparation_time": 45
     },
@@ -51,11 +51,11 @@
     },
     {
         "id": "84004f9b-a6f0-45a0-8e85-b1b8dfac4261",
-        "name": "Lasagne",
+        "name": "Spaghetti Carbonara",
         "punchline": "Lecker und schnell gemacht",
-        "description": "Einer der Klassiker aus Italien",
+        "description": "Wenn's ganz schnell gehen muss auch eine Alternative für den Hunger zwischendurch.",
         "image": "",
-        "difficulty": "difficulty",
+        "difficulty": "einfach",
         "rating": 4,
         "preparation_time": 35
     }

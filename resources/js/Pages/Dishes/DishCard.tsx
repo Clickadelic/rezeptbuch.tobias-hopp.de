@@ -19,20 +19,17 @@ interface DishCardProps {
 export default function DishCard({ dish }: DishCardProps) {
     const user = usePage().props.auth?.user;
 
+    // TODO: Implement User RoleGate for Action buttons
     const deleteDish = (e: React.MouseEvent) => {
         e.stopPropagation(); // verhindert, dass der Link-Klick ausgelöst wird
         if (confirm("Willst du dieses Gericht wirklich löschen?")) {
-            router.delete(route("dishes.destroy", dish.id), {
-                onSuccess: () => {
-                    console.log("Gericht gelöscht!");
-                },
-            });
+            router.delete(route("dishes.destroy", dish.id));
         }
     };
 
     return (
         <li className="group w-full max-w-72 mb-5">
-            <Link href={route('dishes.show', dish.id)} className="block">
+            <Link href={route('dishes.show', dish.id)} className="block" title={dish.name} aria-name={dish.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
@@ -44,7 +41,7 @@ export default function DishCard({ dish }: DishCardProps) {
                         <DropdownMenu>
                             <DropdownMenuTrigger
                                 className="absolute top-2 right-2 text-slate-300 border border-slate-300 p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700 shadow-transparent"
-                                onClick={(e) => e.stopPropagation()} // verhindert Link-Navigation beim Trigger
+                                onClick={(e) => e.stopPropagation()}
                             >
                                 <HiOutlineDotsVertical className="size-4" />
                             </DropdownMenuTrigger>

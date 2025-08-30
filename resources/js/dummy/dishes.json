@@ -1,0 +1,62 @@
+[
+    {
+        "id": "534a54c6-a020-4d28-9ec8-e37dfd4419e3",
+        "name": "Ofenkartoffeln mit Gemüse und Schafskäse",
+        "punchline": "Lecker und schnell gemacht",
+        "description": "Leckeres Gericht für jeden Tag der Woche",
+        "image": "",
+        "difficulty": "difficulty",
+        "rating": 4,
+        "preparation_time": 35
+    },
+    {
+        "id": "278df5a8-e8af-4aa0-9d27-6aeb86cf6a7e",
+        "name": "Lasagne",
+        "punchline": "Lecker und schnell gemacht",
+        "description": "Einer der Klassiker aus Italien",
+        "image": "",
+        "difficulty": "difficulty",
+        "rating": 4,
+        "preparation_time": 35
+    },
+    {
+        "id": "e0a44259-92f0-4111-a6aa-2400a182a14e",
+        "name": "Spaghetti Bolognese",
+        "punchline": "Hackfleisch und Nudeln",
+        "description": "Geht immer und schmeckt einfach lecker",
+        "image": "",
+        "difficulty": "easy",
+        "rating": 5,
+        "preparation_time": 45
+    },
+    {
+        "id": "e3f13fd9-6414-4d64-b2cf-52ea58239fc9",
+        "name": "Gemüsesuppe",
+        "punchline": "Für die kalte Jahreszeit",
+        "description": "Gemüsesuppe mit resten die man so findet",
+        "image": "",
+        "difficulty": "medium",
+        "rating": 3,
+        "preparation_time": 35
+    },
+    {
+        "id": "71d4ffc1-12e5-4461-ae88-b816f242d038",
+        "name": "Jägerschnitzel mit Pilzsauce",
+        "punchline": "Wenn Du Jägerschnitzel magst",
+        "description": "Ein klassiker aus dem Süden Deutschlands.",
+        "image": "",
+        "difficulty": "schwer",
+        "rating": 5,
+        "preparation_time": 35
+    },
+    {
+        "id": "84004f9b-a6f0-45a0-8e85-b1b8dfac4261",
+        "name": "Lasagne",
+        "punchline": "Lecker und schnell gemacht",
+        "description": "Einer der Klassiker aus Italien",
+        "image": "",
+        "difficulty": "difficulty",
+        "rating": 4,
+        "preparation_time": 35
+    }
+]

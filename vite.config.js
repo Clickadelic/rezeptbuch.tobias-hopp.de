@@ -23,6 +23,7 @@ export default defineConfig({
             '@hooks': path.resolve(__dirname, 'resources/js/hooks'),
             '@utils': path.resolve(__dirname, 'resources/js/utils'),
             '@lib': path.resolve(__dirname, 'resources/js/lib'),
+            '@dummy': path.resolve(__dirname, 'resources/js/dummy'),
             'ziggy-js': path.resolve('vendor/tightenco/ziggy/dist/react'),
         },
     },

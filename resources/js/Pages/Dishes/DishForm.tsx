@@ -79,15 +79,18 @@ export default function DishForm({ dish, className }: DishFormProps) {
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <InputLabel htmlFor="preparation-time" value="Zubereitungszeit in Minuten" />
-                    <TextInput
-                        id="preparation-time"
-                        type="number"
-                        min={0}
-                        max={240}
-                        value={data.preparation_time}
-                        className="mt-1 flex w-full"
-                        onChange={(e) => setData('preparation_time', Number(e.target.value))}
-                    />
+                    <div className="flex flex-row items-end justify-end rounded">
+                        <TextInput
+                            id="preparation-time"
+                            type="number"
+                            min={0}
+                            max={240}
+                            value={data.preparation_time}
+                            className="mt-1 flex w-full border-r-0 rounded-none"
+                            onChange={(e) => setData('preparation_time', Number(e.target.value))}
+                        />
+                        <span className="asd">in Min.</span>
+                    </div>
                     <InputError message={errors.preparation_time} className="mt-2" />
                 </div>
                 <div>

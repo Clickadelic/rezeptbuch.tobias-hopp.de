@@ -1,19 +1,17 @@
 import { PropsWithChildren } from 'react';
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+
 import { Toaster } from '@/Components/ui/sonner';
-// TODO: Read state sharing Inertia Documentation
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 
-interface TwoSidebarsLayoutProps extends PropsWithChildren {
+interface NoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
     title?: string;
-    leftSidebar?: React.ReactNode;
-    rightSidebar?: React.ReactNode;
 }
 
 /**
@@ -22,36 +20,34 @@ interface TwoSidebarsLayoutProps extends PropsWithChildren {
  * The right sidebar is consistently displayed to the right of the main content on desktop and below on mobile screen.
  *
  * @prop {string} [title] - The title of the page, displayed above the main content.
- * @prop {React.ReactNode} [leftSidebar] - The sidebar you can pass in to be rendered in the left sidebar.
- * @prop {React.ReactNode} [rightSidebar] - The sidebar you can pass in to be rendered in the right sidebar.
  * @prop {React.ReactNode} children - The main content to render in the layout.
  *
  * @example
  * <NoSidebarsLayout
  *   title="No Sidebars"
  * >
- *   <div>Main content goes here</div>
+ *   Main content goes here
  * </NoSidebarsLayout>
  */
 
 export default function NoSidebarsLayout({
     title,
     children,
-}: TwoSidebarsLayoutProps) {
+}: NoSidebarsLayoutProps) {
     
     const { props } = usePage();
     const { flash } = props;
 
     useEffect(() => {
         if (flash?.success) {
-        toast.success(flash.success, {
-            duration: 3000,
-        });
+            toast.success(flash.success, {
+                duration: 3000,
+            });
         }
         if (flash?.error) {
-        toast.error(flash.error, {
-            duration: 4000,
-        });
+            toast.error(flash.error, {
+                duration: 4000,
+            });
         }
     }, [flash]);
     

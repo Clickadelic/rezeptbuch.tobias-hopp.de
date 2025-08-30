@@ -1,14 +1,13 @@
 import { PropsWithChildren } from 'react';
 import { useMediaQuery } from '@/Hooks/use-media-query';
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
+
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
+
 import { Toaster } from 'sonner';
-
-// TODO: Read state sharing Inertia Documentation
-
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 
 interface SidebarLeftLayoutProps extends PropsWithChildren {
@@ -39,14 +38,14 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
 
     useEffect(() => {
         if (flash?.success) {
-        toast.success(flash.success, {
-            duration: 3000,
-        });
+            toast.success(flash.success, {
+                duration: 3000,
+            });
         }
         if (flash?.error) {
-        toast.error(flash.error, {
-            duration: 4000,
-        });
+            toast.error(flash.error, {
+                duration: 4000,
+            });
         }
     }, [flash]);
     

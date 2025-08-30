@@ -7,7 +7,8 @@
         "dev": "vite",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "dev-all": "concurrently \"php artisan serve\" \"npm run dev\""
+        "dev-all": "concurrently \"php artisan serve\" \"npm run dev\"",
+        "postinstall": "php artisan ziggy:generate"
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",

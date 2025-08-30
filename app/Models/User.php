@@ -45,4 +45,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relation: Ein User kann viele Gerichte haben
+     */
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class);
+    }
+
 }

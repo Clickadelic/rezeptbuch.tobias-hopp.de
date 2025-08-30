@@ -8,6 +8,7 @@ export default interface Dish {
     rating?: string;
     preparation_time?: string;
     difficulty?: string;
+    user_id?: string;
     createdAt?: string;
     updatedAt?: string;
     deletedAt?: string;

@@ -4,8 +4,6 @@ import { Link } from '@inertiajs/react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/Components/ui/card';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
 
-import { toast } from "sonner";
-
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { HiOutlineDotsVertical } from 'react-icons/hi';

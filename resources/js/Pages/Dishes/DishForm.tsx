@@ -40,7 +40,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
     
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        put(route('dishes.update'));
+        put(route('dishes.update', { dish: data.id }));
     }
     
     return (

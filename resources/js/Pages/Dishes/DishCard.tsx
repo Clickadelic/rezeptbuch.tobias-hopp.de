@@ -33,7 +33,7 @@ export default function DishCard({ dish }: DishCardProps) {
     };
 
     return (
-        <li className="group w-full max-w-72 mb-5">
+        <li className="group w-full max-w-96 mb-5">
             <Link href={route('dishes.show', dish.slug)} className="block" title={dish.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader

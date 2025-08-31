@@ -4,11 +4,11 @@ import { PageProps } from '@/types';
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components//sidebars/DishesSidebar';
 import DishCard from './DishCard';
-import Dish from '@/types/Dish';
+import { Dish } from '@/types/Dish';
 export default function Gerichte() {
     const { props } = usePage();
     const { dishes } = props;
-    
+
     return (
         <>
             <Head title="Gerichte" />

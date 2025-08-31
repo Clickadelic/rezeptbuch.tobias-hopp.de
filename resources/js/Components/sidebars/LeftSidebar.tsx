@@ -10,8 +10,8 @@ export default function LeftSidebar() {
     const user = usePage().props.auth.user;
     return (
         <aside className="py-4">
-            <h2 className="text-lg font-medium leading-snug">Navigation</h2>
-            <hr className="my-3 border-slate-300" />
+            <h2 className="text-lg font-medium mb-2">Navigation</h2>
+
             <ul className="flex flex-col divide-y divide-slate-300">
                 <SidebarLink
                     href="/"

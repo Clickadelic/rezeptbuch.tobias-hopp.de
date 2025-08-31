@@ -15,6 +15,9 @@ import { RxAvatar } from 'react-icons/rx';
 import { Button } from '@/Components/ui/button';
 import { Link } from '@inertiajs/react';
 import { GoPlus } from 'react-icons/go';
+import { RiDashboardHorizontalLine } from "react-icons/ri";
+import { RiAccountPinBoxLine } from "react-icons/ri";
+import { BiExit } from "react-icons/bi";
 /**
  * The application header.
  *
@@ -37,14 +40,18 @@ const Header = () => {
                             <NavLink
                                 href="/"
                                 active={window.location.pathname === '/'}
-                                className="py-4"
+                                className="py-4 font-medium"
                                 icon={<BsHouse />}
                             >
                                 Start
                             </NavLink>
                             <NavLink
                                 href="/gerichte"
-                                active={window.location.pathname === '/gerichte'}
+                                active={
+                                    window.location.pathname === '/gerichte' ||
+                                    window.location.pathname === '/gerichte/neues-gericht'
+                                }
+                                className="py-4 font-medium"
                                 icon={<BsJournalBookmark />}
                             >
                                 Gerichte
@@ -52,6 +59,7 @@ const Header = () => {
                             <NavLink
                                 href="/cocktails"
                                 active={window.location.pathname === '/cocktails'}
+                                className="py-4 font-medium"
                                 icon={<LiaCocktailSolid />}
                             >
                                 Cocktails
@@ -59,6 +67,7 @@ const Header = () => {
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname === '/zutaten'}
+                                className="py-4 font-medium"
                                 icon={<TbSalt />}
                             >
                                 Zutaten
@@ -71,7 +80,7 @@ const Header = () => {
                                 <Button variant="primary" asChild>
                                     <Link
                                         href="/gerichte/neues-gericht"
-                                        className="flex items-center gap-2"
+                                        className="flex items-center gap-2 font-medium"
                                     >
                                         <GoPlus className="size-4" />
                                         Neu
@@ -82,7 +91,7 @@ const Header = () => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none gap-2"
+                                                className="font-medium inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
                                             >
                                                 <RxAvatar className="size-4 hidden md:flex" />
                                                 {user.name}
@@ -104,9 +113,10 @@ const Header = () => {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href="/dashboard">Dashboard</Dropdown.Link>
-                                        <Dropdown.Link href="/profile">Profile</Dropdown.Link>
-                                        <Dropdown.Link href="/logout" method="post" as="button">
+                                        <Dropdown.Link href="/dashboard" className="flex gap-2"><RiDashboardHorizontalLine className="mt-[3px] size-4" />Dashboard</Dropdown.Link>
+                                        <Dropdown.Link href="/profile" className="flex gap-2"><RiAccountPinBoxLine className="mt-[3px] size-4" />Profil</Dropdown.Link>
+                                        <Dropdown.Link href="/logout" method="post" as="button" className="flex gap-2 hover:cursor-pointer">
+                                            <BiExit className="mt-[3px] size-4" />
                                             Log Out
                                         </Dropdown.Link>
                                     </Dropdown.Content>

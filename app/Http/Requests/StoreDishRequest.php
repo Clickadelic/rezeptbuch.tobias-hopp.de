@@ -3,7 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Enums\Difficulty;
+use Illuminate\Validation\Rules\Enum;
 class StoreDishRequest extends FormRequest
 {
     public function authorize(): bool
@@ -20,16 +21,12 @@ class StoreDishRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'preparation_time' => ['nullable', 'integer', 'min:0'],
             'rating' => ['nullable', 'integer', 'min:0', 'max:5'],
-            'difficulty' => [
-                'required',
-                'string',
-                'in:einfach,normal,mittel,fortgeschritten,zeitaufwendig,expert,schwer'
-            ],
-            /*
+            'difficulty' => ['required', new Enum(Difficulty::class)],
+            
             'image' => $this->isMethod('post')
                 ? ['required','image','mimes:jpg,jpeg,png,webp,gif','max:2048']
                 : ['nullable','image','mimes:jpg,jpeg,png,webp,gif','max:2048'],
-            */
+
         ];
     }
 

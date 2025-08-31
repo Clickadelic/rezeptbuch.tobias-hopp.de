@@ -1,13 +1,15 @@
 import { PropsWithChildren } from 'react';
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
+import { useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
+import CircularMenu from '@/Components/nutshell/CircularMenu';
 
 import { Toaster } from 'sonner';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 interface SidebarRightLayoutProps extends PropsWithChildren {
     title?: string;
@@ -29,10 +31,9 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  * </SidebarLeftLayout>
  */
 export default function SidebarRightLayout({ title, sidebar, children }: SidebarRightLayoutProps) {
-    
     const { props } = usePage();
     const { flash } = props;
-    
+
     useEffect(() => {
         if (flash?.success) {
             toast.success(flash.success, {
@@ -51,16 +52,17 @@ export default function SidebarRightLayout({ title, sidebar, children }: Sidebar
             <div>
                 <Header />
                 <RecipeSearch />
+                <BreadcrumbNav />
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] grid grid-cols-5 grid-rows-1 gap-4">
                 <main className="py-4 col-span-4">
-                    {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}
-                    {title && <hr className="my-3 border-slate-300" />}
+                    {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
                     {children}
                 </main>
                 {sidebar}
             </div>
             <Footer />
+            <CircularMenu />
             <Toaster position="bottom-right" />
         </div>
     );

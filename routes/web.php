@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-// use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\IngredientController;
 
 Route::get('/', function () {
     return Inertia::render('Frontpage', [
@@ -18,37 +18,25 @@ Route::prefix('/gerichte')->group(function () {
     Route::get('/', [DishController::class, 'index'])->name('dishes.index');
     Route::get('/neues-gericht', [DishController::class, 'create'])->middleware(['auth', 'verified'])->name('dishes.create');
     Route::post('/', [DishController::class, 'store'])->middleware(['auth', 'verified'])->name('dishes.store');
-
     Route::get('/{dish}/edit', [DishController::class, 'edit'])->middleware(['auth', 'verified'])->name('dishes.edit');
-
     Route::put('/{dish}', [DishController::class, 'update'])->middleware(['auth', 'verified'])->name('dishes.update');
-    
     Route::delete('/{dish}', [DishController::class, 'destroy'])->middleware(['auth', 'verified'])->name('dishes.destroy');
-    Route::get('/{dish}', [DishController::class, 'show'])->name('dishes.show');
+    // Route::get('/{dish}', [DishController::class, 'show'])->name('dishes.show');
+    Route::get('/{slug}', [DishController::class, 'show'])->name('dishes.show');
 });
 
-// Movies
-// Route::prefix('movies')->group(function () {
-//     Route::get('/', [MovieController::class, 'index'])->name('movies.index');
-//     Route::get('/create', [MovieController::class, 'create'])->name('movies.create');
-//     Route::post('/', [MovieController::class, 'store'])->name('movies.store');
-//     Route::get('/{movie}', [MovieController::class, 'show'])->name('movies.show');
-//     Route::get('/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
-//     Route::put('/{movie}', [MovieController::class, 'update'])->name('movies.update');
-//     Route::delete('/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
-// });
-
-
+Route::prefix('/zutaten')->group(function () {
+    Route::get('/', [IngredientController::class, 'index'])->name('ingredients.index');
+    Route::get('/neue-zutat', [IngredientController::class, 'create'])->middleware(['auth', 'verified'])->name('ingredients.create');
+    Route::post('/', [IngredientController::class, 'store'])->middleware(['auth', 'verified'])->name('ingredients.store');
+    Route::get('/{ingredient}/edit', [IngredientController::class, 'edit'])->middleware(['auth', 'verified'])->name('ingredients.edit');
+    Route::put('/{ingredient}', [IngredientController::class, 'update'])->middleware(['auth', 'verified'])->name('ingredients.update');
+    Route::delete('/{ingredient}', [IngredientController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ingredients.destroy');
+    Route::get('/{ingredient}', [IngredientController::class, 'show'])->name('ingredients.show');
+});
 
 Route::get('/cocktails', function () {
     return Inertia::render('Cocktails/Index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
-});
-
-Route::get('/zutaten', function () {
-    return Inertia::render('Zutaten', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register')
     ]);

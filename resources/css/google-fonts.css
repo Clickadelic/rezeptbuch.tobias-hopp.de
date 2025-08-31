@@ -14,6 +14,15 @@
 
 }
 
+/* Newsreader */
+@font-face {
+    font-family: 'Newsreader';
+    src: url('/fonts/Newsreader/Newsreader-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Open Sans */
 @font-face {
     font-family: 'Open Sans';

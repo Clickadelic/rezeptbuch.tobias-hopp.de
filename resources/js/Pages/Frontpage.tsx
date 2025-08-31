@@ -14,6 +14,7 @@ export default function Frontpage({ auth }: PageProps<{ auth: { user: any } }>) 
                     <h1 className="text-3xl font-roboto-condensed">Roboto Condensed</h1>
                     <h1 className="text-3xl font-la-belle-aurore">La Belle Aurore</h1>
                     <h1 className="text-3xl font-yellowtail">Yellowtail</h1>
+                    <h1 className="text-3xl font-newsreader">Newsreader</h1>
                 </div>
                 <hr className="my-4 text-slate-400" />
                 <div className="grid grid-cols-5 grid-rows-5 gap-4">

@@ -79,7 +79,7 @@ export default function DishCard({ dish }: DishCardProps) {
                     <CardContent
                         className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-emerald-700 leading-snug"
                     >
-                        <span className="text-xs text-slate-400">{dish.punchline}</span>
+                        <h4 className="text-md text-slate-400 font-light font-newsreader line-clamp-1">{dish.punchline}</h4>
                         <h3 className="group-hover:text-emerald-700 line-clamp-2 text-slate-800 min-h-[calc(3rem+2px)]">
                             {dish.name}
                         </h3>

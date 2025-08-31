@@ -37,7 +37,7 @@ const Header = () => {
                             <NavLink
                                 href="/"
                                 active={window.location.pathname === '/'}
-                                className="py-4"
+                                className="py-4 font-medium"
                                 icon={<BsHouse />}
                             >
                                 Start
@@ -48,6 +48,7 @@ const Header = () => {
                                     window.location.pathname === '/gerichte' ||
                                     window.location.pathname === '/gerichte/neues-gericht'
                                 }
+                                className="py-4 font-medium"
                                 icon={<BsJournalBookmark />}
                             >
                                 Gerichte
@@ -55,6 +56,7 @@ const Header = () => {
                             <NavLink
                                 href="/cocktails"
                                 active={window.location.pathname === '/cocktails'}
+                                className="py-4 font-medium"
                                 icon={<LiaCocktailSolid />}
                             >
                                 Cocktails
@@ -62,6 +64,7 @@ const Header = () => {
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname === '/zutaten'}
+                                className="py-4 font-medium"
                                 icon={<TbSalt />}
                             >
                                 Zutaten
@@ -74,7 +77,7 @@ const Header = () => {
                                 <Button variant="primary" asChild>
                                     <Link
                                         href="/gerichte/neues-gericht"
-                                        className="flex items-center gap-2"
+                                        className="flex items-center gap-2 font-medium"
                                     >
                                         <GoPlus className="size-4" />
                                         Neu
@@ -85,7 +88,7 @@ const Header = () => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none gap-2"
+                                                className="font-medium inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none gap-2"
                                             >
                                                 <RxAvatar className="size-4 hidden md:flex" />
                                                 {user.name}

@@ -5,13 +5,16 @@ import { ChevronRight } from "lucide-react"; // ShadCN Icons
 const BreadcrumbNav = () => {
   const { url } = usePage(); // aktueller Pfad z.B. /gerichte/1/edit
 
+  // Auf der Startseite nichts anzeigen
+  if (url === "/") return null;
+
   // Split path und filtern leere Strings
   const segments = url.split("/").filter(Boolean);
 
   // Pfade für Links zusammensetzen
   const crumbs = segments.map((segment, idx) => {
     const path = "/" + segments.slice(0, idx + 1).join("/");
-    // Format: ersetze Bindestriche durch Leerzeichen, groß schreiben
+    // Format: Bindestriche durch Leerzeichen ersetzen, erste Buchstaben groß
     const name = segment.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
     return { name, path };
   });
@@ -28,10 +31,10 @@ const BreadcrumbNav = () => {
 
         {crumbs.map((crumb, idx) => (
           <li key={idx} className="flex items-center">
-            <ChevronRight className="w-4 h-4 mx-1 text-slate-400" />
+            <ChevronRight className="w-4 h-4 mr-2 text-slate-300" />
             {/* Letztes Segment nicht als Link */}
             {idx === crumbs.length - 1 ? (
-              <span className="text-slate-500">{crumb.name}</span>
+              <span className="text-slate-700">{crumb.name}</span>
             ) : (
               <Link href={crumb.path} className="hover:text-emerald-700">
                 {crumb.name}

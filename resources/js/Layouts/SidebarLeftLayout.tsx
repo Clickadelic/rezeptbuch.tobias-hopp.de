@@ -60,8 +60,7 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
                 
                 {isDesktop && sidebar}
                 <main className="py-4 col-span-4">
-                    {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}
-                    {title && <hr className="my-3 border-slate-300" />}
+                    {title && <h2 className="text-lg font-medium mb-2">{title}</h2>}
                     {children}
                 </main>
                 {!isDesktop && sidebar}

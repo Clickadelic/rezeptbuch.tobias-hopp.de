@@ -72,8 +72,7 @@ export default function TwoSidebarsLayout({
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4">
                 {isDesktop && leftSidebar}
                 <main className="py-4 col-span-3">
-                    {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}
-                    {title && <hr className="my-3 border-slate-300" />}
+                    {title && <h2 className="text-lg font-medium mb-2">{title}</h2>}
                     {children}
                 </main>
                 {!isDesktop && leftSidebar}

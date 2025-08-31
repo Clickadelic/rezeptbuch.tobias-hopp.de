@@ -127,9 +127,10 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         </SelectTrigger>
                         <SelectContent className="bg-white">
                             {[
-                                'easy',
-                                'medium',
-                                'hard',
+                                'einfach',
+                                'mittel',
+                                'schwer',
+                                'experte',
                             ].map((d) => (
                                 <SelectItem key={d} value={d}>
                                     {d}

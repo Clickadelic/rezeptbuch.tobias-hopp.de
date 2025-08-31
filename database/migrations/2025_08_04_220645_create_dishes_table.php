@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('punchline')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('difficulty')->default('easy');
+            $table->string('difficulty')->default('einfach');
             $table->integer('rating')->nullable();
             $table->integer('preparation_time')->nullable();
 

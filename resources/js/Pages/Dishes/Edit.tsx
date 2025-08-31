@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 
-import Dish from '@/types/Dish';
+import { Dish } from '@/types/Dish';
 import DishForm from '@/Pages/Dishes/DishForm';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';

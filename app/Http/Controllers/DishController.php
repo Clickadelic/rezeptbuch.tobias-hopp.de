@@ -15,6 +15,7 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all();
+
         return Inertia::render('Dishes/Index', [
             'dishes' => $dishes,
         ]);
@@ -39,10 +40,11 @@ class DishController extends Controller
         // Bild speichern
         if ($request->hasFile('image')) {
             $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
-            var_dump($path);
-            $data['image'] = 'uploads/dishes/' . $filename;
+            $request->file('image')->move(public_path('uploads/dishes'), $filename);
+            $data['image'] = $filename; // nur Dateiname speichern
         }
+
+        $data['slug'] = str($data['name'])->slug('-', 'de', $dictionary = ['@' => 'de']);
 
         // Aktuellen User automatisch zuweisen
         $data['user_id'] = Auth::id();
@@ -73,12 +75,11 @@ class DishController extends Controller
 
         if ($request->hasFile('image')) {
             $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
-            $data['image'] = 'uploads/dishes/' . $filename;
+            $request->file('image')->move(public_path('uploads/dishes'), $filename);
+            $data['image'] = $filename;
 
-            // Optional altes Bild löschen
-            if ($dish->image && file_exists(public_path($dish->image))) {
-                unlink(public_path($dish->image));
+            if ($dish->image && file_exists(public_path('uploads/dishes/'.$dish->image))) {
+                unlink(public_path('uploads/dishes/'.$dish->image));
             }
         }
 
@@ -92,8 +93,8 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
         // Bild löschen (falls vorhanden)
-        if ($dish->image && Storage::disk('public')->exists($dish->image)) {
-            Storage::disk('public')->delete($dish->image);
+        if ($dish->image && file_exists(public_path('uploads/dishes/'.$dish->image))) {
+            unlink(public_path('uploads/dishes/'.$dish->image));
         }
 
         Dish::destroy($dish->id);

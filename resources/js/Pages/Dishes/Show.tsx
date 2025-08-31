@@ -4,7 +4,7 @@ import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import { MdOutlineStarPurple500 } from 'react-icons/md';
 
-import Dish from '@/types/Dish';
+import { Dish } from '@/types/Dish';
 
 interface ShowDishProps {
     dish: Dish;
@@ -28,14 +28,15 @@ export default function Show({ dish }: ShowDishProps) {
                     </div>
                     <div className="flex flex-row space-x-2 ml-2">
                         {/* <p className="text-slate-500">{props.auth.user.name}</p>    TODO: Author */}
-                        AUTHOR
+                        {/* <p className="text-slate-500">{dish.created_at}</p>    TODO: Created At */}
+                        <p className="text-slate-500">User Id: {dish.user_id}</p>
                     </div>
                 </div>
                 <div className="flex flex-row my-3">
                     <p>{dish.description}</p>
                 </div>
                 <img
-                    src={dish.image}
+                    src={dish.image ?? 'https://placehold.co/600x400'}
                     alt={dish.name}
                     title={dish.name}
                     className="rounded-xl aspect-video border border-slate-200"

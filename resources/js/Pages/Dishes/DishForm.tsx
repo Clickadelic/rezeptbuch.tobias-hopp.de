@@ -1,8 +1,9 @@
-import { useForm } from '@inertiajs/react';
-
+import { useForm, router } from '@inertiajs/react';
+import { useState } from 'react';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
+import { Textarea } from '@/Components/ui/textarea';
 import { Button } from '@/Components/ui/button';
 import {
     Select,
@@ -11,53 +12,54 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/Components/ui/select';
-import { Textarea } from '@/Components/ui/textarea';
 
 import { GoPlus, GoPencil } from 'react-icons/go';
-import Dish from '@/types/Dish';
 import { cn } from '@/lib/utils';
 
+import { Dish } from '@/types/Dish';
+
+import { Difficulty } from '@/types/Difficulty';
+
 interface DishFormProps {
-    dish?: Dish; // optional, für Create vs Edit
+    dish?: Dish;
     className?: string;
 }
 
 export default function DishForm({ dish, className }: DishFormProps) {
+
     const isEditing = Boolean(dish);
 
-    // TODO: Add type safety via ZOD?
-    const { data, setData, post, put, processing, errors } = useForm<{
-        id: number | null;
-        name: string;
-        punchline: string;
-        description: string;
-        image: string | File | null;
-        difficulty: string;
-        rating: number;
-        preparation_time: number;
-    }>({
-        id: dish?.id ? Number(dish.id) : null,
+    // TODO <Dish> as useForm<Dish>
+    const { data, setData, post, put, processing, errors } = useForm({
+        id: dish?.id ?? null,
         name: dish?.name ?? '',
+        slug: dish?.slug ?? '',
         punchline: dish?.punchline ?? '',
         description: dish?.description ?? '',
         image: dish?.image ?? null,
-        difficulty: dish?.difficulty ?? 'easy',
-        rating: dish?.rating ? Number(dish.rating) : 0,
-        preparation_time: dish?.preparation_time ? Number(dish.preparation_time) : 0,
+        difficulty: dish?.difficulty ?? Difficulty.EASY,
+        rating: Number(dish?.rating ?? 0),
+        preparation_time: Number(dish?.preparation_time ?? 0),
     });
+
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        // Post wird direkt verwendet
         post(route('dishes.store'), {
             forceFormData: true,
         });
+        console.log(data);
     }
-
+    
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        put(route('dishes.update', { dish: data.id }), {
+        // Router versendet post request getarnt als put _method
+        router.post(route('dishes.update', { dish: data.id }), {
+            _method: 'put',
             forceFormData: true,
         });
+        console.log(data);
     }
 
     return (
@@ -90,7 +92,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         accept="image/*"
                         className="hidden"
                         name="image"
-                        onChange={(e) => setData('image', e.target.files?.[0] ?? null)}
+                        onChange={(e) => setData('image', e.target.files?.[0])}
                         disabled={processing}
                     />
                 </label>
@@ -101,17 +103,19 @@ export default function DishForm({ dish, className }: DishFormProps) {
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <InputLabel htmlFor="preparation-time" value="Zubereitungszeit" />
-                    <div className="flex flex-row items-end justify-end rounded">
+                    <div className="flex flex-row items-end justify-end rounded w-[170px]">
                         <TextInput
                             id="preparation-time"
                             type="number"
                             min={0}
-                            max={240}
-                            value={data.preparation_time}
+                            step={5}
+                            max={600}
+                            placeholder="0"
+                            value={data.preparation_time ?? 0}
                             className="mt-1 flex w-full rounded-none border-r-0 rounded-tl-lg rounded-bl-lg"
                             onChange={(e) => setData('preparation_time', Number(e.target.value))}
                         />
-                        <span className="w-24 p-3 rounded-tr-lg rounded-br-lg border-r border-t border-b border-slate-400">
+                        <span className="w-24 py-3 pr-3 rounded-tr-lg rounded-br-lg border-r border-t border-b border-slate-400">
                             Minuten
                         </span>
                     </div>
@@ -123,7 +127,9 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         id="rating"
                         type="number"
                         min={0}
+                        step={1}
                         max={5}
+                        placeholder="0"
                         value={data.rating}
                         className="mt-1 flex w-full"
                         onChange={(e) => setData('rating', Number(e.target.value))}
@@ -133,25 +139,27 @@ export default function DishForm({ dish, className }: DishFormProps) {
                 <div>
                     <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
                     <Select
-                        value={data.difficulty}
-                        onValueChange={(val: string) => setData('difficulty', val)}
+                        value={data.difficulty ?? Difficulty.EASY}
+ 
+                        onValueChange={(val) => setData("difficulty", val as Difficulty)}
                     >
-                        <SelectTrigger className="w-full text-base rounded-lg bg-white py-6 border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 mt-1">
-                            <SelectValue placeholder="Schwierigkeitsgrad" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white">
-                            {[
-                                'einfach',
-                                'mittel',
-                                'schwer',
-                                'experte',
-                            ].map((d) => (
-                                <SelectItem key={d} value={d}>
-                                    {d}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Schwierigkeitsgrad" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white">
+                        {[
+                        { value: "EASY", label: "EASY" },
+                        { value: "MEDIUM", label: "MEDIUM" },
+                        { value: "HARD", label: "HARD" },
+                        ].map((d) => (
+                        <SelectItem key={d.value} value={d.value}>
+                            {d.label}
+                        </SelectItem>
+                        ))}
+                    </SelectContent>
                     </Select>
+
+
                     <InputError message={errors.difficulty} className="mt-2" />
                 </div>
             </div>

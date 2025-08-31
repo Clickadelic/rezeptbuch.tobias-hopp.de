@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\Difficulty;
+
+use Cviebrock\EloquentSluggable\Sluggable;
+
+
 class Dish extends Model
 {
      use HasFactory;
@@ -14,7 +18,9 @@ class Dish extends Model
 
      
      protected $fillable = [
+          'id',
           'name',
+          'slug',
           'punchline',
           'description',
           'preparation_time',
@@ -27,11 +33,7 @@ class Dish extends Model
      protected $casts = [
           'preparation_time' => 'integer',
           'rating' => 'integer',
-          'difficulty' => Difficulty::class,
-     ];
-
-     protected $attributes = [
-          'difficulty' => 'easy',
+          'difficulty' => Difficulty::class
      ];
 
 
@@ -52,11 +54,18 @@ class Dish extends Model
           });
      }
 
-     
+     public function sluggable(): array
+     {
+          return [
+               'slug' => [
+                    'source' => 'name'
+               ]
+          ];
+     }
 
      public function getImageUrlAttribute(): ?string
      {
-          return $this->image ? asset($this->image) : null;
+          return $this->image ? asset('uploads/dishes' . $this->image) : null;
      }
 
      public function user()

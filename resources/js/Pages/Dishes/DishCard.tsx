@@ -15,7 +15,7 @@ import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { BiDish } from 'react-icons/bi';
 
-import Dish from '@/types/Dish';
+import { Dish} from '@/types/Dish';
 
 interface DishCardProps {
     dish: Dish;

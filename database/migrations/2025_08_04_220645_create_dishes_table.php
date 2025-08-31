@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Dish Table
         Schema::create('dishes', function (Blueprint $table) {
             $table->uuid('id')->primary(); // Dish PK als UUID
             $table->string('name');
+            $table->string('slug')->default('')->unique();
             $table->string('punchline')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('difficulty')->default('einfach');
-            $table->integer('rating')->nullable();
-            $table->integer('preparation_time')->nullable();
+            $table->enum('difficulty', ['EASY', 'MEDIUM', 'HARD'])->default('EASY'); // <-- enum statt string
+            $table->unsignedInteger('rating')->default(0);
+            $table->unsignedInteger('preparation_time')->default(0);
 
             $table->foreignId('user_id')->constrained('users');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

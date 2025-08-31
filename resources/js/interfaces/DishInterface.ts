@@ -1,8 +1,7 @@
-// types.ts
-import { Difficulty } from './Difficulty';
+import { Difficulty } from '@/types/Difficulty';
 
-export type Dish = {
-    id?: string;
+export default interface DishInterface {
+    id: string;
     name: string;
     slug?: string;
     punchline?: string;

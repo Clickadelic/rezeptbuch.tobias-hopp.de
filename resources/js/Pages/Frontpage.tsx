@@ -8,7 +8,14 @@ export default function Frontpage({ auth }: PageProps<{ auth: { user: any } }>) 
         <>
             <Head title="Startseite" />
             <FullWidthLayout title="Startseite">
-                
+                <div className="flex flex-row justify-between items-center gap-3">
+                    <h1 className="text-3xl font-oswald">Oswald</h1>
+                    <h1 className="text-3xl font-open-sans">Open Sans</h1>
+                    <h1 className="text-3xl font-roboto-condensed">Roboto Condensed</h1>
+                    <h1 className="text-3xl font-la-belle-aurore">La Belle Aurore</h1>
+                    <h1 className="text-3xl font-yellowtail">Yellowtail</h1>
+                </div>
+                <hr className="my-4 text-slate-400" />
                 <div className="grid grid-cols-5 grid-rows-5 gap-4">
                     <div className="p-2 col-span-3 row-span-2 bg-slate-200 rounded-xl">1</div>
                     <div className="p-2 row-span-2 col-start-4 bg-slate-200 rounded-xl">2</div>

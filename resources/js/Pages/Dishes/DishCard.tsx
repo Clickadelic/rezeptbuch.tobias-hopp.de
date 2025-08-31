@@ -37,7 +37,15 @@ export default function DishCard({ dish }: DishCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-slate-200 group-hover:border-emerald-700 shadow-transparent hover:shadow-emerald-700"
                     >
-                        <BiDish className="size-10" />
+                        {dish.image ? (
+                            <img
+                                src={dish.image}
+                                alt={dish.name}
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <BiDish className="size-10" />
+                        )}
                         <DropdownMenu>
                             <DropdownMenuTrigger
                                 className="absolute top-2 right-2 text-slate-300 border border-slate-300 p-1 rounded-full hover:text-emerald-700 hover:cursor-pointer hover:border-emerald-700 shadow-transparent"

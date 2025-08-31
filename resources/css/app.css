@@ -1,6 +1,7 @@
 @import './google-fonts.css';
 
 @import 'tailwindcss';
+
 @plugin "@tailwindcss/forms";
 @plugin "tailwindcss-animate";
 
@@ -11,12 +12,12 @@
 }
 
 @theme {
-    --font-sans: 'Roboto Condensed', 'sans-serif';
-    --font-roboto-condensed: 'Roboto Condensed', 'sans-serif';
-    --font-oswald: 'Oswald';
-    --font-open-sans: 'Open Sans', 'sans-serif';
-    --font-la-belle-aurore: 'La Belle Aurore';
-    --font-yellowtail: 'Yellowtail';
+    --font-open-sans: 'Open Sans Regular', sans-serif;
+    --font-roboto-condensed: 'Roboto', sans-serif;
+    --font-oswald: 'Oswald', sans-serif;
+    --font-la-belle-aurore: 'La Belle Aurore', serif;
+    --font-yellowtail: 'Yellowtail', sans-serif;
+    --font-newsreader: 'Newsreader', sans-serif;
     --color-background: hsl(var(--background));
     --color-foreground: hsl(var(--foreground));
     --color-card: hsl(var(--card));
@@ -44,6 +45,8 @@
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
+
+    --font-la-belle-aurore: 'La Belle Aurore', sans-serif;
 }
 
 @layer base {

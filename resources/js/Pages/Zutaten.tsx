@@ -9,9 +9,7 @@ export default function Zutaten({ auth }: PageProps<{ auth: { user: any } }>) {
     return (
         <>
             <Head title="Zutaten" />
-            <NoSidebarsLayout
-                title="Zutaten"
-            >
+            <NoSidebarsLayout title="Zutaten">
                 Liste und Philosophy bezüglich Zutaten.
             </NoSidebarsLayout>
         </>

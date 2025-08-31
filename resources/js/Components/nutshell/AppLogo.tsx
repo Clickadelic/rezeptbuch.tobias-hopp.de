@@ -26,7 +26,7 @@ const AppLogo = ({ className = '', href = '/', title = "Toby's Rezeptbuch" }: Ap
             <Link
                 href={href}
                 className={cn(
-                    'flex flex-row justify-between gap-2 text-emerald-700 hover:text-emerald-600 max-w-[168px] mx-auto',
+                    'flex flex-row justify-between gap-2 h-[24px] text-emerald-700 hover:text-emerald-600 max-w-[168px] mx-auto',
                     className,
                 )}
                 title={title}
@@ -34,8 +34,12 @@ const AppLogo = ({ className = '', href = '/', title = "Toby's Rezeptbuch" }: Ap
                 <span>
                     <BsBookmarkHeart className="size-5 mt-1" />
                 </span>
-                <span className="mb-0 text-xl font-light leading-snug">Toby's</span>
-                <span className="mb-0 text-xl font-medium leading-snug">Rezeptbuch</span>
+                <span className="mb-0 text-2xl font-light leading-snug font-la-belle-aurore mt-[1px]">
+                    Toby's
+                </span>
+                <span className="mb-0 text-xl font-medium leading-snug font-oswald">
+                    Rezeptbuch
+                </span>
             </Link>
         </h1>
     );

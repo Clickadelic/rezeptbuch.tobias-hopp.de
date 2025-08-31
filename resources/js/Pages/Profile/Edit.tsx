@@ -12,9 +12,7 @@ export default function Edit({
     status,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
-        <NoSidebarsLayout
-            title="Profil"
-        >
+        <NoSidebarsLayout title="Profil">
             <Head title="Profil" />
 
             <div className="space-y-4">

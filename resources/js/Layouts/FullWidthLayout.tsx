@@ -1,14 +1,15 @@
 import { PropsWithChildren } from 'react';
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
+import { useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
+import CircularMenu from '@/Components/nutshell/CircularMenu';
 
 import { Toaster } from 'sonner';
-import { toast } from "sonner";
-
+import { toast } from 'sonner';
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
     children: React.ReactNode;
@@ -27,7 +28,6 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  */
 
 export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
-    
     const { props } = usePage();
     const { flash } = props;
 
@@ -43,21 +43,22 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
             });
         }
     }, [flash]);
-    
+
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
                 <Header />
                 <RecipeSearch />
+                <BreadcrumbNav />
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)]">
                 <main className="py-4">
-                    {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}
-                    {title && <hr className="my-3 border-slate-300" />}
+                    {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
                     {children}
                 </main>
             </div>
             <Footer />
+            <CircularMenu />
             <Toaster position="bottom-right" />
         </div>
     );

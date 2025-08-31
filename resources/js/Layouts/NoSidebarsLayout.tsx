@@ -1,13 +1,15 @@
 import { PropsWithChildren } from 'react';
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
+import { useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
+import CircularMenu from '@/Components/nutshell/CircularMenu';
 
 import { Toaster } from '@/Components/ui/sonner';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 interface NoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
@@ -30,11 +32,7 @@ interface NoSidebarsLayoutProps extends PropsWithChildren {
  * </NoSidebarsLayout>
  */
 
-export default function NoSidebarsLayout({
-    title,
-    children,
-}: NoSidebarsLayoutProps) {
-    
+export default function NoSidebarsLayout({ title, children }: NoSidebarsLayoutProps) {
     const { props } = usePage();
     const { flash } = props;
 
@@ -50,22 +48,22 @@ export default function NoSidebarsLayout({
             });
         }
     }, [flash]);
-    
+
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>
                 <Header />
                 <RecipeSearch />
+                <BreadcrumbNav />
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4">
-
                 <main className="py-4 col-start-2 col-span-3">
-                    {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}
-                    {title && <hr className="my-3 border-slate-300" />}
+                    {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
                     {children}
                 </main>
             </div>
             <Footer />
+            <CircularMenu />
             <Toaster position="bottom-right" />
         </div>
     );

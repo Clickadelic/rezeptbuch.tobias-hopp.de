@@ -38,12 +38,12 @@ export default function DishForm({ dish, className }: DishFormProps) {
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        post(route('dishes.store'), { forceFormData: true });
+        post(route('dishes.store'));
     }
-
+    
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        post(route('dishes.update', { dish: data.id }), { forceFormData: true });
+        put(route('dishes.update', { dish: data.id }));
     }
 
     return (

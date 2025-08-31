@@ -23,8 +23,6 @@ Route::prefix('/gerichte')->group(function () {
     Route::get('/{dish}', [DishController::class, 'show'])->name('dishes.show');
 });
 
-
-
 Route::get('/cocktails', function () {
     return Inertia::render('Cocktails/Index', [
         'canLogin' => Route::has('login'),

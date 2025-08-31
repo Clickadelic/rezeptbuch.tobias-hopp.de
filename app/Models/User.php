@@ -54,4 +54,12 @@ class User extends Authenticatable
         return $this->hasMany(Dish::class);
     }
 
+    /**
+     * Relation: Ein User kann viele Zutaten haben
+     */
+    public function ingredients()
+    {
+        return $this->hasMany(Ingredient::class);
+    }
+
 }

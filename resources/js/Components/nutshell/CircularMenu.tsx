@@ -1,100 +1,132 @@
-import { useState } from 'react';
-
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/Components/ui/tooltip';
-import { cn } from '@/lib/utils';
-import { ResponsiveDialog } from '@/Components/nutshell/ResponsiveDialog';
-import { LiaCocktailSolid } from 'react-icons/lia';
+import { useState } from "react";
+import { usePage } from "@inertiajs/react";
+import { BsApp } from "react-icons/bs";
+import { FiPlus } from "react-icons/fi";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/Components/ui/tooltip";
+import { ResponsiveDialog } from "@/Components/reusables/ResponsiveDialog";
+import { cn } from "@/lib/utils";
+import { LiaCocktailSolid } from "react-icons/lia";
 import { BsJournalBookmark } from 'react-icons/bs';
-import { FiPlus } from 'react-icons/fi';
-import { TooltipArrow } from '@radix-ui/react-tooltip';
+import { TbSalt } from "react-icons/tb";
+export function CircularMenu() {
+  const [showCircularMenu, setShowCircularMenu] = useState(false);
+  const [isCocktailDialogOpen, setCocktailDialogOpen] = useState(false);
+  const [isDishDialogOpen, setDishDialogOpen] = useState(false);
+  const [isIngredientDialogOpen, setIngredientDialogOpen] = useState(false);
+  const { auth } = usePage().props;
 
-export const CircularMenu = () => {
-    const [showCircularMenu, setShowCircularMenu] = useState(false);
-    const [isEditMode, setIsEditMode] = useState(false);
-    const [isDishesDialogOpen, setDishesDialogOpen] = useState(false);
-    const [isCocktailsDialogOpen, setCocktailsDialogOpen] = useState(false);
+  if(!auth.user) return null;
 
-    const toggleCircularMenu = () => {
-        setShowCircularMenu((previousState) => !previousState);
-    };
-    return (
-        <div className="fixed right-4 bottom-12 md:bottom-8 md:right-8 max-w-12 shadow-sm">
-            <div
-                className={cn(
-                    'absolute -top-[95px] text-center space-y-2',
-                    showCircularMenu ? 'block' : 'hidden',
-                )}
+  return (
+    <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-12">
+      <div
+        className={cn(
+          "absolute -top-36 left-[4px] flex flex-col items-center space-y-2 transition-all",
+          showCircularMenu ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild data-state="instant-open">
+              <button
+                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                onClick={() => setDishDialogOpen(true)}
+              >
+                <BsJournalBookmark />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="left">
+              <p>Neues Gericht</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <ResponsiveDialog
+          icon={<BsApp />}
+          title="Gericht hinzufügen"
+          description="Füge ein Gericht hinzu"
+          editTitle="Gericht bearbeiten"
+          editDescription="Ändere Titel oder andere Dinge"
+          isOpen={isDishDialogOpen}
+          setIsOpen={setDishDialogOpen}
+        >
+          Inhalt für den Dialog
+        </ResponsiveDialog>
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild data-state="instant-open">
+              <button
+                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                onClick={() => setCocktailDialogOpen(true)}
+              >
+                <LiaCocktailSolid />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="left">
+              <p>Neuer Cocktail</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <ResponsiveDialog
+          icon={<BsApp />}
+          title="Cocktail hinzufügen"
+          description="Füge einen Cocktail hinzu"
+          editTitle="Cocktail bearbeiten"
+          editDescription="Ändere Titelandere Dinge"
+          isOpen={isCocktailDialogOpen}
+          setIsOpen={setCocktailDialogOpen}
+        >
+          Inhalt für den Dialog
+        </ResponsiveDialog>
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild data-state="instant-open">
+              <button
+                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                onClick={() => setIngredientDialogOpen(true)}
+              >
+                <TbSalt />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="left">
+              <p>Neue Zutat</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <ResponsiveDialog
+          icon={<TbSalt />}
+          title="Zutat hinzufügen"
+          description="Füge eine Zutat hinzu"
+          editTitle="Zutat bearbeiten"
+          editDescription="Ändere Titelandere Dinge"
+          isOpen={isIngredientDialogOpen}
+          setIsOpen={setIngredientDialogOpen}
+        >
+          Inhalt für den Dialog
+        </ResponsiveDialog>
+        
+      </div>
+
+      {/* Haupt-Button */}
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild data-state="instant-open">
+            <button
+              aria-label="Neuen Inhalt anlegen"
+              onClick={() => setShowCircularMenu((prev) => !prev)}
+              className="bg-emerald-700 hover:bg-emerald-700/90 hover:cursor-pointer text-white p-4 text-lg rounded-full transition shadow-lg"
             >
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild data-state="instant-open">
-                            <button
-                                onClick={() => setCocktailsDialogOpen(true)}
-                                className="rounded-full bg-emerald-700 hover:bg-mantis-primary/90 text-white p-3"
-                            >
-                                <LiaCocktailSolid />
-                            </button>
-                        </TooltipTrigger>
-                        <TooltipContent side="left">
-                            <p>Neuer Cocktail</p>
-                            <TooltipArrow className="arrow-emerald-700" />
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-                <ResponsiveDialog
-                    isOpen={isCocktailsDialogOpen}
-                    setIsOpen={setCocktailsDialogOpen}
-                    title="Neuer Cocktail"
-                    description="Füge einen neuen Cocktail hinzu"
-                    icon={<LiaCocktailSolid />}
-                >
-                    Neuer Cocktail Form
-                </ResponsiveDialog>
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild data-state="instant-open">
-                            <button
-                                onClick={() => setDishesDialogOpen(true)}
-                                className="rounded-full bg-emerald-700 hover:bg-mantis-primary/90 text-white p-3"
-                            >
-                                <BsJournalBookmark />
-                            </button>
-                        </TooltipTrigger>
-                        <TooltipContent side="left">
-                            <p>Neues Gericht</p>
-                            <TooltipArrow className="arrow-emerald-700" />
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-                <ResponsiveDialog
-                    isOpen={isDishesDialogOpen}
-                    setIsOpen={setDishesDialogOpen}
-                    title="Neues Gericht"
-                    description="Füge ein neues Gericht hinzu"
-                    icon={<BsJournalBookmark />}
-                >
-                    Neues Gericht Form
-                </ResponsiveDialog>
-            </div>
-            <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger asChild data-state="instant-open">
-                        <button
-                            aria-label="Neuen Inhalt anlegen"
-                            className="bg-emerald-700 hover:bg-emerald-600 text-white p-4 text-lg rounded-full"
-                            onClick={() => toggleCircularMenu()}
-                        >
-                            <FiPlus
-                                className={cn('transition', showCircularMenu ? 'rotate-45' : '')}
-                            />
-                        </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="left">
-                        <p>Neuen Inhalt anlegen</p>
-                        <TooltipArrow className="arrow-emerald-700" />
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
-        </div>
-    );
-};
+              <FiPlus className={cn("transition-transform", showCircularMenu ? "rotate-45" : "")} />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="left">
+            <p>Neuen Inhalt anlegen</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
+  );
+}
+
+export default CircularMenu;

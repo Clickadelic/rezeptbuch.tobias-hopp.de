@@ -1,7 +1,7 @@
 /* Oswald */
 @font-face {
     font-family: 'Oswald';
-    src: url('/fonts/Oswald/static/Oswald-Regular.ttf') format('ttf');
+    src: url('/fonts/Oswald/static/Oswald-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,13 @@
 /* Yellowtail */
 @font-face {
     font-family: 'Yellowtail';
-    src: url('/fonts/yellowtail/yellowtail-regular.woff2') format('woff2');
+    src: url('/fonts/Yellowtail/Yellowtail-Regular.ttf') format('truetype');
+}
+
+/* Newsreader */
+@font-face {
+    font-family: 'Newsreader';
+    src: url('/fonts/Newsreader/Newsreader-VariableFont_opsz,wght.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -19,21 +25,21 @@
 /* Open Sans */
 @font-face {
     font-family: 'Open Sans';
-    src: url('/fonts/open-sans/open-sans-regular.woff2') format('woff2');
+    src: url('/fonts/Open_Sans/open-sans-regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Open Sans';
-    src: url('/fonts/open-sans/open-sans-italic.woff2') format('woff2');
+    src: url('/fonts/Open_Sans/open-sans-italic.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 @font-face {
     font-family: 'Open Sans';
-    src: url('/fonts/open-sans/open-sans-bold.woff2') format('woff2');
+    src: url('/fonts/Open_Sans/open-sans-bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -42,15 +48,16 @@
 /* La Belle Aurore */
 @font-face {
     font-family: 'La Belle Aurore';
-    src: url('/fonts/La_Belle_Aurore/LaBelleAurore-Regular.ttf') format('ttf');
+    src: url('/fonts/La_Belle_Aurore/LaBelleAurore-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
+/* Roboto */
 @font-face {
     font-family: 'Roboto';
-    src: url('/fonts/Roboto_Condensed/RobotoCondensed-VariableFont_wght.ttf') format('ttf');
+    src: url('/fonts/Roboto_Condensed/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;

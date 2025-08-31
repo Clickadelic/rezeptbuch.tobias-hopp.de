@@ -6,7 +6,6 @@ import { toast } from 'sonner';
 import DishForm from '@/Pages/Dishes/DishForm';
 
 export default function CreateDish() {
-
     const { flash } = usePage().props as { flash: { success?: string } };
 
     useEffect(() => {

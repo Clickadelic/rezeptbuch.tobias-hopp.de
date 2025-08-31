@@ -6,6 +6,7 @@ import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
+import CircularMenu from '@/Components/nutshell/CircularMenu';
 
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
@@ -55,12 +56,13 @@ export default function SidebarRightLayout({ title, sidebar, children }: Sidebar
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] grid grid-cols-5 grid-rows-1 gap-4">
                 <main className="py-4 col-span-4">
-                    {title && <h2 className="text-lg font-medium mb-2">{title}</h2>}
+                    {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
                     {children}
                 </main>
                 {sidebar}
             </div>
             <Footer />
+            <CircularMenu />
             <Toaster position="bottom-right" />
         </div>
     );

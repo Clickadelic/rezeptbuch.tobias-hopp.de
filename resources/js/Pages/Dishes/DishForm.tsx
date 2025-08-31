@@ -25,25 +25,39 @@ interface DishFormProps {
 export default function DishForm({ dish, className }: DishFormProps) {
     const isEditing = Boolean(dish);
 
-    const { data, setData, post, put, processing, errors } = useForm({
-        id: dish?.id ?? null,
+    // TODO: Add type safety via ZOD?
+    const { data, setData, post, put, processing, errors } = useForm<{
+        id: number | null;
+        name: string;
+        punchline: string;
+        description: string;
+        image: string | File | null;
+        difficulty: string;
+        rating: number;
+        preparation_time: number;
+    }>({
+        id: dish?.id ? Number(dish.id) : null,
         name: dish?.name ?? '',
         punchline: dish?.punchline ?? '',
         description: dish?.description ?? '',
         image: dish?.image ?? null,
         difficulty: dish?.difficulty ?? 'easy',
-        rating: Number(dish?.rating ?? 0),
-        preparation_time: Number(dish?.preparation_time ?? 0),
+        rating: dish?.rating ? Number(dish.rating) : 0,
+        preparation_time: dish?.preparation_time ? Number(dish.preparation_time) : 0,
     });
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        post(route('dishes.store'));
+        post(route('dishes.store'), {
+            forceFormData: true,
+        });
     }
-    
+
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        put(route('dishes.update', { dish: data.id }));
+        put(route('dishes.update', { dish: data.id }), {
+            forceFormData: true,
+        });
     }
 
     return (
@@ -76,7 +90,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         accept="image/*"
                         className="hidden"
                         name="image"
-                        onChange={(e) => setData('image', e.target.files?.[0])}
+                        onChange={(e) => setData('image', e.target.files?.[0] ?? null)}
                         disabled={processing}
                     />
                 </label>

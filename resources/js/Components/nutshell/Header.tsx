@@ -15,6 +15,9 @@ import { RxAvatar } from 'react-icons/rx';
 import { Button } from '@/Components/ui/button';
 import { Link } from '@inertiajs/react';
 import { GoPlus } from 'react-icons/go';
+import { RiDashboardHorizontalLine } from "react-icons/ri";
+import { RiAccountPinBoxLine } from "react-icons/ri";
+import { BiExit } from "react-icons/bi";
 /**
  * The application header.
  *
@@ -88,7 +91,7 @@ const Header = () => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="font-medium inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none gap-2"
+                                                className="font-medium inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
                                             >
                                                 <RxAvatar className="size-4 hidden md:flex" />
                                                 {user.name}
@@ -110,9 +113,10 @@ const Header = () => {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href="/dashboard">Dashboard</Dropdown.Link>
-                                        <Dropdown.Link href="/profile">Profile</Dropdown.Link>
-                                        <Dropdown.Link href="/logout" method="post" as="button">
+                                        <Dropdown.Link href="/dashboard" className="flex gap-2"><RiDashboardHorizontalLine className="mt-[3px] size-4" />Dashboard</Dropdown.Link>
+                                        <Dropdown.Link href="/profile" className="flex gap-2"><RiAccountPinBoxLine className="mt-[3px] size-4" />Profil</Dropdown.Link>
+                                        <Dropdown.Link href="/logout" method="post" as="button" className="flex gap-2 hover:cursor-pointer">
+                                            <BiExit className="mt-[3px] size-4" />
                                             Log Out
                                         </Dropdown.Link>
                                     </Dropdown.Content>

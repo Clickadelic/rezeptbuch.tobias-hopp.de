@@ -5,8 +5,8 @@ import { PageProps } from '@/types';
 export default function Frontpage({ auth }: PageProps<{ auth: { user: any } }>) {
     return (
         <>
-            <Head title="Startseite" />
-            <FullWidthLayout title="Startseite">
+            <Head title="Willkommen" />
+            <FullWidthLayout title="Willkommen">
                 <div className="grid grid-cols-2 md:grid-cols-6 justify-between items-center gap-3">
                     <h1 className="text-3xl font-oswald">Oswald</h1>
                     <h1 className="text-3xl font-open-sans">Open Sans</h1>

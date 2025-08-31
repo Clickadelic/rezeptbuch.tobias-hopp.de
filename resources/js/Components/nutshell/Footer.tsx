@@ -8,6 +8,8 @@ import { IoIosRibbon } from 'react-icons/io';
 import { FaQ } from 'react-icons/fa6';
 import { GrNavigate } from 'react-icons/gr';
 
+import { CircularMenu } from '@/Components/nutshell/CircularMenu';
+
 /**
  * Renders the footer section of the website, containing navigation links, FAQ,
  * quality assurance badge, and a newsletter subscription form. It also includes
@@ -176,6 +178,7 @@ export default function Footer() {
                     </div>
                 </footer>
             </div>
+            <CircularMenu />
         </>
     );
 }

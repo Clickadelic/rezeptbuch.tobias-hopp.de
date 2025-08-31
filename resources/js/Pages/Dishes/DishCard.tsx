@@ -46,7 +46,7 @@ export default function DishCard({ dish }: DishCardProps) {
                             <img
                                 src={dish.image}
                                 alt={dish.name}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full scale-105"
                             />
                         ) : (
                             <BiDish className="size-10" />
@@ -54,7 +54,7 @@ export default function DishCard({ dish }: DishCardProps) {
                         {user && (
                            <DropdownMenu>
                                 <DropdownMenuTrigger
-                                    className="absolute top-2 right-2 text-slate-400 p-1 hover:text-emerald-700 hover:cursor-pointer shadow-transparent"
+                                    className="absolute top-2 right-2 text-white p-1 hover:text-slate-300 hover:cursor-pointer shadow-transparent"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <HiOutlineDotsVertical className="size-4" />
@@ -85,7 +85,7 @@ export default function DishCard({ dish }: DishCardProps) {
 
                     {/* Titel */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-emerald-700 leading-snug">
-                        <h4 className="text-md text-slate-400 font-light font-newsreader line-clamp-1">
+                        <h4 className="text-sm text-slate-500 font-newsreader line-clamp-1">
                             {dish.punchline}
                         </h4>
                         <h3 className="group-hover:text-emerald-700 line-clamp-2 text-slate-800 min-h-[calc(3rem+2px)]">

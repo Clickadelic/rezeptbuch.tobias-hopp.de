@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dish;
-use App\Http\Requests\StoreDishRequest;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+
+use App\Models\Dish;
 use App\Enums\Difficulty;
+use App\Http\Requests\StoreDishRequest;
+
 class DishController extends Controller
 {
     public function index()
@@ -38,6 +40,7 @@ class DishController extends Controller
         if ($request->hasFile('image')) {
             $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
             $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
+            var_dump($path);
             $data['image'] = 'uploads/dishes/' . $filename;
         }
 
@@ -55,8 +58,7 @@ class DishController extends Controller
         return redirect()
             ->route('dishes.index')
             ->with('success', 'Gericht erstellt!');
-}
-
+    }
 
     public function edit(Dish $dish)
     {

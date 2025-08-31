@@ -26,11 +26,11 @@ class DishController extends Controller
         return Inertia::render('Dishes/Create');
     }
 
-    public function show(Dish $dish)
+    public function show(Dish $slug)
     {
-        return Inertia::render('Dishes/Show', [
-            'dish' => $dish,
-        ]);
+        $dish = Dish::where('slug', $slug)->firstOrFail();
+
+        return Inertia::render('Dishes/Show', compact('dish'));
     }
 
     public function store(StoreDishRequest $request)
@@ -44,7 +44,7 @@ class DishController extends Controller
             $data['image'] = $filename; // nur Dateiname speichern
         }
 
-        $data['slug'] = str($data['name'])->slug('-', 'de', $dictionary = ['@' => 'de']);
+        $data['slug'] = str($data['name'])->slug('-', 'de', ['@' => 'de']);
 
         // Aktuellen User automatisch zuweisen
         $data['user_id'] = Auth::id();

@@ -14,6 +14,10 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Dish extends Model
 {
      use HasFactory;
+
+     use Sluggable;
+
+     protected $primaryKey = 'id';
      protected $keyType = 'string';
 
      

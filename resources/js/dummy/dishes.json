@@ -5,7 +5,7 @@
         "punchline": "Lecker und schnell gemacht",
         "description": "Leckeres Gericht für jeden Tag der Woche",
         "image": "",
-        "difficulty": "einfach",
+        "difficulty": "easy",
         "rating": 4,
         "preparation_time": 35
     },
@@ -25,7 +25,7 @@
         "punchline": "Hackfleisch und Nudeln",
         "description": "Geht immer und schmeckt einfach lecker",
         "image": "",
-        "difficulty": "einfach",
+        "difficulty": "easy",
         "rating": 5,
         "preparation_time": 45
     },
@@ -55,7 +55,7 @@
         "punchline": "Lecker und schnell gemacht",
         "description": "Wenn's ganz schnell gehen muss auch eine Alternative für den Hunger zwischendurch.",
         "image": "",
-        "difficulty": "einfach",
+        "difficulty": "easy",
         "rating": 4,
         "preparation_time": 35
     }

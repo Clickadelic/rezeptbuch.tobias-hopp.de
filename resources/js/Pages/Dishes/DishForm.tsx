@@ -31,7 +31,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
         punchline: dish?.punchline ?? '',
         description: dish?.description ?? '',
         image: dish?.image ?? null,
-        difficulty: dish?.difficulty ?? 'einfach',
+        difficulty: dish?.difficulty ?? 'easy',
         rating: Number(dish?.rating ?? 0),
         preparation_time: Number(dish?.preparation_time ?? 0),
     });
@@ -127,13 +127,9 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         </SelectTrigger>
                         <SelectContent className="bg-white">
                             {[
-                                'einfach',
-                                'normal',
-                                'mittel',
-                                'fortgeschritten',
-                                'zeitaufwendig',
-                                'expert',
-                                'schwer',
+                                'easy',
+                                'medium',
+                                'hard',
                             ].map((d) => (
                                 <SelectItem key={d} value={d}>
                                     {d}

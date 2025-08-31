@@ -7,7 +7,7 @@ use App\Http\Requests\StoreDishRequest;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-
+use App\Enums\Difficulty;
 class DishController extends Controller
 {
     public function index()
@@ -44,12 +44,19 @@ class DishController extends Controller
         // Aktuellen User automatisch zuweisen
         $data['user_id'] = Auth::id();
 
+        // Difficulty in Enum konvertieren
+        if (isset($data['difficulty'])) {
+            $data['difficulty'] = Difficulty::from($data['difficulty']);
+        }
+
+        // Gericht erstellen
         Dish::create($data);
 
         return redirect()
             ->route('dishes.index')
             ->with('success', 'Gericht erstellt!');
-    }
+}
+
 
     public function edit(Dish $dish)
     {
@@ -62,16 +69,16 @@ class DishController extends Controller
     {
         $data = $request->validated();
 
-        // if ($request->hasFile('image')) {
-        //     $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-        //     $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
-        //     $data['image'] = 'uploads/dishes/' . $filename;
+        if ($request->hasFile('image')) {
+            $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+            $path = $request->file('image')->move(public_path('uploads/dishes'), $filename);
+            $data['image'] = 'uploads/dishes/' . $filename;
 
-        //     // Optional altes Bild löschen
-        //     if ($dish->image && file_exists(public_path($dish->image))) {
-        //         unlink(public_path($dish->image));
-        //     }
-        // }
+            // Optional altes Bild löschen
+            if ($dish->image && file_exists(public_path($dish->image))) {
+                unlink(public_path($dish->image));
+            }
+        }
 
         $dish->update($data);
 

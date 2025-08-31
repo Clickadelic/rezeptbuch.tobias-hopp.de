@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
+use App\Enums\Difficulty;
 class Dish extends Model
 {
      use HasFactory;
@@ -20,17 +20,18 @@ class Dish extends Model
           'preparation_time',
           'rating',
           'difficulty',
-          // 'image',
+          'image',
           'user_id'
      ];
 
      protected $casts = [
           'preparation_time' => 'integer',
           'rating' => 'integer',
+          'difficulty' => Difficulty::class,
      ];
 
      protected $attributes = [
-          'difficulty' => 'einfach',
+          'difficulty' => 'easy',
      ];
 
 

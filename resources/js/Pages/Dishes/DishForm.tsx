@@ -92,6 +92,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         accept="image/*"
                         className="hidden"
                         name="image"
+                        //@ts-ignore 
                         onChange={(e) => setData('image', e.target.files?.[0])}
                         disabled={processing}
                     />

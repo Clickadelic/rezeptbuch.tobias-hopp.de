@@ -26,10 +26,11 @@ class DishController extends Controller
         return Inertia::render('Dishes/Create');
     }
 
-    public function show(Dish $slug)
+    // TODO: Nach Typesafety fragen
+    public function show($slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
-
+        $dish['user'] = $dish->user;
         return Inertia::render('Dishes/Show', compact('dish'));
     }
 

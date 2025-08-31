@@ -44,7 +44,7 @@ export default function DishCard({ dish }: DishCardProps) {
                     >
                         {dish.image ? (
                             <img
-                                src={dish.image}
+                                src={`uploads/dishes/${dish.image}`}
                                 alt={dish.name}
                                 className="w-full h-full scale-105"
                             />

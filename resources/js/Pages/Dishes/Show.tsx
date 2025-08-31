@@ -36,7 +36,7 @@ export default function Show({ dish }: ShowDishProps) {
                     <p>{dish.description}</p>
                 </div>
                 <img
-                    src={dish.image ?? 'https://placehold.co/600x400'}
+                    src={`../uploads/dishes/${dish.image}`}
                     alt={dish.name}
                     title={dish.name}
                     className="rounded-xl aspect-video border border-slate-200"

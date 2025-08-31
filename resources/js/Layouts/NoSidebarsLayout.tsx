@@ -4,6 +4,7 @@ import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
 
 import { Toaster } from '@/Components/ui/sonner';
@@ -52,6 +53,7 @@ export default function NoSidebarsLayout({ title, children }: NoSidebarsLayoutPr
             <div>
                 <Header />
                 <RecipeSearch />
+                <BreadcrumbNav />
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4">
                 <main className="py-4 col-start-2 col-span-3">

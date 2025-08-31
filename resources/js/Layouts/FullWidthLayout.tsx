@@ -4,11 +4,11 @@ import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
 
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
-import Breadcrumbs from '@/Components/nutshell/Breadcrumbs';
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
@@ -49,6 +49,7 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
             <div>
                 <Header />
                 <RecipeSearch />
+                <BreadcrumbNav />
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)]">
                 <main className="py-4">

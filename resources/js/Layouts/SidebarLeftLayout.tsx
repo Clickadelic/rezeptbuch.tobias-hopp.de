@@ -5,11 +5,12 @@ import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
 
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
-import Breadcrumbs from '@/Components/nutshell/Breadcrumbs';
+
 interface SidebarLeftLayoutProps extends PropsWithChildren {
     title?: string;
     sidebar?: React.ReactNode;
@@ -53,8 +54,10 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
             <div>
                 <Header />
                 <RecipeSearch />
+                <BreadcrumbNav  />
             </div>
             <div className="mx-auto container grow px-4 sm:px-3 lg:px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3">
+                
                 {isDesktop && sidebar}
                 <main className="py-4 col-span-4">
                     {title && <h2 className="text-lg font-medium leading-snug">{title}</h2>}

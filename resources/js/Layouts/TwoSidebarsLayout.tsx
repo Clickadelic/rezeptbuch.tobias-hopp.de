@@ -1,14 +1,14 @@
 import { PropsWithChildren } from 'react';
 import { useMediaQuery } from '@/Hooks/use-media-query';
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
+import { useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
 
 import { Toaster } from '@/Components/ui/sonner';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
@@ -43,7 +43,6 @@ export default function TwoSidebarsLayout({
     rightSidebar,
     children,
 }: TwoSidebarsLayoutProps) {
-    
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
     const { props } = usePage();
@@ -61,7 +60,7 @@ export default function TwoSidebarsLayout({
             });
         }
     }, [flash]);
-    
+
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>

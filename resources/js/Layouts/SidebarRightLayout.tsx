@@ -1,13 +1,13 @@
 import { PropsWithChildren } from 'react';
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
+import { useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
 
 import { Toaster } from 'sonner';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 interface SidebarRightLayoutProps extends PropsWithChildren {
     title?: string;
@@ -29,10 +29,9 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  * </SidebarLeftLayout>
  */
 export default function SidebarRightLayout({ title, sidebar, children }: SidebarRightLayoutProps) {
-    
     const { props } = usePage();
     const { flash } = props;
-    
+
     useEffect(() => {
         if (flash?.success) {
             toast.success(flash.success, {

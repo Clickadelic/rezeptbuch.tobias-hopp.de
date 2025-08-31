@@ -1,14 +1,14 @@
 import { PropsWithChildren } from 'react';
-import { useEffect } from "react";
-import { usePage } from "@inertiajs/react";
+import { useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 
 import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import Footer from '@/Components/nutshell/Footer';
 
 import { Toaster } from 'sonner';
-import { toast } from "sonner";
-import Breadcrumbs from "@/Components/nutshell/Breadcrumbs";
+import { toast } from 'sonner';
+import Breadcrumbs from '@/Components/nutshell/Breadcrumbs';
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
@@ -28,7 +28,6 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  */
 
 export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
-    
     const { props } = usePage();
     const { flash } = props;
 
@@ -44,7 +43,7 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
             });
         }
     }, [flash]);
-    
+
     return (
         <div className="min-h-screen flex flex-col justify-between bg-white">
             <div>

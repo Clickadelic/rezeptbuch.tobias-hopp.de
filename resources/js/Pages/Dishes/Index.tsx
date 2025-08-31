@@ -8,7 +8,7 @@ import Dish from '@/types/Dish';
 export default function Gerichte() {
     const { props } = usePage();
     const { dishes } = props;
-    
+
     return (
         <>
             <Head title="Gerichte" />

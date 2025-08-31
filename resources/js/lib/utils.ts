@@ -10,5 +10,7 @@ export function capitalizeFirstLetter(string: string) {
 }
 
 export function toHumanDate(date: Date | string) {
-    return new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(date));
+    return new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short' }).format(
+        new Date(date),
+    );
 }

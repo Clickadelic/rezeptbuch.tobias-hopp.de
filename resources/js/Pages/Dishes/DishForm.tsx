@@ -4,7 +4,13 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/Components/ui/select';
 import { Textarea } from '@/Components/ui/textarea';
 
 import { GoPlus, GoPencil } from 'react-icons/go';
@@ -41,25 +47,23 @@ export default function DishForm({ dish, className }: DishFormProps) {
     }
 
     return (
-        <form onSubmit={isEditing ? update : submit} className={cn('flex flex-col justify-between items-center space-y-3', className)}>
-            
+        <form
+            onSubmit={isEditing ? update : submit}
+            className={cn('flex flex-col justify-between items-center space-y-3', className)}
+        >
             {/* Image Preview */}
             {dish?.image && !data.image && (
-                <img
-                    src={dish.image}
-                    alt="Preview"
-                    className="mt-2 max-h-40 rounded border"
-                />
+                <img src={dish.image} alt="Preview" className="mt-2 max-h-40 rounded border" />
             )}
-            
+
             {/* Upload */}
             <div className="w-full">
                 <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
                 <label
                     htmlFor="image"
                     className={cn(
-                        "w-full flex items-center justify-center rounded-lg border-2 border-dotted border-slate-400 focus-within:border-emerald-700 focus-within:ring-emerald-700 py-12 px-4 text-4xl text-slate-500 hover:cursor-pointer hover:text-emerald-700 hover:border-emerald-700",
-                        className
+                        'w-full flex items-center justify-center rounded-lg border-2 border-dotted border-slate-400 focus-within:border-emerald-700 focus-within:ring-emerald-700 py-12 px-4 text-4xl text-slate-500 hover:cursor-pointer hover:text-emerald-700 hover:border-emerald-700',
+                        className,
                     )}
                 >
                     <div className="flex flex-col items-center space-y-2">
@@ -93,7 +97,9 @@ export default function DishForm({ dish, className }: DishFormProps) {
                             className="mt-1 flex w-full rounded-none border-r-0 rounded-tl-lg rounded-bl-lg"
                             onChange={(e) => setData('preparation_time', Number(e.target.value))}
                         />
-                        <span className="w-24 p-3 rounded-tr-lg rounded-br-lg border-r border-t border-b border-slate-400">Minuten</span>
+                        <span className="w-24 p-3 rounded-tr-lg rounded-br-lg border-r border-t border-b border-slate-400">
+                            Minuten
+                        </span>
                     </div>
                     <InputError message={errors.preparation_time} className="mt-2" />
                 </div>
@@ -120,8 +126,18 @@ export default function DishForm({ dish, className }: DishFormProps) {
                             <SelectValue placeholder="Schwierigkeitsgrad" />
                         </SelectTrigger>
                         <SelectContent className="bg-white">
-                            {['einfach','normal','mittel','fortgeschritten','zeitaufwendig','expert','schwer'].map(d => (
-                                <SelectItem key={d} value={d}>{d}</SelectItem>
+                            {[
+                                'einfach',
+                                'normal',
+                                'mittel',
+                                'fortgeschritten',
+                                'zeitaufwendig',
+                                'expert',
+                                'schwer',
+                            ].map((d) => (
+                                <SelectItem key={d} value={d}>
+                                    {d}
+                                </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -174,7 +190,8 @@ export default function DishForm({ dish, className }: DishFormProps) {
             {/* Submit */}
             <div className="w-full my-4 flex items-center justify-end">
                 <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                    {dish ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />} {dish ? 'Bearbeiten' : 'Erstellen'}
+                    {dish ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
+                    {dish ? 'Bearbeiten' : 'Erstellen'}
                 </Button>
             </div>
         </form>

@@ -7,7 +7,7 @@ export default function Frontpage({ auth }: PageProps<{ auth: { user: any } }>) 
         <>
             <Head title="Startseite" />
             <FullWidthLayout title="Startseite">
-                <div className="flex flex-row justify-between items-center gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-6 justify-between items-center gap-3">
                     <h1 className="text-3xl font-oswald">Oswald</h1>
                     <h1 className="text-3xl font-open-sans">Open Sans</h1>
                     <h1 className="text-3xl font-roboto-condensed">Roboto Condensed</h1>

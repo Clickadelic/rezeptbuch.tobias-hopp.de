@@ -14,3 +14,9 @@ export function toHumanDate(date: Date | string) {
         new Date(date),
     );
 }
+
+export function getAssetPath(path: string) {
+    const assetPath = new URL(path, import.meta.url).href;
+
+    return assetPath;
+}

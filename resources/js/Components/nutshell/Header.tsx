@@ -15,9 +15,9 @@ import { RxAvatar } from 'react-icons/rx';
 import { Button } from '@/Components/ui/button';
 import { Link } from '@inertiajs/react';
 import { GoPlus } from 'react-icons/go';
-import { RiDashboardHorizontalLine } from "react-icons/ri";
-import { RiAccountPinBoxLine } from "react-icons/ri";
-import { BiExit } from "react-icons/bi";
+import { RiDashboardHorizontalLine } from 'react-icons/ri';
+import { RiAccountPinBoxLine } from 'react-icons/ri';
+import { BiExit } from 'react-icons/bi';
 /**
  * The application header.
  *
@@ -113,9 +113,20 @@ const Header = () => {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href="/dashboard" className="flex gap-2"><RiDashboardHorizontalLine className="mt-[3px] size-4" />Dashboard</Dropdown.Link>
-                                        <Dropdown.Link href="/profile" className="flex gap-2"><RiAccountPinBoxLine className="mt-[3px] size-4" />Profil</Dropdown.Link>
-                                        <Dropdown.Link href="/logout" method="post" as="button" className="flex gap-2 hover:cursor-pointer">
+                                        <Dropdown.Link href="/dashboard" className="flex gap-2">
+                                            <RiDashboardHorizontalLine className="mt-[3px] size-4" />
+                                            Dashboard
+                                        </Dropdown.Link>
+                                        <Dropdown.Link href="/profile" className="flex gap-2">
+                                            <RiAccountPinBoxLine className="mt-[3px] size-4" />
+                                            Profil
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href="/logout"
+                                            method="post"
+                                            as="button"
+                                            className="flex gap-2 hover:cursor-pointer"
+                                        >
                                             <BiExit className="mt-[3px] size-4" />
                                             Log Out
                                         </Dropdown.Link>

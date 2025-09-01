@@ -8,9 +8,7 @@ export default function Ingredients() {
     return (
         <>
             <Head title="Details" />
-            <NoSidebarsLayout title="Details">
-                Show Zutat
-            </NoSidebarsLayout>
+            <NoSidebarsLayout title="Details">Show Zutat</NoSidebarsLayout>
         </>
     );
 }

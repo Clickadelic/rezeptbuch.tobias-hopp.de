@@ -26,7 +26,7 @@ export default function Footer() {
                         <div>
                             <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary">
                                 <GrNavigate className="mt-1" />
-                                Navigation
+                                <span className="font-medium font-oswald">Navigation</span>
                             </h2>
                             <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
                                 <li>
@@ -74,7 +74,7 @@ export default function Footer() {
                         <div>
                             <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary">
                                 <FaQ className="mt-1" />
-                                Weiteres
+                                <span className="font-medium font-oswald">Weiteres</span>
                             </h2>
                             <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
                                 <li>
@@ -120,7 +120,7 @@ export default function Footer() {
                         <div>
                             <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary">
                                 <IoIosRibbon className="mt-1" />
-                                100% Qualit&auml;t
+                                <span className="font-medium font-oswald">100% Qualit&auml;t</span>
                             </h2>
                             <p className="mb-6 sm:mb-1">
                                 Alle Gerichte wurden selbstverständlich vorher von mir gekocht,
@@ -131,7 +131,7 @@ export default function Footer() {
                         <div>
                             <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary">
                                 <TbMailHeart className="mt-1" />
-                                Newsletter
+                                <span className="font-medium font-oswald">Newsletter</span>
                             </h2>
                             <p className="mb-6">
                                 Bleib' auf dem Laufenden, wenn es Neuigkeiten zu meinem Rezeptbuch

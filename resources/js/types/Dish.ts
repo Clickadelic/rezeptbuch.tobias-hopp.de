@@ -15,4 +15,4 @@ export type Dish = {
     createdAt?: string;
     updatedAt?: string;
     deletedAt?: string;
-}
+};

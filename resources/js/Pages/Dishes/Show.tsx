@@ -27,8 +27,6 @@ export default function Show({ dish }: ShowDishProps) {
                         <MdOutlineStarPurple500 className="size-5 text-yellow-500" />
                     </div>
                     <div className="flex flex-row space-x-2 ml-2">
-                        {/* <p className="text-slate-500">{props.auth.user.name}</p>    TODO: Author */}
-                        {/* <p className="text-slate-500">{dish.created_at}</p>    TODO: Created At */}
                         <p className="text-slate-500">User Id: {dish.user_id}</p>
                     </div>
                 </div>

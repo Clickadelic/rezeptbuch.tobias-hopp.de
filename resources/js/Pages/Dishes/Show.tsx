@@ -1,18 +1,25 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import { MdOutlineStarPurple500 } from 'react-icons/md';
 
 import { Dish } from '@/types/Dish';
+import { assetPath } from '@/lib/utils';
 
 interface ShowDishProps {
     dish: Dish;
 }
 
+/**
+ * Displays a single dish with its details.
+ *
+ * @param {ShowDishProps} props
+ * @prop {Dish} dish - The dish to display.
+ *
+ * @returns {JSX.Element}
+ */
 export default function Show({ dish }: ShowDishProps) {
-    const { props } = usePage();
-
     return (
         <>
             <Head title="Gericht Details" />
@@ -34,7 +41,7 @@ export default function Show({ dish }: ShowDishProps) {
                     <p>{dish.description}</p>
                 </div>
                 <img
-                    src={`../uploads/dishes/${dish.image}`}
+                    src={assetPath('dishes', dish.image)}
                     alt={dish.name}
                     title={dish.name}
                     className="rounded-xl aspect-video border border-slate-200"

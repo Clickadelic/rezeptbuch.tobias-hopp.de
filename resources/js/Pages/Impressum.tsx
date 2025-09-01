@@ -1,11 +1,18 @@
 import { Head } from '@inertiajs/react';
-import { PageProps } from '@/types';
 
 import TwoSidebarsLayout from '@/Layouts/TwoSidebarsLayout';
 import LeftSidebar from '@/Components/sidebars/LeftSidebar';
 import RightSidebar from '@/Components/sidebars/RightSidebar';
 
-export default function Impressum({ auth }: PageProps<{ auth: { user: any } }>) {
+
+/**
+ * The Impressum page.
+ *
+ * This page displays the legal information about the website.
+ *
+ * @returns The Impressum page.
+ */
+export default function Impressum() {
     return (
         <>
             <Head title="Impressum" />
@@ -33,7 +40,6 @@ export default function Impressum({ auth }: PageProps<{ auth: { user: any } }>) 
                         </a>
                     </li>
                 </ul>
-
                 <h3 className="my-5 font-medium text-lg">
                     Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
                 </h3>
@@ -43,8 +49,6 @@ export default function Impressum({ auth }: PageProps<{ auth: { user: any } }>) 
                     <li>56566 Neuwied</li>
                     <li>Deutschland</li>
                 </ul>
-
-
                 <h3 className="my-5 font-medium text-lg">
                     Haftung für Inhalte
                 </h3>

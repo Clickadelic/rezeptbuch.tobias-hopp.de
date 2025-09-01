@@ -17,10 +17,11 @@ class Dish extends Model
 
      use Sluggable;
 
+     public $incrementing = false;
+
      protected $primaryKey = 'id';
      protected $keyType = 'string';
 
-     
      protected $fillable = [
           'id',
           'name',
@@ -39,10 +40,6 @@ class Dish extends Model
           'rating' => 'integer',
           'difficulty' => Difficulty::class
      ];
-
-
-     public $incrementing = false;
-
 
     /**
      * Boot the model.
@@ -65,11 +62,6 @@ class Dish extends Model
                     'source' => 'name'
                ]
           ];
-     }
-
-     public function getImageUrlAttribute(): ?string
-     {
-          return $this->image ? asset('uploads/dishes' . $this->image) : null;
      }
 
      public function user()

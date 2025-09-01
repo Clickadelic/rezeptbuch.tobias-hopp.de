@@ -6,8 +6,6 @@ import TextInput from '@/Components/TextInput';
 import { Textarea } from '@/Components/ui/textarea';
 import { Button } from '@/Components/ui/button';
 
-import { Progress } from "@/Components/ui/progress"
-
 import {
     Select,
     SelectContent,
@@ -21,12 +19,24 @@ import { cn, assetPath } from '@/lib/utils';
 
 import { Dish } from '@/types/Dish';
 import { Difficulty } from '@/types/Difficulty';
-import { GoTrash } from "react-icons/go";
+
 interface DishFormProps {
     dish?: Dish;
     className?: string;
 }
 
+    /**
+     * @description
+     * A form to create or update a dish. If no dish is provided, a new dish
+     * will be created. If a dish is provided, the form will be prefilled with
+     * the data of the dish. The form will be submitted to the dishes.store or
+     * dishes.update route accordingly.
+     *
+     * @param {Dish} [dish] - The dish to be edited or created. If not provided,
+     * a new dish will be created.
+     * @param {string} [className] - The class name to be applied to the form.
+     * @returns {JSX.Element} - The form component.
+     */
 export default function DishForm({ dish, className }: DishFormProps) {
     const isEditing = Boolean(dish);
 

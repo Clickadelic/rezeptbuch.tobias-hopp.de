@@ -10,6 +10,12 @@ export function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Formats a given date string or Date object to a human-readable date string
+ * in the format "DD.MM.YYYY, HH:mm".
+ * @param date Date string or Date object to format
+ * @returns Formatted date string in German locale
+ */
 export function toHumanDate(date: Date | string) {
     return new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short' }).format(
         new Date(date),

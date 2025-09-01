@@ -16,6 +16,7 @@ import { MdOutlineEdit } from 'react-icons/md';
 import { BiDish } from 'react-icons/bi';
 
 import { Dish } from '@/types/Dish';
+import { assetPath } from '@/lib/utils';
 
 interface DishCardProps {
     dish: Dish;
@@ -44,7 +45,7 @@ export default function DishCard({ dish }: DishCardProps) {
                     >
                         {dish.image ? (
                             <img
-                                src={`uploads/dishes/${dish.image}`}
+                                src={assetPath('dishes', dish.image)}
                                 alt={dish.name}
                                 className="w-full h-full scale-105"
                             />

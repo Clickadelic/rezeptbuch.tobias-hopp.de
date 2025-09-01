@@ -1,5 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
-import { get } from 'http';
+
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -14,4 +14,20 @@ export function toHumanDate(date: Date | string) {
     return new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short' }).format(
         new Date(date),
     );
+}
+
+/**
+ * Gibt den vollständigen URL-Pfad zu einem Bild zurück.
+ * @param folder Name des Upload-Ordners, z.B. "dishes", "cocktails"
+ * @param image Dateiname des Bildes
+ * @returns Vollständige URL oder Fallback-Pfad
+ */
+export function assetPath(folder: string, image?: string | null): string {
+  if (!image) {
+    return "/uploads/dishes/placeholder-dish.webp"; // Platzhalter, wenn kein Bild
+  }
+
+  const baseUrl = import.meta.env.VITE_APP_URL ?? window.location.origin;
+
+  return `${baseUrl.replace(/\/+$/, "")}/uploads/${folder}/${image.replace(/^\/+/, "")}`;
 }

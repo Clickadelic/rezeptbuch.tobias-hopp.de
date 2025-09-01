@@ -7,7 +7,7 @@ export type Dish = {
     slug?: string;
     punchline?: string;
     description?: string;
-    image?: null;
+    image?: string | null;
     rating?: number;
     preparation_time?: number;
     difficulty?: Difficulty;

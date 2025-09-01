@@ -3,8 +3,9 @@ import { PageProps } from '@/types';
 
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components//sidebars/DishesSidebar';
-import DishCard from '../../Components/cards/DishCard';
+import DishCard from '../../Components/reusables/cards/DishCard';
 import { Dish } from '@/types/Dish';
+
 export default function Gerichte() {
     const { props } = usePage();
     const { dishes } = props;

@@ -1,10 +1,24 @@
 import { useForm, router } from '@inertiajs/react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/Components/ui/alert-dialog";
 
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import { Textarea } from '@/Components/ui/textarea';
 import { Button } from '@/Components/ui/button';
+
+import { Progress } from "@/Components/ui/progress"
+
 import {
     Select,
     SelectContent,
@@ -14,12 +28,11 @@ import {
 } from '@/Components/ui/select';
 
 import { GoPlus, GoPencil } from 'react-icons/go';
-import { cn } from '@/lib/utils';
+import { cn, assetPath } from '@/lib/utils';
 
 import { Dish } from '@/types/Dish';
 import { Difficulty } from '@/types/Difficulty';
-
-
+import { GoTrash } from "react-icons/go";
 interface DishFormProps {
     dish?: Dish;
     className?: string;
@@ -41,7 +54,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
         preparation_time: Number(dish?.preparation_time ?? 0),
     });
 
-    function submit(e: React.FormEvent<HTMLFormElement>) {
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Post wird direkt verwendet
         post(route('dishes.store'), {
@@ -50,7 +63,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
         console.log(data);
     }
 
-    function update(e: React.FormEvent<HTMLFormElement>) {
+    function onUpdate(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Router versendet post request getarnt als put _method
         router.post(route('dishes.update', { dish: data.id }), {
@@ -61,15 +74,18 @@ export default function DishForm({ dish, className }: DishFormProps) {
     }
 
     return (
+        <>
         <form
-            onSubmit={isEditing ? update : submit}
+            onSubmit={isEditing ? onUpdate : onSubmit}
             className={cn('flex flex-col justify-between items-center space-y-3', className)}
         >
             {/* Image Preview */}
             <div className="w-full">
                 <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
                 {dish?.image && (
-                    <img src={URL.createObjectURL(dish.image)} alt="Preview" />
+                    <span className="text-sm text-slate-500">
+                        {assetPath(dish.image)}
+                    </span>
                 )}
             </div>
 
@@ -221,5 +237,6 @@ export default function DishForm({ dish, className }: DishFormProps) {
                 </Button>
             </div>
         </form>
+        </>
     );
 }

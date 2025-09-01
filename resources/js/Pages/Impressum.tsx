@@ -14,17 +14,15 @@ export default function Impressum({ auth }: PageProps<{ auth: { user: any } }>) 
                 leftSidebar={<LeftSidebar />}
                 rightSidebar={<RightSidebar />}
             >
-                <h3 className="my-5">
-                    <strong>Angaben gemäß § 5 TMG:</strong>
+                <h3 className="my-5 font-medium text-lg">
+                    Angaben gemäß §5 Telemediengesetz:
                 </h3>
-                <ul className="space-y-1 my-3 font-roboto">
+                <ul className="space-y-1 my-3">
                     <li>Tobias Hopp</li>
                     <li>Oberer Markenweg 70</li>
                     <li>56566 Neuwied</li>
                     <li>Deutschland</li>
-                    <li>
-                        <strong>Kontakt:</strong>
-                    </li>
+                    <li className="font-medium">Kontakt:</li>
                     <li>
                         <a
                             href="mailto:mail@tobias-hopp.de"
@@ -36,20 +34,20 @@ export default function Impressum({ auth }: PageProps<{ auth: { user: any } }>) 
                     </li>
                 </ul>
 
-                <h3 className="my-5">
-                    <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong>
+                <h3 className="my-5 font-medium text-lg">
+                    Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
                 </h3>
-                <p>
-                    Tobias Hopp
-                    <br />
-                    Beispielstraße 12
-                    <br />
-                    12345 Musterstadt
-                </p>
+                <ul>
+                    <li>Tobias Hopp</li>
+                    <li>Oberer Markenweg 70</li>
+                    <li>56566 Neuwied</li>
+                    <li>Deutschland</li>
+                </ul>
 
-                <p>
-                    <strong>Haftung für Inhalte</strong>
-                </p>
+
+                <h3 className="my-5 font-medium text-lg">
+                    Haftung für Inhalte
+                </h3>
                 <p>
                     Als Diensteanbieter bin ich gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen
                     Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin
@@ -64,20 +62,16 @@ export default function Impressum({ auth }: PageProps<{ auth: { user: any } }>) 
                     möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werde ich diese
                     Inhalte umgehend entfernen.
                 </p>
-
-                <p>
-                    <strong>Haftung für Links</strong>
-                </p>
+                <h3 className="my-5 font-medium text-lg">Haftung für Links</h3>
                 <p>
                     Mein Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich
                     keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine
                     Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
                     Anbieter oder Betreiber der Seiten verantwortlich.
                 </p>
-
-                <p>
-                    <strong>Urheberrecht</strong>
-                </p>
+                <h3 className="my-5 font-medium text-lg">
+                    Urherberrechte
+                </h3>
                 <p>
                     Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
                     unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,

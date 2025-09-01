@@ -14,7 +14,7 @@ import {
 
 import { GoPlus, GoPencil } from 'react-icons/go';
 
-import Ingredient from '@/types/Ingredient';
+import Ingredient from '@/interfaces/Ingredient';
 
 import { cn } from '@/lib/utils';
 

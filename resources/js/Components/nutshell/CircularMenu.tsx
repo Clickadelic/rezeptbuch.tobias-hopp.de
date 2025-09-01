@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
-import { BsApp } from 'react-icons/bs';
-import { FiPlus } from 'react-icons/fi';
+
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/Components/ui/tooltip';
+
 import { ResponsiveDialog } from '@/Components/reusables/ResponsiveDialog';
-import { cn } from '@/lib/utils';
-import { LiaCocktailSolid } from 'react-icons/lia';
-import { BsJournalBookmark } from 'react-icons/bs';
+
 import { TbSalt } from 'react-icons/tb';
+import { FiPlus } from 'react-icons/fi';
+import { BsJournalBookmark } from 'react-icons/bs';
+import { LiaCocktailSolid } from 'react-icons/lia';
+
+import { cn } from '@/lib/utils';
+
 import DishForm from '@/Components/forms/DishForm';
-import IngredientForm from '../forms/IngredientForm';
 import CocktailForm from '../forms/CocktailForm';
+import IngredientForm from '../forms/IngredientForm';
+
 export function CircularMenu() {
     const [showCircularMenu, setShowCircularMenu] = useState(false);
     const [isCocktailDialogOpen, setCocktailDialogOpen] = useState(false);
@@ -71,7 +76,7 @@ export function CircularMenu() {
                     </Tooltip>
                 </TooltipProvider>
                 <ResponsiveDialog
-                    icon={<BsApp />}
+                    icon={<LiaCocktailSolid />}
                     title="Cocktail hinzufügen"
                     description="Füge einen Cocktail hinzu"
                     editTitle="Cocktail bearbeiten"

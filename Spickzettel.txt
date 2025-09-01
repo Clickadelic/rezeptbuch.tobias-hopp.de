@@ -1,2 +1,3 @@
 1) Models und Tables immer Plural bennen
-2) 
+Image resizer
+2) composer require intervention/image

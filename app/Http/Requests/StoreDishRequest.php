@@ -23,9 +23,9 @@ class StoreDishRequest extends FormRequest
             'rating' => ['nullable', 'integer', 'min:0', 'max:5'],
             'difficulty' => ['required', new Enum(Difficulty::class)],
             
-            'image' => $this->isMethod('post')
+            /* 'image' => $this->isMethod('post')
                 ? ['required','image','mimes:jpg,jpeg,png,webp,gif','max:2048']
-                : ['nullable','image','mimes:jpg,jpeg,png,webp,gif','max:2048'],
+                : ['nullable','image','mimes:jpg,jpeg,png,webp,gif','max:2048'], */
 
         ];
     }

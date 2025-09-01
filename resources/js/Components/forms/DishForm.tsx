@@ -1,5 +1,5 @@
 import { useForm, router } from '@inertiajs/react';
-import { useState } from 'react';
+
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
@@ -17,8 +17,8 @@ import { GoPlus, GoPencil } from 'react-icons/go';
 import { cn } from '@/lib/utils';
 
 import { Dish } from '@/types/Dish';
-
 import { Difficulty } from '@/types/Difficulty';
+
 
 interface DishFormProps {
     dish?: Dish;
@@ -28,14 +28,14 @@ interface DishFormProps {
 export default function DishForm({ dish, className }: DishFormProps) {
     const isEditing = Boolean(dish);
 
-    // TODO <Dish> as useForm<Dish>
-    const { data, setData, post, put, processing, errors } = useForm({
+    // TODO: <Dish> as useForm<Dish>
+    const { data, setData, post, put, processing, errors, progress } = useForm({
         id: dish?.id ?? null,
         name: dish?.name ?? '',
         slug: dish?.slug ?? '',
         punchline: dish?.punchline ?? '',
         description: dish?.description ?? '',
-        image: dish?.image ?? null,
+        image: null as File | null,
         difficulty: dish?.difficulty ?? Difficulty.EASY,
         rating: Number(dish?.rating ?? 0),
         preparation_time: Number(dish?.preparation_time ?? 0),
@@ -66,13 +66,17 @@ export default function DishForm({ dish, className }: DishFormProps) {
             className={cn('flex flex-col justify-between items-center space-y-3', className)}
         >
             {/* Image Preview */}
-            {dish?.image && !data.image && (
-                <img src={dish.image} alt="Preview" className="mt-2 max-h-40 rounded border" />
-            )}
+            <div className="w-full">
+                <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
+                {dish?.image && (
+                    <img src={URL.createObjectURL(dish.image)} alt="Preview" />
+                )}
+            </div>
 
             {/* Upload */}
             <div className="w-full">
                 <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
+
                 <label
                     htmlFor="image"
                     className={cn(
@@ -83,21 +87,28 @@ export default function DishForm({ dish, className }: DishFormProps) {
                     <div className="flex flex-col items-center space-y-2">
                         <GoPlus />
                         <span className="text-sm">Bild auswählen</span>
-                    </div>
+                    </div> 
+
+
                     <input
-                        id="image"
                         type="file"
-                        accept="image/*"
                         className="hidden"
-                        name="image"
-                        //@ts-ignore
-                        onChange={(e) => setData('image', e.target.files?.[0])}
+                        id="image"
+                        accept="image/*"
                         disabled={processing}
+                        onChange={(e) => setData("image", e.target.files?.[0] ?? null)}
                     />
+                    {progress && (
+                        <div className="w-full my-2 bg-slate-200 h-5 rounded-lg">
+                            <progress value={progress.percentage} max="100">
+                                {progress.percentage}%
+                            </progress>
+                        </div>
+                    )}
                 </label>
                 <InputError message={errors.image} className="mt-2" />
             </div>
-
+            
             {/* Zahlenfelder */}
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
@@ -125,10 +136,9 @@ export default function DishForm({ dish, className }: DishFormProps) {
                     <TextInput
                         id="rating"
                         type="number"
-                        min={0}
+                        min={2}
                         step={1}
                         max={5}
-                        placeholder="0"
                         value={data.rating}
                         className="mt-1 flex w-full"
                         onChange={(e) => setData('rating', Number(e.target.value))}
@@ -139,28 +149,21 @@ export default function DishForm({ dish, className }: DishFormProps) {
                     <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
                     <Select
                         name="difficulty"
-                        value={data.difficulty ?? Difficulty.EASY}
-                        onValueChange={(val) => setData('difficulty', val as Difficulty)}
-                    >
-                        <SelectTrigger
-                            className="w-full mt-1 py-6 border-slate-200 shadow-none bg-white"
-                            id="difficulty"
+                        value={data.difficulty || undefined}
+                        onValueChange={(val) => setData("difficulty", val as Difficulty)}
                         >
+                        <SelectTrigger className="w-full mt-1 py-6 border-slate-200 shadow-none bg-white">
                             <SelectValue placeholder="Schwierigkeitsgrad" />
                         </SelectTrigger>
                         <SelectContent className="bg-white p-3">
                             {[
-                                { value: 'EASY', label: 'einfach' },
-                                { value: 'MEDIUM', label: 'mittel' },
-                                { value: 'HARD', label: 'schwer' },
+                            { value: "EASY", label: "einfach" },
+                            { value: "MEDIUM", label: "mittel" },
+                            { value: "HARD", label: "schwer" },
                             ].map((d) => (
-                                <SelectItem
-                                    key={d.value}
-                                    value={d.value}
-                                    className="bg-white lowercase"
-                                >
-                                    {d.label}
-                                </SelectItem>
+                            <SelectItem key={d.value} value={d.value} className="bg-white">
+                                {d.label}
+                            </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -190,7 +193,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
                     id="punchline"
                     type="text"
                     value={data.punchline}
-                    placeholder="z.B. lecker und frisch"
+                    placeholder="z.B. Mediterran und frisch"
                     className="mt-1 flex w-full"
                     onChange={(e) => setData('punchline', e.target.value)}
                 />
@@ -203,7 +206,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
                 <Textarea
                     value={data.description}
                     className="rounded-lg border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4"
-                    placeholder="Man nehme..."
+                    placeholder="z.B. Schnell und lecker für die ganze Familie..."
                     rows={5}
                     onChange={(e) => setData('description', e.target.value)}
                 />

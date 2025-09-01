@@ -57,7 +57,7 @@ export default function NoSidebarsLayout({ title, children }: NoSidebarsLayoutPr
                 <BreadcrumbNav />
             </div>
             <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4">
-                <main className="py-4 col-start-2 col-span-3">
+                <main className="pt-4 pb-10 col-start-2 col-span-3">
                     {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
                     {children}
                 </main>

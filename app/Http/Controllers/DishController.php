@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Dish;
 use App\Enums\Difficulty;
 use App\Http\Requests\StoreDishRequest;
-
+ 
 class DishController extends Controller
 {
     public function index()
@@ -30,7 +33,6 @@ class DishController extends Controller
     public function show($slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
-        $dish['user'] = $dish->user;
         return Inertia::render('Dishes/Show', compact('dish'));
     }
 
@@ -42,7 +44,11 @@ class DishController extends Controller
         if ($request->hasFile('image')) {
             $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(public_path('uploads/dishes'), $filename);
+            // $img = Image::make($image)->resize(600, null, function ($c) {
+            //     $c->aspectRatio();
+            // });
             $data['image'] = $filename; // nur Dateiname speichern
+            // $img->save(storage_path('app/public/recipes/'.$image->hashName()));
         }
 
         $data['slug'] = str($data['name'])->slug('-', 'de', ['@' => 'de']);
@@ -67,6 +73,7 @@ class DishController extends Controller
     {
         return Inertia::render('Dishes/Edit', [
             'dish' => $dish
+            // Type Enum mitsenden für select Feld
         ]);
     }
 

@@ -161,10 +161,6 @@ export default function Footer() {
                     </div>
                     <div className="flex flex-row justify-center items-center border-t border-t-stone-500 pt-6 mt-12">
                         <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">
-                            <li>Toby's Kochbuch</li>
-                            <li className="hidden sm:inline-block">&middot;</li>
-                            <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}</li>
-                            <li className="hidden sm:inline-block">&middot;</li>
                             <li>
                                 <Link
                                     href="/impressum"
@@ -174,6 +170,10 @@ export default function Footer() {
                                     Impressum
                                 </Link>
                             </li>
+                            <li className="hidden sm:inline-block">&middot;</li>
+                            <li>Toby's Rezeptbuch</li>
+                            <li className="hidden sm:inline-block">&middot;</li>
+                            <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}.</li>
                         </ul>
                     </div>
                 </footer>

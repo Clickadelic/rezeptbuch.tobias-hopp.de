@@ -23,11 +23,11 @@ export function toHumanDate(date: Date | string) {
  * @returns Vollständige URL oder Fallback-Pfad
  */
 export function assetPath(folder: string, image?: string | null): string {
-  if (!image) {
-    return "/uploads/dishes/placeholder-dish.webp"; // Platzhalter, wenn kein Bild
-  }
+    if (!image) {
+        return "/uploads/dishes/Placeholder-Dish.png"; // Platzhalter, wenn kein Bild
+    }
 
-  const baseUrl = import.meta.env.VITE_APP_URL ?? window.location.origin;
+    const baseUrl = import.meta.env.VITE_APP_URL ?? window.location.origin;
 
-  return `${baseUrl.replace(/\/+$/, "")}/uploads/${folder}/${image.replace(/^\/+/, "")}`;
+    return `${baseUrl.replace(/\/+$/, "")}/uploads/${folder}/${image.replace(/^\/+/, "")}`;
 }

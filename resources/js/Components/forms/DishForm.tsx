@@ -1,15 +1,4 @@
 import { useForm, router } from '@inertiajs/react';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/Components/ui/alert-dialog";
 
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -84,7 +73,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
                 <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
                 {dish?.image && (
                     <span className="text-sm text-slate-500">
-                        {assetPath(dish.image)}
+                        <img src={assetPath("dishes", dish.image)} className="rounded-xl size-full" alt={dish.name} />
                     </span>
                 )}
             </div>

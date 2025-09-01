@@ -18,9 +18,7 @@ export default function Dashboard() {
                         <h2 className="text-lg font-medium">Cocktails 17</h2>
                         <p className="text-sm text-slate-500">Du hast insgesamt 23 Rezepte</p>
                     </div>
-                    <div className="row-span-3 row-start-3 bg-slate-200 rounded-xl">
-                        4
-                    </div>
+                    <div className="row-span-3 row-start-3 bg-slate-200 rounded-xl">4</div>
                     <div className="p-2 col-span-3 row-span-2 row-start-3 bg-slate-200 rounded-xl">
                         5
                     </div>
@@ -30,9 +28,7 @@ export default function Dashboard() {
                     <div className="p-2 col-span-2 col-start-2 row-start-5 bg-slate-200 rounded-xl">
                         7
                     </div>
-                    <div className="p-2 col-start-4 row-start-5 bg-slate-200 rounded-xl">
-                        8
-                    </div>
+                    <div className="p-2 col-start-4 row-start-5 bg-slate-200 rounded-xl">8</div>
                 </div>
             </FullWidthLayout>
         </>

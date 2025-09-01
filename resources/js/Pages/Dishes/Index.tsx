@@ -3,7 +3,7 @@ import { PageProps } from '@/types';
 
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import DishesSidebar from '@/Components//sidebars/DishesSidebar';
-import DishCard from './DishCard';
+import DishCard from '../../Components/cards/DishCard';
 import { Dish } from '@/types/Dish';
 export default function Gerichte() {
     const { props } = usePage();

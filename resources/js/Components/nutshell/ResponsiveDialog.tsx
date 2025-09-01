@@ -19,18 +19,14 @@ import {
 
 interface ResponsiveDialogProps {
     icon: React.ReactNode;
-
     title: string;
     editTitle?: string;
-
     description?: string;
     editDescription?: string;
-
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     isEditMode?: boolean;
     setIsEditMode?: React.Dispatch<React.SetStateAction<boolean>>;
-
     children: React.ReactNode;
 }
 

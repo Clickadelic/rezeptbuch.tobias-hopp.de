@@ -15,7 +15,7 @@ import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { BiDish } from 'react-icons/bi';
 
-import { Dish} from '@/types/Dish';
+import { Dish } from '@/types/Dish';
 
 interface DishCardProps {
     dish: Dish;
@@ -52,7 +52,7 @@ export default function DishCard({ dish }: DishCardProps) {
                             <BiDish className="size-10" />
                         )}
                         {user && (
-                           <DropdownMenu>
+                            <DropdownMenu>
                                 <DropdownMenuTrigger
                                     className="absolute top-2 right-2 text-white p-1 hover:text-slate-300 hover:cursor-pointer shadow-transparent"
                                     onClick={(e) => e.stopPropagation()}
@@ -78,14 +78,13 @@ export default function DishCard({ dish }: DishCardProps) {
                                         Löschen
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
-                            </DropdownMenu> 
+                            </DropdownMenu>
                         )}
-                        
                     </CardHeader>
 
                     {/* Titel */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-emerald-700 leading-snug">
-                        <h4 className="text-sm text-slate-500 font-newsreader line-clamp-1">
+                        <h4 className="text-slate-500 font-newsreader line-clamp-1">
                             {dish.punchline}
                         </h4>
                         <h3 className="group-hover:text-emerald-700 line-clamp-2 text-slate-800 min-h-[calc(3rem+2px)]">

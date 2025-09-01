@@ -26,7 +26,6 @@ interface DishFormProps {
 }
 
 export default function DishForm({ dish, className }: DishFormProps) {
-
     const isEditing = Boolean(dish);
 
     // TODO <Dish> as useForm<Dish>
@@ -42,7 +41,6 @@ export default function DishForm({ dish, className }: DishFormProps) {
         preparation_time: Number(dish?.preparation_time ?? 0),
     });
 
-
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Post wird direkt verwendet
@@ -51,7 +49,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
         });
         console.log(data);
     }
-    
+
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Router versendet post request getarnt als put _method
@@ -92,7 +90,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
                         accept="image/*"
                         className="hidden"
                         name="image"
-                        //@ts-ignore 
+                        //@ts-ignore
                         onChange={(e) => setData('image', e.target.files?.[0])}
                         disabled={processing}
                     />
@@ -104,7 +102,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <InputLabel htmlFor="preparation-time" value="Zubereitungszeit" />
-                    <div className="flex flex-row items-end justify-end rounded w-[170px]">
+                    <div className="flex flex-row items-end justify-end rounded">
                         <TextInput
                             id="preparation-time"
                             type="number"
@@ -140,27 +138,32 @@ export default function DishForm({ dish, className }: DishFormProps) {
                 <div>
                     <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
                     <Select
+                        name="difficulty"
                         value={data.difficulty ?? Difficulty.EASY}
- 
-                        onValueChange={(val) => setData("difficulty", val as Difficulty)}
+                        onValueChange={(val) => setData('difficulty', val as Difficulty)}
                     >
-                    <SelectTrigger>
-                        <SelectValue placeholder="Schwierigkeitsgrad" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                        {[
-                        { value: "EASY", label: "EASY" },
-                        { value: "MEDIUM", label: "MEDIUM" },
-                        { value: "HARD", label: "HARD" },
-                        ].map((d) => (
-                        <SelectItem key={d.value} value={d.value}>
-                            {d.label}
-                        </SelectItem>
-                        ))}
-                    </SelectContent>
+                        <SelectTrigger
+                            className="w-full mt-1 py-6 border-slate-200 shadow-none bg-white"
+                            id="difficulty"
+                        >
+                            <SelectValue placeholder="Schwierigkeitsgrad" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white p-3">
+                            {[
+                                { value: 'EASY', label: 'einfach' },
+                                { value: 'MEDIUM', label: 'mittel' },
+                                { value: 'HARD', label: 'schwer' },
+                            ].map((d) => (
+                                <SelectItem
+                                    key={d.value}
+                                    value={d.value}
+                                    className="bg-white lowercase"
+                                >
+                                    {d.label}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
                     </Select>
-
-
                     <InputError message={errors.difficulty} className="mt-2" />
                 </div>
             </div>
@@ -196,7 +199,7 @@ export default function DishForm({ dish, className }: DishFormProps) {
 
             {/* Beschreibung */}
             <div className="w-full">
-                <InputLabel htmlFor="description" value="Beschreibung" />
+                <InputLabel htmlFor="description" value="Beschreibung" className="mb-1" />
                 <Textarea
                     value={data.description}
                     className="rounded-lg border border-slate-400 focus:border-emerald-700 focus:ring-emerald-700 py-3 px-4"

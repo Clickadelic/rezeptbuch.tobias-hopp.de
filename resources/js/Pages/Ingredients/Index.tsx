@@ -8,9 +8,7 @@ export default function Ingredients() {
     return (
         <>
             <Head title="Zutaten" />
-            <NoSidebarsLayout title="Zutaten">
-                Liste mit Zutaten
-            </NoSidebarsLayout>
+            <NoSidebarsLayout title="Zutaten">Liste mit Zutaten</NoSidebarsLayout>
         </>
     );
 }

@@ -15,4 +15,3 @@ export function toHumanDate(date: Date | string) {
         new Date(date),
     );
 }
-

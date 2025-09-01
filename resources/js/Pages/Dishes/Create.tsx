@@ -3,7 +3,7 @@ import { Head, usePage } from '@inertiajs/react';
 import { useEffect } from 'react';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import { toast } from 'sonner';
-import DishForm from '@/Pages/Dishes/DishForm';
+import DishForm from '@/Components/forms/DishForm';
 
 export default function CreateDish() {
     const { flash } = usePage().props as { flash: { success?: string } };

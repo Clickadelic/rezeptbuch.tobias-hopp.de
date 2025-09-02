@@ -2,7 +2,7 @@ import FullWidthLayout from '@/Layouts/FullWidthLayout';
 import { Head } from '@inertiajs/react';
 
 
-// import BentoGrid from '@/Components/reusables/BentoGrid';
+import BentoGrid from '@/Components/reusables/BentoGrid';
 
 
 /**
@@ -18,8 +18,7 @@ export default function Frontpage() {
         <>
             <Head title="Willkommen" />
             <FullWidthLayout title="Willkommen">
-                asd
-                {/* <BentoGrid /> */}
+                <BentoGrid />
             </FullWidthLayout>
         </>
     );

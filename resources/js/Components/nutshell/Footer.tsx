@@ -24,7 +24,7 @@ export default function Footer() {
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div>
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center md:justify-start">
+                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <GrNavigate className="mt-1" />
                                 <span className="font-medium font-oswald">Navigation</span>
                             </h2>
@@ -72,7 +72,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center md:justify-start">
+                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <FaQ className="mt-1" />
                                 <span className="font-medium font-oswald">Weiteres</span>
                             </h2>
@@ -117,23 +117,23 @@ export default function Footer() {
                                 </li>
                             </ul>
                         </div>
-                        <div>
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center md:justify-start">
+                        <div className="mx-auto max-w-72 sm:w-full">
+                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <IoIosRibbon className="mt-1" />
                                 <span className="font-medium font-oswald">100% Qualit&auml;t</span>
                             </h2>
-                            <p className="mb-6 sm:mb-1">
+                            <p className="mb-8 sm:mb-1">
                                 Alle Gerichte wurden selbstverständlich vorher von mir gekocht,
                                 probiert und verfeinert.
                             </p>
                             <img src={badgeSrc} alt="100% Qualit&auml;t" className="mx-auto" />
                         </div>
-                        <div>
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center md:justify-start">
+                        <div className="mx-auto max-w-72 sm:w-full">
+                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <TbMailHeart className="mt-1" />
                                 <span className="font-medium font-oswald">Newsletter</span>
                             </h2>
-                            <p className="mb-6">
+                            <p className="mb-8">
                                 Bleib' auf dem Laufenden, wenn es Neuigkeiten zu meinem Rezeptbuch
                                 gibt.
                             </p>

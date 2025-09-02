@@ -59,16 +59,20 @@ export default function DishForm({ dish, className }: DishFormProps) {
         post(route('dishes.store'), {
             forceFormData: true,
         });
+        
         console.log(data);
     }
 
     function onUpdate(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Router versendet post request getarnt als put _method
-        router.post(route('dishes.update', { dish: data.id }), {
+        router.post(route('dishes.update', {
+                dish: data.id
+            }), {
             _method: 'put',
             forceFormData: true,
         });
+        
         console.log(data);
     }
 
@@ -76,53 +80,65 @@ export default function DishForm({ dish, className }: DishFormProps) {
         <>
         <form
             onSubmit={isEditing ? onUpdate : onSubmit}
+
             className={cn('flex flex-col justify-between items-center space-y-3', className)}
         >
             {/* Image Preview */}
-            <div className="w-full">
-                <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
-                {dish?.image && (
-                    <span className="text-sm text-slate-500">
+            {dish?.image && (
+                <div className="w-full">
+                    <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
+                    <div className="text-sm text-slate-500">
                         <img src={assetPath("dishes", dish.image)} className="rounded-xl size-full" alt={dish.name} />
-                    </span>
-                )}
-            </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Image Pick */}
+            {data?.image && (
+                <div className="w-full">
+                    <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
+                    <div className="text-sm text-slate-500">
+                        <img src={URL.createObjectURL(data.image)} className="rounded-xl size-full" alt={data.name} />
+                    </div>
+                </div>
+            )}
 
             {/* Upload */}
-            <div className="w-full">
-                <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
+            {!data?.image && (
+                <div className="w-full">
+                    <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
+                    <label
+                        htmlFor="image"
+                        className={cn(
+                            'w-full flex items-center justify-center rounded-lg border-2 border-dotted border-slate-400 focus-within:border-emerald-700 focus-within:ring-emerald-700 py-12 px-4 text-4xl text-slate-500 hover:cursor-pointer hover:text-emerald-700 hover:border-emerald-700',
+                            className,
+                        )}
+                    >
+                        <div className="flex flex-col items-center space-y-2">
+                            <GoPlus />
+                            <span className="text-sm">Bild auswählen</span>
+                        </div> 
 
-                <label
-                    htmlFor="image"
-                    className={cn(
-                        'w-full flex items-center justify-center rounded-lg border-2 border-dotted border-slate-400 focus-within:border-emerald-700 focus-within:ring-emerald-700 py-12 px-4 text-4xl text-slate-500 hover:cursor-pointer hover:text-emerald-700 hover:border-emerald-700',
-                        className,
-                    )}
-                >
-                    <div className="flex flex-col items-center space-y-2">
-                        <GoPlus />
-                        <span className="text-sm">Bild auswählen</span>
-                    </div> 
 
-
-                    <input
-                        type="file"
-                        className="hidden"
-                        id="image"
-                        accept="image/*"
-                        disabled={processing}
-                        onChange={(e) => setData("image", e.target.files?.[0] ?? null)}
-                    />
-                    {progress && (
-                        <div className="w-full my-2 bg-slate-200 h-5 rounded-lg">
-                            <progress value={progress.percentage} max="100">
-                                {progress.percentage}%
-                            </progress>
-                        </div>
-                    )}
-                </label>
-                <InputError message={errors.image} className="mt-2" />
-            </div>
+                        <input
+                            type="file"
+                            className="hidden"
+                            id="image"
+                            accept="image/*"
+                            disabled={processing}
+                            onChange={(e) => setData("image", e.target.files?.[0] ?? null)}
+                        />
+                        {progress && (
+                            <div className="w-full my-2 bg-slate-200 h-5 rounded-lg">
+                                <progress value={progress.percentage} max="100">
+                                    {progress.percentage}%
+                                </progress>
+                            </div>
+                        )}
+                    </label>
+                    <InputError message={errors.image} className="mt-2" />
+                </div>
+            )}
             
             {/* Zahlenfelder */}
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">

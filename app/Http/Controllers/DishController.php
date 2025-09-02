@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Dish;
 use App\Enums\Difficulty;
 use App\Http\Requests\StoreDishRequest;
- 
+
 class DishController extends Controller
 {
     public function index()
@@ -43,15 +43,13 @@ class DishController extends Controller
         // Bild speichern
         if ($request->hasFile('image')) {
             $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+            
             $request->file('image')->move(public_path('uploads/dishes'), $filename);
-            // $img = Image::make($image)->resize(600, null, function ($c) {
-            //     $c->aspectRatio();
-            // });
             $data['image'] = $filename; // nur Dateiname speichern
-            // $img->save(storage_path('app/public/recipes/'.$image->hashName()));
+            
         }
 
-        $data['slug'] = str($data['name'])->slug('-', 'de', ['@' => 'de']);
+        $data['slug'] = str($data['name'])->slug('-', 'de', ['@' => 'at']);
 
         // Aktuellen User automatisch zuweisen
         $data['user_id'] = Auth::id();

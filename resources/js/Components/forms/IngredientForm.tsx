@@ -22,24 +22,24 @@ import Ingredient from '@/interfaces/Ingredient';
 import { Difficulty } from '@/types/Difficulty';
 
 interface IngredientFormProps {
-    inredient?: Ingredient;
+    ingredient?: Ingredient;
     className?: string;
 }
 
-export default function IngredientForm({ inredient, className }: IngredientFormProps) {
-    const isEditing = Boolean(inredient);
+export default function IngredientForm({ ingredient, className }: IngredientFormProps) {
+    const isEditing = Boolean(ingredient);
 
     // TODO <Dish> as useForm<Dish>
     const { data, setData, post, put, processing, errors } = useForm({
-        id: inredient?.id ?? null,
-        name: inredient?.name ?? '',
-        // slug: dish?.slug ?? '',
+        id: ingredient?.id ?? null,
+        name: ingredient?.name ?? '',
+        // slug: ingredient?.slug ?? '',
     });
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Post wird direkt verwendet
-        post(route('inredients.store'), {
+        post(route('ingredients.store'), {
             forceFormData: true,
         });
         console.log(data);
@@ -48,7 +48,7 @@ export default function IngredientForm({ inredient, className }: IngredientFormP
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // Router versendet post request getarnt als put _method
-        router.post(route('inredients.update', { inredient: data.id }), {
+        router.post(route('ingredients.update', { ingredient: data.id }), {
             _method: 'put',
             forceFormData: true,
         });
@@ -148,8 +148,8 @@ export default function IngredientForm({ inredient, className }: IngredientFormP
             {/* Submit */}
             <div className="w-full my-4 flex items-center justify-end">
                 <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                    {dish ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
-                    {dish ? 'Bearbeiten' : 'Erstellen'}
+                    {ingredient ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
+                    {ingredient ? 'Bearbeiten' : 'Erstellen'}
                 </Button>
             </div>
         </form>

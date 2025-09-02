@@ -17,11 +17,13 @@ import CocktailForm from '../forms/CocktailForm';
 import IngredientForm from '../forms/IngredientForm';
 
 export function CircularMenu() {
+    const { auth } = usePage().props;
+    
     const [showCircularMenu, setShowCircularMenu] = useState(false);
+
     const [isCocktailDialogOpen, setCocktailDialogOpen] = useState(false);
     const [isDishDialogOpen, setDishDialogOpen] = useState(false);
     const [isIngredientDialogOpen, setIngredientDialogOpen] = useState(false);
-    const { auth } = usePage().props;
 
     if (!auth.user) return null;
 

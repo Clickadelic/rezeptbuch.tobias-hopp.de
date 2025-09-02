@@ -28,6 +28,11 @@ export default function Gerichte() {
                     {dishes.map((dish: Dish) => (
                         <DishCard key={dish.id} dish={dish} />
                     ))}
+                    {dishes.length === 0 && (
+                        <p className="text-xl my-12 col-span-5 text-center text-slate-600">
+                            Lege das erste Gericht an.
+                        </p>
+                    )}
                 </ul>
             </SidebarLeftLayout>
         </>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\CocktailController;
 use App\Http\Controllers\IngredientController;
 
 Route::get('/', function () {
@@ -25,6 +26,16 @@ Route::prefix('/gerichte')->group(function () {
     Route::get('/{slug}', [DishController::class, 'show'])->name('dishes.show');
 });
 
+Route::prefix('/cocktails')->group(function () {
+    Route::get('/', [CocktailController::class, 'index'])->name('cocktails.index');
+    Route::get('/neuer-cocktail', [CocktailController::class, 'create'])->middleware(['auth', 'verified'])->name('cocktails.create');
+    Route::post('/', [CocktailController::class, 'store'])->middleware(['auth', 'verified'])->name('cocktails.store');
+    Route::get('/{ingredient}/edit', [CocktailController::class, 'edit'])->middleware(['auth', 'verified'])->name('cocktails.edit');
+    Route::put('/{ingredient}', [CocktailController::class, 'update'])->middleware(['auth', 'verified'])->name('cocktails.update');
+    Route::delete('/{ingredient}', [CocktailController::class, 'destroy'])->middleware(['auth', 'verified'])->name('cocktails.destroy');
+    Route::get('/{ingredient}', [CocktailController::class, 'show'])->name('cocktails.show');
+});
+
 Route::prefix('/zutaten')->group(function () {
     Route::get('/', [IngredientController::class, 'index'])->name('ingredients.index');
     Route::get('/neue-zutat', [IngredientController::class, 'create'])->middleware(['auth', 'verified'])->name('ingredients.create');
@@ -33,13 +44,6 @@ Route::prefix('/zutaten')->group(function () {
     Route::put('/{ingredient}', [IngredientController::class, 'update'])->middleware(['auth', 'verified'])->name('ingredients.update');
     Route::delete('/{ingredient}', [IngredientController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ingredients.destroy');
     Route::get('/{ingredient}', [IngredientController::class, 'show'])->name('ingredients.show');
-});
-
-Route::get('/cocktails', function () {
-    return Inertia::render('Cocktails/Index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
 });
 
 Route::get('/impressum', function () {

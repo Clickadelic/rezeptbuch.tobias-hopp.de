@@ -1,7 +1,8 @@
 import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
 import { Head } from '@inertiajs/react';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
-import DishForm from '@/Components/forms/DishForm';
+import CocktailForm from '@/Components/forms/CocktailForm';
+
 
 /**
  * Page for creating a new dish.
@@ -10,12 +11,12 @@ import DishForm from '@/Components/forms/DishForm';
  *
  * @returns The page element.
  */
-export default function DishesCreate() {
+export default function CocktailsCreate() {
 
     return (
-        <SidebarLeftLayout title="Neues Gericht" sidebar={<DishesSidebar />}>
-            <Head title="Neues Gericht" />
-            <DishForm ingredients={[]} />
+        <SidebarLeftLayout title="Neuer Cocktail" sidebar={<DishesSidebar />}>
+            <Head title="Neuer Cocktail" />
+            <CocktailForm />
         </SidebarLeftLayout>
     );
 }

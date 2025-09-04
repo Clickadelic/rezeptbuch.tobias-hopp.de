@@ -18,7 +18,7 @@ interface EditDishProps {
  * @param {Dish} props.dish The dish to edit.
  * @returns {JSX.Element} The page element.
  */
-export default function EditDish({ dish }: EditDishProps) {
+export default function DishesEdit({ dish }: EditDishProps) {
     return (
         <>
             <Head title="Gericht bearbeiten" />

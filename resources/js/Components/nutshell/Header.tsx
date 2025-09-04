@@ -18,13 +18,21 @@ import { GoPlus } from 'react-icons/go';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
+
+import MegaMenu from '@/Components/nutshell/MegaMenu';
 /**
  * The application header.
  *
  * @return {JSX.Element} The header.
  */
 
-const Header = () => {
+import { Dish } from '@/types/Dish';
+
+interface HeaderProps {
+    dish?: Dish;
+}
+
+const Header = ({ dish }: HeaderProps = {}) => {
     const user = usePage().props.auth.user;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -72,20 +80,56 @@ const Header = () => {
                             >
                                 Zutaten
                             </NavLink>
+                            {/* <MegaMenu /> */}
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center">
                         {user ? (
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
-                                <Button variant="primary" asChild>
-                                    <Link
-                                        href="/gerichte/neues-gericht"
-                                        className="flex items-center gap-2 font-medium"
-                                    >
-                                        <GoPlus className="size-4" />
-                                        Neu
-                                    </Link>
-                                </Button>
+                                
+                                <Dropdown>
+                                    <Dropdown.Trigger>
+                                        <span className="inline-flex rounded-md">
+                                            <Button
+                                                type="button"
+                                                className="border border-emerald-700 font-medium rounded inline-flex items-center rounded-m bg-white px-3 py-2 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
+                                            >
+                                                <GoPlus className="size-4 hidden md:flex" />
+                                                Hinzufügen
+                                                <svg
+                                                    className="-me-0.5 ms-2 h-4 w-4"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </Button>
+                                        </span>
+                                    </Dropdown.Trigger>
+
+                                    <Dropdown.Content>
+                                        <Dropdown.Link href="/gerichte/neues-gericht" className="flex gap-2">
+                                            <BsJournalBookmark className="mt-[3px] size-4" />
+                                            Neues Gericht
+                                        </Dropdown.Link>
+                                        <Dropdown.Link href="/cocktails/neuer-cocktail" className="flex gap-2">
+                                            <LiaCocktailSolid className="mt-[3px] size-4" />
+                                            Neuer Cocktail
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href="/zutaten/neue-zutat"
+                                            className="flex gap-2 hover:cursor-pointer"
+                                        >
+                                            <TbSalt className="mt-[3px] size-4" />
+                                            Neue Zutat
+                                        </Dropdown.Link>
+                                    </Dropdown.Content>
+                                </Dropdown>
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">

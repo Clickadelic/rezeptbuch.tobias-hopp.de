@@ -7,7 +7,6 @@ export type Cocktail = {
     slug?: string;
     punchline?: string;
     description?: string;
-    image?: string | null;
     rating?: number;
     preparation_time?: number;
     difficulty?: Difficulty;

@@ -13,8 +13,8 @@ import { LiaCocktailSolid } from 'react-icons/lia';
 import { cn } from '@/lib/utils';
 
 import DishForm from '@/Components/forms/DishForm';
-import CocktailForm from '../forms/CocktailForm';
-import IngredientForm from '../forms/IngredientForm';
+import CocktailForm from '@/Components/forms/CocktailForm';
+import IngredientForm from '@/Components/forms/IngredientForm';
 
 export function CircularMenu() {
     const { auth } = usePage().props;
@@ -59,7 +59,7 @@ export function CircularMenu() {
                     isOpen={isDishDialogOpen}
                     setIsOpen={setDishDialogOpen}
                 >
-                    <DishForm />
+                    <DishForm ingredients={[]} />
                 </ResponsiveDialog>
 
                 <TooltipProvider>

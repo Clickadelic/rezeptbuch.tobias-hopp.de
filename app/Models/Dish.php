@@ -31,7 +31,6 @@ class Dish extends Model
           'preparation_time',
           'rating',
           'difficulty',
-          'image',
           'user_id'
      ];
 
@@ -67,5 +66,12 @@ class Dish extends Model
      public function user()
      {
           return $this->belongsTo(User::class);
+     }
+
+     public function ingredients()
+     {
+          return $this->belongsToMany(Ingredient::class, 'dish_ingredient')
+                    ->withPivot('amount', 'unit')
+                    ->withTimestamps();
      }
 }

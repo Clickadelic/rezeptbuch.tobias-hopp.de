@@ -16,6 +16,7 @@ export default function RecipeSearch() {
                     <Button
                         type="submit"
                         className="bg-emerald-800 text-slate-100 rounded border-none px-3 py-2"
+                        aria-label="Suchen"
                     >
                         <RiSearchLine className="size-6" />
                     </Button>

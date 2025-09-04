@@ -4,17 +4,28 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+// use Illuminate\Support\Facades\Storage;
+// use Intervention\Image\Laravel\Facades\Image;
 
+// use Intervention\Image\ImageManager;
+// use Intervention\Image\Drivers\Gd\Driver;
+use App\Models\Ingredient;
+
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Dish;
 use App\Enums\Difficulty;
 use App\Http\Requests\StoreDishRequest;
-
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Support\Str;
 class DishController extends Controller
 {
+    /**
+     * Displays a list of all dishes.
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         $dishes = Dish::all();
@@ -29,8 +40,7 @@ class DishController extends Controller
         return Inertia::render('Dishes/Create');
     }
 
-    // TODO: Nach Typesafety fragen
-    public function show($slug)
+    public function show(String $slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
         return Inertia::render('Dishes/Show', compact('dish'));
@@ -38,62 +48,64 @@ class DishController extends Controller
 
     public function store(StoreDishRequest $request)
     {
-        $data = $request->validated();
+        // 1️⃣ Dish anlegen
+        $dish = Dish::create([
+            'id' => Str::uuid()->toString(),
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
+            'punchline' => $request->input('punchline'),
+            'description' => $request->input('description'),
+            'difficulty' => $request->input('difficulty'),
+            'rating' => $request->input('rating', 0),
+            'preparation_time' => $request->input('preparation_time', 0),
+            'user_id' => $request->user()->id,
+        ]);
 
-        // Bild speichern
-        if ($request->hasFile('image')) {
-            $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            
-            $request->file('image')->move(public_path('uploads/dishes'), $filename);
-            $data['image'] = $filename; // nur Dateiname speichern
-            
-        }
+        // 2️⃣ Zutaten aus Request verarbeiten
+        $dishIngredients = collect($request->input('dish_ingredients', []))
+            ->mapWithKeys(function ($item) {
+                $ingredientName = trim($item['ingredient_id']); // wenn es Text ist
+                $amount = $item['amount'] ?? null;
+                $unit = $item['unit'] ?? 'g';
 
-        $data['slug'] = str($data['name'])->slug('-', 'de', ['@' => 'at']);
+                // 2a️⃣ Prüfen, ob Zutat schon existiert
+                if (Str::isUuid($ingredientName)) {
+                    // schon bestehende Zutat per UUID
+                    $ingredient = Ingredient::find($ingredientName);
+                } else {
+                    // neue Zutat anlegen
+                    $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
+                }
 
-        // Aktuellen User automatisch zuweisen
-        $data['user_id'] = Auth::id();
+                return [$ingredient->id => ['amount' => $amount, 'unit' => $unit]];
+            })->toArray();
 
-        // Difficulty in Enum konvertieren
-        if (isset($data['difficulty'])) {
-            $data['difficulty'] = Difficulty::from($data['difficulty']);
-        }
+        // 3️⃣ Pivot-Tabelle syncen
+        $dish->ingredients()->sync($dishIngredients);
 
-        // Gericht erstellen
-        Dish::create($data);
-
-        return redirect()
-            ->route('dishes.index')
-            ->with('success', 'Gericht erstellt!');
+        return redirect()->route('dishes.index')
+            ->with('success', 'Gericht erfolgreich erstellt.');
     }
 
     public function edit(Dish $dish)
     {
         return Inertia::render('Dishes/Edit', [
             'dish' => $dish
-            // Type Enum mitsenden für select Feld
         ]);
     }
 
     public function update(StoreDishRequest $request, Dish $dish)
     {
-        $data = $request->validated();
+        $validated = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $filename = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('uploads/dishes'), $filename);
-            $data['image'] = $filename;
+        // Model updaten
+        $dish->update($validated);
 
-            if ($dish->image && file_exists(public_path('uploads/dishes/'.$dish->image))) {
-                unlink(public_path('uploads/dishes/'.$dish->image));
-            }
-        }
+        // Slug ggf. aktualisieren, wenn sich der Name geändert hat
+        $dish->refresh();
 
-        $dish->update($data);
-
-        return redirect()
-            ->route('dishes.index')
-            ->with('success', 'Gericht aktualisiert!');
+        return redirect()->route('dishes.show', $dish->slug)
+                        ->with('success', 'Gericht erfolgreich aktualisiert.');
     }
 
     public function destroy(Dish $dish)

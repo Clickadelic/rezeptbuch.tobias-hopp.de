@@ -78,17 +78,6 @@ export default function CocktailForm({ cocktail, className }: CocktailFormProps)
               onSubmit={isEditing ? onUpdate : onSubmit}
               className={cn('flex flex-col justify-between items-center space-y-3', className)}
           >
-              {/* Image Preview */}
-              {cocktail?.image && (
-                  <>
-                      <div className="w-full">
-                          <h3 className="block text-sm font-medium text-gray-700 mb-1">Vorschaubild</h3>
-                          <span className="text-sm text-slate-500">
-                              <img src={assetPath("dishes", cocktail.image)} className="rounded-xl size-full" alt={cocktail.name} />
-                          </span>
-                      </div>
-                  </>
-              )}
 
               {/* Upload */}
               <div className="w-full">
@@ -124,68 +113,6 @@ export default function CocktailForm({ cocktail, className }: CocktailFormProps)
                       )}
                   </label>
                   <InputError message={errors.image} className="mt-2" />
-              </div>
-              
-              {/* Zahlenfelder */}
-              <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                      <InputLabel htmlFor="preparation-time" value="Zubereitungszeit" />
-                      <div className="flex flex-row items-end justify-end rounded">
-                          <TextInput
-                              id="preparation-time"
-                              type="number"
-                              min={0}
-                              step={5}
-                              max={600}
-                              placeholder="0"
-                              value={data.preparation_time ?? 0}
-                              className="mt-1 flex w-full rounded-none border-r-0 rounded-tl-lg rounded-bl-lg"
-                              onChange={(e) => setData('preparation_time', Number(e.target.value))}
-                          />
-                          <span className="w-24 py-3 pr-3 rounded-tr-lg rounded-br-lg border-r border-t border-b border-slate-400">
-                              Minuten
-                          </span>
-                      </div>
-                      <InputError message={errors.preparation_time} className="mt-2" />
-                  </div>
-                  <div>
-                      <InputLabel htmlFor="rating" value="Bewertung" />
-                      <TextInput
-                          id="rating"
-                          type="number"
-                          min={2}
-                          step={1}
-                          max={5}
-                          value={data.rating}
-                          className="mt-1 flex w-full"
-                          onChange={(e) => setData('rating', Number(e.target.value))}
-                      />
-                      <InputError message={errors.rating} className="mt-2" />
-                  </div>
-                  <div>
-                      <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
-                      <Select
-                          name="difficulty"
-                          value={data.difficulty || undefined}
-                          onValueChange={(val) => setData("difficulty", val as Difficulty)}
-                          >
-                          <SelectTrigger className="w-full mt-1 py-6 border-slate-200 shadow-none bg-white">
-                              <SelectValue placeholder="Schwierigkeitsgrad" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-white p-3">
-                              {[
-                              { value: "EASY", label: "einfach" },
-                              { value: "MEDIUM", label: "mittel" },
-                              { value: "HARD", label: "schwer" },
-                              ].map((d) => (
-                              <SelectItem key={d.value} value={d.value} className="bg-white">
-                                  {d.label}
-                              </SelectItem>
-                              ))}
-                          </SelectContent>
-                      </Select>
-                      <InputError message={errors.difficulty} className="mt-2" />
-                  </div>
               </div>
 
               {/* Name */}
@@ -232,7 +159,7 @@ export default function CocktailForm({ cocktail, className }: CocktailFormProps)
 
               {/* Submit */}
               <div className="w-full my-4 flex items-center justify-end">
-                  <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+                  <Button variant="primary" size="lg" className="w-full hover:cursor-pointer" disabled={processing}>
                       {cocktail ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
                       {cocktail ? 'Bearbeiten' : 'Erstellen'}
                   </Button>

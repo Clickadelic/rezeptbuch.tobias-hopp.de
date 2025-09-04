@@ -117,7 +117,7 @@ export default function Footer() {
                                 </li>
                             </ul>
                         </div>
-                        <div className="mx-auto max-w-72 sm:w-full">
+                        <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <IoIosRibbon className="mt-1" />
                                 <span className="font-medium font-oswald">100% Qualit&auml;t</span>
@@ -128,7 +128,7 @@ export default function Footer() {
                             </p>
                             <img src={badgeSrc} alt="100% Qualit&auml;t" className="mx-auto" />
                         </div>
-                        <div className="mx-auto max-w-72 sm:w-full">
+                        <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <TbMailHeart className="mt-1" />
                                 <span className="font-medium font-oswald">Newsletter</span>

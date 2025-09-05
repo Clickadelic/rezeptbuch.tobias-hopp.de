@@ -4,7 +4,7 @@ import { PageProps } from '@/types';
 
 import RightSidebar from '@/Components/sidebars/RightSidebar';
 
-export default function Gerichte({ auth }: PageProps<{ auth: { user: any } }>) {
+export default function CocktailsIndex({ auth }: PageProps<{ auth: { user: any } }>) {
     return (
         <>
             <Head title="Cocktails" />

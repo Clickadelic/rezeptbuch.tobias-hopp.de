@@ -17,10 +17,11 @@ class Dish extends Model
 
      use Sluggable;
 
+     public $incrementing = false;
+
      protected $primaryKey = 'id';
      protected $keyType = 'string';
 
-     
      protected $fillable = [
           'id',
           'name',
@@ -30,7 +31,6 @@ class Dish extends Model
           'preparation_time',
           'rating',
           'difficulty',
-          'image',
           'user_id'
      ];
 
@@ -39,10 +39,6 @@ class Dish extends Model
           'rating' => 'integer',
           'difficulty' => Difficulty::class
      ];
-
-
-     public $incrementing = false;
-
 
     /**
      * Boot the model.
@@ -67,13 +63,16 @@ class Dish extends Model
           ];
      }
 
-     public function getImageUrlAttribute(): ?string
-     {
-          return $this->image ? asset('uploads/dishes' . $this->image) : null;
-     }
-
      public function user()
      {
           return $this->belongsTo(User::class);
+     }
+
+     public function ingredients()
+     {
+     return $this->belongsToMany(Ingredient::class, 'dish_ingredient')
+          ->using(DishIngredient::class) // Pivot Model
+          ->withPivot('quantity', 'unit')
+          ->withTimestamps();
      }
 }

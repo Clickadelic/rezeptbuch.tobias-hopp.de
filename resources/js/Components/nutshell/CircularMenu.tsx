@@ -1,24 +1,31 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
-import { BsApp } from 'react-icons/bs';
-import { FiPlus } from 'react-icons/fi';
+
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/Components/ui/tooltip';
+
 import { ResponsiveDialog } from '@/Components/reusables/ResponsiveDialog';
-import { cn } from '@/lib/utils';
-import { LiaCocktailSolid } from 'react-icons/lia';
-import { BsJournalBookmark } from 'react-icons/bs';
+
 import { TbSalt } from 'react-icons/tb';
+import { FiPlus } from 'react-icons/fi';
+import { BsJournalBookmark } from 'react-icons/bs';
+import { LiaCocktailSolid } from 'react-icons/lia';
+
+import { cn } from '@/lib/utils';
+
 import DishForm from '@/Components/forms/DishForm';
-import IngredientForm from '../forms/IngredientForm';
-import CocktailForm from '../forms/CocktailForm';
+import CocktailForm from '@/Components/forms/CocktailForm';
+import IngredientForm from '@/Components/forms/IngredientForm';
+
 export function CircularMenu() {
-    const [showCircularMenu, setShowCircularMenu] = useState(false);
-    const [isCocktailDialogOpen, setCocktailDialogOpen] = useState(false);
-    const [isDishDialogOpen, setDishDialogOpen] = useState(false);
-    const [isIngredientDialogOpen, setIngredientDialogOpen] = useState(false);
     const { auth } = usePage().props;
 
     if (!auth.user) return null;
+
+    const [showCircularMenu, setShowCircularMenu] = useState(false);
+
+    const [isCocktailDialogOpen, setCocktailDialogOpen] = useState(false);
+    const [isDishDialogOpen, setDishDialogOpen] = useState(false);
+    const [isIngredientDialogOpen, setIngredientDialogOpen] = useState(false);
 
     return (
         <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-12">
@@ -32,7 +39,7 @@ export function CircularMenu() {
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
                             <button
-                                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                                className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
                                 onClick={() => setDishDialogOpen(true)}
                             >
                                 <BsJournalBookmark />
@@ -52,14 +59,14 @@ export function CircularMenu() {
                     isOpen={isDishDialogOpen}
                     setIsOpen={setDishDialogOpen}
                 >
-                    <DishForm />
+                    <DishForm ingredients={[]} />
                 </ResponsiveDialog>
 
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
                             <button
-                                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                                className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
                                 onClick={() => setCocktailDialogOpen(true)}
                             >
                                 <LiaCocktailSolid />
@@ -71,7 +78,7 @@ export function CircularMenu() {
                     </Tooltip>
                 </TooltipProvider>
                 <ResponsiveDialog
-                    icon={<BsApp />}
+                    icon={<LiaCocktailSolid />}
                     title="Cocktail hinzufügen"
                     description="Füge einen Cocktail hinzu"
                     editTitle="Cocktail bearbeiten"
@@ -86,7 +93,7 @@ export function CircularMenu() {
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
                             <button
-                                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                                className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
                                 onClick={() => setIngredientDialogOpen(true)}
                             >
                                 <TbSalt />
@@ -117,7 +124,7 @@ export function CircularMenu() {
                         <button
                             aria-label="Neuen Inhalt anlegen"
                             onClick={() => setShowCircularMenu((prev) => !prev)}
-                            className="bg-emerald-700 hover:bg-emerald-700/90 hover:cursor-pointer text-white p-4 text-lg rounded-full transition shadow-lg"
+                            className="bg-primary hover:bg-primary/90 hover:cursor-pointer text-white p-4 text-lg rounded-full transition shadow-lg"
                         >
                             <FiPlus
                                 className={cn(

@@ -3,7 +3,7 @@ import { Head, usePage } from '@inertiajs/react';
 import { useEffect } from 'react';
 
 import { toast } from 'sonner';
-import IngredientForm from '@/Pages/Ingredients/IngredientForm';
+import IngredientForm from '@/Components/forms/IngredientForm';
 
 export default function CreateIngredient() {
     const { flash } = usePage().props as { flash: { success?: string } };

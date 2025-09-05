@@ -23,8 +23,6 @@ class StoreIngredientRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'amount' => 'required|numeric|min:0',
-            'unit' => 'required|string|max:255',
         ];
     }
 
@@ -32,8 +30,6 @@ class StoreIngredientRequest extends FormRequest
     {
         return [
             'name.required' => 'Ein Name ist erforderlich.',
-            'amount.required' => 'Eine Menge ist erforderlich.',
-            'unit.required' => 'Eine Einheit ist erforderlich.',
         ];
     }
 }

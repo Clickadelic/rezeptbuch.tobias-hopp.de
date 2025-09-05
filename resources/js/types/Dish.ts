@@ -1,5 +1,6 @@
 // types.ts
 import { Difficulty } from './Difficulty';
+import { Ingredient } from './Ingredient';
 
 export type Dish = {
     id?: string;
@@ -7,10 +8,10 @@ export type Dish = {
     slug?: string;
     punchline?: string;
     description?: string;
-    image?: string | null;
     rating?: number;
     preparation_time?: number;
     difficulty?: Difficulty;
+    ingredients?: Ingredient[]; // jetzt mit optionalem pivot
     user_id?: string;
     createdAt?: string;
     updatedAt?: string;

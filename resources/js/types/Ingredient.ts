@@ -1,10 +1,16 @@
-export default interface Ingredient {
+// types.ts
+export type DishIngredientPivot = {
+    ingredient_id?: string;
+    dish_id?: string;
+    quantity?: string | number;
+    unit?: string;
+};
+
+export type Ingredient = {
     id: string;
     name: string;
-    amount: number;
-    unit: string;
-    user_id?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    deletedAt?: string;
-}
+    pivot?: {
+        quantity: string;
+        unit: string;
+    };
+};

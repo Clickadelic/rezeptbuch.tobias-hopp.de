@@ -2,7 +2,7 @@ import AppLogo from '@/Components/nutshell/AppLogo';
 
 import { PropsWithChildren, ReactNode } from 'react';
 import { Toaster } from '@/Components/ui/sonner';
-
+import { ThemeProvider } from '@/Components/nutshell/ThemeProvider';
 interface AuthLayoutProps extends PropsWithChildren {
     children: ReactNode;
     title?: string;
@@ -23,7 +23,7 @@ interface AuthLayoutProps extends PropsWithChildren {
  */
 export default function AuthLayout({ title, subtitle, children }: AuthLayoutProps) {
     return (
-        <>
+        <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
             <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
                 <main className="mx-auto container">
                     <div className="m-6 sm:max-w-md lg:max-w-lg sm:mx-auto bg-white/30 p-2 rounded-xl shadow backdrop-blur">
@@ -67,6 +67,6 @@ export default function AuthLayout({ title, subtitle, children }: AuthLayoutProp
                 </p>
             </div>
             <Toaster position="bottom-right" />
-        </>
+        </ThemeProvider>
     );
 }

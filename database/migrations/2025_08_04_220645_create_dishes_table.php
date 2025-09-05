@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->default('')->unique();
             $table->string('punchline')->nullable();
             $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            // $table->string('image')->nullable();
             $table->enum('difficulty', ['EASY', 'MEDIUM', 'HARD'])->default('EASY'); // <-- enum statt string
             $table->unsignedInteger('rating')->default(0);
             $table->unsignedInteger('preparation_time')->default(0);

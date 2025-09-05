@@ -13,10 +13,11 @@ export default function IngredientsIndex() {
         <>
             <Head title="Zutaten" />
             <SidebarLeftLayout title="Zutaten" sidebar={<LeftSidebar />}>
-                
                 <ul className="flex flex-row gap-2">
                     {ingredients.map((ingredient: Ingredient) => (
-                        <li key={ingredient.id}><Badge variant="primary">{ingredient.name}</Badge></li>
+                        <li key={ingredient.id}>
+                            <Badge variant="primary">{ingredient.name}</Badge>
+                        </li>
                     ))}
                 </ul>
                 {ingredients.length === 0 && (
@@ -24,7 +25,6 @@ export default function IngredientsIndex() {
                         Lege Deine erste Zutat an.
                     </p>
                 )}
-
             </SidebarLeftLayout>
         </>
     );

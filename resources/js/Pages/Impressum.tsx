@@ -4,7 +4,6 @@ import TwoSidebarsLayout from '@/Layouts/TwoSidebarsLayout';
 import LeftSidebar from '@/Components/sidebars/LeftSidebar';
 import RightSidebar from '@/Components/sidebars/RightSidebar';
 
-
 /**
  * The Impressum page.
  *
@@ -21,9 +20,7 @@ export default function Impressum() {
                 leftSidebar={<LeftSidebar />}
                 rightSidebar={<RightSidebar />}
             >
-                <h3 className="my-5 font-medium text-lg">
-                    Angaben gemäß §5 Telemediengesetz:
-                </h3>
+                <h3 className="my-5 font-medium text-lg">Angaben gemäß §5 Telemediengesetz:</h3>
                 <ul className="space-y-1 my-3">
                     <li>Tobias Hopp</li>
                     <li>Oberer Markenweg 70</li>
@@ -49,9 +46,7 @@ export default function Impressum() {
                     <li>56566 Neuwied</li>
                     <li>Deutschland</li>
                 </ul>
-                <h3 className="my-5 font-medium text-lg">
-                    Haftung für Inhalte
-                </h3>
+                <h3 className="my-5 font-medium text-lg">Haftung für Inhalte</h3>
                 <p>
                     Als Diensteanbieter bin ich gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen
                     Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin
@@ -73,9 +68,7 @@ export default function Impressum() {
                     Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
                     Anbieter oder Betreiber der Seiten verantwortlich.
                 </p>
-                <h3 className="my-5 font-medium text-lg">
-                    Urherberrechte
-                </h3>
+                <h3 className="my-5 font-medium text-lg">Urherberrechte</h3>
                 <p>
                     Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
                     unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,

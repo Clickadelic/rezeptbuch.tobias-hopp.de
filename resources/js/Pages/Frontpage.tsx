@@ -1,9 +1,7 @@
 import FullWidthLayout from '@/Layouts/FullWidthLayout';
 import { Head } from '@inertiajs/react';
 
-
 import BentoGrid from '@/Components/reusables/BentoGrid';
-
 
 /**
  * The frontpage of the application.

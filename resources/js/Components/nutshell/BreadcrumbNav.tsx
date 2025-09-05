@@ -21,22 +21,22 @@ const BreadcrumbNav = () => {
 
     return (
         <div className="mx-auto container px-6">
-            <ul className="flex items-center gap-2 text-sm text-slate-700 border-b border-slate-300 py-3">
+            <ul className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 border-b border-slate-300 py-3">
                 {/* Home */}
                 <li>
-                    <Link href="/" className="hover:text-emerald-700">
+                    <Link href="/" className="hover:text-primary">
                         <RiHomeLine className="inline mb-1" />
                     </Link>
                 </li>
 
                 {crumbs.map((crumb, idx) => (
                     <li key={idx} className="flex items-center">
-                        <ChevronRight className="w-4 h-4 mr-2 text-slate-300" />
+                        <ChevronRight className="w-4 h-4 mr-2 text-slate-600 dark:text-slate-200" />
                         {/* Letztes Segment nicht als Link */}
                         {idx === crumbs.length - 1 ? (
-                            <span className="text-slate-700">{crumb.name}</span>
+                            <span className="asd">{crumb.name}</span>
                         ) : (
-                            <Link href={crumb.path} className="hover:text-emerald-700">
+                            <Link href={crumb.path} className="hover:text-primary">
                                 {crumb.name}
                             </Link>
                         )}

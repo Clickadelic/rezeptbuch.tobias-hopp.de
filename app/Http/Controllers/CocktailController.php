@@ -47,7 +47,7 @@ class CocktailController extends Controller
         $cocktail = Cocktail::create($validated);
 
         return redirect()->route('dishes.index')
-            ->with('success', 'Gericht erfolgreich erstellt.');
+            ->with('success', 'Cocktail erfolgreich erstellt.');
     }
 
     public function edit(Dish $dish)
@@ -68,7 +68,7 @@ class CocktailController extends Controller
         $cocktail->refresh();
 
         return redirect()->route('cocktails.show', $cocktail->slug)
-                        ->with('success', 'Gericht erfolgreich aktualisiert.');
+                        ->with('success', 'Cocktail erfolgreich aktualisiert.');
     }
 
     public function destroy(Cocktail $cocktail)

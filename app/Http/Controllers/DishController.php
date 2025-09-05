@@ -35,17 +35,40 @@ class DishController extends Controller
         ]);
     }
 
+    /**
+     * Shows a form to create a new dish.
+     *
+     * @return \Inertia\Response
+     */
     public function create()
     {
-        return Inertia::render('Dishes/Create');
+        return Inertia::render('Dishes/Create', [
+            'ingredients' => Ingredient::all(), // oder ->select('id', 'name')
+        ]);
     }
 
+    /**
+     * Displays a single dish.
+     *
+     * @param  string  $slug
+     * @return \Inertia\Response
+     */
     public function show(String $slug)
-    {
+    {   
         $dish = Dish::where('slug', $slug)->firstOrFail();
-        return Inertia::render('Dishes/Show', compact('dish'));
+        $dish->load(['ingredients' => function ($query) {
+            $query->withPivot(['quantity', 'unit']);
+        }]);
+        return inertia('Dishes/Show', compact('dish'));
     }
 
+    /**
+     * Store a newly created dish in storage.
+     *
+     * @param  \App\Http\Requests\StoreDishRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    
     public function store(StoreDishRequest $request)
     {
         // 1️⃣ Dish anlegen
@@ -65,7 +88,7 @@ class DishController extends Controller
         $dishIngredients = collect($request->input('dish_ingredients', []))
             ->mapWithKeys(function ($item) {
                 $ingredientName = trim($item['ingredient_id']); // wenn es Text ist
-                $amount = $item['amount'] ?? null;
+                $quantity = $item['quantity'] ?? null;
                 $unit = $item['unit'] ?? 'g';
 
                 // 2a️⃣ Prüfen, ob Zutat schon existiert
@@ -77,7 +100,7 @@ class DishController extends Controller
                     $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
                 }
 
-                return [$ingredient->id => ['amount' => $amount, 'unit' => $unit]];
+                return [$ingredient->id => ['quantity' => $quantity, 'unit' => $unit]];
             })->toArray();
 
         // 3️⃣ Pivot-Tabelle syncen
@@ -87,6 +110,12 @@ class DishController extends Controller
             ->with('success', 'Gericht erfolgreich erstellt.');
     }
 
+    /**
+     * Shows the edit form for a dish.
+     *
+     * @param  Dish  $dish
+     * @return \Inertia\Response
+     */
     public function edit(Dish $dish)
     {
         return Inertia::render('Dishes/Edit', [
@@ -94,6 +123,13 @@ class DishController extends Controller
         ]);
     }
 
+    /**
+     * Updates a dish in storage.
+     *
+     * @param  \App\Http\Requests\StoreDishRequest  $request
+     * @param  \App\Models\Dish  $dish
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(StoreDishRequest $request, Dish $dish)
     {
         $validated = $request->validated();
@@ -108,6 +144,14 @@ class DishController extends Controller
                         ->with('success', 'Gericht erfolgreich aktualisiert.');
     }
 
+    /**
+     * Removes the specified dish from storage.
+     *
+     * Also deletes the associated image (if it exists).
+     *
+     * @param  \App\Models\Dish  $dish
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Dish $dish)
     {
         // Bild löschen (falls vorhanden)

@@ -1,43 +1,40 @@
+import { useState } from 'react';
+import { usePage } from '@inertiajs/react';
+
 import AppLogo from '@/Components/nutshell/AppLogo';
 import NavLink from '@/Components/reusables/NavLink';
 import NavButton from '@/Components/reusables/NavButton';
 import ResponsiveNavLink from '@/Components/reusables/ResponsiveNavLink';
 import Dropdown from '@/Components/Dropdown';
+
+import { Button } from '@/Components/ui/button';
+import { ModeToggle } from '@/Components/nutshell/ModeToggle';
+
 import { BsHouse } from 'react-icons/bs';
-import { useState } from 'react';
-import { usePage } from '@inertiajs/react';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
 import { TbSalt } from 'react-icons/tb';
 import { RxAvatar } from 'react-icons/rx';
-import { Button } from '@/Components/ui/button';
-import { Link } from '@inertiajs/react';
 import { GoPlus } from 'react-icons/go';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 
-import MegaMenu from '@/Components/nutshell/MegaMenu';
 /**
  * The application header.
  *
  * @return {JSX.Element} The header.
  */
 
-import { Dish } from '@/types/Dish';
-
-interface HeaderProps {
-    dish?: Dish;
-}
-
-const Header = ({ dish }: HeaderProps = {}) => {
+const Header = () => {
     const user = usePage().props.auth.user;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+
     return (
-        <header className="bg-white shadow-lg">
+        <header className="bg-white dark:bg-slate-800 shadow-lg">
             <div className="mx-auto container px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
@@ -48,7 +45,7 @@ const Header = ({ dish }: HeaderProps = {}) => {
                             <NavLink
                                 href="/"
                                 active={window.location.pathname === '/'}
-                                className="py-4 font-medium"
+                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<BsHouse />}
                             >
                                 Start
@@ -59,7 +56,7 @@ const Header = ({ dish }: HeaderProps = {}) => {
                                     window.location.pathname === '/gerichte' ||
                                     window.location.pathname === '/gerichte/neues-gericht'
                                 }
-                                className="py-4 font-medium"
+                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<BsJournalBookmark />}
                             >
                                 Gerichte
@@ -67,7 +64,7 @@ const Header = ({ dish }: HeaderProps = {}) => {
                             <NavLink
                                 href="/cocktails"
                                 active={window.location.pathname === '/cocktails'}
-                                className="py-4 font-medium"
+                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<LiaCocktailSolid />}
                             >
                                 Cocktails
@@ -75,24 +72,22 @@ const Header = ({ dish }: HeaderProps = {}) => {
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname === '/zutaten'}
-                                className="py-4 font-medium"
+                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<TbSalt />}
                             >
                                 Zutaten
                             </NavLink>
-                            {/* <MegaMenu /> */}
                         </div>
                     </div>
-                    <div className="hidden sm:ms-2 sm:flex sm:items-center">
+                    <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
                         {user ? (
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
-                                
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
                                             <Button
                                                 type="button"
-                                                className="border border-emerald-700 font-medium rounded inline-flex items-center rounded-m bg-white px-3 py-2 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
+                                                className="border border-primary font-medium rounded inline-flex items-center rounded-m bg-white dark:bg-slate-800 px-3 py-2 text-slate-800 dark:text-slate-200 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
                                             >
                                                 <GoPlus className="size-4 hidden md:flex" />
                                                 Hinzufügen
@@ -113,11 +108,17 @@ const Header = ({ dish }: HeaderProps = {}) => {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href="/gerichte/neues-gericht" className="flex gap-2">
+                                        <Dropdown.Link
+                                            href="/gerichte/neues-gericht"
+                                            className="flex gap-2"
+                                        >
                                             <BsJournalBookmark className="mt-[3px] size-4" />
                                             Neues Gericht
                                         </Dropdown.Link>
-                                        <Dropdown.Link href="/cocktails/neuer-cocktail" className="flex gap-2">
+                                        <Dropdown.Link
+                                            href="/cocktails/neuer-cocktail"
+                                            className="flex gap-2"
+                                        >
                                             <LiaCocktailSolid className="mt-[3px] size-4" />
                                             Neuer Cocktail
                                         </Dropdown.Link>
@@ -135,11 +136,10 @@ const Header = ({ dish }: HeaderProps = {}) => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="font-medium inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
+                                                className="font-medium inline-flex items-center rounded border border-transparent bg-white px-2 py-1 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
                                             >
                                                 <RxAvatar className="size-4 hidden md:flex" />
                                                 {user.name}
-
                                                 <svg
                                                     className="-me-0.5 ms-2 h-4 w-4"
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +155,6 @@ const Header = ({ dish }: HeaderProps = {}) => {
                                             </button>
                                         </span>
                                     </Dropdown.Trigger>
-
                                     <Dropdown.Content>
                                         <Dropdown.Link href="/dashboard" className="flex gap-2">
                                             <RiDashboardHorizontalLine className="mt-[3px] size-4" />
@@ -181,20 +180,21 @@ const Header = ({ dish }: HeaderProps = {}) => {
                             <div className="space-x-1 sm:space-x-2 md:space-x-3">
                                 <NavButton
                                     href="/register"
-                                    className="text-slate-800 hover:text-slate-500 border border-emerald-600 "
+                                    className="text-slate-800 hover:text-slate-500 border border-primary "
                                     icon={<FiCheckCircle className="text-slate-800" />}
                                 >
                                     Registrierung
                                 </NavButton>
                                 <NavButton
                                     href="/login"
-                                    className="text-white border border-emerald-700 bg-emerald-700 hover:bg-emerald-600 hover:text-slate-200 hover:border-emerald-600"
+                                    className="text-white border border-primary bg-primary hover:bg-primary hover:text-slate-200 hover:border-emerald-600"
                                     icon={<BsDoorOpen />}
                                 >
                                     Login
                                 </NavButton>
                             </div>
                         )}
+                        <ModeToggle />
                     </div>
                     <div className="-me-2 flex items-center sm:hidden">
                         <button

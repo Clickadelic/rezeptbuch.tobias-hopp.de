@@ -1,13 +1,16 @@
 // types.ts
 export type DishIngredientPivot = {
-    amount?: string | number;
-    unit?: string;
     ingredient_id?: string;
     dish_id?: string;
+    quantity?: string | number;
+    unit?: string;
 };
 
 export type Ingredient = {
-    id?: string;
+    id: string;
     name: string;
-    pivot?: DishIngredientPivot; // <-- pivot optional hinzufügen
+    pivot?: {
+        quantity: string;
+        unit: string;
+    };
 };

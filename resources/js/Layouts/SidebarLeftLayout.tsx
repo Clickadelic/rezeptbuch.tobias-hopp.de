@@ -7,11 +7,11 @@ import Header from '@/Components/nutshell/Header';
 import RecipeSearch from '@/Components/nutshell/RecipeSearch';
 import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
 import Footer from '@/Components/nutshell/Footer';
-
-import { Toaster } from 'sonner';
-import { toast } from 'sonner';
 import CircularMenu from '@/Components/nutshell/CircularMenu';
 
+import { ThemeProvider } from '@/Components/nutshell/ThemeProvider';
+import { Toaster } from 'sonner';
+import { toast } from 'sonner';
 interface SidebarLeftLayoutProps extends PropsWithChildren {
     title?: string;
     sidebar?: React.ReactNode;
@@ -51,23 +51,25 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
     }, [flash]);
 
     return (
-        <div className="min-h-screen flex flex-col justify-between bg-white relative">
-            <div>
-                <Header />
-                <RecipeSearch />
-                <BreadcrumbNav />
+        <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
+            <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-slate-800 dark:text-slate-200 relative">
+                <div>
+                    <Header />
+                    <RecipeSearch />
+                    <BreadcrumbNav />
+                </div>
+                <div className="mx-auto container grow px-4 sm:px-3 lg:px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3 transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+                    {isDesktop && sidebar}
+                    <main className="pt-4 pb-10 col-span-4">
+                        {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
+                        {children}
+                    </main>
+                    {!isDesktop && sidebar}
+                </div>
+                <Footer />
+                <CircularMenu />
+                <Toaster position="bottom-right" />
             </div>
-            <div className="mx-auto container grow px-4 sm:px-3 lg:px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3 transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-                {isDesktop && sidebar}
-                <main className="pt-4 pb-10 col-span-4">
-                    {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
-                    {children}
-                </main>
-                {!isDesktop && sidebar}
-            </div>
-            <Footer />
-            <CircularMenu />
-            <Toaster position="bottom-right" />
-        </div>
+        </ThemeProvider>
     );
 }

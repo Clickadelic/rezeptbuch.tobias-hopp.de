@@ -70,8 +70,9 @@ class Dish extends Model
 
      public function ingredients()
      {
-          return $this->belongsToMany(Ingredient::class, 'dish_ingredient')
-                    ->withPivot('amount', 'unit')
-                    ->withTimestamps();
+     return $this->belongsToMany(Ingredient::class, 'dish_ingredient')
+          ->using(DishIngredient::class) // Pivot Model
+          ->withPivot('quantity', 'unit')
+          ->withTimestamps();
      }
 }

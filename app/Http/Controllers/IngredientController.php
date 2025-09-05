@@ -16,7 +16,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::all();
+        $ingredients = Ingredient::orderBy('name')->get();;
         return Inertia::render('Ingredients/Index', [
             'ingredients' => $ingredients,
         ]);
@@ -26,8 +26,10 @@ class IngredientController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        // Fetch all ingredients and send it to the view
         $ingredients = Ingredient::all();
+        
         return Inertia::render('Ingredients/Create', [
             'ingredients' => $ingredients,
         ]);
@@ -38,16 +40,13 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
 
         // Name normalisieren (alles klein, Trim)
-        $name = trim(strtolower($validated['name']));
+        $name = trim(strtolower($request['name']));
 
         // Prüfen ob Zutat schon existiert
         $ingredient = Ingredient::whereRaw('LOWER(name) = ?', [$name])->first();
-
+        
         if ($ingredient) {
             return redirect()->back()->with('error', 'Zutat ' . $name . ' existiert bereits!');
         }
@@ -72,7 +71,10 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        //
+        $ingredient = Ingredient::find($ingredient->id);
+        return Inertia::render('Ingredients/Edit', [
+            'ingredient' => $ingredient,
+        ]);
     }
 
     /**
@@ -80,7 +82,15 @@ class IngredientController extends Controller
      */
     public function update(StoreIngredientRequest $ingredient)
     {
-        //
+        // Name normalisieren (alles klein, Trim)
+        $ingredient = trim(strtolower($ingredient));
+
+        // Prüfen ob Zutat schon existiert
+        $ingredient = Ingredient::whereRaw('LOWER(name) = ?', [$ingredient])->first();
+        
+        if ($ingredient) {
+            return redirect()->back()->with('error', 'Zutat ' . $ingredient . ' existiert bereits!');
+        }
     }
 
     /**
@@ -88,6 +98,7 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
-        //
+        $ingredient->delete();
+        return redirect()->route('ingredients.index')->with('success', 'Zutat gelöscht!');
     }
 }

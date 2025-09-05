@@ -16,13 +16,14 @@ const buttonVariants = cva(
                 outline:
                     'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
                 primary:
-                    'bg-emerald-700 text-white shadow-sm hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
+                    'bg-primary text-white shadow-sm hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
                 danger: 'bg-rose-700 text-white shadow-sm hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2',
                 dangerOutline:
                     'bg-transparent border border-rose-700 text-rose-700 shadow-sm hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
                 secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
                 ghost: 'bg-transparent',
                 link: 'text-primary underline-offset-4 hover:underline',
+                flat: 'text-primary hover:text-secondary hover:text-primary shadow-0',
             },
             size: {
                 default: 'h-9 px-4 py-2',

@@ -15,10 +15,12 @@ import {
 } from '@/Components/ui/select';
 import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
+import { Slider } from '@/Components/ui/slider';
+
 
 interface DishIngredientData {
     ingredient_id: string;
-    amount: string;
+    quantity: string;
     unit: string;
 }
 
@@ -41,18 +43,19 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
         rating: Number(dish?.rating ?? 0),
         preparation_time: Number(dish?.preparation_time ?? 0),
         // ✅ sicherstellen, dass immer ein Array da ist
-        dish_ingredients: dish?.ingredients?.map(i => ({
-            ingredient_id: i.id!,
-            amount: i.pivot?.amount ?? '',
-            unit: i.pivot?.unit ?? 'g'
-        })) ?? [] as DishIngredientData[],
+        dish_ingredients:
+            dish?.ingredients?.map((i) => ({
+                ingredient_id: i.id!,
+                quantity: i.pivot?.quantity ?? '',
+                unit: i.pivot?.unit ?? 'g',
+            })) ?? ([] as DishIngredientData[]),
     });
 
     // --- Zutatenlogik ---
     const addIngredient = () => {
         setData('dish_ingredients', [
             ...data.dish_ingredients,
-            { ingredient_id: '', amount: '', unit: 'g' }
+            { ingredient_id: '', quantity: '', unit: 'g' },
         ]);
     };
 
@@ -105,6 +108,22 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
             </div>
 
+            {/* Beschreibung */}
+            <div className="w-full">
+                <InputLabel htmlFor="description" value="Beschreibung" />
+                <Textarea
+                    value={data.description}
+                    rows={5}
+                    placeholder="z.B. Schnell und lecker für die ganze Familie..."
+                    className="mt-1 w-full rounded-lg border border-slate-400 px-3 py-2"
+                    onChange={(e) => setData('description', e.target.value)}
+                />
+                {errors.description && <p className="text-red-500">{errors.description}</p>}
+            </div>
+
+            <hr className="my-5" />
+            <h3 className="text-lg font-medium mb-5">Zubereitung</h3>
+
             {/* Zahlenfelder: Zubereitungszeit, Bewertung, Difficulty */}
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Zubereitungszeit */}
@@ -119,17 +138,31 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             max={600}
                             value={data.preparation_time}
                             placeholder="0"
-                            className="flex-1 rounded-l-lg border-r-0"
+                            className="mt-1 flex-1 rounded-none border-r-0 border-slate-200 rounded-tl-lg rounded-bl-lg"
                             onChange={(e) => setData('preparation_time', Number(e.target.value))}
                         />
-                        <span className="px-3 py-2 border rounded-r-lg border-slate-400">Minuten</span>
+                        <span className="px-3 py-3 border border-l-0 rounded-r-lg border-slate-400">
+                            Minuten
+                        </span>
                     </div>
-                    {errors.preparation_time && <p className="text-red-500">{errors.preparation_time}</p>}
+                    <Slider
+                        defaultValue={[data.preparation_time]}
+                        max={240}
+                        step={5}
+                        className="my-5"
+                        onValueChange={(value) => {
+                            setData('preparation_time', value[0]); // erster Wert aus dem Array
+                        }}
+                    />
+                    {errors.preparation_time && (
+                        <p className="text-red-500">{errors.preparation_time}</p>
+                    )}
                 </div>
 
                 {/* Bewertung */}
                 <div>
                     <InputLabel htmlFor="rating" value="Bewertung" />
+
                     <TextInput
                         id="rating"
                         type="number"
@@ -139,6 +172,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                         onChange={(e) => setData('rating', Number(e.target.value))}
                         className="mt-1 w-full"
                     />
+
                     {errors.rating && <p className="text-red-500">{errors.rating}</p>}
                 </div>
 
@@ -158,26 +192,15 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 { value: 'EASY', label: 'einfach' },
                                 { value: 'MEDIUM', label: 'mittel' },
                                 { value: 'HARD', label: 'schwer' },
-                            ].map(d => (
-                                <SelectItem key={d.value} value={d.value}>{d.label}</SelectItem>
+                            ].map((d) => (
+                                <SelectItem key={d.value} value={d.value}>
+                                    {d.label}
+                                </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
                     {errors.difficulty && <p className="text-red-500">{errors.difficulty}</p>}
                 </div>
-            </div>
-
-            {/* Beschreibung */}
-            <div className="w-full">
-                <InputLabel htmlFor="description" value="Beschreibung" />
-                <Textarea
-                    value={data.description}
-                    rows={5}
-                    placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                    className="mt-1 w-full rounded-lg border border-slate-400 px-3 py-2"
-                    onChange={(e) => setData('description', e.target.value)}
-                />
-                {errors.description && <p className="text-red-500">{errors.description}</p>}
             </div>
 
             {/* Zutaten */}
@@ -193,17 +216,19 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 <SelectValue placeholder="Zutat auswählen" />
                             </SelectTrigger>
                             <SelectContent>
-                                {ingredients.map(i => (
-                                    <SelectItem key={i.id} value={i.id}>{i.name}</SelectItem>
+                                {ingredients.map((i) => (
+                                    <SelectItem key={i.id} value={i.id || ''}>
+                                        {i.name}
+                                    </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>
 
                         <TextInput
                             placeholder="Menge"
-                            value={di.amount}
-                            className="w-20"
-                            onChange={(e) => updateIngredient(idx, 'amount', e.target.value)}
+                            value={di.quantity}
+                            className="w-24"
+                            onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
                         />
 
                         <TextInput
@@ -213,16 +238,28 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             onChange={(e) => updateIngredient(idx, 'unit', e.target.value)}
                         />
 
-                        <Button type="button" onClick={() => removeIngredient(idx)}>Entfernen</Button>
+                        <Button type="button" onClick={() => removeIngredient(idx)}>
+                            Entfernen
+                        </Button>
                     </div>
                 ))}
-                <Button type="button" onClick={addIngredient}>Zutat hinzufügen</Button>
+                <Button type="button" onClick={addIngredient}>
+                    Zutat hinzufügen
+                </Button>
             </div>
 
             {/* Submit */}
-            <div className="w-full mt-4 flex justify-end">
+            <div className="w-full mt-4">
                 <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                    {isEditing ? <><GoPencil /> Bearbeiten</> : <><GoPlus /> Erstellen</>}
+                    {isEditing ? (
+                        <>
+                            <GoPencil /> Bearbeiten
+                        </>
+                    ) : (
+                        <>
+                            <GoPlus /> Erstellen
+                        </>
+                    )}
                 </Button>
             </div>
         </form>

@@ -10,6 +10,10 @@ import CircularMenu from '@/Components/nutshell/CircularMenu';
 
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
+
+import { ThemeProvider } from '@/Components/nutshell/ThemeProvider';
+import { ModeToggle } from '@/Components/nutshell/ModeToggle';
+
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
     children: React.ReactNode;
@@ -45,21 +49,23 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
     }, [flash]);
 
     return (
-        <div className="min-h-screen flex flex-col justify-between bg-white">
-            <div>
-                <Header />
-                <RecipeSearch />
-                <BreadcrumbNav />
+        <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
+            <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-slate-800 dark:text-slate-200">
+                <div>
+                    <Header />
+                    <RecipeSearch />
+                    <BreadcrumbNav />
+                </div>
+                <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+                    <main className="pt-4 pb-10">
+                        {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
+                        {children}
+                    </main>
+                </div>
+                <Footer />
+                <CircularMenu />
+                <Toaster position="bottom-right" />
             </div>
-            <div className="mx-auto container grow px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-705px)] transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-                <main className="pt-4 pb-10">
-                    {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
-                    {children}
-                </main>
-            </div>
-            <Footer />
-            <CircularMenu />
-            <Toaster position="bottom-right" />
-        </div>
+        </ThemeProvider>
     );
 }

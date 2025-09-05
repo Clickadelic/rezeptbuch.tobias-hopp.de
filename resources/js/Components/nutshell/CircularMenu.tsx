@@ -18,14 +18,14 @@ import IngredientForm from '@/Components/forms/IngredientForm';
 
 export function CircularMenu() {
     const { auth } = usePage().props;
-    
+
+    if (!auth.user) return null;
+
     const [showCircularMenu, setShowCircularMenu] = useState(false);
 
     const [isCocktailDialogOpen, setCocktailDialogOpen] = useState(false);
     const [isDishDialogOpen, setDishDialogOpen] = useState(false);
     const [isIngredientDialogOpen, setIngredientDialogOpen] = useState(false);
-
-    if (!auth.user) return null;
 
     return (
         <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-12">
@@ -39,7 +39,7 @@ export function CircularMenu() {
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
                             <button
-                                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                                className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
                                 onClick={() => setDishDialogOpen(true)}
                             >
                                 <BsJournalBookmark />
@@ -66,7 +66,7 @@ export function CircularMenu() {
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
                             <button
-                                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                                className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
                                 onClick={() => setCocktailDialogOpen(true)}
                             >
                                 <LiaCocktailSolid />
@@ -93,7 +93,7 @@ export function CircularMenu() {
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
                             <button
-                                className="rounded-full bg-emerald-700 hover:bg-emerald-700/90 text-white p-3 hover:cursor-pointer shadow-lg"
+                                className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
                                 onClick={() => setIngredientDialogOpen(true)}
                             >
                                 <TbSalt />
@@ -124,7 +124,7 @@ export function CircularMenu() {
                         <button
                             aria-label="Neuen Inhalt anlegen"
                             onClick={() => setShowCircularMenu((prev) => !prev)}
-                            className="bg-emerald-700 hover:bg-emerald-700/90 hover:cursor-pointer text-white p-4 text-lg rounded-full transition shadow-lg"
+                            className="bg-primary hover:bg-primary/90 hover:cursor-pointer text-white p-4 text-lg rounded-full transition shadow-lg"
                         >
                             <FiPlus
                                 className={cn(

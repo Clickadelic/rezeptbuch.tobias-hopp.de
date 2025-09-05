@@ -39,22 +39,12 @@ export default function DishCard({ dish }: DishCardProps) {
                 <Card className="relative overflow-hidden">
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
-                                    bg-slate-100 text-slate-300 
+                                    bg-slate-100 dark:bg-slate-700 text-slate-300 
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-slate-200 group-hover:border-emerald-700 shadow-transparent hover:shadow-emerald-700"
                     >
-                        {dish.image ? (
-                            <>
-                                <div className="absolute size-full bg-black/10 rounded-xl z-10"></div>
-                                <img
-                                    src={assetPath('dishes', dish.image)}
-                                    alt={dish.name}
-                                    className="w-full h-full scale-105"
-                                />
-                            </>
-                        ) : (
-                            <BiDish className="size-10" />
-                        )}
+                        <BiDish className="size-10" />
+
                         {user && (
                             <DropdownMenu>
                                 <DropdownMenuTrigger
@@ -64,7 +54,6 @@ export default function DishCard({ dish }: DishCardProps) {
                                     <HiOutlineDotsVertical className="size-4" />
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                    
                                     <DropdownMenuItem>
                                         <Link
                                             href={route('dishes.edit', dish.id)}

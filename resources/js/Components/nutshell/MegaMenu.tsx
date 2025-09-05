@@ -1,10 +1,14 @@
 import { Button } from '@/Components/ui/button';
-import { RiMenuUnfold2Fill } from "react-icons/ri";
+import { RiMenuUnfold2Fill } from 'react-icons/ri';
 export default function MegaMenu() {
     return (
         <div className="mt-2 group relative">
-            <Button variant="primary" className="relative cursor-default group-hover:bg-slate-700 hover:bg-slate-700">
-                <RiMenuUnfold2Fill className="size-6" />Menü
+            <Button
+                variant="primary"
+                className="relative cursor-default group-hover:bg-slate-700 hover:bg-slate-700"
+            >
+                <RiMenuUnfold2Fill className="size-6" />
+                Menü
             </Button>
             <div className="invisible group-hover:visible absolute top-10 -left-2 w-[880px] p-6 rounded-xl shadow-lg h-96 bg-white border border-slate-200">
                 <div className="grid grid-cols-6 gap-4">
@@ -71,6 +75,5 @@ export default function MegaMenu() {
                 </div>
             </div>
         </div>
-        
-    )
-};
+    );
+}

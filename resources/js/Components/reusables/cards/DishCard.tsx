@@ -16,6 +16,7 @@ import { MdOutlineEdit } from 'react-icons/md';
 import { BiDish } from 'react-icons/bi';
 
 import { Dish } from '@/types/Dish';
+import { assetPath } from '@/lib/utils';
 
 interface DishCardProps {
     dish: Dish;
@@ -38,23 +39,16 @@ export default function DishCard({ dish }: DishCardProps) {
                 <Card className="relative overflow-hidden">
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
-                                    bg-slate-100 text-slate-300 
+                                    bg-slate-100 dark:bg-slate-700 text-slate-300 
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-slate-200 group-hover:border-emerald-700 shadow-transparent hover:shadow-emerald-700"
                     >
-                        {dish.image ? (
-                            <img
-                                src={`uploads/dishes/${dish.image}`}
-                                alt={dish.name}
-                                className="w-full h-full scale-105"
-                            />
-                        ) : (
-                            <BiDish className="size-10" />
-                        )}
+                        <BiDish className="size-10" />
+
                         {user && (
                             <DropdownMenu>
                                 <DropdownMenuTrigger
-                                    className="absolute top-2 right-2 text-white p-1 hover:text-slate-300 hover:cursor-pointer shadow-transparent"
+                                    className="absolute top-2 right-2 text-white p-1 hover:text-slate-300 hover:cursor-pointer shadow-transparent z-20"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <HiOutlineDotsVertical className="size-4" />
@@ -84,7 +78,7 @@ export default function DishCard({ dish }: DishCardProps) {
 
                     {/* Titel */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-emerald-700 leading-snug">
-                        <h4 className="text-slate-500 font-newsreader line-clamp-1">
+                        <h4 className="text-slate-500 text-base font-oswald line-clamp-1">
                             {dish.punchline}
                         </h4>
                         <h3 className="group-hover:text-emerald-700 line-clamp-2 text-slate-800 min-h-[calc(3rem+2px)]">

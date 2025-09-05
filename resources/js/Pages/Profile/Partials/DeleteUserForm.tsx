@@ -50,9 +50,8 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
                 <h2 className="text-lg font-medium text-gray-900">Profil löschen</h2>
 
                 <p className="mt-1 text-sm text-slate-800">
-                    Once your account is deleted, all of its resources and data will be permanently
-                    deleted. Before deleting your account, please download any data or information
-                    that you wish to retain.
+                    Wenn dein Profil gelöscht wird, werden alle Deine Daten und Einstellungen
+                    permanent gelöscht. Dies kann nicht wiederhergestellt werden.
                 </p>
             </header>
 

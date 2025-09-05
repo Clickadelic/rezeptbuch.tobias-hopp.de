@@ -15,6 +15,8 @@ export interface SharedPageProps {
         user: User;
     };
     dishes: Dish[];
+    cocktails: Cocktail[];
+    ingredients: Ingredient[];
     canLogin?: boolean;
     canRegister?: boolean;
     flash?: {

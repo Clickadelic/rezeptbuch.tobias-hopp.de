@@ -6,7 +6,6 @@ export default interface DishInterface {
     slug?: string;
     punchline?: string;
     description?: string;
-    image?: string | null;
     rating?: number;
     preparation_time?: number;
     difficulty?: Difficulty;

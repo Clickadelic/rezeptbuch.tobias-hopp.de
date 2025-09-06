@@ -19,6 +19,7 @@ use App\Enums\Difficulty;
 use App\Http\Requests\StoreDishRequest;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Str;
+
 class DishController extends Controller
 {
     /**
@@ -138,15 +139,33 @@ class DishController extends Controller
     {
         $validated = $request->validated();
 
-        // Model updaten
+        // Bild speichern, falls hochgeladen
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('dishes', 'public');
+        }
+
+        unset($validated['slug']); // Slug wird automatisch erzeugt
+
+        // Dish updaten
         $dish->update($validated);
 
-        // Slug ggf. aktualisieren, wenn sich der Name geändert hat
-        $dish->refresh();
+        // Zutaten syncen
+        if ($request->has('ingredients')) {
+            $ingredients = collect($request->input('ingredients'))->mapWithKeys(function ($item) {
+                return [$item['id'] => ['amount' => $item['amount'], 'unit' => $item['unit']]];
+            })->toArray();
+
+            $dish->ingredients()->sync($ingredients);
+        }
+
+        $dish->refresh(); // neuen Slug holen, falls Name geändert
 
         return redirect()->route('dishes.show', $dish->slug)
                         ->with('success', 'Gericht erfolgreich aktualisiert.');
     }
+
+
+
 
     /**
      * Removes the specified dish from storage.

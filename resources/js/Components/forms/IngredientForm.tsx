@@ -28,7 +28,7 @@ export default function DishForm({ ingredient, className }: IngredientFormProps)
         e.preventDefault();
         post(route('ingredients.store'), {
             onSuccess: () => reset(),
-        })
+        });
     }
 
     function update(e: React.FormEvent<HTMLFormElement>) {

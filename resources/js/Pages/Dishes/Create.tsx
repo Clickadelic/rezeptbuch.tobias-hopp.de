@@ -4,6 +4,7 @@ import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import DishForm from '@/Components/forms/DishForm';
 import { usePage } from '@inertiajs/react';
+import UploadForm from '@/Components/forms/UploadForm';
 /**
  * Page for creating a new dish.
  *
@@ -17,6 +18,7 @@ export default function DishesCreate() {
     return (
         <SidebarRightLayout title="Neues Gericht" sidebar={<DishesSidebar />}>
             <Head title="Neues Gericht" />
+            <UploadForm collection="dishes" />
             <DishForm ingredients={ingredients} />
         </SidebarRightLayout>
     );

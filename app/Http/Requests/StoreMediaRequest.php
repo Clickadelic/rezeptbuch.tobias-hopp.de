@@ -30,4 +30,15 @@ class StoreMediaRequest extends FormRequest
             ]
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'file.required' => 'Bitte wähle eine Datei aus.',
+            'file.file' => 'Die Datei ist ungültig.',
+            'file.max' => 'Die Datei darf maximal 5MB groß sein.',
+            'file.mimes' => 'Erlaubte Dateiformate: PNG, JPG.',
+        ];
+    }
+
 }

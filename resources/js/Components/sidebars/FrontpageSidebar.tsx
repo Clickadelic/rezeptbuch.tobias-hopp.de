@@ -27,6 +27,16 @@ export default function RightSidebar() {
                     active={window.location.pathname === '/zutaten'}
                     title="Zutaten"
                 />
+                <SidebarLink
+                    href="/registrierung"
+                    active={window.location.pathname === '/registrierung'}
+                    title="Zutaten"
+                />
+                <SidebarLink
+                    href="/zutaten"
+                    active={window.location.pathname === '/zutaten'}
+                    title="Zutaten"
+                />
             </ul>
         </aside>
     );

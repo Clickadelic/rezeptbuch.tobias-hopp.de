@@ -136,7 +136,7 @@ const Header = () => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="font-medium inline-flex items-center rounded border border-transparent bg-white px-2 py-1 text-slate-800 transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
+                                                className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-slate-700 px-2 py-1 text-slate-800 dark:text-slate-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-slate-100 hover:cursor-pointer focus:outline-none gap-2"
                                             >
                                                 <RxAvatar className="size-4 hidden md:flex" />
                                                 {user.name}

@@ -249,12 +249,14 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                         <IngredientComboBox
                             options={ingredients}
                             value={di.ingredient_id}
+                            triggerClassName="mt-1 w-80"
                             onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                         />
 
                         <Button
                             variant="destructive"
-                            className="mt-1"
+                            className="mt-1.5 hover:cursor-pointer"
+                            size="sm"
                             type="button"
                             onClick={() => removeIngredient(idx)}
                         >

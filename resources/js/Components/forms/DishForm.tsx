@@ -36,7 +36,7 @@ interface DishFormProps {
 export default function DishForm({ dish, ingredients, className }: DishFormProps) {
     const isEditing = Boolean(dish);
 
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, put, processing, errors, reset } = useForm({
         id: dish?.id ?? null,
         name: dish?.name ?? '',
         slug: dish?.slug ?? '',
@@ -77,14 +77,19 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     // --- Submit ---
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('dishes.store'), { forceFormData: true });
+        post(route('dishes.store'), { forceFormData: true, onSuccess: () => reset(), preserveScroll: true });
     };
 
     const onUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        router.put(route('dishes.update', { dish: data.id }), data, {
-            forceFormData: true,
-        });
+        // Use POST + method spoofing so multipart/arrays are parsed reliably by PHP
+        router.post(
+            route('dishes.update', { dish: data.id }),
+            { ...data, _method: 'put' },
+            {
+                preserveScroll: true,
+            },
+        );
     };
 
     return (
@@ -274,7 +279,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
 
             {/* Submit */}
             <div className="w-full mt-4">
-                <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+                <Button type="submit" variant="primary" size="lg" className="w-full" disabled={processing}>
                     {isEditing ? (
                         <>
                             <GoPencil /> Bearbeiten

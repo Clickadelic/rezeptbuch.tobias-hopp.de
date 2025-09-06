@@ -36,8 +36,7 @@ class Dish extends Model
 
      protected $casts = [
           'preparation_time' => 'integer',
-          'rating' => 'integer',
-          'difficulty' => Difficulty::class
+          'rating' => 'integer'
      ];
 
     /**

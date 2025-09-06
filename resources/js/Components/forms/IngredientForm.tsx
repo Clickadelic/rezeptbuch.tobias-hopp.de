@@ -19,19 +19,23 @@ interface IngredientFormProps {
 export default function DishForm({ ingredient, className }: IngredientFormProps) {
     const isEditing = Boolean(ingredient);
 
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, put, processing, errors, reset } = useForm({
         id: ingredient?.id ?? null,
         name: ingredient?.name ?? '',
     });
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        post(route('ingredients.store'));
+        post(route('ingredients.store'), {
+            onSuccess: () => reset(),
+        })
     }
 
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        put(route('ingredients.update', { ingredient: data.id }));
+        put(route('ingredients.update', { ingredient: data.id }), {
+            onSuccess: () => reset(),
+        });
     }
 
     return (
@@ -58,7 +62,7 @@ export default function DishForm({ ingredient, className }: IngredientFormProps)
             <div className="w-full my-4 flex items-center justify-end">
                 <Button variant="primary" size="lg" className="w-full" disabled={processing}>
                     {ingredient ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
-                    {ingredient ? 'Bearbeiten' : 'Erstellen'}
+                    {ingredient ? 'Bearbeiten' : 'Hinzufügen'}
                 </Button>
             </div>
         </form>

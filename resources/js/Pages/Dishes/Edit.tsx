@@ -1,10 +1,10 @@
 import { Head } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 
 import { Dish } from '@/types/Dish';
 import DishForm from '@/Components/forms/DishForm';
 import DishesSidebar from '@/Components/sidebars/DishesSidebar';
 import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
-
 interface EditDishProps {
     dish: Dish;
 }
@@ -19,11 +19,13 @@ interface EditDishProps {
  * @returns {JSX.Element} The page element.
  */
 export default function DishesEdit({ dish }: EditDishProps) {
+    const { props } = usePage();
+    const ingredients = props.ingredients;
     return (
         <>
             <Head title="Gericht bearbeiten" />
             <SidebarRightLayout title="Gericht bearbeiten" sidebar={<DishesSidebar />}>
-                <DishForm dish={dish} ingredients={[]} />
+                <DishForm dish={dish} ingredients={ingredients} />
             </SidebarRightLayout>
         </>
     );

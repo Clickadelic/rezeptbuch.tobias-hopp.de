@@ -43,7 +43,7 @@ class DishController extends Controller
     public function create()
     {
         return Inertia::render('Dishes/Create', [
-            'ingredients' => Ingredient::all(), // oder ->select('id', 'name')
+            'ingredients' => Ingredient::orderBy('name')->get(),
         ]);
     }
 
@@ -118,8 +118,12 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+        $dish = Dish::with(['ingredients' => function ($query) {
+                $query->select('ingredients.id', 'name', 'dish_ingredient.quantity', 'dish_ingredient.unit');
+            }])->find($dish->id);
         return Inertia::render('Dishes/Edit', [
-            'dish' => $dish
+            'dish' => $dish,
+            'ingredients' => Ingredient::orderBy('name')->get(),
         ]);
     }
 

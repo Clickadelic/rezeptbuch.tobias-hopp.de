@@ -31,7 +31,7 @@ export default function Show({ dish }: ShowDishProps) {
     const { props } = usePage();
     const { user } = props.auth;
     const { ingredients } = props;
-    console.log(ingredients);
+    console.log(props);
     return (
         <>
             <Head title="Gericht Details" />
@@ -50,7 +50,17 @@ export default function Show({ dish }: ShowDishProps) {
                         </div>
                         <div className="w-full flex flex-col justify-between gap-2">
                             <div className="flex flex-col items-start gap-2">
-                                <h2 className="text-lg font-medium mb-1">Beschreibung</h2>
+                                <div className='flex flex-row items-center gap-2 justify-between'>
+                                    <h2 className="text-lg font-medium mb-1">Beschreibung</h2>
+                                    {user && (
+                                        <div className="flex flex-row items-center gap-2">
+                                            <Link href={route('dishes.edit', dish)}>
+                                                <MdOutlineEdit className="size-5" />
+                                            </Link>
+                                            
+                                        </div>
+                                    )}
+                                </div>
                                 <p className=" text-slate-800">{dish.description}</p>
                             </div>
                             <div className="flex flex-row justify-between gap-1">
@@ -71,6 +81,7 @@ export default function Show({ dish }: ShowDishProps) {
                             </div>
                         </div>
                     </div>
+
                     <div className="w-full flex flex-col gap-1">
                         <hr className="my-5" />
                         <h4 className="font-medium text-lg">Zutaten</h4>

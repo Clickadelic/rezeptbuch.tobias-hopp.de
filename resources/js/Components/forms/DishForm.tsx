@@ -233,7 +233,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                         </SelectTrigger>
                         <SelectContent>
                             {Object.entries(UNITS).map(([key, val]) => (
-                            <SelectItem key={key} value={key}>
+                            <SelectItem key={key} value={val}>
                                 {val}
                             </SelectItem>
                             ))}
@@ -250,37 +250,20 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             </SelectTrigger>
                             <SelectContent>
                                 {ingredients.map((i) => (
-                                    <SelectItem key={i.id} value={i.id || ''}>
+                                    <SelectItem key={i.id} value={i.id}>
                                         {i.name}
                                     </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>
 
-                        {/* <ComboBox ingredients={ingredients} /> */}
-                        <div>
-
-                            <TextInput
-                                placeholder="z.B. Kartoffeln"
-                                value={di.ingredient_id || ""}
-                                id={`ingredient-${idx}`}
-                                list={`ingredients-list-${idx}`}
-                                onChange={(e) => updateIngredient(idx, "ingredient_id", e.target.value)}
-                                className="w-full"
-                            />
-                            <datalist id={`ingredients-list-${idx}`}>
-                                {ingredients.map((i) => (
-                                    <option key={i.id} value={i.name} />
-                                ))}
-                            </datalist>
-                        </div>
                         <Button variant="destructive" className="mt-1" type="button" onClick={() => removeIngredient(idx)}>
                             <BsTrash3 />
                         </Button>
                     </div>
                 ))}
-                <Button type="button" onClick={addIngredient}>
-                    Zutat hinzufügen
+                <Button type="button" onClick={addIngredient} className="hover:cursor-pointer">
+                    <GoPlus /> Zutat hinzufügen
                 </Button>
             </div>
 

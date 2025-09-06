@@ -6,6 +6,7 @@ export enum UNITS {
     KG = 'kg',
     SP = 'TL',
     TS = 'EL',
+    BT = 'Prise',
     CUP = 'Tasse',
     PIECE = 'Stück',
     DASH = 'Dash',

@@ -53,6 +53,8 @@ Route::get('/impressum', function () {
     ]);
 });
 
+Route::post('upload', App\Http\Controllers\UploadController::class)->name('upload');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

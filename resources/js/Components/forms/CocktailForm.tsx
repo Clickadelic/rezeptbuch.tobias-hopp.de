@@ -48,7 +48,7 @@ export default function CocktailForm({ cocktail, className }: CocktailFormProps)
         punchline: cocktail?.punchline ?? '',
         description: cocktail?.description ?? '',
         image: null as File | null,
-        difficulty: cocktail?.difficulty ?? Difficulty.EASY,
+        difficulty: cocktail?.difficulty ?? Difficulty.EINFACH,
         rating: Number(cocktail?.rating ?? 0),
         preparation_time: Number(cocktail?.preparation_time ?? 0),
     });

@@ -17,6 +17,8 @@ import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { Slider } from '@/Components/ui/slider';
 
+import { UNITS } from '@/types/Units';
+
 
 interface DishIngredientData {
     ingredient_id: string;
@@ -47,7 +49,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
             dish?.ingredients?.map((i) => ({
                 ingredient_id: i.id!,
                 quantity: i.pivot?.quantity ?? '',
-                unit: i.pivot?.unit ?? 'g',
+                unit: i.pivot?.unit ?? UNITS.GR,
             })) ?? ([] as DishIngredientData[]),
     });
 
@@ -55,7 +57,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     const addIngredient = () => {
         setData('dish_ingredients', [
             ...data.dish_ingredients,
-            { ingredient_id: '', quantity: '', unit: 'g' },
+            { ingredient_id: '', quantity: '', unit: UNITS.GR },
         ]);
     };
 
@@ -207,12 +209,38 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
             <div className="w-full space-y-2">
                 <InputLabel htmlFor="ingredients" value="Zutaten" />
                 {data.dish_ingredients?.map((di, idx) => (
-                    <div key={idx} className="flex gap-2 items-center">
+                    <div key={idx} className="flex flex-row gap-2 items-start">
+                        
+
+                        <TextInput
+                            placeholder="Menge"
+                            value={di.quantity}
+                            className="w-24"
+                            onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
+                        />
+
+                        
+                        <Select
+                            value={di.ingredient_id}
+                            onValueChange={(e) => updateIngredient(idx, 'unit', UNITS[e])}
+                        >
+                            <SelectTrigger className="w-full mt-1 py-2">
+                                <SelectValue placeholder="Zutat auswählen" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {Array.from(UNITS.map((i) => (
+                                    <SelectItem key={i.id} value={i.id || ''}>
+                                        {i.name}
+                                    </SelectItem>
+                                )))}
+                            </SelectContent>
+                        </Select>
+
                         <Select
                             value={di.ingredient_id}
                             onValueChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                         >
-                            <SelectTrigger className="w-48">
+                            <SelectTrigger className="w-full mt-1 py-2">
                                 <SelectValue placeholder="Zutat auswählen" />
                             </SelectTrigger>
                             <SelectContent>
@@ -223,20 +251,6 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 ))}
                             </SelectContent>
                         </Select>
-
-                        <TextInput
-                            placeholder="Menge"
-                            value={di.quantity}
-                            className="w-24"
-                            onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
-                        />
-
-                        <TextInput
-                            placeholder="Einheit"
-                            value={di.unit}
-                            className="w-20"
-                            onChange={(e) => updateIngredient(idx, 'unit', e.target.value)}
-                        />
 
                         <Button type="button" onClick={() => removeIngredient(idx)}>
                             Entfernen

@@ -19,7 +19,7 @@ import { Slider } from '@/Components/ui/slider';
 
 import { UNITS } from '@/types/Units';
 import { BsTrash3 } from 'react-icons/bs';
-import { ComboBox } from '@/Components/forms/ComboBox';
+import { IngredientComboBox } from '@/Components/forms/IngredientComboBox';
 
 interface DishIngredientData {
     ingredient_id: string;
@@ -246,21 +246,11 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             </SelectContent>
                         </Select>
 
-                        <Select
+                        <IngredientComboBox
+                            options={ingredients}
                             value={di.ingredient_id}
-                            onValueChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
-                        >
-                            <SelectTrigger className="w-64 mt-1 py-2">
-                                <SelectValue placeholder="Zutat auswählen" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {ingredients.map((i) => (
-                                    <SelectItem key={i.id} value={i.id}>
-                                        {i.name}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                            onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
+                        />
 
                         <Button
                             variant="destructive"

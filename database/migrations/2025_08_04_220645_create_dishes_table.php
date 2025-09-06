@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dishes', function (Blueprint $table) {
-            $table->uuid('id')->primary(); // Dish PK als UUID
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('slug')->default('')->unique();
             $table->string('punchline')->nullable();
             $table->text('description')->nullable();
             // $table->string('image')->nullable();
-            $table->enum('difficulty', ['EASY', 'MEDIUM', 'HARD'])->default('EASY'); // <-- enum statt string
+            $table->string('difficulty')->default('einfach');
             $table->unsignedInteger('rating')->default(0);
             $table->unsignedInteger('preparation_time')->default(0);
 

@@ -55,7 +55,7 @@ class IngredientController extends Controller
             'name' => ucfirst($name),
         ]);
 
-        return redirect()->route('ingredients.index')->with('success', 'Zutat angelegt!');
+        return redirect()->back()->with('success', 'Zutat angelegt!');
     }
 
     /**

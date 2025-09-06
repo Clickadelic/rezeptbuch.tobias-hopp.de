@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react';
+import { useForm, router } from '@inertiajs/react';
 import { Dish } from '@/types/Dish';
 import { Difficulty } from '@/types/Difficulty';
 import { Ingredient } from '@/types/Ingredient';
@@ -16,6 +16,10 @@ import {
 import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { Slider } from '@/Components/ui/slider';
+
+import { UNITS } from '@/types/Units';
+import { BsTrash3 } from 'react-icons/bs';
+import {ComboBox} from '@/Components/forms/ComboBox';
 
 
 interface DishIngredientData {
@@ -39,7 +43,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
         slug: dish?.slug ?? '',
         punchline: dish?.punchline ?? '',
         description: dish?.description ?? '',
-        difficulty: dish?.difficulty ?? Difficulty.EASY,
+        difficulty: dish?.difficulty ?? Difficulty.EINFACH,
         rating: Number(dish?.rating ?? 0),
         preparation_time: Number(dish?.preparation_time ?? 0),
         // ✅ sicherstellen, dass immer ein Array da ist
@@ -47,7 +51,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
             dish?.ingredients?.map((i) => ({
                 ingredient_id: i.id!,
                 quantity: i.pivot?.quantity ?? '',
-                unit: i.pivot?.unit ?? 'g',
+                unit: i.pivot?.unit ?? "gr",
             })) ?? ([] as DishIngredientData[]),
     });
 
@@ -55,7 +59,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     const addIngredient = () => {
         setData('dish_ingredients', [
             ...data.dish_ingredients,
-            { ingredient_id: '', quantity: '', unit: 'g' },
+            { ingredient_id: '', quantity: '', unit: 'gr' },
         ]);
     };
 
@@ -77,8 +81,15 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
         post(route('dishes.store'), { forceFormData: true });
     };
 
+    const onUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        router.put(route('dishes.update', { dish: data.id }), data, {
+            forceFormData: true,
+        });
+    };
+
     return (
-        <form onSubmit={onSubmit} className={cn('flex flex-col space-y-3', className)}>
+        <form onSubmit={isEditing ? onUpdate : onSubmit} className={cn('flex flex-col space-y-3', className)}>
             {/* Name */}
             <div className="w-full">
                 <InputLabel htmlFor="name" value="Name" />
@@ -182,20 +193,16 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     <Select
                         name="difficulty"
                         value={data.difficulty || undefined}
-                        onValueChange={(val) => setData('difficulty', val as Difficulty)}
+                        onValueChange={(val) => setData("difficulty", val as Difficulty)}
                     >
                         <SelectTrigger className="w-full mt-1 py-2">
                             <SelectValue placeholder="Schwierigkeitsgrad" />
                         </SelectTrigger>
                         <SelectContent>
-                            {[
-                                { value: 'EASY', label: 'einfach' },
-                                { value: 'MEDIUM', label: 'mittel' },
-                                { value: 'HARD', label: 'schwer' },
-                            ].map((d) => (
-                                <SelectItem key={d.value} value={d.value}>
-                                    {d.label}
-                                </SelectItem>
+                            {Object.entries(Difficulty).map(([key, val]) => (
+                            <SelectItem key={key} value={key}>
+                                {val}
+                            </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -207,44 +214,56 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
             <div className="w-full space-y-2">
                 <InputLabel htmlFor="ingredients" value="Zutaten" />
                 {data.dish_ingredients?.map((di, idx) => (
-                    <div key={idx} className="flex gap-2 items-center">
+                    <div key={idx} className="flex flex-row gap-2 items-start">
+
+                        <TextInput
+                            placeholder="Menge"
+                            value={di.quantity}
+                            className="w-28"
+                            type="number"
+                            onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
+                        />
+
+                        <Select
+                            value={di.unit}
+                            onValueChange={(value) => updateIngredient(idx, 'unit', value)}
+                        >
+                        <SelectTrigger className="w-24 mt-1 py-2">
+                            <SelectValue placeholder="Einheit auswählen" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {Object.entries(UNITS).map(([key, val]) => (
+                            <SelectItem key={key} value={val}>
+                                {val}
+                            </SelectItem>
+                            ))}
+                        </SelectContent>
+                        </Select>
+
+
                         <Select
                             value={di.ingredient_id}
                             onValueChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                         >
-                            <SelectTrigger className="w-48">
+                            <SelectTrigger className="w-64 mt-1 py-2">
                                 <SelectValue placeholder="Zutat auswählen" />
                             </SelectTrigger>
                             <SelectContent>
                                 {ingredients.map((i) => (
-                                    <SelectItem key={i.id} value={i.id || ''}>
+                                    <SelectItem key={i.id} value={i.id}>
                                         {i.name}
                                     </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>
 
-                        <TextInput
-                            placeholder="Menge"
-                            value={di.quantity}
-                            className="w-24"
-                            onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
-                        />
-
-                        <TextInput
-                            placeholder="Einheit"
-                            value={di.unit}
-                            className="w-20"
-                            onChange={(e) => updateIngredient(idx, 'unit', e.target.value)}
-                        />
-
-                        <Button type="button" onClick={() => removeIngredient(idx)}>
-                            Entfernen
+                        <Button variant="destructive" className="mt-1" type="button" onClick={() => removeIngredient(idx)}>
+                            <BsTrash3 />
                         </Button>
                     </div>
                 ))}
-                <Button type="button" onClick={addIngredient}>
-                    Zutat hinzufügen
+                <Button type="button" onClick={addIngredient} className="hover:cursor-pointer">
+                    <GoPlus /> Zutat hinzufügen
                 </Button>
             </div>
 

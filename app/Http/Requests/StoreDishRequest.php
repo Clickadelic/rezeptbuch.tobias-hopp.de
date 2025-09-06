@@ -21,7 +21,7 @@ class StoreDishRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'preparation_time' => ['nullable', 'integer', 'min:0'],
             'rating' => ['nullable', 'integer', 'min:0', 'max:5'],
-            'difficulty' => ['required', new Enum(Difficulty::class)]
+            'difficulty' => ['nullable', 'string']
         ];
     }
 

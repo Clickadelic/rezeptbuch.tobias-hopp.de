@@ -119,8 +119,8 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
         $dish = Dish::with(['ingredients' => function ($query) {
-                $query->select('ingredients.id', 'name', 'dish_ingredient.quantity', 'dish_ingredient.unit');
-            }])->find($dish->id);
+            $query->select('ingredients.id', 'name', 'dish_ingredient.quantity', 'dish_ingredient.unit');
+        }])->find($dish->id);
         return Inertia::render('Dishes/Edit', [
             'dish' => $dish,
             'ingredients' => Ingredient::orderBy('name')->get(),

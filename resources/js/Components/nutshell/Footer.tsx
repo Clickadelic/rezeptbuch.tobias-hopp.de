@@ -122,7 +122,7 @@ export default function Footer() {
                                 <IoIosRibbon className="mt-1" />
                                 <span className="font-medium font-oswald">100% Qualit&auml;t</span>
                             </h2>
-                            <p className="mb-8 sm:mb-1">
+                            <p className="mb-8 sm:mb-1 text-center sm:text-left">
                                 Alle Gerichte wurden selbstverständlich vorher von mir gekocht,
                                 probiert und verfeinert.
                             </p>
@@ -133,7 +133,7 @@ export default function Footer() {
                                 <TbMailHeart className="mt-1" />
                                 <span className="font-medium font-oswald">Newsletter</span>
                             </h2>
-                            <p className="mb-8">
+                            <p className="mb-8 text-center sm:text-left mx-5 sm:mx-0">
                                 Bleib' auf dem Laufenden, wenn es Neuigkeiten zu meinem Rezeptbuch
                                 gibt.
                             </p>

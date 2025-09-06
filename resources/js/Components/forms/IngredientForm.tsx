@@ -28,13 +28,15 @@ export default function DishForm({ ingredient, className }: IngredientFormProps)
         e.preventDefault();
         post(route('ingredients.store'), {
             onSuccess: () => reset(),
-        })
+            preserveScroll: true,
+        });
     }
 
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         put(route('ingredients.update', { ingredient: data.id }), {
             onSuccess: () => reset(),
+            preserveScroll: true,
         });
     }
 

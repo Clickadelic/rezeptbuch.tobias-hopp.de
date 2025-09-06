@@ -19,8 +19,7 @@ import { Slider } from '@/Components/ui/slider';
 
 import { UNITS } from '@/types/Units';
 import { BsTrash3 } from 'react-icons/bs';
-import {ComboBox} from '@/Components/forms/ComboBox';
-
+import { ComboBox } from '@/Components/forms/ComboBox';
 
 interface DishIngredientData {
     ingredient_id: string;
@@ -37,7 +36,7 @@ interface DishFormProps {
 export default function DishForm({ dish, ingredients, className }: DishFormProps) {
     const isEditing = Boolean(dish);
 
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, put, processing, errors, reset } = useForm({
         id: dish?.id ?? null,
         name: dish?.name ?? '',
         slug: dish?.slug ?? '',
@@ -51,7 +50,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
             dish?.ingredients?.map((i) => ({
                 ingredient_id: i.id!,
                 quantity: i.pivot?.quantity ?? '',
-                unit: i.pivot?.unit ?? "gr",
+                unit: i.pivot?.unit ?? 'gr',
             })) ?? ([] as DishIngredientData[]),
     });
 
@@ -78,18 +77,26 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     // --- Submit ---
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('dishes.store'), { forceFormData: true });
+        post(route('dishes.store'), { forceFormData: true, onSuccess: () => reset(), preserveScroll: true });
     };
 
     const onUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        router.put(route('dishes.update', { dish: data.id }), data, {
-            forceFormData: true,
-        });
+        // Use POST + method spoofing so multipart/arrays are parsed reliably by PHP
+        router.post(
+            route('dishes.update', { dish: data.id }),
+            { ...data, _method: 'put' },
+            {
+                preserveScroll: true,
+            },
+        );
     };
 
     return (
-        <form onSubmit={isEditing ? onUpdate : onSubmit} className={cn('flex flex-col space-y-3', className)}>
+        <form
+            onSubmit={isEditing ? onUpdate : onSubmit}
+            className={cn('flex flex-col space-y-3', className)}
+        >
             {/* Name */}
             <div className="w-full">
                 <InputLabel htmlFor="name" value="Name" />
@@ -193,16 +200,16 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     <Select
                         name="difficulty"
                         value={data.difficulty || undefined}
-                        onValueChange={(val) => setData("difficulty", val as Difficulty)}
+                        onValueChange={(val) => setData('difficulty', val as Difficulty)}
                     >
                         <SelectTrigger className="w-full mt-1 py-2">
                             <SelectValue placeholder="Schwierigkeitsgrad" />
                         </SelectTrigger>
                         <SelectContent>
                             {Object.entries(Difficulty).map(([key, val]) => (
-                            <SelectItem key={key} value={key}>
-                                {val}
-                            </SelectItem>
+                                <SelectItem key={key} value={key}>
+                                    {val}
+                                </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -215,7 +222,6 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 <InputLabel htmlFor="ingredients" value="Zutaten" />
                 {data.dish_ingredients?.map((di, idx) => (
                     <div key={idx} className="flex flex-row gap-2 items-start">
-
                         <TextInput
                             placeholder="Menge"
                             value={di.quantity}
@@ -228,18 +234,17 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             value={di.unit}
                             onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                         >
-                        <SelectTrigger className="w-24 mt-1 py-2">
-                            <SelectValue placeholder="Einheit auswählen" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {Object.entries(UNITS).map(([key, val]) => (
-                            <SelectItem key={key} value={val}>
-                                {val}
-                            </SelectItem>
-                            ))}
-                        </SelectContent>
+                            <SelectTrigger className="w-24 mt-1 py-2">
+                                <SelectValue placeholder="Einheit auswählen" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {Object.entries(UNITS).map(([key, val]) => (
+                                    <SelectItem key={key} value={val}>
+                                        {val}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
                         </Select>
-
 
                         <Select
                             value={di.ingredient_id}
@@ -257,7 +262,12 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             </SelectContent>
                         </Select>
 
-                        <Button variant="destructive" className="mt-1" type="button" onClick={() => removeIngredient(idx)}>
+                        <Button
+                            variant="destructive"
+                            className="mt-1"
+                            type="button"
+                            onClick={() => removeIngredient(idx)}
+                        >
                             <BsTrash3 />
                         </Button>
                     </div>
@@ -269,7 +279,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
 
             {/* Submit */}
             <div className="w-full mt-4">
-                <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+                <Button type="submit" variant="primary" size="lg" className="w-full" disabled={processing}>
                     {isEditing ? (
                         <>
                             <GoPencil /> Bearbeiten

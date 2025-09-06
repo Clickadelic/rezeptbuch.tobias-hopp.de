@@ -16,7 +16,7 @@ return new class extends Migration
         
             $table->string('name');
             $table->string('file_name');
-            $table->string('mime_type');
+            $table->string('mime_type')->default('application/octet-stream');
             $table->string('path');
             $table->string('disk')->default('local');
             $table->string('file_hash', 64)->unique();

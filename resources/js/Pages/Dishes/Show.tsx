@@ -14,7 +14,6 @@ import { VscSymbolEvent } from 'react-icons/vsc';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { BiDish } from 'react-icons/bi';
 
-
 interface ShowDishProps {
     dish: Dish;
 }
@@ -50,14 +49,13 @@ export default function Show({ dish }: ShowDishProps) {
                         </div>
                         <div className="w-full flex flex-col justify-between gap-2">
                             <div className="flex flex-col items-start gap-2">
-                                <div className='flex flex-row items-center gap-2 justify-between'>
+                                <div className="flex flex-row items-center gap-2 justify-between">
                                     <h2 className="text-lg font-medium mb-1">Beschreibung</h2>
                                     {user && (
                                         <div className="flex flex-row items-center gap-2">
                                             <Link href={route('dishes.edit', dish)}>
                                                 <MdOutlineEdit className="size-5" />
                                             </Link>
-                                            
                                         </div>
                                     )}
                                 </div>
@@ -98,12 +96,15 @@ export default function Show({ dish }: ShowDishProps) {
                                     {dish.ingredients?.map((ingredient) => (
                                         <tr key={ingredient.id}>
                                             <td className="p-3">{ingredient.name}</td>
-                                            <td className="p-3 text-right">{ingredient.pivot?.quantity}</td>
-                                            <td className="p-3 text-left">{ingredient.pivot?.unit}</td>
+                                            <td className="p-3 text-right">
+                                                {ingredient.pivot?.quantity}
+                                            </td>
+                                            <td className="p-3 text-left">
+                                                {ingredient.pivot?.unit}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
-                                
                             </table>
                         </div>
                     </div>

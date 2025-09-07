@@ -1,9 +1,10 @@
 import { Head, usePage } from '@inertiajs/react';
 
 import SidebarRightLayout from '@/layouts/SidebarRightLayout';
-import DishesSidebar from '@/components//sidebars/DishesSidebar';
+import DishesSidebar from '@/components/sidebars/MainSidebar';
 import DishCard from '@/components/reusables/cards/DishCard';
 import { Dish } from '@/types/Dish';
+import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 /**
  * Displays a list of all dishes.
@@ -23,8 +24,8 @@ export default function Gerichte() {
     return (
         <>
             <Head title="Gerichte" />
-            <SidebarRightLayout title="Gerichte" sidebar={<DishesSidebar />}>
-                <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <FullWidthLayout title="Gerichte">
+                <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
                     {dishes.map((dish: Dish) => (
                         <DishCard key={dish.id} dish={dish} />
                     ))}
@@ -34,7 +35,7 @@ export default function Gerichte() {
                         </p>
                     )}
                 </ul>
-            </SidebarRightLayout>
+            </FullWidthLayout>
         </>
     );
 }

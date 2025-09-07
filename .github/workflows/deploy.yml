@@ -1,57 +1,47 @@
-name: Deploy Laravel via FTP
+name: FTP Upload
 
 on:
   push:
     branches:
-      - main   # oder master, je nachdem wie dein Dev-Branch heißt
+      - production
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
 
+  web-deploy:
+
+    name: 🎉 Deploy to Production
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      # 1️⃣ Repo auschecken
+      - name: 🚚 Get latest code
         uses: actions/checkout@v3
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'  # passend zu deiner Laravel-Version
-          extensions: mbstring, pdo, bcmath, curl, gd, zip
-          ini-values: post_max_size=256M, upload_max_filesize=256M
-
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader --prefer-dist
-
-      - name: Set up Node.js
+      # 2️⃣ Node.js Setup
+      - name: 📦 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install NPM dependencies & build assets
-        run: |
-          npm ci
-          npm run build
+      # 3️⃣ Install Dependencies
+      - name: 📥 Install NPM dependencies
+        run: npm ci
 
-      - name: Generate .env
-        run: |
-          echo "APP_ENV=${{ secrets.APP_ENV }}" > .env
-          echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
-          echo "DB_CONNECTION=${{ secrets.DB_CONNECTION }}" >> .env
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-          echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
-          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+      # 4️⃣ Build Frontend / Vite
+      - name: 🔨 Build Frontend (Vite)
+        run: npm run build
 
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+      # 5️⃣ FTP Upload
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server-dir: subdomains/rezeptbuch.tobias-hopp.de/
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: ./          # Ordner, der hochgeladen wird
-          server-dir: /public_html/  # Zielverzeichnis auf dem Server
-          git-ftp-args: --insecure
+          protocol: ftp
+          port: 21
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/docker*/**

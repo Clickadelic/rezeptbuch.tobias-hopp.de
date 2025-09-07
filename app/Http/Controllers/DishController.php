@@ -210,10 +210,10 @@ class DishController extends Controller
                 }
 
                 // Existierende Zutat per UUID oder neue Zutat per Name
-                if (\Illuminate\Support\Str::isUuid($ingredientValue)) {
-                    $ingredient = \App\Models\Ingredient::find($ingredientValue);
+                if (Str::isUuid($ingredientValue)) {
+                    $ingredient = Ingredient::find($ingredientValue);
                 } else {
-                    $ingredient = \App\Models\Ingredient::firstOrCreate(['name' => $ingredientValue]);
+                    $ingredient = Ingredient::firstOrCreate(['name' => $ingredientValue]);
                 }
 
                 if (!$ingredient) {

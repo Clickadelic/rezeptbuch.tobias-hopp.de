@@ -120,7 +120,7 @@ a[target='_blank']:after {
 
  // emerald-700
 .arrow-primary {
-    fill: #047857;
+    fill: var(--primary);
 }
 
 footer a[target='_blank']:after {

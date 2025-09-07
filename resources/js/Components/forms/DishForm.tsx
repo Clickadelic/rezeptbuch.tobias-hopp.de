@@ -189,7 +189,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 className="mt-1 flex-1 rounded-none border-r-0 border-slate-200 rounded-tl-lg rounded-bl-lg"
                                 onChange={(e) => setData('preparation_time', Number(e.target.value))}
                             />
-                            <span className="px-3 py-3 border border-l-0 rounded-r-lg border-slate-400">
+                            <span className="px-3 py-2 border border-l-0 rounded-r-lg border-slate-400">
                                 Minuten
                             </span>
                         </div>

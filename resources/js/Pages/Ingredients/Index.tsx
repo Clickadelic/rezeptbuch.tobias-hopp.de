@@ -8,8 +8,8 @@ import IngredientForm from '@/components/forms/IngredientForm';
 
 export default function IngredientsIndex() {
     const { props } = usePage();
-    const user  = props.auth.user;
     const { ingredients } = props;
+    const user  = props.auth.user;
 
     return (
         <>
@@ -18,10 +18,11 @@ export default function IngredientsIndex() {
                 {user && typeof user === 'object' && (
                     <>
                         <IngredientForm />
-                        <hr className="my-8" />
+                        <hr className="my-5" />
                     </>
                 )}
-                
+                <p>Die Zutatenliste ist für alle Benutzer global. Bietet den Vorteil, dass man irgendwann bequem aus einem Pool an Zutaten auswählen kann, ohne diese jedes Mal neu einzutippen.</p>
+                <hr className="my-5" />
                 <ul className="flex flex-row gap-2">
                     {ingredients.map((ingredient: Ingredient) => (
                         <li key={ingredient.id}>

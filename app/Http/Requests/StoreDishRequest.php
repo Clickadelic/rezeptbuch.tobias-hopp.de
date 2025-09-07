@@ -15,13 +15,26 @@ class StoreDishRequest extends FormRequest
     /** @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string> */
     public function rules(): array
     {
+        $nameRule = $this->isMethod('post') ? ['required', 'string', 'max:255'] : ['sometimes', 'string', 'max:255'];
+
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => $nameRule,
+            'slug' => ['nullable', 'string', 'max:255'],
             'punchline' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'preparation_time' => ['nullable', 'integer', 'min:0'],
             'rating' => ['nullable', 'integer', 'min:0', 'max:5'],
-            'difficulty' => ['nullable', 'string']
+            'difficulty' => ['nullable', 'string'],
+
+            // Nested ingredients from the form
+'dish_ingredients' => ['sometimes', 'array'],
+            'pending_key' => ['nullable', 'string', 'max:255'],
+            'dish_ingredients.*.ingredient_id' => ['nullable', 'string'],
+            'dish_ingredients.*.quantity' => ['nullable', 'string'],
+'dish_ingredients.*.unit' => ['nullable', 'string'],
+
+'primary_media_id' => ['nullable', 'string'],
+            'id' => ['nullable', 'string'],
         ];
     }
 

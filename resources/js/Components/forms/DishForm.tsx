@@ -1,5 +1,6 @@
 import { useForm, router } from '@inertiajs/react';
 import { Dish } from '@/types/Dish';
+import { useState, FormEvent } from 'react';
 import { Difficulty } from '@/types/Difficulty';
 import { Ingredient } from '@/types/Ingredient';
 import InputLabel from '@/Components/InputLabel';
@@ -19,8 +20,7 @@ import { Slider } from '@/Components/ui/slider';
 
 import { UNITS } from '@/types/Units';
 import { BsTrash3 } from 'react-icons/bs';
-import {ComboBox} from '@/Components/forms/ComboBox';
-
+import { IngredientComboBox } from '@/Components/forms/IngredientComboBox';
 
 interface DishIngredientData {
     ingredient_id: string;
@@ -36,8 +36,14 @@ interface DishFormProps {
 
 export default function DishForm({ dish, ingredients, className }: DishFormProps) {
     const isEditing = Boolean(dish);
+    // Pending key for creation uploads
+    const [pendingKey] = useState<string>(() => (typeof crypto !== 'undefined' && (crypto as any).randomUUID ? (crypto as any).randomUUID() : Math.random().toString(36).slice(2)));
 
-    const { data, setData, post, processing, errors } = useForm({
+    // Local list of newly uploaded media (creation only)
+    const [pendingMedia, setPendingMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>([]);
+    const [liveMedia, setLiveMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>(dish?.media ?? []);
+
+    const { data, setData, post, processing, errors, reset } = useForm({
         id: dish?.id ?? null,
         name: dish?.name ?? '',
         slug: dish?.slug ?? '',
@@ -46,12 +52,14 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
         difficulty: dish?.difficulty ?? Difficulty.EINFACH,
         rating: Number(dish?.rating ?? 0),
         preparation_time: Number(dish?.preparation_time ?? 0),
+        pending_key: isEditing ? null : pendingKey,
+        primary_media_id: (dish?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null) as any,
         // ✅ sicherstellen, dass immer ein Array da ist
         dish_ingredients:
             dish?.ingredients?.map((i) => ({
                 ingredient_id: i.id!,
                 quantity: i.pivot?.quantity ?? '',
-                unit: i.pivot?.unit ?? "gr",
+                unit: i.pivot?.unit ?? 'gr',
             })) ?? ([] as DishIngredientData[]),
     });
 
@@ -76,20 +84,47 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     };
 
     // --- Submit ---
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('dishes.store'), { forceFormData: true });
+        post(route('dishes.store'), { forceFormData: true, onSuccess: () => reset(), preserveScroll: true });
     };
 
-    const onUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+    const onUpdate = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        router.put(route('dishes.update', { dish: data.id }), data, {
-            forceFormData: true,
-        });
+        // Use POST + method spoofing so multipart/arrays are parsed reliably by PHP
+        router.post(
+            route('dishes.update', { dish: data.id }),
+            { ...data, _method: 'put' },
+            {
+                preserveScroll: true,
+            },
+        );
     };
 
     return (
-        <form onSubmit={isEditing ? onUpdate : onSubmit} className={cn('flex flex-col space-y-3', className)}>
+        <>
+            {/* Uploader outside the form to avoid submit issues */}
+            <div className="w-full space-y-3 mb-4">
+                <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
+                <DishMediaUploader
+                    dishId={isEditing ? (data.id as string) : undefined}
+                    pendingKey={!isEditing ? pendingKey : undefined}
+                    onUploadedJSON={(m) => {
+                        if (!isEditing) {
+                            setPendingMedia((prev) => [...prev, m]);
+                            if (!data.primary_media_id) setData('primary_media_id', m.id as any);
+                        } else {
+                            setLiveMedia((prev) => [...prev, m]);
+                            if (!data.primary_media_id) setData('primary_media_id', m.id as any);
+                        }
+                    }}
+                />
+            </div>
+
+            <form
+                onSubmit={isEditing ? onUpdate : onSubmit}
+                className={cn('flex flex-col space-y-3', className)}
+            >
             {/* Name */}
             <div className="w-full">
                 <InputLabel htmlFor="name" value="Name" />
@@ -193,16 +228,16 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     <Select
                         name="difficulty"
                         value={data.difficulty || undefined}
-                        onValueChange={(val) => setData("difficulty", val as Difficulty)}
+                        onValueChange={(val) => setData('difficulty', val as Difficulty)}
                     >
                         <SelectTrigger className="w-full mt-1 py-2">
                             <SelectValue placeholder="Schwierigkeitsgrad" />
                         </SelectTrigger>
                         <SelectContent>
                             {Object.entries(Difficulty).map(([key, val]) => (
-                            <SelectItem key={key} value={key}>
-                                {val}
-                            </SelectItem>
+                                <SelectItem key={key} value={key}>
+                                    {val}
+                                </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -210,12 +245,64 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 </div>
             </div>
 
+            {/* Medien */}
+            <div className="w-full space-y-3">
+                <InputLabel htmlFor="media" value="Bilder zum Gericht" />
+
+                {/* Aktuelle Bilder (Edit) oder Pending-Uploads (Create) */}
+                <div className="flex flex-wrap gap-3">
+                    {isEditing
+                        ? (liveMedia.map((m: any) => (
+                            <label key={m.id} className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer">
+                                <img
+                                    src={m.url ?? `/storage/${m.path}`}
+                                    alt={m.name}
+                                    className="w-full h-full object-cover"
+                                />
+                                <input
+                                    type="radio"
+                                    name="primary_media_id"
+                                    value={m.id}
+                                    checked={data.primary_media_id === m.id}
+                                    onChange={() => setData('primary_media_id', m.id as any)}
+                                    className="absolute top-1 left-1"
+                                    title="Als Hauptbild auswählen"
+                                />
+                                {(m?.pivot?.is_primary || data.primary_media_id === m.id) && (
+                                    <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">Aktuell</span>
+                                )}
+                            </label>
+                        )) ?? [])
+                        : (pendingMedia.length > 0
+                            ? pendingMedia.map((m) => (
+                                <label key={m.id} className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer">
+                                    <img
+                                        src={m.url ?? `/storage/${m.path}`}
+                                        alt={m.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <input
+                                        type="radio"
+                                        name="primary_media_id"
+                                        value={m.id}
+                                        checked={data.primary_media_id === (m.id as any)}
+                                        onChange={() => setData('primary_media_id', m.id as any)}
+                                        className="absolute top-1 left-1"
+                                        title="Als Hauptbild auswählen"
+                                    />
+                                </label>
+                            ))
+                            : <p className="text-sm text-slate-500">Noch keine Bilder vorhanden.</p>
+                        )}
+                </div>
+
+            </div>
+
             {/* Zutaten */}
             <div className="w-full space-y-2">
                 <InputLabel htmlFor="ingredients" value="Zutaten" />
                 {data.dish_ingredients?.map((di, idx) => (
                     <div key={idx} className="flex flex-row gap-2 items-start">
-
                         <TextInput
                             placeholder="Menge"
                             value={di.quantity}
@@ -228,36 +315,32 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             value={di.unit}
                             onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                         >
-                        <SelectTrigger className="w-24 mt-1 py-2">
-                            <SelectValue placeholder="Einheit auswählen" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {Object.entries(UNITS).map(([key, val]) => (
-                            <SelectItem key={key} value={val}>
-                                {val}
-                            </SelectItem>
-                            ))}
-                        </SelectContent>
-                        </Select>
-
-
-                        <Select
-                            value={di.ingredient_id}
-                            onValueChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
-                        >
-                            <SelectTrigger className="w-64 mt-1 py-2">
-                                <SelectValue placeholder="Zutat auswählen" />
+                            <SelectTrigger className="w-24 mt-1 py-2">
+                                <SelectValue placeholder="Einheit auswählen" />
                             </SelectTrigger>
                             <SelectContent>
-                                {ingredients.map((i) => (
-                                    <SelectItem key={i.id} value={i.id}>
-                                        {i.name}
+                                {Object.entries(UNITS).map(([key, val]) => (
+                                    <SelectItem key={key} value={val}>
+                                        {val}
                                     </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>
 
-                        <Button variant="destructive" className="mt-1" type="button" onClick={() => removeIngredient(idx)}>
+                        <IngredientComboBox
+                            options={ingredients}
+                            value={di.ingredient_id}
+                            triggerClassName="mt-1 w-80"
+                            onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
+                        />
+
+                        <Button
+                            variant="destructive"
+                            className="mt-1.5 hover:cursor-pointer"
+                            size="sm"
+                            type="button"
+                            onClick={() => removeIngredient(idx)}
+                        >
                             <BsTrash3 />
                         </Button>
                     </div>
@@ -269,7 +352,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
 
             {/* Submit */}
             <div className="w-full mt-4">
-                <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+                <Button type="submit" variant="primary" size="lg" className="w-full" disabled={processing}>
                     {isEditing ? (
                         <>
                             <GoPencil /> Bearbeiten
@@ -282,5 +365,58 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 </Button>
             </div>
         </form>
+        </>
+    );
+}
+
+// Lightweight uploader that posts to /upload with dish_id so the file is attached via pivot
+function DishMediaUploader({ dishId, pendingKey, onUploadedJSON }: { dishId?: string; pendingKey?: string; onUploadedJSON?: (m: { id: number; path: string; name: string; url?: string; pivot?: any }) => void }) {
+    const [file, setFile] = useState<File | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const handleUpload = async () => {
+        if (!file) return;
+        setLoading(true);
+        setError(null);
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('collection', 'dish_images');
+            if (dishId) formData.append('dish_id', dishId);
+            if (pendingKey) formData.append('pending_key', pendingKey);
+            const res = await (window.axios?.post?.('/upload', formData, {
+                headers: { 'Content-Type': 'multipart/form-data', Accept: 'application/json' },
+                withCredentials: true,
+            }) ?? fetch('/upload', { method: 'POST', body: formData, headers: { Accept: 'application/json' }, credentials: 'include' }));
+
+            if (res && 'data' in (res as any)) {
+                const media = (res as any).data.media;
+                onUploadedJSON?.(media);
+            } else if (res instanceof Response) {
+                const json = await res.json();
+                onUploadedJSON?.(json.media);
+            }
+
+            setFile(null);
+        } catch (e: any) {
+            setError(e?.response?.data?.message || 'Upload fehlgeschlagen');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="flex items-center gap-3" onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}>
+            <input
+                type="file"
+                accept="image/png,image/jpeg,image/jpg"
+                onChange={(e) => setFile(e.target.files?.[0] || null)}
+            />
+            <Button type="button" onClick={handleUpload} disabled={loading || !file} className="hover:cursor-pointer">
+                {loading ? 'Lädt…' : 'Bild hochladen'}
+            </Button>
+            {error && <span className="text-red-500 text-sm">{error}</span>}
+        </div>
     );
 }

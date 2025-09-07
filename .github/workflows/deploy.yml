@@ -3,7 +3,7 @@ name: Deploy Laravel via FTP
 on:
   push:
     branches:
-      - main   # oder master, je nachdem wie dein Dev-Branch heißt
+      - master   # oder master, je nachdem wie dein Dev-Branch heißt
 
 jobs:
   deploy:
@@ -53,5 +53,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./          # Ordner, der hochgeladen wird
-          server-dir: /public_html/  # Zielverzeichnis auf dem Server
+          server-dir: /home/www/subdomains/rezeptbuch.tobias-hopp.de  # Zielverzeichnis auf dem Server
           git-ftp-args: --insecure

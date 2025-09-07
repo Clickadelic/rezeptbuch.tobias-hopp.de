@@ -9,6 +9,7 @@ import { FaQ } from 'react-icons/fa6';
 import { GrNavigate } from 'react-icons/gr';
 
 import { CircularMenu } from '@/components/nutshell/CircularMenu';
+import NewsletterForm from '../forms/NewsletterForm';
 
 /**
  * Renders the footer section of the website, containing navigation links, FAQ,
@@ -137,26 +138,7 @@ export default function Footer() {
                                 Bleib' auf dem Laufenden, wenn es Neuigkeiten zu meinem Rezeptbuch
                                 gibt.
                             </p>
-                            <form>
-                                <div className="flex flex-col space-y-2">
-                                    <input
-                                        type="text"
-                                        placeholder="Name"
-                                        className="px-2 py-1 rounded w-full bg-slate-200 text-slate-100"
-                                    />
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        className="px-2 py-1 rounded w-full bg-slate-200 text-slate-100"
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="px-2 py-1 rounded bg-emerald-800 text-slate-100 hover:bg-emerald-800"
-                                    >
-                                        Subscribe
-                                    </button>
-                                </div>
-                            </form>
+                            <NewsletterForm />
                         </div>
                     </div>
                     <div className="flex flex-row justify-center items-center border-t border-t-stone-500 pt-6 mt-12">

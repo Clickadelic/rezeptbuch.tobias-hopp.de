@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { usePage } from '@inertiajs/react';
+import { usePage, Link } from '@inertiajs/react';
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-
-import { ResponsiveDialog } from '@/components/reusables/ResponsiveDialog';
+import { TooltipArrow } from '@radix-ui/react-tooltip';
 
 import { TbSalt } from 'react-icons/tb';
 import { FiPlus } from 'react-icons/fi';
@@ -12,9 +11,7 @@ import { LiaCocktailSolid } from 'react-icons/lia';
 
 import { cn } from '@/lib/utils';
 
-import DishForm from '@/components/forms/DishForm';
-import CocktailForm from '@/components/forms/CocktailForm';
-import IngredientForm from '@/components/forms/IngredientForm';
+
 
 export function CircularMenu() {
     const { auth } = usePage().props;
@@ -22,10 +19,6 @@ export function CircularMenu() {
     if (!auth.user) return null;
 
     const [showCircularMenu, setShowCircularMenu] = useState(false);
-
-    const [isCocktailDialogOpen, setCocktailDialogOpen] = useState(false);
-    const [isDishDialogOpen, setDishDialogOpen] = useState(false);
-    const [isIngredientDialogOpen, setIngredientDialogOpen] = useState(false);
 
     return (
         <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-12">
@@ -38,83 +31,54 @@ export function CircularMenu() {
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
-                            <button
+                            <Link
                                 className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
-                                onClick={() => setDishDialogOpen(true)}
+                                href={route('dishes.create')}
                             >
                                 <BsJournalBookmark />
-                            </button>
+                            </Link>
                         </TooltipTrigger>
                         <TooltipContent side="left">
                             <p>Neues Gericht</p>
+                            <TooltipArrow className="arrow-primary" />
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <ResponsiveDialog
-                    icon={<BsJournalBookmark />}
-                    title="Gericht hinzufügen"
-                    description="Füge ein Gericht hinzu"
-                    editTitle="Gericht bearbeiten"
-                    editDescription="Ändere Titel oder andere Dinge"
-                    isOpen={isDishDialogOpen}
-                    setIsOpen={setDishDialogOpen}
-                >
-                    <DishForm ingredients={[]} />
-                </ResponsiveDialog>
+                
 
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
-                            <button
+                            <Link
                                 className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
-                                onClick={() => setCocktailDialogOpen(true)}
+                                href={route('cocktails.create')}
                             >
                                 <LiaCocktailSolid />
-                            </button>
+                            </Link>
                         </TooltipTrigger>
                         <TooltipContent side="left">
                             <p>Neuer Cocktail</p>
+                            <TooltipArrow className="arrow-primary" />
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <ResponsiveDialog
-                    icon={<LiaCocktailSolid />}
-                    title="Cocktail hinzufügen"
-                    description="Füge einen Cocktail hinzu"
-                    editTitle="Cocktail bearbeiten"
-                    editDescription="Ändere Titelandere Dinge"
-                    isOpen={isCocktailDialogOpen}
-                    setIsOpen={setCocktailDialogOpen}
-                >
-                    <CocktailForm />
-                </ResponsiveDialog>
 
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild data-state="instant-open">
-                            <button
+                            <Link
                                 className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
-                                onClick={() => setIngredientDialogOpen(true)}
+                                href={route('ingredients.create')}
                             >
                                 <TbSalt />
-                            </button>
+                            </Link>
                         </TooltipTrigger>
                         <TooltipContent side="left">
                             <p>Neue Zutat</p>
+                            <TooltipArrow className="arrow-primary" />
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <ResponsiveDialog
-                    icon={<TbSalt />}
-                    title="Zutat hinzufügen"
-                    description="Füge eine Zutat hinzu"
-                    editTitle="Zutat bearbeiten"
-                    editDescription="Ändere Titelandere Dinge"
-                    isOpen={isIngredientDialogOpen}
-                    setIsOpen={setIngredientDialogOpen}
-                >
-                    <IngredientForm />
-                </ResponsiveDialog>
             </div>
 
             {/* Haupt-Button */}
@@ -136,6 +100,7 @@ export function CircularMenu() {
                     </TooltipTrigger>
                     <TooltipContent side="left">
                         <p>Neuen Inhalt anlegen</p>
+                        <TooltipArrow className="arrow-primary" />
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>

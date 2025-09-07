@@ -58,7 +58,7 @@
         --popover: 0 0% 100%;
         --popover-foreground: 222.2 84% 4.9%;
         /* --primary: 222.2 47.4% 11.2%; */
-        --primary: 161.4 93.5% 30.4%;
+        --primary: 161.3 94.4% 24.5%;
 
         --primary-foreground: 210 40% 98%;
         --secondary: 210 40% 96.1%;
@@ -118,8 +118,9 @@ a[target='_blank']:after {
     margin-right: 5px;
 }
 
-.arrow-emerald-700 {
-    fill: #388e3c;
+ // emerald-700
+.arrow-primary {
+    fill: #047857;
 }
 
 footer a[target='_blank']:after {

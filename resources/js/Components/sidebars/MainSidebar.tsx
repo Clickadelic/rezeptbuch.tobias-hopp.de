@@ -12,17 +12,20 @@ export default function LeftSidebar() {
         <aside className="py-4">
             <h2 className="text-lg font-medium mb-2">Navigation</h2>
             <ul className="flex flex-col">
-                {user && (
-                    <SidebarLink
-                        href="/gerichte/neues-gericht"
-                        active={window.location.pathname === '/gerichte/neues-gericht'}
-                        title="Neues Gericht"
-                    />
-                )}
                 <SidebarLink
                     href="/gerichte"
                     active={window.location.pathname === '/gerichte'}
-                    title="Alle Gerichte"
+                    title="Gerichte"
+                />
+                <SidebarLink
+                    href="/cocktails"
+                    active={window.location.pathname === '/cocktails'}
+                    title="Cocktails"
+                />
+                <SidebarLink
+                    href="/zutaten"
+                    active={window.location.pathname === '/zutaten'}
+                    title="Zutaten"
                 />
             </ul>
         </aside>

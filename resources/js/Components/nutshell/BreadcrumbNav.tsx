@@ -30,13 +30,13 @@ const BreadcrumbNav = () => {
                 </li>
 
                 {crumbs.map((crumb, idx) => (
-                    <li key={idx} className="flex items-center">
+                    <li key={idx} className="flex items-center line-clamp-1">
                         <ChevronRight className="w-4 h-4 mr-2 text-slate-600 dark:text-slate-200" />
                         {/* Letztes Segment nicht als Link */}
                         {idx === crumbs.length - 1 ? (
-                            <span className="asd">{crumb.name}</span>
+                            <span className="line-clamp-1">{crumb.name}</span>
                         ) : (
-                            <Link href={crumb.path} className="hover:text-primary">
+                            <Link href={crumb.path} className="line-clamp-1 hover:text-primary">
                                 {crumb.name}
                             </Link>
                         )}

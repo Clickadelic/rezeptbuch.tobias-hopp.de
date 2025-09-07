@@ -1,10 +1,10 @@
-import { Head } from '@inertiajs/react';
-import { usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 import { Dish } from '@/types/Dish';
-import DishForm from '@/Components/forms/DishForm';
-import DishesSidebar from '@/Components/sidebars/DishesSidebar';
-import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
+import DishForm from '@/components/forms/DishForm';
+import DishesSidebar from '@/components/sidebars/DishesSidebar';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+
 interface EditDishProps {
     dish: Dish;
 }

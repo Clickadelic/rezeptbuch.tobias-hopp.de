@@ -1,8 +1,8 @@
-import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
-import RightSidebar from '@/Components/sidebars/RightSidebar';
+import RightSidebar from '@/components/sidebars/RightSidebar';
 
 export default function CocktailsIndex({ auth }: PageProps<{ auth: { user: any } }>) {
     return (

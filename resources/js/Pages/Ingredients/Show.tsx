@@ -1,5 +1,5 @@
 import { Head, usePage } from '@inertiajs/react';
-import NoSidebarsLayout from '@/Layouts/NoSidebarsLayout';
+import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 
 export default function Ingredients() {
     const { props } = usePage();

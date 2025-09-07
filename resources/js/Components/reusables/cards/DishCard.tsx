@@ -1,13 +1,13 @@
 import { router, usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 
-import { Card, CardContent, CardFooter, CardHeader } from '@/Components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from '@/Components/ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
 
 import { GoClock, GoTrash } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';

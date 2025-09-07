@@ -3,24 +3,24 @@ import { Dish } from '@/types/Dish';
 import { useState, FormEvent } from 'react';
 import { Difficulty } from '@/types/Difficulty';
 import { Ingredient } from '@/types/Ingredient';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
-import { Textarea } from '@/Components/ui/textarea';
-import { Button } from '@/Components/ui/button';
+import InputLabel from '@/components/InputLabel';
+import TextInput from '@/components/TextInput';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/Components/ui/select';
+} from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
-import { Slider } from '@/Components/ui/slider';
+import { Slider } from '@/components/ui/slider';
 
 import { UNITS } from '@/types/Units';
 import { BsTrash3 } from 'react-icons/bs';
-import { IngredientComboBox } from '@/Components/forms/IngredientComboBox';
+import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 
 interface DishIngredientData {
     ingredient_id: string;

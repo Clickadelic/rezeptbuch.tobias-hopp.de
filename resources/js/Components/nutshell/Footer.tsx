@@ -8,7 +8,7 @@ import { IoIosRibbon } from 'react-icons/io';
 import { FaQ } from 'react-icons/fa6';
 import { GrNavigate } from 'react-icons/gr';
 
-import { CircularMenu } from '@/Components/nutshell/CircularMenu';
+import { CircularMenu } from '@/components/nutshell/CircularMenu';
 
 /**
  * Renders the footer section of the website, containing navigation links, FAQ,

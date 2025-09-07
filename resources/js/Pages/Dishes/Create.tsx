@@ -1,8 +1,8 @@
 import { Head } from '@inertiajs/react';
 
-import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
-import DishesSidebar from '@/Components/sidebars/DishesSidebar';
-import DishForm from '@/Components/forms/DishForm';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import DishesSidebar from '@/components/sidebars/DishesSidebar';
+import DishForm from '@/components/forms/DishForm';
 import { usePage } from '@inertiajs/react';
 /**
  * Page for creating a new dish.

@@ -1,10 +1,10 @@
 import { useForm, router } from '@inertiajs/react';
 
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
-import { Textarea } from '@/Components/ui/textarea';
-import { Button } from '@/Components/ui/button';
+import InputError from '@/components/InputError';
+import InputLabel from '@/components/InputLabel';
+import TextInput from '@/components/TextInput';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 
 import {
     Select,
@@ -12,7 +12,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/Components/ui/select';
+} from '@/components/ui/select';
 
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { cn, assetPath } from '@/lib/utils';

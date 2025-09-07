@@ -1,7 +1,7 @@
-import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import { Head } from '@inertiajs/react';
-import DishesSidebar from '@/Components/sidebars/DishesSidebar';
-import CocktailForm from '@/Components/forms/CocktailForm';
+import DishesSidebar from '@/components/sidebars/DishesSidebar';
+import CocktailForm from '@/components/forms/CocktailForm';
 
 /**
  * Page for creating a new dish.

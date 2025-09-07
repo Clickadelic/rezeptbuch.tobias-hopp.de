@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
-import AppLogo from '@/Components/nutshell/AppLogo';
-import NavLink from '@/Components/reusables/NavLink';
-import NavButton from '@/Components/reusables/NavButton';
-import ResponsiveNavLink from '@/Components/reusables/ResponsiveNavLink';
-import Dropdown from '@/Components/Dropdown';
+import AppLogo from '@/components/nutshell/AppLogo';
+import NavLink from '@/components/reusables/NavLink';
+import NavButton from '@/components/reusables/NavButton';
+import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
+import Dropdown from '@/components/Dropdown';
 
-import { Button } from '@/Components/ui/button';
-import { ModeToggle } from '@/Components/nutshell/ModeToggle';
+import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/nutshell/ModeToggle';
 
 import { BsHouse } from 'react-icons/bs';
 import { BsJournalBookmark } from 'react-icons/bs';

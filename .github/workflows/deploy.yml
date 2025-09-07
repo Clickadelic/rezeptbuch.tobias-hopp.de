@@ -12,26 +12,9 @@ jobs:
     name: 🎉 Deploy to Production
     runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Repo auschecken
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
 
-      # 2️⃣ Node.js Setup
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      # 3️⃣ Install Dependencies
-      - name: 📥 Install NPM dependencies
-        run: npm ci
-
-      # 4️⃣ Build Frontend / Vite
-      - name: 🔨 Build Frontend (Vite)
-        run: npm run build
-
-      # 5️⃣ FTP Upload
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -45,3 +28,12 @@ jobs:
             **/.git*
             **/.git*/**
             **/docker*/**
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: 📦 Install dependencies
+        run: npm install
+      - name: 📦 Build frontend
+        run: npm run build

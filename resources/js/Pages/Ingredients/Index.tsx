@@ -3,7 +3,7 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 
 import { Ingredient } from '@/types/Ingredient';
 import { Badge } from '@/components/ui/badge';
-import LeftSidebar from '@/components/sidebars/LeftSidebar';
+import MainSidebar from '@/components/sidebars/MainSidebar';
 import IngredientForm from '@/components/forms/IngredientForm';
 
 export default function IngredientsIndex() {
@@ -14,7 +14,7 @@ export default function IngredientsIndex() {
     return (
         <>
             <Head title="Zutaten" />
-            <SidebarLeftLayout title="Zutaten" sidebar={<LeftSidebar />}>
+            <SidebarLeftLayout title="Zutaten" sidebar={<MainSidebar />}>
                 {user && typeof user === 'object' && (
                     <>
                         <IngredientForm />

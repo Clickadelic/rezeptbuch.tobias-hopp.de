@@ -4,15 +4,25 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import { Ingredient } from '@/types/Ingredient';
 import { Badge } from '@/components/ui/badge';
 import LeftSidebar from '@/components/sidebars/LeftSidebar';
+import IngredientForm from '@/components/forms/IngredientForm';
 
 export default function IngredientsIndex() {
     const { props } = usePage();
     const { ingredients } = props;
+    const user  = props.auth.user;
 
     return (
         <>
             <Head title="Zutaten" />
             <SidebarLeftLayout title="Zutaten" sidebar={<LeftSidebar />}>
+                {user && typeof user === 'object' && (
+                    <>
+                        <IngredientForm />
+                        <hr className="my-5" />
+                    </>
+                )}
+                <p>Die Zutatenliste ist für alle Benutzer global. Bietet den Vorteil, dass man irgendwann bequem aus einem Pool an Zutaten auswählen kann, ohne diese jedes Mal neu einzutippen.</p>
+                <hr className="my-5" />
                 <ul className="flex flex-row gap-2">
                     {ingredients.map((ingredient: Ingredient) => (
                         <li key={ingredient.id}>

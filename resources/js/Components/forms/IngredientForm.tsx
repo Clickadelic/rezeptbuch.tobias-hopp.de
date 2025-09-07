@@ -52,6 +52,7 @@ export default function DishForm({ ingredient, className }: IngredientFormProps)
                     id="name"
                     type="text"
                     value={data.name}
+                    
                     className="mt-1 flex w-full"
                     placeholder="z.B. Kartoffeln"
                     isFocused

@@ -1,9 +1,9 @@
 import { Head, usePage } from '@inertiajs/react';
-import SidebarLeftLayout from '@/Layouts/SidebarLeftLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 
 import { Ingredient } from '@/types/Ingredient';
-import { Badge } from '@/Components/ui/badge';
-import LeftSidebar from '@/Components/sidebars/LeftSidebar';
+import { Badge } from '@/components/ui/badge';
+import LeftSidebar from '@/components/sidebars/LeftSidebar';
 
 export default function IngredientsIndex() {
     const { props } = usePage();

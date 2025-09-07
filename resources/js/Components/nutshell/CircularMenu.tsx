@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/Components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
-import { ResponsiveDialog } from '@/Components/reusables/ResponsiveDialog';
+import { ResponsiveDialog } from '@/components/reusables/ResponsiveDialog';
 
 import { TbSalt } from 'react-icons/tb';
 import { FiPlus } from 'react-icons/fi';
@@ -12,9 +12,9 @@ import { LiaCocktailSolid } from 'react-icons/lia';
 
 import { cn } from '@/lib/utils';
 
-import DishForm from '@/Components/forms/DishForm';
-import CocktailForm from '@/Components/forms/CocktailForm';
-import IngredientForm from '@/Components/forms/IngredientForm';
+import DishForm from '@/components/forms/DishForm';
+import CocktailForm from '@/components/forms/CocktailForm';
+import IngredientForm from '@/components/forms/IngredientForm';
 
 export function CircularMenu() {
     const { auth } = usePage().props;

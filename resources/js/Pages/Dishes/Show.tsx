@@ -1,8 +1,8 @@
 import { Head } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 
-import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
-import DishesSidebar from '@/Components/sidebars/DishesSidebar';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import DishesSidebar from '@/components/sidebars/DishesSidebar';
 import { Dish } from '@/types/Dish';
 import { assetPath } from '@/lib/utils';
 import { Link } from '@inertiajs/react';

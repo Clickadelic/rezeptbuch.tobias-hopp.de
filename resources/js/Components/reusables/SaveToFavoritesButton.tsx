@@ -1,7 +1,7 @@
 import { IoIosHeartEmpty } from 'react-icons/io';
 import { IoMdHeart } from 'react-icons/io';
 import { cn } from '@/lib/utils';
-import { Button } from '@/Components/ui/button';
+import { Button } from '@/components/ui/button';
 
 import { useState, useEffect } from 'react';
 

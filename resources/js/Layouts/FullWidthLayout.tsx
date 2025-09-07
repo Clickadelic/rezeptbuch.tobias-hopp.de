@@ -2,17 +2,16 @@ import { PropsWithChildren } from 'react';
 import { useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 
-import Header from '@/Components/nutshell/Header';
-import RecipeSearch from '@/Components/nutshell/RecipeSearch';
-import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
-import Footer from '@/Components/nutshell/Footer';
-import CircularMenu from '@/Components/nutshell/CircularMenu';
+import Header from '@/components/nutshell/Header';
+import RecipeSearch from '@/components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/components/nutshell/BreadcrumbNav';
+import Footer from '@/components/nutshell/Footer';
+import CircularMenu from '@/components/nutshell/CircularMenu';
 
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 
-import { ThemeProvider } from '@/Components/nutshell/ThemeProvider';
-import { ModeToggle } from '@/Components/nutshell/ModeToggle';
+import { ThemeProvider } from '@/components/nutshell/ThemeProvider';
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;

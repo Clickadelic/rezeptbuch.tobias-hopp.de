@@ -1,9 +1,9 @@
 import { useForm } from '@inertiajs/react';
 
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
-import { Button } from '@/Components/ui/button';
+import InputError from '@/components/InputError';
+import InputLabel from '@/components/InputLabel';
+import TextInput from '@/components/TextInput';
+import { Button } from '@/components/ui/button';
 
 import { GoPlus, GoPencil } from 'react-icons/go';
 

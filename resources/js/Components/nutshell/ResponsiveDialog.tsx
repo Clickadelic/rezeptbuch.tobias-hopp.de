@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useMediaQuery } from '@/Hooks/use-media-query';
+import { useMediaQuery } from '@/hooks/use-media-query';
 
 import {
     Dialog,
@@ -8,14 +8,14 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-} from '@/Components/ui/dialog';
+} from '@/components/ui/dialog';
 import {
     Drawer,
     DrawerContent,
     DrawerHeader,
     DrawerDescription,
     DrawerTitle,
-} from '@/Components/ui/drawer';
+} from '@/components/ui/drawer';
 
 interface ResponsiveDialogProps {
     icon: React.ReactNode;

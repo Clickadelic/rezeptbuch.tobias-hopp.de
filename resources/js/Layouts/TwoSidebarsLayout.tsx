@@ -1,17 +1,18 @@
 import { PropsWithChildren } from 'react';
-import { useMediaQuery } from '@/Hooks/use-media-query';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 
-import Header from '@/Components/nutshell/Header';
-import RecipeSearch from '@/Components/nutshell/RecipeSearch';
-import BreadcrumbNav from '@/Components/nutshell/BreadcrumbNav';
-import Footer from '@/Components/nutshell/Footer';
-import CircularMenu from '@/Components/nutshell/CircularMenu';
+import Header from '@/components/nutshell/Header';
+import RecipeSearch from '@/components/nutshell/RecipeSearch';
+import BreadcrumbNav from '@/components/nutshell/BreadcrumbNav';
+import Footer from '@/components/nutshell/Footer';
+import CircularMenu from '@/components/nutshell/CircularMenu';
 
-import { ThemeProvider } from '@/Components/nutshell/ThemeProvider';
-import { Toaster } from '@/Components/ui/sonner';
+import { ThemeProvider } from '@/components/nutshell/ThemeProvider';
+import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
+
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
     title?: string;

@@ -1,4 +1,4 @@
-import { Button } from '@/Components/ui/button';
+import { Button } from '@/components/ui/button';
 import { RiSearchLine } from 'react-icons/ri';
 
 export default function RecipeSearch() {

@@ -1,8 +1,8 @@
-import SidebarRightLayout from '@/Layouts/SidebarRightLayout';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
 import { Head } from '@inertiajs/react';
 
 import chefTobias from '@images/svg/Chef-Tobias.svg';
-import FrontpageSidebar from '@/Components/sidebars/FrontpageSidebar';
+import FrontpageSidebar from '@/components/sidebars/FrontpageSidebar';
 
 /**
  * The frontpage of the application.

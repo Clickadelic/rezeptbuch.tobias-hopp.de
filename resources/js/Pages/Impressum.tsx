@@ -1,8 +1,8 @@
 import { Head } from '@inertiajs/react';
 
-import TwoSidebarsLayout from '@/Layouts/TwoSidebarsLayout';
-import LeftSidebar from '@/Components/sidebars/LeftSidebar';
-import RightSidebar from '@/Components/sidebars/RightSidebar';
+import TwoSidebarsLayout from '@/layouts/TwoSidebarsLayout';
+import LeftSidebar from '@/components/sidebars/LeftSidebar';
+import RightSidebar from '@/components/sidebars/RightSidebar';
 
 /**
  * The Impressum page.

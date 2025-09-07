@@ -43,7 +43,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     const [pendingMedia, setPendingMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>([]);
     const [liveMedia, setLiveMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>(dish?.media ?? []);
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, reset } = useForm({
         id: dish?.id ?? null,
         name: dish?.name ?? '',
         slug: dish?.slug ?? '',

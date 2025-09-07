@@ -43,7 +43,19 @@ export default function DishCard({ dish }: DishCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-slate-200 group-hover:border-emerald-700 shadow-transparent hover:shadow-emerald-700"
                     >
-                        <BiDish className="size-10" />
+                        {/* Hero image */}
+                        {(() => {
+                            const hero = (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ?? (dish as any)?.media?.[0];
+                            return hero ? (
+                                <img
+                                    src={hero.url ?? `/storage/${hero.path}`}
+                                    alt={dish.name}
+                                    className="absolute inset-0 size-full object-cover"
+                                />
+                            ) : (
+                                <BiDish className="size-10" />
+                            );
+                        })()}
 
                         {user && (
                             <DropdownMenu>

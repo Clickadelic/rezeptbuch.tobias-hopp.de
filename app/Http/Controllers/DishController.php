@@ -30,7 +30,7 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::all();
+        $dishes = Dish::with('media')->get();
 
         return Inertia::render('Dishes/Index', [
             'dishes' => $dishes,

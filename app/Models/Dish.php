@@ -74,4 +74,12 @@ class Dish extends Model
           ->withPivot('quantity', 'unit')
           ->withTimestamps();
      }
+
+     public function media()
+     {
+          return $this->belongsToMany(Media::class, 'dish_media')
+               ->withPivot('collection', 'is_primary', 'position')
+               ->withTimestamps()
+               ->orderBy('dish_media.position');
+     }
 }

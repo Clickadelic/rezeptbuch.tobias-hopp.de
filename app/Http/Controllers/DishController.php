@@ -58,9 +58,12 @@ class DishController extends Controller
     public function show(String $slug)
     {   
         $dish = Dish::where('slug', $slug)->firstOrFail();
-        $dish->load(['ingredients' => function ($query) {
-            $query->withPivot(['quantity', 'unit']);
-        }]);
+        $dish->load([
+            'ingredients' => function ($query) {
+                $query->withPivot(['quantity', 'unit']);
+            },
+            'media',
+        ]);
         return inertia('Dishes/Show', compact('dish'));
     }
 
@@ -73,9 +76,9 @@ class DishController extends Controller
     
     public function store(StoreDishRequest $request)
     {
-        // 1️⃣ Dish anlegen
+        // 1️⃣ Dish anlegen (verwende optional mitgegebenes id für frühes Medien-Handling)
         $dish = Dish::create([
-            'id' => Str::uuid()->toString(),
+            'id' => $request->input('id') ?: Str::uuid()->toString(),
             'name' => $request->input('name'),
             'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
             'punchline' => $request->input('punchline'),
@@ -105,10 +108,43 @@ class DishController extends Controller
                 return [$ingredient->id => ['quantity' => $quantity, 'unit' => $unit]];
             })->toArray();
 
-        // 3️⃣ Pivot-Tabelle syncen
+        // 3️⃣ Pivot-Tabelle syncen (Zutaten)
         $dish->ingredients()->sync($dishIngredients);
 
-        return redirect()->route('dishes.index')
+        // 3️⃣a Pending-Uploads anhand pending_key diesem Dish zuordnen
+        if ($request->filled('pending_key')) {
+            $pendingKey = (string) $request->input('pending_key');
+            $collection = 'dish_images';
+            $pendingMedia = \App\Models\Media::where('pending_key', $pendingKey)->get();
+            if ($pendingMedia->isNotEmpty()) {
+                // Nächste Position bestimmen
+                $maxPosition = $dish->media()->wherePivot('collection', $collection)->max('dish_media.position');
+                $posStart = is_null($maxPosition) ? 0 : ($maxPosition + 1);
+
+                foreach ($pendingMedia as $offset => $m) {
+                    $dish->media()->attach($m->id, [
+                        'collection' => $collection,
+                        'is_primary' => false,
+                        'position' => $posStart + $offset,
+                    ]);
+                    // Pending-Flag zurücksetzen
+                    $m->pending_key = null;
+                    $m->save();
+                }
+            }
+        }
+
+        // 3️⃣b Primäres Bild setzen (sofern gesendet)
+        if ($request->filled('primary_media_id')) {
+            $primaryId = $request->input('primary_media_id');
+            $mediaIds = $dish->media()->pluck('media.id')->all();
+            if (in_array($primaryId, $mediaIds)) {
+                $dish->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
+                $dish->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
+            }
+        }
+
+        return redirect()->route('dishes.show', $dish->slug)
             ->with('success', 'Gericht erfolgreich erstellt.');
     }
 
@@ -120,9 +156,12 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        $dish = Dish::with(['ingredients' => function ($query) {
-            $query->select('ingredients.id', 'ingredients.name')->withPivot(['quantity', 'unit']);
-        }])->findOrFail($dish->id);
+        $dish = Dish::with([
+            'ingredients' => function ($query) {
+                $query->select('ingredients.id', 'ingredients.name')->withPivot(['quantity', 'unit']);
+            },
+            'media',
+        ])->findOrFail($dish->id);
 
         return Inertia::render('Dishes/Edit', [
             'dish' => $dish,
@@ -206,6 +245,19 @@ class DishController extends Controller
             } else {
                 // Wenn explizit ein leeres Array gesendet wurde, Pivot leeren
                 $dish->ingredients()->sync([]);
+            }
+        }
+
+        // 3️⃣b Primäres Bild setzen (sofern gesendet)
+        if ($request->filled('primary_media_id')) {
+            $primaryId = $request->input('primary_media_id');
+            $mediaIds = $dish->media()->pluck('media.id')->all();
+            // Nur setzen, wenn die Media zum Gericht gehört
+            if (in_array($primaryId, $mediaIds)) {
+                // Alle auf false
+                $dish->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
+                // Ausgewähltes auf true
+                $dish->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
             }
         }
 

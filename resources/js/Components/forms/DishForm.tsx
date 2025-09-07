@@ -42,7 +42,8 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     // Local list of newly uploaded media (creation only)
     const [pendingMedia, setPendingMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>([]);
     const [liveMedia, setLiveMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>(dish?.media ?? []);
-
+    
+    // @ts-ignore
     const { data, setData, post, processing, errors, reset } = useForm({
         id: dish?.id ?? null,
         name: dish?.name ?? '',

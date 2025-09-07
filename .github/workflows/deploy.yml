@@ -54,4 +54,5 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./          # Ordner, der hochgeladen wird
           server-dir: /home/www/subdomains/rezeptbuch.tobias-hopp.de  # Zielverzeichnis auf dem Server
-          git-ftp-args: --insecure
+          protocol: ftp      # optional: ftp, ftps oder sftp
+          dry-run: false

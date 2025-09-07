@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('collection')->nullable();
             $table->boolean('is_primary')->default(false);
             $table->unsignedInteger('position')->default(0);
-
-            $table->string('pending_key')->nullable()->index()->after('collection');
             
             $table->timestamps();
 

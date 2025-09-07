@@ -1,3 +1,43 @@
+# Rezeptbuch Deployment
+
+This project includes a unified deploy script to run on the production server after pushing the `production` branch.
+
+## Server-side post-receive hook
+
+Create or update `/home/www/repos/rezeptbuch.tobias-hopp.de.git/hooks/post-receive`:
+
+```
+#!/bin/bash
+set -euo pipefail
+
+GIT_DIR="/home/www/repos/rezeptbuch.tobias-hopp.de.git"
+WORK_TREE="/home/www/sites/rezeptbuch.tobias-hopp.de"
+BRANCH="production"
+
+# Checkout latest code for the target branch
+/usr/bin/git --work-tree="$WORK_TREE" --git-dir="$GIT_DIR" checkout -f "$BRANCH"
+
+# Run deploy script from the checked-out work tree
+cd "$WORK_TREE"
+/bin/bash scripts/deploy.sh
+```
+
+Then make it executable:
+
+```
+chmod +x /home/www/repos/rezeptbuch.tobias-hopp.de.git/hooks/post-receive
+```
+
+Now each push to the `production` branch triggers a full deploy including frontend build.
+
+## Manual deploy (optional)
+If you SSH into the server and want to run deploy tasks manually:
+
+```
+cd /home/www/sites/rezeptbuch.tobias-hopp.de
+bash scripts/deploy.sh
+```
+
 # Deployment Guide for rezeptbuch.tobias-hopp.de
 
 ## Overview

@@ -72,12 +72,13 @@ export function IngredientComboBox({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-72 p-0">
+      <PopoverContent className="w-80 p-0">
         <Command>
           <CommandInput
             placeholder="Zutat suchen oder neu eingeben..."
             value={inputValue}
             onValueChange={setInputValue}
+            className="my-4 focus:border-primary focus:ring-primary"
           />
           <CommandList>
             {shouldOfferCreate && (

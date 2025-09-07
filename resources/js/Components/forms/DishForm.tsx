@@ -227,7 +227,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
                     <Select
                         name="difficulty"
-                        value={data.difficulty || undefined}
+                        value={data.difficulty || Difficulty.EINFACH as string}
                         onValueChange={(val) => setData('difficulty', val as Difficulty)}
                     >
                         <SelectTrigger className="w-full mt-1 py-2">

@@ -18,7 +18,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server-dir: www/rezeptbuch.tobias-hopp.de/
+          server-dir: subdomains/rezeptbuch.tobias-hopp.de/
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}

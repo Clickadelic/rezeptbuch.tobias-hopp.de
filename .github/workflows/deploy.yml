@@ -1,58 +1,50 @@
-name: Deploy Laravel via FTP
+name: Deploy Laravel via SFTP (Incremental)
 
 on:
   push:
     branches:
-      - master   # oder master, je nachdem wie dein Dev-Branch heißt
+      - master   # Passe an deinen Branch an
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      # 1️⃣ Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up PHP
+      # 2️⃣ PHP Setup
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'  # passend zu deiner Laravel-Version
+          php-version: '8.2'
           extensions: mbstring, pdo, bcmath, curl, gd, zip
-          ini-values: post_max_size=256M, upload_max_filesize=256M
 
+      # 3️⃣ Composer dependencies (nur lokal, nicht hochladen)
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader --prefer-dist
 
-      - name: Set up Node.js
+      # 4️⃣ Node.js Setup & Build
+      - name: Build assets
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: Install NPM dependencies & build assets
-        run: |
+      - run: |
           npm ci
           npm run build
 
-      - name: Generate .env
+      # 5️⃣ Deploy via SFTP mit lftp (inkrementell)
+      - name: Deploy via SFTP
         run: |
-          echo "APP_ENV=${{ secrets.APP_ENV }}" > .env
-          echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
-          echo "DB_CONNECTION=${{ secrets.DB_CONNECTION }}" >> .env
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-          echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
-          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: ./          # Ordner, der hochgeladen wird
-          server-dir: /home/www/subdomains/rezeptbuch.tobias-hopp.de  # Zielverzeichnis auf dem Server
-          protocol: ftp      # optional: ftp, ftps oder sftp
-          dry-run: false
+          sudo apt-get update && sudo apt-get install -y lftp
+          lftp -u ${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }} -p ${{ secrets.SFTP_PORT }} sftp://${{ secrets.SFTP_HOST }} <<EOF
+          mirror -R --parallel=4 --delete \
+            --exclude .git \
+            --exclude node_modules \
+            --exclude vendor \
+            --exclude storage \
+            ./ /www/rezeptbuch.tobias-hopp.de
+          quit
+          EOF

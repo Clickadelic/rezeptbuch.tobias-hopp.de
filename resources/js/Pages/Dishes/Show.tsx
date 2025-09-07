@@ -37,15 +37,26 @@ export default function Show({ dish }: ShowDishProps) {
             <SidebarRightLayout title="Gericht Details" sidebar={<DishesSidebar />}>
                 <div className="flex flex-col gap-3">
                     <div className="flex flex-row justify-start gap-5">
-                        <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-[48rem] overflow-hidden">
+                        <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-[48rem] overflow-hidden rounded-xl">
                             <h4 className="absolute text-slate-300 top-3 left-5 font-oswald z-20">
                                 {dish.punchline}
                             </h4>
                             <h3 className="absolute text-white top-9 left-5 text-3xl font-oswald z-20">
                                 {dish.name}
                             </h3>
+                            {(() => {
+                                const hero = (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ?? (dish as any)?.media?.[0];
+                                return hero ? (
+                                    <img
+                                        src={hero.url ?? `/storage/${hero.path}`}
+                                        alt={dish.name}
+                                        className="absolute inset-0 size-full object-cover"
+                                    />
+                                ) : (
+                                    <BiDish className="text-slate-400 size-8" />
+                                );
+                            })()}
                             <div className="absolute size-full bg-slate-400/10 rounded-xl z-10 cursor-default"></div>
-                            <BiDish className="text-slate-400 size-8" />
                         </div>
                         <div className="w-full flex flex-col justify-between gap-2">
                             <div className="flex flex-col items-start gap-2">

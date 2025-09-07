@@ -27,10 +27,14 @@ class StoreDishRequest extends FormRequest
             'difficulty' => ['nullable', 'string'],
 
             // Nested ingredients from the form
-            'dish_ingredients' => ['sometimes', 'array'],
+'dish_ingredients' => ['sometimes', 'array'],
+            'pending_key' => ['nullable', 'string', 'max:255'],
             'dish_ingredients.*.ingredient_id' => ['nullable', 'string'],
             'dish_ingredients.*.quantity' => ['nullable', 'string'],
-            'dish_ingredients.*.unit' => ['nullable', 'string'],
+'dish_ingredients.*.unit' => ['nullable', 'string'],
+
+'primary_media_id' => ['nullable', 'string'],
+            'id' => ['nullable', 'string'],
         ];
     }
 

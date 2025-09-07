@@ -30,12 +30,12 @@ export default function RightSidebar() {
                 <SidebarLink
                     href="/registrierung"
                     active={window.location.pathname === '/registrierung'}
-                    title="Zutaten"
+                    title="Registrierung"
                 />
                 <SidebarLink
-                    href="/zutaten"
-                    active={window.location.pathname === '/zutaten'}
-                    title="Zutaten"
+                    href="/Login"
+                    active={window.location.pathname === '/login'}
+                    title="Login"
                 />
             </ul>
         </aside>

@@ -12,6 +12,22 @@ export type Dish = {
     preparation_time?: number;
     difficulty?: Difficulty;
     ingredients?: Ingredient[]; // jetzt mit optionalem pivot
+    media?: Array<{
+        id: number;
+        name: string;
+        file_name: string;
+        mime_type: string;
+        path: string;
+        url?: string;
+        disk: string;
+        collection?: string;
+        size?: number;
+        pivot?: {
+            collection?: string;
+            is_primary?: boolean;
+            position?: number;
+        };
+    }>;
     user_id?: string;
     createdAt?: string;
     updatedAt?: string;

@@ -1,50 +1,30 @@
-name: Deploy Laravel via SFTP (Incremental)
+name: FTP Upload
 
 on:
   push:
     branches:
-      - master   # Passe an deinen Branch an
+      - master
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
 
+  web-deploy:
+
+    name: 🎉 Deploy to Production
+    runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Checkout repository
-      - name: Checkout
+      - name: 🚚 Get latest code
         uses: actions/checkout@v3
 
-      # 2️⃣ PHP Setup
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          php-version: '8.2'
-          extensions: mbstring, pdo, bcmath, curl, gd, zip
-
-      # 3️⃣ Composer dependencies (nur lokal, nicht hochladen)
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader --prefer-dist
-
-      # 4️⃣ Node.js Setup & Build
-      - name: Build assets
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: |
-          npm ci
-          npm run build
-
-      # 5️⃣ Deploy via SFTP mit lftp (inkrementell)
-      - name: Deploy via SFTP
-        run: |
-          sudo apt-get update && sudo apt-get install -y lftp
-          lftp -u ${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }} -p ${{ secrets.SFTP_PORT }} sftp://${{ secrets.SFTP_HOST }} <<EOF
-          mirror -R --parallel=4 --delete \
-            --exclude .git \
-            --exclude node_modules \
-            --exclude vendor \
-            --exclude storage \
-            ./ /www/rezeptbuch.tobias-hopp.de
-          quit
-          EOF
+          server-dir: www/rezeptbuch.tobias-hopp.de
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/docker*/**

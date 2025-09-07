@@ -4,15 +4,24 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import { Ingredient } from '@/types/Ingredient';
 import { Badge } from '@/components/ui/badge';
 import LeftSidebar from '@/components/sidebars/LeftSidebar';
+import IngredientForm from '@/components/forms/IngredientForm';
 
 export default function IngredientsIndex() {
     const { props } = usePage();
+    const user  = props.auth.user;
     const { ingredients } = props;
 
     return (
         <>
             <Head title="Zutaten" />
             <SidebarLeftLayout title="Zutaten" sidebar={<LeftSidebar />}>
+                {user && typeof user === 'object' && (
+                    <>
+                        <IngredientForm />
+                        <hr className="my-8" />
+                    </>
+                )}
+                
                 <ul className="flex flex-row gap-2">
                     {ingredients.map((ingredient: Ingredient) => (
                         <li key={ingredient.id}>

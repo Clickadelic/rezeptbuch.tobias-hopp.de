@@ -304,7 +304,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 <div className="w-full space-y-2">
                     <InputLabel htmlFor="ingredients" value="Zutaten" />
                     {data.dish_ingredients?.map((di, idx) => (
-                        <div key={idx} className="flex flex-row gap-2 items-start">
+                        <div key={idx} className="flex flex-row gap-2 items-start mb-3">
                             <TextInput
                                 placeholder="Menge"
                                 value={di.quantity}

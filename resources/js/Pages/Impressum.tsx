@@ -1,8 +1,7 @@
 import { Head } from '@inertiajs/react';
 
-import TwoSidebarsLayout from '@/layouts/TwoSidebarsLayout';
-import LeftSidebar from '@/components/sidebars/LeftSidebar';
-import RightSidebar from '@/components/sidebars/RightSidebar';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import MainSidebar from '@/components/sidebars/MainSidebar';
 
 /**
  * The Impressum page.
@@ -15,10 +14,9 @@ export default function Impressum() {
     return (
         <>
             <Head title="Impressum" />
-            <TwoSidebarsLayout
+            <SidebarRightLayout
                 title="Impressum"
-                leftSidebar={<LeftSidebar />}
-                rightSidebar={<RightSidebar />}
+                sidebar={<MainSidebar />}
             >
                 <h3 className="my-5 font-medium text-lg">Angaben gemäß §5 Telemediengesetz:</h3>
                 <ul className="space-y-1 my-3">
@@ -75,7 +73,7 @@ export default function Impressum() {
                     Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
                     bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
                 </p>
-            </TwoSidebarsLayout>
+            </SidebarRightLayout>
         </>
     );
 }

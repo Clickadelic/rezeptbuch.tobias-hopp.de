@@ -2,7 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 
 import { Dish } from '@/types/Dish';
 import DishForm from '@/components/forms/DishForm';
-import DishesSidebar from '@/components/sidebars/DishesSidebar';
+import DishesSidebar from '@/components/sidebars/MainSidebar';
 import SidebarRightLayout from '@/layouts/SidebarRightLayout';
 
 interface EditDishProps {

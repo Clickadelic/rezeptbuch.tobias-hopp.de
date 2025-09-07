@@ -29,7 +29,7 @@ export function IngredientComboBox({
   options,
   value,
   onChange,
-  placeholder = "Zutat auswählen oder neu eingeben...",
+  placeholder = "Zutat auswählen oder neu anlegen",
   triggerClassName,
 }: IngredientComboBoxProps) {
   const [open, setOpen] = React.useState(false);
@@ -75,7 +75,7 @@ export function IngredientComboBox({
       <PopoverContent className="w-80 p-0">
         <Command>
           <CommandInput
-            placeholder="Zutat suchen oder neu eingeben..."
+            placeholder="Zutat suchen oder neu anlegen"
             value={inputValue}
             onValueChange={setInputValue}
             className="my-4 focus:border-primary focus:ring-primary"

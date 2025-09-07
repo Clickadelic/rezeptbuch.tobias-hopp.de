@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 
 import SidebarRightLayout from '@/layouts/SidebarRightLayout';
-import DishesSidebar from '@/components/sidebars/DishesSidebar';
+import DishesSidebar from '@/components/sidebars/MainSidebar';
 import { Dish } from '@/types/Dish';
 import { assetPath } from '@/lib/utils';
 import { Link } from '@inertiajs/react';
@@ -36,8 +36,8 @@ export default function Show({ dish }: ShowDishProps) {
             <Head title="Gericht Details" />
             <SidebarRightLayout title="Gericht Details" sidebar={<DishesSidebar />}>
                 <div className="flex flex-col gap-3">
-                    <div className="flex flex-row justify-start gap-5">
-                        <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-[48rem] overflow-hidden rounded-xl">
+                    <div className="flex flex-col md:flex-row justify-start gap-5">
+                        <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
                             <h4 className="absolute text-slate-300 top-3 left-5 font-oswald z-20">
                                 {dish.punchline}
                             </h4>
@@ -60,7 +60,7 @@ export default function Show({ dish }: ShowDishProps) {
                         </div>
                         <div className="w-full flex flex-col justify-between gap-2">
                             <div className="flex flex-col items-start gap-2">
-                                <div className="flex flex-row items-center gap-2 justify-between">
+                                <div className="w-full flex flex-row items-center gap-2 justify-between">
                                     <h2 className="text-lg font-medium mb-1">Beschreibung</h2>
                                     {user && (
                                         <div className="flex flex-row items-center gap-2">
@@ -95,17 +95,17 @@ export default function Show({ dish }: ShowDishProps) {
                         <hr className="my-5" />
                         <h4 className="font-medium text-lg">Zutaten</h4>
                         <div className="flex flex-row">
-                            <table className="table min-w-[28rem] max-w-[48rem] text-slate-800">
-                                <thead className="bg-slate-100 dark:bg-slate-700">
+                            <table className="table w-full text-slate-800">
+                                <thead className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-400">
                                     <tr>
-                                        <th className="p-3 text-left rounded-tl">Zutat</th>
+                                        <th className="p-3 text-left rounded-tl-lg">Zutat</th>
                                         <th className="p-3 text-right">Menge</th>
-                                        <th className="p-3 text-left rounded-tr">Einheit</th>
+                                        <th className="p-3 text-left rounded-tr-lg">Einheit</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="dark:text-slate-200">
                                     {dish.ingredients?.map((ingredient) => (
-                                        <tr key={ingredient.id}>
+                                        <tr key={ingredient.id} className="hover:bg-slate-100 dark:hover:bg-slate-700">
                                             <td className="p-3">{ingredient.name}</td>
                                             <td className="p-3 text-right">
                                                 {ingredient.pivot?.quantity}

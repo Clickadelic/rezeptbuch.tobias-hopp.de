@@ -1,6 +1,6 @@
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import { Head } from '@inertiajs/react';
-import DishesSidebar from '@/components/sidebars/DishesSidebar';
+import DishesSidebar from '@/components/sidebars/MainSidebar';
 import CocktailForm from '@/components/forms/CocktailForm';
 
 /**

@@ -1,4 +1,4 @@
-name: FTP Upload
+name: FTP Deploy Laravel (Node-unabhängig)
 
 on:
   push:
@@ -6,16 +6,39 @@ on:
       - production
 
 jobs:
-
-  web-deploy:
-
-    name: 🎉 Deploy to Production
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 🚚 Get latest code
+      # 1️⃣ Checkout
+      - name: 🚚 Checkout code
         uses: actions/checkout@v3
 
-      - name: 📂 Sync files
+      # 2️⃣ Node.js Setup & Build
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📥 Install NPM packages
+        run: npm ci
+
+      - name: 🔨 Build Vite assets
+        run: npm run build
+
+      # 3️⃣ PHP & Composer (optional, wenn du z.B. autoload optimieren willst)
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, bcmath, curl, gd, zip
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --prefer-dist
+
+      # 4️⃣ FTP Upload
+      - name: 📂 Upload to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server-dir: subdomains/rezeptbuch.tobias-hopp.de/
@@ -24,7 +47,11 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
+          local-dir: ./                 # Lädt den kompletten Repo-Ordner hoch
           exclude: |
             **/.git*
             **/.git*/**
             **/docker*/**
+            node_modules/**
+            vendor/**
+            storage/**

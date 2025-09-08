@@ -27,12 +27,7 @@ class IngredientController extends Controller
      */
     public function create()
     {   
-        // Fetch all ingredients and send it to the view
-        $ingredients = Ingredient::all();
-        
-        return Inertia::render('Ingredients/Create', [
-            'ingredients' => $ingredients,
-        ]);
+        return redirect()->route('ingredients.index');
     }
 
     /**

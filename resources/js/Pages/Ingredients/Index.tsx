@@ -1,5 +1,5 @@
 import { Head, usePage } from '@inertiajs/react';
-import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
+import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 
 import { Ingredient } from '@/types/Ingredient';
 import { Badge } from '@/components/ui/badge';
@@ -14,19 +14,20 @@ export default function IngredientsIndex() {
     return (
         <>
             <Head title="Zutaten" />
-            <SidebarLeftLayout title="Zutaten" sidebar={<MainSidebar />}>
+            <NoSidebarsLayout title="Zutaten">
+                <p>
+                    Die Zutatenliste ist für alle Benutzer global. Dies hat den Vorteil, dass man
+                    irgendwann bequem aus einem Pool an Zutaten auswählen kann, ohne diese jedes Mal
+                    neu einzutippen. Mit der Zeit wird die Liste an Zutaten länger, die Zeit beim Anlegen eines Rezeptes kürzer.
+                    Ist doch super, oder? Viel Spaß &amp; Erfolg.
+                </p>
                 {user && typeof user === 'object' && (
                     <>
+                        <hr className="bg-slate-300 dark:bg-slate-700 my-5" />
                         <IngredientForm />
-                        <hr className="my-5" />
                     </>
                 )}
-                <p>
-                    Die Zutatenliste ist für alle Benutzer global. Bietet den Vorteil, dass man
-                    irgendwann bequem aus einem Pool an Zutaten auswählen kann, ohne diese jedes Mal
-                    neu einzutippen.
-                </p>
-                <hr className="my-5" />
+                <hr className="my-5 bg-slate-300 dark:bg-slate-700" />
                 <ul className="flex flex-row gap-2">
                     {ingredients.map((ingredient: Ingredient) => (
                         <li key={ingredient.id}>
@@ -39,7 +40,7 @@ export default function IngredientsIndex() {
                         Lege Deine erste Zutat an.
                     </p>
                 )}
-            </SidebarLeftLayout>
+            </NoSidebarsLayout>
         </>
     );
 }

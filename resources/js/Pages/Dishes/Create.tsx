@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
 import DishForm from '@/components/forms/DishForm';
 import { usePage } from '@inertiajs/react';
@@ -15,9 +15,9 @@ export default function DishesCreate() {
     const { props } = usePage();
     const ingredients = props.ingredients;
     return (
-        <SidebarRightLayout title="Neues Gericht" sidebar={<MainSidebar />}>
+        <SidebarLeftLayout title="Neues Gericht" sidebar={<MainSidebar />}>
             <Head title="Neues Gericht" />
             <DishForm ingredients={ingredients} />
-        </SidebarRightLayout>
+        </SidebarLeftLayout>
     );
 }

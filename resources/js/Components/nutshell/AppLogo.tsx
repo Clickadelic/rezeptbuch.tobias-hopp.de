@@ -26,7 +26,7 @@ const AppLogo = ({ className = '', href = '/', title = "Toby's Rezeptbuch" }: Ap
             <Link
                 href={href}
                 className={cn(
-                    'flex flex-row justify-between gap-2 h-[24px] text-primary hover:text-emerald-600 max-w-[168px] mx-auto',
+                    'flex flex-row justify-between gap-2 text-primary hover:text-emerald-600 max-w-[180px] mx-auto',
                     className,
                 )}
                 title={title}

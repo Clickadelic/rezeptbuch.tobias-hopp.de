@@ -46,7 +46,7 @@ export default function AuthLayout({ title, subtitle, children }: AuthLayoutProp
                         </div>
                     </div>
                 </main>
-                <p className="dark:invisible absolute bottom-1 md:bottom-4 mx-auto text-sm text-slate-900 bg-white/30 backdrop-blur px-4 py-2">
+                <p className="dark:invisible absolute bottom-1 md:bottom-4 mx-auto text-sm text-slate-900 bg-white/30 backdrop-blur rounded px-4 py-2">
                     Foto von{' '}
                     <a
                         href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
@@ -66,7 +66,7 @@ export default function AuthLayout({ title, subtitle, children }: AuthLayoutProp
                         Unsplash
                     </a>
                 </p>
-                <p className="invisible dark:visible absolute bottom-1 md:bottom-4 mx-auto text-sm text-slate-900 bg-white/30 backdrop-blur px-4 py-2">
+                <p className="invisible dark:visible absolute bottom-1 md:bottom-4 mx-auto text-sm text-slate-900 dark:text-slate-200 bg-white/30 backdrop-blur rounded px-4 py-2">
                     Foto von{' '}
                     <a
                         href="https://unsplash.com/de/@anniespratt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"

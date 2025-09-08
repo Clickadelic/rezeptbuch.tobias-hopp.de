@@ -1,16 +1,14 @@
-import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
-
-import MainSidebar from '@/components/sidebars/MainSidebar';
+import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 export default function CocktailsIndex({ auth }: PageProps<{ auth: { user: any } }>) {
     return (
         <>
             <Head title="Cocktails" />
-            <SidebarLeftLayout title="Cocktails" sidebar={<MainSidebar />}>
+            <FullWidthLayout title="Cocktails">
                 <div>Cocktails Content</div>
-            </SidebarLeftLayout>
+            </FullWidthLayout>
         </>
     );
 }

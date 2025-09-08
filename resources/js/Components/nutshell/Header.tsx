@@ -131,8 +131,8 @@ const Header = () => {
                             <div className="space-x-1 sm:space-x-2 md:space-x-3">
                                 <NavButton
                                     href="/register"
-                                    className="text-slate-800 hover:text-slate-500 border border-primary "
-                                    icon={<FiCheckCircle className="text-slate-800" />}
+                                    className="text-slate-800 hover:text-slate-500 dark:text-slate-300 border border-primary "
+                                    icon={<FiCheckCircle className="text-slate-800 dark:text-slate-300" />}
                                 >
                                     Registrierung
                                 </NavButton>

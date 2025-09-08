@@ -45,7 +45,9 @@ export default function Show({ dish }: ShowDishProps) {
                                 {dish.name}
                             </h3>
                             {(() => {
-                                const hero = (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ?? (dish as any)?.media?.[0];
+                                const hero =
+                                    (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
+                                    (dish as any)?.media?.[0];
                                 return hero ? (
                                     <img
                                         src={hero.url ?? `/storage/${hero.path}`}
@@ -105,7 +107,10 @@ export default function Show({ dish }: ShowDishProps) {
                                 </thead>
                                 <tbody className="dark:text-slate-200">
                                     {dish.ingredients?.map((ingredient) => (
-                                        <tr key={ingredient.id} className="hover:bg-slate-100 dark:hover:bg-slate-700">
+                                        <tr
+                                            key={ingredient.id}
+                                            className="hover:bg-slate-100 dark:hover:bg-slate-700"
+                                        >
                                             <td className="p-3">{ingredient.name}</td>
                                             <td className="p-3 text-right">
                                                 {ingredient.pivot?.quantity}

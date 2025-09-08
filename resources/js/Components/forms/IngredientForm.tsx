@@ -6,17 +6,16 @@ import TextInput from '@/components/TextInput';
 import { Button } from '@/components/ui/button';
 
 import { GoPlus, GoPencil } from 'react-icons/go';
+import { cn } from '@/lib/utils';
 
 import Ingredient from '@/interfaces/Ingredient';
-
-import { cn } from '@/lib/utils';
 
 interface IngredientFormProps {
     ingredient?: Ingredient; // optional, für Create vs Edit
     className?: string;
 }
 
-export default function DishForm({ ingredient, className }: IngredientFormProps) {
+export default function IngredientForm({ ingredient, className }: IngredientFormProps) {
     const isEditing = Boolean(ingredient);
 
     const { data, setData, post, put, processing, errors, reset } = useForm({
@@ -45,14 +44,13 @@ export default function DishForm({ ingredient, className }: IngredientFormProps)
             onSubmit={isEditing ? update : submit}
             className={cn('flex flex-col justify-between items-center space-y-3', className)}
         >
-            {/* Name */}
+            {/* Zutatenname */}
             <div className="w-full">
                 <InputLabel htmlFor="name" value="Name" />
                 <TextInput
                     id="name"
                     type="text"
                     value={data.name}
-                    
                     className="mt-1 flex w-full"
                     placeholder="z.B. Kartoffeln"
                     isFocused
@@ -62,12 +60,11 @@ export default function DishForm({ ingredient, className }: IngredientFormProps)
             </div>
 
             {/* Submit */}
-            <div className="w-full my-4 flex items-center justify-end">
-                <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                    {ingredient ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
-                    {ingredient ? 'Bearbeiten' : 'Hinzufügen'}
-                </Button>
-            </div>
+            <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+                {ingredient ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
+                {ingredient ? 'Bearbeiten' : 'Hinzufügen'}
+            </Button>
+
         </form>
     );
 }

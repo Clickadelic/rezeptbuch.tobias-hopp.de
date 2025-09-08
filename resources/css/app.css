@@ -5,6 +5,9 @@
 @plugin "@tailwindcss/forms";
 @plugin "tailwindcss-animate";
 
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
     * {
         @apply border-border;

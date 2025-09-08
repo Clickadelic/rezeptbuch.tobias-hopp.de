@@ -26,8 +26,8 @@ export default function NavLink({
             className={
                 'flex flex-row items-center border-b-2 space-x-2 px-1 transition duration-150 ease-in-out focus:outline-none ' +
                 (active
-                    ? 'border-primary text-primary hover:text-emerald-800 focus:border-emerald-600 '
-                    : 'border-transparent text-slate-800 hover:border-gray-300 hover:text-slate-700 dark:hover:text-slate-400 focus:border-slate-400 focus:text-slate-800 ') +
+                    ? 'border-primary text-primary hover:text-primary focus:border-primary '
+                    : 'border-transparent text-slate-800 dark:text-slate-400 hover:border-slate-700 hover:text-slate-700 dark:hover:text-slate-300 dark:hover:border-slate-400 focus:border-slate-400 focus:text-slate-800 ') +
                 className
             }
         >

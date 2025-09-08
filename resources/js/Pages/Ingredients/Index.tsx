@@ -5,7 +5,7 @@ import { Ingredient } from '@/types/Ingredient';
 import { Badge } from '@/components/ui/badge';
 import MainSidebar from '@/components/sidebars/MainSidebar';
 import IngredientForm from '@/components/forms/IngredientForm';
-
+import BadgeButton from '@/components/reusables/BadgeButton';
 export default function IngredientsIndex() {
     const { props } = usePage();
     const { ingredients } = props;
@@ -28,10 +28,10 @@ export default function IngredientsIndex() {
                     </>
                 )}
                 <hr className="my-5 bg-slate-300 dark:bg-slate-700" />
-                <ul className="flex flex-row gap-2">
+                <ul className="flex flex-row gap-3 justify-start items-center flex-wrap">
                     {ingredients.map((ingredient: Ingredient) => (
                         <li key={ingredient.id}>
-                            <Badge variant="primary">{ingredient.name}</Badge>
+                            <BadgeButton ingredient={ingredient} />
                         </li>
                     ))}
                 </ul>

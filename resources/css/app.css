@@ -118,7 +118,7 @@ a[target='_blank']:after {
     margin-right: 5px;
 }
 
- // emerald-700
+// emerald-700
 .arrow-primary {
     fill: var(--primary);
 }

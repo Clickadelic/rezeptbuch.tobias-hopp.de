@@ -45,7 +45,9 @@ export default function DishCard({ dish }: DishCardProps) {
                     >
                         {/* Hero image */}
                         {(() => {
-                            const hero = (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ?? (dish as any)?.media?.[0];
+                            const hero =
+                                (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
+                                (dish as any)?.media?.[0];
                             return hero ? (
                                 <img
                                     src={hero.url ?? `/storage/${hero.path}`}

@@ -37,12 +37,20 @@ interface DishFormProps {
 export default function DishForm({ dish, ingredients, className }: DishFormProps) {
     const isEditing = Boolean(dish);
     // Pending key for creation uploads
-    const [pendingKey] = useState<string>(() => (typeof crypto !== 'undefined' && (crypto as any).randomUUID ? (crypto as any).randomUUID() : Math.random().toString(36).slice(2)));
+    const [pendingKey] = useState<string>(() =>
+        typeof crypto !== 'undefined' && (crypto as any).randomUUID
+            ? (crypto as any).randomUUID()
+            : Math.random().toString(36).slice(2),
+    );
 
     // Local list of newly uploaded media (creation only)
-    const [pendingMedia, setPendingMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>([]);
-    const [liveMedia, setLiveMedia] = useState<Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>>(dish?.media ?? []);
-    
+    const [pendingMedia, setPendingMedia] = useState<
+        Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>
+    >([]);
+    const [liveMedia, setLiveMedia] = useState<
+        Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>
+    >(dish?.media ?? []);
+
     // @ts-ignore
     const { data, setData, post, processing, errors, reset } = useForm({
         id: dish?.id ?? null,
@@ -87,7 +95,11 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     // --- Submit ---
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('dishes.store'), { forceFormData: true, onSuccess: () => reset(), preserveScroll: true });
+        post(route('dishes.store'), {
+            forceFormData: true,
+            onSuccess: () => reset(),
+            preserveScroll: true,
+        });
     };
 
     const onUpdate = (e: FormEvent<HTMLFormElement>) => {
@@ -187,7 +199,9 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 value={data.preparation_time}
                                 placeholder="0"
                                 className="mt-1 flex-1 rounded-none border-r-0 border-slate-200 rounded-tl-lg rounded-bl-lg"
-                                onChange={(e) => setData('preparation_time', Number(e.target.value))}
+                                onChange={(e) =>
+                                    setData('preparation_time', Number(e.target.value))
+                                }
                             />
                             <span className="px-3 py-2 border border-l-0 rounded-r-lg border-slate-400">
                                 Minuten
@@ -229,7 +243,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                         <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
                         <Select
                             name="difficulty"
-                            value={data.difficulty || Difficulty.EINFACH as string}
+                            value={data.difficulty || (Difficulty.EINFACH as string)}
                             onValueChange={(val) => setData('difficulty', val as Difficulty)}
                         >
                             <SelectTrigger className="w-full mt-1 py-2">
@@ -253,9 +267,12 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
 
                     {/* Aktuelle Bilder (Edit) oder Pending-Uploads (Create) */}
                     <div className="flex flex-wrap gap-3">
-                        {isEditing
-                            ? (liveMedia.map((m: any) => (
-                                <label key={m.id} className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer">
+                        {isEditing ? (
+                            (liveMedia.map((m: any) => (
+                                <label
+                                    key={m.id}
+                                    className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                >
                                     <img
                                         src={m.url ?? `/storage/${m.path}`}
                                         alt={m.name}
@@ -271,33 +288,38 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                         title="Als Hauptbild auswählen"
                                     />
                                     {(m?.pivot?.is_primary || data.primary_media_id === m.id) && (
-                                        <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">Aktuell</span>
+                                        <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">
+                                            Aktuell
+                                        </span>
                                     )}
                                 </label>
                             )) ?? [])
-                            : (pendingMedia.length > 0
-                                ? pendingMedia.map((m) => (
-                                    <label key={m.id} className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer">
-                                        <img
-                                            src={m.url ?? `/storage/${m.path}`}
-                                            alt={m.name}
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <input
-                                            type="radio"
-                                            name="primary_media_id"
-                                            value={m.id}
-                                            checked={data.primary_media_id === (m.id as any)}
-                                            onChange={() => setData('primary_media_id', m.id as any)}
-                                            className="absolute top-1 left-1"
-                                            title="Als Hauptbild auswählen"
-                                        />
-                                    </label>
-                                ))
-                                : <p className="text-sm text-slate-500">Noch keine Bilder vorhanden.</p>
-                            )}
+                        ) : pendingMedia.length > 0 ? (
+                            pendingMedia.map((m) => (
+                                <label
+                                    key={m.id}
+                                    className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                >
+                                    <img
+                                        src={m.url ?? `/storage/${m.path}`}
+                                        alt={m.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <input
+                                        type="radio"
+                                        name="primary_media_id"
+                                        value={m.id}
+                                        checked={data.primary_media_id === (m.id as any)}
+                                        onChange={() => setData('primary_media_id', m.id as any)}
+                                        className="absolute top-1 left-1"
+                                        title="Als Hauptbild auswählen"
+                                    />
+                                </label>
+                            ))
+                        ) : (
+                            <p className="text-sm text-slate-500">Noch keine Bilder vorhanden.</p>
+                        )}
                     </div>
-
                 </div>
 
                 {/* Zutaten */}
@@ -354,7 +376,13 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
 
                 {/* Submit */}
                 <div className="w-full mt-4">
-                    <Button type="submit" variant="primary" size="lg" className="w-full" disabled={processing}>
+                    <Button
+                        type="submit"
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
+                        disabled={processing}
+                    >
                         {isEditing ? (
                             <>
                                 <GoPencil /> Bearbeiten
@@ -372,7 +400,21 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
 }
 
 // Lightweight uploader that posts to /upload with dish_id so the file is attached via pivot
-function DishMediaUploader({ dishId, pendingKey, onUploadedJSON }: { dishId?: string; pendingKey?: string; onUploadedJSON?: (m: { id: number; path: string; name: string; url?: string; pivot?: any }) => void }) {
+function DishMediaUploader({
+    dishId,
+    pendingKey,
+    onUploadedJSON,
+}: {
+    dishId?: string;
+    pendingKey?: string;
+    onUploadedJSON?: (m: {
+        id: number;
+        path: string;
+        name: string;
+        url?: string;
+        pivot?: any;
+    }) => void;
+}) {
     const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -390,7 +432,13 @@ function DishMediaUploader({ dishId, pendingKey, onUploadedJSON }: { dishId?: st
             const res = await (window.axios?.post?.('/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data', Accept: 'application/json' },
                 withCredentials: true,
-            }) ?? fetch('/upload', { method: 'POST', body: formData, headers: { Accept: 'application/json' }, credentials: 'include' }));
+            }) ??
+                fetch('/upload', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { Accept: 'application/json' },
+                    credentials: 'include',
+                }));
 
             if (res && 'data' in (res as any)) {
                 const media = (res as any).data.media;
@@ -409,13 +457,23 @@ function DishMediaUploader({ dishId, pendingKey, onUploadedJSON }: { dishId?: st
     };
 
     return (
-        <div className="flex items-center gap-3" onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}>
+        <div
+            className="flex items-center gap-3"
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') e.preventDefault();
+            }}
+        >
             <input
                 type="file"
                 accept="image/png,image/jpeg,image/jpg"
                 onChange={(e) => setFile(e.target.files?.[0] || null)}
             />
-            <Button type="button" onClick={handleUpload} disabled={loading || !file} className="hover:cursor-pointer">
+            <Button
+                type="button"
+                onClick={handleUpload}
+                disabled={loading || !file}
+                className="hover:cursor-pointer"
+            >
                 {loading ? 'Lädt…' : 'Bild hochladen'}
             </Button>
             {error && <span className="text-red-500 text-sm">{error}</span>}

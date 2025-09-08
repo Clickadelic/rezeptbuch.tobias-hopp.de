@@ -8,12 +8,12 @@ export default function NewsletterForm() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
-    })
+    });
     return (
         <form className="flex flex-col justify-between items-start gap-2">
             <div className="w-full">
                 <InputLabel htmlFor="name" value="Name" className="hidden" />
-                <TextInput 
+                <TextInput
                     type="text"
                     name="name"
                     id="name"
@@ -24,7 +24,7 @@ export default function NewsletterForm() {
             </div>
             <div className="w-full">
                 <InputLabel value="E-Mail" className="hidden" />
-                <TextInput 
+                <TextInput
                     type="email"
                     name="email"
                     id="email"

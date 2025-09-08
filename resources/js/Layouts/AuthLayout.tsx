@@ -24,7 +24,7 @@ interface AuthLayoutProps extends PropsWithChildren {
  */
 export default function AuthLayout({ title, subtitle, children }: AuthLayoutProps) {
     return (
-        <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
+        <ThemeProvider>
             <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')] dark:bg-[url('/resources/images/annie-spratt-R3LcfTvcGWY-unsplash.jpg')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
                 <main className="mx-auto container">
                     <div className="m-6 sm:max-w-md lg:max-w-lg sm:mx-auto bg-white/30 dark:bg-slate-800/30 p-2 rounded-xl shadow backdrop-blur">

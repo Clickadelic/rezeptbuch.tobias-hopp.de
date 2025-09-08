@@ -19,7 +19,7 @@ export default function NavButton({ className = '', icon, children, ...props }: 
         <Link
             {...props}
             className={
-                'inline-flex items-center justify-between md:gap-2 sm:px-1 md:px-2 py-2 text-sm font-medium leading-5 rounded-sm shadow-sm mt-[3px] ' +
+                'inline-flex items-center justify-between md:gap-2 sm:px-1 md:px-2 py-2 text-sm font-medium leading-5 rounded-sm shadow-sm ' +
                 className
             }
         >

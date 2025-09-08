@@ -108,11 +108,11 @@ const Header = () => {
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         <Dropdown.Link href="/dashboard" className="flex gap-2">
-                                            <RiDashboardHorizontalLine className="mt-[3px] size-4" />
+                                            <RiDashboardHorizontalLine className="size-4" />
                                             Dashboard
                                         </Dropdown.Link>
                                         <Dropdown.Link href="/profile" className="flex gap-2">
-                                            <RiAccountPinBoxLine className="mt-[3px] size-4" />
+                                            <RiAccountPinBoxLine className="size-4" />
                                             Profil
                                         </Dropdown.Link>
                                         <Dropdown.Link
@@ -121,7 +121,7 @@ const Header = () => {
                                             as="button"
                                             className="flex gap-2 hover:cursor-pointer"
                                         >
-                                            <BiExit className="mt-[3px] size-4" />
+                                            <BiExit className="size-4" />
                                             Log Out
                                         </Dropdown.Link>
                                     </Dropdown.Content>

@@ -38,7 +38,7 @@ export default function Frontpage() {
                             sogar mitmachen.
                         </p>
                         <p className="text-base">Viele Grüße und frohes Kochen.</p>
-                        <p className="text-2xl font-la-belle-aurore">Toby</p>
+                        <p className="text-2xl font-la-belle-aurore mt-4">Toby</p>
                     </div>
                 </div>
             </SidebarRightLayout>

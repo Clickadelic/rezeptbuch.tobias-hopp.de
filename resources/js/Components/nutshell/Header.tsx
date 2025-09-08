@@ -39,13 +39,13 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo className="my-4" />
+                            <AppLogo className="mt-4" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink
                                 href="/"
                                 active={window.location.pathname === '/'}
-                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
+                                className="pt-5 pb-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<BsHouse />}
                             >
                                 Start
@@ -56,7 +56,7 @@ const Header = () => {
                                     window.location.pathname === '/gerichte' ||
                                     window.location.pathname === '/gerichte/neues-gericht'
                                 }
-                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
+                                className="pt-5 pb-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<BsJournalBookmark />}
                             >
                                 Gerichte
@@ -64,7 +64,7 @@ const Header = () => {
                             <NavLink
                                 href="/cocktails"
                                 active={window.location.pathname === '/cocktails'}
-                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
+                                className="pt-5 pb-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<LiaCocktailSolid />}
                             >
                                 Cocktails
@@ -72,7 +72,7 @@ const Header = () => {
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname === '/zutaten'}
-                                className="py-4 font-medium text-slate-800 dark:text-slate-200"
+                                className="pt-5 pb-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<TbSalt />}
                             >
                                 Zutaten

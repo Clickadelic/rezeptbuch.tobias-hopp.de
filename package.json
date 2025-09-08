@@ -9,7 +9,7 @@
         "format:check": "prettier --check .",
         "dev-all": "concurrently \"php artisan serve\" \"npm run dev\"",
         "postinstall": "php artisan ziggy:generate",
-        "run-tests": "npx vitest --watch"
+        
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",

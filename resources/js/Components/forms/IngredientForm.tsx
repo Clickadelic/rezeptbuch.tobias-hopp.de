@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { cn } from '@/lib/utils';
 
-import Ingredient from '@/interfaces/Ingredient';
+import { Ingredient } from '@/types/Ingredient';
 
 interface IngredientFormProps {
     ingredient?: Ingredient; // optional, für Create vs Edit

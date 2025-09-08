@@ -11,8 +11,6 @@ import { LiaCocktailSolid } from 'react-icons/lia';
 
 import { cn } from '@/lib/utils';
 
-
-
 export function CircularMenu() {
     const { auth } = usePage().props;
 
@@ -44,7 +42,6 @@ export function CircularMenu() {
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                
 
                 <TooltipProvider>
                     <Tooltip>

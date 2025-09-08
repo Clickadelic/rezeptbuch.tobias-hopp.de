@@ -50,16 +50,16 @@ export default function UploadForm() {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 w-full">
-                <Label htmlFor="file">Datei auswählen</Label>
-                <div className="asd">
-                    <Input
-                        id="file"
-                        type="file"
-                        accept="image/png,image/jpg,image/jpeg"
-                        className="invisible p-12 border-dashed border-2 border-gray-400 hover:border-primary w-full rounded-xl"
-                        onChange={(e) => setFile(e.target.files?.[0] || null)}
-                    />
-                </div>
+            <Label htmlFor="file">Datei auswählen</Label>
+            <div className="asd">
+                <Input
+                    id="file"
+                    type="file"
+                    accept="image/png,image/jpg,image/jpeg"
+                    className="invisible p-12 border-dashed border-2 border-gray-400 hover:border-primary w-full rounded-xl"
+                    onChange={(e) => setFile(e.target.files?.[0] || null)}
+                />
+            </div>
 
             {success && <p className="text-green-600">{success}</p>}
             {error && <p className="text-red-600">{error}</p>}

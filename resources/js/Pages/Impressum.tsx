@@ -14,10 +14,7 @@ export default function Impressum() {
     return (
         <>
             <Head title="Impressum" />
-            <SidebarRightLayout
-                title="Impressum"
-                sidebar={<MainSidebar />}
-            >
+            <SidebarRightLayout title="Impressum" sidebar={<MainSidebar />}>
                 <h3 className="my-5 font-medium text-lg">Angaben gemäß §5 Telemediengesetz:</h3>
                 <ul className="space-y-1 my-3">
                     <li>Tobias Hopp</li>

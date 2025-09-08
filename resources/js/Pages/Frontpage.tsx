@@ -20,7 +20,7 @@ export default function Frontpage() {
                 <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
                     <img src={chefTobias} className="mt-5 size-72" alt="Chef Tobias" />
                     <div className="flex flex-col gap-2">
-                        <h2 className="my-6 text-3xl font-la-belle-aurore text-slate-800">
+                        <h2 className="my-6 text-3xl font-la-belle-aurore text-slate-800 dark:text-slate-300">
                             ... auf meinem Rezeptbuch.
                         </h2>
                         <p className="text-base">

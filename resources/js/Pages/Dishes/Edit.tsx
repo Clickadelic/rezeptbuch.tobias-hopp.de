@@ -3,7 +3,7 @@ import { Head, usePage } from '@inertiajs/react';
 import { Dish } from '@/types/Dish';
 import DishForm from '@/components/forms/DishForm';
 import DishesSidebar from '@/components/sidebars/MainSidebar';
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 
 interface EditDishProps {
     dish: Dish;
@@ -24,9 +24,9 @@ export default function DishesEdit({ dish }: EditDishProps) {
     return (
         <>
             <Head title="Gericht bearbeiten" />
-            <SidebarRightLayout title="Gericht bearbeiten" sidebar={<DishesSidebar />}>
+            <SidebarLeftLayout title="Gericht bearbeiten" sidebar={<DishesSidebar />}>
                 <DishForm dish={dish} ingredients={ingredients} />
-            </SidebarRightLayout>
+            </SidebarLeftLayout>
         </>
     );
 }

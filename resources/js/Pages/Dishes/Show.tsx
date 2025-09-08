@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import DishesSidebar from '@/components/sidebars/MainSidebar';
 import { Dish } from '@/types/Dish';
 import { assetPath } from '@/lib/utils';
@@ -34,7 +34,7 @@ export default function Show({ dish }: ShowDishProps) {
     return (
         <>
             <Head title="Gericht Details" />
-            <SidebarRightLayout title="Gericht Details" sidebar={<DishesSidebar />}>
+            <SidebarLeftLayout title="Gericht Details" sidebar={<DishesSidebar />}>
                 <div className="flex flex-col gap-3">
                     <div className="flex flex-col md:flex-row justify-start gap-5">
                         <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
@@ -125,7 +125,7 @@ export default function Show({ dish }: ShowDishProps) {
                         </div>
                     </div>
                 </div>
-            </SidebarRightLayout>
+            </SidebarLeftLayout>
         </>
     );
 }

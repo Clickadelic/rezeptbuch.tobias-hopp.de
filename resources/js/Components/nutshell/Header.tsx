@@ -39,7 +39,7 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo className="mt-4" />
+                            <AppLogo className="mt-2 md:mt-4" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink
@@ -132,7 +132,9 @@ const Header = () => {
                                 <NavButton
                                     href="/register"
                                     className="text-slate-800 hover:text-slate-500 dark:text-slate-300 border border-primary "
-                                    icon={<FiCheckCircle className="text-slate-800 dark:text-slate-300" />}
+                                    icon={
+                                        <FiCheckCircle className="text-slate-800 dark:text-slate-300" />
+                                    }
                                 >
                                     Registrierung
                                 </NavButton>

@@ -64,7 +64,6 @@ export default function IngredientForm({ ingredient, className }: IngredientForm
                 {ingredient ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
                 {ingredient ? 'Bearbeiten' : 'Hinzufügen'}
             </Button>
-
         </form>
     );
 }

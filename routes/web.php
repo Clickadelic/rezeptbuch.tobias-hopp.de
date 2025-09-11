@@ -2,20 +2,34 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\CocktailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\IngredientController;
+use Spatie\Permission\Middleware\RoleMiddleware;
+use App\Models\User;
 
 Route::get('/', function () {
-    return Inertia::render('Frontpage', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
+    return Inertia::render('Frontpage');
 });
+
+Route::get('/admin', function () {
+    
+    $user = Auth::user();
+    $users = User::with('roles')->get();
+
+    return Inertia::render('Admin/Index', [
+        'user' => [
+            'name' => $user->name,
+            'roles' => $user->getRoleNames(),
+            'permissions' => $user->getAllPermissions()->pluck('name'),
+        ],
+        'users' => $users
+    ]);
+})->middleware(RoleMiddleware::class . ':admin');
 
 Route::prefix('/gerichte')->group(function () {
     Route::get('/', [DishController::class, 'index'])->name('dishes.index');

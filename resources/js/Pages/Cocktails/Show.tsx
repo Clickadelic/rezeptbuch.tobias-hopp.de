@@ -32,11 +32,8 @@ export default function Show({ dish }: ShowDishProps) {
     const { ingredients } = props;
     console.log(props);
     return (
-        <>
-            <Head title="Gericht Details" />
-            <SidebarLeftLayout title="Gericht Details" sidebar={<DishesSidebar />}>
-                Cocktail Show
-            </SidebarLeftLayout>
-        </>
+        <SidebarLeftLayout title="Cocktail Details" sidebar={<DishesSidebar />}>
+            Cocktail Show
+        </SidebarLeftLayout>
     );
 }

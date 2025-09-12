@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use App\Models\Dish;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Vite::prefetch(concurrency: 3);
             Inertia::share([
-            'dishes' => function () {
-                return Dish::all();
-            }
+            // 'dishes' => function () {
+            //     return Dish::all();
+            // }
             // weitere globale Daten hier...
         ]);
     }

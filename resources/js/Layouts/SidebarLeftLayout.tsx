@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useEffect } from 'react';
-import { usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 import Header from '@/components/nutshell/Header';
 import RecipeSearch from '@/components/nutshell/RecipeSearch';
@@ -51,25 +51,28 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
     }, [flash]);
 
     return (
-        <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
-            <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-slate-800 dark:text-slate-200 relative">
-                <div>
-                    <Header />
-                    <RecipeSearch />
-                    <BreadcrumbNav />
+        <>
+            <Head title={title} />
+            <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
+                <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-slate-800 dark:text-slate-200 relative">
+                    <div>
+                        <Header />
+                        <RecipeSearch />
+                        <BreadcrumbNav />
+                    </div>
+                    <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3 transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+                        {isDesktop && sidebar}
+                        <main className="pt-4 pb-10 col-span-4">
+                            {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
+                            {children}
+                        </main>
+                        {!isDesktop && sidebar}
+                    </div>
+                    <Footer />
+                    <CircularMenu />
+                    <Toaster position="bottom-right" />
                 </div>
-                <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3 transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-                    {isDesktop && sidebar}
-                    <main className="pt-4 pb-10 col-span-4">
-                        {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
-                        {children}
-                    </main>
-                    {!isDesktop && sidebar}
-                </div>
-                <Footer />
-                <CircularMenu />
-                <Toaster position="bottom-right" />
-            </div>
-        </ThemeProvider>
+            </ThemeProvider>
+        </>
     );
 }

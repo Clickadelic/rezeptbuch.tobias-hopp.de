@@ -1,5 +1,5 @@
 import { Moon, Sun } from 'lucide-react';
-
+import { BsGear } from "react-icons/bs";
 import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
@@ -26,9 +26,9 @@ export function ModeToggle() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme('light')}><Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:-rotate-90" /> Light</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme('dark')}><Moon className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:-rotate-90" /> Dark</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme('system')}><BsGear className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all" /> System</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

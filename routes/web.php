@@ -2,20 +2,38 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\CocktailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\IngredientController;
+use App\Models\User;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', function () {
-    return Inertia::render('Frontpage', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
+    return Inertia::render('Frontpage');
 });
+
+Route::get('/admin', function () {
+    $user = Auth::user();
+    $users = User::with('roles')->get();
+
+    return Inertia::render('Admin/Index', [
+        'user' => [
+            'name' => $user->name,
+            'roles' => $user->getRoleNames(),
+            'permissions' => $user->getAllPermissions()->pluck('name'),
+        ],
+        'users' => $users->map(fn($u) => [
+            'id' => $u->id,
+            'name' => $u->name,
+            'email' => $u->email,
+            'roles' => $u->getRoleNames(),
+        ]),
+    ]);
+})->middleware([CheckRole::class . ':admin']);
 
 Route::prefix('/gerichte')->group(function () {
     Route::get('/', [DishController::class, 'index'])->name('dishes.index');
@@ -49,13 +67,8 @@ Route::prefix('/zutaten')->group(function () {
 });
 
 Route::get('/impressum', function () {
-    return Inertia::render('Impressum', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
+    return Inertia::render('Impressum');
 });
-
-Route::post('upload', UploadController::class)->middleware(['auth', 'verified'])->name('upload');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -64,5 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/upload', UploadController::class)->middleware(['auth', 'verified'])->name('upload');
 
 require __DIR__.'/auth.php';

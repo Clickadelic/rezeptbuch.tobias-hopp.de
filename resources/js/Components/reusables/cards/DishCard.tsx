@@ -41,7 +41,7 @@ export default function DishCard({ dish }: DishCardProps) {
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
                                     bg-slate-100 dark:bg-slate-700 text-slate-300 
                                     border border-transparent transition-colors duration-300 
-                                    group-hover:bg-slate-200 group-hover:border-emerald-700 shadow-transparent hover:shadow-emerald-700"
+                                    group-hover:bg-slate-200 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
                         {/* Hero image */}
                         {(() => {
@@ -91,11 +91,11 @@ export default function DishCard({ dish }: DishCardProps) {
                     </CardHeader>
 
                     {/* Titel */}
-                    <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-emerald-700 leading-snug">
+                    <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-primary leading-snug">
                         <h4 className="text-slate-500 dark:text-slate-400 text-base font-oswald line-clamp-1">
                             {dish.punchline}
                         </h4>
-                        <h3 className="group-hover:text-emerald-700 line-clamp-2 text-slate-800 dark:text-slate-200 min-h-[calc(3rem+2px)]">
+                        <h3 className="group-hover:text-primary line-clamp-2 text-slate-800 dark:text-slate-200 min-h-[calc(3rem+2px)]">
                             {dish.name}
                         </h3>
                     </CardContent>
@@ -103,13 +103,13 @@ export default function DishCard({ dish }: DishCardProps) {
                     {/* Footer */}
                     <CardFooter className="flex flex-row items-center justify-between space-x-2">
                         <div>
-                            <GoClock className="inline-flex size-4 mr-1 text-emerald-700" />
+                            <GoClock className="inline-flex size-4 mr-1 text-primary" />
                             <span className="text-sm text-muted-foreground">
                                 {dish.preparation_time} Min.
                             </span>
                         </div>
                         <div>
-                            <VscSymbolEvent className="inline-flex size-4 mr-1 text-emerald-700" />
+                            <VscSymbolEvent className="inline-flex size-4 mr-1 text-primary" />
                             <span className="text-sm text-muted-foreground">{dish.difficulty}</span>
                         </div>
                     </CardFooter>

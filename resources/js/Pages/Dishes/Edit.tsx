@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 
 import { Dish } from '@/types/Dish';
 import DishForm from '@/components/forms/DishForm';
@@ -22,11 +22,8 @@ export default function DishesEdit({ dish }: EditDishProps) {
     const { props } = usePage();
     const ingredients = props.ingredients;
     return (
-        <>
-            <Head title="Gericht bearbeiten" />
-            <SidebarLeftLayout title="Gericht bearbeiten" sidebar={<DishesSidebar />}>
-                <DishForm dish={dish} ingredients={ingredients} />
-            </SidebarLeftLayout>
-        </>
+        <SidebarLeftLayout title="Gericht bearbeiten" sidebar={<DishesSidebar />}>
+            <DishForm dish={dish} ingredients={ingredients} />
+        </SidebarLeftLayout>
     );
 }

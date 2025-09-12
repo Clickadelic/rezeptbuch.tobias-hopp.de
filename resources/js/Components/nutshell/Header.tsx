@@ -30,7 +30,8 @@ import { BiExit } from 'react-icons/bi';
 
 const Header = () => {
     const user = usePage().props.auth.user;
-
+    console.log(user);
+    
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (

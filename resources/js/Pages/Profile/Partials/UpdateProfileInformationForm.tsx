@@ -103,7 +103,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-emerald-700 bg-emerald-200 border-emerald-700 rounded px-2 py-1">
+                        <p className="text-sm text-primary bg-emerald-200 border-primary rounded px-2 py-1">
                             Gespeichert.
                         </p>
                     </Transition>

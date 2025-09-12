@@ -1,15 +1,15 @@
 import { usePage } from '@inertiajs/react';
-import FullWidthLayout from '@/layouts/FullWidthLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import { toHumanDate } from '@/lib/utils';
 import RoleBadge from '@/components/reusables/RoleBadge';
-
+import AdminSidebar from '@/components/sidebars/AdminSidebar';
 export default function Index() {
     const { props }: any = usePage();
     const user = props.user;
     const users = props.users;
 
     return (
-        <FullWidthLayout title="Admin">
+        <SidebarLeftLayout title="Admin" sidebar={<AdminSidebar />}>
             <h1>Willkommen {user.name}</h1>
             <p>Deine Rollen: <strong>{user.roles?.join(', ')}</strong></p>
             <hr className="my-5 bg-slate-300 dark:bg-slate-700" />
@@ -48,6 +48,6 @@ export default function Index() {
                     ))}
                 </tbody>
             </table> 
-        </FullWidthLayout>
+        </SidebarLeftLayout>
     );
 }

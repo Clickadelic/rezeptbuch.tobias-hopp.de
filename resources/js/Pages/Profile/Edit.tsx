@@ -11,8 +11,6 @@ export default function Edit({
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
         <NoSidebarsLayout title="Profil">
-            <Head title="Profil" />
-
             <div className="space-y-4">
                 <div className="bg-white rounded p-4 sm:rounded-lg sm:p-8">
                     <UpdateProfileInformationForm

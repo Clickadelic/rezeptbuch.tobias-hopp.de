@@ -11,13 +11,14 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\IngredientController;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use App\Models\User;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', function () {
     return Inertia::render('Frontpage');
 });
 
+
 Route::get('/admin', function () {
-    
     $user = Auth::user();
     $users = User::with('roles')->get();
 
@@ -27,9 +28,13 @@ Route::get('/admin', function () {
             'roles' => $user->getRoleNames(),
             'permissions' => $user->getAllPermissions()->pluck('name'),
         ],
-        'users' => $users
+        'users' => $users->map(fn($u) => [
+            'id' => $u->id,
+            'name' => $u->name,
+            'roles' => $u->getRoleNames(),
+        ]),
     ]);
-})->middleware(RoleMiddleware::class . ':admin');
+})->middleware([CheckRole::class . ':admin']);
 
 Route::prefix('/gerichte')->group(function () {
     Route::get('/', [DishController::class, 'index'])->name('dishes.index');

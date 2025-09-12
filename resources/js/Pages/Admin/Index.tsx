@@ -7,7 +7,6 @@ export default function Index() {
     const { props }: any = usePage();
     const user = props.user;
     const users = props.users;
-    console.log({users});
 
     return (
         <>
@@ -25,14 +24,24 @@ export default function Index() {
                             <th className="p-3 border border-slate-100">username</th>
                             <th className="p-3 border border-slate-100">email</th>
                             <th className="p-3 border border-slate-100">roles</th>
-                            <th className="p-3 border border-slate-100">verified at</th>
-                            <th className="p-3 border border-slate-100">created_at</th>
+
                             <th className="p-3 border border-slate-100">Aktionen</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
-					
+                        {users.map((u: any) => (
+                            <tr key={u.id}>
+                                <td className="p-3 border border-slate-100">{u.id}</td>
+                                <td className="p-3 border border-slate-100">{u.username}</td>
+                                <td className="p-3 border border-slate-100">{u.email}</td>
+                                <td className="p-3 border border-slate-100 flex flex-wrap gap-2">
+                                    {u.roles?.map((role: any) => (
+                                        <div key={role.id} role={role} className="px-1 py-1 text-xs font-medium bg-primary text-white rounded-md">{role}</div>
+                                    ))}
+                                </td>
+                                <td className="p-3 border border-slate-100">Button</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table> 
             </FullWidthLayout>

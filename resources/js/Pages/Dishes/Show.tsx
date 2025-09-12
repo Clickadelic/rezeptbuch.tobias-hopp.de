@@ -38,12 +38,12 @@ export default function Show({ dish }: ShowDishProps) {
                 <div className="flex flex-col gap-3">
                     <div className="flex flex-col md:flex-row justify-start gap-5">
                         <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
-                            <h4 className="absolute text-slate-300 top-3 left-5 font-oswald z-20">
+                            {/* <h4 className="absolute text-slate-300 top-3 left-5 font-oswald z-20">
                                 {dish.punchline}
                             </h4>
                             <h3 className="absolute text-white top-9 left-5 text-3xl font-oswald z-20">
                                 {dish.name}
-                            </h3>
+                            </h3> */}
                             {(() => {
                                 const hero =
                                     (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
@@ -62,17 +62,12 @@ export default function Show({ dish }: ShowDishProps) {
                         </div>
                         <div className="w-full flex flex-col justify-between gap-2">
                             <div className="flex flex-col items-start gap-2">
-                                <div className="w-full flex flex-row items-center gap-2 justify-between">
-                                    <h2 className="text-lg font-medium mb-1">Beschreibung</h2>
-                                    {user && (
-                                        <div className="flex flex-row items-center gap-2">
-                                            <Link href={route('dishes.edit', dish)}>
-                                                <MdOutlineEdit className="size-5" />
-                                            </Link>
-                                        </div>
-                                    )}
+                                <div className="w-full flex flex-col">
+                                    <h3 className="font-medium text-sm font-oswald text-slate-500">{dish.punchline}</h3>
+                                    <h3 className="font-medium text-2xl mb-3">{dish.name}</h3>
+                                    <p className="text-sm text-slate-500">{dish.description}</p>
                                 </div>
-                                <p className=" text-slate-800">{dish.description}</p>
+                                
                             </div>
                             <div className="flex flex-row justify-between gap-1">
                                 <div className="flex flex-col gap-2">

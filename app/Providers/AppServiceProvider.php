@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use App\Models\Dish;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**

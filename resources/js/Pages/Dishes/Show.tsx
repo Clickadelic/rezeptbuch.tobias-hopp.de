@@ -96,6 +96,7 @@ export default function Show({ dish }: ShowDishProps) {
                     <div className="w-full flex flex-col gap-1">
                         <hr className="my-5" />
                         <h4 className="font-medium text-lg">Zutaten</h4>
+                        <h5>1 Person</h5>
                         <div className="flex flex-row">
                             <table className="table w-full text-slate-800">
                                 <thead className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-400">

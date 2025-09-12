@@ -47,11 +47,11 @@ class User extends Authenticatable
     }
 
     protected static function booted()
-{
-    static::created(function ($user) {
-        $user->assignRole('writer');
-    });
-}
+    {
+        static::created(function ($user) {
+            $user->assignRole('writer');
+        });
+    }
 
     /**
      * Relation: Ein User kann viele Gerichte haben

@@ -7,6 +7,8 @@ export default function Index() {
     const { props }: any = usePage();
     const user = props.user;
     const users = props.users;
+    console.log({users});
+
     return (
         <>
             <Head title="Admin" />
@@ -29,16 +31,7 @@ export default function Index() {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user: any) => (
-							<tr key={user.id}>
-								<td  className="p-3">{user.id}</td>
-								<td  className="p-3">{user.name}</td>
-								<td  className="p-3">{user.email}</td>
-								<td  className="p-3">{user.roles.map((role: any) => { return <RoleBadge key={user.id + role} role={role} /> })}</td>
-								<td  className="p-3">{user.verified_at ? toHumanDate(user.verified_at) : '-'}</td>
-								<td  className="p-3">{toHumanDate(user.created_at)} Uhr</td>
-							</tr>
-                        ))}
+                        
 					
                     </tbody>
                 </table> 

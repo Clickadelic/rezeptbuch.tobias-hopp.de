@@ -12,15 +12,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Rollen sicherstellen
-        Role::firstOrCreate(['name' => 'admin']);
-        Role::firstOrCreate(['name' => 'writer']);
+        // Role::firstOrCreate(['name' => 'admin']);
+        // Role::firstOrCreate(['name' => 'writer']);
 
         // Admin User
         $admin = User::firstOrCreate(
             ['email' => 'click@clickadelic.de'],
             [
                 'name' => 'Clickadelic',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('forello204$'),
             ]
         );
         $admin->assignRole('admin');
@@ -30,9 +30,9 @@ class UserSeeder extends Seeder
             ['email' => 'johndough@example.com'],
             [
                 'name' => 'John Dough',
-                'password' => Hash::make('password'), // Bitte anpassen 
+                'password' => Hash::make('johndough'), // Bitte anpassen 
             ]
         );
-        $writer->assignRole('writer');
+        // $writer->assignRole('writer');
     }
 }

@@ -6,11 +6,20 @@ export type DishIngredientPivot = {
     unit?: string;
 };
 
-export type Ingredient = {
-    id: string;
+// export type Ingredient = {
+//     id: string | number;
+//     name: string;
+//     pivot?: {
+//         quantity: string;
+//         unit: string;
+//     };
+// };
+
+export interface Ingredient {
+    id: string; // immer string
     name: string;
     pivot?: {
         quantity: string;
         unit: string;
     };
-};
+}

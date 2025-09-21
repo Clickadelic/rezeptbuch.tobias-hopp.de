@@ -80,7 +80,8 @@ class DishController extends Controller
         $dish = Dish::create([
             'id' => $request->input('id') ?: Str::uuid()->toString(),
             'name' => $request->input('name'),
-            'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
+            // Slug mit deutscher Sprachunterstützung
+            'slug' => $request->input('slug') ?? Str::slug($request->input('name'), '-', 'de'),
             'punchline' => $request->input('punchline'),
             'description' => $request->input('description'),
             'difficulty' => $request->input('difficulty'),
@@ -151,7 +152,7 @@ class DishController extends Controller
     /**
      * Shows the edit form for a dish.
      *
-     * @param  Dish  $dish
+     * @param  \App\Models\Dish  $dish
      * @return \Inertia\Response
      */
     public function edit(Dish $dish)
@@ -268,9 +269,6 @@ class DishController extends Controller
             ->route('dishes.show', $dish->slug)
             ->with('success', 'Gericht erfolgreich aktualisiert.');
     }
-
-
-
 
     /**
      * Removes the specified dish from storage.

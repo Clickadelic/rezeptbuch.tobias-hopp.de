@@ -34,19 +34,20 @@ export default function Dashboard() {
                         Gerichte {dishCount as number}
                     </h2>
                     <p className="text-sm text-slate-500">
-                        Es gibt insgesamt {dishCount as number} Gericht
-                        {(dishCount as number) > 1 ? 'e' : ''}.
+                        Es gibt insgesamt {dishCount as number}&nbsp;
+                        {(dishCount as number) > 1 ? 'Gerichte' : 'Gericht'}.
                     </p>
                 </div>
                 <div className="md:col-span-2 md:col-start-3 lg:col-span-1 lg:row-span-2 lg:col-start-5 rounded-xl ">
                     <h2 className="text-lg font-medium flex flex-row gap-2">
                         <LiaCocktailSolid className="size-5 mt-.5" />
-                        Cocktails {dishCount as number}
+                        Cocktails X
                     </h2>
                     <p className="text-sm text-slate-500">Du hast insgesamt X Rezepte</p>
                 </div>
                 <div className="md:col-start-1 md:col-span-2 lg:row-span-3 lg:col-span-1 lg:row-start-3 rounded-xl ">
-                    <h2 className="text-lg font-medium">4</h2>
+                    <h2 className="text-lg font-medium">Zutaten</h2>
+                    <p className="text-sm text-slate-500">Es gibt insgesamt {ingredientCount as number} Zutaten im Rezeptbuch.</p>
                 </div>
                 <div className="md:col-start-3 md:col-span-2 lg:row-span-2 lg:row-start-3 lg:col-start-2 lg:col-span-3 rounded-xl ">
                     <h2 className="text-lg font-medium">5</h2>

@@ -69,7 +69,7 @@ export function IngredientComboBox({
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className={cn('w-64 justify-between', triggerClassName)}
+                    className={cn('w-72 justify-between', triggerClassName)}
                 >
                     <span className={cn(!selected && !value && 'text-muted-foreground')}>
                         {displayLabel}

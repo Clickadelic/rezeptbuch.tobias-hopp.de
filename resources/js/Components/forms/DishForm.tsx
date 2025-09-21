@@ -139,6 +139,67 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 onSubmit={isEditing ? onUpdate : onSubmit}
                 className={cn('flex flex-col space-y-3', className)}
             >
+                {/* Medien */}
+                <div className="w-full space-y-3">
+                    <InputLabel htmlFor="media" value="Bilder zum Gericht" />
+
+                    {/* Aktuelle Bilder (Edit) oder Pending-Uploads (Create) */}
+                    <div className="flex flex-wrap gap-3">
+                        {isEditing ? (
+                            (liveMedia.map((m: any) => (
+                                <label
+                                    key={m.id}
+                                    className="relative border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                >
+                                    <img
+                                        src={m.url ?? `/storage/${m.path}`}
+                                        alt={m.name}
+                                        className="aspect-video w-12 object-cover"
+                                    />
+                                    <input
+                                        type="radio"
+                                        name="primary_media_id"
+                                        value={m.id}
+                                        checked={data.primary_media_id === m.id}
+                                        onChange={() => setData('primary_media_id', m.id as any)}
+                                        className="absolute top-1 left-1"
+                                        title="Als Hauptbild auswählen"
+                                    />
+                                    {(m?.pivot?.is_primary || data.primary_media_id === m.id) && (
+                                        <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">
+                                            Aktuell
+                                        </span>
+                                    )}
+                                </label>
+                            )) ?? [])
+                        ) : pendingMedia.length > 0 ? (
+                            pendingMedia.map((m) => (
+                                <label
+                                    key={m.id}
+                                    className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                >
+                                    <img
+                                        src={m.url ?? `/storage/${m.path}`}
+                                        alt={m.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <input
+                                        type="radio"
+                                        name="primary_media_id"
+                                        value={m.id}
+                                        checked={data.primary_media_id === (m.id as any)}
+                                        onChange={() => setData('primary_media_id', m.id as any)}
+                                        className="absolute top-1 left-1"
+                                        title="Als Hauptbild auswählen"
+                                    />
+                                </label>
+                            ))
+                        ) : (
+                            <p className="text-sm text-slate-500">Noch keine Bilder vorhanden.</p>
+                        )}
+                    </div>
+                </div>
+
                 {/* Name */}
                 <div className="w-full">
                     <InputLabel htmlFor="name" value="Name" />
@@ -244,6 +305,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                         <Select
                             name="difficulty"
                             value={data.difficulty || (Difficulty.EINFACH as string)}
+                            defaultValue='einfach'
                             onValueChange={(val) => setData('difficulty', val as Difficulty)}
                         >
                             <SelectTrigger className="w-full mt-1 py-2">
@@ -261,76 +323,15 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     </div>
                 </div>
 
-                {/* Medien */}
-                <div className="w-full space-y-3">
-                    <InputLabel htmlFor="media" value="Bilder zum Gericht" />
-
-                    {/* Aktuelle Bilder (Edit) oder Pending-Uploads (Create) */}
-                    <div className="flex flex-wrap gap-3">
-                        {isEditing ? (
-                            (liveMedia.map((m: any) => (
-                                <label
-                                    key={m.id}
-                                    className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer"
-                                >
-                                    <img
-                                        src={m.url ?? `/storage/${m.path}`}
-                                        alt={m.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <input
-                                        type="radio"
-                                        name="primary_media_id"
-                                        value={m.id}
-                                        checked={data.primary_media_id === m.id}
-                                        onChange={() => setData('primary_media_id', m.id as any)}
-                                        className="absolute top-1 left-1"
-                                        title="Als Hauptbild auswählen"
-                                    />
-                                    {(m?.pivot?.is_primary || data.primary_media_id === m.id) && (
-                                        <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">
-                                            Aktuell
-                                        </span>
-                                    )}
-                                </label>
-                            )) ?? [])
-                        ) : pendingMedia.length > 0 ? (
-                            pendingMedia.map((m) => (
-                                <label
-                                    key={m.id}
-                                    className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer"
-                                >
-                                    <img
-                                        src={m.url ?? `/storage/${m.path}`}
-                                        alt={m.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <input
-                                        type="radio"
-                                        name="primary_media_id"
-                                        value={m.id}
-                                        checked={data.primary_media_id === (m.id as any)}
-                                        onChange={() => setData('primary_media_id', m.id as any)}
-                                        className="absolute top-1 left-1"
-                                        title="Als Hauptbild auswählen"
-                                    />
-                                </label>
-                            ))
-                        ) : (
-                            <p className="text-sm text-slate-500">Noch keine Bilder vorhanden.</p>
-                        )}
-                    </div>
-                </div>
-
                 {/* Zutaten */}
                 <div className="w-full space-y-2">
                     <InputLabel htmlFor="ingredients" value="Zutaten" />
                     {data.dish_ingredients?.map((di, idx) => (
-                        <div key={idx} className="flex flex-row gap-2 items-start mb-3">
+                        <div key={idx} className="flex flex-row justify-start gap-2 items-start mb-3 ">
                             <TextInput
                                 placeholder="Menge"
                                 value={di.quantity}
-                                className="w-28"
+                                className="w-36 bg-rose-200"
                                 type="number"
                                 onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
                             />
@@ -339,7 +340,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 value={di.unit}
                                 onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                             >
-                                <SelectTrigger className="w-24 mt-1 py-2">
+                                <SelectTrigger className="w-48 mt-1 py-2">
                                     <SelectValue placeholder="Einheit auswählen" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -354,7 +355,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             <IngredientComboBox
                                 options={ingredients}
                                 value={di.ingredient_id}
-                                triggerClassName="mt-1 w-80"
+                                triggerClassName="mt-1 w-full"
                                 onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                             />
 
@@ -456,27 +457,42 @@ function DishMediaUploader({
         }
     };
 
-    return (
-        <div
-            className="flex items-center gap-3"
-            onKeyDown={(e) => {
-                if (e.key === 'Enter') e.preventDefault();
-            }}
-        >
+
+
+return (
+    <div
+        className="flex flex-col gap-3"
+        onKeyDown={(e) => {
+            if (e.key === 'Enter') e.preventDefault();
+        }}
+        tabIndex={0}
+    >
+        {/* Upload Bereich */}
+        <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+            <GoPlus className="text-primary text-4xl" />
+            <span className="mt-2 text-sm text-slate-500">Bild auswählen</span>
+            
+            {/* Unsichtbares Input-Feld */}
             <input
                 type="file"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 accept="image/png,image/jpeg,image/jpg"
                 onChange={(e) => setFile(e.target.files?.[0] || null)}
             />
-            <Button
-                type="button"
-                onClick={handleUpload}
-                disabled={loading || !file}
-                className="hover:cursor-pointer"
-            >
-                {loading ? 'Lädt…' : 'Bild hochladen'}
-            </Button>
-            {error && <span className="text-red-500 text-sm">{error}</span>}
-        </div>
-    );
+        </label>
+
+        {/* Upload-Button */}
+        <Button
+            type="button"
+            onClick={handleUpload}
+            disabled={loading || !file}
+            className="w-full hover:cursor-pointer"
+        >
+            {loading ? 'Lädt…' : 'Bild hochladen'}
+        </Button>
+
+        {/* Fehleranzeige */}
+        {error && <span className="text-red-500 text-sm">{error}</span>}
+    </div>
+);
 }

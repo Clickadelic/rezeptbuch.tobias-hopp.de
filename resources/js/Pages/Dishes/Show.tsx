@@ -88,8 +88,8 @@ export default function Show({ dish }: ShowDishProps) {
                                 variant="primaryOutline"
                                 size="sm"
                                 disabled={count === 1}
-                                title="Menge reduzieren"
-                                aria-label="Menge reduzieren"
+                                title="Personen reduzieren"
+                                aria-label="Personen reduzieren"
                             >
                                 <FiMinus />
                             </Button>
@@ -102,8 +102,8 @@ export default function Show({ dish }: ShowDishProps) {
                                 className="hover:cursor-pointer shadow-none"
                                 variant="primaryOutline"
                                 size="sm"
-                                title="Menge erhöhen"
-                                aria-label="Menge erhöhen"
+                                title="Personen erhöhen"
+                                aria-label="Personen erhöhen"
                             >
                                 <GoPlus />
                             </Button>

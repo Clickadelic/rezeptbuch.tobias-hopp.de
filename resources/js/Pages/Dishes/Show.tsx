@@ -122,7 +122,7 @@ export default function Show({ dish }: ShowDishProps) {
                                     >
                                         <td className="p-3">{ingredient.name}</td>
                                         <td className="p-3 text-right">
-                                            {(ingredient.pivot?.quantity ?? 0) * count}
+                                            {(ingredient.pivot?.quantity ?? 0) as number * count}
                                         </td>
                                         <td className="p-3 text-left">
                                             {ingredient.pivot?.unit}

@@ -6,7 +6,6 @@ use App\Http\Requests\StoreMediaRequest;
 use App\Models\Media;
 use Illuminate\Support\Str;
 use App\Models\Dish;
-use Illuminate\Support\Facades\Storage;
 
 class UploadController
 {

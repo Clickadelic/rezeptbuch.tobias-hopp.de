@@ -80,26 +80,30 @@ export default function Show({ dish }: ShowDishProps) {
                 <div className="w-full flex flex-col gap-1">
                     <hr className="my-5" />
                     <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-3">
-                        <h4 className="font-medium text-lg">Zutaten</h4>
+                        <h4 className="font-medium text-lg">Zutaten für</h4>
                         <div className="flex items-center gap-2">
                             <Button
                                 onClick={() => setCount(prev => Math.max(1, prev - 1))}
-                                className="hover:cursor-pointer"
+                                className="hover:cursor-pointer shadow-none"
                                 variant="primaryOutline"
                                 size="sm"
+                                disabled={count === 1}
+                                title="Menge reduzieren"
+                                aria-label="Menge reduzieren"
                             >
                                 <FiMinus />
                             </Button>
-
-                            <div className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 py-1 px-3 w-[7.5rem] rounded border border-slate-200 dark:border-slate-700">
+                            <div className="bg-slate-100 cursor-default dark:bg-slate-700 text-slate-800 dark:text-slate-200 py-1 px-3 w-[7.5rem] rounded-lg border border-slate-200 dark:border-slate-700">
                                 {count}
                                 {count > 1 ? ' Personen' : ' Person'}
                             </div>
                             <Button
                                 onClick={() => setCount(prev => prev + 1)}
-                                className="hover:cursor-pointer"
+                                className="hover:cursor-pointer shadow-none"
                                 variant="primaryOutline"
                                 size="sm"
+                                title="Menge erhöhen"
+                                aria-label="Menge erhöhen"
                             >
                                 <GoPlus />
                             </Button>

@@ -1,14 +1,15 @@
 import { Head } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
-
+import { useState, useEffect } from 'react';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import DishesSidebar from '@/components/sidebars/MainSidebar';
 import { Dish } from '@/types/Dish';
-
+import { Button } from '@/components/ui/button';
 
 import { MdOutlineStarPurple500 } from 'react-icons/md';
 import { MdOutlineEdit } from 'react-icons/md';
-import { GoClock, GoTrash } from 'react-icons/go';
+import { GoClock, GoTrash, GoPlus } from 'react-icons/go';
+import { FiMinus } from "react-icons/fi";
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { BiDish } from 'react-icons/bi';
@@ -26,17 +27,14 @@ interface ShowDishProps {
  * @returns {JSX.Element}
  */
 export default function Show({ dish }: ShowDishProps) {
+
+    const [count, setCount] = useState<number>(1);
+
     return (
         <SidebarLeftLayout title="Gericht Details" sidebar={<DishesSidebar />}>
             <div className="flex flex-col gap-3">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
                     <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
-                        {/* <h4 className="absolute text-slate-300 top-3 left-5 font-oswald z-20">
-                            {dish.punchline}
-                        </h4>
-                        <h3 className="absolute text-white top-9 left-5 text-3xl font-oswald z-20">
-                            {dish.name}
-                        </h3> */}
                         {(() => {
                             const hero =
                                 (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
@@ -60,7 +58,6 @@ export default function Show({ dish }: ShowDishProps) {
                                 <h3 className="font-medium text-2xl mb-3">{dish.name}</h3>
                                 <p className="text-sm text-slate-500">{dish.description}</p>
                             </div>
-                            
                         </div>
                         <div className="flex flex-row justify-between gap-1">
                             <div className="flex flex-col gap-2">
@@ -74,17 +71,40 @@ export default function Show({ dish }: ShowDishProps) {
                                 <h4 className="font-medium">Schwierigkeitsgrad</h4>
                                 <div className="flex flex-row">
                                     <VscSymbolEvent className="mt-1 size-4 text-primary" />
-                                    <p className="ml-1">{dish.difficulty}</p>
+                                    <p className="ml-1 lowercase">{dish.difficulty}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div className="w-full flex flex-col gap-1">
                     <hr className="my-5" />
-                    <h4 className="font-medium text-lg">Zutaten</h4>
-                    <h5>1 Person</h5>
+                    <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-3">
+                        <h4 className="font-medium text-lg">Zutaten</h4>
+                        <div className="flex items-center gap-2">
+                            <Button
+                                onClick={() => setCount(prev => Math.max(1, prev - 1))}
+                                className="hover:cursor-pointer"
+                                variant="primaryOutline"
+                                size="sm"
+                            >
+                                <FiMinus />
+                            </Button>
+
+                            <div className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 py-1 px-3 w-[7.5rem] rounded border border-slate-200 dark:border-slate-700">
+                                {count}
+                                {count > 1 ? ' Personen' : ' Person'}
+                            </div>
+                            <Button
+                                onClick={() => setCount(prev => prev + 1)}
+                                className="hover:cursor-pointer"
+                                variant="primaryOutline"
+                                size="sm"
+                            >
+                                <GoPlus />
+                            </Button>
+                        </div>
+                    </div>
                     <div className="flex flex-row">
                         <table className="table w-full text-slate-800">
                             <thead className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-400">
@@ -102,7 +122,7 @@ export default function Show({ dish }: ShowDishProps) {
                                     >
                                         <td className="p-3">{ingredient.name}</td>
                                         <td className="p-3 text-right">
-                                            {ingredient.pivot?.quantity}
+                                            {(ingredient.pivot?.quantity ?? 0) as number * count}
                                         </td>
                                         <td className="p-3 text-left">
                                             {ingredient.pivot?.unit}

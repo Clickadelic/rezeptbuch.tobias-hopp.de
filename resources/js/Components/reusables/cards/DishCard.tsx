@@ -110,7 +110,7 @@ export default function DishCard({ dish }: DishCardProps) {
                         </div>
                         <div>
                             <VscSymbolEvent className="inline-flex size-4 mr-1 text-primary" />
-                            <span className="text-sm text-muted-foreground">{dish.difficulty}</span>
+                            <span className="text-sm text-muted-foreground lowercase">{dish.difficulty}</span>
                         </div>
                     </CardFooter>
                 </Card>

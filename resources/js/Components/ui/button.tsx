@@ -17,6 +17,7 @@ const buttonVariants = cva(
                     'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
                 primary:
                     'bg-primary text-white shadow-sm hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
+                primaryOutline: 'bg-transparent border border-primary text-primary shadow-sm hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
                 danger: 'bg-rose-700 text-white shadow-sm hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2',
                 dangerOutline:
                     'bg-transparent border border-rose-700 text-rose-700 shadow-sm hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',

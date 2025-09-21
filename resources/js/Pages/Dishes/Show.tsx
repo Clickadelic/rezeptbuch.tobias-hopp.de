@@ -54,9 +54,9 @@ export default function Show({ dish }: ShowDishProps) {
                     <div className="w-full flex flex-col justify-between gap-2">
                         <div className="flex flex-col items-start gap-2">
                             <div className="w-full flex flex-col">
-                                <h3 className="font-medium text-sm font-oswald text-slate-500">{dish.punchline}</h3>
+                                <h3 className="font-medium text-sm font-oswald text-slate-800 dark:text-slate-200">{dish.punchline}</h3>
                                 <h3 className="font-medium text-2xl mb-3">{dish.name}</h3>
-                                <p className="text-sm text-slate-500">{dish.description}</p>
+                                <p className="text-sm text-slate-800 dark:text-slate-200">{dish.description}</p>
                             </div>
                         </div>
                         <div className="flex flex-row justify-between gap-1">

@@ -57,22 +57,22 @@ export default function Show({ dish }: ShowDishProps) {
                                     className="absolute inset-0 size-full object-cover"
                                 />
                             ) : (
-                                <BiDish className="text-slate-400 size-8" />
+                                <BiDish className="text-gray-400 size-8" />
                             );
                         })()}
-                        <div className="absolute size-full bg-slate-400/10 rounded-xl z-10 cursor-default"></div>
+                        <div className="absolute size-full bg-gray-400/10 rounded-xl z-10 cursor-default"></div>
                     </div>
                     <div className="w-full flex flex-col justify-between gap-2">
                         <div className="flex flex-col items-start gap-2">
                             <div className="w-full flex flex-col">
                                 <div className="relative w-full flex flex-row justify-between items-center">
                                     <div>
-                                        <h4 className="font-medium text-sm font-oswald text-slate-800 dark:text-slate-200">{dish.punchline}</h4>
+                                        <h4 className="font-medium text-sm font-oswald text-gray-800 dark:text-gray-200">{dish.punchline}</h4>
                                         <h3 className="font-medium text-2xl mb-3">{dish.name}</h3>
                                     </div>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger
-                                            className="absolute top-2 right-2 text-slate-400 dark:text-slate-200 p-1 hover:text-slate-500 hover:cursor-pointer shadow-transparent z-20"
+                                            className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:cursor-pointer shadow-transparent z-20"
                                             onClick={(e) => e.stopPropagation()}
                                         >
                                             <HiOutlineDotsVertical className="size-4" />
@@ -98,7 +98,7 @@ export default function Show({ dish }: ShowDishProps) {
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </div>
-                                <p className="text-sm text-slate-800 dark:text-slate-200">{dish.description}</p>
+                                <p className="text-sm text-gray-800 dark:text-gray-200">{dish.description}</p>
                             </div>
                         </div>
                         <div className="flex flex-row justify-between gap-1">
@@ -135,7 +135,7 @@ export default function Show({ dish }: ShowDishProps) {
                             >
                                 <FiMinus />
                             </Button>
-                            <div className="bg-slate-100 cursor-default dark:bg-slate-700 text-slate-800 dark:text-slate-200 py-2 px-3 w-[7.5rem] rounded-lg border border-slate-200 dark:border-slate-700">
+                            <div className="bg-gray-100 cursor-default dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-2 px-3 w-[7.5rem] rounded-lg border border-gray-200 dark:border-gray-700">
                                 {count}
                                 {count > 1 ? ' Personen' : ' Person'}
                             </div>
@@ -152,19 +152,19 @@ export default function Show({ dish }: ShowDishProps) {
                         </div>
                     </div>
                     <div className="flex flex-row">
-                        <table className="table w-full text-slate-800">
-                            <thead className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-400">
+                        <table className="table w-full text-gray-800">
+                            <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th className="p-3 text-left rounded-tl-lg">Zutat</th>
                                     <th className="p-3 text-right">Menge</th>
                                     <th className="p-3 text-left rounded-tr-lg">Einheit</th>
                                 </tr>
                             </thead>
-                            <tbody className="dark:text-slate-200">
+                            <tbody className="dark:text-gray-200">
                                 {dish.ingredients?.map((ingredient) => (
                                     <tr
                                         key={ingredient.id}
-                                        className="hover:bg-slate-100 dark:hover:bg-slate-700"
+                                        className="hover:bg-gray-100 dark:hover:bg-gray-700"
                                     >
                                         <td className="p-3">{ingredient.name}</td>
                                         <td className="p-3 text-right">

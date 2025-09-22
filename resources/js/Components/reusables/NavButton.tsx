@@ -25,7 +25,7 @@ export default function NavButton({ className = '', active = false, icon, childr
                 className +
                 (active
                     ? 'border border-primary text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white'
-                    : 'text-slate-800 hover:text-slate-600 focus:text-slate-600 dark:text-slate-200 dark:hover:text-slate-400 dark:focus:text-slate-400')
+                    : 'text-gray-800 hover:text-gray-600 focus:text-gray-600 dark:text-gray-200 dark:hover:text-gray-400 dark:focus:text-gray-400')
             }
         >
             <span className="hidden lg:inline-flex">{icon}</span>

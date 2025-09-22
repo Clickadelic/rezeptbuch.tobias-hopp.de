@@ -148,7 +148,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             (liveMedia.map((m: any) => (
                                 <label
                                     key={m.id}
-                                    className="relative border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                    className="relative border rounded overflow-hidden bg-gray-100 cursor-pointer"
                                 >
                                     <img
                                         src={m.url ?? `/storage/${m.path}`}
@@ -175,7 +175,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             pendingMedia.map((m) => (
                                 <label
                                     key={m.id}
-                                    className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                    className="relative w-28 h-28 border rounded overflow-hidden bg-gray-100 cursor-pointer"
                                 >
                                     <img
                                         src={m.url ?? `/storage/${m.path}`}
@@ -194,7 +194,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 </label>
                             ))
                         ) : (
-                            <p className="text-sm text-slate-500">Noch keine Bilder vorhanden.</p>
+                            <p className="text-sm text-gray-500">Noch keine Bilder vorhanden.</p>
                         )}
                     </div>
                 </div>
@@ -235,7 +235,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                         value={data.description}
                         rows={5}
                         placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                        className="mt-1 w-full rounded-lg border border-slate-400 px-3 py-2"
+                        className="mt-1 w-full rounded-lg border border-gray-400 px-3 py-2"
                         onChange={(e) => setData('description', e.target.value)}
                     />
                     {errors.description && <p className="text-red-500">{errors.description}</p>}
@@ -258,12 +258,12 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 max={600}
                                 value={data.preparation_time}
                                 placeholder="0"
-                                className="mt-1 flex-1 rounded-none border-r-0 border-slate-200 rounded-tl-lg rounded-bl-lg"
+                                className="mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl-lg rounded-bl-lg"
                                 onChange={(e) =>
                                     setData('preparation_time', Number(e.target.value))
                                 }
                             />
-                            <span className="px-3 py-2 border border-l-0 rounded-r-lg border-slate-400">
+                            <span className="px-3 py-2 border border-l-0 rounded-r-lg border-gray-400">
                                 Minuten
                             </span>
                         </div>
@@ -470,9 +470,9 @@ function DishMediaUploader({
             tabIndex={0}
         >
             {/* Upload Bereich */}
-            <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+            <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                 <GoPlus className="text-primary text-4xl" />
-                <span className="mt-2 text-sm text-slate-500">Bild auswählen</span>
+                <span className="mt-2 text-sm text-gray-500">Bild auswählen</span>
                 
                 {/* Unsichtbares Input-Feld */}
                 <input

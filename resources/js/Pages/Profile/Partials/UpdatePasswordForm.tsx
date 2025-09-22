@@ -39,9 +39,9 @@ export default function UpdatePasswordForm({ className = '' }: { className?: str
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-slate-800 dark:text-slate-200">Passwort aktualisieren</h2>
+                <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">Passwort aktualisieren</h2>
 
-                <p className="mt-1 text-sm text-slate-800 dark:text-slate-200">
+                <p className="mt-1 text-sm text-gray-800 dark:text-gray-200">
                     Stelle sicher, dass Du ein langes, sicheres Passwort verwendest.
                 </p>
             </header>

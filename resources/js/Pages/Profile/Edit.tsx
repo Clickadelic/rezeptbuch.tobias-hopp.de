@@ -17,9 +17,9 @@ export default function Edit({
                     status={status}
                     className="w-full"
                 />
-                <hr className="my-5 bg-slate-300 dark:bg-slate-700" />
+                <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                 <UpdatePasswordForm className="w-full" />
-                <hr className="my-5 bg-slate-300 dark:bg-slate-700" />
+                <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                 <DeleteUserForm className="w-full" />
             </div>
         </NoSidebarsLayout>

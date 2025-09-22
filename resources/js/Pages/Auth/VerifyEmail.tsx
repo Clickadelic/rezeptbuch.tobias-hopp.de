@@ -16,7 +16,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
         <AuthLayout>
             <Head title="Email Verification" />
 
-            <div className="mb-4 text-slate-800">
+            <div className="mb-4 text-gray-800">
                 <p>
                     Danke für Deine Registrierung. Bitte bestätige zuerst Deine E-Mail Adresse bevor
                     Du weiter machst. Danke.
@@ -37,7 +37,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
                         href={route('logout')}
                         method="post"
                         as="button"
-                        className="rounded text-slate-800 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                        className="rounded text-gray-800 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                     >
                         Logout
                     </Link>

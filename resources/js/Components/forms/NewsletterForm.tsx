@@ -1,9 +1,16 @@
-import { useForm, Link } from '@inertiajs/react';
-import { useState } from 'react';
+import { useForm } from '@inertiajs/react';
 import TextInput from '@/components/TextInput';
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import { Button } from '../ui/button';
+
+/**
+ * NewsletterForm
+ *
+ * Form for subscribing to the newsletter
+ *
+ * @return {JSX.Element} JSX element
+ */
 export default function NewsletterForm() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
@@ -17,6 +24,7 @@ export default function NewsletterForm() {
                     type="text"
                     name="name"
                     id="name"
+                    className="w-full"
                     autoComplete="name"
                     placeholder="Name"
                 />
@@ -28,6 +36,7 @@ export default function NewsletterForm() {
                     type="email"
                     name="email"
                     id="email"
+                    className="w-full"
                     autoComplete="email"
                     placeholder="E-Mail"
                 />
@@ -35,7 +44,7 @@ export default function NewsletterForm() {
             </div>
             <Button
                 type="submit"
-                className="w-full rounded bg-primary text-slate-100 hover:bg-primary"
+                className="w-full rounded-lg bg-primary text-gray-100 hover:bg-primary"
             >
                 Newsletter abonnieren
             </Button>

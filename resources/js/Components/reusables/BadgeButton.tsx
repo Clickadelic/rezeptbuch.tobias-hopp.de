@@ -12,7 +12,7 @@ export default function BadgeButton({ ingredient }: BadgeButtonProps) {
                 {ingredient.name}
             </span>
             <button
-                className="group-hover:text-slate-300 hover:text-slate-300 hover:cursor-pointer"
+                className="group-hover:text-gray-300 hover:text-gray-300 hover:cursor-pointer"
                 title="Zutat bearbeiten"
                 aria-label="Zutat bearbeiten"
             >

@@ -21,11 +21,11 @@ import NewsletterForm from '../forms/NewsletterForm';
 export default function Footer() {
     return (
         <>
-            <div className="bg-gradient-to-b from-stone-800 to-stone-900 border-t-4 border-t-primary text-slate-100">
+            <div className="bg-gradient-to-b from-stone-800 to-stone-900 border-t-4 border-t-primary text-gray-100">
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div>
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
+                            <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <GrNavigate className="mt-1" />
                                 <span className="font-medium font-oswald">Navigation</span>
                             </h2>
@@ -33,7 +33,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                         title="Startseite"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
@@ -43,7 +43,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/gerichte"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                         title="Gerichte"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
@@ -53,7 +53,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/cocktails"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                         title="Cocktails"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
@@ -63,7 +63,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="/zutaten"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                         title="Zutaten"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
@@ -73,7 +73,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
+                            <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <FaQ className="mt-1" />
                                 <span className="font-medium font-oswald">Weiteres</span>
                             </h2>
@@ -81,7 +81,7 @@ export default function Footer() {
                                 <li>
                                     <a
                                         href="https://www.tobias-hopp.de"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                         title="Portfolio"
                                         target="_blank"
                                     >
@@ -92,7 +92,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="#"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
                                         Link
@@ -101,7 +101,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="#"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
                                         Link
@@ -110,7 +110,7 @@ export default function Footer() {
                                 <li>
                                     <Link
                                         href="#"
-                                        className="flex gap-1 text-slate-100 hover:text-slate-400"
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
                                         Link
@@ -119,7 +119,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
+                            <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <IoIosRibbon className="mt-1" />
                                 <span className="font-medium font-oswald">100% Qualit&auml;t</span>
                             </h2>
@@ -130,7 +130,7 @@ export default function Footer() {
                             <img src={badgeSrc} alt="100% Qualit&auml;t" className="mx-auto" />
                         </div>
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
-                            <h2 className="mb-8 text-2xl text-slate-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
+                            <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <TbMailHeart className="mt-1" />
                                 <span className="font-medium font-oswald">Newsletter</span>
                             </h2>
@@ -146,7 +146,7 @@ export default function Footer() {
                             <li>
                                 <Link
                                     href="/impressum"
-                                    className="hover:text-slate-400 text-sm"
+                                    className="hover:text-gray-400 text-sm"
                                     title="Impressum"
                                 >
                                     Impressum

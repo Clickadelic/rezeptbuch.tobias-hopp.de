@@ -26,7 +26,7 @@ export default function Dishes() {
                     <DishCard key={dish.id} dish={dish} />
                 ))}
                 {dishes.length === 0 && (
-                    <p className="text-xl my-12 col-span-5 text-center text-slate-600">
+                    <p className="text-xl my-12 col-span-5 text-center text-gray-600">
                         Lege das erste Gericht an.
                     </p>
                 )}

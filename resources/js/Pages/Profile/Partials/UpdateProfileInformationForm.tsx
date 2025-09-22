@@ -5,6 +5,7 @@ import TextInput from '@/components/TextInput';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
+import { Plus } from 'lucide-react';
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -20,25 +21,33 @@ export default function UpdateProfileInformation({
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
         email: user.email,
+        avatar: null as File | null,
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        patch(route('profile.update'));
+        console.log("Submitted Data", data);
     };
 
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profil Informationen</h2>
+                <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    Profil Informationen
+                </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
-                    Aktualisiere Deinen Namen und Deine E-Mail Adresse hier.
+                <p className="mt-1 text-sm text-gray-800 dark:text-gray-200">
+                    Aktualisiere Deinen Namen, Deine E-Mail Adresse und Dein Profilbild hier.
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <form 
+                onSubmit={submit} 
+                className="mt-6 space-y-6"
+                encType="multipart/form-data"
+            >
+                {/* Name */}
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -55,6 +64,7 @@ export default function UpdateProfileInformation({
                     <InputError className="mt-2" message={errors.name} />
                 </div>
 
+                {/* Email */}
                 <div>
                     <InputLabel htmlFor="email" value="E-Mail" />
 
@@ -71,15 +81,52 @@ export default function UpdateProfileInformation({
                     <InputError className="mt-2" message={errors.email} />
                 </div>
 
+                {/* Avatar Upload */}
+                <div>
+                    <InputLabel htmlFor="avatar" value="Profilbild" />
+
+                    <label
+                        htmlFor="avatar"
+                        className="mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    >
+                        {data.avatar ? (
+                            <p className="text-sm text-gray-700 dark:text-gray-300">
+                                {data.avatar.name}
+                            </p>
+                        ) : (
+                            <>
+                                <Plus className="w-6 h-6 text-gray-500" />
+                                <span className="text-xs text-gray-500 mt-1">Upload</span>
+                            </>
+                        )}
+                    </label>
+
+                    <input
+                        id="avatar"
+                        type="file"
+                        name="avatar"
+                        className="hidden"
+                        accept="image/*"
+                        onChange={(e) => {
+                            if (e.target.files && e.target.files.length > 0) {
+                                setData('avatar', e.target.files[0]);
+                            }
+                        }}
+                    />
+
+                    <InputError className="mt-2" message={errors.avatar} />
+                </div>
+
+                {/* Email Verification */}
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
                         <p className="mt-2 text-sm text-gray-800">
-                            Your email address is unverified.
+                            Deine E-Mail Adresse ist nicht verifiziert.
                             <Link
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
-                                className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="ml-1 rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Klicke hier um die E-Mail-Bestätigung erneut zu senden.
                             </Link>
@@ -93,8 +140,11 @@ export default function UpdateProfileInformation({
                     </div>
                 )}
 
+                {/* Submit Button */}
                 <div className="flex items-center gap-4">
-                    <Button disabled={processing}>Save</Button>
+                    <Button disabled={processing} variant="primary" type="submit">
+                        Speichern
+                    </Button>
 
                     <Transition
                         show={recentlySuccessful}
@@ -103,7 +153,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-primary bg-emerald-200 border-primary rounded px-2 py-1">
+                        <p className="text-sm text-primary bg-emerald-200 border border-primary rounded px-2 py-1">
                             Gespeichert.
                         </p>
                     </Transition>

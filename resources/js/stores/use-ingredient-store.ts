@@ -36,6 +36,6 @@ export const useIngredientStore = create(
 
             resetIngredients: () => set({ ingredients: [], editingIngredient: null }),
         }),
-        { name: 'ingredient-store' }
+        { name: 'rezeptbuch-ingredient-store' }
     )
 );

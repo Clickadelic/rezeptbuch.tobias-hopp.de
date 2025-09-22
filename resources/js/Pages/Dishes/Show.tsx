@@ -72,7 +72,7 @@ export default function Show({ dish }: ShowDishProps) {
                                     </div>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger
-                                            className="absolute top-2 right-2 text-slate-800 dark:text-slate-200 p-1 hover:text-slate-500 hover:cursor-pointer shadow-transparent z-20"
+                                            className="absolute top-2 right-2 text-slate-400 dark:text-slate-200 p-1 hover:text-slate-500 hover:cursor-pointer shadow-transparent z-20"
                                             onClick={(e) => e.stopPropagation()}
                                         >
                                             <HiOutlineDotsVertical className="size-4" />

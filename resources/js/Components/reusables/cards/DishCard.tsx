@@ -39,7 +39,7 @@ export default function DishCard({ dish }: DishCardProps) {
                 <Card className="relative overflow-hidden">
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
-                                    bg-slate-100 dark:bg-slate-700 text-slate-300 
+                                    bg-slate-100 dark:bg-slate-700 text-slate-400 
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-slate-200 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
@@ -62,7 +62,7 @@ export default function DishCard({ dish }: DishCardProps) {
                         {user && (
                             <DropdownMenu>
                                 <DropdownMenuTrigger
-                                    className="absolute top-2 right-2 text-white p-1 hover:text-slate-300 hover:cursor-pointer shadow-transparent z-20"
+                                    className="absolute top-2 right-2 text-slate-400 dark:text-slate-200 p-1 hover:text-slate-300 hover:cursor-pointer shadow-transparent z-20"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <HiOutlineDotsVertical className="size-4" />

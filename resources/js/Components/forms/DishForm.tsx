@@ -300,25 +300,31 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     {/* Difficulty */}
                     <div>
                         <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
+
                         <Select
                             name="difficulty"
-                            value={data.difficulty || (Difficulty.EINFACH as string)}
-                            defaultValue='einfach'
+                            // Wenn kein Wert gesetzt, nehme den Default aus dem Enum
+                            value={data.difficulty ?? Difficulty.EINFACH}
                             onValueChange={(val) => setData('difficulty', val as Difficulty)}
                         >
                             <SelectTrigger className="w-full mt-1 py-2">
                                 <SelectValue placeholder="Schwierigkeitsgrad" />
                             </SelectTrigger>
+                            
                             <SelectContent>
                                 {Object.entries(Difficulty).map(([key, val]) => (
-                                    <SelectItem key={key} value={key}>
+                                    <SelectItem key={key} value={val}>
                                         {val}
                                     </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>
-                        {errors.difficulty && <p className="text-red-500">{errors.difficulty}</p>}
+
+                        {errors.difficulty && (
+                            <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
+                        )}
                     </div>
+
                 </div>
 
                 {/* Zutaten */}

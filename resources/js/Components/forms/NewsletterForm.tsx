@@ -17,6 +17,7 @@ export default function NewsletterForm() {
                     type="text"
                     name="name"
                     id="name"
+                    className="w-full"
                     autoComplete="name"
                     placeholder="Name"
                 />
@@ -28,6 +29,7 @@ export default function NewsletterForm() {
                     type="email"
                     name="email"
                     id="email"
+                    className="w-full"
                     autoComplete="email"
                     placeholder="E-Mail"
                 />
@@ -35,7 +37,7 @@ export default function NewsletterForm() {
             </div>
             <Button
                 type="submit"
-                className="w-full rounded bg-primary text-slate-100 hover:bg-primary"
+                className="w-full rounded-lg bg-primary text-slate-100 hover:bg-primary"
             >
                 Newsletter abonnieren
             </Button>

@@ -142,7 +142,6 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 {/* Medien */}
                 <div className="w-full space-y-3">
                     <InputLabel htmlFor="media" value="Bilder zum Gericht" />
-
                     {/* Aktuelle Bilder (Edit) oder Pending-Uploads (Create) */}
                     <div className="flex flex-wrap gap-3">
                         {isEditing ? (
@@ -285,7 +284,6 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     {/* Bewertung */}
                     <div>
                         <InputLabel htmlFor="rating" value="Bewertung" />
-
                         <TextInput
                             id="rating"
                             type="number"
@@ -457,42 +455,40 @@ function DishMediaUploader({
         }
     };
 
-
-
-return (
-    <div
-        className="flex flex-col gap-3"
-        onKeyDown={(e) => {
-            if (e.key === 'Enter') e.preventDefault();
-        }}
-        tabIndex={0}
-    >
-        {/* Upload Bereich */}
-        <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-            <GoPlus className="text-primary text-4xl" />
-            <span className="mt-2 text-sm text-slate-500">Bild auswählen</span>
-            
-            {/* Unsichtbares Input-Feld */}
-            <input
-                type="file"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                accept="image/png,image/jpeg,image/jpg"
-                onChange={(e) => setFile(e.target.files?.[0] || null)}
-            />
-        </label>
-
-        {/* Upload-Button */}
-        <Button
-            type="button"
-            onClick={handleUpload}
-            disabled={loading || !file}
-            className="w-full hover:cursor-pointer"
+    return (
+        <div
+            className="flex flex-col gap-3"
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') e.preventDefault();
+            }}
+            tabIndex={0}
         >
-            {loading ? 'Lädt…' : 'Bild hochladen'}
-        </Button>
+            {/* Upload Bereich */}
+            <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+                <GoPlus className="text-primary text-4xl" />
+                <span className="mt-2 text-sm text-slate-500">Bild auswählen</span>
+                
+                {/* Unsichtbares Input-Feld */}
+                <input
+                    type="file"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    accept="image/png,image/jpeg,image/jpg"
+                    onChange={(e) => setFile(e.target.files?.[0] || null)}
+                />
+            </label>
 
-        {/* Fehleranzeige */}
-        {error && <span className="text-red-500 text-sm">{error}</span>}
-    </div>
-);
+            {/* Upload-Button */}
+            <Button
+                type="button"
+                onClick={handleUpload}
+                disabled={loading || !file}
+                className="w-full hover:cursor-pointer"
+            >
+                {loading ? 'Lädt…' : 'Bild hochladen'}
+            </Button>
+
+            {/* Fehleranzeige */}
+            {error && <span className="text-red-500 text-sm">{error}</span>}
+        </div>
+    );
 }

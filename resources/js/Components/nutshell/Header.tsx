@@ -21,7 +21,7 @@ import { GoPlus } from 'react-icons/go';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
-
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 /**
  * The application header.
  *
@@ -30,7 +30,6 @@ import { BiExit } from 'react-icons/bi';
 
 const Header = () => {
     const user = usePage().props.auth.user;
-    console.log(user);
     
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
@@ -54,8 +53,7 @@ const Header = () => {
                             <NavLink
                                 href="/gerichte"
                                 active={
-                                    window.location.pathname === '/gerichte' ||
-                                    window.location.pathname === '/gerichte/neues-gericht'
+                                    window.location.pathname.startsWith('/gerichte')
                                 }
                                 className="pt-5 pb-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<BsJournalBookmark />}
@@ -64,7 +62,9 @@ const Header = () => {
                             </NavLink>
                             <NavLink
                                 href="/cocktails"
-                                active={window.location.pathname === '/cocktails'}
+                                active={
+                                    window.location.pathname.startsWith('/cocktails')
+                                }
                                 className="pt-5 pb-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<LiaCocktailSolid />}
                             >
@@ -72,7 +72,7 @@ const Header = () => {
                             </NavLink>
                             <NavLink
                                 href="/zutaten"
-                                active={window.location.pathname === '/zutaten'}
+                                active={window.location.pathname.startsWith('/zutaten')}
                                 className="pt-5 pb-4 font-medium text-slate-800 dark:text-slate-200"
                                 icon={<TbSalt />}
                             >
@@ -83,6 +83,9 @@ const Header = () => {
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
                         {user ? (
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
+                                <NavButton href="/admin" icon={<MdOutlineAdminPanelSettings />} active={window.location.pathname.startsWith('/admin')}>
+                                    Admin
+                                </NavButton>
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">

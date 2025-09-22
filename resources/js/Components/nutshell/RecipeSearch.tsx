@@ -10,7 +10,7 @@ export default function RecipeSearch() {
                         type="text"
                         name="search"
                         id="search"
-                        className="w-full border-none rounded focus:border-primary bg-white dark:bg-slate-800 dark:text-slate-200"
+                        className="w-full border-none rounded bg-white dark:bg-slate-800 dark:text-slate-200 focus:outline-none focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-slate-800"
                         placeholder="Was essen wir heute?"
                     />
                     <Button

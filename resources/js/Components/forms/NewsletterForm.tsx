@@ -1,9 +1,16 @@
-import { useForm, Link } from '@inertiajs/react';
-import { useState } from 'react';
+import { useForm } from '@inertiajs/react';
 import TextInput from '@/components/TextInput';
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import { Button } from '../ui/button';
+
+/**
+ * NewsletterForm
+ *
+ * Form for subscribing to the newsletter
+ *
+ * @return {JSX.Element} JSX element
+ */
 export default function NewsletterForm() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',

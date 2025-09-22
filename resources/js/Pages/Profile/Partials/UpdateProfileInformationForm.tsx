@@ -31,9 +31,9 @@ export default function UpdateProfileInformation({
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profil Informationen</h2>
+                <h2 className="text-lg font-medium text-slate-800 dark:text-slate-200">Profil Informationen</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-slate-800 dark:text-slate-200">
                     Aktualisiere Deinen Namen und Deine E-Mail Adresse hier.
                 </p>
             </header>
@@ -71,6 +71,20 @@ export default function UpdateProfileInformation({
                     <InputError className="mt-2" message={errors.email} />
                 </div>
 
+                <div>
+                    <InputLabel htmlFor="profile-image" value="Profilbild" />
+
+                    <TextInput
+                        id="profile-image"
+                        type="file"
+                        className="mt-1 block w-full"
+                        value={data.profileImage}
+                        onChange={(e) => setData('profileImage', e.target.value)}
+                    />
+
+                    <InputError className="mt-2" message={errors.email} />
+                </div>
+
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
                         <p className="mt-2 text-sm text-gray-800">
@@ -94,7 +108,7 @@ export default function UpdateProfileInformation({
                 )}
 
                 <div className="flex items-center gap-4">
-                    <Button disabled={processing}>Save</Button>
+                    <Button disabled={processing} variant="primary">Speichern</Button>
 
                     <Transition
                         show={recentlySuccessful}

@@ -47,9 +47,9 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
     return (
         <section className={`space-y-6 ${className}`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profil löschen</h2>
+                <h2 className="text-lg font-medium text-slate-800 dark:text-slate-200">Profil löschen</h2>
 
-                <p className="mt-1 text-sm text-slate-800">
+                <p className="mt-1 text-sm text-slate-800 dark:text-slate-200">
                     Wenn dein Profil gelöscht wird, werden alle Deine Daten und Einstellungen
                     permanent gelöscht. Dies kann nicht wiederhergestellt werden.
                 </p>

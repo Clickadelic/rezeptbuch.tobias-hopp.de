@@ -19,7 +19,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
         <AuthLayout title="Passwort vergessen" subtitle="Passiert jedem von uns?">
             <Head title="Passwort vergessen" />
 
-            <div className="my-6 text-slate-700 text-center">
+            <div className="my-6 text-gray-700 text-center">
                 <p>Gib' Deine E-Mail Adresse ein, um Dein Passwort zurückzusetzen.</p>
                 <p>
                     Du bekommst einen Link per E-Mail mit dem Du ein neues Passwort erstellen
@@ -53,7 +53,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 <p>
                     <Link
                         href={route('login')}
-                        className="text-sm text-slate-800 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2"
+                        className="text-sm text-gray-800 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2"
                     >
                         zurück zum Login
                     </Link>

@@ -11,22 +11,16 @@ export default function Edit({
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
         <NoSidebarsLayout title="Profil">
-            <div className="space-y-4">
-                <div className="bg-white rounded p-4 sm:rounded-lg sm:p-8">
-                    <UpdateProfileInformationForm
-                        mustVerifyEmail={mustVerifyEmail}
-                        status={status}
-                        className="max-w-xl"
-                    />
-                </div>
-
-                <div className="bg-white rounded p-4 sm:rounded-lg sm:p-8">
-                    <UpdatePasswordForm className="max-w-xl" />
-                </div>
-
-                <div className="bg-white rounded p-4 sm:rounded-lg sm:p-8">
-                    <DeleteUserForm className="max-w-xl" />
-                </div>
+            <div className="mx-auto max-w-lg space-y-4">
+                <UpdateProfileInformationForm
+                    mustVerifyEmail={mustVerifyEmail}
+                    status={status}
+                    className="w-full"
+                />
+                <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
+                <UpdatePasswordForm className="w-full" />
+                <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
+                <DeleteUserForm className="w-full" />
             </div>
         </NoSidebarsLayout>
     );

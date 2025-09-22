@@ -21,7 +21,7 @@ const BreadcrumbNav = () => {
 
     return (
         <div className="mx-auto container px-6">
-            <ul className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 border-b border-slate-300 py-3">
+            <ul className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 border-b border-gray-300 py-3">
                 {/* Home */}
                 <li>
                     <Link href="/" className="hover:text-primary">
@@ -31,7 +31,7 @@ const BreadcrumbNav = () => {
 
                 {crumbs.map((crumb, idx) => (
                     <li key={idx} className="flex items-center line-clamp-1">
-                        <ChevronRight className="w-4 h-4 mr-2 text-slate-600 dark:text-slate-200" />
+                        <ChevronRight className="w-4 h-4 mr-2 text-gray-600 dark:text-gray-200" />
                         {/* Letztes Segment nicht als Link */}
                         {idx === crumbs.length - 1 ? (
                             <span className="line-clamp-1">{crumb.name}</span>

@@ -23,7 +23,7 @@ export default function ConfirmPassword() {
         <AuthLayout>
             <Head title="Passwort bestätigen" />
 
-            <div className="mb-4 text-slate-800">
+            <div className="mb-4 text-gray-800">
                 <p>
                     Dies ist ein geschützer Bereich des Rezeptbuches. Bitte bestätige zuerst Deine
                     E-Mail Adresse bevor Du weiter machst. Danke.

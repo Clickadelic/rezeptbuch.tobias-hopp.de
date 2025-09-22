@@ -11,7 +11,7 @@ export default function RightSidebar() {
     return (
         <aside className="py-4">
             <h2 className="text-lg font-medium mb-2">Los geht's</h2>
-            <ul className="flex flex-col space-y-2 divide-y divide-slate-300">
+            <ul className="flex flex-col space-y-2 divide-y divide-gray-300">
                 <SidebarLink
                     href="/gerichte"
                     active={window.location.pathname === '/gerichte'}

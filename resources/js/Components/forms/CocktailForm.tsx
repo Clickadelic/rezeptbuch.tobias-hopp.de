@@ -85,7 +85,7 @@ export default function CocktailForm({ cocktail, className }: CocktailFormProps)
                     <label
                         htmlFor="image"
                         className={cn(
-                            'w-full flex items-center justify-center rounded-lg border-2 border-dotted border-slate-400 focus-within:border-primary focus-within:ring-primary py-12 px-4 text-4xl text-slate-500 hover:cursor-pointer hover:text-primary hover:border-primary',
+                            'w-full flex items-center justify-center rounded-lg border-2 border-dotted border-gray-400 focus-within:border-primary focus-within:ring-primary py-12 px-4 text-4xl text-gray-500 hover:cursor-pointer hover:text-primary hover:border-primary',
                             className,
                         )}
                     >
@@ -103,7 +103,7 @@ export default function CocktailForm({ cocktail, className }: CocktailFormProps)
                             onChange={(e) => setData('image', e.target.files?.[0] ?? null)}
                         />
                         {progress && (
-                            <div className="w-full my-2 bg-slate-200 h-5 rounded-lg">
+                            <div className="w-full my-2 bg-gray-200 h-5 rounded-lg">
                                 <progress value={progress.percentage} max="100">
                                     {progress.percentage}%
                                 </progress>
@@ -147,7 +147,7 @@ export default function CocktailForm({ cocktail, className }: CocktailFormProps)
                     <InputLabel htmlFor="description" value="Beschreibung" className="mb-1" />
                     <Textarea
                         value={data.description}
-                        className="rounded-lg border border-slate-400 focus:border-primary focus:ring-primary py-3 px-4"
+                        className="rounded-lg border border-gray-400 focus:border-primary focus:ring-primary py-3 px-4"
                         placeholder="z.B. Schnell und lecker für die ganze Familie..."
                         rows={5}
                         onChange={(e) => setData('description', e.target.value)}

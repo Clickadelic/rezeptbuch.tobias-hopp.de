@@ -51,7 +51,7 @@ export default function SidebarRightLayout({ title, sidebar, children }: Sidebar
         <>
             <Head title={title} />
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
-                <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-slate-800 dark:text-slate-200">
+                <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-200">
                     <div>
                         <Header />
                         <RecipeSearch />

@@ -142,14 +142,13 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 {/* Medien */}
                 <div className="w-full space-y-3">
                     <InputLabel htmlFor="media" value="Bilder zum Gericht" />
-
                     {/* Aktuelle Bilder (Edit) oder Pending-Uploads (Create) */}
                     <div className="flex flex-wrap gap-3">
                         {isEditing ? (
                             (liveMedia.map((m: any) => (
                                 <label
                                     key={m.id}
-                                    className="relative border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                    className="relative border rounded overflow-hidden bg-gray-100 cursor-pointer"
                                 >
                                     <img
                                         src={m.url ?? `/storage/${m.path}`}
@@ -176,7 +175,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                             pendingMedia.map((m) => (
                                 <label
                                     key={m.id}
-                                    className="relative w-28 h-28 border rounded overflow-hidden bg-slate-100 cursor-pointer"
+                                    className="relative w-28 h-28 border rounded overflow-hidden bg-gray-100 cursor-pointer"
                                 >
                                     <img
                                         src={m.url ?? `/storage/${m.path}`}
@@ -195,7 +194,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 </label>
                             ))
                         ) : (
-                            <p className="text-sm text-slate-500">Noch keine Bilder vorhanden.</p>
+                            <p className="text-sm text-gray-500">Noch keine Bilder vorhanden.</p>
                         )}
                     </div>
                 </div>
@@ -236,7 +235,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                         value={data.description}
                         rows={5}
                         placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                        className="mt-1 w-full rounded-lg border border-slate-400 px-3 py-2"
+                        className="mt-1 w-full rounded-lg border border-gray-400 px-3 py-2"
                         onChange={(e) => setData('description', e.target.value)}
                     />
                     {errors.description && <p className="text-red-500">{errors.description}</p>}
@@ -259,12 +258,12 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                                 max={600}
                                 value={data.preparation_time}
                                 placeholder="0"
-                                className="mt-1 flex-1 rounded-none border-r-0 border-slate-200 rounded-tl-lg rounded-bl-lg"
+                                className="mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl-lg rounded-bl-lg"
                                 onChange={(e) =>
                                     setData('preparation_time', Number(e.target.value))
                                 }
                             />
-                            <span className="px-3 py-2 border border-l-0 rounded-r-lg border-slate-400">
+                            <span className="px-3 py-2 border border-l-0 rounded-r-lg border-gray-400">
                                 Minuten
                             </span>
                         </div>
@@ -285,7 +284,6 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     {/* Bewertung */}
                     <div>
                         <InputLabel htmlFor="rating" value="Bewertung" />
-
                         <TextInput
                             id="rating"
                             type="number"
@@ -302,25 +300,31 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     {/* Difficulty */}
                     <div>
                         <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
+
                         <Select
                             name="difficulty"
-                            value={data.difficulty || (Difficulty.EINFACH as string)}
-                            defaultValue='einfach'
+                            // Wenn kein Wert gesetzt, nehme den Default aus dem Enum
+                            value={data.difficulty ?? Difficulty.EINFACH}
                             onValueChange={(val) => setData('difficulty', val as Difficulty)}
                         >
                             <SelectTrigger className="w-full mt-1 py-2">
                                 <SelectValue placeholder="Schwierigkeitsgrad" />
                             </SelectTrigger>
+                            
                             <SelectContent>
                                 {Object.entries(Difficulty).map(([key, val]) => (
-                                    <SelectItem key={key} value={key}>
+                                    <SelectItem key={key} value={val}>
                                         {val}
                                     </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>
-                        {errors.difficulty && <p className="text-red-500">{errors.difficulty}</p>}
+
+                        {errors.difficulty && (
+                            <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
+                        )}
                     </div>
+
                 </div>
 
                 {/* Zutaten */}
@@ -457,42 +461,40 @@ function DishMediaUploader({
         }
     };
 
-
-
-return (
-    <div
-        className="flex flex-col gap-3"
-        onKeyDown={(e) => {
-            if (e.key === 'Enter') e.preventDefault();
-        }}
-        tabIndex={0}
-    >
-        {/* Upload Bereich */}
-        <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-            <GoPlus className="text-primary text-4xl" />
-            <span className="mt-2 text-sm text-slate-500">Bild auswählen</span>
-            
-            {/* Unsichtbares Input-Feld */}
-            <input
-                type="file"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                accept="image/png,image/jpeg,image/jpg"
-                onChange={(e) => setFile(e.target.files?.[0] || null)}
-            />
-        </label>
-
-        {/* Upload-Button */}
-        <Button
-            type="button"
-            onClick={handleUpload}
-            disabled={loading || !file}
-            className="w-full hover:cursor-pointer"
+    return (
+        <div
+            className="flex flex-col gap-3"
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') e.preventDefault();
+            }}
+            tabIndex={0}
         >
-            {loading ? 'Lädt…' : 'Bild hochladen'}
-        </Button>
+            {/* Upload Bereich */}
+            <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+                <GoPlus className="text-primary text-4xl" />
+                <span className="mt-2 text-sm text-gray-500">Bild auswählen</span>
+                
+                {/* Unsichtbares Input-Feld */}
+                <input
+                    type="file"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    accept="image/png,image/jpeg,image/jpg"
+                    onChange={(e) => setFile(e.target.files?.[0] || null)}
+                />
+            </label>
 
-        {/* Fehleranzeige */}
-        {error && <span className="text-red-500 text-sm">{error}</span>}
-    </div>
-);
+            {/* Upload-Button */}
+            <Button
+                type="button"
+                onClick={handleUpload}
+                disabled={loading || !file}
+                className="w-full hover:cursor-pointer"
+            >
+                {loading ? 'Lädt…' : 'Bild hochladen'}
+            </Button>
+
+            {/* Fehleranzeige */}
+            {error && <span className="text-red-500 text-sm">{error}</span>}
+        </div>
+    );
 }

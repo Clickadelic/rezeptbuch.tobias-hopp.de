@@ -17,11 +17,10 @@ return new class extends Migration
             $table->string('slug')->default('')->unique();
             $table->string('punchline')->nullable();
             $table->text('description')->nullable();
-            // $table->string('image')->nullable();
             $table->string('difficulty')->default('einfach');
             $table->unsignedInteger('rating')->default(0);
             $table->unsignedInteger('preparation_time')->default(0);
-
+            $table->text('preparation_instructions')->nullable();
             $table->foreignId('user_id')->constrained('users');
 
             $table->timestamps();

@@ -1,8 +1,8 @@
-import AppLogo from '@/components/nutshell/AppLogo';
+import AppLogo from '@/components/appshell/AppLogo';
 
 import { PropsWithChildren, ReactNode } from 'react';
 import { Toaster } from '@/components/ui/sonner';
-import { ThemeProvider } from '@/components/nutshell/ThemeProvider';
+import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Head } from '@inertiajs/react';
 
 interface AuthLayoutProps extends PropsWithChildren {

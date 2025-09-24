@@ -8,7 +8,7 @@ import { IoIosRibbon } from 'react-icons/io';
 import { FaQ } from 'react-icons/fa6';
 import { GrNavigate } from 'react-icons/gr';
 
-import { CircularMenu } from '@/components/nutshell/CircularMenu';
+import { CircularMenu } from '@/components/appshell/CircularMenu';
 import NewsletterForm from '../forms/NewsletterForm';
 
 /**

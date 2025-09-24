@@ -19,3 +19,5 @@ require __DIR__.'/dishes.php';
 require __DIR__.'/cocktails.php';
 require __DIR__.'/ingredients.php';
 require __DIR__.'/upload.php';
+
+require __DIR__.'/email.php';

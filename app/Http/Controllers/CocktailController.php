@@ -6,9 +6,6 @@ use Inertia\Inertia;
 
 use App\Models\Cocktail;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
-
 use App\Models\Dish;
 use App\Http\Requests\StoreCocktailRequest;
 

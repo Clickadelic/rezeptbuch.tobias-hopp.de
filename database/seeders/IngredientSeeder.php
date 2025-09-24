@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Ingredient;
@@ -14,83 +13,174 @@ class IngredientSeeder extends Seeder
      */
     public function run(): void
     {
+        // A
         Ingredient::create([
             'name' => 'Ananas',
         ]);
+        Ingredient::create([
+            'name' => 'Apfel',
+        ]);
+
+        // B
         Ingredient::create([
             'name' => 'Banane',
         ]);
         Ingredient::create([
             'name' => 'Butter',
         ]);
-        Ingredient::create([
-            'name' => 'Erdbeere',
-        ]);
-        Ingredient::create([
-            'name' => 'Gurke',
-        ]);
-        Ingredient::create([
-            'name' => 'Spinat',
-        ]);
-        Ingredient::create([
-            'name' => 'Käse',
-        ]);
-        Ingredient::create([
-            'name' => 'Gouda',
-        ]);
+
+        // C
         Ingredient::create([
             'name' => 'Cheddarkäse',
         ]);
         Ingredient::create([
-            'name' => 'Salz',
+            'name' => 'Champignons',
         ]);
         Ingredient::create([
-            'name' => 'Pfeffer',
+            'name' => 'Camembert',
         ]);
         Ingredient::create([
-            'name' => 'Paprika',
+            'name' => 'Cashewkerne',
+        ]);
+        
+        // D
+        Ingredient::create([
+            'name' => 'Dill',
+        ]);
+
+        // E
+        Ingredient::create([
+            'name' => 'Erdbeere',
         ]);
         Ingredient::create([
-            'name' => 'Muskat',
+            'name' => 'Erbsen',
         ]);
+
+        // F
         Ingredient::create([
-            'name' => 'Pinienkerne',
+            'name' => 'Feta',
         ]);
+
+        // G
         Ingredient::create([
-            'name' => 'Ruccola',
+            'name' => 'Gurke',
         ]);
         Ingredient::create([
             'name' => 'Garnelen',
         ]);
         Ingredient::create([
-            'name' => 'Parmesan',
+            'name' => 'Gouda',
         ]);
         Ingredient::create([
-            'name' => 'Zitrone',
+            'name' => 'Gratinkäse',
         ]);
+
+        // H
         Ingredient::create([
-            'name' => 'Orange',
+            'name' => 'Honig',
+        ]);
+
+        // K
+        Ingredient::create([
+            'name' => 'Käse',
         ]);
         Ingredient::create([
             'name' => 'Knoblauch',
         ]);
+
+        // L
         Ingredient::create([
-            'name' => 'rote Zwiebel',
+            'name' => 'Lasagnenudeln',
         ]);
+
+        // M
         Ingredient::create([
-            'name' => 'Paniermehl',
-        ]);
-        Ingredient::create([
-            'name' => 'Erbsen',
+            'name' => 'Muskat',
         ]);
         Ingredient::create([
             'name' => 'Möhren',
         ]);
+
+        // N
+        Ingredient::create([
+            'name' => 'Nudeln',
+        ]);
+        
+        // O
+        Ingredient::create([
+            'name' => 'Oliven',
+        ]);
+        Ingredient::create([
+            'name' => 'Orange',
+        ]);
+        
+        // P
+        Ingredient::create([
+            'name' => 'Paprika',
+        ]);
+        Ingredient::create([
+            'name' => 'Pfeffer',
+        ]);
+        Ingredient::create([
+            'name' => 'Petersilie',
+        ]);
+        Ingredient::create([
+            'name' => 'Pommes',
+        ]);
+
+        // Q
+        
+        // R    
+        Ingredient::create([
+            'name' => 'Ruccola',
+        ]);
+        
+        // S
+        Ingredient::create([
+            'name' => 'Schinken',
+        ]);
+        Ingredient::create([
+            'name' => 'Salz',
+        ]);
+        Ingredient::create([
+            'name' => 'Spinat',
+        ]);
         Ingredient::create([
             'name' => 'Spaghetti',
         ]);
+
+        // T
         Ingredient::create([
-            'name' => 'Lasagnenudeln',
+            'name' => 'Tomate',
+        ]);
+        // U
+        // V
+        Ingredient::create([
+            'name' => 'Paniermehl',
+        ]);
+        Ingredient::create([
+            'name' => 'Paprika',
+        ]);
+        Ingredient::create([
+            'name' => 'Pinienkerne',
+        ]);
+        Ingredient::create([
+            'name' => 'Parmesan',
+        ]);
+        // W
+        // X
+        // Y
+        // Z
+        Ingredient::create([
+            'name' => 'Zitrone',
+        ]);
+
+        // Mehrsilbrige Zutaten
+        Ingredient::create([
+            'name' => 'rote Zwiebel',
+        ]);
+        Ingredient::create([
+            'name' => 'rote Beete',
         ]);
     }
 }

@@ -1,12 +1,14 @@
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import RecipeSidebar from '@/components/sidebars/MainSidebar';
+
 import { Recipe } from '@/types/Recipe';
 import { Button } from '@/components/ui/button';
 import { router } from '@inertiajs/react';
-import { MdOutlineStarPurple500 } from 'react-icons/md';
+
 import { MdOutlineEdit } from 'react-icons/md';
 import { GoClock, GoTrash, GoPlus } from 'react-icons/go';
 import { FiMinus } from "react-icons/fi";
@@ -179,6 +181,14 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 ))}
                             </tbody>
                         </table>
+                    </div>
+                    <div className="flex">
+                        <div className="w-full flex flex-col gap-2">
+                            <h4 className="font-medium text-lg mt-4">Zubereitung</h4>
+                            <div className="flex flex-col gap-2">
+                                <p>{recipe.preparation_instructions}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

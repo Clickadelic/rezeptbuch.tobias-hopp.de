@@ -21,11 +21,11 @@ export default function NavButton({ className = '', active = false, icon, childr
         <Link
             {...props}
             className={
-                'border border-transparent inline-flex items-center justify-between md:gap-2 sm:px-1 md:px-2 py-2 font-medium leading-5 rounded-sm ' +
+                'inline-flex items-center justify-between md:gap-2 sm:px-1 md:px-2 py-1 font-medium rounded-sm ' +
                 className +
                 (active
-                    ? 'border border-primary text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white'
-                    : 'text-gray-800 hover:text-gray-600 focus:text-gray-600 dark:text-gray-200 dark:hover:text-gray-400 dark:focus:text-gray-400')
+                    ? 'asd'
+                    : 'asd')
             }
         >
             <span className="hidden lg:inline-flex">{icon}</span>

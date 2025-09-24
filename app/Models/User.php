@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Notifications\CustomVerifyEmail;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasRoles;
@@ -68,6 +71,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function ingredients()
     {
         return $this->hasMany(Ingredient::class);
+    }
+
+    /**
+     * Override der Standard-Verify-Mail.
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomVerifyEmail);
     }
 
 }

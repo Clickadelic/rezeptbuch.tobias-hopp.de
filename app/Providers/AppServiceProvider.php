@@ -39,8 +39,6 @@ class AppServiceProvider extends ServiceProvider
     public function configureRateLimiter():void {
         RateLimiter::for('login', function(Request $request) {
             $key = $request->email.$request->ip(); // emailadresse+ip
-            
-            // nur 3 Anfragen pro Minute mit der selben Email+Ip erlaubt
             return Limit::perMinute(3)->by($key)->response(function() {
                 // return response("Zu viele Versuche!"); // Zeigt einfach nur Text
                 return response()->view('auth.max-try');

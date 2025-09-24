@@ -92,7 +92,7 @@ class IngredientController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Ingredient $ingredient)
-    {
+    {   
         $ingredient->delete();
         return redirect()->route('ingredients.index')->with('success', 'Zutat gelöscht!');
     }

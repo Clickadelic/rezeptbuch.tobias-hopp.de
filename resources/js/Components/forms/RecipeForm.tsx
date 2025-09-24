@@ -108,7 +108,7 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
             route('recipes.update', { recipe: data.id }),
             { ...data, _method: 'put' },
             {
-                // onSuccess: () => reset(),
+                onSuccess: () => reset(),
                 preserveScroll: true,
             },
         );

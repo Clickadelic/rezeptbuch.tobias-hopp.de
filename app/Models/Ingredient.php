@@ -24,17 +24,17 @@ class Ingredient extends Model
         });
     }
 
-    public function dishes()
+    public function recipes()
     {
-        return $this->belongsToMany(Dish::class, 'dish_ingredient')
+        return $this->belongsToMany(Recipe::class, 'recipe_ingredient')
                     ->withPivot('quantity', 'unit')
                     ->withTimestamps();
     }
 
     public function ingredients()
     {
-        return $this->belongsToMany(Ingredient::class, 'dish_ingredient')
-            ->using(DishIngredient::class) // Pivot Model
+        return $this->belongsToMany(Ingredient::class, 'recipe_ingredient')
+            ->using(RecipeIngredient::class) // Pivot Model
             ->withPivot('quantity', 'unit')
             ->withTimestamps();
     }

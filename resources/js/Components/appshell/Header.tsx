@@ -51,24 +51,14 @@ const Header = () => {
                                 Start
                             </NavLink>
                             <NavLink
-                                href="/gerichte"
+                                href="/rezepte"
                                 active={
-                                    window.location.pathname.startsWith('/gerichte')
+                                    window.location.pathname.startsWith('/rezepte')
                                 }
                                 className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
                                 icon={<BsJournalBookmark />}
                             >
-                                Gerichte
-                            </NavLink>
-                            <NavLink
-                                href="/cocktails"
-                                active={
-                                    window.location.pathname.startsWith('/cocktails')
-                                }
-                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<LiaCocktailSolid />}
-                            >
-                                Cocktails
+                                Rezepte
                             </NavLink>
                             <NavLink
                                 href="/zutaten"

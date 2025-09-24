@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Ingredient;
+
 
 use Cviebrock\EloquentSluggable\Sluggable;
 
 
-class Dish extends Model
+class Recipe extends Model
 {
      use HasFactory;
 
@@ -28,6 +29,7 @@ class Dish extends Model
           'punchline',
           'description',
           'preparation_time',
+          'preparation_instructions',
           'rating',
           'difficulty',
           'user_id'
@@ -68,17 +70,17 @@ class Dish extends Model
 
      public function ingredients()
      {
-     return $this->belongsToMany(Ingredient::class, 'dish_ingredient')
-          ->using(DishIngredient::class) // Pivot Model
+     return $this->belongsToMany(Ingredient::class, 'recipe_ingredient')
+          ->using(RecipeIngredient::class) // Pivot Model
           ->withPivot('quantity', 'unit')
           ->withTimestamps();
      }
 
      public function media()
      {
-          return $this->belongsToMany(Media::class, 'dish_media')
+          return $this->belongsToMany(Media::class, 'recipe_media')
                ->withPivot('collection', 'is_primary', 'position')
                ->withTimestamps()
-               ->orderBy('dish_media.position');
+               ->orderBy('recipe_media.position');
      }
 }

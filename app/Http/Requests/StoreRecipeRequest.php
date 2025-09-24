@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDishRequest extends FormRequest
+class StoreRecipeRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -22,6 +22,7 @@ class StoreDishRequest extends FormRequest
             'punchline' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'preparation_time' => ['nullable', 'integer', 'min:0'],
+            'preparation_instructions' => ['nullable', 'string'],
             'rating' => ['nullable', 'integer', 'min:0', 'max:5'],
             'difficulty' => ['nullable', 'string'],
 

@@ -15,69 +15,69 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-use App\Models\Dish;
+use App\Models\Recipe;
 use App\Enums\Difficulty;
-use App\Http\Requests\StoreDishRequest;
+use App\Http\Requests\StoreRecipeRequest;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Str;
 
-class DishController extends Controller
+class RecipeController extends Controller
 {
     /**
-     * Displays a list of all dishes.
+     * Displays a list of all recipes.
      *
      * @return \Inertia\Response
      */
     public function index()
     {
-        $dishes = Dish::with('media')->get();
+        $recipes = Recipe::with('media')->get();
 
-        return Inertia::render('Dishes/Index', [
-            'dishes' => $dishes,
+        return Inertia::render('Recipes/Index', [
+            'recipes' => $recipes,
         ]);
     }
 
     /**
-     * Shows a form to create a new dish.
+     * Shows a form to create a new recipe.
      *
      * @return \Inertia\Response
      */
     public function create()
     {
-        return Inertia::render('Dishes/Create', [
+        return Inertia::render('Recipes/Create', [
             'ingredients' => Ingredient::orderBy('name')->get(),
         ]);
     }
 
     /**
-     * Displays a single dish.
+     * Displays a single recipe.
      *
      * @param  string  $slug
      * @return \Inertia\Response
      */
     public function show(String $slug)
     {   
-        $dish = Dish::where('slug', $slug)->firstOrFail();
-        $dish->load([
+        $recipe = Recipe::where('slug', $slug)->firstOrFail();
+        $recipe->load([
             'ingredients' => function ($query) {
                 $query->withPivot(['quantity', 'unit']);
             },
             'media',
         ]);
-        return inertia('Dishes/Show', compact('dish'));
+        return inertia('Recipes/Show', compact('recipe'));
     }
 
     /**
-     * Store a newly created dish in storage.
+     * Store a newly created recipe in storage.
      *
-     * @param  \App\Http\Requests\StoreDishRequest  $request
+     * @param  \App\Http\Requests\StoreRecipeRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     
-    public function store(StoreDishRequest $request)
+    public function store(StoreRecipeRequest $request)
     {
-        // 1️⃣ Dish anlegen (verwende optional mitgegebenes id für frühes Medien-Handling)
-        $dish = Dish::create([
+        // 1️⃣ recipe anlegen (verwende optional mitgegebenes id für frühes Medien-Handling)
+        $recipe = Recipe::create([
             'id' => $request->input('id') ?: Str::uuid()->toString(),
             'name' => $request->input('name'),
             // Slug mit deutscher Sprachunterstützung
@@ -91,7 +91,7 @@ class DishController extends Controller
         ]);
 
         // 2️⃣ Zutaten aus Request verarbeiten
-        $dishIngredients = collect($request->input('dish_ingredients', []))
+        $recipeIngredients = collect($request->input('recipe_ingredients', []))
             ->mapWithKeys(function ($item) {
                 $ingredientName = trim($item['ingredient_id']); // wenn es Text ist
                 $quantity = $item['quantity'] ?? null;
@@ -110,20 +110,20 @@ class DishController extends Controller
             })->toArray();
 
         // 3️⃣ Pivot-Tabelle syncen (Zutaten)
-        $dish->ingredients()->sync($dishIngredients);
+        $recipe->ingredients()->sync($recipeIngredients);
 
-        // 3️⃣a Pending-Uploads anhand pending_key diesem Dish zuordnen
+        // 3️⃣a Pending-Uploads anhand pending_key diesem Recipe zuordnen
         if ($request->filled('pending_key')) {
             $pendingKey = (string) $request->input('pending_key');
-            $collection = 'dish_images';
+            $collection = 'recipe_images';
             $pendingMedia = \App\Models\Media::where('pending_key', $pendingKey)->get();
             if ($pendingMedia->isNotEmpty()) {
                 // Nächste Position bestimmen
-                $maxPosition = $dish->media()->wherePivot('collection', $collection)->max('dish_media.position');
+                $maxPosition = $recipe->media()->wherePivot('collection', $collection)->max('recipe_media.position');
                 $posStart = is_null($maxPosition) ? 0 : ($maxPosition + 1);
 
                 foreach ($pendingMedia as $offset => $m) {
-                    $dish->media()->attach($m->id, [
+                    $recipe->media()->attach($m->id, [
                         'collection' => $collection,
                         'is_primary' => false,
                         'position' => $posStart + $offset,
@@ -138,69 +138,70 @@ class DishController extends Controller
         // 3️⃣b Primäres Bild setzen (sofern gesendet)
         if ($request->filled('primary_media_id')) {
             $primaryId = $request->input('primary_media_id');
-            $mediaIds = $dish->media()->pluck('media.id')->all();
+            $mediaIds = $recipe->media()->pluck('media.id')->all();
             if (in_array($primaryId, $mediaIds)) {
-                $dish->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
-                $dish->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
+                $recipe->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
+                $recipe->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
             }
         }
 
-        return redirect()->route('dishes.show', $dish->slug)
+        return redirect()->route('recipes.show', $recipe->slug)
             ->with('success', 'Gericht erfolgreich erstellt.');
     }
 
     /**
-     * Shows the edit form for a dish.
+     * Shows the edit form for a recipe.
      *
-     * @param  \App\Models\Dish  $dish
+     * @param  \App\Models\Recipe  $recipe
      * @return \Inertia\Response
      */
-    public function edit(Dish $dish)
+    public function edit(Recipe $recipe)
     {
-        $dish = Dish::with([
+        $recipe = Recipe::with([
             'ingredients' => function ($query) {
                 $query->select('ingredients.id', 'ingredients.name')->withPivot(['quantity', 'unit']);
             },
             'media',
-        ])->findOrFail($dish->id);
+        ])->findOrFail($recipe->id);
 
-        return Inertia::render('Dishes/Edit', [
-            'dish' => $dish,
+        return Inertia::render('Recipes/Edit', [
+            'recipe' => $recipe,
             'ingredients' => Ingredient::orderBy('name')->get(),
         ]);
     }
 
     /**
-     * Updates a dish in storage.
+     * Updates a recipe in storage.
      *
-     * @param  \App\Http\Requests\StoreDishRequest  $request
-     * @param  \App\Models\Dish  $dish
+     * @param  \App\Http\Requests\StoreRecipeRequest  $request
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(StoreDishRequest $request, Dish $dish)
+    public function update(StoreRecipeRequest $request, Recipe $recipe)
     {
         $validated = $request->validated();
 
+        // Debug Logging..
         if (config('app.debug')) {
-            Log::info('Dish update payload', [
-                'dish_id' => $dish->id,
+            Log::info('Recipe update payload', [
+                'recipe_id' => $recipe->id,
                 'payload' => $request->all(),
             ]);
         }
 
         // Optional: Bild speichern, falls hochgeladen (Spalte aktuell nicht vorhanden)
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('dishes', 'public');
+            $validated['image'] = $request->file('image')->store('recipes', 'public');
         }
 
         // Slug nicht direkt überschreiben – wird vom Sluggable-Plugin verwaltet
         unset($validated['slug']);
 
-        // 1️⃣ Dish-Felder aktualisieren
-        $dish->update($validated);
+        // 1️⃣ Recipe-Felder aktualisieren
+        $recipe->update($validated);
 
         // 2️⃣ Zutaten aus Request verarbeiten (gleiches Format wie beim Store)
-        $dishIngredients = collect($request->input('dish_ingredients', []))
+        $recipeIngredients = collect($request->input('recipe_ingredients', []))
             ->mapWithKeys(function ($item) {
                 $ingredientValue = trim((string) ($item['ingredient_id'] ?? ''));
                 $quantity = $item['quantity'] ?? null;
@@ -231,63 +232,63 @@ class DishController extends Controller
             ->toArray();
 
         if (config('app.debug')) {
-            Log::info('Parsed dish_ingredients for sync', [
-                'dish_id' => $dish->id,
-                'parsed' => $dishIngredients,
-                'has_key' => $request->has('dish_ingredients'),
+            Log::info('Parsed recipe_ingredients for sync', [
+                'recipe_id' => $recipe->id,
+                'parsed' => $recipeIngredients,
+                'has_key' => $request->has('recipe_ingredients'),
             ]);
         }
 
         // 3️⃣ Pivot-Tabelle syncen
         // Nur synchronisieren, wenn das Feld im Request vorhanden ist.
-        if ($request->has('dish_ingredients')) {
-            if (!empty($dishIngredients)) {
-                $dish->ingredients()->sync($dishIngredients);
+        if ($request->has('recipe_ingredients')) {
+            if (!empty($recipeIngredients)) {
+                $recipe->ingredients()->sync($recipeIngredients);
             } else {
                 // Wenn explizit ein leeres Array gesendet wurde, Pivot leeren
-                $dish->ingredients()->sync([]);
+                $recipe->ingredients()->sync([]);
             }
         }
 
         // 3️⃣b Primäres Bild setzen (sofern gesendet)
         if ($request->filled('primary_media_id')) {
             $primaryId = $request->input('primary_media_id');
-            $mediaIds = $dish->media()->pluck('media.id')->all();
+            $mediaIds = $recipe->media()->pluck('media.id')->all();
             // Nur setzen, wenn die Media zum Gericht gehört
             if (in_array($primaryId, $mediaIds)) {
                 // Alle auf false
-                $dish->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
+                $recipe->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
                 // Ausgewähltes auf true
-                $dish->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
+                $recipe->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
             }
         }
 
         // 4️⃣ Slug ggf. aktualisieren
-        $dish->refresh();
+        $recipe->refresh();
 
         return redirect()
-            ->route('dishes.show', $dish->slug)
-            ->with('success', 'Gericht erfolgreich aktualisiert.');
+            ->route('recipes.show', $recipe->slug)
+            ->with('success', 'Rezept erfolgreich aktualisiert.');
     }
 
     /**
-     * Removes the specified dish from storage.
+     * Removes the specified recipe from storage.
      *
      * Also deletes the associated image (if it exists).
      *
-     * @param  \App\Models\Dish  $dish
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Dish $dish)
+    public function destroy(Recipe $recipe)
     {
         // Bild löschen (falls vorhanden)
-        if ($dish->image && file_exists(public_path('uploads/dishes/'.$dish->image))) {
-            unlink(public_path('uploads/dishes/'.$dish->image));
+        if ($recipe->image && file_exists(public_path('uploads/recipes/'.$recipe->image))) {
+            unlink(public_path('uploads/recipes/'.$recipe->image));
         }
 
-        Dish::destroy($dish->id);
+        Recipe::destroy($recipe->id);
 
-        return redirect()->route('dishes.index')->with('success', 'Gericht gelöscht!');
+        return redirect()->route('recipes.index')->with('success', 'Rezept gelöscht!');
     }
 
 }

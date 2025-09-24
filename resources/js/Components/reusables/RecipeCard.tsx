@@ -9,27 +9,27 @@ import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { BiDish } from 'react-icons/bi';
 import { assetPath } from '@/lib/utils';
-import { Dish } from '@/types/Dish';
+import { Recipe } from '@/types/Recipe';
 import { Skeleton } from '@/components/ui/skeleton';
 import { GoUpload } from "react-icons/go";
-interface DishCardProps {
-    dish: Dish;
+interface RecipeCardProps {
+    recipe: Recipe;
 }
 
-export default function DishCard({ dish }: DishCardProps) {
+export default function RecipeCard({ recipe }: RecipeCardProps) {
     const user = usePage().props.auth?.user;
 
     // TODO: Implement User RoleGate for Action buttons
-    const deleteDish = (e: React.MouseEvent) => {
+    const deleteRecipe = (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (confirm('Willst du dieses Gericht wirklich löschen?')) {
-            router.delete(route('dishes.destroy', dish.id));
+        if (confirm('Willst du dieses Rezept wirklich löschen?')) {
+            router.delete(route('recipes.destroy', recipe.id));
         }
     };
 
     return (
         <li className="group w-full max-w-96 mb-5">
-            <Link href={route('dishes.show', dish.slug)} className="block" title={dish.name}>
+            <Link href={route('recipes.show', recipe.slug)} className="block" title={recipe.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
@@ -40,12 +40,12 @@ export default function DishCard({ dish }: DishCardProps) {
                         {/* Hero image */}
                         {(() => {
                             const hero =
-                                (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
-                                (dish as any)?.media?.[0];
+                                (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
+                                (recipe as any)?.media?.[0];
                             return hero ? (
                                 <img
                                     src={hero.url ?? `/storage/${hero.path}`}
-                                    alt={dish.name}
+                                    alt={recipe.name}
                                     className="absolute inset-0 size-full object-cover"
                                 />
                             ) : (
@@ -64,7 +64,7 @@ export default function DishCard({ dish }: DishCardProps) {
                                 <DropdownMenuContent align="end">
                                     <DropdownMenuItem>
                                         <Link
-                                            href={route('dishes.edit', dish.id)}
+                                            href={route('recipes.edit', recipe.id)}
                                             className="flex flex-row items-center"
                                             onClick={(e) => e.stopPropagation()} // Link soll nur Edit öffnen
                                         >
@@ -74,7 +74,7 @@ export default function DishCard({ dish }: DishCardProps) {
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         className="text-red-500 flex items-center"
-                                        onClick={deleteDish} // Delete mit stopPropagation
+                                        onClick={deleteRecipe} // Delete mit stopPropagation
                                     >
                                         <GoTrash className="size-5 mr-2" />
                                         Löschen
@@ -87,10 +87,10 @@ export default function DishCard({ dish }: DishCardProps) {
                     {/* Titel */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-primary leading-snug">
                         <h4 className="text-gray-500 dark:text-gray-400 text-base font-oswald line-clamp-1">
-                            {dish.punchline}
+                            {recipe.punchline}
                         </h4>
                         <h3 className="group-hover:text-primary line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">
-                            {dish.name}
+                            {recipe.name}
                         </h3>
                     </CardContent>
 
@@ -99,12 +99,12 @@ export default function DishCard({ dish }: DishCardProps) {
                         <div>
                             <GoClock className="inline-flex size-4 mr-1 text-primary" />
                             <span className="text-sm text-muted-foreground">
-                                {dish.preparation_time} Min.
+                                {recipe.preparation_time} Min.
                             </span>
                         </div>
                         <div>
                             <VscSymbolEvent className="inline-flex size-4 mr-1 text-primary" />
-                            <span className="text-sm text-muted-foreground lowercase">{dish.difficulty}</span>
+                            <span className="text-sm text-muted-foreground lowercase">{recipe.difficulty}</span>
                         </div>
                     </CardFooter>
                 </Card>
@@ -113,7 +113,7 @@ export default function DishCard({ dish }: DishCardProps) {
     );
 }
 
-function DishCardSkeleton() {
+function RecipeCardSkeleton() {
     return (
         <li className="w-full max-w-96 mb-5">
             <Card className="relative overflow-hidden">

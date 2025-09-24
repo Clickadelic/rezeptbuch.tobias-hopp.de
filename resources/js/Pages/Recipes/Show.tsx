@@ -2,8 +2,8 @@ import { Head, Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
-import DishesSidebar from '@/components/sidebars/MainSidebar';
-import { Dish } from '@/types/Dish';
+import RecipeSidebar from '@/components/sidebars/MainSidebar';
+import { Recipe } from '@/types/Recipe';
 import { Button } from '@/components/ui/button';
 import { router } from '@inertiajs/react';
 import { MdOutlineStarPurple500 } from 'react-icons/md';
@@ -20,40 +20,40 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-interface ShowDishProps {
-    dish: Dish;
+interface ShowRecipeProps {
+    recipe: Recipe;
 }
 
 /**
- * Displays a single dish with its details.
+ * Displays a single recipe with its details.
  *
- * @param {ShowDishProps} props
- * @prop {Dish} dish - The dish to display.
+ * @param {ShowRecipeProps} props
+ * @prop {Recipe} recipe - The recipe to display.
  *
  * @returns {JSX.Element}
  */
-export default function Show({ dish }: ShowDishProps) {
+export default function Show({ recipe }: ShowRecipeProps) {
 
     const [count, setCount] = useState<number>(1);
-    const deleteDish = (e: React.MouseEvent) => {
+    const deleteRecipe = (e: React.MouseEvent) => {
             e.stopPropagation(); // verhindert, dass der Link-Klick ausgelöst wird
-            if (confirm('Willst du dieses Gericht wirklich löschen?')) {
-                router.delete(route('dishes.destroy', dish.id));
+            if (confirm('Willst du dieses Rezept wirklich löschen?')) {
+                router.delete(route('recipes.destroy', recipe.id));
             }
         };
     return (
-        <SidebarLeftLayout title="Gericht Details" sidebar={<DishesSidebar />}>
+        <SidebarLeftLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
             <div className="flex flex-col gap-3">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
                     <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
                         {(() => {
                             const hero =
-                                (dish as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
-                                (dish as any)?.media?.[0];
+                                (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
+                                (recipe as any)?.media?.[0];
                             return hero ? (
                                 <img
                                     src={hero.url ?? `/storage/${hero.path}`}
-                                    alt={dish.name}
+                                    alt={recipe.name}
                                     className="absolute inset-0 size-full object-cover"
                                 />
                             ) : (
@@ -67,8 +67,8 @@ export default function Show({ dish }: ShowDishProps) {
                             <div className="w-full flex flex-col">
                                 <div className="relative w-full flex flex-row justify-between items-center">
                                     <div>
-                                        <h4 className="font-medium text-sm font-oswald text-gray-800 dark:text-gray-200">{dish.punchline}</h4>
-                                        <h3 className="font-medium text-2xl mb-3">{dish.name}</h3>
+                                        <h4 className="font-medium text-sm font-oswald text-gray-800 dark:text-gray-200">{recipe.punchline}</h4>
+                                        <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
                                     </div>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger
@@ -80,7 +80,7 @@ export default function Show({ dish }: ShowDishProps) {
                                         <DropdownMenuContent align="end">
                                             <DropdownMenuItem>
                                                 <Link
-                                                    href={route('dishes.edit', dish.id)}
+                                                    href={route('recipes.edit', recipe.id)}
                                                     className="flex flex-row items-center"
                                                     onClick={(e) => e.stopPropagation()} // Link soll nur Edit öffnen
                                                 >
@@ -90,7 +90,7 @@ export default function Show({ dish }: ShowDishProps) {
                                             </DropdownMenuItem>
                                             <DropdownMenuItem
                                                 className="text-red-500 flex items-center"
-                                                onClick={deleteDish} // Delete mit stopPropagation
+                                                onClick={deleteRecipe} // Delete mit stopPropagation
                                             >
                                                 <GoTrash className="size-5 mr-2" />
                                                 Löschen
@@ -98,7 +98,7 @@ export default function Show({ dish }: ShowDishProps) {
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </div>
-                                <p className="text-sm text-gray-800 dark:text-gray-200">{dish.description}</p>
+                                <p className="text-sm text-gray-800 dark:text-gray-200">{recipe.description}</p>
                             </div>
                         </div>
                         <div className="flex flex-row justify-between gap-1">
@@ -106,14 +106,14 @@ export default function Show({ dish }: ShowDishProps) {
                                 <h4 className="font-medium">Zubereitungszeit</h4>
                                 <div className="flex flex-row">
                                     <GoClock className="mt-1 size-4 text-primary" />
-                                    <p className="ml-1">{dish.preparation_time} Minuten</p>
+                                    <p className="ml-1">{recipe.preparation_time} Minuten</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <h4 className="font-medium">Schwierigkeitsgrad</h4>
                                 <div className="flex flex-row">
                                     <VscSymbolEvent className="mt-1 size-4 text-primary" />
-                                    <p className="ml-1 lowercase">{dish.difficulty}</p>
+                                    <p className="ml-1 lowercase">{recipe.difficulty}</p>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@ export default function Show({ dish }: ShowDishProps) {
                                 </tr>
                             </thead>
                             <tbody className="dark:text-gray-200">
-                                {dish.ingredients?.map((ingredient) => (
+                                {recipe.ingredients?.map((ingredient) => (
                                     <tr
                                         key={ingredient.id}
                                         className="hover:bg-gray-100 dark:hover:bg-gray-700"

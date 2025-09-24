@@ -2,7 +2,7 @@
 import { Difficulty } from './Difficulty';
 import { Ingredient } from './Ingredient';
 
-export type Dish = {
+export type Recipe = {
     id?: string;
     name: string;
     slug?: string;
@@ -10,6 +10,7 @@ export type Dish = {
     description?: string;
     rating?: number;
     preparation_time?: number;
+    preparation_instructions?: string;
     difficulty?: Difficulty;
     ingredients?: Ingredient[]; // jetzt mit optionalem pivot
     media?: Array<{

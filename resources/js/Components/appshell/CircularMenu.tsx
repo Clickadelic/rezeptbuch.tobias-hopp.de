@@ -31,7 +31,7 @@ export function CircularMenu() {
                         <TooltipTrigger asChild data-state="instant-open">
                             <Link
                                 className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
-                                href={route('dishes.create')}
+                                href={route('recipes.create')}
                             >
                                 <BsJournalBookmark />
                             </Link>

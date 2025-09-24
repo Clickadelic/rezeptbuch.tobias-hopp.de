@@ -4,16 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Dish;
+use App\Models\Recipe;
 
-class DishSeeder extends Seeder
+class RecipeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Dish::create([
+        Recipe::create([
             'name' => 'Spaghetti Carbonara',
             'punchline' => 'mit Speck, Ei und Parmesan',
             'description' => 'Klassisches italienisches Pasta-Gericht mit Speck, Ei und Parmesan.',
@@ -23,7 +23,7 @@ class DishSeeder extends Seeder
             'user_id' => 1,
         ]);
 
-        Dish::create([
+        Recipe::create([
             'name' => 'Rinderbraten',
             'punchline' => 'Wie bei Mutti',
             'description' => 'Saftiger Braten mit kräftiger Sauce, perfekt für Sonntage.',
@@ -33,7 +33,7 @@ class DishSeeder extends Seeder
             'user_id' => 1,
         ]);
 
-        Dish::create([
+        Recipe::create([
             'name' => 'Caesar Salad',
             'punchline' => 'mit Huhn, Croutons und Caesar-Dressing',
             'description' => 'Frischer Salat mit Huhn, Croutons und Caesar-Dressing.',

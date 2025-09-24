@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dishes', function (Blueprint $table) {
+        Schema::create('recipes', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('slug')->default('')->unique();
@@ -34,6 +34,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('ingredients');
-        Schema::dropIfExists('dishes');
+        Schema::dropIfExists('recipes');
     }
 };

@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
-use App\Models\Dish;
 
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Http\Request;
@@ -30,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
 
         Vite::prefetch(concurrency: 3);
             Inertia::share([
-            // 'dishes' => function () {
-            //     return Dish::all();
+            // 'recipes' => function () {
+            //     return Recipes::all();
             // }
             // weitere globale Daten hier...
         ]);

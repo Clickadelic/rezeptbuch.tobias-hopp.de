@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMediaRequest;
 use App\Models\Media;
 use Illuminate\Support\Str;
-use App\Models\Dish;
+use App\Models\Recipe;
 
 class UploadController
 {
@@ -27,15 +27,15 @@ class UploadController
         // Eindeutigen Dateinamen generieren (ohne Abhängigkeit zu tmp-Datei)
         $fileName = Str::random(40) . ($originalExt ? ('.' . $originalExt) : '');
 
-        // Zielordner unter public/uploads/dishes sicherstellen
-        $destDir = public_path('uploads/dishes');
+        // Zielordner unter public/uploads/recipes sicherstellen
+        $destDir = public_path('uploads/recipes');
         if (!is_dir($destDir)) {
             mkdir($destDir, 0775, true);
         }
 
         // Datei nach public verschieben
         $file->move($destDir, $fileName);
-        $path = 'uploads/dishes/' . $fileName; // Relativ zu public
+        $path = 'uploads/recipes/' . $fileName; // Relativ zu public
 
         // SHA-256 Hash der gespeicherten Datei berechnen (auf Basis der verschobenen Datei)
         $fileHash = hash_file('sha256', public_path($path));
@@ -53,23 +53,23 @@ class UploadController
         ]);
 
         // Optional: direkt einem Gericht zuordnen
-        if ($request->filled('dish_id')) {
-            /** @var \\App\\Models\\Dish|null $dish */
-            $dish = Dish::find($request->input('dish_id'));
-            if ($dish) {
+        if ($request->filled('recipe_id')) {
+            /** @var \\App\\Models\\recipe|null $recipe */
+            $recipe = Recipe::find($request->input('recipe_id'));
+            if ($recipe) {
                 // Nächste Position innerhalb der Collection bestimmen
                 $collection = $request->get('collection', 'default');
-                $maxPosition = $dish->media()->wherePivot('collection', $collection)->max('dish_media.position');
+                $maxPosition = $recipe->media()->wherePivot('collection', $collection)->max('recipe_media.position');
                 $position = is_null($maxPosition) ? 0 : ($maxPosition + 1);
 
-                $dish->media()->attach($media->id, [
+                $recipe->media()->attach($media->id, [
                     'collection' => $collection,
                     'is_primary' => false,
                     'position' => $position,
                 ]);
             }
         } elseif ($request->filled('pending_key')) {
-            // Kein Dish vorhanden: Media als "pending" markieren
+            // Kein recipe vorhanden: Media als "pending" markieren
             $media->pending_key = (string) $request->input('pending_key');
             $media->save();
         }

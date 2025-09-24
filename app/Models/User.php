@@ -57,9 +57,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Relation: Ein User kann viele Gerichte haben
      */
-    public function dishes()
+    public function recipes()
     {
-        return $this->hasMany(Dish::class);
+        return $this->hasMany(Recipe::class);
     }
 
     /**

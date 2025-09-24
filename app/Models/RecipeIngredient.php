@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class DishIngredient extends Pivot
+class RecipeIngredient extends Pivot
 {
-    protected $table = 'dish_ingredient';
+    protected $table = 'recipe_ingredient';
 
     protected $fillable = [
-        'dish_id',
+        'recipe_id',
         'ingredient_id',
         'quantity',
         'unit',

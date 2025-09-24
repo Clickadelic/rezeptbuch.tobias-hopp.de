@@ -127,6 +127,15 @@ class IngredientSeeder extends Seeder
         Ingredient::create([
             'name' => 'Pommes',
         ]);
+        Ingredient::create([
+            'name' => 'Paniermehl',
+        ]);
+        Ingredient::create([
+            'name' => 'Pinienkerne',
+        ]);
+        Ingredient::create([
+            'name' => 'Parmesan',
+        ]);
 
         // Q
         
@@ -155,18 +164,7 @@ class IngredientSeeder extends Seeder
         ]);
         // U
         // V
-        Ingredient::create([
-            'name' => 'Paniermehl',
-        ]);
-        Ingredient::create([
-            'name' => 'Paprika',
-        ]);
-        Ingredient::create([
-            'name' => 'Pinienkerne',
-        ]);
-        Ingredient::create([
-            'name' => 'Parmesan',
-        ]);
+        
         // W
         // X
         // Y

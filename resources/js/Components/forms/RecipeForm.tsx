@@ -1,8 +1,5 @@
 import { useForm, router } from '@inertiajs/react';
-import { Dish } from '@/types/Dish';
 import { useState, FormEvent } from 'react';
-import { Difficulty } from '@/types/Difficulty';
-import { Ingredient } from '@/types/Ingredient';
 import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
 import { Textarea } from '@/components/ui/textarea';
@@ -18,24 +15,28 @@ import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { Slider } from '@/components/ui/slider';
 
+import { Recipe } from '@/types/Recipe';
+import { Difficulty } from '@/types/Difficulty';
+import { Ingredient } from '@/types/Ingredient';
 import { UNITS } from '@/types/Units';
+
 import { BsTrash3 } from 'react-icons/bs';
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 
-interface DishIngredientData {
+interface RecipeIngredientData {
     ingredient_id: string;
     quantity: string;
     unit: string;
 }
 
-interface DishFormProps {
-    dish?: Dish;
+interface RecipeFormProps {
+    recipe?: Recipe;
     ingredients: Ingredient[];
     className?: string;
 }
 
-export default function DishForm({ dish, ingredients, className }: DishFormProps) {
-    const isEditing = Boolean(dish);
+export default function RecipeForm({ recipe, ingredients, className }: RecipeFormProps) {
+    const isEditing = Boolean(recipe);
     // Pending key for creation uploads
     const [pendingKey] = useState<string>(() =>
         typeof crypto !== 'undefined' && (crypto as any).randomUUID
@@ -49,53 +50,54 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
     >([]);
     const [liveMedia, setLiveMedia] = useState<
         Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>
-    >(dish?.media ?? []);
+    >(recipe?.media ?? []);
 
     // @ts-ignore
     const { data, setData, post, processing, errors, reset } = useForm({
-        id: dish?.id ?? null,
-        name: dish?.name ?? '',
-        slug: dish?.slug ?? '',
-        punchline: dish?.punchline ?? '',
-        description: dish?.description ?? '',
-        difficulty: dish?.difficulty ?? 'einfach',
-        rating: Number(dish?.rating ?? 5),
-        preparation_time: Number(dish?.preparation_time ?? 15),
+        id: recipe?.id ?? null,
+        name: recipe?.name ?? '',
+        slug: recipe?.slug ?? '',
+        punchline: recipe?.punchline ?? '',
+        description: recipe?.description ?? '',
+        difficulty: recipe?.difficulty ?? 'einfach',
+        rating: Number(recipe?.rating ?? 5),
+        preparation_time: Number(recipe?.preparation_time ?? 15),
+        preparation_instructions: recipe?.preparation_instructions ?? '',
         pending_key: isEditing ? null : pendingKey,
-        primary_media_id: (dish?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null) as any,
+        primary_media_id: (recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null) as any,
         // ✅ sicherstellen, dass immer ein Array da ist
-        dish_ingredients:
-            dish?.ingredients?.map((i) => ({
+        recipe_ingredients:
+            recipe?.ingredients?.map((i) => ({
                 ingredient_id: i.id!,
                 quantity: i.pivot?.quantity ?? '',
                 unit: i.pivot?.unit ?? 'gr',
-            })) ?? ([] as DishIngredientData[]),
+            })) ?? ([] as RecipeIngredientData[]),
     });
 
     // --- Zutatenlogik ---
     const addIngredient = () => {
-        setData('dish_ingredients', [
-            ...data.dish_ingredients,
+        setData('recipe_ingredients', [
+            ...data.recipe_ingredients,
             { ingredient_id: '', quantity: '', unit: 'gr' },
         ]);
     };
 
-    const updateIngredient = (index: number, field: keyof DishIngredientData, value: string) => {
-        const updated = [...data.dish_ingredients];
+    const updateIngredient = (index: number, field: keyof RecipeIngredientData, value: string) => {
+        const updated = [...data.recipe_ingredients];
         updated[index][field] = value;
-        setData('dish_ingredients', updated);
+        setData('recipe_ingredients', updated);
     };
 
     const removeIngredient = (index: number) => {
-        const updated = [...data.dish_ingredients];
+        const updated = [...data.recipe_ingredients];
         updated.splice(index, 1);
-        setData('dish_ingredients', updated);
+        setData('recipe_ingredients', updated);
     };
 
     // --- Submit ---
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('dishes.store'), {
+        post(route('recipes.store'), {
             forceFormData: true,
             onSuccess: () => reset(),
             preserveScroll: true,
@@ -106,7 +108,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
         e.preventDefault();
         // Use POST + method spoofing so multipart/arrays are parsed reliably by PHP
         router.post(
-            route('dishes.update', { dish: data.id }),
+            route('recipes.update', { recipe: data.id }),
             { ...data, _method: 'put' },
             {
                 // onSuccess: () => reset(),
@@ -120,8 +122,8 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
             {/* Uploader outside the form to avoid submit issues */}
             <div className="w-full space-y-3 mb-4">
                 <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
-                <DishMediaUploader
-                    dishId={isEditing ? (data.id as string) : undefined}
+                <RecipeMediaUploader
+                    recipeId={isEditing ? (data.id as string) : undefined}
                     pendingKey={!isEditing ? pendingKey : undefined}
                     onUploadedJSON={(m) => {
                         if (!isEditing) {
@@ -200,7 +202,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 </div>
 
                 {/* Name */}
-                <div className="w-full">
+                <div className="w-full space-y-3">
                     <InputLabel htmlFor="name" value="Name" />
                     <TextInput
                         id="name"
@@ -215,7 +217,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 </div>
 
                 {/* Punchline */}
-                <div className="w-full">
+                <div className="w-full space-y-3">
                     <InputLabel htmlFor="punchline" value="Punchline" />
                     <TextInput
                         id="punchline"
@@ -229,7 +231,7 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 </div>
 
                 {/* Beschreibung */}
-                <div className="w-full">
+                <div className="w-full space-y-3">
                     <InputLabel htmlFor="description" value="Beschreibung" />
                     <Textarea
                         value={data.description}
@@ -328,9 +330,9 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                 </div>
 
                 {/* Zutaten */}
-                <div className="w-full space-y-2">
+                <div className="w-full space-y-3">
                     <InputLabel htmlFor="ingredients" value="Zutaten" />
-                    {data.dish_ingredients?.map((di, idx) => (
+                    {data.recipe_ingredients?.map((di, idx) => (
                         <div key={idx} className="flex flex-row justify-start gap-2 items-start mb-3 ">
                             <TextInput
                                 placeholder="Menge"
@@ -379,6 +381,20 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
                     </Button>
                 </div>
 
+                {/* Zubereitung */}
+                <div className="w-full space-y-3">
+                    <InputLabel htmlFor="preparation_instructions" value="Zubereitung" />
+                    <Textarea
+                        id="preparation_instructions"
+                        value={data.preparation_instructions}
+                        rows={5}
+                        placeholder="Beschreibung der Zubereitung"
+                        className="mt-1 w-full rounded-lg border border-gray-400 px-3 py-2"
+                        onChange={(e) => setData('preparation_instructions', e.target.value)}
+                    />
+                    {errors.preparation_instructions && <p className="text-red-500">{errors.preparation_instructions}</p>}
+                </div>
+
                 {/* Submit */}
                 <div className="w-full mt-4">
                     <Button
@@ -405,8 +421,8 @@ export default function DishForm({ dish, ingredients, className }: DishFormProps
 }
 
 // Lightweight uploader that posts to /upload with dish_id so the file is attached via pivot
-function DishMediaUploader({
-    dishId,
+function RecipeMediaUploader({
+    recipeId,
     pendingKey,
     onUploadedJSON,
 }: {
@@ -431,8 +447,8 @@ function DishMediaUploader({
         try {
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('collection', 'dish_images');
-            if (dishId) formData.append('dish_id', dishId);
+            formData.append('collection', 'recipe_images');
+            if (recipeId) formData.append('recipe_id', recipeId);
             if (pendingKey) formData.append('pending_key', pendingKey);
             const res = await (window.axios?.post?.('/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data', Accept: 'application/json' },

@@ -13,14 +13,9 @@ export default function RightSidebar() {
             <h2 className="text-lg font-medium mb-2">Los geht's</h2>
             <ul className="flex flex-col space-y-2 divide-y divide-gray-300">
                 <SidebarLink
-                    href="/gerichte"
-                    active={window.location.pathname === '/gerichte'}
-                    title="Gerichte"
-                />
-                <SidebarLink
-                    href="/cocktails"
-                    active={window.location.pathname === '/cocktails'}
-                    title="Cocktails"
+                    href="/rezepte"
+                    active={window.location.pathname === '/rezepte'}
+                    title="Rezepte"
                 />
                 <SidebarLink
                     href="/zutaten"

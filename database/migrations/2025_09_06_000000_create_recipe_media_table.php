@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dish_media', function (Blueprint $table) {
+        Schema::create('recipe_media', function (Blueprint $table) {
             $table->id();
 
             // Relations
-            $table->uuid('dish_id');
+            $table->uuid('recipe_id');
             $table->unsignedBigInteger('media_id');
 
             // Optional metadata for collections and ordering
@@ -26,10 +26,10 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign keys
-            $table->foreign('dish_id')->references('id')->on('dishes')->onDelete('cascade');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->foreign('media_id')->references('id')->on('media')->onDelete('cascade');
 
-            $table->unique(['dish_id', 'media_id']);
+            $table->unique(['recipe_id', 'media_id']);
         });
     }
 
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dish_media');
+        Schema::dropIfExists('recipe_media');
     }
 };

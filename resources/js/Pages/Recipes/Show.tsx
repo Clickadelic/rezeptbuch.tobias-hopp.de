@@ -33,7 +33,7 @@ interface ShowRecipeProps {
  * @returns {JSX.Element}
  */
 export default function Show({ recipe }: ShowRecipeProps) {
-
+    const user = usePage().props.auth?.user;
     const [count, setCount] = useState<number>(1);
     const deleteRecipe = (e: React.MouseEvent) => {
             e.stopPropagation(); // verhindert, dass der Link-Klick ausgelöst wird
@@ -70,33 +70,35 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                         <h4 className="font-medium text-sm font-oswald text-gray-800 dark:text-gray-200">{recipe.punchline}</h4>
                                         <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
                                     </div>
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger
-                                            className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:cursor-pointer shadow-transparent z-20"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <HiOutlineDotsVertical className="size-4" />
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem>
-                                                <Link
-                                                    href={route('recipes.edit', recipe.id)}
-                                                    className="flex flex-row items-center"
-                                                    onClick={(e) => e.stopPropagation()} // Link soll nur Edit öffnen
-                                                >
-                                                    <MdOutlineEdit className="size-5 mr-2" />
-                                                    Bearbeiten
-                                                </Link>
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem
-                                                className="text-red-500 flex items-center"
-                                                onClick={deleteRecipe} // Delete mit stopPropagation
+                                    {user && (
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger
+                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:cursor-pointer shadow-transparent z-20"
+                                                onClick={(e) => e.stopPropagation()}
                                             >
-                                                <GoTrash className="size-5 mr-2" />
-                                                Löschen
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                                                <HiOutlineDotsVertical className="size-4" />
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem>
+                                                    <Link
+                                                        href={route('recipes.edit', recipe.id)}
+                                                        className="flex flex-row items-center"
+                                                        onClick={(e) => e.stopPropagation()} // Link soll nur Edit öffnen
+                                                    >
+                                                        <MdOutlineEdit className="size-5 mr-2" />
+                                                        Bearbeiten
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem
+                                                    className="text-red-500 flex items-center"
+                                                    onClick={deleteRecipe} // Delete mit stopPropagation
+                                                >
+                                                    <GoTrash className="size-5 mr-2" />
+                                                    Löschen
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    )}
                                 </div>
                                 <p className="text-sm text-gray-800 dark:text-gray-200">{recipe.description}</p>
                             </div>

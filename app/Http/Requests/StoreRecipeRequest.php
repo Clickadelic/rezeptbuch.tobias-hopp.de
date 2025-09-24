@@ -27,11 +27,11 @@ class StoreRecipeRequest extends FormRequest
             'difficulty' => ['nullable', 'string'],
 
             // Nested ingredients from the form
-            'dish_ingredients' => ['sometimes', 'array'],
+            'recipe_ingredients' => ['sometimes', 'array'],
             'pending_key' => ['nullable', 'string', 'max:255'],
-            'dish_ingredients.*.ingredient_id' => ['nullable', 'string'],
-            'dish_ingredients.*.quantity' => ['nullable', 'string'],
-            'dish_ingredients.*.unit' => ['nullable', 'string'],
+            'recipe_ingredients.*.ingredient_id' => ['nullable', 'string'],
+            'recipe_ingredients.*.quantity' => ['nullable', 'string'],
+            'recipe_ingredients.*.unit' => ['nullable', 'string'],
 
             'primary_media_id' => ['nullable', 'string'],
             'id' => ['nullable', 'string'],

@@ -7,7 +7,6 @@ import { TooltipArrow } from '@radix-ui/react-tooltip';
 import { TbSalt } from 'react-icons/tb';
 import { FiPlus } from 'react-icons/fi';
 import { BsJournalBookmark } from 'react-icons/bs';
-import { LiaCocktailSolid } from 'react-icons/lia';
 
 import { cn } from '@/lib/utils';
 
@@ -22,7 +21,7 @@ export function CircularMenu() {
         <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-12">
             <div
                 className={cn(
-                    'absolute -top-36 left-[4px] flex flex-col items-center space-y-2 transition-all',
+                    'absolute -top-24 left-[4px] flex flex-col items-center space-y-2 transition-all',
                     showCircularMenu ? 'opacity-100' : 'opacity-0 pointer-events-none',
                 )}
             >
@@ -38,23 +37,6 @@ export function CircularMenu() {
                         </TooltipTrigger>
                         <TooltipContent side="left">
                             <p>Neues Gericht</p>
-                            <TooltipArrow className="arrow-primary" />
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild data-state="instant-open">
-                            <Link
-                                className="rounded-full bg-primary hover:bg-primary/90 text-white p-3 hover:cursor-pointer shadow-lg"
-                                href={route('cocktails.create')}
-                            >
-                                <LiaCocktailSolid />
-                            </Link>
-                        </TooltipTrigger>
-                        <TooltipContent side="left">
-                            <p>Neuer Cocktail</p>
                             <TooltipArrow className="arrow-primary" />
                         </TooltipContent>
                     </Tooltip>

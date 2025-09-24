@@ -420,13 +420,13 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
     );
 }
 
-// Lightweight uploader that posts to /upload with dish_id so the file is attached via pivot
+// Lightweight uploader that posts to /upload with recipe_id so the file is attached via pivot
 function RecipeMediaUploader({
     recipeId,
     pendingKey,
     onUploadedJSON,
 }: {
-    dishId?: string;
+    recipeId?: string;
     pendingKey?: string;
     onUploadedJSON?: (m: {
         id: number;

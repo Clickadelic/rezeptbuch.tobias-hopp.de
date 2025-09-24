@@ -163,8 +163,8 @@ class RecipeController extends Controller
         ])->findOrFail($recipe->id);
 
         return Inertia::render('Recipes/Edit', [
-            'recipe' => $recipe,
-            'ingredients' => Ingredient::orderBy('name')->get(),
+            'recipe' => $recipe->load(['ingredients', 'media']),
+            'ingredients' => Ingredient::all(),
         ]);
     }
 

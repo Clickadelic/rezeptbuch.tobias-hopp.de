@@ -6,6 +6,8 @@ import { Ingredient } from '@/types/Ingredient';
 
 import IngredientForm from '@/components/forms/IngredientForm';
 import BadgeButton from '@/components/reusables/BadgeButton';
+
+
 export default function IngredientsIndex() {
     const { props } = usePage();
     const { ingredients } = props;

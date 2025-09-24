@@ -22,6 +22,8 @@ import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+
+
 /**
  * The application header.
  *
@@ -125,16 +127,16 @@ const Header = () => {
                             <div className="space-x-1 sm:space-x-2 md:space-x-3">
                                 <NavButton
                                     href="/register"
-                                    className="text-gray-800 hover:text-gray-500 dark:text-gray-300 border border-primary "
+                                    className="border border-gray-800 text-gray-800 hover:text-gray-600 hover:border-gray-600 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"
                                     icon={
-                                        <FiCheckCircle className="text-gray-800 dark:text-gray-300" />
+                                        <FiCheckCircle className="asd" />
                                     }
                                 >
                                     Registrierung
                                 </NavButton>
                                 <NavButton
                                     href="/login"
-                                    className="text-white border border-primary bg-primary hover:bg-primary hover:text-gray-200 hover:border-emerald-600"
+                                    className="bg-primary border border-primary text-white hover:text-gray-200 hover:border-gray-600 dark:text-white dark:border-primary dark:hover:border-primary"
                                     icon={<BsDoorOpen />}
                                 >
                                     Login

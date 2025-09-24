@@ -12,12 +12,8 @@
         "php": "^8.2",
         "cviebrock/eloquent-sluggable": "^12.0",
         "inertiajs/inertia-laravel": "^2.0",
-        "intervention/image-laravel": "^1.5",
         "laravel/framework": "^12.0",
-        "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.10.1",
-        "laravel/ui": "^4.6",
-        "spatie/image": "^3.8",
+        "laravel/sanctum": "^4.0", 
         "spatie/laravel-permission": "^6.21",
         "tightenco/ziggy": "^2.5"
     },
@@ -28,6 +24,7 @@
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.41",
+        "laravel/tinker": "^2.10.1",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "phpunit/phpunit": "^11.5.3"

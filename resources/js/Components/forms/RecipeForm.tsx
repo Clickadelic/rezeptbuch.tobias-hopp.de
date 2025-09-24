@@ -1,16 +1,12 @@
 import { useForm, router } from '@inertiajs/react';
 import { useState, FormEvent } from 'react';
+
 import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
+
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { Slider } from '@/components/ui/slider';
@@ -22,7 +18,8 @@ import { UNITS } from '@/types/Units';
 
 import { BsTrash3 } from 'react-icons/bs';
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
-
+import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
+import imageCompression from 'browser-image-compression';
 interface RecipeIngredientData {
     ingredient_id: string;
     quantity: string;
@@ -97,6 +94,7 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
     // --- Submit ---
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log("Submitted Data", data);
         post(route('recipes.store'), {
             forceFormData: true,
             onSuccess: () => reset(),
@@ -111,7 +109,7 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
             route('recipes.update', { recipe: data.id }),
             { ...data, _method: 'put' },
             {
-                // onSuccess: () => reset(),
+                onSuccess: () => reset(),
                 preserveScroll: true,
             },
         );
@@ -382,8 +380,8 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
                 </div>
 
                 {/* Zubereitung */}
-                <div className="w-full space-y-3">
-                    <InputLabel htmlFor="preparation_instructions" value="Zubereitung" />
+                <div className="w-full space-y-3 mt-4">
+                    <InputLabel htmlFor="preparation_instructions" value="Zubereitung, so geht's&hellip;" />
                     <Textarea
                         id="preparation_instructions"
                         value={data.preparation_instructions}
@@ -417,100 +415,5 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
                 </div>
             </form>
         </>
-    );
-}
-
-// Lightweight uploader that posts to /upload with recipe_id so the file is attached via pivot
-function RecipeMediaUploader({
-    recipeId,
-    pendingKey,
-    onUploadedJSON,
-}: {
-    recipeId?: string;
-    pendingKey?: string;
-    onUploadedJSON?: (m: {
-        id: number;
-        path: string;
-        name: string;
-        url?: string;
-        pivot?: any;
-    }) => void;
-}) {
-    const [file, setFile] = useState<File | null>(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-
-    const handleUpload = async () => {
-        if (!file) return;
-        setLoading(true);
-        setError(null);
-        try {
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('collection', 'recipe_images');
-            if (recipeId) formData.append('recipe_id', recipeId);
-            if (pendingKey) formData.append('pending_key', pendingKey);
-            const res = await (window.axios?.post?.('/upload', formData, {
-                headers: { 'Content-Type': 'multipart/form-data', Accept: 'application/json' },
-                withCredentials: true,
-            }) ??
-                fetch('/upload', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { Accept: 'application/json' },
-                    credentials: 'include',
-                }));
-
-            if (res && 'data' in (res as any)) {
-                const media = (res as any).data.media;
-                onUploadedJSON?.(media);
-            } else if (res instanceof Response) {
-                const json = await res.json();
-                onUploadedJSON?.(json.media);
-            }
-
-            setFile(null);
-        } catch (e: any) {
-            setError(e?.response?.data?.message || 'Upload fehlgeschlagen');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div
-            className="flex flex-col gap-3"
-            onKeyDown={(e) => {
-                if (e.key === 'Enter') e.preventDefault();
-            }}
-            tabIndex={0}
-        >
-            {/* Upload Bereich */}
-            <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                <GoPlus className="text-primary text-4xl" />
-                <span className="mt-2 text-sm text-gray-500">Bild auswählen</span>
-                
-                {/* Unsichtbares Input-Feld */}
-                <input
-                    type="file"
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    accept="image/png,image/jpeg,image/jpg"
-                    onChange={(e) => setFile(e.target.files?.[0] || null)}
-                />
-            </label>
-
-            {/* Upload-Button */}
-            <Button
-                type="button"
-                onClick={handleUpload}
-                disabled={loading || !file}
-                className="w-full hover:cursor-pointer"
-            >
-                {loading ? 'Lädt…' : 'Bild hochladen'}
-            </Button>
-
-            {/* Fehleranzeige */}
-            {error && <span className="text-red-500 text-sm">{error}</span>}
-        </div>
     );
 }

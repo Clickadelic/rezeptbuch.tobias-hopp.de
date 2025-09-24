@@ -9,16 +9,13 @@ use Inertia\Inertia;
 
 // use Intervention\Image\ImageManager;
 // use Intervention\Image\Drivers\Gd\Driver;
+
 use App\Models\Ingredient;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Models\Recipe;
-use App\Enums\Difficulty;
 use App\Http\Requests\StoreRecipeRequest;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Str;
 
 class RecipeController extends Controller
@@ -87,6 +84,7 @@ class RecipeController extends Controller
             'difficulty' => $request->input('difficulty'),
             'rating' => $request->input('rating', 0),
             'preparation_time' => $request->input('preparation_time', 0),
+            'preparation_instructions' => $request->input('preparation_instructions'),
             'user_id' => $request->user()->id,
         ]);
 
@@ -267,7 +265,7 @@ class RecipeController extends Controller
         $recipe->refresh();
 
         return redirect()
-            ->route('Recipes.Show', $recipe->slug)
+            ->route('recipes.show', $recipe->slug)
             ->with('success', 'Rezept erfolgreich aktualisiert.');
     }
 

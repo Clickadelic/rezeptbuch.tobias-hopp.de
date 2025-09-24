@@ -1,16 +1,12 @@
 import { useForm, router } from '@inertiajs/react';
 import { useState, FormEvent } from 'react';
+
 import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
+
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { Slider } from '@/components/ui/slider';
@@ -97,6 +93,7 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
     // --- Submit ---
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log("Submitted Data", data);
         post(route('recipes.store'), {
             forceFormData: true,
             onSuccess: () => reset(),
@@ -382,8 +379,8 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
                 </div>
 
                 {/* Zubereitung */}
-                <div className="w-full space-y-3">
-                    <InputLabel htmlFor="preparation_instructions" value="Zubereitung" />
+                <div className="w-full space-y-3 mt-4">
+                    <InputLabel htmlFor="preparation_instructions" value="Zubereitung, so geht's&hellip;" />
                     <Textarea
                         id="preparation_instructions"
                         value={data.preparation_instructions}

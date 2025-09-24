@@ -23,7 +23,7 @@ export default function RecipeEdit({ recipe }: EditRecipeProps) {
     const { props } = usePage();
     const ingredients = props.ingredients;
     return (
-        <SidebarLeftLayout title="Gericht bearbeiten" sidebar={<RecipesSidebar />}>
+        <SidebarLeftLayout title="Rezept bearbeiten" sidebar={<RecipesSidebar />}>
             <RecipeForm recipe={recipe} ingredients={ingredients} />
         </SidebarLeftLayout>
     );

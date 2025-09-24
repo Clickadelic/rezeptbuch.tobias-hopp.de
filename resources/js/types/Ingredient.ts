@@ -1,7 +1,7 @@
 // types.ts
-export type DishIngredientPivot = {
+export type RecipeIngredientPivot = {
     ingredient_id?: string;
-    dish_id?: string;
+    recipe_id?: string;
     quantity?: string | number;
     unit?: string;
 };

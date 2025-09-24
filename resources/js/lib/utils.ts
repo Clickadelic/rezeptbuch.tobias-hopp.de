@@ -29,7 +29,7 @@ export function toHumanDate(date: Date | string) {
 
 /**
  * Gibt den vollständigen URL-Pfad zu einem Bild zurück.
- * @param folder Name des Upload-Ordners, z.B. "dishes", "cocktails"
+ * @param folder Name des Upload-Ordners, z.B. "recipe"
  * @param image Dateiname des Bildes
  * @returns Vollständige URL oder Fallback-Pfad
  */

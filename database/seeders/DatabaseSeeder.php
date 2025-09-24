@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // Ingredients
         $this->call(IngredientSeeder::class);
 
-        // Dishes
-        $this->call(DishSeeder::class);
+        // Recipe
+        $this->call(RecipeSeeder::class);
     }
 }

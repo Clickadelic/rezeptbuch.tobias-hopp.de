@@ -1,6 +1,6 @@
 // resources/js/types/index.ts
 
-import { Dish } from './Dish';
+import { Recipe } from './Recipe';
 
 export interface User {
     id: number;
@@ -14,8 +14,7 @@ export interface SharedPageProps {
     auth: {
         user: User;
     };
-    dishes: Dish[];
-    cocktails: Cocktail[];
+    recipes: Recipe[];
     ingredients: Ingredient[];
     canLogin?: boolean;
     canRegister?: boolean;

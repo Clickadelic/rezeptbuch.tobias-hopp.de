@@ -1,4 +1,5 @@
 export enum UNITS {
+    DASH = 'Dash/Spritzel',
     ML = 'ml',
     CL = 'cl',
     L = 'L',
@@ -9,5 +10,7 @@ export enum UNITS {
     BT = 'Prise',
     CUP = 'Tasse',
     PIECE = 'Stück',
-    DASH = 'Dash',
+    CAN = 'Dose',
+    PACKAGE = 'Paket',
+    BOTTLE = 'Flasche',
 }

@@ -50,9 +50,9 @@ class Media extends Model
         }
     }
 
-    public function dishes()
+    public function recipes()
     {
-        return $this->belongsToMany(Dish::class, 'dish_media', 'media_id', 'dish_id')
+        return $this->belongsToMany(Recipe::class, 'recipe_media', 'media_id', 'recipe_id')
             ->withPivot('collection', 'is_primary', 'position')
             ->withTimestamps();
     }

@@ -2,13 +2,13 @@ import { PropsWithChildren } from 'react';
 import { useEffect } from 'react';
 import { Head, usePage } from '@inertiajs/react';
 
-import Header from '@/components/nutshell/Header';
-import RecipeSearch from '@/components/nutshell/RecipeSearch';
-import BreadcrumbNav from '@/components/nutshell/BreadcrumbNav';
-import Footer from '@/components/nutshell/Footer';
-import CircularMenu from '@/components/nutshell/CircularMenu';
+import Header from '@/components/appshell/Header';
+import RecipeSearch from '@/components/appshell/RecipeSearch';
+import BreadcrumbNav from '@/components/appshell/BreadcrumbNav';
+import Footer from '@/components/appshell/Footer';
+import CircularMenu from '@/components/appshell/CircularMenu';
 
-import { ThemeProvider } from '@/components/nutshell/ThemeProvider';
+import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 interface SidebarRightLayoutProps extends PropsWithChildren {

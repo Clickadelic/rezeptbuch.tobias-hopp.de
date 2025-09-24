@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use App\Http\Controllers\DishController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CocktailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UploadController;

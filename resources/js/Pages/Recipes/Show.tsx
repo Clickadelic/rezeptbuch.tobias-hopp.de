@@ -77,7 +77,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                     {user && (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger
-                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
+                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-2 hover:text-gray-200 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
                                                 onClick={(e) => e.stopPropagation()}
                                             >
                                                 <HiOutlineDotsVertical className="size-4" />
@@ -192,24 +192,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-rose-200">
-                        {recipe.media?.length && (
-                            <div className="flex flex-col gap-2">
-                                <h4 className="font-medium text-lg mt-4">Bilder</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {recipe.media?.map((media) => (
-                                        <div key={media.id}>
-                                            <img
-                                                src={media.url}
-                                                alt={media.name}
-                                                className="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                    
                 </div>
             </div>
         </SidebarLeftLayout>

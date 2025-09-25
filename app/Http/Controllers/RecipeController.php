@@ -161,12 +161,12 @@ class RecipeController extends Controller
             },
             'media',
         ])->findOrFail($recipe->id);
-
         return Inertia::render('Recipes/Edit', [
-            'recipe' => $recipe->load(['ingredients', 'media']),
+            'recipe' => $recipe, // ✅ Kein zweites load() mehr
             'ingredients' => Ingredient::all(),
         ]);
     }
+
 
     /**
      * Updates a recipe in storage.

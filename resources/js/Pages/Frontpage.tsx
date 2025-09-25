@@ -27,8 +27,8 @@ export default function Frontpage() {
                         Nicht immer findet man spontan eine Idee zum Kochen.
                     </p>
                     <p className="text-base">
-                        Um ein kleines Nachschlagewerk zu haben, habe ich daher dieses
-                        Rezeptbuch erstellt.
+                        Um ein kleines Nachschlagewerk zu haben, habe ich daher dieses Rezeptbuch
+                        erstellt.
                     </p>
                     <p className="text-base">
                         Wer Lust hat, darf gerne Rezepte nachkochen, sich anmelden und eventuell

@@ -22,13 +22,11 @@ export default function BadgeButton({ ingredient }: BadgeButtonProps) {
      * @param {Ingredient} ingredient The ingredient to be deleted.
      */
     const onDelete = () => {
-        router.delete(
-            route('ingredients.destroy', { ingredient: ingredient.id }), {
-                onSuccess: () => reset(),
-                preserveScroll: true,
-                forceFormData: true
-            },
-        );
+        router.delete(route('ingredients.destroy', { ingredient: ingredient.id }), {
+            onSuccess: () => reset(),
+            preserveScroll: true,
+            forceFormData: true,
+        });
     };
 
     return (
@@ -36,28 +34,25 @@ export default function BadgeButton({ ingredient }: BadgeButtonProps) {
             <span className="group-hover:bg-rose-500 group-hover:border-rose-500 inline-flex whitespace-nowrap text-xs">
                 {ingredient.name}
             </span>
-            {user && typeof user === 'object' && (
-                user && (
-                    <>
-                        <button
-                            className="group-hover:text-gray-300 hover:text-gray-300 hover:cursor-pointer"
-                            title="Zutat bearbeiten"
-                            aria-label="Zutat bearbeiten"
-                        >
-                            <MdOutlineEdit className="size-3" />
-                        </button>
+            {user && typeof user === 'object' && user && (
+                <>
+                    <button
+                        className="group-hover:text-gray-300 hover:text-gray-300 hover:cursor-pointer"
+                        title="Zutat bearbeiten"
+                        aria-label="Zutat bearbeiten"
+                    >
+                        <MdOutlineEdit className="size-3" />
+                    </button>
 
-                            <button
-                                className="group-hover:text-rose-600 hover:text-rose-600 hover:cursor-pointer"
-                                title="Zutat entfernen"
-                                aria-label="Zutat entfernen"
-                                onClick={onDelete}
-                            >
-                                <SlClose className="size-3" />
-                            </button>
-
-                    </>
-                )
+                    <button
+                        className="group-hover:text-rose-600 hover:text-rose-600 hover:cursor-pointer"
+                        title="Zutat entfernen"
+                        aria-label="Zutat entfernen"
+                        onClick={onDelete}
+                    >
+                        <SlClose className="size-3" />
+                    </button>
+                </>
             )}
         </div>
     );

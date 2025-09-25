@@ -6,7 +6,13 @@ import TextInput from '@/components/TextInput';
 
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { GoPlus, GoPencil } from 'react-icons/go';
 import { Slider } from '@/components/ui/slider';
@@ -20,6 +26,7 @@ import { BsTrash3 } from 'react-icons/bs';
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 import imageCompression from 'browser-image-compression';
+
 interface RecipeIngredientData {
     ingredient_id: string;
     quantity: string;
@@ -61,7 +68,8 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
         preparation_time: Number(recipe?.preparation_time ?? 15),
         preparation_instructions: recipe?.preparation_instructions ?? '',
         pending_key: isEditing ? null : pendingKey,
-        primary_media_id: (recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null) as any,
+        primary_media_id: (recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ??
+            null) as any,
         // ✅ sicherstellen, dass immer ein Array da ist
         recipe_ingredients:
             recipe?.ingredients?.map((i) => ({
@@ -94,7 +102,7 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
     // --- Submit ---
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Submitted Data", data);
+        console.log('Submitted Data', data);
         post(route('recipes.store'), {
             forceFormData: true,
             onSuccess: () => reset(),
@@ -310,7 +318,7 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
                             <SelectTrigger className="w-full mt-1 py-2">
                                 <SelectValue placeholder="Schwierigkeitsgrad" />
                             </SelectTrigger>
-                            
+
                             <SelectContent>
                                 {Object.entries(Difficulty).map(([key, val]) => (
                                     <SelectItem key={key} value={val}>
@@ -324,14 +332,16 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
                             <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                         )}
                     </div>
-
                 </div>
 
                 {/* Zutaten */}
                 <div className="w-full space-y-3">
                     <InputLabel htmlFor="ingredients" value="Zutaten" />
                     {data.recipe_ingredients?.map((di, idx) => (
-                        <div key={idx} className="flex flex-row justify-start gap-2 items-start mb-3 ">
+                        <div
+                            key={idx}
+                            className="flex flex-row justify-start gap-2 items-start mb-3 "
+                        >
                             <TextInput
                                 placeholder="Menge"
                                 value={di.quantity}
@@ -381,7 +391,10 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
 
                 {/* Zubereitung */}
                 <div className="w-full space-y-3 mt-4">
-                    <InputLabel htmlFor="preparation_instructions" value="Zubereitung, so geht's&hellip;" />
+                    <InputLabel
+                        htmlFor="preparation_instructions"
+                        value="Zubereitung, so geht's&hellip;"
+                    />
                     <Textarea
                         id="preparation_instructions"
                         value={data.preparation_instructions}
@@ -390,7 +403,9 @@ export default function RecipeForm({ recipe, ingredients, className }: RecipeFor
                         className="mt-1 w-full rounded-lg border border-gray-400 px-3 py-2"
                         onChange={(e) => setData('preparation_instructions', e.target.value)}
                     />
-                    {errors.preparation_instructions && <p className="text-red-500">{errors.preparation_instructions}</p>}
+                    {errors.preparation_instructions && (
+                        <p className="text-red-500">{errors.preparation_instructions}</p>
+                    )}
                 </div>
 
                 {/* Submit */}

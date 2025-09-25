@@ -21,8 +21,7 @@ import { GoPlus } from 'react-icons/go';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
-
+import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 
 /**
  * The application header.
@@ -32,7 +31,7 @@ import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
 const Header = () => {
     const user = usePage().props.auth.user;
-    
+
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -54,9 +53,7 @@ const Header = () => {
                             </NavLink>
                             <NavLink
                                 href="/rezepte"
-                                active={
-                                    window.location.pathname.startsWith('/rezepte')
-                                }
+                                active={window.location.pathname.startsWith('/rezepte')}
                                 className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
                                 icon={<BsJournalBookmark />}
                             >
@@ -75,9 +72,6 @@ const Header = () => {
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
                         {user ? (
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
-                                <NavButton href="/admin" icon={<MdOutlineAdminPanelSettings />} active={window.location.pathname.startsWith('/admin')}>
-                                    Admin
-                                </NavButton>
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
@@ -103,6 +97,10 @@ const Header = () => {
                                         </span>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
+                                        <Dropdown.Link href="/admin" className="flex gap-2">
+                                            <MdOutlineAdminPanelSettings className="size-4" />
+                                            Admin
+                                        </Dropdown.Link>
                                         <Dropdown.Link href="/dashboard" className="flex gap-2">
                                             <RiDashboardHorizontalLine className="size-4" />
                                             Dashboard
@@ -128,9 +126,7 @@ const Header = () => {
                                 <NavButton
                                     href="/register"
                                     className="border border-gray-800 text-gray-800 hover:text-gray-600 hover:border-gray-600 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"
-                                    icon={
-                                        <FiCheckCircle className="asd" />
-                                    }
+                                    icon={<FiCheckCircle className="asd" />}
                                 >
                                     Registrierung
                                 </NavButton>
@@ -186,16 +182,10 @@ const Header = () => {
                             Start
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href="/gerichte"
-                            active={window.location.pathname === '/gerichte'}
+                            href="/rezepte"
+                            active={window.location.pathname.startsWith('/rezepte')}
                         >
                             Gerichte
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href="/cocktails"
-                            active={window.location.pathname === '/cocktails'}
-                        >
-                            Cocktails
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href="/zutaten"
@@ -217,8 +207,8 @@ const Header = () => {
                             </div>
 
                             <div className="mt-3 space-y-1">
-                                <ResponsiveNavLink href="/dashboard">Dashboard</ResponsiveNavLink>
-                                <ResponsiveNavLink href="/profile">Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink href="/dashboard" title="Dashboard" aria-label="Dashbaord">Dashboard</ResponsiveNavLink>
+                                <ResponsiveNavLink href="/profile" title="Dashboard" aria-label="Dashbaord">Profile</ResponsiveNavLink>
                                 <ResponsiveNavLink method="post" href="/logout" as="button">
                                     Log Out
                                 </ResponsiveNavLink>

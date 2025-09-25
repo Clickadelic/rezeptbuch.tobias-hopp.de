@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:public/build/assets/MainSidebar-CoYBGJNa.js
-import{u as a,j as e}from"./app-ChXCPFHx.js";import{N as t}from"./SidebarLink-BRuxwoKT.js";function n(){return a().props.auth.user,e.jsxs("aside",{className:"py-4",children:[e.jsx("h2",{className:"text-lg font-medium mb-2",children:"Navigation"}),e.jsxs("ul",{className:"flex flex-col",children:[e.jsx(t,{href:"/rezepte",active:window.location.pathname==="/rezepte",title:"Rezepte"}),e.jsx(t,{href:"/zutaten",active:window.location.pathname==="/zutaten",title:"Zutaten"})]})]})}export{n as L};
-========
-import{u as a,j as e}from"./app-DcncvX3c.js";import{N as t}from"./SidebarLink-BUgtAvpe.js";function n(){return a().props.auth.user,e.jsxs("aside",{className:"py-4",children:[e.jsx("h2",{className:"text-lg font-medium mb-2",children:"Navigation"}),e.jsxs("ul",{className:"flex flex-col",children:[e.jsx(t,{href:"/rezepte",active:window.location.pathname==="/rezepte",title:"Rezepte"}),e.jsx(t,{href:"/zutaten",active:window.location.pathname==="/zutaten",title:"Zutaten"})]})]})}export{n as L};
->>>>>>>> eeaee157a05f305714e8408b1bf87e114910d198:public/build/assets/MainSidebar-DwY8a_ta.js

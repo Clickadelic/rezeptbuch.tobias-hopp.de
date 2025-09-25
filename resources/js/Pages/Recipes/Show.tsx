@@ -192,29 +192,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <hr className="my-5" />
-                    <div className="asd">
-                        {recipe.media?.length && (
-                            <div className="flex flex-col gap-2">
-                                <h4 className="font-medium text-lg mt-4">Bilder</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {recipe.media?.map((media) => (
-                                        <div key={media.id}>
-                                            <img
-                                                src={media.url}
-                                                alt={media.name}
-                                                className="w-full max-h-64 rounded-lg object-cover"
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-=======
                     
->>>>>>> eeaee157a05f305714e8408b1bf87e114910d198
                 </div>
             </div>
         </SidebarLeftLayout>

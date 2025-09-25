@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:public/build/assets/SidebarLink-BRuxwoKT.js
-import{j as e,L as a}from"./app-ChXCPFHx.js";import{c as s}from"./index-hi2OFDgt.js";function o({active:r=!1,className:i="",...t}){return e.jsx("li",{children:e.jsxs(a,{...t,className:"w-full inline-flex flex-row items-start gap-3 py-3 focus:outline-none "+(r?"text-primary hover:text-primary focus:text-primary font-medium ":"text-gray-800 hover:text-gray-600 focus:text-gray-600 dark:text-gray-200")+i,title:t.title,children:[e.jsx(s,{className:"inline-flex mt-1"}),t.title]})})}export{o as N};
-========
-import{j as e,L as a}from"./app-DcncvX3c.js";import{c as s}from"./index-CFkii392.js";function o({active:r=!1,className:i="",...t}){return e.jsx("li",{children:e.jsxs(a,{...t,className:"w-full inline-flex flex-row items-start gap-3 py-3 focus:outline-none "+(r?"text-primary hover:text-primary focus:text-primary font-medium ":"text-gray-800 hover:text-gray-600 focus:text-gray-600 dark:text-gray-200")+i,title:t.title,children:[e.jsx(s,{className:"inline-flex mt-1"}),t.title]})})}export{o as N};
->>>>>>>> eeaee157a05f305714e8408b1bf87e114910d198:public/build/assets/SidebarLink-BUgtAvpe.js

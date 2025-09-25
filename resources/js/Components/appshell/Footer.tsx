@@ -42,22 +42,12 @@ export default function Footer() {
                                 </li>
                                 <li>
                                     <Link
-                                        href="/gerichte"
+                                        href="/rezepte"
                                         className="flex gap-1 text-gray-100 hover:text-gray-400"
-                                        title="Gerichte"
+                                        title="Rezepte"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
-                                        Gerichte
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="/cocktails"
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
-                                        title="Cocktails"
-                                    >
-                                        <BsChevronCompactRight className="mt-1" />
-                                        Cocktails
+                                        Rezepte
                                     </Link>
                                 </li>
                                 <li>

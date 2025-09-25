@@ -77,7 +77,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                     {user && (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger
-                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
+                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-2 hover:text-gray-200 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
                                                 onClick={(e) => e.stopPropagation()}
                                             >
                                                 <HiOutlineDotsVertical className="size-4" />
@@ -192,6 +192,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <hr className="my-5" />
                     <div className="asd">
                         {recipe.media?.length && (
@@ -211,6 +212,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         )}
                     </div>
+=======
+                    
+>>>>>>> eeaee157a05f305714e8408b1bf87e114910d198
                 </div>
             </div>
         </SidebarLeftLayout>

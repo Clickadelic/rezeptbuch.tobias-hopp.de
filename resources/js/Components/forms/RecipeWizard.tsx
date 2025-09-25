@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react'; // ✅ Richtig, extra Import
 import { Button } from '@/components/ui/button';
@@ -22,6 +22,7 @@ import { GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
+import { Link } from '@inertiajs/react';
 
 interface RecipeIngredientData {
     ingredient_id: string;
@@ -40,8 +41,18 @@ export default function RecipeCreateWizard({
     ingredients,
     className,
 }: RecipeCreateWizardProps) {
-    const [step, setStep] = useState<number>(1);
 
+    const [step, setStep] = useState<number>(1);
+    const formRef = useRef<HTMLFormElement>(null);
+    const scrollToTop = () => {
+    if (formRef.current) {
+            const top = formRef.current.getBoundingClientRect().top + window.scrollY - 20; // 20px Puffer
+            window.scrollTo({
+            top,
+            behavior: "smooth",
+            });
+        }
+    };
     // Pending key für Uploads vor dem Speichern (nur Create)
     const [pendingKey] = useState<string>(() =>
         typeof crypto !== 'undefined' && (crypto as any).randomUUID
@@ -105,6 +116,11 @@ export default function RecipeCreateWizard({
         if ((data.description?.trim()?.length ?? 0) < 10) return false;
         return true;
     })();
+
+    const handleStepChange = (newStep: number) => {
+        setStep(newStep);
+        setTimeout(scrollToTop, 50); // minimaler Delay, damit DOM updatet
+    };
 
     // Submit Handler → unterscheidet Create vs Edit
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -295,11 +311,22 @@ export default function RecipeCreateWizard({
                         </div>
                     </div>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
-                    <div className="flex justify-end gap-2">
+                    <div className="flex justify-between gap-2">
+                        <Button
+                            asChild
+                            type="button"
+                            variant="primaryOutline"
+                            
+                            disabled={!canNextFromStep1}
+                        >
+                            <Link href={route('recipes.index')}>Abbrechen</Link>
+                        </Button>
+                        
+                        
                         <Button
                             type="button"
                             variant="primaryOutline"
-                            onClick={() => setStep(2)}
+                            onClick={() => handleStepChange(2)}
                             disabled={!canNextFromStep1}
                         >
                             Weiter
@@ -315,48 +342,52 @@ export default function RecipeCreateWizard({
                     {data.recipe_ingredients?.map((di, idx) => (
                         <div
                             key={idx}
-                            className="flex flex-row justify-start gap-2 items-start mb-3"
+                            className="flex flex-row justify-between gap-2 items-start mb-3"
                         >
-                            <TextInput
-                                placeholder="Menge"
-                                value={di.quantity}
-                                className="w-full md:w-28"
-                                type="number"
-                                onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
-                            />
+                            <div className="asd">
+                                <TextInput
+                                    placeholder="Menge"
+                                    value={di.quantity}
+                                    className="asd"
+                                    type="number"
+                                    onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
+                                />
 
-                            <Select
-                                value={di.unit}
-                                onValueChange={(value) => updateIngredient(idx, 'unit', value)}
-                            >
-                                <SelectTrigger className="w-full md:w-28 mt-1 py-2">
-                                    <SelectValue placeholder="Einheit auswählen" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {Object.entries(UNITS).map(([key, val]) => (
-                                        <SelectItem key={key} value={val}>
-                                            {val}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                                <Select
+                                    value={di.unit}
+                                    onValueChange={(value) => updateIngredient(idx, 'unit', value)}
+                                >
+                                    <SelectTrigger className="asd mt-1 py-2">
+                                        <SelectValue placeholder="Einheit auswählen" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {Object.entries(UNITS).map(([key, val]) => (
+                                            <SelectItem key={key} value={val}>
+                                                {val}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
 
-                            <IngredientComboBox
-                                options={ingredients}
-                                value={di.ingredient_id}
-                                triggerClassName="w-96 md:w-full mt-1"
-                                onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
-                            />
+                            <div className="asda">
+                                <IngredientComboBox
+                                    options={ingredients}
+                                    value={di.ingredient_id}
+                                    triggerClassName="asd mt-1"
+                                    onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
+                                />
 
-                            <Button
-                                variant="destructive"
-                                className="mt-1.5 hover:cursor-pointer"
-                                size="sm"
-                                type="button"
-                                onClick={() => removeIngredient(idx)}
-                            >
-                                <BsTrash3 />
-                            </Button>
+                                <Button
+                                    variant="destructive"
+                                    className="mt-1.5 hover:cursor-pointer"
+                                    size="sm"
+                                    type="button"
+                                    onClick={() => removeIngredient(idx)}
+                                >
+                                    <BsTrash3 />
+                                </Button>
+                            </div>
                         </div>
                     ))}
 
@@ -365,10 +396,10 @@ export default function RecipeCreateWizard({
                     </Button>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                     <div className="flex justify-between gap-2">
-                        <Button type="button" variant="primaryOutline" onClick={() => setStep(1)}>
+                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(1)}>
                             Zurück
                         </Button>
-                        <Button type="button" variant="primaryOutline" onClick={() => setStep(3)}>
+                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(3)}>
                             Weiter
                         </Button>
                     </div>
@@ -458,7 +489,7 @@ export default function RecipeCreateWizard({
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />   
                     {/* Submit */}
                     <div className="flex justify-between gap-2">
-                        <Button type="button" variant="primaryOutline" onClick={() => setStep(2)}>
+                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(2)}>
                             Zurück
                         </Button>
                         <Button type="submit" variant="primary" disabled={processing} className="w-48">
@@ -470,3 +501,5 @@ export default function RecipeCreateWizard({
         </form>
     );
 }
+
+

@@ -3,7 +3,6 @@ import { usePage } from '@inertiajs/react';
 
 import { BsJournalBookmark } from 'react-icons/bs';
 
-
 export default function Dashboard() {
     const { auth } = usePage().props;
     const { ingredientCount } = usePage().props;
@@ -17,12 +16,11 @@ export default function Dashboard() {
                     </h2>
 
                     <p>
-                        Aktuell gibt es hier noch nicht allzu viel zu sehen, das wird sich aber
-                        mit der Zeit hoffentlich ändern.
+                        Aktuell gibt es hier noch nicht allzu viel zu sehen, das wird sich aber mit
+                        der Zeit hoffentlich ändern.
                     </p>
                     <p>
-                        Mehr Funktionen sind in der Zukunft geplant, mal sehen, was sich so
-                        ergibt.
+                        Mehr Funktionen sind in der Zukunft geplant, mal sehen, was sich so ergibt.
                     </p>
                 </div>
                 <div className="md:col-span-2 md:col-start-1 lg:col-span-1 lg:row-span-2 lg:col-start-4 rounded-xl ">
@@ -37,7 +35,9 @@ export default function Dashboard() {
                 </div>
                 <div className="md:col-start-1 md:col-span-2 lg:row-span-3 lg:col-span-1 lg:row-start-3 rounded-xl ">
                     <h2 className="text-lg font-medium">Zutaten</h2>
-                    <p className="text-sm text-gray-500">Es gibt insgesamt {ingredientCount as number} Zutaten im Rezeptbuch.</p>
+                    <p className="text-sm text-gray-500">
+                        Es gibt insgesamt {ingredientCount as number} Zutaten im Rezeptbuch.
+                    </p>
                 </div>
                 <div className="md:col-start-3 md:col-span-2 lg:row-span-2 lg:row-start-3 lg:col-start-2 lg:col-span-3 rounded-xl ">
                     <h2 className="text-lg font-medium">5</h2>

@@ -27,7 +27,7 @@ export default function UpdateProfileInformation({
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        console.log("Submitted Data", data);
+        console.log('Submitted Data', data);
     };
 
     return (
@@ -42,11 +42,7 @@ export default function UpdateProfileInformation({
                 </p>
             </header>
 
-            <form 
-                onSubmit={submit} 
-                className="mt-6 space-y-6"
-                encType="multipart/form-data"
-            >
+            <form onSubmit={submit} className="mt-6 space-y-6" encType="multipart/form-data">
                 {/* Name */}
                 <div>
                     <InputLabel htmlFor="name" value="Name" />

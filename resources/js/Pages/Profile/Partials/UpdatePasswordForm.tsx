@@ -39,7 +39,9 @@ export default function UpdatePasswordForm({ className = '' }: { className?: str
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">Passwort aktualisieren</h2>
+                <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    Passwort aktualisieren
+                </h2>
 
                 <p className="mt-1 text-sm text-gray-800 dark:text-gray-200">
                     Stelle sicher, dass Du ein langes, sicheres Passwort verwendest.
@@ -94,7 +96,9 @@ export default function UpdatePasswordForm({ className = '' }: { className?: str
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <Button disabled={processing} variant="primary">Speichern</Button>
+                    <Button disabled={processing} variant="primary">
+                        Speichern
+                    </Button>
 
                     <Transition
                         show={recentlySuccessful}

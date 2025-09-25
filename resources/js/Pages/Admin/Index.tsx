@@ -12,7 +12,9 @@ export default function Index() {
     return (
         <SidebarLeftLayout title="Admin" sidebar={<AdminSidebar />}>
             <h1>Willkommen {user.name}</h1>
-            <p>Deine Rollen: <strong>{user.roles?.join(', ')}</strong></p>
+            <p>
+                Deine Rollen: <strong>{user.roles?.join(', ')}</strong>
+            </p>
             <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
             <table className="w-full overflow-x-auto">
                 <thead>
@@ -32,7 +34,13 @@ export default function Index() {
                             <td className="p-1">{u.email}</td>
                             <td className="p-1 flex flex-wrap gap-2">
                                 {u.roles?.map((role: any) => (
-                                    <div key={role.id} role={role} className="bg-primary rounded text-white">{role}</div>
+                                    <div
+                                        key={role.id}
+                                        role={role}
+                                        className="bg-primary rounded text-white"
+                                    >
+                                        {role}
+                                    </div>
                                 ))}
                             </td>
                             <td className="p-3">
@@ -48,7 +56,7 @@ export default function Index() {
                         </tr>
                     ))}
                 </tbody>
-            </table> 
+            </table>
         </SidebarLeftLayout>
     );
 }

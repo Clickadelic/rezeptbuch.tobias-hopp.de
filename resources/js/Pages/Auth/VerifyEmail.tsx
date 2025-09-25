@@ -30,7 +30,13 @@ export default function VerifyEmail({ status }: { status?: string }) {
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <Button variant="primaryOutline" disabled={processing} aria-label="E-Mail erneut senden">E-Mai erneut senden</Button>
+                    <Button
+                        variant="primaryOutline"
+                        disabled={processing}
+                        aria-label="E-Mail erneut senden"
+                    >
+                        E-Mai erneut senden
+                    </Button>
 
                     <Link
                         href={route('logout')}

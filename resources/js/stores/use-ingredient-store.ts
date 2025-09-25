@@ -18,13 +18,12 @@ export const useIngredientStore = create(
             ingredients: [],
             editingIngredient: null,
 
-            addIngredient: (ingredient) =>
-                set({ ingredients: [...get().ingredients, ingredient] }),
+            addIngredient: (ingredient) => set({ ingredients: [...get().ingredients, ingredient] }),
 
             updateIngredient: (ingredient) =>
                 set({
                     ingredients: get().ingredients.map((i) =>
-                        i.id === ingredient.id ? ingredient : i
+                        i.id === ingredient.id ? ingredient : i,
                     ),
                     editingIngredient: null, // nach Update zurücksetzen
                 }),
@@ -36,6 +35,6 @@ export const useIngredientStore = create(
 
             resetIngredients: () => set({ ingredients: [], editingIngredient: null }),
         }),
-        { name: 'rezeptbuch-ingredient-store' }
-    )
+        { name: 'rezeptbuch-ingredient-store' },
+    ),
 );

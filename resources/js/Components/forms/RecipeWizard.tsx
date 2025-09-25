@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react'; // ✅ Richtig, extra Import
 import { Button } from '@/components/ui/button';
@@ -22,7 +22,8 @@ import { GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
-
+import { Link } from '@inertiajs/react';
+import { FaListCheck } from "react-icons/fa6";
 interface RecipeIngredientData {
     ingredient_id: string;
     quantity: string;
@@ -40,8 +41,18 @@ export default function RecipeCreateWizard({
     ingredients,
     className,
 }: RecipeCreateWizardProps) {
-    const [step, setStep] = useState<number>(1);
 
+    const [step, setStep] = useState<number>(1);
+    const formRef = useRef<HTMLFormElement>(null);
+    const scrollToTop = () => {
+    if (formRef.current) {
+            const top = formRef.current.getBoundingClientRect().top + window.scrollY - 20; // 20px Puffer
+            window.scrollTo({
+            top,
+            behavior: "smooth",
+            });
+        }
+    };
     // Pending key für Uploads vor dem Speichern (nur Create)
     const [pendingKey] = useState<string>(() =>
         typeof crypto !== 'undefined' && (crypto as any).randomUUID
@@ -106,6 +117,11 @@ export default function RecipeCreateWizard({
         return true;
     })();
 
+    const handleStepChange = (newStep: number) => {
+        setStep(newStep);
+        setTimeout(scrollToTop, 50); // minimaler Delay, damit DOM updatet
+    };
+
     // Submit Handler → unterscheidet Create vs Edit
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -137,32 +153,55 @@ export default function RecipeCreateWizard({
     return (
         <form onSubmit={handleSubmit} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
-            <ol className="flex items-center justify-between text-sm">
-                <li
-                    className={cn(
-                        'flex-1',
-                        step >= 1 ? 'font-semibold text-primary' : 'text-slate-400',
-                    )}
-                >
-                    1 · Basics
+            
+            <ol className="items-center sm:flex">
+                <li className="relative mb-6 sm:mb-0">
+                    <div className="flex items-center">
+                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
+                    </div>
+                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Eckdaten</h3>
+                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
+                    </div>
                 </li>
-                <li
-                    className={cn(
-                        'flex-1 text-center',
-                        step >= 2 ? 'font-semibold text-primary' : 'text-slate-400',
-                    )}
-                >
-                    2 · Zutaten
+                <li className="relative mb-6 sm:mb-0">
+                    <div className="flex items-center">
+                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
+                    </div>
+                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
+                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Alles, was benötigt wird.</span>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Wähle aus bestehenden Zutaten aus oder lege eine neue Zutat an.</p>
+                    </div>
                 </li>
-                <li
-                    className={cn(
-                        'flex-1 text-right',
-                        step >= 3 ? 'font-semibold text-primary' : 'text-slate-400',
-                    )}
-                >
-                    3 · Bilder & Abschluss
+                <li className="relative mb-6 sm:mb-0">
+                    <div className="flex items-center">
+                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
+                    </div>
+                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Bilder &amp; Zubereitung</h3>
+                        <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">asd</time>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Füge ein Bild hinzu und beschreibe die Zubereitung.</p>
+                    </div>
                 </li>
             </ol>
+
             <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
             {!canNextFromStep1 && (
                 <div
@@ -295,11 +334,22 @@ export default function RecipeCreateWizard({
                         </div>
                     </div>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
-                    <div className="flex justify-end gap-2">
+                    <div className="flex justify-between gap-2">
+                        <Button
+                            asChild
+                            type="button"
+                            variant="primaryOutline"
+                            
+                            disabled={!canNextFromStep1}
+                        >
+                            <Link href={route('recipes.index')}>Abbrechen</Link>
+                        </Button>
+                        
+                        
                         <Button
                             type="button"
                             variant="primaryOutline"
-                            onClick={() => setStep(2)}
+                            onClick={() => handleStepChange(2)}
                             disabled={!canNextFromStep1}
                         >
                             Weiter
@@ -315,48 +365,52 @@ export default function RecipeCreateWizard({
                     {data.recipe_ingredients?.map((di, idx) => (
                         <div
                             key={idx}
-                            className="flex flex-row justify-start gap-2 items-start mb-3"
+                            className="flex flex-row justify-between gap-2 items-start mb-3"
                         >
-                            <TextInput
-                                placeholder="Menge"
-                                value={di.quantity}
-                                className="w-full md:w-28"
-                                type="number"
-                                onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
-                            />
+                            <div className="asd">
+                                <TextInput
+                                    placeholder="Menge"
+                                    value={di.quantity}
+                                    className="asd"
+                                    type="number"
+                                    onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
+                                />
 
-                            <Select
-                                value={di.unit}
-                                onValueChange={(value) => updateIngredient(idx, 'unit', value)}
-                            >
-                                <SelectTrigger className="w-full md:w-28 mt-1 py-2">
-                                    <SelectValue placeholder="Einheit auswählen" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {Object.entries(UNITS).map(([key, val]) => (
-                                        <SelectItem key={key} value={val}>
-                                            {val}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                                <Select
+                                    value={di.unit}
+                                    onValueChange={(value) => updateIngredient(idx, 'unit', value)}
+                                >
+                                    <SelectTrigger className="asd mt-1 py-2">
+                                        <SelectValue placeholder="Einheit auswählen" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {Object.entries(UNITS).map(([key, val]) => (
+                                            <SelectItem key={key} value={val}>
+                                                {val}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
 
-                            <IngredientComboBox
-                                options={ingredients}
-                                value={di.ingredient_id}
-                                triggerClassName="w-96 md:w-full mt-1"
-                                onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
-                            />
+                            <div className="asda">
+                                <IngredientComboBox
+                                    options={ingredients}
+                                    value={di.ingredient_id}
+                                    triggerClassName="asd mt-1"
+                                    onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
+                                />
 
-                            <Button
-                                variant="destructive"
-                                className="mt-1.5 hover:cursor-pointer"
-                                size="sm"
-                                type="button"
-                                onClick={() => removeIngredient(idx)}
-                            >
-                                <BsTrash3 />
-                            </Button>
+                                <Button
+                                    variant="destructive"
+                                    className="mt-1.5 hover:cursor-pointer"
+                                    size="sm"
+                                    type="button"
+                                    onClick={() => removeIngredient(idx)}
+                                >
+                                    <BsTrash3 />
+                                </Button>
+                            </div>
                         </div>
                     ))}
 
@@ -365,10 +419,10 @@ export default function RecipeCreateWizard({
                     </Button>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                     <div className="flex justify-between gap-2">
-                        <Button type="button" variant="primaryOutline" onClick={() => setStep(1)}>
+                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(1)}>
                             Zurück
                         </Button>
-                        <Button type="button" variant="primaryOutline" onClick={() => setStep(3)}>
+                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(3)}>
                             Weiter
                         </Button>
                     </div>
@@ -458,7 +512,7 @@ export default function RecipeCreateWizard({
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />   
                     {/* Submit */}
                     <div className="flex justify-between gap-2">
-                        <Button type="button" variant="primaryOutline" onClick={() => setStep(2)}>
+                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(2)}>
                             Zurück
                         </Button>
                         <Button type="submit" variant="primary" disabled={processing} className="w-48">
@@ -470,3 +524,5 @@ export default function RecipeCreateWizard({
         </form>
     );
 }
+
+

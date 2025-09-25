@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
-import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
 import RecipeSidebar from '@/components/sidebars/MainSidebar';
 
 import { Recipe } from '@/types/Recipe';
@@ -44,7 +44,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
         }
     };
     return (
-        <SidebarLeftLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
+        <SidebarRightLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
             <div className="flex flex-col gap-3">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
                     <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
@@ -77,7 +77,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                     {user && (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger
-                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
+                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-2 hover:text-gray-200 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
                                                 onClick={(e) => e.stopPropagation()}
                                             >
                                                 <HiOutlineDotsVertical className="size-4" />
@@ -127,9 +127,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     </div>
                 </div>
-                <hr className="my-3" />
+                <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
-                    <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-3">
+                    <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
                         <h4 className="font-medium text-lg">Zutaten für</h4>
                         <div className="flex items-center gap-2">
                             <Button
@@ -192,26 +192,16 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-rose-200">
-                        {recipe.media?.length && (
+                    <div className="flex">
+                        <div className="w-full flex flex-col gap-2">
+                            <h4 className="font-medium text-lg mt-4">Anmerkungen</h4>
                             <div className="flex flex-col gap-2">
-                                <h4 className="font-medium text-lg mt-4">Bilder</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {recipe.media?.map((media) => (
-                                        <div key={media.id}>
-                                            <img
-                                                src={media.url}
-                                                alt={media.name}
-                                                className="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
+                                <p>{recipe.created_at}</p>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>
-        </SidebarLeftLayout>
+        </SidebarRightLayout>
     );
 }

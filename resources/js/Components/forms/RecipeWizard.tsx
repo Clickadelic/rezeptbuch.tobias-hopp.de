@@ -135,7 +135,7 @@ export default function RecipeCreateWizard({
     };
 
     return (
-        <form onSubmit={handleSubmit} className={cn('flex flex-col space-y-6', className)}>
+        <form onSubmit={handleSubmit} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
             <ol className="flex items-center justify-between text-sm">
                 <li
@@ -166,10 +166,10 @@ export default function RecipeCreateWizard({
             <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
             {!canNextFromStep1 && (
                 <div
-                    className="border border-sky-400 bg-sky-200 text-sm text-sky-700 px-4 py-3 rounded relative"
+                    className="border border-sky-400 bg-sky-200 text-sm text-sky-700 px-4 py-3 mb-4 rounded relative"
                     role="alert"
                 >
-                    <p className="text-smmt-2">
+                    <p className="text-sm">
                         Bitte bei Name mindestens 3 Zeichen und Beschreibung mindestens 10 Zeichen
                         ausfüllen.
                     </p>
@@ -404,12 +404,12 @@ export default function RecipeCreateWizard({
                                 (recipe ? liveMedia : pendingMedia).map((m) => (
                                     <label
                                         key={m.id}
-                                        className="relative w-28 h-28 border rounded overflow-hidden bg-gray-100 cursor-pointer"
+                                        className="relative w-48 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
                                     >
                                         <img
                                             src={m.url ?? `/storage/${m.path}`}
                                             alt={m.name}
-                                            className="w-full h-full object-cover"
+                                            className=" object-cover"
                                         />
                                         <input
                                             type="radio"

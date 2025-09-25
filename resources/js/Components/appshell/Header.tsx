@@ -72,13 +72,6 @@ const Header = () => {
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
                         {user ? (
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
-                                <NavButton
-                                    href="/admin"
-                                    icon={<MdOutlineAdminPanelSettings />}
-                                    active={window.location.pathname.startsWith('/admin')}
-                                >
-                                    Admin
-                                </NavButton>
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
@@ -104,6 +97,10 @@ const Header = () => {
                                         </span>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
+                                        <Dropdown.Link href="/admin" className="flex gap-2">
+                                            <MdOutlineAdminPanelSettings className="size-4" />
+                                            Admin
+                                        </Dropdown.Link>
                                         <Dropdown.Link href="/dashboard" className="flex gap-2">
                                             <RiDashboardHorizontalLine className="size-4" />
                                             Dashboard

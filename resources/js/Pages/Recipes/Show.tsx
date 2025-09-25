@@ -77,7 +77,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                     {user && (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger
-                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:cursor-pointer shadow-transparent z-20"
+                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
                                                 onClick={(e) => e.stopPropagation()}
                                             >
                                                 <HiOutlineDotsVertical className="size-4" />
@@ -163,9 +163,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <table className="table w-full text-gray-800">
                             <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th className="p-3 text-left rounded-tl-lg">Zutat</th>
+                                    <th className="p-3 w-full text-left rounded-tl-lg">Zutat</th>
                                     <th className="p-3 text-right">Menge</th>
-                                    <th className="p-3 text-left rounded-tr-lg">Einheit</th>
+                                    <th className="p-3 text-right rounded-tr-lg">Einheit</th>
                                 </tr>
                             </thead>
                             <tbody className="dark:text-gray-200">
@@ -178,7 +178,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                         <td className="p-3 text-right">
                                             {((ingredient.pivot?.quantity ?? 0) as number) * count}
                                         </td>
-                                        <td className="p-3 text-left">{ingredient.pivot?.unit}</td>
+                                        <td className="p-3 text-right">{ingredient.pivot?.unit}</td>
                                     </tr>
                                 ))}
                             </tbody>

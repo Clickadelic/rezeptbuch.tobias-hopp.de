@@ -182,7 +182,7 @@ const Header = () => {
                             href="/rezepte"
                             active={window.location.pathname.startsWith('/rezepte')}
                         >
-                            Gerichte
+                            Rezepte
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href="/zutaten"

@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
-import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
+import SidebarRightLayout from '@/layouts/SidebarRightLayout';
 import RecipeSidebar from '@/components/sidebars/MainSidebar';
 
 import { Recipe } from '@/types/Recipe';
@@ -44,7 +44,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
         }
     };
     return (
-        <SidebarLeftLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
+        <SidebarRightLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
             <div className="flex flex-col gap-3">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
                     <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
@@ -129,7 +129,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 </div>
                 <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
-                    <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-3">
+                    <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
                         <h4 className="font-medium text-lg">Zutaten für</h4>
                         <div className="flex items-center gap-2">
                             <Button
@@ -192,9 +192,16 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                    
+                    <div className="flex">
+                        <div className="w-full flex flex-col gap-2">
+                            <h4 className="font-medium text-lg mt-4">Anmerkungen</h4>
+                            <div className="flex flex-col gap-2">
+                                <p>{recipe.created_at}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </SidebarLeftLayout>
+        </SidebarRightLayout>
     );
 }

@@ -113,9 +113,8 @@ export default function Footer() {
                                 <IoIosRibbon className="mt-1" />
                                 <span className="font-medium font-oswald">100% Qualit&auml;t</span>
                             </h2>
-                            <p className="mb-8 sm:mb-1 text-center sm:text-left">
-                                Alle Gerichte wurden selbstverständlich vorher von mir gekocht,
-                                probiert und verfeinert.
+                            <p className="mb-5 text-center sm:text-left">
+                                Alle Rezepte wurden entweder schon mal gekocht oder für gut befunden und probiert.
                             </p>
                             <img src={badgeSrc} alt="100% Qualit&auml;t" className="mx-auto" />
                         </div>

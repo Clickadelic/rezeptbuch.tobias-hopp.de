@@ -404,12 +404,12 @@ export default function RecipeCreateWizard({
                                 (recipe ? liveMedia : pendingMedia).map((m) => (
                                     <label
                                         key={m.id}
-                                        className="relative w-28 h-28 border rounded overflow-hidden bg-gray-100 cursor-pointer"
+                                        className="relative w-48 aspect-video border rounded overflow-hidden bg-gray-100 cursor-pointer"
                                     >
                                         <img
                                             src={m.url ?? `/storage/${m.path}`}
                                             alt={m.name}
-                                            className="w-full h-full object-cover"
+                                            className=" object-cover"
                                         />
                                         <input
                                             type="radio"

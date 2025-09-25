@@ -185,16 +185,10 @@ const Header = () => {
                             Start
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href="/gerichte"
-                            active={window.location.pathname === '/gerichte'}
+                            href="/rezepte"
+                            active={window.location.pathname.startsWith('/rezepte')}
                         >
                             Gerichte
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href="/cocktails"
-                            active={window.location.pathname === '/cocktails'}
-                        >
-                            Cocktails
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href="/zutaten"
@@ -216,8 +210,8 @@ const Header = () => {
                             </div>
 
                             <div className="mt-3 space-y-1">
-                                <ResponsiveNavLink href="/dashboard">Dashboard</ResponsiveNavLink>
-                                <ResponsiveNavLink href="/profile">Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink href="/dashboard" title="Dashboard" aria-label="Dashbaord">Dashboard</ResponsiveNavLink>
+                                <ResponsiveNavLink href="/profile" title="Dashboard" aria-label="Dashbaord">Profile</ResponsiveNavLink>
                                 <ResponsiveNavLink method="post" href="/logout" as="button">
                                     Log Out
                                 </ResponsiveNavLink>

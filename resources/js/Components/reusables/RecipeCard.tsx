@@ -71,7 +71,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                         {user && (
                             <DropdownMenu>
                                 <DropdownMenuTrigger
-                                    className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-300 hover:cursor-pointer shadow-transparent z-20"
+                                    className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-300 hover:cursor-pointer shadow-transparent z-20 rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <HiOutlineDotsVertical className="size-4" />

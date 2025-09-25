@@ -125,6 +125,7 @@ export function RecipeMediaUploader({
                 type="button"
                 onClick={handleUpload}
                 disabled={loading || !file}
+                variant="primary"
                 className="w-full hover:cursor-pointer"
             >
                 {loading ? 'Lädt…' : 'Bild hochladen'}

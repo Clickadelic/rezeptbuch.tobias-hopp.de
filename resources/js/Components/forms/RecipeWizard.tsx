@@ -295,9 +295,10 @@ export default function RecipeCreateWizard({
                         </div>
                     </div>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
-                    <div className="w-64 mx-auto flex justify-center">
+                    <div className="flex justify-end gap-2">
                         <Button
                             type="button"
+                            variant="primaryOutline"
                             onClick={() => setStep(2)}
                             disabled={!canNextFromStep1}
                         >
@@ -310,16 +311,16 @@ export default function RecipeCreateWizard({
             {/* STEP 2: Zutaten */}
             {step === 2 && (
                 <section className="space-y-4">
-                    <InputLabel htmlFor="ingredients" value="Zutaten" />
+                    <InputLabel htmlFor="ingredients" value="Zutatenliste bearbeiten" />
                     {data.recipe_ingredients?.map((di, idx) => (
                         <div
                             key={idx}
-                            className="flex-row justify-start gap-2 items-start mb-3"
+                            className="flex flex-row justify-start gap-2 items-start mb-3"
                         >
                             <TextInput
                                 placeholder="Menge"
                                 value={di.quantity}
-                                className="asd"
+                                className="w-full md:w-28"
                                 type="number"
                                 onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
                             />
@@ -328,7 +329,7 @@ export default function RecipeCreateWizard({
                                 value={di.unit}
                                 onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                             >
-                                <SelectTrigger className="mt-1 py-2">
+                                <SelectTrigger className="w-full md:w-28 mt-1 py-2">
                                     <SelectValue placeholder="Einheit auswählen" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -343,7 +344,7 @@ export default function RecipeCreateWizard({
                             <IngredientComboBox
                                 options={ingredients}
                                 value={di.ingredient_id}
-                                triggerClassName="mt-1"
+                                triggerClassName="w-96 md:w-full mt-1"
                                 onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                             />
 
@@ -363,11 +364,11 @@ export default function RecipeCreateWizard({
                         <GoPlus /> Zutat hinzufügen
                     </Button>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
-                    <div className="w-96 mx-auto flex justify-between gap-2">
-                        <Button type="button" variant="secondary" onClick={() => setStep(1)}>
+                    <div className="flex justify-between gap-2">
+                        <Button type="button" variant="primaryOutline" onClick={() => setStep(1)}>
                             Zurück
                         </Button>
-                        <Button type="button" onClick={() => setStep(3)}>
+                        <Button type="button" variant="primaryOutline" onClick={() => setStep(3)}>
                             Weiter
                         </Button>
                     </div>
@@ -456,11 +457,11 @@ export default function RecipeCreateWizard({
                     </div>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />   
                     {/* Submit */}
-                    <div className="w-96 mx-auto flex justify-between gap-2">
-                        <Button type="button" variant="secondary" onClick={() => setStep(2)}>
+                    <div className="flex justify-between gap-2">
+                        <Button type="button" variant="primaryOutline" onClick={() => setStep(2)}>
                             Zurück
                         </Button>
-                        <Button type="submit" disabled={processing} className="w-48">
+                        <Button type="submit" variant="primary" disabled={processing} className="w-48">
                             {recipe ? 'Speichern' : 'Erstellen'}
                         </Button>
                     </div>

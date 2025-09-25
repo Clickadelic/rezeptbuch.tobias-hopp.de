@@ -29,15 +29,15 @@ export function RecipeMediaUploader({
         if (!rawFile) return;
         try {
             const options = {
-                maxSizeMB: 1,           // Zielgröße max. ~1MB
+                maxSizeMB: 1, // Zielgröße max. ~1MB
                 maxWidthOrHeight: 1920, // maximale Bildbreite oder -höhe
-                useWebWorker: true,     // schneller, im Hintergrund
+                useWebWorker: true, // schneller, im Hintergrund
             };
 
             const compressedFile = await imageCompression(rawFile, options);
 
             console.log(
-                `Original: ${(rawFile.size / 1024 / 1024).toFixed(2)} MB → Komprimiert: ${(compressedFile.size / 1024 / 1024).toFixed(2)} MB`
+                `Original: ${(rawFile.size / 1024 / 1024).toFixed(2)} MB → Komprimiert: ${(compressedFile.size / 1024 / 1024).toFixed(2)} MB`,
             );
 
             setFile(compressedFile);
@@ -115,7 +115,8 @@ export function RecipeMediaUploader({
             {/* Info zur ausgewählten Datei */}
             {file && (
                 <div className="text-sm text-gray-600">
-                    Datei bereit: <strong>{file.name}</strong> ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                    Datei bereit: <strong>{file.name}</strong> (
+                    {(file.size / 1024 / 1024).toFixed(2)} MB)
                 </div>
             )}
 
@@ -124,6 +125,7 @@ export function RecipeMediaUploader({
                 type="button"
                 onClick={handleUpload}
                 disabled={loading || !file}
+                variant="primary"
                 className="w-full hover:cursor-pointer"
             >
                 {loading ? 'Lädt…' : 'Bild hochladen'}

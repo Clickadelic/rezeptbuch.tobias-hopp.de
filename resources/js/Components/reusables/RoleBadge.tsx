@@ -1,4 +1,3 @@
-
 interface RoleBadgeProps {
     id?: string;
     role?: string;

@@ -11,7 +11,7 @@ import { router } from '@inertiajs/react';
 
 import { MdOutlineEdit } from 'react-icons/md';
 import { GoClock, GoTrash, GoPlus } from 'react-icons/go';
-import { FiMinus } from "react-icons/fi";
+import { FiMinus } from 'react-icons/fi';
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { BiDish } from 'react-icons/bi';
@@ -38,11 +38,11 @@ export default function Show({ recipe }: ShowRecipeProps) {
     const user = usePage().props.auth?.user;
     const [count, setCount] = useState<number>(1);
     const deleteRecipe = (e: React.MouseEvent) => {
-            e.stopPropagation(); // verhindert, dass der Link-Klick ausgelöst wird
-            if (confirm('Willst du dieses Rezept wirklich löschen?')) {
-                router.delete(route('recipes.destroy', recipe.id));
-            }
-        };
+        e.stopPropagation(); // verhindert, dass der Link-Klick ausgelöst wird
+        if (confirm('Willst du dieses Rezept wirklich löschen?')) {
+            router.delete(route('recipes.destroy', recipe.id));
+        }
+    };
     return (
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
             <div className="flex flex-col gap-3">
@@ -69,13 +69,15 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             <div className="w-full flex flex-col">
                                 <div className="relative w-full flex flex-row justify-between items-center">
                                     <div>
-                                        <h4 className="font-medium text-sm font-oswald text-gray-800 dark:text-gray-200">{recipe.punchline}</h4>
+                                        <h4 className="font-medium text-sm font-oswald text-gray-800 dark:text-gray-200">
+                                            {recipe.punchline}
+                                        </h4>
                                         <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
                                     </div>
                                     {user && (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger
-                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:cursor-pointer shadow-transparent z-20"
+                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-500 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
                                                 onClick={(e) => e.stopPropagation()}
                                             >
                                                 <HiOutlineDotsVertical className="size-4" />
@@ -102,7 +104,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                         </DropdownMenu>
                                     )}
                                 </div>
-                                <p className="text-sm text-gray-800 dark:text-gray-200">{recipe.description}</p>
+                                <p className="text-sm text-gray-800 dark:text-gray-200">
+                                    {recipe.description}
+                                </p>
                             </div>
                         </div>
                         <div className="flex flex-row justify-between gap-1">
@@ -129,7 +133,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <h4 className="font-medium text-lg">Zutaten für</h4>
                         <div className="flex items-center gap-2">
                             <Button
-                                onClick={() => setCount(prev => Math.max(1, prev - 1))}
+                                onClick={() => setCount((prev) => Math.max(1, prev - 1))}
                                 className="py-5 hover:cursor-pointer shadow-none"
                                 variant="primaryOutline"
                                 size="sm"
@@ -144,7 +148,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 {count > 1 ? ' Personen' : ' Person'}
                             </div>
                             <Button
-                                onClick={() => setCount(prev => prev + 1)}
+                                onClick={() => setCount((prev) => prev + 1)}
                                 className="py-5 hover:cursor-pointer shadow-none"
                                 variant="primaryOutline"
                                 size="sm"
@@ -159,9 +163,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <table className="table w-full text-gray-800">
                             <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th className="p-3 text-left rounded-tl-lg">Zutat</th>
+                                    <th className="p-3 w-full text-left rounded-tl-lg">Zutat</th>
                                     <th className="p-3 text-right">Menge</th>
-                                    <th className="p-3 text-left rounded-tr-lg">Einheit</th>
+                                    <th className="p-3 text-right rounded-tr-lg">Einheit</th>
                                 </tr>
                             </thead>
                             <tbody className="dark:text-gray-200">
@@ -172,11 +176,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                     >
                                         <td className="p-3">{ingredient.name}</td>
                                         <td className="p-3 text-right">
-                                            {(ingredient.pivot?.quantity ?? 0) as number * count}
+                                            {((ingredient.pivot?.quantity ?? 0) as number) * count}
                                         </td>
-                                        <td className="p-3 text-left">
-                                            {ingredient.pivot?.unit}
-                                        </td>
+                                        <td className="p-3 text-right">{ingredient.pivot?.unit}</td>
                                     </tr>
                                 ))}
                             </tbody>

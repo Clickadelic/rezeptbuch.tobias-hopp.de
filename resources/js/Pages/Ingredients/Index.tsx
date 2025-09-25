@@ -7,7 +7,6 @@ import { Ingredient } from '@/types/Ingredient';
 import IngredientForm from '@/components/forms/IngredientForm';
 import BadgeButton from '@/components/reusables/BadgeButton';
 
-
 export default function IngredientsIndex() {
     const { props } = usePage();
     const { ingredients } = props;
@@ -17,9 +16,9 @@ export default function IngredientsIndex() {
         <NoSidebarsLayout title="Zutaten">
             <p>
                 Die Zutatenliste ist für alle Benutzer global. Dies hat den Vorteil, dass man
-                irgendwann bequem aus einem Pool an Zutaten auswählen kann, ohne diese jedes Mal
-                neu einzutippen. Mit der Zeit wird die Liste an Zutaten länger, die Zeit beim
-                Anlegen eines Rezeptes kürzer. Ist doch super, oder? Viel Spaß &amp; Erfolg.
+                irgendwann bequem aus einem Pool an Zutaten auswählen kann, ohne diese jedes Mal neu
+                einzutippen. Mit der Zeit wird die Liste an Zutaten länger, die Zeit beim Anlegen
+                eines Rezeptes kürzer. Ist doch super, oder? Viel Spaß &amp; Erfolg.
             </p>
             {user && typeof user === 'object' && (
                 <>

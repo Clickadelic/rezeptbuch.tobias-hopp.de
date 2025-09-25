@@ -16,7 +16,7 @@ import { Recipe } from '@/types/Recipe';
  * This prop should contain an array of Recipe objects.
  */
 export default function Recipes() {
-    const { props  } = usePage();
+    const { props } = usePage();
     const { recipes } = props;
 
     return (

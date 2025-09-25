@@ -127,7 +127,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     </div>
                 </div>
-                <hr className="my-3" />
+                <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
                     <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-3">
                         <h4 className="font-medium text-lg">Zutaten für</h4>
@@ -192,7 +192,8 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-rose-200">
+                    <hr className="my-5" />
+                    <div className="asd">
                         {recipe.media?.length && (
                             <div className="flex flex-col gap-2">
                                 <h4 className="font-medium text-lg mt-4">Bilder</h4>
@@ -202,7 +203,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                             <img
                                                 src={media.url}
                                                 alt={media.name}
-                                                className="w-full h-full object-cover"
+                                                className="w-full max-h-64 rounded-lg object-cover"
                                             />
                                         </div>
                                     ))}

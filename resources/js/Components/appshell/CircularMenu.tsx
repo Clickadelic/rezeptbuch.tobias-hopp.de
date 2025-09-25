@@ -13,7 +13,11 @@ import { cn } from '@/lib/utils';
 export function CircularMenu() {
     const { auth } = usePage().props;
 
-    if (!auth.user || window.location.pathname.endsWith('/neues-rezept')) return null;
+    if (!auth.user ||
+        window.location.pathname.endsWith('/neues-rezept') ||
+        window.location.pathname.endsWith('/edit')) {
+        return null;
+    }
 
     const [showCircularMenu, setShowCircularMenu] = useState(false);
 

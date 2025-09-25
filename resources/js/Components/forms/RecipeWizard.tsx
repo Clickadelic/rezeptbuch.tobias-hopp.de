@@ -23,7 +23,7 @@ import { BsTrash3 } from 'react-icons/bs';
 import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
 import { Link } from '@inertiajs/react';
-
+import { FaListCheck } from "react-icons/fa6";
 interface RecipeIngredientData {
     ingredient_id: string;
     quantity: string;
@@ -153,32 +153,55 @@ export default function RecipeCreateWizard({
     return (
         <form onSubmit={handleSubmit} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
-            <ol className="flex items-center justify-between text-sm">
-                <li
-                    className={cn(
-                        'flex-1',
-                        step >= 1 ? 'font-semibold text-primary' : 'text-slate-400',
-                    )}
-                >
-                    1 · Basics
+            
+            <ol className="items-center sm:flex">
+                <li className="relative mb-6 sm:mb-0">
+                    <div className="flex items-center">
+                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
+                    </div>
+                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Eckdaten</h3>
+                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
+                    </div>
                 </li>
-                <li
-                    className={cn(
-                        'flex-1 text-center',
-                        step >= 2 ? 'font-semibold text-primary' : 'text-slate-400',
-                    )}
-                >
-                    2 · Zutaten
+                <li className="relative mb-6 sm:mb-0">
+                    <div className="flex items-center">
+                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
+                    </div>
+                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
+                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Alles, was benötigt wird.</span>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Wähle aus bestehenden Zutaten aus oder lege eine neue Zutat an.</p>
+                    </div>
                 </li>
-                <li
-                    className={cn(
-                        'flex-1 text-right',
-                        step >= 3 ? 'font-semibold text-primary' : 'text-slate-400',
-                    )}
-                >
-                    3 · Bilder & Abschluss
+                <li className="relative mb-6 sm:mb-0">
+                    <div className="flex items-center">
+                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
+                    </div>
+                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Bilder &amp; Zubereitung</h3>
+                        <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">asd</time>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Füge ein Bild hinzu und beschreibe die Zubereitung.</p>
+                    </div>
                 </li>
             </ol>
+
             <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
             {!canNextFromStep1 && (
                 <div

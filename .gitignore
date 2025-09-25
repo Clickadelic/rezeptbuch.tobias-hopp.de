@@ -17,7 +17,8 @@
 #/public/build/assets
 /public/storage
 /public/storage/debugbar/*
-# /public/uploads/*
+public/uploads/*
+!public/uploads/.gitkeep
 /storage/*.key
 /storage/pail
 /vendor

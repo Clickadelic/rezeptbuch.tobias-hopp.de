@@ -7,17 +7,14 @@ import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/Dropdown';
 
-import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/appshell/ModeToggle';
 
 import { BsHouse } from 'react-icons/bs';
 import { BsJournalBookmark } from 'react-icons/bs';
-import { LiaCocktailSolid } from 'react-icons/lia';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
 import { TbSalt } from 'react-icons/tb';
 import { RxAvatar } from 'react-icons/rx';
-import { GoPlus } from 'react-icons/go';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';

@@ -164,47 +164,47 @@ export default function RecipeWizzard({
     return (
         <form onSubmit={handleSubmit} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
-            <ol className="items-center w-full space-y-4 sm:flex sm:justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
-                <li className="relative mb-6 sm:mb-0">
+            <ol className="items-center w-full space-y-4 flex justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
+                <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
                         <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 1 ? 'bg-primary text-white' : ' border-gray-200')}>
                             <TbNumber1 className="size-4" />
                         </span>
-                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
                     </div>
-                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                    <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Eckdaten</h3>
-                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
-                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
+                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
+                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
                     </div>
                 </li>
-                <li className="relative mb-6 sm:mb-0">
+                <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
                         <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 2 ? 'bg-primary text-white' : ' border-gray-200')}>
                             <TbNumber2 className="size-4" />
                         </span>
-                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
                     </div>
-                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                    <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
-                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bearbeite die Zutatenliste.</span>
-                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Neue oder bestehende Zutaten hinzufügen.</p>
+                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bearbeite die Zutatenliste.</span>
+                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Neue oder bestehende Zutaten hinzufügen.</p>
                     </div>
                 </li>
-                <li className="relative mb-6 sm:mb-0">
+                <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
                         <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 3 ? 'bg-primary text-white' : ' border-gray-200')}>
                             <TbNumber3 className="size-4" />
                         </span>
-                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
                     </div>
-                    <div className="mt-0 sm:mt-5 sm:pe-8">
+                    <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Eckdaten</h3>
-                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
-                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
+                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
+                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
                     </div>
                 </li>
             </ol>
@@ -216,8 +216,7 @@ export default function RecipeWizzard({
                     role="alert"
                 >
                     <p className="text-sm">
-                        Bitte bei Name mindestens 3 Zeichen und Beschreibung mindestens 10 Zeichen
-                        ausfüllen.
+                        Name mindestens 3 Zeichen.
                     </p>
                 </div>
             )}

@@ -219,7 +219,7 @@ export default function RecipeWizzard({
             )}
             {/* STEP 1: Basics */}
             {step === 1 && (
-                <section className="space-y-4">
+                <section className="space-y-4 min-h-[32rem]">
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />
@@ -367,7 +367,7 @@ export default function RecipeWizzard({
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
-                <section className="space-y-4">
+                <section className="space-y-4 min-h-[32rem]">
                     <InputLabel htmlFor="ingredients" value="Zutatenliste bearbeiten" />
                     {data.recipe_ingredients?.map((di, idx) => (
                         <div
@@ -438,7 +438,7 @@ export default function RecipeWizzard({
 
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
-                <section className="space-y-4">
+                <section className="space-y-4 min-h-[32rem]">
                     {/* Uploader */}
                     <div className="w-full space-y-3">
                         <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />

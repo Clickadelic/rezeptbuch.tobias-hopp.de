@@ -23,9 +23,10 @@ interface EditRecipeProps {
 export default function RecipeEdit({ recipe }: EditRecipeProps) {
     const { props } = usePage();
     const ingredients = props.ingredients;
+    const categories = props.categories;
     return (
         <SidebarLeftLayout title="Rezept bearbeiten" sidebar={<RecipesSidebar />}>
-            <RecipeWizzard recipe={recipe} ingredients={ingredients} />
+            <RecipeWizzard recipe={recipe} ingredients={ingredients} categories={categories} />
         </SidebarLeftLayout>
     );
 }

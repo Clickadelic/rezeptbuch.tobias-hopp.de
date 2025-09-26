@@ -1,9 +1,12 @@
 import {ToggleGroup,ToggleGroupItem } from "@/components/ui/toggle-group"
 import { cn } from "@/lib/utils"
+import InputLabel from "@/components/InputLabel";
 
-import { Martini, IceCream, Coffee } from "lucide-react"
+import { IceCream, Coffee } from "lucide-react"
 import { LuUtensilsCrossed } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi"; // Beispiel-Icons
+import { LiaCocktailSolid } from "react-icons/lia";
+import { RiCake3Line } from "react-icons/ri";
 
 interface CategoryGridProps {
   categories: {
@@ -17,19 +20,21 @@ interface CategoryGridProps {
 
 export default function CategoryGrid({ categories, selectedCategoryId, onChange }: CategoryGridProps) {
   return (
+    <>
+    <InputLabel className="mb-3" value="Kategorien" />
     <ToggleGroup
       type="single"
-      value={selectedCategoryId}
+      value={selectedCategoryId || ''} 
       onValueChange={(val) => val && onChange(val)}
-      className="grid grid-cols-2 md:grid-cols-3 gap-4"
+      className="grid md:grid-cols-7 gap-4"
     >
       {categories.map((category) => {
-        // Dynamische Icons – könnte man später aus der DB ziehen
+        
         const iconMap: Record<string, JSX.Element> = {
           vorspeise: <LuUtensilsCrossed className="w-6 h-6" />,
           hauptgang: <PiCookingPot className="w-6 h-6" />,
           nachtisch: <IceCream className="w-6 h-6" />,
-          cocktail: <Martini className="w-6 h-6" />,
+          cocktail: <LiaCocktailSolid className="w-6 h-6" />,
           aperitif: <Coffee className="w-6 h-6" />
         }
 
@@ -38,20 +43,21 @@ export default function CategoryGrid({ categories, selectedCategoryId, onChange 
             key={category.id}
             value={category.id}
             className={cn(
-              "flex flex-col items-center justify-center p-4 border rounded-xl text-center transition-all cursor-pointer",
+              "flex items-center justify-center p-4 border rounded-lg text-center transition-all cursor-pointer",
               "hover:border-emerald-500 hover:bg-emerald-50",
               selectedCategoryId === category.id
                 ? "border-primary bg-emerald-100 text-emerald-700"
                 : "border-gray-200 bg-white"
             )}
           >
-            <div className="mb-2 text-primary">
-              {iconMap[category.slug] || <CookingPot className="w-6 h-6" />}
+            <div className="my-2 text-primary">
+              {iconMap[category.slug] || <RiCake3Line className="w-6 h-6" />}
             </div>
             <span className="text-sm font-medium">{category.name}</span>
           </ToggleGroupItem>
         )
       })}
     </ToggleGroup>
+    </>
   )
 }

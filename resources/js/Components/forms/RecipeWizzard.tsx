@@ -48,7 +48,7 @@ export default function RecipeWizzard({
 
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
-
+    console.log(categories);
     /**
      * Smoothly scrolls to the top of the form element.
      * @remarks
@@ -81,7 +81,6 @@ export default function RecipeWizzard({
     const [liveMedia, setLiveMedia] = useState<Array<any>>(recipe?.media ?? []);
 
     // useForm initialisieren → Create oder Edit
-    // @ts-ignore
     const { data, setData, post, processing, errors, reset } = useForm({
         id: recipe?.id ?? null,
         name: recipe?.name ?? '',
@@ -100,6 +99,7 @@ export default function RecipeWizzard({
                 quantity: i.pivot?.quantity ?? '',
                 unit: i.pivot?.unit ?? 'gr',
             })) ?? [],
+
     });
 
     // Zutaten-Helpers
@@ -174,7 +174,7 @@ export default function RecipeWizzard({
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Eckdaten</h3>
+                        <h3 className={cn('text-center md:text-left text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Basics</h3>
                         <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
                         <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
                     </div>
@@ -202,9 +202,9 @@ export default function RecipeWizzard({
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Eckdaten</h3>
-                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
-                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Details</h3>
+                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bilder &amp; Zubereitung.</span>
+                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Füge ein Bild hinzu, beschreibe die Zubereitung.</p>
                     </div>
                 </li>
             </ol>
@@ -224,17 +224,13 @@ export default function RecipeWizzard({
             {step === 1 && (
                 <section className="space-y-4">
                     {/* Kategorie */}
-                    <div className="space-y-6">
+                    {/* <div>
                         <CategoryGrid
                             categories={categories}
-                            selectedCategoryId={data.category_id}
+                            selectedCategoryId={data?.category_id}
                             onChange={(id) => setData('category_id', id)}
                         />
-
-                        {errors.category_id && (
-                            <p className="text-sm text-red-500 mt-2">{errors.category_id}</p>
-                        )}
-                    </div>
+                    </div> */}
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />

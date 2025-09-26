@@ -57,7 +57,7 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
                         <RecipeSearch />
                         <BreadcrumbNav />
                     </div>
-                    <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+                    <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         <main className="pt-4 pb-16">
                             {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
                             {children}

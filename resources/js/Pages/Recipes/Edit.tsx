@@ -1,10 +1,11 @@
 import { usePage } from '@inertiajs/react';
 
 import RecipesSidebar from '@/components/sidebars/MainSidebar';
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 
 import { Recipe } from '@/types/Recipe';
-import RecipeCreateWizard from '@/components/forms/RecipeWizard';
+import RecipeCreateWizard from '@/components/forms/RecipeWizzard';
+
 
 interface EditRecipeProps {
     recipe: Recipe;
@@ -23,8 +24,8 @@ export default function RecipeEdit({ recipe }: EditRecipeProps) {
     const { props } = usePage();
     const ingredients = props.ingredients;
     return (
-        <SidebarRightLayout title="Rezept bearbeiten" sidebar={<RecipesSidebar />}>
+        <SidebarLeftLayout title="Rezept bearbeiten" sidebar={<RecipesSidebar />}>
             <RecipeCreateWizard recipe={recipe} ingredients={ingredients} />
-        </SidebarRightLayout>
+        </SidebarLeftLayout>
     );
 }

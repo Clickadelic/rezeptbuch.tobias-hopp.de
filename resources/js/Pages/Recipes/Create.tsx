@@ -1,8 +1,8 @@
 import { usePage } from '@inertiajs/react';
 
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
-import RecipeWizard from '@/components/forms/RecipeWizard';
+import RecipeWizard from '@/components/forms/RecipeWizzard';
 
 /**
  * Page for creating a new recipe.
@@ -15,8 +15,8 @@ export default function RecipesCreate() {
     const { props } = usePage();
     const ingredients = props.ingredients;
     return (
-        <SidebarRightLayout title="Neues Rezept" sidebar={<MainSidebar />}>
+        <SidebarLeftLayout title="Neues Rezept" sidebar={<MainSidebar />}>
             <RecipeWizard ingredients={ingredients} />
-        </SidebarRightLayout>
+        </SidebarLeftLayout>
     );
 }

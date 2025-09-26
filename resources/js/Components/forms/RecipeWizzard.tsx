@@ -23,36 +23,48 @@ import { BsTrash3 } from 'react-icons/bs';
 import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
 import { Link } from '@inertiajs/react';
-import { FaListCheck } from "react-icons/fa6";
+
+
+import { TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
+
+
 interface RecipeIngredientData {
     ingredient_id: string;
     quantity: string;
     unit: string;
 }
 
-interface RecipeCreateWizardProps {
+interface RecipeWizzardProps {
     recipe?: Recipe;
     ingredients: Ingredient[];
     className?: string;
 }
 
-export default function RecipeCreateWizard({
+export default function RecipeWizzard({
     recipe,
     ingredients,
     className,
-}: RecipeCreateWizardProps) {
+}: RecipeWizzardProps) {
 
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
+
+    /**
+     * Smoothly scrolls to the top of the form element.
+     * @remarks
+     * This function is used to scroll to the top of the form when the user
+     * clicks the "Next" or "Previous" button.
+     */
     const scrollToTop = () => {
     if (formRef.current) {
             const top = formRef.current.getBoundingClientRect().top + window.scrollY - 20; // 20px Puffer
             window.scrollTo({
-            top,
-            behavior: "smooth",
+                top,
+                behavior: "smooth",
             });
         }
     };
+
     // Pending key für Uploads vor dem Speichern (nur Create)
     const [pendingKey] = useState<string>(() =>
         typeof crypto !== 'undefined' && (crypto as any).randomUUID
@@ -113,7 +125,6 @@ export default function RecipeCreateWizard({
     // Step 1 Validierung
     const canNextFromStep1 = (() => {
         if ((data.name?.trim()?.length ?? 0) < 3) return false;
-        if ((data.description?.trim()?.length ?? 0) < 10) return false;
         return true;
     })();
 
@@ -153,15 +164,13 @@ export default function RecipeCreateWizard({
     return (
         <form onSubmit={handleSubmit} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
-            
-            <ol className="items-center sm:flex">
+            <ol className="items-center w-full space-y-4 sm:flex sm:justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
                 <li className="relative mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                            </svg>
-                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
+                        <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 1 ? 'bg-primary text-white' : ' border-gray-200')}>
+                            <TbNumber1 className="size-4" />
+                        </span>
                         <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
                     </div>
                     <div className="mt-0 sm:mt-5 sm:pe-8">
@@ -172,32 +181,30 @@ export default function RecipeCreateWizard({
                 </li>
                 <li className="relative mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                            </svg>
-                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
+                        <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 2 ? 'bg-primary text-white' : ' border-gray-200')}>
+                            <TbNumber2 className="size-4" />
+                        </span>
                         <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
                     </div>
                     <div className="mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
-                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Alles, was benötigt wird.</span>
-                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Wähle aus bestehenden Zutaten aus oder lege eine neue Zutat an.</p>
+                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bearbeite die Zutatenliste.</span>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Neue oder bestehende Zutaten hinzufügen.</p>
                     </div>
                 </li>
                 <li className="relative mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className="z-10 flex items-center justify-center size-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                            <svg className="w-2.5 h-2.5 text-primary dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                            </svg>
-                        </div>
+                        <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
+                        <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 3 ? 'bg-primary text-white' : ' border-gray-200')}>
+                            <TbNumber3 className="size-4" />
+                        </span>
                         <div className={cn('hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
                     </div>
                     <div className="mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Bilder &amp; Zubereitung</h3>
-                        <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">asd</time>
-                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Füge ein Bild hinzu und beschreibe die Zubereitung.</p>
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Eckdaten</h3>
+                        <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
                     </div>
                 </li>
             </ol>
@@ -365,22 +372,22 @@ export default function RecipeCreateWizard({
                     {data.recipe_ingredients?.map((di, idx) => (
                         <div
                             key={idx}
-                            className="flex flex-row justify-between gap-2 items-start mb-3"
+                            className="md:flex gap-2"
                         >
-                            <div className="asd">
+                            
+                            <div className="flex justify-start items-start gap-2">
                                 <TextInput
                                     placeholder="Menge"
                                     value={di.quantity}
-                                    className="asd"
+                                    className="w-full md:w-32"
                                     type="number"
                                     onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
                                 />
-
                                 <Select
                                     value={di.unit}
                                     onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                                 >
-                                    <SelectTrigger className="asd mt-1 py-2">
+                                    <SelectTrigger className="w-32 mt-1 py-2">
                                         <SelectValue placeholder="Einheit auswählen" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -392,15 +399,14 @@ export default function RecipeCreateWizard({
                                     </SelectContent>
                                 </Select>
                             </div>
-
-                            <div className="asda">
+                            
+                            <div className="md:w-full flex gap-2">
                                 <IngredientComboBox
                                     options={ingredients}
                                     value={di.ingredient_id}
-                                    triggerClassName="asd mt-1"
+                                    triggerClassName="w-full mt-1"
                                     onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                                 />
-
                                 <Button
                                     variant="destructive"
                                     className="mt-1.5 hover:cursor-pointer"
@@ -413,8 +419,7 @@ export default function RecipeCreateWizard({
                             </div>
                         </div>
                     ))}
-
-                    <Button type="button" onClick={addIngredient} className="hover:cursor-pointer">
+                    <Button type="button" variant="primaryOutline" onClick={addIngredient} className="mt-5 hover:cursor-pointer">
                         <GoPlus /> Zutat hinzufügen
                     </Button>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
@@ -431,7 +436,7 @@ export default function RecipeCreateWizard({
 
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
-                <section className="space-y-5">
+                <section className="space-y-4">
                     {/* Uploader */}
                     <div className="w-full space-y-3">
                         <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />

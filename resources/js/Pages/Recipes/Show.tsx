@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import RecipeSidebar from '@/components/sidebars/MainSidebar';
 
 import { Recipe } from '@/types/Recipe';
@@ -44,7 +44,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
         }
     };
     return (
-        <SidebarRightLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
+        <SidebarLeftLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
             <div className="flex flex-col gap-3">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
                     <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
@@ -129,79 +129,86 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 </div>
                 <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
-                    <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
-                        <h4 className="font-medium text-lg">Zutaten für</h4>
-                        <div className="flex items-center gap-2">
-                            <Button
-                                onClick={() => setCount((prev) => Math.max(1, prev - 1))}
-                                className="py-5 hover:cursor-pointer shadow-none"
-                                variant="primaryOutline"
-                                size="sm"
-                                disabled={count === 1}
-                                title="Personen reduzieren"
-                                aria-label="Personen reduzieren"
-                            >
-                                <FiMinus />
-                            </Button>
-                            <div className="bg-gray-100 cursor-default dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-2 px-3 w-[7.5rem] rounded-lg border border-gray-200 dark:border-gray-700">
-                                {count}
-                                {count > 1 ? ' Personen' : ' Person'}
-                            </div>
-                            <Button
-                                onClick={() => setCount((prev) => prev + 1)}
-                                className="py-5 hover:cursor-pointer shadow-none"
-                                variant="primaryOutline"
-                                size="sm"
-                                title="Personen erhöhen"
-                                aria-label="Personen erhöhen"
-                            >
-                                <GoPlus />
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="flex flex-row">
-                        <table className="table w-full text-gray-800">
-                            <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th className="p-3 w-full text-left rounded-tl-lg">Zutat</th>
-                                    <th className="p-3 text-right">Menge</th>
-                                    <th className="p-3 text-right rounded-tr-lg">Einheit</th>
-                                </tr>
-                            </thead>
-                            <tbody className="dark:text-gray-200">
-                                {recipe.ingredients?.map((ingredient) => (
-                                    <tr
-                                        key={ingredient.id}
-                                        className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                    {recipe.ingredients?.length !== 0 && (
+                        <>
+                            <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
+                                <h4 className="font-medium text-lg">Zutaten für</h4>
+                                <div className="flex items-center gap-2">
+                                    <Button
+                                        onClick={() => setCount((prev) => Math.max(1, prev - 1))}
+                                        className="py-5 hover:cursor-pointer shadow-none"
+                                        variant="primaryOutline"
+                                        size="sm"
+                                        disabled={count === 1}
+                                        title="Personen reduzieren"
+                                        aria-label="Personen reduzieren"
                                     >
-                                        <td className="p-3">{ingredient.name}</td>
-                                        <td className="p-3 text-right">
-                                            {((ingredient.pivot?.quantity ?? 0) as number) * count}
-                                        </td>
-                                        <td className="p-3 text-right">{ingredient.pivot?.unit}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="flex">
-                        <div className="w-full flex flex-col gap-2">
-                            <h4 className="font-medium text-lg mt-4">Zubereitung</h4>
-                            <div className="flex flex-col gap-2">
-                                <p>{recipe.preparation_instructions}</p>
+                                        <FiMinus />
+                                    </Button>
+                                    <div className="bg-gray-100 cursor-default dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-2 px-3 w-[7.5rem] rounded-lg border border-gray-200 dark:border-gray-700">
+                                        {count}
+                                        {count > 1 ? ' Personen' : ' Person'}
+                                    </div>
+                                    <Button
+                                        onClick={() => setCount((prev) => prev + 1)}
+                                        className="py-5 hover:cursor-pointer shadow-none"
+                                        variant="primaryOutline"
+                                        size="sm"
+                                        title="Personen erhöhen"
+                                        aria-label="Personen erhöhen"
+                                    >
+                                        <GoPlus />
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className="flex flex-row">
+                                <table className="table w-full text-gray-800">
+                                    <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-400">
+                                        <tr>
+                                            <th className="p-3 w-full text-left rounded-tl-lg">Zutat</th>
+                                            <th className="p-3 text-right">Menge</th>
+                                            <th className="p-3 text-right rounded-tr-lg">Einheit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="dark:text-gray-200">
+                                        {recipe.ingredients?.map((ingredient) => (
+                                            <tr
+                                                key={ingredient.id}
+                                                className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            >
+                                                <td className="p-3">{ingredient.name}</td>
+                                                <td className="p-3 text-right">
+                                                    {((ingredient.pivot?.quantity ?? 0) as number) * count}
+                                                </td>
+                                                <td className="p-3 text-right">{ingredient.pivot?.unit}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div> 
+                            <hr className="my-5" />
+                        </>
+                    )}
+                    {recipe.preparation_instructions && (
+                        
+                        <div className="flex">
+                            <div className="w-full flex flex-col gap-2">
+                                <h4 className="font-medium font-oswald text-lg mt-4">Zubereitung</h4>
+                                <div className="flex flex-col gap-2">
+                                    <p>{recipe.preparation_instructions}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex">
-                        <div className="w-full flex flex-col gap-2">
-                            <h4 className="font-medium text-lg mt-4">Anmerkungen</h4>
-                            <div className="flex flex-col gap-2">
-                                <p>{recipe.created_at}</p>
-                            </div>
+                        
+                    )}
+                    <div className="w-full flex flex-col gap-2">
+                        <h4 className="font-medium font-oswald text-lg mt-4">Zusammenfassung</h4>
+                        <div className="flex flex-col gap-2">
+                            <p>Super Gericht.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </SidebarRightLayout>
+        </SidebarLeftLayout>
     );
 }

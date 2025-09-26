@@ -59,7 +59,7 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
                     </div>
                     <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
                         <main className="pt-4 pb-10">
-                            {title && <h2 className="text-lg font-medium mb-5">{title}</h2>}
+                            {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
                             {children}
                         </main>
                     </div>

@@ -14,9 +14,10 @@ import RecipeWizzard from '@/components/forms/RecipeWizzard';
 export default function RecipesCreate() {
     const { props } = usePage();
     const ingredients = props.ingredients;
+    const categories = props.categories;
     return (
         <SidebarLeftLayout title="Neues Rezept" sidebar={<MainSidebar />}>
-            <RecipeWizzard ingredients={ingredients} />
+            <RecipeWizzard ingredients={ingredients} categories={categories} />
         </SidebarLeftLayout>
     );
 }

@@ -28,7 +28,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('media')->get();
+        $recipes = Recipe::with('media')->paginate(10);
 
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes,

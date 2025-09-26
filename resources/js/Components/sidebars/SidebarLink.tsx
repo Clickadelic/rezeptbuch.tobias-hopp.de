@@ -29,6 +29,7 @@ export default function NavLink({
                         : 'text-gray-800 hover:text-gray-600 focus:text-gray-600 dark:text-gray-200') +
                     className
                 }
+                aria-label={props.title}
                 title={props.title}
             >
                 <BsChevronCompactRight className="inline-flex mt-1" />

@@ -32,7 +32,8 @@ class Recipe extends Model
           'preparation_instructions',
           'rating',
           'difficulty',
-          'user_id'
+          'user_id',
+          'category_id'
      ];
 
      protected $casts = [
@@ -66,6 +67,11 @@ class Recipe extends Model
      public function user()
      {
           return $this->belongsTo(User::class);
+     }
+
+     public function category()
+     {
+     return $this->belongsTo(Category::class);
      }
 
      public function ingredients()

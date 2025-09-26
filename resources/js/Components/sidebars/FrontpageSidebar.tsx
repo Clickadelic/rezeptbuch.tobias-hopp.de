@@ -10,7 +10,7 @@ export default function RightSidebar() {
     const user = usePage().props.auth.user;
     return (
         <aside className="py-4">
-            <h2 className="text-lg font-medium mb-2">Los geht's</h2>
+            <h2 className="text-xl font-medium font-oswald mb-2">Los geht's</h2>
             <ul className="flex flex-col space-y-2 divide-y divide-gray-300">
                 <SidebarLink
                     href="/rezepte"

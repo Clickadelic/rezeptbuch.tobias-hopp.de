@@ -167,11 +167,11 @@ export default function RecipeWizzard({
             <ol className="items-center w-full space-y-4 flex justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
-                        <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 1 ? 'bg-primary text-white' : ' border-gray-200')}>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
+                        <span className={cn(" text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 1 ? 'bg-primary border-primary text-white dark:text-gray-200' : '')}>
                             <TbNumber1 className="size-4" />
                         </span>
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Eckdaten</h3>
@@ -181,11 +181,11 @@ export default function RecipeWizzard({
                 </li>
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
-                        <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 2 ? 'bg-primary text-white' : ' border-gray-200')}>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary dark:bg-primary' : '')}></div>
+                        <span className={cn(" text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 2 ? 'bg-primary text-white dark:text-gray-200' : '')}>
                             <TbNumber2 className="size-4" />
                         </span>
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
@@ -195,11 +195,11 @@ export default function RecipeWizzard({
                 </li>
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
-                        <span className={cn("border border-transparent text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 3 ? 'bg-primary text-white' : ' border-gray-200')}>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary dark:bg-primary' : '')}></div>
+                        <span className={cn(" text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 3 ? 'bg-primary text-white dark:text-gray-200' : '')}>
                             <TbNumber3 className="size-4" />
                         </span>
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary' : '')}></div>
+                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Eckdaten</h3>

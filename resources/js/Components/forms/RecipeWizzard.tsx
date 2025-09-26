@@ -18,15 +18,12 @@ import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 import { Difficulty } from '@/types/Difficulty';
 import { Ingredient } from '@/types/Ingredient';
 import { UNITS } from '@/types/Units';
-import { GoPlus } from 'react-icons/go';
+import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
 import { Link } from '@inertiajs/react';
-
-
-import { TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
-
+import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
 
 interface RecipeIngredientData {
     ingredient_id: string;
@@ -348,7 +345,10 @@ export default function RecipeWizzard({
                             
                             disabled={!canNextFromStep1}
                         >
-                            <Link href={route('recipes.index')}>Abbrechen</Link>
+                            <Link href={route('recipes.index')}>
+                                <TbCancel className="mr-1" />
+                                Abbrechen
+                            </Link>
                         </Button>
                         
                         
@@ -359,6 +359,7 @@ export default function RecipeWizzard({
                             disabled={!canNextFromStep1}
                         >
                             Weiter
+                            <GoArrowRight className="ml-1" />
                         </Button>
                     </div>
                 </section>
@@ -424,10 +425,12 @@ export default function RecipeWizzard({
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                     <div className="flex justify-between gap-2">
                         <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(1)}>
+                            <GoArrowLeft className="ml-1" />
                             Zurück
                         </Button>
                         <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(3)}>
                             Weiter
+                            <GoArrowRight className="ml-1" />
                         </Button>
                     </div>
                 </section>
@@ -517,9 +520,11 @@ export default function RecipeWizzard({
                     {/* Submit */}
                     <div className="flex justify-between gap-2">
                         <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(2)}>
+                            <GoArrowLeft className="ml-1" />
                             Zurück
                         </Button>
                         <Button type="submit" variant="primary" disabled={processing} className="w-48">
+                            {recipe ? <GoPencil /> : <GoPlus />}
                             {recipe ? 'Speichern' : 'Erstellen'}
                         </Button>
                     </div>

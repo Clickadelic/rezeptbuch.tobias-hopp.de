@@ -21,6 +21,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import SocialShareBox from '@/components/reusables/SocialShareBox';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -111,14 +112,14 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                         <div className="flex flex-row justify-between gap-1">
                             <div className="flex flex-col gap-2">
-                                <h4 className="font-medium">Zubereitungszeit</h4>
+                                <h4>Zubereitungszeit</h4>
                                 <div className="flex flex-row">
                                     <GoClock className="mt-1 size-4 text-primary" />
                                     <p className="ml-1">{recipe.preparation_time} Minuten</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-2">
-                                <h4 className="font-medium">Schwierigkeitsgrad</h4>
+                                <h4>Schwierigkeitsgrad</h4>
                                 <div className="flex flex-row">
                                     <VscSymbolEvent className="mt-1 size-4 text-primary" />
                                     <p className="ml-1 lowercase">{recipe.difficulty}</p>
@@ -132,7 +133,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     {recipe.ingredients?.length !== 0 && (
                         <>
                             <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
-                                <h4 className="font-medium text-lg">Zutaten für</h4>
+                                <h4 className="font-medium font-oswald text-lg">Zutaten für</h4>
                                 <div className="flex items-center gap-2">
                                     <Button
                                         onClick={() => setCount((prev) => Math.max(1, prev - 1))}
@@ -201,10 +202,13 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                         
                     )}
-                    <div className="w-full flex flex-col gap-2">
-                        <h4 className="font-medium font-oswald text-lg mt-4">Zusammenfassung</h4>
-                        <div className="flex flex-col gap-2">
-                            <p>Super Gericht.</p>
+                    <div className="w-full flex justify-between gap-2">
+                        
+                        <div className="asd">
+                            veröffentlicht am {}
+                        </div>
+                        <div className="asd">
+                            <SocialShareBox />
                         </div>
                     </div>
                 </div>

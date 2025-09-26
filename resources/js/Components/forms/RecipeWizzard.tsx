@@ -35,7 +35,7 @@ interface RecipeIngredientData {
 interface RecipeWizzardProps {
     recipe?: Recipe;
     ingredients: Ingredient[];
-    categories: Ingredient[];
+    categories?: Ingredient[];
     className?: string;
 }
 
@@ -224,13 +224,13 @@ export default function RecipeWizzard({
             {step === 1 && (
                 <section className="space-y-4">
                     {/* Kategorie */}
-                    {/* <div>
+                    <div>
                         <CategoryGrid
                             categories={categories}
                             selectedCategoryId={data?.category_id}
                             onChange={(id) => setData('category_id', id)}
                         />
-                    </div> */}
+                    </div>
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />

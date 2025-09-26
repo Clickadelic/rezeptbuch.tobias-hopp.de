@@ -24,9 +24,9 @@ export interface SharedPageProps {
         last_page: number
         per_page: number
         links: {
-        url: string | null
-        label: string
-        active: boolean
+            url: string | null
+            label: string
+            active: boolean
         }[]
     }
     ingredients: Ingredient[];

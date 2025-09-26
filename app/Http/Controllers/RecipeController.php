@@ -88,6 +88,7 @@ class RecipeController extends Controller
             'preparation_time' => $request->input('preparation_time', 0),
             'preparation_instructions' => $request->input('preparation_instructions'),
             'user_id' => $request->user()->id,
+            'category_id' => $request->input('category_id'),
         ]);
 
         // 2️⃣ Zutaten aus Request verarbeiten

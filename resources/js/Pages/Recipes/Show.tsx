@@ -105,7 +105,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                         </DropdownMenu>
                                     )}
                                 </div>
-                                <p className="text-sm text-gray-800 dark:text-gray-200">
+                                <p className="text-gray-800 dark:text-gray-200">
                                     {recipe.description}
                                 </p>
                             </div>
@@ -202,15 +202,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                         
                     )}
-                    <div className="w-full flex justify-between gap-2">
-                        
-                        <div className="asd">
-                            veröffentlicht am {}
-                        </div>
-                        <div className="asd">
-                            <SocialShareBox />
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </SidebarLeftLayout>

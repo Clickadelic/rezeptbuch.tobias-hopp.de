@@ -70,7 +70,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             <div className="w-full flex flex-col">
                                 <div className="relative w-full flex flex-row justify-between items-center">
                                     <div>
-                                        <h4 className="font-medium text-sm font-oswald text-gray-800 dark:text-gray-200">
+                                        <h4 className="font-medium text-sm font-oswald text-gray-400 dark:text-gray-600">
                                             {recipe.punchline}
                                         </h4>
                                         <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
@@ -105,20 +105,20 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                         </DropdownMenu>
                                     )}
                                 </div>
-                                <p className="text-sm text-gray-800 dark:text-gray-200">
+                                <p className="mb-3 text-gray-800 dark:text-gray-200">
                                     {recipe.description}
                                 </p>
                             </div>
                         </div>
                         <div className="flex flex-row justify-between gap-1">
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-1">
                                 <h4>Zubereitungszeit</h4>
                                 <div className="flex flex-row">
                                     <GoClock className="mt-1 size-4 text-primary" />
                                     <p className="ml-1">{recipe.preparation_time} Minuten</p>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-1">
                                 <h4>Schwierigkeitsgrad</h4>
                                 <div className="flex flex-row">
                                     <VscSymbolEvent className="mt-1 size-4 text-primary" />
@@ -202,15 +202,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                         
                     )}
-                    <div className="w-full flex justify-between gap-2">
-                        
-                        <div className="asd">
-                            veröffentlicht am {}
-                        </div>
-                        <div className="asd">
-                            <SocialShareBox />
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </SidebarLeftLayout>

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Models\Recipe;
 use App\Http\Requests\StoreRecipeRequest;
+use App\Models\Category;
 use Illuminate\Support\Str;
 
 class RecipeController extends Controller
@@ -43,6 +44,7 @@ class RecipeController extends Controller
     {
         return Inertia::render('Recipes/Create', [
             'ingredients' => Ingredient::orderBy('name')->get(),
+            'categories' => Category::orderBy('name')->get(),
         ]);
     }
 

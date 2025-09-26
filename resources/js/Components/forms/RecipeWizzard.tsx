@@ -24,6 +24,7 @@ import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
+import CategoryGrid from '@/components/forms/CategoryGrid';
 
 interface RecipeIngredientData {
     ingredient_id: string;
@@ -34,12 +35,14 @@ interface RecipeIngredientData {
 interface RecipeWizzardProps {
     recipe?: Recipe;
     ingredients: Ingredient[];
+    categories: Ingredient[];
     className?: string;
 }
 
 export default function RecipeWizzard({
     recipe,
     ingredients,
+    categories,
     className,
 }: RecipeWizzardProps) {
 
@@ -219,7 +222,19 @@ export default function RecipeWizzard({
             )}
             {/* STEP 1: Basics */}
             {step === 1 && (
-                <section className="space-y-4 min-h-[32rem]">
+                <section className="space-y-4">
+                    {/* Kategorie */}
+                    <div className="space-y-6">
+                        <CategoryGrid
+                            categories={categories}
+                            selectedCategoryId={data.category_id}
+                            onChange={(id) => setData('category_id', id)}
+                        />
+
+                        {errors.category_id && (
+                            <p className="text-sm text-red-500 mt-2">{errors.category_id}</p>
+                        )}
+                    </div>
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />
@@ -367,7 +382,7 @@ export default function RecipeWizzard({
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
-                <section className="space-y-4 min-h-[32rem]">
+                <section className="space-y-4">
                     <InputLabel htmlFor="ingredients" value="Zutatenliste bearbeiten" />
                     {data.recipe_ingredients?.map((di, idx) => (
                         <div
@@ -438,7 +453,7 @@ export default function RecipeWizzard({
 
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
-                <section className="space-y-4 min-h-[32rem]">
+                <section className="space-y-4">
                     {/* Uploader */}
                     <div className="w-full space-y-3">
                         <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />

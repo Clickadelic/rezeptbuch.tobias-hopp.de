@@ -60,7 +60,7 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
                         <RecipeSearch />
                         <BreadcrumbNav />
                     </div>
-                    <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3 transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+                    <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         {isDesktop && sidebar}
                         <main className="pt-4 pb-16 col-span-4">
                             {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}

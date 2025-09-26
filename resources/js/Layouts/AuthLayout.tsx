@@ -28,7 +28,7 @@ export default function AuthLayout({ title, subtitle, children }: AuthLayoutProp
         <>
             <Head title={title} />
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
-                <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')] dark:bg-[url('/resources/images/annie-spratt-R3LcfTvcGWY-unsplash.jpg')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+                <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')] dark:bg-[url('/resources/images/annie-spratt-R3LcfTvcGWY-unsplash.jpg')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                     <main className="mx-auto container">
                         <div className="m-6 sm:max-w-md lg:max-w-lg sm:mx-auto bg-white/30 dark:bg-gray-800/30 p-2 rounded-xl shadow backdrop-blur">
                             <div className="bg-white dark:bg-gray-800 rounded-lg">
@@ -49,7 +49,7 @@ export default function AuthLayout({ title, subtitle, children }: AuthLayoutProp
                             </div>
                         </div>
                     </main>
-                    <p className="dark:invisible absolute bottom-1 md:bottom-4 mx-auto text-sm text-gray-900 bg-white/30 backdrop-blur rounded px-4 py-2">
+                    <p className="dark:invisible absolute bottom-1 lg:bottom-4 mx-auto text-sm text-gray-900 bg-white/30 backdrop-blur rounded px-4 py-2">
                         Foto von{' '}
                         <a
                             href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
@@ -69,7 +69,7 @@ export default function AuthLayout({ title, subtitle, children }: AuthLayoutProp
                             Unsplash
                         </a>
                     </p>
-                    <p className="invisible dark:visible absolute bottom-1 md:bottom-4 mx-auto text-sm text-gray-900 dark:text-gray-200 bg-white/30 backdrop-blur rounded px-4 py-2">
+                    <p className="invisible dark:visible absolute bottom-1 lg:bottom-4 mx-auto text-sm text-gray-900 dark:text-gray-200 bg-white/30 backdrop-blur rounded px-4 py-2">
                         Foto von{' '}
                         <a
                             href="https://unsplash.com/de/@anniespratt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"

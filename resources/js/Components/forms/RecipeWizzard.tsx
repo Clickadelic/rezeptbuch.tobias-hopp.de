@@ -24,6 +24,7 @@ import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
+import CategoryGrid from '@/components/forms/CategoryGrid';
 
 interface RecipeIngredientData {
     ingredient_id: string;
@@ -34,18 +35,20 @@ interface RecipeIngredientData {
 interface RecipeWizzardProps {
     recipe?: Recipe;
     ingredients: Ingredient[];
+    categories: Ingredient[];
     className?: string;
 }
 
 export default function RecipeWizzard({
     recipe,
     ingredients,
+    categories,
     className,
 }: RecipeWizzardProps) {
 
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
-
+    console.log(categories);
     /**
      * Smoothly scrolls to the top of the form element.
      * @remarks
@@ -78,7 +81,6 @@ export default function RecipeWizzard({
     const [liveMedia, setLiveMedia] = useState<Array<any>>(recipe?.media ?? []);
 
     // useForm initialisieren → Create oder Edit
-    // @ts-ignore
     const { data, setData, post, processing, errors, reset } = useForm({
         id: recipe?.id ?? null,
         name: recipe?.name ?? '',
@@ -97,6 +99,7 @@ export default function RecipeWizzard({
                 quantity: i.pivot?.quantity ?? '',
                 unit: i.pivot?.unit ?? 'gr',
             })) ?? [],
+
     });
 
     // Zutaten-Helpers
@@ -171,7 +174,7 @@ export default function RecipeWizzard({
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Eckdaten</h3>
+                        <h3 className={cn('text-center md:text-left text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Basics</h3>
                         <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
                         <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
                     </div>
@@ -199,9 +202,9 @@ export default function RecipeWizzard({
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Eckdaten</h3>
-                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
-                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
+                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Details</h3>
+                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bilder &amp; Zubereitung.</span>
+                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Füge ein Bild hinzu, beschreibe die Zubereitung.</p>
                     </div>
                 </li>
             </ol>
@@ -219,7 +222,15 @@ export default function RecipeWizzard({
             )}
             {/* STEP 1: Basics */}
             {step === 1 && (
-                <section className="space-y-4 min-h-[32rem]">
+                <section className="space-y-4">
+                    {/* Kategorie */}
+                    {/* <div>
+                        <CategoryGrid
+                            categories={categories}
+                            selectedCategoryId={data?.category_id}
+                            onChange={(id) => setData('category_id', id)}
+                        />
+                    </div> */}
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />
@@ -367,7 +378,7 @@ export default function RecipeWizzard({
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
-                <section className="space-y-4 min-h-[32rem]">
+                <section className="space-y-4">
                     <InputLabel htmlFor="ingredients" value="Zutatenliste bearbeiten" />
                     {data.recipe_ingredients?.map((di, idx) => (
                         <div
@@ -438,7 +449,7 @@ export default function RecipeWizzard({
 
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
-                <section className="space-y-4 min-h-[32rem]">
+                <section className="space-y-4">
                     {/* Uploader */}
                     <div className="w-full space-y-3">
                         <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />

@@ -13,8 +13,22 @@ export interface User {
 export interface SharedPageProps {
     auth: {
         user: User;
+        can: (ability: string) => boolean;
+        roles: string[];
     };
-    recipes: Recipe[];
+    current_page: number;
+    first_page_url: string;
+    recipes: {
+    data: Recipe[]
+        current_page: number
+        last_page: number
+        per_page: number
+        links: {
+        url: string | null
+        label: string
+        active: boolean
+        }[]
+    }
     ingredients: Ingredient[];
     canLogin?: boolean;
     canRegister?: boolean;

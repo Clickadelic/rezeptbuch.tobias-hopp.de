@@ -48,16 +48,16 @@ export default function Show({ recipe }: ShowRecipeProps) {
         }
     };
     const iconMap: Record<string, JSX.Element> = {
-        vorspeise: <TbSalad className="size-5" />,
-        hauptgericht: <PiCookingPot className="size-5" />,
-        nachtisch: <RiCake3Line className="size-5" />,
-        cocktail: <LiaCocktailSolid className="size-5" />,
-        snack: <GiCrystalBars className="size-5" />,
-        backen: <GiCakeSlice className="size-5" />,
+        vorspeise: <TbSalad className="size-5 text-primary" />,
+        hauptgericht: <PiCookingPot className="size-5 text-primary" />,
+        nachtisch: <RiCake3Line className="size-5 text-primary" />,
+        cocktail: <LiaCocktailSolid className="size-5 text-primary" />,
+        snack: <GiCrystalBars className="size-5 text-primary" />,
+        backen: <GiCakeSlice className="size-5 text-primary" />,
     };
     return (
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<RecipeSidebar />}>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-5">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
                     <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
                         {(() => {
@@ -76,7 +76,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         })()}
                         <div className="absolute size-full bg-gray-400/10 rounded-xl z-10 cursor-default"></div>
                     </div>
-                    <div className="w-full flex flex-col justify-between gap-2">
+                    <div className="w-full flex flex-col justify-between gap-5">
                         <div className="flex flex-col items-start gap-2">
                             <div className="w-full flex flex-col">
                                 <div className="relative w-full flex flex-row justify-between items-center">
@@ -123,20 +123,20 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-start gap-2">
-                    <div className="w-32 flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                <div className="flex flex-row justify-start gap-5">
+                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
                         {iconMap[recipe.category?.slug ?? ""] ?? (
                             <LuUtensilsCrossed className="size-5 text-primary" />
                         )}
-                        <p className="font-oswald">{recipe.category?.name}</p>
+                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.category?.name}</p>
                     </div>
-                    <div className="w-32 flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
                         <GoClock className="size-5 text-primary" />
-                        <p className="font-oswald">{recipe.preparation_time} Minuten</p>
+                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.preparation_time} Minuten</p>
                     </div>
-                    <div className="w-32 flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
                         <GoStar className="size-5 text-primary" />
-                        <p className="font-oswald">{recipe.rating}</p>
+                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.rating} Sterne</p>
                     </div>
 
                 </div>

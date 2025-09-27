@@ -37,7 +37,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
      */
     const iconMap: Record<string, JSX.Element> = {
         vorspeise: <TbSalad className="size-5 text-white" />,
-        hauptgang: <PiCookingPot className="size-5 text-white" />,
+        hauptgericht: <PiCookingPot className="size-5 text-white" />,
         nachtisch: <RiCake3Line className="size-5 text-white" />,
         cocktail: <LiaCocktailSolid className="size-5 text-white" />,
         snack: <GiCrystalBars className="size-5 text-white" />,
@@ -56,11 +56,18 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                     >
                         {/* SLOT: Kategorie-Icon oben links */}
                         {recipe.category && (
-                            <div className="absolute top-2 left-2 z-20 flex items-center justify-center w-8 h-8 bg-emerald-600 rounded-full shadow-md">
+                            <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-6">
                                 {iconMap[recipe.category.slug ?? ''] ?? (
-                                    <LuUtensilsCrossed className="size-5 text-white" />
+                                    <>
+                                        <LuUtensilsCrossed className="size-5" />
+                                        <span className="block text-xs text-white dark:text-gray-900 font-medium">
+                                            {recipe.category.name}
+                                        </span>
+                                    </>
                                 )}
                             </div>
+
+                            
                         )}
 
                         {/* Hero image */}
@@ -113,14 +120,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
 
                     {/* Titel + Kategorie */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-primary leading-snug">
-                        {/* Kategorie als Text */}
-                        {recipe.category && (
-                            <div className="flex items-center gap-1 mb-1">
-                                <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                                    {recipe.category.name}
-                                </span>
-                            </div>
-                        )}
+                        
 
                         <h4 className="text-gray-500 dark:text-gray-400 text-base font-oswald line-clamp-1">
                             {recipe.punchline}

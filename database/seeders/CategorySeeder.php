@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
         $categories = [
             'Cocktail',
             'Vorspeise',
-            'Hauptgang',
+            'Hauptgericht',
             'Nachtisch',
             'Backen',
             'Snack',

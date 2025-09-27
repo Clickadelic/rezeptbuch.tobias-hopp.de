@@ -25,7 +25,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryG
    */
   const sortOrder: Record<string, number> = {
     vorspeise: 1,
-    hauptgang: 2,
+    hauptgericht: 2,
     nachtisch: 3,
     cocktail: 4,
     backen: 5,
@@ -43,7 +43,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryG
    */
   const iconMap: Record<string, JSX.Element> = {
       vorspeise: <TbSalad className="size-5" />,
-      hauptgang: <PiCookingPot className="size-5" />,
+      hauptgericht: <PiCookingPot className="size-5" />,
       nachtisch: <RiCake3Line className="size-5" />,
       cocktail: <LiaCocktailSolid className="size-5" />,
       snack: <GiCrystalBars className="size-5" />,

@@ -1,6 +1,7 @@
 // types.ts
 import { Difficulty } from './Difficulty';
 import { Ingredient } from './Ingredient';
+import { Category } from './Category';
 
 export type Recipe = {
     id?: string;
@@ -30,7 +31,8 @@ export type Recipe = {
         };
     }>;
     user_id?: string;
-    category_id?: string;
+    category_id?: string; // Für DB-Relation
+    category?: Category;
     created_at: string;
     updated_at: string;
     deleted_at?: string;

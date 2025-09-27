@@ -226,7 +226,6 @@ export default function RecipeWizzard({
                     {/* Kategorie */}
                     <div>
                         <CategoryGrid
-                            categories={categories}
                             selectedCategoryId={data?.category_id}
                             onChange={(id) => setData('category_id', id)}
                         />

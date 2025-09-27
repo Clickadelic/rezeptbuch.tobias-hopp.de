@@ -1,32 +1,23 @@
 import { router, usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem,DropdownMenuTrigger, } from '@/components/ui/dropdown-menu';
 import { GoClock, GoTrash } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { BiDish } from 'react-icons/bi';
-import { assetPath } from '@/lib/utils';
-import { Recipe } from '@/types/Recipe';
 import { Skeleton } from '@/components/ui/skeleton';
-import { GoUpload } from 'react-icons/go';
+import { Recipe } from '@/types/Recipe';
+
+// Icons für Kategorien
+import { LuUtensilsCrossed } from "react-icons/lu";
+import { PiCookingPot } from "react-icons/pi";
+import { LiaCocktailSolid } from "react-icons/lia";
+import { RiCake3Line } from "react-icons/ri";
+import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
+import { TbSalad } from "react-icons/tb";
+
 interface RecipeCardProps {
     recipe: Recipe;
 }
@@ -34,12 +25,23 @@ interface RecipeCardProps {
 export default function RecipeCard({ recipe }: RecipeCardProps) {
     const user = usePage().props.auth?.user;
 
-    // TODO: Implement User RoleGate for Action buttons
     const deleteRecipe = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (confirm('Willst du dieses Rezept wirklich löschen?')) {
             router.delete(route('recipes.destroy', recipe.id));
         }
+    };
+
+    /**
+     * Kategorie -> Icon Mapping
+     */
+    const iconMap: Record<string, JSX.Element> = {
+        vorspeise: <TbSalad className="size-5 text-white" />,
+        hauptgang: <PiCookingPot className="size-5 text-white" />,
+        nachtisch: <RiCake3Line className="size-5 text-white" />,
+        cocktail: <LiaCocktailSolid className="size-5 text-white" />,
+        snack: <GiCrystalBars className="size-5 text-white" />,
+        backen: <GiCakeSlice className="size-5 text-white" />,
     };
 
     return (
@@ -52,6 +54,15 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
+                        {/* SLOT: Kategorie-Icon oben links */}
+                        {recipe.category && (
+                            <div className="absolute top-2 left-2 z-20 flex items-center justify-center w-8 h-8 bg-emerald-600 rounded-full shadow-md">
+                                {iconMap[recipe.category.slug ?? ''] ?? (
+                                    <LuUtensilsCrossed className="size-5 text-white" />
+                                )}
+                            </div>
+                        )}
+
                         {/* Hero image */}
                         {(() => {
                             const hero =
@@ -68,6 +79,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                             );
                         })()}
 
+                        {/* Dropdown Actions */}
                         {user && (
                             <DropdownMenu>
                                 <DropdownMenuTrigger
@@ -99,8 +111,17 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                         )}
                     </CardHeader>
 
-                    {/* Titel */}
+                    {/* Titel + Kategorie */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-primary leading-snug">
+                        {/* Kategorie als Text */}
+                        {recipe.category && (
+                            <div className="flex items-center gap-1 mb-1">
+                                <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                                    {recipe.category.name}
+                                </span>
+                            </div>
+                        )}
+
                         <h4 className="text-gray-500 dark:text-gray-400 text-base font-oswald line-clamp-1">
                             {recipe.punchline}
                         </h4>
@@ -130,7 +151,10 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
     );
 }
 
-function RecipeCardSkeleton() {
+/**
+ * Skeleton Loader für Rezepte
+ */
+export function RecipeCardSkeleton() {
     return (
         <li className="w-full max-w-96 mb-5">
             <Card className="relative overflow-hidden">

@@ -164,6 +164,7 @@ class RecipeController extends Controller
                 $query->select('ingredients.id', 'ingredients.name')->withPivot(['quantity', 'unit']);
             },
             'media',
+            'category'
         ])->findOrFail($recipe->id);
         return Inertia::render('Recipes/Edit', [
             'recipe' => $recipe, // ✅ Kein zweites load() mehr

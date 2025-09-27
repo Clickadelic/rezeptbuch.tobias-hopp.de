@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { router } from '@inertiajs/react';
 
 import { MdOutlineEdit } from 'react-icons/md';
-import { GoClock, GoTrash, GoPlus } from 'react-icons/go';
+import { GoClock, GoTrash, GoPlus, GoStar } from 'react-icons/go';
 import { FiMinus } from 'react-icons/fi';
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
@@ -24,6 +24,7 @@ import { RiCake3Line } from "react-icons/ri";
 import { GiCakeSlice } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
 import { GiCrystalBars } from "react-icons/gi";
+import { FaStar } from 'react-icons/fa6';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -76,82 +77,68 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <div className="absolute size-full bg-gray-400/10 rounded-xl z-10 cursor-default"></div>
                     </div>
                     <div className="w-full flex flex-col justify-between gap-2">
-                        {recipe.category && (
-                            <div>
-                                <div className="flex items-center gap-2 mb-2">
-                                    <div className="text-emerald-600">
-                                        {iconMap[recipe.category.slug ?? ""] ?? (
-                                            <LuUtensilsCrossed className="size-5 text-gray-400" />
-                                        )}
+                        <div className="flex flex-col items-start gap-2">
+                            <div className="w-full flex flex-col">
+                                <div className="relative w-full flex flex-row justify-between items-center">
+                                    <div>
+                                        <h4 className="font-medium text-sm font-oswald text-gray-400 dark:text-gray-600">
+                                            {recipe.punchline}
+                                        </h4>
+                                        <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
                                     </div>
-                                    <h4 className="font-medium text-sm font-oswald text-gray-400 dark:text-gray-600">
-                                        {recipe.category.name}
-                                    </h4>
-                                </div>
-                                <div className="flex flex-col items-start gap-2">
-                                    <div className="w-full flex flex-col">
-                                        <div className="relative w-full flex flex-row justify-between items-center">
-                                            <div>
-                                                <h4 className="font-medium text-sm font-oswald text-gray-400 dark:text-gray-600">
-                                                    {recipe.punchline}
-                                                </h4>
-                                                <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
-                                            </div>
-                                            {user && (
-                                                <DropdownMenu>
-                                                    <DropdownMenuTrigger
-                                                        className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-2 hover:text-gray-200 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
-                                                        onClick={(e) => e.stopPropagation()}
+                                    {user && (
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger
+                                                className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-2 hover:text-gray-200 hover:bg-gray/30 dark:hover:bg-white/10 hover:cursor-pointer shadow-transparent rounded-full z-20"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                <HiOutlineDotsVertical className="size-4" />
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem>
+                                                    <Link
+                                                        href={route('recipes.edit', recipe.id)}
+                                                        className="flex flex-row items-center"
+                                                        onClick={(e) => e.stopPropagation()} // Link soll nur Edit öffnen
                                                     >
-                                                        <HiOutlineDotsVertical className="size-4" />
-                                                    </DropdownMenuTrigger>
-                                                    <DropdownMenuContent align="end">
-                                                        <DropdownMenuItem>
-                                                            <Link
-                                                                href={route('recipes.edit', recipe.id)}
-                                                                className="flex flex-row items-center"
-                                                                onClick={(e) => e.stopPropagation()} // Link soll nur Edit öffnen
-                                                            >
-                                                                <MdOutlineEdit className="size-5 mr-2" />
-                                                                Bearbeiten
-                                                            </Link>
-                                                        </DropdownMenuItem>
-                                                        <DropdownMenuItem
-                                                            className="text-red-500 flex items-center"
-                                                            onClick={deleteRecipe} // Delete mit stopPropagation
-                                                        >
-                                                            <GoTrash className="size-5 mr-2" />
-                                                            Löschen
-                                                        </DropdownMenuItem>
-                                                    </DropdownMenuContent>
-                                                </DropdownMenu>
-                                            )}
-                                        </div>
-                                        <p className="mb-3 text-gray-800 dark:text-gray-200">
-                                            {recipe.description}
-                                        </p>
-                                    </div>
+                                                        <MdOutlineEdit className="size-5 mr-2" />
+                                                        Bearbeiten
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem
+                                                    className="text-red-500 flex items-center"
+                                                    onClick={deleteRecipe} // Delete mit stopPropagation
+                                                >
+                                                    <GoTrash className="size-5 mr-2" />
+                                                    Löschen
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    )}
                                 </div>
-                            </div>
-                        )}
-                        
-                        <div className="flex flex-row justify-between gap-1">
-                            <div className="flex flex-col gap-1">
-                                <h4>Zubereitungszeit</h4>
-                                <div className="flex flex-row">
-                                    <GoClock className="mt-1 size-4 text-primary" />
-                                    <p className="ml-1">{recipe.preparation_time} Minuten</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <h4>Schwierigkeitsgrad</h4>
-                                <div className="flex flex-row">
-                                    <VscSymbolEvent className="mt-1 size-4 text-primary" />
-                                    <p className="ml-1 lowercase">{recipe.difficulty}</p>
-                                </div>
+                                <p className="mb-3 text-gray-800 dark:text-gray-200">
+                                    {recipe.description}
+                                </p>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="flex flex-row justify-start gap-2">
+                    <div className="w-32 flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                        {iconMap[recipe.category?.slug ?? ""] ?? (
+                            <LuUtensilsCrossed className="size-5 text-primary" />
+                        )}
+                        <p className="font-oswald">{recipe.category?.name}</p>
+                    </div>
+                    <div className="w-32 flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                        <GoClock className="size-5 text-primary" />
+                        <p className="font-oswald">{recipe.preparation_time} Minuten</p>
+                    </div>
+                    <div className="w-32 flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                        <GoStar className="size-5 text-primary" />
+                        <p className="font-oswald">{recipe.rating}</p>
+                    </div>
+
                 </div>
                 <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">

@@ -17,6 +17,7 @@ import { LiaCocktailSolid } from "react-icons/lia";
 import { RiCake3Line } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
+import { FaHeadSideMask } from 'react-icons/fa6';
 
 interface RecipeCardProps {
     recipe: Recipe;
@@ -56,16 +57,28 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                     >
                         {/* SLOT: Kategorie-Icon oben links */}
                         {recipe.category && (
-                            <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-6">
-                                {iconMap[recipe.category.slug ?? ''] ?? (
-                                    <>
-                                        <LuUtensilsCrossed className="size-5" />
-                                        <span className="block text-xs text-white dark:text-gray-900 font-medium">
-                                            {recipe.category.name}
-                                        </span>
-                                    </>
-                                )}
-                            </div>
+                            <>
+                                <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-6">
+                                    {iconMap[recipe.category.slug ?? ''] ?? (
+                                        <>
+                                            <FaHeadSideMask className="size-5 text-gray-400" />
+                                            <span className="block text-xs font-medium">
+                                                zu favoriten
+                                            </span>
+                                        </>
+                                    )}
+                                </div>
+                                <div className="absolute bottom-2 left-2 z-20 flex items-center justify-center size-6">
+                                    {iconMap[recipe.category.slug ?? ''] ?? (
+                                        <>
+                                            <LuUtensilsCrossed className="size-5" />
+                                            <span className="block text-xs font-medium">
+                                                {recipe.category.name}
+                                            </span>
+                                        </>
+                                    )}
+                                </div>
+                            </>
 
                             
                         )}

@@ -28,24 +28,23 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiter();
 
-        // Vite::prefetch(concurrency: 3);
-        //     Inertia::share([
-        //     // 'auth' => function () {
-        //     //     $user = Auth::user();
-        //     //     return [
-        //     //         'user' => $user,
-        //     //     ];
-        //     // },
-        // ]);
+        Vite::prefetch(concurrency: 3);
+            Inertia::share([
+            'auth' => function () {
+                $user = Auth::user();
+
+                return [
+                    'user' => $user ? [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'roles' => $user instanceof \App\Models\User ? $user->getRoleNames() : null, // ["admin", "editor"]
+                        'permissions' => $user->permissions->pluck('name') // ["edit recipes", "delete recipes"]
+                    ] : null,
+                ];
+            },
+        ]);
     }
 
-    /**
-     * Configure the rate limiter for the login route.
-     *
-     * This rate limiter limits the number of login attempts to 3 per minute.
-     * It uses the email address and IP address as the key for the rate limiter.
-     * If the rate limit is exceeded, it will return a response with a view 'auth.max-try'.
-     */
     public function configureRateLimiter():void {
         RateLimiter::for('login', function(Request $request) {
             $key = $request->email.$request->ip(); // emailadresse+ip

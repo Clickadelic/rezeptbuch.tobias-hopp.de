@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { useMediaQuery } from '@/hooks/use-media-query';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useEffect } from 'react';
 import { Head, usePage } from '@inertiajs/react';
 

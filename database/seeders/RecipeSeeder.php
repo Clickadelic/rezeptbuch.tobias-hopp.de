@@ -17,6 +17,7 @@ class RecipeSeeder extends Seeder
             'punchline' => 'mit Speck, Ei und Parmesan',
             'description' => 'Klassisches italienisches Pasta-Gericht mit Speck, Ei und Parmesan.',
             'difficulty' => 'einfach',
+            'category_id' => 'f5993d22-8182-4a26-9e25-89f096f3aae4',
             'rating' => 3,
             'preparation_time' => 20,
             'preparation_instructions' => 'Nudeln al dente kochen und abtropfen lassen. Eier zusammen mit dem geriebenen Parmesan und Sahne in einer Schüssel mischen. Das Eiweiß vorher trennen. Speck anbraten und abtupfen, dann in die Mischung geben. Anschließend die Nudeln untermengen und servieren.',
@@ -28,6 +29,7 @@ class RecipeSeeder extends Seeder
             'punchline' => 'Wie bei Mutti',
             'description' => 'Saftiger Braten mit kräftiger Sauce, perfekt für Sonntage.',
             'difficulty' => 'schwer',
+            'category_id' => 'f5993d22-8182-4a26-9e25-89f096f3aae4',
             'rating' => 4,
             'preparation_time' => 180,
             'preparation_instructions' => 'Fleisch anbraten, Gemüse hinzufügen, mit Brühe ablöschen und mehrere Stunden schmoren lassen. Am Ende Sauce abschmecken.',
@@ -39,6 +41,7 @@ class RecipeSeeder extends Seeder
             'punchline' => 'mit Huhn, Croutons und Caesar-Dressing',
             'description' => 'Frischer Salat mit Huhn, Croutons und cremigem Caesar-Dressing.',
             'difficulty' => 'mittel',
+            'category_id' => 'f5993d22-8182-4a26-9e25-89f096f3aae4',
             'rating' => 4,
             'preparation_time' => 15,
             'preparation_instructions' => 'Salat waschen und abtropfen lassen. Huhn in Stücke schneiden und anbraten. Croutons rösten. Dressing aus Knoblauch, Öl, Eigelb, Parmesan und Zitrone mischen.',
@@ -196,6 +199,17 @@ class RecipeSeeder extends Seeder
             'rating' => 4,
             'preparation_time' => 10,
             'preparation_instructions' => 'Gemüse schneiden, mit Oliven, Feta und Dressing vermengen.',
+            'user_id' => 1,
+        ]);
+
+        Recipe::create([
+            'name' => 'Pizza Diavolo',
+            'punchline' => 'Feurig scharfe Pizza',
+            'description' => 'Wer gerne feurig scharf ist, sollte diese Pizza probieren.',
+            'difficulty' => 'einfach',
+            'rating' => 4,
+            'preparation_time' => 45,
+            'preparation_instructions' => 'Teig zubereiten und in der Pfanne vorbacken, danach die Pizza belegen und im Ofen ausbacken.',
             'user_id' => 1,
         ]);
 

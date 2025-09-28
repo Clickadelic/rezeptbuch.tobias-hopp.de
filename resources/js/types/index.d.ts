@@ -2,6 +2,21 @@
 
 import { Recipe } from './Recipe';
 import { Category } from './types';
+import { PageProps as InertiaPageProps } from "@inertiajs/core";
+
+export interface AuthUser {
+    id: string;
+    name: string;
+    email?: string;
+    roles: string[];
+    permissions: string[];
+}
+
+export interface PageProps extends InertiaPageProps {
+    auth: {
+        user: AuthUser | null;
+    };
+}
 
 export interface User {
     id: number;

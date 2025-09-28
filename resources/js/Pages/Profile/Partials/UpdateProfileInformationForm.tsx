@@ -24,10 +24,9 @@ export default function UpdateProfileInformation({
         avatar: null as File | null,
     });
 
+    // TODO: Avatar hinzufügen
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
-        console.log('Submitted Data', data);
     };
 
     return (

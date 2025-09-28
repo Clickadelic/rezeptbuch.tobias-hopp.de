@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,10 +30,18 @@ class AppServiceProvider extends ServiceProvider
 
         Vite::prefetch(concurrency: 3);
             Inertia::share([
-            // 'recipes' => function () {
-            //     return Recipes::all();
-            // }
-            // weitere globale Daten hier...
+            'auth' => function () {
+                $user = Auth::user();
+
+                return [
+                    'user' => $user ? [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'roles' => $user instanceof \App\Models\User ? $user->getRoleNames() : null, // ["admin", "editor"]
+                        'permissions' => $user->permissions->pluck('name') // ["edit recipes", "delete recipes"]
+                    ] : null,
+                ];
+            },
         ]);
     }
 

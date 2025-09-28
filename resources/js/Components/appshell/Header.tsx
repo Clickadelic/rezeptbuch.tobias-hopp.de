@@ -33,7 +33,7 @@ const Header = () => {
 
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
-            <div className="mx-auto container px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto container px-4 sm:px-6">
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
                         <div className="flex shrink-0">

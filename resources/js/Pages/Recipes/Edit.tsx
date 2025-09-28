@@ -4,8 +4,7 @@ import RecipesSidebar from '@/components/sidebars/MainSidebar';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 
 import { Recipe } from '@/types/Recipe';
-import RecipeWizzard from '@/components/forms/RecipeWizzard';
-
+import RecipeWizzard from '@/components/forms/RecipeWizard';
 
 interface EditRecipeProps {
     recipe: Recipe;
@@ -23,10 +22,10 @@ interface EditRecipeProps {
 export default function RecipeEdit({ recipe }: EditRecipeProps) {
     const { props } = usePage();
     const ingredients = props.ingredients;
-    const categories = props.categories;
+    const categories = props.categories || [];
     return (
         <SidebarLeftLayout title="Rezept bearbeiten" sidebar={<RecipesSidebar />}>
-            <RecipeWizzard recipe={recipe} ingredients={ingredients} categories={categories} />
+            <RecipeWizzard recipe={recipe} />
         </SidebarLeftLayout>
     );
 }

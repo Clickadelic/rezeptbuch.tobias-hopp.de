@@ -31,6 +31,11 @@ export type Recipe = {
         };
     }>;
     user_id?: string;
+    // Tempwise  user data
+    user?: {
+        id: number;
+        name: string;
+    };
     category_id?: string; // Für DB-Relation
     category?: Category;
     created_at: string;

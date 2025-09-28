@@ -1,11 +1,9 @@
-import { router, usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem,DropdownMenuTrigger, } from '@/components/ui/dropdown-menu';
-import { GoClock, GoTrash } from 'react-icons/go';
+
+import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
-import { HiOutlineDotsVertical } from 'react-icons/hi';
-import { MdOutlineEdit } from 'react-icons/md';
+
 import { BiDish } from 'react-icons/bi';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Recipe } from '@/types/Recipe';
@@ -17,32 +15,31 @@ import { LiaCocktailSolid } from "react-icons/lia";
 import { RiCake3Line } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
-import { FaHeadSideMask } from 'react-icons/fa6';
+
+import ContextMenu from '@/components/reusables/ContextMenu';
 
 interface RecipeCardProps {
     recipe: Recipe;
 }
 
+/**
+ * Displays a single recipe card.
+ *
+ * @param {RecipeCardProps} props - properties of the component
+ * @returns {JSX.Element} - the rendered component
+ */
 export default function RecipeCard({ recipe }: RecipeCardProps) {
-    const user = usePage().props.auth?.user;
-
-    const deleteRecipe = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (confirm('Willst du dieses Rezept wirklich löschen?')) {
-            router.delete(route('recipes.destroy', recipe.id));
-        }
-    };
 
     /**
      * Kategorie -> Icon Mapping
      */
     const iconMap: Record<string, JSX.Element> = {
-        vorspeise: <TbSalad className="size-5 text-white" />,
-        hauptgericht: <PiCookingPot className="size-5 text-white" />,
-        nachtisch: <RiCake3Line className="size-5 text-white" />,
-        cocktail: <LiaCocktailSolid className="size-5 text-white" />,
-        snack: <GiCrystalBars className="size-5 text-white" />,
-        backen: <GiCakeSlice className="size-5 text-white" />,
+        vorspeise: <TbSalad className="size-5" />,
+        hauptgericht: <PiCookingPot className="size-5" />,
+        nachtisch: <RiCake3Line className="size-5" />,
+        cocktail: <LiaCocktailSolid className="size-5" />,
+        snack: <GiCrystalBars className="size-5" />,
+        backen: <GiCakeSlice className="size-5" />,
     };
 
     return (
@@ -57,30 +54,11 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                     >
                         {/* SLOT: Kategorie-Icon oben links */}
                         {recipe.category && (
-                            <>
-                                <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-6">
-                                    {iconMap[recipe.category.slug ?? ''] ?? (
-                                        <>
-                                            <FaHeadSideMask className="size-5 text-gray-400" />
-                                            <span className="block text-xs font-medium">
-                                                zu favoriten
-                                            </span>
-                                        </>
-                                    )}
-                                </div>
-                                <div className="absolute bottom-2 left-2 z-20 flex items-center justify-center size-6">
-                                    {iconMap[recipe.category.slug ?? ''] ?? (
-                                        <>
-                                            <LuUtensilsCrossed className="size-5" />
-                                            <span className="block text-xs font-medium">
-                                                {recipe.category.name}
-                                            </span>
-                                        </>
-                                    )}
-                                </div>
-                            </>
-
-                            
+                            <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-8">
+                                {iconMap[recipe.category.slug ?? ''] ?? (
+                                <LuUtensilsCrossed className="size-5 text-primary" />
+                                )}
+                            </div>
                         )}
 
                         {/* Hero image */}
@@ -98,47 +76,16 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                 <BiDish className="size-10" />
                             );
                         })()}
-
                         {/* Dropdown Actions */}
-                        {user && (
-                            <DropdownMenu>
-                                <DropdownMenuTrigger
-                                    className="absolute top-2 right-2 text-gray-400 dark:text-gray-200 p-1 hover:text-gray-300 hover:cursor-pointer shadow-transparent z-20 rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    <HiOutlineDotsVertical className="size-4" />
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                    <DropdownMenuItem>
-                                        <Link
-                                            href={route('recipes.edit', recipe.id)}
-                                            className="flex flex-row items-center"
-                                            onClick={(e) => e.stopPropagation()} // Link soll nur Edit öffnen
-                                        >
-                                            <MdOutlineEdit className="size-5 mr-2" />
-                                            Bearbeiten
-                                        </Link>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem
-                                        className="text-red-500 flex items-center"
-                                        onClick={deleteRecipe} // Delete mit stopPropagation
-                                    >
-                                        <GoTrash className="size-5 mr-2" />
-                                        Löschen
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        )}
+                        <ContextMenu recipe={recipe} />
                     </CardHeader>
 
                     {/* Titel + Kategorie */}
-                    <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-primary leading-snug">
-                        
-
-                        <h4 className="text-gray-500 dark:text-gray-400 text-base font-oswald line-clamp-1">
+                    <CardContent className="p-2 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
+                        <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-base font-oswald line-clamp-1">
                             {recipe.punchline}
                         </h4>
-                        <h3 className="group-hover:text-primary line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">
+                        <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">
                             {recipe.name}
                         </h3>
                     </CardContent>

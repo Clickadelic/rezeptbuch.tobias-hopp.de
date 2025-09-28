@@ -1,30 +1,29 @@
 import { useState, useRef, FormEvent } from 'react';
-import { useForm } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import { router } from '@inertiajs/react'; // ✅ Richtig, extra Import
+
 import { Button } from '@/components/ui/button';
 import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
 import { Textarea } from '@/components/ui/textarea';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
-import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
-import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
-import { Difficulty } from '@/types/Difficulty';
-import { Ingredient } from '@/types/Ingredient';
-import { UNITS } from '@/types/Units';
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
-import { cn } from '@/lib/utils';
-import { Recipe } from '@/types/Recipe';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
+
+import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
+import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 import CategoryGrid from '@/components/forms/CategoryGrid';
+
+import { Recipe } from '@/types/Recipe';
+import { Category } from '@/types/Category';
+import { Ingredient } from '@/types/Ingredient';
+import { UNITS } from '@/types/Units';
+import { Difficulty } from '@/types/Difficulty';
+
+import { cn } from '@/lib/utils';
 
 interface RecipeIngredientData {
     ingredient_id: string;
@@ -32,23 +31,25 @@ interface RecipeIngredientData {
     unit: string;
 }
 
-interface RecipeWizzardProps {
+interface RecipeWizardProps {
     recipe?: Recipe;
-    ingredients: Ingredient[];
-    categories?: Ingredient[];
     className?: string;
 }
 
-export default function RecipeWizzard({
-    recipe,
-    ingredients,
-    categories,
-    className,
-}: RecipeWizzardProps) {
-
+/**
+ * Smoothly scrolls to the top of the form element.
+ which is used in the Recipe Wizard.
+ to scroll to the top of the form when the user clicks the "Next" or "Previous" button.
+ the form will be scrolled to the top of the window.
+ with a smooth animation.
+ a minimal delay of 50ms.
+ to give the browser time to update the DOM.
+ */
+export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
-    console.log(categories);
+    
+    console.log("Recipe Wizzard receives:", recipe);
     /**
      * Smoothly scrolls to the top of the form element.
      * @remarks
@@ -56,7 +57,7 @@ export default function RecipeWizzard({
      * clicks the "Next" or "Previous" button.
      */
     const scrollToTop = () => {
-    if (formRef.current) {
+        if (formRef.current) {
             const top = formRef.current.getBoundingClientRect().top + window.scrollY - 20; // 20px Puffer
             window.scrollTo({
                 top,
@@ -91,15 +92,14 @@ export default function RecipeWizzard({
         rating: Number(recipe?.rating ?? 5),
         preparation_time: Number(recipe?.preparation_time ?? 15),
         preparation_instructions: recipe?.preparation_instructions ?? '',
-        pending_key: recipe ? null : pendingKey, // <-- bei Edit KEIN pending_key
+        pending_key: recipe ? null : pendingKey,
         primary_media_id: recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null,
-        recipe_ingredients:
-            recipe?.ingredients?.map((i) => ({
-                ingredient_id: i.id!,
-                quantity: i.pivot?.quantity ?? '',
-                unit: i.pivot?.unit ?? 'gr',
-            })) ?? [],
-
+        recipe_ingredients: recipe?.ingredients?.map((i) => ({
+            ingredient_id: i.id!,
+            quantity: i.pivot?.quantity ?? '',
+            unit: i.pivot?.unit ?? 'gr',
+        })) ?? [],
+        category_id: recipe?.category_id ?? '',
     });
 
     // Zutaten-Helpers
@@ -226,8 +226,8 @@ export default function RecipeWizzard({
                     {/* Kategorie */}
                     <div>
                         <CategoryGrid
-                            selectedCategoryId={data?.category_id}
-                            onChange={(id) => setData('category_id', id)}
+                            selectedCategoryId={String(data.category_id ?? '')}
+                            onChange={(id) => setData('category_id', id || '')}
                         />
                     </div>
                     {/* Name */}
@@ -412,7 +412,7 @@ export default function RecipeWizzard({
                             
                             <div className="md:w-full flex gap-2">
                                 <IngredientComboBox
-                                    options={ingredients}
+                                    options={di.ingredients}
                                     value={di.ingredient_id}
                                     triggerClassName="w-full mt-1"
                                     onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}

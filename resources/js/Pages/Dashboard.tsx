@@ -12,7 +12,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 grid-rows-5 gap-2 md:galg:gap-4">
                 <div className="md:col-span-4 lg:col-span-3 lg:row-span-2 rounded-xl ">
                     <h2 className="text-lg font-medium mb-3">
-                        Willkommen zurück, {auth.user.name}
+                        Willkommen zurück, Username
                     </h2>
 
                     <p>

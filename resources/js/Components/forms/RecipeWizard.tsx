@@ -226,7 +226,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     {/* Kategorie */}
                     <div>
                         <CategoryGrid
-                            selectedCategoryId={String(data.category_id ?? '')}
+                            selectedCategoryId={String(data.category_id ?? recipe?.category)}
                             onChange={(id) => setData('category_id', id || '')}
                         />
                     </div>

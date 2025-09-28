@@ -13,7 +13,7 @@ export interface User {
 
 // Alle globalen Props, die auf jeder Seite verfügbar sind
 export interface SharedPageProps {
-    auth: { user: User | null };
+    auth: { user: User };
     current_page: number;
     first_page_url: string;
     recipes: {

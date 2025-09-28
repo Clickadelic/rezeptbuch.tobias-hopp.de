@@ -122,6 +122,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
     // Step 1 Validierung
     const canNextFromStep1 = (() => {
+        if ((data.category_id?.trim()?.length ?? 0) < 3) return false;
         if ((data.name?.trim()?.length ?? 0) < 3) return false;
         return true;
     })();
@@ -214,7 +215,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     role="alert"
                 >
                     <p className="text-sm">
-                        Name mindestens 3 Zeichen.
+                        Wähle eine Kategorie und gib einen Namen an um fortzufahren.
                     </p>
                 </div>
             )}

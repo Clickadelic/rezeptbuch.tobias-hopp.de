@@ -35,6 +35,7 @@ export type Recipe = {
     user?: {
         id: number;
         name: string;
+        roles: string[];
     };
     category_id?: string; // Für DB-Relation
     category?: Category;

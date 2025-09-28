@@ -2,6 +2,18 @@ import { Link, usePage } from '@inertiajs/react';
 import { RiHomeLine } from 'react-icons/ri';
 import { ChevronRight } from 'lucide-react'; // ShadCN Icons
 
+/**
+ * BreadcrumbNav component.
+ *
+ * Render a breadcrumb navigation based on the current URL.
+ *
+ * On the start page, nothing is rendered.
+ *
+ * On other pages, the breadcrumb navigation is rendered with links to
+ * the parent pages.
+ * 
+ * @returns {JSX.Element} The breadcrumb navigation component.
+ */
 const BreadcrumbNav = () => {
     const { url } = usePage(); // aktueller Pfad z.B. /gerichte/1/edit
 

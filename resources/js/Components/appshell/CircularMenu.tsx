@@ -7,11 +7,12 @@ import { TooltipArrow } from '@radix-ui/react-tooltip';
 import { TbSalt } from 'react-icons/tb';
 import { FiPlus } from 'react-icons/fi';
 import { BsJournalBookmark } from 'react-icons/bs';
-
+import { PageProps } from "@/types";
 import { cn } from '@/lib/utils';
+import { usePermissions } from '@/hooks/usePermissions';
 
 export function CircularMenu() {
-    const { auth } = usePage().props;
+    const { auth } = usePage<PageProps>().props;
 
     if (!auth.user ||
         window.location.pathname.endsWith('/neues-rezept') ||

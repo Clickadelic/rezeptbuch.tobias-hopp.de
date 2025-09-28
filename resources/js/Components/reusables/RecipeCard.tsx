@@ -1,9 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
-import { GoClock } from 'react-icons/go';
-import { VscSymbolEvent } from 'react-icons/vsc';
-
 import { BiDish } from 'react-icons/bi';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Recipe } from '@/types/Recipe';
@@ -15,6 +12,10 @@ import { LiaCocktailSolid } from "react-icons/lia";
 import { RiCake3Line } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
+
+import { GoClock } from 'react-icons/go';
+import { VscSymbolEvent } from 'react-icons/vsc';
+import { IoEyeOutline } from "react-icons/io5";
 
 import ContextMenu from '@/components/reusables/ContextMenu';
 
@@ -34,12 +35,12 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
      * Kategorie -> Icon Mapping
      */
     const iconMap: Record<string, JSX.Element> = {
-        vorspeise: <TbSalad className="size-5" />,
-        hauptgericht: <PiCookingPot className="size-5" />,
-        nachtisch: <RiCake3Line className="size-5" />,
-        cocktail: <LiaCocktailSolid className="size-5" />,
-        snack: <GiCrystalBars className="size-5" />,
-        backen: <GiCakeSlice className="size-5" />,
+        vorspeise: <TbSalad className="inline-flex size-4 mr-1 text-primary" />,
+        hauptgericht: <PiCookingPot className="inline-flex size-4 mr-1 text-primary" />,
+        nachtisch: <RiCake3Line className="inline-flex size-4 mr-1 text-primary" />,
+        cocktail: <LiaCocktailSolid className="inline-flex size-4 mr-1 text-primary" />,
+        snack: <GiCrystalBars className="inline-flex size-4 mr-1 text-primary" />,
+        backen: <GiCakeSlice className="inline-flex size-4 mr-1 text-primary" />,
     };
 
     return (
@@ -52,14 +53,14 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
-                        {/* SLOT: Kategorie-Icon oben links */}
+                        {/* SLOT: Kategorie-Icon oben links
                         {recipe.category && (
                             <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-8">
                                 {iconMap[recipe.category.slug ?? ''] ?? (
                                 <LuUtensilsCrossed className="size-5 text-primary" />
                                 )}
                             </div>
-                        )}
+                        )} */}
 
                         {/* Hero image */}
                         {(() => {
@@ -67,11 +68,14 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                                 (recipe as any)?.media?.[0];
                             return hero ? (
+                                <>
+                                <IoEyeOutline className="absolute top-1/3 opacity-0 group-hover:opacity-1 z-30 size-10 text-white" />
                                 <img
                                     src={hero.url ?? `/storage/${hero.path}`}
                                     alt={recipe.name}
-                                    className="absolute inset-0 size-full object-cover"
+                                    className="absolute scale-100 transform duration-300 ease-out group-hover:scale-105 inset-0 size-full object-cover"
                                 />
+                                </>
                             ) : (
                                 <BiDish className="size-10" />
                             );
@@ -93,15 +97,27 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                     {/* Footer */}
                     <CardFooter className="flex flex-row items-center justify-between space-x-2">
                         <div>
-                            <GoClock className="inline-flex size-4 mr-1 text-primary" />
-                            <span className="text-sm text-muted-foreground">
-                                {recipe.preparation_time} Min.
+                            {recipe.category && (
+                                <>
+                                    {iconMap[recipe.category.slug ?? ''] ?? (
+                                        <LuUtensilsCrossed className="size-4 text-primary" />
+                                    )}
+                                </>
+                            )}
+                            <span className="text-sm text-muted-foreground ">
+                                {recipe.category?.name ?? 'unbekannt'}
                             </span>
                         </div>
                         <div>
                             <VscSymbolEvent className="inline-flex size-4 mr-1 text-primary" />
                             <span className="text-sm text-muted-foreground lowercase">
                                 {recipe.difficulty}
+                            </span>
+                        </div>
+                        <div>
+                            <GoClock className="inline-flex size-4 mr-1 text-primary" />
+                            <span className="text-sm text-muted-foreground">
+                                {recipe.preparation_time} Min.
                             </span>
                         </div>
                     </CardFooter>

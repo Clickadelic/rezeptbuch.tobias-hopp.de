@@ -7,10 +7,8 @@ interface ResponsiveDialogProps {
     icon: React.ReactNode;
     title: string;
     description?: string;
-
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-
     children: React.ReactNode;
 }
 
@@ -20,7 +18,6 @@ export const ResponsiveDialog = ({ icon, title, description, isOpen, setIsOpen, 
     if (isDesktop) {
         return (
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle className="flex">
@@ -31,7 +28,6 @@ export const ResponsiveDialog = ({ icon, title, description, isOpen, setIsOpen, 
                     </DialogHeader>
                     {children}
                 </DialogContent>
-
             </Dialog>
         );
     }

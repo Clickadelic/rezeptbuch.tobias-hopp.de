@@ -25,7 +25,7 @@ interface ContextMenuProps {
  * @param {Recipe} props.recipe - The recipe to be edited or deleted.
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
-export default function ContextMenu({ recipe }: { recipe: Recipe }) {
+export default function ContextMenu({ recipe }: ContextMenuProps) {
     const { auth } = usePage<PageProps>().props;
     const { hasRole, isOwner } = usePermissions();
 
@@ -52,7 +52,7 @@ export default function ContextMenu({ recipe }: { recipe: Recipe }) {
                 <HiOutlineDotsVertical className="size-5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                {auth.user?.roles[0] && (
+                {isOwner(recipe.user_id ?? '') && (
                     <>
                         <DropdownMenuItem>
                             <Link

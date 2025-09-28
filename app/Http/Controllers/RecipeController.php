@@ -12,6 +12,7 @@ use App\Models\Recipe;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -277,6 +278,9 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
+        if ($recipe->user_id !== Auth::id()) {
+            abort(403, 'Nicht autorisiert.');
+        }
         // Bild löschen (falls vorhanden)
         if ($recipe->image && file_exists(public_path('uploads/recipes/'.$recipe->image))) {
             unlink(public_path('uploads/recipes/'.$recipe->image));

@@ -1,7 +1,7 @@
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
-import FrontpageSidebar from '@/components/sidebars/FrontpageSidebar';
+import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import chefkoch from '@images/svg/Chef-Tobias.svg';
+
 
 /**
  * The frontpage of the application.
@@ -13,7 +13,7 @@ import chefkoch from '@images/svg/Chef-Tobias.svg';
  */
 export default function Frontpage() {
     return (
-        <SidebarRightLayout title="Willkommen" sidebar={<FrontpageSidebar />}>
+        <FullWidthLayout title="Willkommen">
             <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
                 <img src={chefkoch} className="mt-5 size-72" alt="Chef Tobias" />
                 <div className="flex flex-col gap-2">
@@ -38,6 +38,6 @@ export default function Frontpage() {
                     <p className="text-2xl font-la-belle-aurore mt-4">Toby</p>
                 </div>
             </div>
-        </SidebarRightLayout>
+        </FullWidthLayout>
     );
 }

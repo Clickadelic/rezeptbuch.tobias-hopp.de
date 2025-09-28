@@ -13,15 +13,6 @@ export default function LeftSidebar() {
     const user = usePage().props.auth.user;
     return (
         <aside className="py-4 space-y-5">
-            <Button variant="primaryOutline" asChild className="w-full">
-                <Link
-                    href="/rezepte"
-                    className="flex flex-row justify-between gap-2 text-primary hover:text-emerald-600 mx-auto"
-                >
-                    <BsBookmarkHeart className="size-5 mt-1" />
-                    zurück
-                </Link>
-            </Button>
             <h2 className="text-xl font-medium font-oswald mb-2">Navigation</h2>
             <ul className="flex flex-col">
                 <SidebarLink

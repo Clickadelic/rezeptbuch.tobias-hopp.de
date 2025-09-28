@@ -2,10 +2,9 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
-Route::get('/', function () {
-    return Inertia::render('Frontpage');
-});
+Route::get('/', [PageController::class, 'index'])->name('index');
 
 Route::get('/impressum', function () {
     return Inertia::render('Impressum');

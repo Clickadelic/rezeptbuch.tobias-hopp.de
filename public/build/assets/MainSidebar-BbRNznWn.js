@@ -1,0 +1,6 @@
+import{u as t,j as e}from"./app-3KJbPFK8.js";import{N as a}from"./SidebarLink-B2PSWR4G.js";import{B as s}from"./button-DsZNdznJ.js";import{c as r}from"./index-GQ-R0iV_.js";import{c as i}from"./createLucideIcon-Dc8ZoKkz.js";/**
+ * @license lucide-react v0.536.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const o=[["path",{d:"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",key:"1cjeqo"}],["path",{d:"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",key:"19qd67"}]],l=i("link",o);function x(){return t().props.auth.user,e.jsxs("aside",{className:"py-4 space-y-5",children:[e.jsx(s,{variant:"primaryOutline",asChild:!0,className:"w-full",children:e.jsxs(l,{href:"/rezepte",className:"flex flex-row justify-between gap-2 text-primary hover:text-emerald-600 mx-auto",children:[e.jsx(r,{className:"size-5 mt-1"}),"zurück"]})}),e.jsx("h2",{className:"text-xl font-medium font-oswald mb-2",children:"Navigation"}),e.jsxs("ul",{className:"flex flex-col",children:[e.jsx(a,{href:"/rezepte",active:window.location.pathname==="/rezepte",title:"Rezepte"}),e.jsx(a,{href:"/zutaten",active:window.location.pathname==="/zutaten",title:"Zutaten"})]})]})}export{x as L};

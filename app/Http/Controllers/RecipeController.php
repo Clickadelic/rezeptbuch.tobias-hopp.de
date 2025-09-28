@@ -4,12 +4,6 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 
-// use Illuminate\Support\Facades\Storage;
-// use Intervention\Image\Laravel\Facades\Image;
-
-// use Intervention\Image\ImageManager;
-// use Intervention\Image\Drivers\Gd\Driver;
-
 use App\Models\Ingredient;
 
 use Illuminate\Support\Facades\Log;
@@ -29,7 +23,6 @@ class RecipeController extends Controller
     public function index()
     {
         $recipes = Recipe::with('media', 'category', 'user')->paginate(15);
-
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes,
         ]);
@@ -172,7 +165,6 @@ class RecipeController extends Controller
             'ingredients' => Ingredient::all(),
         ]);
     }
-
 
     /**
      * Updates a recipe in storage.

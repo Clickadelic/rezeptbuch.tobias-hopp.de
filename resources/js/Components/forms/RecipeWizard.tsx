@@ -412,7 +412,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             
                             <div className="md:w-full flex gap-2">
                                 <IngredientComboBox
-                                    options={di.ingredients}
                                     value={di.ingredient_id}
                                     triggerClassName="w-full mt-1"
                                     onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}

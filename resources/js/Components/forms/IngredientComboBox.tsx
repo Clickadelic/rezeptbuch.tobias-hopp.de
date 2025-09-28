@@ -1,24 +1,15 @@
 'use client';
 
-import * as React from 'react';
+import { usePage } from '@inertiajs/react';
+import { useState, useMemo } from 'react';
+import { Button } from '@/components/ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ChevronsUpDown, Check } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-} from '@/components/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-
-import type { Ingredient } from '@/types/Ingredient';
 
 interface IngredientComboBoxProps {
-    options: Ingredient[];
     value: string; // can be an existing ingredient id (uuid) or a free-text name
     onChange: (value: string) => void;
     placeholder?: string;
@@ -26,24 +17,24 @@ interface IngredientComboBoxProps {
 }
 
 export function IngredientComboBox({
-    options,
     value,
     onChange,
     placeholder = 'Zutat auswählen oder neu anlegen',
     triggerClassName,
 }: IngredientComboBoxProps) {
-    const [open, setOpen] = React.useState(false);
-    const [inputValue, setInputValue] = React.useState('');
+    const ingredientList = usePage().props.ingredients ?? [];
+    const [open, setOpen] = useState(false);
+    const [inputValue, setInputValue] = useState('');
 
-    const selected = React.useMemo(
-        () => options.find((o) => o.id === value) ?? null,
-        [options, value],
+    const selected = useMemo(
+        () => ingredientList.find((o) => o.id === value) ?? null,
+        [ingredientList, value],
     );
 
     const displayLabel = selected ? selected.name : value || placeholder;
 
     const existsByName = (name: string) =>
-        options.some((o) => o.name.trim().toLowerCase() === name.trim().toLowerCase());
+        ingredientList.some((o) => o.name.trim().toLowerCase() === name.trim().toLowerCase());
 
     const shouldOfferCreate = inputValue.trim().length > 0 && !existsByName(inputValue);
 
@@ -97,12 +88,12 @@ export function IngredientComboBox({
                         )}
                         <CommandEmpty>Keine Zutat gefunden.</CommandEmpty>
                         <CommandGroup>
-                            {options.map((opt) => {
-                                const encoded = `id:${opt.id} ${opt.name}`;
-                                const isSelected = selected?.id === opt.id;
+                            {ingredientList.map((ingredient) => {
+                                const encoded = `id:${ingredient.id} ${ingredient.name}`;
+                                const isSelected = selected?.id === ingredient.id;
                                 return (
                                     <CommandItem
-                                        key={opt.id}
+                                        key={ingredient.id}
                                         value={encoded}
                                         onSelect={handleSelect}
                                     >
@@ -112,7 +103,7 @@ export function IngredientComboBox({
                                                 isSelected ? 'opacity-100' : 'opacity-0',
                                             )}
                                         />
-                                        {opt.name}
+                                        {ingredient.name}
                                     </CommandItem>
                                 );
                             })}

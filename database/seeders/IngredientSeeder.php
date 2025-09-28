@@ -160,7 +160,7 @@ class IngredientSeeder extends Seeder
 
         // T
         Ingredient::create([
-            'name' => 'Tomate',
+            'name' => 'Tomaten',
         ]);
         // U
         // V

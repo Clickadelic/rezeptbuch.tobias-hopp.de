@@ -3,7 +3,7 @@ import { RiSearchLine } from 'react-icons/ri';
 
 export default function RecipeSearch() {
     return (
-        <div className="w-full h-48 lg:h-64 bg-[url('../images/Spaghetti-Ingredients.jpg')] bg-cover bg-center flex flex-col justify-center items-center">
+        <div className="w-full h-48 lg:h-64 bg-[url('../images/Spaghetti-Ingredients.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-center items-center">
             <div className="bg-white/30 dark:bg-gray-800/30 dark:text-gray-200 p-1 rounded w-64 md:w-72 lg:w-96">
                 <form className="flex flex-row justify-end items-center place-items-center bg-white dark:bg-gray-800 dark:text-gray-200 p-1 rounded space-x-1">
                     <input

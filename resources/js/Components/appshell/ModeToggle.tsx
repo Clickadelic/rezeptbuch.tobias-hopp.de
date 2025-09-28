@@ -1,14 +1,20 @@
+import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+
 import { Moon, Sun } from 'lucide-react';
 import { BsGear } from 'react-icons/bs';
-import { Button } from '@/components/ui/button';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+
 import { useTheme } from '@/components/appshell/ThemeProvider';
 
+/**
+ * A dropdown menu to toggle the theme of the application.
+ *
+ * It uses the `ThemeProvider` to set the theme of the application.
+ *
+ * The menu contains three items: Light, Dark and System.
+ *
+ * When the user clicks on an item, the theme of the application is set to the corresponding corresponding item.
+ */
 export function ModeToggle() {
     const { setTheme } = useTheme();
 

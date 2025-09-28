@@ -35,6 +35,7 @@ class StoreRecipeRequest extends FormRequest
 
             'primary_media_id' => ['nullable', 'string'],
             'id' => ['nullable', 'string'],
+            'category_id' => ['nullable', 'string'],
         ];
     }
 

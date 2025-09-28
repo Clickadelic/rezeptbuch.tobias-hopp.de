@@ -28,7 +28,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('media')->paginate(10);
+        $recipes = Recipe::with('media', 'category', 'user')->paginate(15);
 
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes,
@@ -61,7 +61,9 @@ class RecipeController extends Controller
             'ingredients' => function ($query) {
                 $query->withPivot(['quantity', 'unit']);
             },
+            'category',
             'media',
+            'user'
         ]);
         return inertia('Recipes/Show', compact('recipe'));
     }
@@ -88,6 +90,7 @@ class RecipeController extends Controller
             'preparation_time' => $request->input('preparation_time', 0),
             'preparation_instructions' => $request->input('preparation_instructions'),
             'user_id' => $request->user()->id,
+            'category_id' => $request->input('category_id'),
         ]);
 
         // 2️⃣ Zutaten aus Request verarbeiten
@@ -162,6 +165,7 @@ class RecipeController extends Controller
                 $query->select('ingredients.id', 'ingredients.name')->withPivot(['quantity', 'unit']);
             },
             'media',
+            'category'
         ])->findOrFail($recipe->id);
         return Inertia::render('Recipes/Edit', [
             'recipe' => $recipe, // ✅ Kein zweites load() mehr

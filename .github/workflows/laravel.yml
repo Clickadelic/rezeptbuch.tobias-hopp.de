@@ -3,11 +3,9 @@ name: Laravel
 on:
   push:
     branches: ["temp-test"]
-  pull_request:
-    branches: ["temp-test"]
 
 jobs:
-  laravel-tests:
+  laravel-deployment:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +26,14 @@ jobs:
         run: npm cache clean --force
       - name: Install Node dependencies
         run: npm ci
+      - name: Empty view cache
+        run: php artisan view:clear
+      - name: Empty route cache
+        run: php artisan route:clear
+      - name: Empty cache
+        run: php artisan cache:clear
+      - name: Cache config
+        run: php artisan config:cache
       - name: Generate key
         run: php artisan key:generate
       - name: Directory Permissions

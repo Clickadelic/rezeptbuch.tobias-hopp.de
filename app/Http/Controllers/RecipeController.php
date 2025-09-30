@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
-
-use App\Models\Ingredient;
-
-use Illuminate\Support\Facades\Log;
-
+use App\Models\User;
 use App\Models\Recipe;
-use App\Http\Requests\StoreRecipeRequest;
 use App\Models\Category;
+use App\Models\Ingredient;
+use App\Http\Requests\StoreRecipeRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
+use App\Http\Middleware\CheckRole;
 
 class RecipeController extends Controller
 {
@@ -154,8 +154,9 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {   
+        
         // Bearbeiten von fremden Rezepten ist aktuell nicht erlaubt
-        if($recipe->user_id !== Auth::id()) {
+        if($recipe->user_id !== Auth::id() || User::hasRole('admin')) {
             return Inertia::render('Recipes/NoEditAllowed');
         }
         $recipe = Recipe::with([
@@ -165,6 +166,7 @@ class RecipeController extends Controller
             'media',
             'category'
         ])->findOrFail($recipe->id);
+
         return Inertia::render('Recipes/Edit', [
             'recipe' => $recipe, // ✅ Kein zweites load() mehr
             'ingredients' => Ingredient::all(),

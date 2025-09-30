@@ -42,7 +42,9 @@ jobs:
           server-dir: /www/subdomains/rezeptbuch.tobias-hopp.de/
           exclude: |
             .git/**
-            **/.git*
-            **/node_modules/**
-            **/tests/**
+            .github/**
+            node_modules/**
+            vendor/**
+            tests/**
+            storage/**
             .env

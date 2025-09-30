@@ -156,7 +156,7 @@ class RecipeController extends Controller
     {   
         
         // Bearbeiten von fremden Rezepten ist aktuell nicht erlaubt
-        if($recipe->user_id !== Auth::id() || User::hasRole('admin')) {
+        if($recipe->user_id !== Auth::id()) {
             return Inertia::render('Recipes/NoEditAllowed');
         }
         $recipe = Recipe::with([

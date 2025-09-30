@@ -6,6 +6,12 @@ import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 
 
+/**
+ * Edit page for user profile.
+ * 
+ * @param {SharedPageProps} props - MustVerifyEmail and status
+ * @returns {JSX.Element} - Edit page
+ */
 export default function Edit({
     mustVerifyEmail,
     status,

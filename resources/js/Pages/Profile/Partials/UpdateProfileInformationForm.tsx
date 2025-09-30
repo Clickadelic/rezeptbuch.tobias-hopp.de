@@ -8,6 +8,16 @@ import { FormEventHandler } from 'react';
 import { Plus } from 'lucide-react';
 import { SharedPageProps } from '@/types';
 
+/**
+ * A form component for updating user profile information.
+ *
+ * @param {Object} props
+ * @param {boolean} props.mustVerifyEmail
+ * @param {string} props.status
+ * @param {string} props.className
+ *
+ * @returns {JSX.Element}
+ */
 export default function UpdateProfileInformation({
     mustVerifyEmail,
     status,

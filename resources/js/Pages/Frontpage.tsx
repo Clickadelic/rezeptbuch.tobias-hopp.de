@@ -41,7 +41,7 @@ export default function Frontpage() {
                     <p className="text-base">Viele Grüße und frohes Kochen.</p>
                     <p className="text-2xl font-la-belle-aurore mt-4">Toby</p>
                 </div>
-                <h1>Test</h1>
+                <h1>Testsasd</h1>
                 {categories.map((category:Category) => {
                     return (
                         <div className="`flex flex-col gap-2" key={category.id}>

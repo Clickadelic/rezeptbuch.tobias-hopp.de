@@ -14,8 +14,6 @@ export interface AuthUser {
     roles: string[];
     permissions: string[];
     email_verified_at: string | null;
-    mustVerifyEmail: boolean;
-    status?: string;
 }
 
 /**
@@ -25,7 +23,8 @@ export interface SharedPageProps extends InertiaPageProps {
     auth: {
         user: AuthUser;
     };
-    
+
+    // Im Auge behalten, warum hier und ob nicht besser im User-Objekt
     mustVerifyEmail: boolean;
     status?: string;
 
@@ -50,5 +49,5 @@ export interface SharedPageProps extends InertiaPageProps {
 
     ingredients?: Ingredient[];
 
-    [key: string]: unknown; // Fallback für weitere dynamische Props
+    [key: string]: unknown; // Fallback
 }

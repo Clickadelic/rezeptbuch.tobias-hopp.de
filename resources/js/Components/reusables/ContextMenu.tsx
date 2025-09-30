@@ -63,7 +63,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                 <HiOutlineDotsVertical className="size-5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                {/* Trigger me */}
+                    {/* Trigger me */}
                     {isOwner(recipe?.user_id ?? 0) && (
                         <>
                             <DropdownMenuItem>

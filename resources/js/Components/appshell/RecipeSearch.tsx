@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { RiSearchLine } from 'react-icons/ri';
-import { usePage } from '@inertiajs/react';
 
 /**
  * A search bar for recipes.

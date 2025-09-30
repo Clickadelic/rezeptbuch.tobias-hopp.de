@@ -153,7 +153,11 @@ class RecipeController extends Controller
      * @return \Inertia\Response
      */
     public function edit(Recipe $recipe)
-    {
+    {   
+        // Bearbeiten von fremden Rezepten ist aktuell nicht erlaubt
+        if($recipe->user_id !== Auth::id()) {
+            return Inertia::render('Recipes/NoEditAllowed');
+        }
         $recipe = Recipe::with([
             'ingredients' => function ($query) {
                 $query->select('ingredients.id', 'ingredients.name')->withPivot(['quantity', 'unit']);

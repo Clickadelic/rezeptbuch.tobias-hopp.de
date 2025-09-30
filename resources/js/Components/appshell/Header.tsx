@@ -1,16 +1,11 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
-// @ts-nocheck
+
 import AppLogo from '@/components/appshell/AppLogo';
-// @ts-nocheck
 import NavLink from '@/components/reusables/NavLink';
-// @ts-nocheck
 import NavButton from '@/components/reusables/NavButton';
-// @ts-nocheck
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
-// @ts-nocheck
 import Dropdown from '@/components/Dropdown';
-// @ts-nocheck
 import { ModeToggle } from '@/components/appshell/ModeToggle';
 
 import { BsHouse } from 'react-icons/bs';

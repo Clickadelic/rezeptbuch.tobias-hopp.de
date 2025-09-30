@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { usePage, Link } from '@inertiajs/react';
-// @ts-nocheck
+
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-// @ts-nocheck
 import { TooltipArrow } from '@radix-ui/react-tooltip';
 
 import { TbSalt } from 'react-icons/tb';

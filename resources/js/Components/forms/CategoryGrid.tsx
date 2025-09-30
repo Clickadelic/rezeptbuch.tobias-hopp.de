@@ -1,7 +1,5 @@
 import { usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
-// @ts-nocheck
-// @ts-ignore
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 import { PiCookingPot } from "react-icons/pi";

@@ -200,6 +200,17 @@ class RecipeSeeder extends Seeder
         ]);
 
         Recipe::create([
+            'name' => 'Pizza Diavolo',
+            'punchline' => 'Feurig scharfe Pizza',
+            'description' => 'Wer gerne feurig scharf ist, sollte diese Pizza probieren.',
+            'difficulty' => 'einfach',
+            'rating' => 4,
+            'preparation_time' => 45,
+            'preparation_instructions' => 'Teig zubereiten und in der Pfanne vorbacken, danach die Pizza belegen und im Ofen ausbacken.',
+            'user_id' => 1,
+        ]);
+
+        Recipe::create([
             'name' => 'Ramen Suppe',
             'punchline' => 'Wärmend und herzhaft',
             'description' => 'Japanische Nudelsuppe mit Brühe, Fleisch und Gemüse.',

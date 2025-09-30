@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
 
 use App\Models\Ingredient;
-use App\Enums\Units;
 use App\Http\Requests\StoreIngredientRequest;
 
 class IngredientController extends Controller

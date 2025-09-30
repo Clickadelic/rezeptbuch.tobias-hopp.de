@@ -8,6 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { ChevronsUpDown, Check } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+import { SharedPageProps } from '@/types';
 
 interface IngredientComboBoxProps {
     value: string; // can be an existing ingredient id (uuid) or a free-text name
@@ -22,7 +23,7 @@ export function IngredientComboBox({
     placeholder = 'Zutat auswählen oder neu anlegen',
     triggerClassName,
 }: IngredientComboBoxProps) {
-    const ingredientList = usePage().props.ingredients ?? [];
+    const ingredientList = usePage<SharedPageProps>().props.ingredients ?? [];
     const [open, setOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
 

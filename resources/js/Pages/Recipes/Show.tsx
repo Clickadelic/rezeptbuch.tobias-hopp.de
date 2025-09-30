@@ -17,7 +17,7 @@ import { GiCakeSlice } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
 import { BiDish } from 'react-icons/bi';
 import { GiCrystalBars } from "react-icons/gi";
-
+import { VscSymbolEvent } from 'react-icons/vsc';
 import { Recipe } from '@/types/Recipe';
 
 interface ShowRecipeProps {
@@ -86,9 +86,12 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
                         {iconMap[recipe.category?.slug ?? ""] ?? (
                             <LuUtensilsCrossed className="size-5 text-primary" />
-                            
                         )}
                         <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.category?.name}</p>
+                    </div>
+                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                        <VscSymbolEvent className="size-5 text-primary" />
+                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.difficulty}</p>
                     </div>
                     <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
                         <GoClock className="size-5 text-primary" />

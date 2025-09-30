@@ -19,7 +19,7 @@ import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-
+import { SharedPageProps } from "@/types";
 /**
  * The application header.
  *
@@ -27,7 +27,7 @@ import { MdOutlineAdminPanelSettings } from 'react-icons/md';
  */
 
 const Header = () => {
-    const user = usePage().props.auth.user;
+    const { auth } = usePage<SharedPageProps>().props;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
@@ -67,7 +67,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
-                        {user ? (
+                        {auth.user ? (
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -77,7 +77,7 @@ const Header = () => {
                                                 className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 hover:cursor-pointer focus:outline-none gap-2"
                                             >
                                                 <RxAvatar className="size-4 hidden md:flex" />
-                                                {user.name}
+                                                {auth.user?.name}
                                                 <svg
                                                     className="-me-0.5 ms-2 h-4 w-4"
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -192,14 +192,14 @@ const Header = () => {
                         </ResponsiveNavLink>
                     </div>
 
-                    {user ? (
+                    {auth.user ? (
                         <div className="border-t border-gray-200 pb-1 pt-4">
                             <div className="px-4">
                                 <div className="text-base font-medium text-gray-800">
-                                    {user.name}
+                                    {auth.user.name}
                                 </div>
                                 <div className="text-sm font-medium text-gray-500">
-                                    {user.email}
+                                    {auth.user.email}
                                 </div>
                             </div>
 

@@ -10,6 +10,7 @@ import CircularMenu from '@/components/appshell/CircularMenu';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
+import { SharedPageProps } from '@/types';
 interface NoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
     title?: string;
@@ -32,7 +33,7 @@ interface NoSidebarsLayoutProps extends PropsWithChildren {
  */
 
 export default function NoSidebarsLayout({ title, children }: NoSidebarsLayoutProps) {
-    const { props } = usePage();
+    const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
     useEffect(() => {

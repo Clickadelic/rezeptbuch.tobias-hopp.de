@@ -11,6 +11,7 @@ import CircularMenu from '@/components/appshell/CircularMenu';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
+import { SharedPageProps } from '@/types';
 interface SidebarRightLayoutProps extends PropsWithChildren {
     title?: string;
     sidebar?: React.ReactNode;
@@ -31,7 +32,7 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  * </SidebarLeftLayout>
  */
 export default function SidebarRightLayout({ title, sidebar, children }: SidebarRightLayoutProps) {
-    const { props } = usePage();
+    const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
     useEffect(() => {

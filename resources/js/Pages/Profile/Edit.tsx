@@ -1,14 +1,16 @@
+import { SharedPageProps } from '@/types';
 import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
-import { PageProps } from '@/types';
-import { Head } from '@inertiajs/react';
+
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 
+
 export default function Edit({
     mustVerifyEmail,
     status,
-}: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
+}: SharedPageProps) {
+    
     return (
         <NoSidebarsLayout title="Profil">
             <div className="mx-auto max-w-lg space-y-4">

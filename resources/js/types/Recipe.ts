@@ -30,13 +30,14 @@ export type Recipe = {
             position?: number;
         };
     }>;
-    user_id?: string;
+    user_id?: number;
     // Tempwise  user data
     user?: {
         id: number;
         name: string;
+        roles: string[];
     };
-    category_id?: string; // Für DB-Relation
+    category_id?: number; // Für DB-Relation
     category?: Category;
     created_at: string;
     updated_at: string;

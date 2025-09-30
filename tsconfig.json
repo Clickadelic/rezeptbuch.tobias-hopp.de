@@ -14,6 +14,13 @@
         "paths": {
             "@/*": ["./resources/js/*"],
             "@/components/*": ["./resources/js/components/*"],
+            "@/hooks/*": ["./resources/js/hooks/*"],
+            "@pages/*": ["./resources/js/pages/*"],
+            "@layouts/*": ["./resources/js/layouts/*"],
+            "@images/*": ["./resources/images/*"],
+            "@hooks": ["./resources/js/hooks"],
+            "@utils/*": ["./resources/js/utils/*"],
+            "@lib/*": ["./resources/js/lib/*"],
             "ziggy-js": ["./vendor/tightenco/ziggy"]
         }
     },

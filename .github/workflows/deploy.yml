@@ -35,7 +35,7 @@ jobs:
 
       # 5. Node Modules installieren
       - name: Install Node dependencies
-        run: npm ci
+        run: npm install
 
       # 6. Ziggy generieren
       - name: Generate Ziggy routes

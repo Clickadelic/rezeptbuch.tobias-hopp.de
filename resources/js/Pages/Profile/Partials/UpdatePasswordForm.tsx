@@ -6,6 +6,13 @@ import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef } from 'react';
 
+/**
+ * A form to update the user's password.
+ *
+ * @param {string} [className] - An optional class name to apply to the form.
+ *
+ * @returns {JSX.Element} - The rendered form component.
+ */
 export default function UpdatePasswordForm({ className = '' }: { className?: string }) {
     const passwordInput = useRef<HTMLInputElement>(null);
     const currentPasswordInput = useRef<HTMLInputElement>(null);

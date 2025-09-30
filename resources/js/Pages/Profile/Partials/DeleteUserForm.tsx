@@ -6,6 +6,13 @@ import TextInput from '@/components/TextInput';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef, useState } from 'react';
 
+/**
+ * Formular for deleting a user's profile.
+ *
+ * @param {{ className?: string }} - Optional CSS class name
+ *
+ * @returns {JSX.Element} - A JSX element representing the form
+ */
 export default function DeleteUserForm({ className = '' }: { className?: string }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef<HTMLInputElement>(null);

@@ -17,7 +17,8 @@ export function usePermissions() {
         return auth.user.permissions.includes(permission);
     };
 
-    const isOwner = (userId: number) => {
+    const isOwner = (userId?: number | null) => {
+        if (!auth.user || userId == null) return false;
         return auth.user.id === userId;
     };
 

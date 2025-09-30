@@ -51,6 +51,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
 
     const copyToClipboard = (e: React.MouseEvent) => {
         e.stopPropagation();
+        alert("Yo");
     };
     
     return (
@@ -62,7 +63,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                 <HiOutlineDotsVertical className="size-5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                    {isOwner(auth.user.id) && (
+                    {isOwner(recipe?.user_id || 0) && (
                         <>
                             <DropdownMenuItem>
                                 <Link

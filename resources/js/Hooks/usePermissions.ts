@@ -1,6 +1,11 @@
 import { usePage } from "@inertiajs/react";
 import { SharedPageProps } from "@/types";
 
+/**
+ * Hook to check if the current user has a certain role or permission.
+ *
+ * @returns {{ hasRole: (role: string) => boolean, can: (permission: string) => boolean, isOwner: (userId: number) => boolean }}
+ */
 export function usePermissions() {
     const { auth } = usePage<SharedPageProps>().props;
 
@@ -13,7 +18,7 @@ export function usePermissions() {
     };
 
     const isOwner = (userId: number) => {
-        return auth.user.id === userId;
+        return auth.user.id === userId || hasRole('admin');
     };
 
     return { hasRole, can, isOwner };

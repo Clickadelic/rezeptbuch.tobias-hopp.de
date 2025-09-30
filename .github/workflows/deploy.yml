@@ -32,27 +32,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # Node & Vite Build
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install Node.js dependencies
-        run: npm ci
-
-      - name: Build assets
-        run: npm run build
-
-      # Exclude unnötige Ordner
-      - name: Prepare artifact
-        run: |
-          rm -rf node_modules
-          rm -rf tests
-          rm -rf storage/logs/*.log
-          rm -rf .git
-
       # Upload mit SFTP/SSH (lftp als FTPS-Alternative)
       - name: Deploy via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4

@@ -64,7 +64,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                     {/* Trigger me */}
-                    {isOwner(recipe?.user_id ?? 0) && (
+                    {isOwner(recipe?.user_id) && (
                         <>
                             <DropdownMenuItem>
                                 <Link

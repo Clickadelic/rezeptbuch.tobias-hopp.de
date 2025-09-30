@@ -1,71 +1,22 @@
-name: Build & Deploy Laravel App
-
-on:
-  push:
-    branches:
-      - production
-
+on: push
+name: Publish Website
 jobs:
-  build-and-deploy:
+  web-deploy:
+    name: 🚀 Deploy Website Every Commit
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Code auschecken
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # 2. Node.js Setup (für Laravel Mix / Vite)
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.14.0"
-          cache: "npm"
-
-      # 3. Node Modules installieren
-      - name: Install Node dependencies
-        run: npm ci
-
-      # 4. Frontend Build
-      - name: Build frontend
-        run: npm run build
-
-      # 5. PHP Setup
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-          extensions: mbstring, bcmath, intl, pdo_mysql
-          coverage: none
-
-      # 6. Composer Install
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader
-
-      - name: Generate Ziggy routes
-        run: npm run ziggy
-
-      # 7. Laravel Optimierungen
-      - name: Laravel Optimize
+      - name: Install rsync
         run: |
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
+          sudo apt-get update
+          sudo apt-get install rsync
+      - name: 🚚 Get Latest Code
+        uses: actions/checkout@v3
 
-      # 8. Deployment via SFTP
-      - name: Deploy to Server via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: 📂 Sync Files
+        uses: SamKirkland/web-deploy@v1
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          local-dir: ./
-          server-dir: /www/subdomains/rezeptbuch.tobias-hopp.de/
-          exclude: |
-            **/.git*
-            **/.github/**
-            **/node_modules/**
-            **/vendor/**
-            storage/**
-            tests/**
-            .env
+          source-path: ./
+          destination-path: ./www/subdomains/rezeptbuch.tobias-hopp.de/
+          target-server: ${{ secrets.SSH_HOST }}
+          remote-user: ${{ secrets.SSH_USERNAME }}
+          private-ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}

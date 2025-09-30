@@ -6,7 +6,6 @@ import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/Dropdown';
-
 import { ModeToggle } from '@/components/appshell/ModeToggle';
 
 import { BsHouse } from 'react-icons/bs';

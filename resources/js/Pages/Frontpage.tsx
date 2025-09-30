@@ -3,8 +3,6 @@ import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import { Category } from '@/types/Category';
 
-import chefkoch from '@images/svg/Chef-Tobias.svg';
-
 
 /**
  * The frontpage of the application.
@@ -19,7 +17,7 @@ export default function Frontpage() {
     return (
         <FullWidthLayout title="Willkommen">
             <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
-                <img src={chefkoch} className="mt-5 size-72" alt="Chef Tobias" />
+                
                 <div className="flex flex-col gap-2">
                     <h2 className="my-6 text-3xl font-la-belle-aurore text-gray-800 dark:text-gray-300">
                         ... auf meinem Rezeptbuch.

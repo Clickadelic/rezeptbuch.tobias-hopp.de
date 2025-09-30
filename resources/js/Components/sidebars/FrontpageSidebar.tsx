@@ -1,4 +1,5 @@
 import SidebarLink from '@/components/sidebars/SidebarLink';
+import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 /**
  * A component that renders a right sidebar with a title and a subtitle.
@@ -7,7 +8,7 @@ import { usePage } from '@inertiajs/react';
  * <RightSidebar />
  */
 export default function RightSidebar() {
-    const user = usePage().props.auth.user;
+    const user = usePage<SharedPageProps>();
     return (
         <aside className="py-4">
             <h2 className="text-xl font-medium font-oswald mb-2">Los geht's</h2>

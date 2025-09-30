@@ -14,7 +14,6 @@ class Category extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id',
         'name',
         'slug'
     ];
@@ -22,10 +21,6 @@ class Category extends Model
     protected static function booted()
     {
         static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = (string) Str::uuid();
-            }
-
             if (empty($model->slug)) {
                 $model->slug = Str::slug($model->name);
             }

@@ -8,13 +8,10 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->uuid('category_id')->nullable()->after('difficulty');
-
-            // Foreign Key sauber definieren
-            $table->foreign('category_id')
-                  ->references('id')
-                  ->on('categories')
-                  ->onDelete('cascade'); 
+            $table->foreignId('category_id') // erstellt automatisch bigint unsigned
+                ->nullable()
+                ->constrained('categories') // Verknüpfung zu categories.id
+                ->cascadeOnDelete(); 
         });
     }
 

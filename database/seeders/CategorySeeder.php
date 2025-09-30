@@ -11,10 +11,10 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Cocktail',
             'Vorspeise',
             'Hauptgericht',
             'Nachtisch',
+            'Cocktail',
             'Backen',
             'Snack',
         ];

@@ -38,7 +38,8 @@ class Recipe extends Model
 
      protected $casts = [
           'preparation_time' => 'integer',
-          'rating' => 'integer'
+          'rating' => 'integer',
+          'category_id' => 'integer',
      ];
 
     /**

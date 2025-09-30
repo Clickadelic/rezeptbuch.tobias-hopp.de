@@ -3,6 +3,7 @@ import { usePage } from '@inertiajs/react';
 import { Button } from '../ui/button';
 import { Link } from 'lucide-react';
 import { BsBookmarkHeart } from 'react-icons/bs';
+import { SharedPageProps } from '@/types';
 /**
  * A component that renders a sidebar with a title.
  *
@@ -10,7 +11,7 @@ import { BsBookmarkHeart } from 'react-icons/bs';
  * <LeftSidebar />
  */
 export default function LeftSidebar() {
-    const user = usePage().props.auth.user;
+    const user = usePage<SharedPageProps>().props.auth.user;
     return (
         <aside className="py-4 space-y-5">
             <h2 className="text-xl font-medium font-oswald mb-2">Navigation</h2>

@@ -33,22 +33,20 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            'auth' => function () {
-                $user = Auth::user();
-                return [
-                    'user' => $user ? [
-                        'id' => $user->id,
-                        'name' => $user->name,
-                        'roles' => $user->getRoleNames(),
-                        'permissions' => $user->getAllPermissions()->pluck('name'),
-                    ] : null,
-                ];
-            },
-            'categories' => Category::select('id', 'name', 'slug')->get(),
+            'categories' => fn() => Category::select('id', 'name', 'slug')->get(),
             'flash' => [
-                'success' => fn () => $request->session()->get('success'),
-                'error'   => fn () => $request->session()->get('error'),
+                'success' => fn() => $request->session()->get('success'),
+                'error' => fn() => $request->session()->get('error'),
             ],
+            'auth' => [
+            'user' => fn() => $request->user() ? [
+                    'id' => $request->user()->id,
+                    'name' => $request->user()->name,
+                    'email' => $request->user()->email,
+                    'roles' => $request->user()->getRoleNames(),
+                    'permissions' => $request->user()->getAllPermissions()->pluck('name'),
+                ] : null,
+            ]
         ];
     }
 }

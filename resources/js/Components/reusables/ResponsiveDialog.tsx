@@ -12,6 +12,12 @@ interface ResponsiveDialogProps {
     children: React.ReactNode;
 }
 
+/**
+ * A responsive dialog component that will render a Dialog on desktop and a Drawer on mobile devices.
+ * It takes an icon, title, description, isOpen, setIsOpen, and children as props.
+ * @param {ResponsiveDialogProps} props - The props for the responsive dialog component.
+ * @returns {JSX.Element} - The JSX element for the responsive dialog component.
+ */
 export const ResponsiveDialog = ({ icon, title, description, isOpen, setIsOpen, children }: ResponsiveDialogProps) => {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 

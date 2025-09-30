@@ -12,6 +12,7 @@ import CircularMenu from '@/components/appshell/CircularMenu';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
+import { SharedPageProps } from '@/types';
 
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
     children: React.ReactNode;
@@ -48,7 +49,7 @@ export default function TwoSidebarsLayout({
 }: TwoSidebarsLayoutProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
-    const { props } = usePage();
+    const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
     useEffect(() => {

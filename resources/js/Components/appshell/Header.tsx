@@ -19,7 +19,7 @@ import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { PageProps } from "@/types";
+import { SharedPageProps } from "@/types";
 /**
  * The application header.
  *
@@ -27,7 +27,7 @@ import { PageProps } from "@/types";
  */
 
 const Header = () => {
-    const { auth } = usePage<PageProps>().props;
+    const { auth } = usePage<SharedPageProps>().props;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
@@ -67,7 +67,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
-                        {auth ? (
+                        {auth.user ? (
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>

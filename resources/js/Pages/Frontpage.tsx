@@ -1,4 +1,7 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
+import { usePage } from '@inertiajs/react';
+import { SharedPageProps } from '@/types';
+import { Category } from '@/types/Category';
 
 import chefkoch from '@images/svg/Chef-Tobias.svg';
 
@@ -12,6 +15,7 @@ import chefkoch from '@images/svg/Chef-Tobias.svg';
  * @return {JSX.Element} The frontpage component.
  */
 export default function Frontpage() {
+    const categories = usePage<SharedPageProps>().props.categories;
     return (
         <FullWidthLayout title="Willkommen">
             <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
@@ -37,6 +41,18 @@ export default function Frontpage() {
                     <p className="text-base">Viele Grüße und frohes Kochen.</p>
                     <p className="text-2xl font-la-belle-aurore mt-4">Toby</p>
                 </div>
+                {categories.map((category:Category) => {
+                    return (
+                        <div className="`flex flex-col gap-2" key={category.id}>
+                            <h2 className="my-6 text-md text-gray-800 dark:text-gray-300">
+                                {category.name}
+                            </h2>
+                            <p className="text-base">
+                                {category.name}
+                            </p>
+                        </div>
+                    );
+                })}
             </div>
         </FullWidthLayout>
     );

@@ -1,10 +1,12 @@
-import { useState, useRef, FormEvent } from 'react';
-import { useForm, usePage } from '@inertiajs/react';
-import { router } from '@inertiajs/react'; // ✅ Richtig, extra Import
+import { useState, useRef, FormEvent, useEffect } from 'react';
+import { useForm } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 
-import { Button } from '@/components/ui/button';
 import InputLabel from '@/components/InputLabel';
 import TextInput from '@/components/TextInput';
+import InputError from '@/components/InputError';
+
+import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
@@ -18,9 +20,8 @@ import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 import CategoryGrid from '@/components/forms/CategoryGrid';
 
 import { Recipe } from '@/types/Recipe';
-import { Category } from '@/types/Category';
-import { Ingredient } from '@/types/Ingredient';
 import { UNITS } from '@/types/Units';
+import { Category } from '@/types/Category';
 import { Difficulty } from '@/types/Difficulty';
 
 import { cn } from '@/lib/utils';
@@ -36,18 +37,12 @@ interface RecipeWizardProps {
     className?: string;
 }
 
-/**
- * Smoothly scrolls to the top of the form element.
- which is used in the Recipe Wizard.
- to scroll to the top of the form when the user clicks the "Next" or "Previous" button.
- the form will be scrolled to the top of the window.
- with a smooth animation.
- a minimal delay of 50ms.
- to give the browser time to update the DOM.
- */
 export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
+    
+    console.log(typeof recipe?.category_id);
+
     /**
      * Smoothly scrolls to the top of the form element.
      * @remarks
@@ -97,7 +92,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             quantity: i.pivot?.quantity ?? '',
             unit: i.pivot?.unit ?? 'gr',
         })) ?? [],
-        category_id: recipe?.category_id ?? '',
+        category_id: recipe?.category_id,
     });
 
     // Zutaten-Helpers
@@ -122,8 +117,14 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
     // Step 1 Validierung
     const canNextFromStep1 = (() => {
-        if ((data.category_id?.trim()?.length ?? 0) < 3) return false;
-        if ((data.name?.trim()?.length ?? 0) < 3) return false;
+        if (data.category_id === null) {
+            return false;
+        }
+
+        // Prüfen ob Name mindestens 3 Zeichen hat
+        if ((data.name?.trim()?.length ?? 0) < 3) {
+            return false;
+        }
         return true;
     })();
 
@@ -163,7 +164,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     return (
         <form onSubmit={handleSubmit} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
-            <ol className="items-center w-full space-y-4 flex justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
+            <ol className="items-center w-full space-y-4 flex justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-5">
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
@@ -208,7 +209,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                 </li>
             </ol>
 
-            <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
             {!canNextFromStep1 && (
                 <div
                     className="border border-sky-400 bg-sky-200 text-sm text-sky-700 px-4 py-3 mb-4 rounded relative"
@@ -219,14 +219,18 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </p>
                 </div>
             )}
+
             {/* STEP 1: Basics */}
             {step === 1 && (
                 <section className="space-y-4">
                     {/* Kategorie */}
                     <div>
                         <CategoryGrid
-                            selectedCategoryId={String(data.category_id ?? recipe?.category)}
-                            onChange={(id) => setData('category_id', id || '')}
+                            selectedCategoryId={
+                                recipe?.category_id ? Number(recipe.category_id) : undefined
+                            }
+                            // onChange={(id) => setData('category_id', id)}
+                            onChange={(id) => setData('category_id', id)}
                         />
                     </div>
                     {/* Name */}

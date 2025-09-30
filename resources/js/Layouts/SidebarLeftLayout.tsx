@@ -12,6 +12,7 @@ import CircularMenu from '@/components/appshell/CircularMenu';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
+import { SharedPageProps } from '@/types';
 interface SidebarLeftLayoutProps extends PropsWithChildren {
     title?: string;
     sidebar?: React.ReactNode;
@@ -34,7 +35,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
 export default function SidebarLeftLayout({ title, sidebar, children }: SidebarLeftLayoutProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
-    const { props } = usePage();
+    const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
     useEffect(() => {

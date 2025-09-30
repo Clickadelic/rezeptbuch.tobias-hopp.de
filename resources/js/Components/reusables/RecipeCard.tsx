@@ -15,7 +15,6 @@ import { TbSalad } from "react-icons/tb";
 
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
-import { IoEyeOutline } from "react-icons/io5";
 
 import ContextMenu from '@/components/reusables/ContextMenu';
 
@@ -44,7 +43,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
     };
 
     return (
-        <li className="group w-full max-w-96 mb-5">
+        <li className="group w-full max-w-96">
             <Link href={route('recipes.show', recipe.slug)} className="block" title={recipe.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader
@@ -53,8 +52,8 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
-                        {/* SLOT: Kategorie-Icon oben links
-                        {recipe.category && (
+                    
+                        {/* {recipe.category && (
                             <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-8">
                                 {iconMap[recipe.category.slug ?? ''] ?? (
                                 <LuUtensilsCrossed className="size-5 text-primary" />
@@ -68,14 +67,11 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                                 (recipe as any)?.media?.[0];
                             return hero ? (
-                                <>
-                                <IoEyeOutline className="absolute top-1/3 opacity-0 group-hover:opacity-1 z-30 size-10 text-white" />
                                 <img
                                     src={hero.url ?? `/storage/${hero.path}`}
                                     alt={recipe.name}
                                     className="absolute scale-100 transform duration-300 ease-out group-hover:scale-105 inset-0 size-full object-cover"
                                 />
-                                </>
                             ) : (
                                 <BiDish className="size-10" />
                             );
@@ -86,7 +82,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
 
                     {/* Titel + Kategorie */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
-                        <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-base font-oswald line-clamp-1">
+                        <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm font-oswald line-clamp-1 min-h-[calc(1rem+2px)]">
                             {recipe.punchline}
                         </h4>
                         <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">
@@ -108,12 +104,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                 {recipe.category?.name ?? 'unbekannt'}
                             </span>
                         </div>
-                        <div>
-                            <VscSymbolEvent className="inline-flex size-4 mr-1 text-primary" />
-                            <span className="text-sm text-muted-foreground lowercase">
-                                {recipe.difficulty}
-                            </span>
-                        </div>
+
                         <div>
                             <GoClock className="inline-flex size-4 mr-1 text-primary" />
                             <span className="text-sm text-muted-foreground">

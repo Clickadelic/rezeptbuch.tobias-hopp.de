@@ -12,6 +12,7 @@ import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
+import { SharedPageProps } from '@/types';
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
@@ -31,7 +32,7 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  */
 
 export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
-    const { props } = usePage();
+    const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
     useEffect(() => {

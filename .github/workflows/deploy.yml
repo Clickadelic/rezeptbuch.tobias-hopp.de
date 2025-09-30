@@ -30,10 +30,6 @@ jobs:
       - name: Generate Ziggy routes
         run: php artisan ziggy:generate
 
-      # 9. Frontend Build
-      - name: Build frontend
-        run: npm run build
-
       # 10. Deployment via SFTP
       - name: Deploy to Server via SFTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

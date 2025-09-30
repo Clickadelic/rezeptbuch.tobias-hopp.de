@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { usePage, Link } from '@inertiajs/react';
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { TooltipArrow } from '@radix-ui/react-tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/Tooltip';
+
 
 import { TbSalt } from 'react-icons/tb';
 import { FiPlus } from 'react-icons/fi';

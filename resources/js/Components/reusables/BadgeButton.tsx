@@ -14,8 +14,6 @@ export default function BadgeButton({ ingredient }: BadgeButtonProps) {
 
     const { props } = usePage();
     const { auth } = props;
-
-    console.log("Badge Button auth:", {auth});
     const { reset } = useForm();
 
     /**

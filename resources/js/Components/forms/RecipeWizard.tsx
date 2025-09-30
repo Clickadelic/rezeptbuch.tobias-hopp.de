@@ -40,8 +40,6 @@ interface RecipeWizardProps {
 export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
-    
-    console.log(typeof recipe?.category_id);
 
     /**
      * Smoothly scrolls to the top of the form element.

@@ -1,4 +1,4 @@
-name: Build & Deploy Rezeptbuch App
+name: Build & Deploy Laravel App
 
 on:
   push:
@@ -26,46 +26,22 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # 4. Node.js einrichten
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20" # stabiler als 22 für Vite/React aktuell
-          cache: "npm"
-
-      # 5. NPM Cache leeren (sicherstellen, dass keine alten Aliase hängen)
-      - name: Clear npm cache
-        run: npm cache clean --force
-
-      # 6. Node Modules installieren
-      - name: Install Node dependencies
-        run: npm ci
-
-      # 7. Debug: zeigen, ob der components-Ordner wirklich da ist
-      - name: Debug components folder
-        run: |
-          ls -R resources/js/components || true
-          ls -R resources/js/Components || true
-
       # 8. Ziggy generieren
       - name: Generate Ziggy routes
         run: php artisan ziggy:generate
 
-      # 9. Frontend Build
-      - name: Build frontend
-        run: npm run build
-
       # 10. Deployment via SFTP
       - name: Deploy to Server via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
+          port: 21
           local-dir: ./
-          server-dir: /www/subdomains/rezeptbuch.tobias-hopp.de
+          server-dir: /www/subdomains/rezeptbuch.tobias-hopp.de/
           exclude: |
+            .git/**
             **/.git*
             **/node_modules/**
             **/tests/**

@@ -1,29 +1,26 @@
 {
-    "compilerOptions": {
-        "allowJs": true,
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "jsx": "react-jsx",
-        "strict": true,
-        "isolatedModules": true,
-        "target": "ESNext",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true,
-        "noEmit": true,
-        "paths": {
-            "@/assets/*": ["./public"],
-            "@/*": ["./resources/js/*"],
-            "@components/*": ["./resources/js/components/*"],
-            
-            "@images/*": ["./resources/images/*"],
-            "@pages/*": ["./resources/js/pages/*"],
-            "@layouts/*": ["./resources/js/layouts/*"],
-            "@hooks/*": ["./resources/js/hooks/*"],
-            "@utils/*": ["./resources/js/utils/*"],
-            "@lib/*": ["./resources/js/lib/*"],
-            "ziggy-js": ["./vendor/tightenco/ziggy"]
-        }
-    },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts"]
+  "compilerOptions": {
+    "baseUrl": ".", // <-- hinzufügen
+    "allowJs": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "isolatedModules": true,
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "paths": {
+      "@/*": ["resources/js/*"],
+      "@images": ["resources/images/*"],
+      "ziggy-js": ["vendor/tightenco/ziggy"]
+    }
+  },
+  "include": [
+    "resources/js/**/*.ts",
+    "resources/js/**/*.tsx",
+    "resources/js/**/*.d.ts"
+  ]
 }

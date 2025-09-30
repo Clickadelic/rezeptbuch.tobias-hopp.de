@@ -15,16 +15,9 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@assets': path.resolve(__dirname, 'public'),
-            '@': path.resolve(__dirname, './resources/js'),
-            '@components': path.resolve(__dirname, 'resources/js/components'),
+            '@': path.resolve(__dirname, 'resources/js'),
             '@images': path.resolve(__dirname, 'resources/images'),
-            '@pages': path.resolve(__dirname, 'resources/js/pages'),
-            '@layouts': path.resolve(__dirname, 'resources/js/layouts'),
-            '@hooks': path.resolve(__dirname, 'resources/js/hooks'),
-            '@utils': path.resolve(__dirname, 'resources/js/utils'),
-            '@lib': path.resolve(__dirname, 'resources/js/lib'),
-            'ziggy-js': path.resolve('vendor/tightenco/ziggy/dist/react'),
+            'ziggy-js': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/react'),
         },
     },
 });

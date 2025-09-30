@@ -18,7 +18,7 @@ export function usePermissions() {
     };
 
     const isOwner = (userId: number) => {
-        return auth.user.id === userId || hasRole('admin');
+        return auth.user.id === userId;
     };
 
     return { hasRole, can, isOwner };

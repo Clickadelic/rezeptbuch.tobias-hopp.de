@@ -1,30 +1,22 @@
-name: 🚀 Deploy via FTP
-
-on:
-  push:
-    branches:
-      - production # oder dein Produktions-Branch
-
+on: push
+name: 🚀 Deploy website on push
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: 📥 Checkout repository
+      - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      # 👉 kein Build hier, da du lokal baust und die Dateien eincheckst
-
-      - name: 📤 Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.3.6
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
+          local-dir: ./
+          server-dir: /www/subdomains/rezeptbuch.tobias-hopp.de/
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps # alternativ ftp
-          port: 21 # ggf. anpassen
-          local-dir: ./ # von wo aus hochgeladen werden soll
-          server-dir: /html/ # Zielverzeichnis auf dem Server
+          username: ${{ secrets.FTP_PASSWORD }}
+          password: ${{ secrets.FTP_USERNAME }}
+          port: 21
           exclude: |
             **/.git*
             **/.github*

@@ -28,8 +28,8 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
     const { auth } = usePage<SharedPageProps>().props;
     const { hasRole, isOwner } = usePermissions();
 
-    console.log("ContextMenu >> Userroles:", auth.user?.roles[0]);
-    console.log("ContextMenu >> Permissions:", auth.user?.permissions[0]);
+    // console.log("ContextMenu >> Userroles:", auth.user?.roles[0]);
+    // console.log("ContextMenu >> Permissions:", auth.user?.permissions[0]);
 
     const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
     const [isSocialShareOpen, setIsSocialShareOpen] = useState<boolean>(false);

@@ -55,21 +55,11 @@ jobs:
 
       # Upload mit SFTP/SSH (lftp als FTPS-Alternative)
       - name: Deploy via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT }}
-          local-dir: ./
-          server-dir: ./www/subdomains/rezeptbuch.tobias-hopp.de/
-          exclude: |
-            **/.git*
-            **/.github*
-            **/node_modules/**
-            **/tests/**
-            **/storage/debugbar/**
-            **/storage/framework/cache/**
-            **/storage/framework/sessions/**
-            **/storage/framework/views/**
-            **/storage/logs/**
+          username: ${{ secrets.DEPLOY_USER }}
+          ssh_private_key: ${{ secrets.DEPLOY_KEY }}
+          local_path: ./
+          remote_path: ./www/subdomains/rezeptbuch.tobias-hopp.de/

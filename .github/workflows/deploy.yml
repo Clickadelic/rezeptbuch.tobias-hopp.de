@@ -41,6 +41,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
+      - name: Generate Ziggy routes
+        run: npm run ziggy
+
       # 7. Laravel Optimierungen
       - name: Laravel Optimize
         run: |

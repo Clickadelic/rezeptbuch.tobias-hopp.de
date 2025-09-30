@@ -229,7 +229,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             selectedCategoryId={
                                 recipe?.category_id ? Number(recipe.category_id) : undefined
                             }
-                            // onChange={(id) => setData('category_id', id)}
                             onChange={(id) => setData('category_id', id)}
                         />
                     </div>

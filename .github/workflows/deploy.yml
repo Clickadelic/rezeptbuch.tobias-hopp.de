@@ -1,22 +1,65 @@
-on: push
-name: Publish Website
-jobs:
-  web-deploy:
-    name: 🚀 Deploy Website Every Commit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install rsync
-        run: |
-          sudo apt-get update
-          sudo apt-get install rsync
-      - name: 🚚 Get Latest Code
-        uses: actions/checkout@v3
+name: Deploy Laravel App
 
-      - name: 📂 Sync Files
-        uses: SamKirkland/web-deploy@v1
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout Code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # PHP Dependencies mit Cache
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          source-path: ./
-          destination-path: ./www/subdomains/rezeptbuch.tobias-hopp.de/
-          target-server: ${{ secrets.SSH_HOST }}
-          remote-user: ${{ secrets.SSH_USERNAME }}
-          private-ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          php-version: "8.3"
+          extensions: mbstring, bcmath, intl, pdo_mysql
+          coverage: none
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: composer-
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      # Node & Vite Build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+
+      # Exclude unnötige Ordner
+      - name: Prepare artifact
+        run: |
+          rm -rf node_modules
+          rm -rf tests
+          rm -rf storage/logs/*.log
+          rm -rf .git
+
+      # Upload mit SFTP/SSH (lftp als FTPS-Alternative)
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.DEPLOY_HOST }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          username: ${{ secrets.DEPLOY_USER }}
+          ssh_private_key: ${{ secrets.DEPLOY_KEY }}
+          local_path: ./
+          remote_path: ./www/subdomains/rezeptbuch.tobias-hopp.de/

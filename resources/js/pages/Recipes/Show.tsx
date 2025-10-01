@@ -80,28 +80,29 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 </p>
                             </div>
                         </div>
+                        <div className="grid grid-cols-2 md:flex md:flex-row md:justify-start gap-5">
+                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                                {iconMap[recipe.category?.slug ?? ""] ?? (
+                                    <LuUtensilsCrossed className="size-5 text-primary" />
+                                )}
+                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.category?.name}</p>
+                            </div>
+                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                                <VscSymbolEvent className="size-5 text-primary" />
+                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.difficulty}</p>
+                            </div>
+                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                                <GoClock className="size-5 text-primary" />
+                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.preparation_time} Minuten</p>
+                            </div>
+                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                                <GoStar className="size-5 text-primary" />
+                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.rating} Sterne</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-start gap-5">
-                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
-                        {iconMap[recipe.category?.slug ?? ""] ?? (
-                            <LuUtensilsCrossed className="size-5 text-primary" />
-                        )}
-                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.category?.name}</p>
-                    </div>
-                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
-                        <VscSymbolEvent className="size-5 text-primary" />
-                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.difficulty}</p>
-                    </div>
-                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
-                        <GoClock className="size-5 text-primary" />
-                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.preparation_time} Minuten</p>
-                    </div>
-                    <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
-                        <GoStar className="size-5 text-primary" />
-                        <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.rating} Sterne</p>
-                    </div>
-                </div>
+                
                 <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
                     {recipe.ingredients?.length !== 0 && (

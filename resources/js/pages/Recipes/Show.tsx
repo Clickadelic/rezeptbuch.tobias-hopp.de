@@ -81,23 +81,23 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                         <div className="grid grid-cols-2 md:flex md:flex-row md:justify-start gap-5">
-                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
                                 {iconMap[recipe.category?.slug ?? ""] ?? (
                                     <LuUtensilsCrossed className="size-5 text-primary" />
                                 )}
-                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.category?.name}</p>
+                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
                             </div>
-                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
                                 <VscSymbolEvent className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.difficulty}</p>
+                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
                             </div>
-                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
                                 <GoClock className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.preparation_time} Minuten</p>
+                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
                             </div>
-                            <div className="w-32 cursor-default flex flex-col gap-3 rounded-lg border border-gray-200 text-gray-600 justfiy-center items-center p-4">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
                                 <GoStar className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200">{recipe.rating} Sterne</p>
+                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
                             </div>
                         </div>
                     </div>

@@ -389,7 +389,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <TextInput
                                     placeholder="Menge"
                                     value={di.quantity}
-                                    className="w-full md:w-32 py-1 mt-1"
+                                    className="font-medium w-full md:w-32 py-[5px] mt-1"
                                     type="number"
                                     onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
                                 />
@@ -397,7 +397,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     value={di.unit}
                                     onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                                 >
-                                    <SelectTrigger className="w-32 mt-1 py-2 shadow-none">
+                                    <SelectTrigger className="w-32 mt-1 py-2 shadow-none font-medium">
                                         <SelectValue placeholder="Einheit auswählen" />
                                     </SelectTrigger>
                                     <SelectContent>

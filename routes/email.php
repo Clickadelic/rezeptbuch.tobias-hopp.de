@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\URL;
 use App\Models\User;
 
 // Test-Mail verschicken
-Route::get('/mail-test', function () {
+Route::get('/email-test', function () {
     Mail::to('toby.hopp@gmail.com')->send(new TestMail("Test-Mail"));
     return 'Test-Mail wurde gesendet!';
 });
 
 // Nur Vorschau der Mail anzeigen (Browser)
-Route::get('/mail-preview', function () {
+Route::get('/email-preview', function () {
     return new TestMail();
 });
 
-Route::get('/mail-debug', function () {
+Route::get('/email-debug', function () {
     // 1) Aktuelle Mail-Config auslesen
     $mailConfig = [
         'MAIL_MAILER'   => config('mail.mailer'),

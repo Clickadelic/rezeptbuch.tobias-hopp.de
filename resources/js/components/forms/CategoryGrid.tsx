@@ -44,7 +44,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryG
   return (
     <>
       <h4 className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-3">
-        Kategorien
+        Kategorie
       </h4>
 
       <ToggleGroup

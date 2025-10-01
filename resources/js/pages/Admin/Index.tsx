@@ -3,8 +3,9 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import AdminSidebar from '@/components/sidebars/AdminSidebar';
 import { Button } from '@/components/ui/button';
 import DataTable from '@/components/reusables/DataTable';
+import { SharedPageProps } from '@/types';
 export default function Index() {
-    const { props }: any = usePage();
+    const { props }:any = usePage<SharedPageProps>();
     const user = props.user;
     const users = props.users;
 

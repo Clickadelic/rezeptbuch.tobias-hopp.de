@@ -21,6 +21,7 @@ Route::get('/admin', function () {
         'users' => $users->map(fn($u) => [
             'id' => $u->id,
             'name' => $u->name,
+            'avatar' => $u->avatar,
             'email' => $u->email,
             'roles' => $u->getRoleNames(),
         ]),

@@ -2,20 +2,22 @@ import { usePage } from '@inertiajs/react';
 
 import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 
-import { Ingredient } from '@/types/Ingredient';
-
 import IngredientForm from '@/components/forms/IngredientForm';
 import BadgeButton from '@/components/reusables/BadgeButton';
+import { usePermissions } from '@/hooks/usePermissions';
+import { Ingredient } from '@/types/Ingredient';
 import { SharedPageProps } from '@/types';
 
 export default function IngredientsIndex() {
     const { props } = usePage<SharedPageProps>();
+    const { isOwner, can } = usePermissions();
     const { ingredients } = props;
-    const user = props.auth.user;
-
+    const auth = props.auth;
+    console.log("Auth", auth);
+    console.log("Auth.user", auth.user);
     return (
         <NoSidebarsLayout title="Zutaten">
-            {user && typeof user === 'object' && (
+            {auth.user && (
                 <>
                     <IngredientForm />
                     <hr className="bg-gray-300 dark:bg-gray-700 my-5" />

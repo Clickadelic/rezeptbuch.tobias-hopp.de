@@ -33,7 +33,7 @@ export default function BadgeButton({ ingredient }: BadgeButtonProps) {
             <span className="group-hover:bg-rose-500 group-hover:border-rose-500 inline-flex whitespace-nowrap text-xs">
                 {ingredient.name}
             </span>
-            
+                {auth.user && (
                 <>
                     <button
                         className="group-hover:text-gray-300 hover:text-gray-300 hover:cursor-pointer"
@@ -52,7 +52,7 @@ export default function BadgeButton({ ingredient }: BadgeButtonProps) {
                         <SlClose className="size-3" />
                     </button>
                 </>
-           
+            )}
         </div>
     );
 }

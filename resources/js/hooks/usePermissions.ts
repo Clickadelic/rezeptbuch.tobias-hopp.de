@@ -10,10 +10,12 @@ export function usePermissions() {
     const { auth } = usePage<SharedPageProps>().props;
 
     const hasRole = (role: string) => {
+        if (!auth.user || role == null) return false
         return auth.user.roles.includes(role);
     };
 
     const can = (permission: string) => {
+        if (!auth.user || permission == null) return false
         return auth.user.permissions.includes(permission);
     };
 

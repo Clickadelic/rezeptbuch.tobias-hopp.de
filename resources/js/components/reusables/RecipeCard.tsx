@@ -43,7 +43,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
     };
 
     return (
-        <li className="group w-full max-w-96">
+        <li className="group w-full max-w-96 mb-5">
             <Link href={route('recipes.show', recipe.slug)} className="block" title={recipe.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader

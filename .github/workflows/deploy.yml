@@ -1,22 +1,102 @@
-on: push
-name: Publish Website
+name: Deploy rezeptbuch.tobias-hopp.de
+
+on:
+  push:
+    branches: ["production"]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-rezeptbuch-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PHP_VERSION: "8.3"
+  NODE_VERSION: "20"
+
 jobs:
-  web-deploy:
-    name: 🚀 Deploy Website Every Commit
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Install rsync
-        run: |
-          sudo apt-get update
-          sudo apt-get install rsync
-      - name: 🚚 Get Latest Code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: 📂 Sync Files
-        uses: SamKirkland/web-deploy@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          source-path: ./
-          destination-path: ./www/subdomains/rezeptbuch.tobias-hopp.de/
-          target-server: ${{ secrets.SSH_HOST }}
-          remote-user: ${{ secrets.SSH_USERNAME }}
-          private-ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build frontend (TypeScript + Vite)
+        run: npm run build
+
+      - name: Setup PHP & Composer (for CLI availability)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer
+          extensions: mbstring, intl, bcmath, curl, gd, pdo_mysql
+
+      - name: Ensure remote directory exists
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          host_fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          script: |
+            mkdir -p "${{ secrets.DEPLOY_PATH }}"
+
+      - name: Upload project via SCP (exclude heavy/unsafe paths)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          host_fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          source: .
+          target: ${{ secrets.DEPLOY_PATH }}
+          overwrite: true
+          strip_components: 0
+          rm: false
+          exclude: |
+            .git*
+            node_modules/**
+            vendor/**
+            tests/**
+            storage/**
+            .env
+            .editorconfig
+            .prettier*
+            .eslint*
+            docker/**
+            .github/**
+
+      - name: Run server-side deploy tasks (Composer + Artisan)
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          host_fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          script: |
+            set -e
+            cd "${{ secrets.DEPLOY_PATH }}"
+            # PHP/Composer
+            composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+            # Laravel app maintenance
+            php artisan key:generate --force || true
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan storage:link || true
+            chmod -R ug+rwx storage bootstrap/cache || true

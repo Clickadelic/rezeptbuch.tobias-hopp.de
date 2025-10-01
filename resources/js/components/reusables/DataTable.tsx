@@ -1,3 +1,4 @@
+import Avatar from "./Avatar";
 import VerifiedBadge from "./VerifiedBadge";
 
 export default function DataTable ({ users }: any) {
@@ -29,7 +30,7 @@ export default function DataTable ({ users }: any) {
                         {users.map((u: any) => (
                             <tr key={u.id} className="border-b border-gray-200 dark:border-gray-700">
                                 <td className="px-6 py-4">{u.id}</td>
-                                <td className="px-6 py-4"><img className="h-8 w-8 rounded-full" src={"/storage/" + u.avatar} alt={u.name} /></td>
+                                <td className="px-6 py-4"><Avatar user={u} /></td>
                                 <td className="px-6 py-4">{u.name}</td>
                                 <td className="px-6 py-4">{u.email}</td>
                                 <td className="px-6 py-4">{u.email_verified_at ? <VerifiedBadge verified={true} /> : <VerifiedBadge verified={false} />}</td>

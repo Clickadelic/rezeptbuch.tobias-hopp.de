@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 
-import { GoClock, GoPlus, GoStar } from 'react-icons/go';
+import { GoClock, GoPlus, GoStar, GoZoomIn } from 'react-icons/go';
 import { FiMinus } from 'react-icons/fi';
 import { LuUtensilsCrossed } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi";
@@ -23,6 +23,7 @@ import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/Modal';
+import { IoEye } from 'react-icons/io5';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -39,7 +40,12 @@ interface ShowRecipeProps {
 export default function Show({ recipe }: ShowRecipeProps) {
     const { user } = usePage<SharedPageProps>().props.auth;
     const [count, setCount] = useState<number>(1);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
+    
+    const toggleImageModal = () => {
+        setIsImageModalOpen(!isImageModalOpen);
+    }
+
     const iconMap: Record<string, JSX.Element> = {
         vorspeise: <TbSalad className="size-5 text-primary" />,
         hauptgericht: <PiCookingPot className="size-5 text-primary" />,
@@ -48,6 +54,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
         snack: <GiCrystalBars className="size-5 text-primary" />,
         backen: <GiCakeSlice className="size-5 text-primary" />,
     };
+
     return (
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />}>
             <div className="flex flex-col gap-5">
@@ -58,18 +65,22 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                                 (recipe as any)?.media?.[0];
                             return hero ? (
-                                <Button onClick={() => setIsModalOpen(true)} asChild className="size-full" variant="ghost">
+                                <div className="asd">
                                     <img
                                         src={hero.url ?? `/storage/${hero.path}`}
                                         alt={recipe.name}
-                                        className="absolute inset-0 size-full object-cover"
+                                        className="aspect-video rounded size-full object-cover"
                                     />
-                                </Button>
+                                    <button className="absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover-text-gray-700" onClick={toggleImageModal}>
+                                        <GoZoomIn className="size-5 absolute bottom-7 right-7" />
+                                    </button>
+                                </div>
                                 
                             ) : (
                                 <BiDish className="text-gray-400 size-8" />
                             );
                         })()}
+                        
                         <div className="absolute size-full bg-gray-400/10 rounded-xl z-10 cursor-default"></div>
                     </div>
                     <div className="w-full flex flex-col justify-between gap-5">
@@ -113,17 +124,19 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 </div>
                 <div className="flex flex-row items-center gap-5">
                     <Avatar user={user} />
-                    
-                    <Modal show={isModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsModalOpen(false)}>
-                        <div className="h-[20rem]">
+                    <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
+                        <div className="p-4 bg-white/30 dark:bg-gray-800/30 backdrop-blur overflow-hidden flex flex-col">
                             {recipe.media?.map((m) => (
-                                <div className="size-full">
+                                <>
                                     <img
-                                        src={m.url ?? `/storage/${m.path}`}
-                                        alt={recipe.name}
-                                        className="size-full object-cover"
-                                    />
-                                </div>
+                                    key={m.id}
+                                    src={m.url ?? `/storage/${m.path}`}
+                                    alt={recipe.name}
+                                    className="inset size-full rounded aspect-video object-cover mb-4"
+                                />
+                                <h5 className="font-medium font-oswald text-gray-600">{recipe.punchline}</h5>
+                                <h4 className="font-medium">{recipe.name}</h4>
+                                </>
                             ))}
                         </div>
                     </Modal>
@@ -200,7 +213,6 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     )}
-                    
                 </div>
             </div>
         </SidebarLeftLayout>

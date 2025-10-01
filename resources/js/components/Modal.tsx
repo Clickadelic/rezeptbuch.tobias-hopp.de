@@ -9,11 +9,13 @@ export default function Modal({
     maxWidth = '2xl',
     closeable = true,
     onClose = () => {},
+    className = '',
 }: PropsWithChildren<{
     show: boolean;
     maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
     closeable?: boolean;
     onClose: CallableFunction;
+    className?: string;
 }>) {
     const close = () => {
         if (closeable) {
@@ -40,31 +42,33 @@ export default function Modal({
                 onClose={close}
             >
                 <TransitionChild
-                    enter="ease-out duration-300"
+                    enter="ease-out duration-200"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
-                    leave="ease-in duration-200"
+                    leave="ease-in duration-100"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="absolute inset-0 bg-white/30 backdrop-blur-xs" />
+                    <div className="absolute inset-0 bg-white/30 dark:bg-gray-800/30 backdrop-blur-xs" />
                 </TransitionChild>
 
                 <TransitionChild
-                    enter="ease-out duration-300"
+                    enter="ease-out duration-200"
                     enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
+                    leave="ease-in duration-100"
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                     <DialogPanel
-                        className={`relative z-10 mb-6 transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow transition-all sm:mx-auto sm:w-full ${maxWidthClass}`}
+                        className={`relative z-10 transform overflow-hidden rounded-lg shadow-lg transition-all sm:mx-auto sm:w-full ${maxWidthClass}`}
                     >
-                        <Button className="absolute right-2 top-2 rounded-full hover:text-gray-400" variant="flat" onClick={close}>
-                            <IoClose className="size-4" />
+                        <Button className="absolute right-6 top-6 size-[40px] border border-gray-400 z-20" variant="primaryGlass" onClick={close}>
+                            <IoClose className="size-5" />
                         </Button>
-                        {children}
+                        <div className={className}>
+                            {children}
+                        </div>
                     </DialogPanel>
                 </TransitionChild>
 

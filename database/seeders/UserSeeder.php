@@ -33,6 +33,31 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('johndough'), // Bitte anpassen 
             ]
         );
+
+        $writer = User::firstOrCreate(
+            ['email' => 'toby.hopp+batman@gmail.com'],
+            [
+                'name' => 'Batman',
+                'password' => Hash::make('batman'), // Bitte anpassen 
+            ]
+        );
+
+        $writer = User::firstOrCreate(
+            ['email' => 'toby.hopp+joker@gmail.com'],
+            [
+                'name' => 'Joker',
+                'password' => Hash::make('joker'), // Bitte anpassen 
+            ]
+        );
+
+        $writer = User::firstOrCreate(
+            ['email' => 'toby.hopp+pinguin@gmail.com'],
+            [
+                'name' => 'Pinguin',
+                'password' => Hash::make('pinguin'), // Bitte anpassen 
+            ]
+        );
+        
         // $writer->assignRole('writer');
     }
 }

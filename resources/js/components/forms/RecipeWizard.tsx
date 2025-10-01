@@ -418,7 +418,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 />
                                 <Button
                                     variant="destructive"
-                                    className="mt-1.5 hover:cursor-pointer shadow-none"
+                                    className="mt-1.5 hover:cursor-pointer rounded-sm shadow-none"
                                     size="sm"
                                     type="button"
                                     onClick={() => removeIngredient(idx)}

@@ -7,7 +7,7 @@ import { Link, useForm, usePage, router } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { Plus } from 'lucide-react';
 import { SharedPageProps } from '@/types';
-
+import { cn } from '@/lib/utils';
 /**
  * A form component for updating user profile information.
  *
@@ -28,7 +28,7 @@ export default function UpdateProfileInformation({
     className?: string;
 }) {
     const user = usePage<SharedPageProps>().props.auth.user;
-
+    console.log("User", user);
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name ?? "",
         email: user.email ?? "",
@@ -66,7 +66,17 @@ export default function UpdateProfileInformation({
                     Aktualisiere Deinen Namen, Deine E-Mail Adresse und Dein Profilbild hier.
                 </p>
             </header>
-
+            <div>
+                {user.avatar && (
+                    <div className="mt-6 flex items-center">
+                        <img
+                            src={"/storage/" + user.avatar}
+                            className="w-16 h-16 rounded-full object-cover"
+                            alt={user.name}
+                        />
+                    </div>
+                )}
+            </div>
             <form onSubmit={submit} className="mt-6 space-y-6" encType="multipart/form-data">
                 {/* Name */}
                 <div>
@@ -106,12 +116,10 @@ export default function UpdateProfileInformation({
                 <div>
                     <label
                         htmlFor="avatar"
-                        className="mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                        className={cn("mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition", data.avatar)}
                     >
                         {data.avatar ? (
-                            <p className="text-sm text-gray-700 dark:text-gray-300">
-                                {data.avatar.name}
-                            </p>
+                            <p className="text-xs text-gray-500">{data.avatar.name}</p>
                         ) : (
                             <>
                                 <Plus className="w-6 h-6 text-gray-500" />

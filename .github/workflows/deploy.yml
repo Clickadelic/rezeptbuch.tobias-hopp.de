@@ -87,9 +87,7 @@ jobs:
                 MATCH=1
                 break
               fi
-            done <<EOF
-          $KEYS
-EOF
+            done <<< "$KEYS"
             if [ "$MATCH" -ne 1 ]; then
               echo "::error title=Host key mismatch::None of the server host key fingerprints match $FPRINT"
               echo "::group::Computed fingerprints"

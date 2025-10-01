@@ -63,9 +63,20 @@ jobs:
           set -e
           mkdir -p "$GITHUB_WORKSPACE/.ssh"
           chmod 700 "$GITHUB_WORKSPACE/.ssh"
-          # Write key with LF newlines and correct perms inside workspace
-          printf "%s" "${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}" | tr -d '\r' > "$GITHUB_WORKSPACE/.ssh/web_deploy_key"
-          chmod 600 "$GITHUB_WORKSPACE/.ssh/web_deploy_key"
+          KEY_PATH="$GITHUB_WORKSPACE/.ssh/web_deploy_key"
+          if [ -n "${{ secrets.DEPLOY_SSH_PRIVATE_KEY_B64 }}" ]; then
+            echo "Using base64-encoded private key secret"
+            printf "%s" "${{ secrets.DEPLOY_SSH_PRIVATE_KEY_B64 }}" | base64 -d > "$KEY_PATH"
+          else
+            printf "%s" "${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}" | tr -d '\r' > "$KEY_PATH"
+          fi
+          chmod 600 "$KEY_PATH"
+          # Validate key format; fail early if invalid or passphrase-protected
+          if ! ssh-keygen -lf "$KEY_PATH" >/dev/null 2>&1; then
+            echo "::error title=Invalid SSH key::The provided private key is invalid or passphrase-protected."
+            echo "Add DEPLOY_SSH_PRIVATE_KEY_B64 (base64 of your key) or provide an unencrypted deploy key."
+            exit 1
+          fi
 
       - name: Verify key file exists
         shell: bash
@@ -113,7 +124,7 @@ jobs:
         run: |
           set -e
           REMOTE="${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}"
-          ssh -i "$GITHUB_WORKSPACE/.ssh/web_deploy_key" -o BatchMode=yes -o StrictHostKeyChecking=yes -p "${{ secrets.DEPLOY_PORT }}" "$REMOTE" "mkdir -p \"${{ secrets.DEPLOY_PATH }}\""
+          ssh -i "$GITHUB_WORKSPACE/.ssh/web_deploy_key" -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -p "${{ secrets.DEPLOY_PORT }}" "$REMOTE" "mkdir -p \"${{ secrets.DEPLOY_PATH }}\""
 
       - name: Deploy files via SSH (tar stream with excludes)
         shell: bash
@@ -134,7 +145,7 @@ jobs:
             --exclude=.eslint*
             --exclude=docker
           )
-          tar "${TAR_EXCLUDES[@]}" -czf - . | ssh -i "$GITHUB_WORKSPACE/.ssh/web_deploy_key" -o BatchMode=yes -o StrictHostKeyChecking=yes -p "${{ secrets.DEPLOY_PORT }}" "$REMOTE" "tar -xzf - -C \"$REMOTE_PATH\""
+          tar "${TAR_EXCLUDES[@]}" -czf - . | ssh -i "$GITHUB_WORKSPACE/.ssh/web_deploy_key" -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -p "${{ secrets.DEPLOY_PORT }}" "$REMOTE" "tar -xzf - -C \"$REMOTE_PATH\""
 
       - name: Run server-side deploy tasks (Composer + Artisan)
         shell: bash

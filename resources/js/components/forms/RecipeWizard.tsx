@@ -397,7 +397,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     value={di.unit}
                                     onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                                 >
-                                    <SelectTrigger className="w-32 mt-1 py-2">
+                                    <SelectTrigger className="w-32 mt-1 py-2 shadow-none">
                                         <SelectValue placeholder="Einheit auswählen" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -413,12 +413,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <div className="md:w-full flex gap-2">
                                 <IngredientComboBox
                                     value={di.ingredient_id}
-                                    triggerClassName="w-full mt-1"
+                                    triggerClassName="w-full mt-1 shadow-none"
                                     onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                                 />
                                 <Button
                                     variant="destructive"
-                                    className="mt-1.5 hover:cursor-pointer"
+                                    className="mt-1.5 hover:cursor-pointer shadow-none"
                                     size="sm"
                                     type="button"
                                     onClick={() => removeIngredient(idx)}

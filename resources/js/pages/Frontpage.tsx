@@ -41,23 +41,7 @@ export default function Frontpage() {
     return (
         <FullWidthLayout title="Willkommen">
             <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
-                {/* <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-                {recipes?.data?.map((recipe) => {
-                    return (
-                     <li key={recipe.id}>{recipe.name}</li>   
-                    );
-                })}
-                </ul> */}
-                <CategoryGrid selectedCategoryId={selectedCategoryId || undefined} onChange={() => {}} />
-                <ul className="grid">
-                {categories.map((category:Category) => {
-                    return (
-                        <li key={category.id}>
-                            <span>{category.name}</span>
-                        </li> 
-                    );
-                })}
-                </ul>
+                asd
             </div>
         </FullWidthLayout>
     );

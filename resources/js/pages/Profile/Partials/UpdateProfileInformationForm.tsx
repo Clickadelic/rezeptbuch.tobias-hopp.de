@@ -3,7 +3,7 @@ import InputLabel from '@/components/InputLabel';
 import { Button } from '@/components/ui/button';
 import TextInput from '@/components/TextInput';
 import { Transition } from '@headlessui/react';
-import { Link, useForm, usePage } from '@inertiajs/react';
+import { Link, useForm, usePage, router } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { Plus } from 'lucide-react';
 import { SharedPageProps } from '@/types';
@@ -30,15 +30,30 @@ export default function UpdateProfileInformation({
     const user = usePage<SharedPageProps>().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        name: user.name,
-        email: user.email,
+        name: user.name ?? "",
+        email: user.email ?? "",
         avatar: null as File | null,
     });
 
-    // TODO: Avatar hinzufügen
+    // Submit profile form using method spoofing to ensure all fields are sent via FormData
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
+
+        router.post(
+            route('profile.update'),
+            {
+                name: data.name,
+                email: data.email,
+                avatar: data.avatar ?? null,
+                _method: 'patch',
+            },
+            {
+                forceFormData: true,
+                preserveScroll: true,
+            },
+        );
     };
+
 
     return (
         <section className={className}>
@@ -89,8 +104,6 @@ export default function UpdateProfileInformation({
 
                 {/* Avatar Upload */}
                 <div>
-                    <InputLabel htmlFor="avatar" value="Profilbild" />
-
                     <label
                         htmlFor="avatar"
                         className="mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition"
@@ -102,7 +115,7 @@ export default function UpdateProfileInformation({
                         ) : (
                             <>
                                 <Plus className="w-6 h-6 text-gray-500" />
-                                <span className="text-xs text-gray-500 mt-1">Upload</span>
+                                <span className="text-xs text-gray-500 mt-1">Profilbild wählen</span>
                             </>
                         )}
                     </label>

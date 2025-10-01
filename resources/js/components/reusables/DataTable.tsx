@@ -1,6 +1,7 @@
 import VerifiedBadge from "./VerifiedBadge";
 
 export default function DataTable ({ users }: any) {
+    console.log(users);
     return (
         <div className="rounded-3xl border border-white/40 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
             <header className="flex flex-col gap-2 border-b border-gray-200/70 py-6 dark:border-gray-800 md:flex-row md:items-center md:justify-between">
@@ -16,6 +17,7 @@ export default function DataTable ({ users }: any) {
                     <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">Id</th>
+                            <th scope="col" className="px-6 py-3">Avatar</th>
                             <th scope="col" className="px-6 py-3">Benutzername</th>
                             <th scope="col" className="px-6 py-3">E-Mail</th>
                             <th scope="col" className="px-6 py-3">Status</th>
@@ -27,6 +29,7 @@ export default function DataTable ({ users }: any) {
                         {users.map((u: any) => (
                             <tr key={u.id} className="border-b border-gray-200 dark:border-gray-700">
                                 <td className="px-6 py-4">{u.id}</td>
+                                <td className="px-6 py-4"><img className="h-8 w-8 rounded-full" src={u.avatar} alt={u.name} /></td>
                                 <td className="px-6 py-4">{u.name}</td>
                                 <td className="px-6 py-4">{u.email}</td>
                                 <td className="px-6 py-4">{u.email_verified_at ? <VerifiedBadge verified={true} /> : <VerifiedBadge verified={false} />}</td>

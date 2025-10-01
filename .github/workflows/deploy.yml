@@ -74,11 +74,27 @@ jobs:
           HOST="${{ secrets.DEPLOY_HOST }}"
           PORT="${{ secrets.DEPLOY_PORT }}"
           FPRINT="${{ secrets.SSH_HOST_FINGERPRINT }}"
-          KEYS=$(ssh-keyscan -p "$PORT" -t ed25519 -H "$HOST" 2>/dev/null || true)
+          KEYS=$(ssh-keyscan -p "$PORT" -t rsa,ed25519 -H "$HOST" 2>/dev/null || true)
+          if [ -z "$KEYS" ]; then
+            echo "::error title=ssh-keyscan failed::No host keys received for $HOST:$PORT"
+            exit 1
+          fi
           if [ -n "$FPRINT" ]; then
-            FP_COMPUTED=$(printf "%s\n" "$KEYS" | ssh-keygen -lf - -E sha256 | awk '{print $2}' | head -n1)
-            if [ "$FP_COMPUTED" != "$FPRINT" ]; then
-              echo "::error title=Host key mismatch::Expected $FPRINT, got $FP_COMPUTED"
+            MATCH=0
+            while IFS= read -r line; do
+              FP=$(printf "%s\n" "$line" | ssh-keygen -lf - -E sha256 | awk '{print $2}')
+              if [ "$FP" = "$FPRINT" ]; then
+                MATCH=1
+                break
+              fi
+            done <<EOF
+          $KEYS
+EOF
+            if [ "$MATCH" -ne 1 ]; then
+              echo "::error title=Host key mismatch::None of the server host key fingerprints match $FPRINT"
+              echo "::group::Computed fingerprints"
+              printf "%s\n" "$KEYS" | ssh-keygen -lf - -E sha256 || true
+              echo "::endgroup::"
               exit 1
             fi
           fi

@@ -12,7 +12,7 @@ export default function Pagination({ links }: PaginationProps) {
   if (!links.length) return null
 
   return (
-    <div className="flex items-center justify-center space-x-2 mt-8">
+    <div className="flex items-center justify-center space-x-2 mt-12">
       {links.map((link, i) => (
         <Link
           key={i}

@@ -9,7 +9,7 @@ interface BadgeButtonProps {
     ingredient: Ingredient;
 }
 
-export default function BadgeButton({ ingredient }: BadgeButtonProps) {
+export default function BadgeButton<SharedPageProps>({ ingredient }: BadgeButtonProps) {
     const [isEditing, setIsEditing] = useState(false);
 
     const { props } = usePage();

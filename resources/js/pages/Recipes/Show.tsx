@@ -19,6 +19,10 @@ import { BiDish } from 'react-icons/bi';
 import { GiCrystalBars } from "react-icons/gi";
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { Recipe } from '@/types/Recipe';
+import { SharedPageProps } from '@/types';
+import { usePage } from '@inertiajs/react';
+import Avatar from '@/components/reusables/Avatar';
+import Modal from '@/components/Modal';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -33,7 +37,9 @@ interface ShowRecipeProps {
  * @returns {JSX.Element}
  */
 export default function Show({ recipe }: ShowRecipeProps) {
+    const { user } = usePage<SharedPageProps>().props.auth;
     const [count, setCount] = useState<number>(1);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const iconMap: Record<string, JSX.Element> = {
         vorspeise: <TbSalad className="size-5 text-primary" />,
         hauptgericht: <PiCookingPot className="size-5 text-primary" />,
@@ -52,11 +58,14 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                                 (recipe as any)?.media?.[0];
                             return hero ? (
-                                <img
-                                    src={hero.url ?? `/storage/${hero.path}`}
-                                    alt={recipe.name}
-                                    className="absolute inset-0 size-full object-cover"
-                                />
+                                <Button onClick={() => setIsModalOpen(true)} asChild className="size-full" variant="ghost">
+                                    <img
+                                        src={hero.url ?? `/storage/${hero.path}`}
+                                        alt={recipe.name}
+                                        className="absolute inset-0 size-full object-cover"
+                                    />
+                                </Button>
+                                
                             ) : (
                                 <BiDish className="text-gray-400 size-8" />
                             );
@@ -102,7 +111,23 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     </div>
                 </div>
-                
+                <div className="flex flex-row items-center gap-5">
+                    <Avatar user={user} />
+                    
+                    <Modal show={isModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsModalOpen(false)}>
+                        <div className="h-[20rem]">
+                            {recipe.media?.map((m) => (
+                                <div className="size-full">
+                                    <img
+                                        src={m.url ?? `/storage/${m.path}`}
+                                        alt={recipe.name}
+                                        className="size-full object-cover"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </Modal>
+                </div>
                 <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
                     {recipe.ingredients?.length !== 0 && (

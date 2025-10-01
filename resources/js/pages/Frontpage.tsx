@@ -1,5 +1,5 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 
 import { Category } from '@/types/Category';
@@ -24,6 +24,9 @@ const iconMap: Record<string, JSX.Element> = {
 import chefkoch from '@images/svg/Chef-Tobias.svg';
 import CategoryGrid from '@/components/forms/CategoryGrid';
 import { useState } from 'react';
+import Modal from '@/components/Modal';
+import { Button } from '@/components/ui/button';
+import RecipeSearch from '@/components/appshell/RecipeSearch';
 
 /**
  * The frontpage of the application.
@@ -36,12 +39,11 @@ import { useState } from 'react';
 export default function Frontpage() {
     const categories = usePage<SharedPageProps>().props.categories;
     const recipes = usePage<SharedPageProps>().props.recipes;
-    const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
-    console.log(selectedCategoryId)
+    const [open, setOpen] = useState<boolean>(false);
     return (
         <FullWidthLayout title="Willkommen">
             <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
-                asd
+                Startseite
             </div>
         </FullWidthLayout>
     );

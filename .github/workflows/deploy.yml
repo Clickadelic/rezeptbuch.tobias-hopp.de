@@ -61,17 +61,18 @@ jobs:
         shell: bash
         run: |
           set -e
-          install -m 700 -d ~/.ssh
-          # Write key with LF newlines and correct perms
-          printf "%s" "${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
+          mkdir -p "$GITHUB_WORKSPACE/.ssh"
+          chmod 700 "$GITHUB_WORKSPACE/.ssh"
+          # Write key with LF newlines and correct perms inside workspace so docker actions can access it
+          printf "%s" "${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}" | tr -d '\r' > "$GITHUB_WORKSPACE/.ssh/deploy_key"
+          chmod 600 "$GITHUB_WORKSPACE/.ssh/deploy_key"
 
       - name: Ensure remote directory exists
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
-          key_path: ~/.ssh/deploy_key
+          key_path: ${{ github.workspace }}/.ssh/deploy_key
           passphrase: ${{ secrets.DEPLOY_SSH_PASSPHRASE }}
           port: ${{ secrets.DEPLOY_PORT }}
           fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
@@ -83,7 +84,7 @@ jobs:
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
-          key_path: ~/.ssh/deploy_key
+          key_path: ${{ github.workspace }}/.ssh/deploy_key
           passphrase: ${{ secrets.DEPLOY_SSH_PASSPHRASE }}
           port: ${{ secrets.DEPLOY_PORT }}
           fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
@@ -110,7 +111,7 @@ jobs:
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
-          key_path: ~/.ssh/deploy_key
+          key_path: ${{ github.workspace }}/.ssh/deploy_key
           passphrase: ${{ secrets.DEPLOY_SSH_PASSPHRASE }}
           port: ${{ secrets.DEPLOY_PORT }}
           fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}

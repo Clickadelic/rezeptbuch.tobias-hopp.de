@@ -67,10 +67,10 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryG
               key={category.id}
               value={String(category.id)}
               className={cn(
-                "flex items-center justify-center p-2 rounded-lg border transition cursor-pointer",
+                "flex items-center justify-center p-2 rounded border transition cursor-pointer",
                 "hover:bg-emerald-50 hover:border-emerald-500",
                 isActive
-                  ? "border-primary bg-emerald-100 text-emerald-700 shadow-sm"
+                  ? "border-emerald-500 bg-emerald-100 text-emerald-700 shadow-sm"
                   : "border-gray-200 bg-white dark:bg-gray-900"
               )}
             >
@@ -81,7 +81,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryG
                 )}
               >
                 {iconMap[category.slug ?? category.name.toLowerCase()] ?? (
-                  <PiCookingPot className="size-5" />
+                  <PiCookingPot className="size-5 mt-1" />
                 )}
               </div>
               <span className="text-xs font-medium">{category.name}</span>

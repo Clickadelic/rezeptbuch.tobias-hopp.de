@@ -15,7 +15,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('media', 'category', 'user')->paginate(3);
+        $recipes = Recipe::with('media', 'category', 'user')->inRandomOrder()->paginate(5);
         return Inertia::render('Frontpage', [
             'recipes' => $recipes,
         ]);

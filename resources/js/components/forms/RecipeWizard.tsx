@@ -264,9 +264,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <InputLabel htmlFor="description" value="Beschreibung" />
                         <Textarea
                             value={data.description}
-                            rows={5}
+                            rows={3}
                             placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                            className="mt-1 w-full rounded-lg border border-gray-400 px-3 py-2"
+                            className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2"
                             onChange={(e) => setData('description', e.target.value)}
                         />
                         {errors.description && <p className="text-red-500">{errors.description}</p>}
@@ -286,12 +286,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     max={600}
                                     value={data.preparation_time}
                                     placeholder="0"
-                                    className="mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl-lg rounded-bl-lg"
+                                    className="w-24 mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl rounded-bl"
                                     onChange={(e) =>
                                         setData('preparation_time', Number(e.target.value))
                                     }
                                 />
-                                <span className="px-3 py-2 border border-l-0 rounded-r-lg border-gray-400">
+                                <span className="px-3 py-1 text-gray-800 border border-l-0 rounded-r border-gray-200">
                                     Minuten
                                 </span>
                             </div>
@@ -330,7 +330,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 value={data.difficulty ?? Difficulty.EINFACH}
                                 onValueChange={(val) => setData('difficulty', val as Difficulty)}
                             >
-                                <SelectTrigger className="w-full mt-1 py-2">
+                                <SelectTrigger className="w-full mt-1 py-1 shadow-none">
                                     <SelectValue placeholder="Schwierigkeitsgrad" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -351,7 +351,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <Button
                             asChild
                             type="button"
-                            variant="primaryOutline"
+                            variant="dangerOutline"
                             
                             disabled={!canNextFromStep1}
                         >
@@ -389,7 +389,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <TextInput
                                     placeholder="Menge"
                                     value={di.quantity}
-                                    className="w-full md:w-32"
+                                    className="w-full md:w-32 py-1 mt-1"
                                     type="number"
                                     onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
                                 />
@@ -428,7 +428,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             </div>
                         </div>
                     ))}
-                    <Button type="button" variant="primaryOutline" onClick={addIngredient} className="mt-5 hover:cursor-pointer">
+                    <Button type="button" variant="primary" onClick={addIngredient} className="mt-5 hover:cursor-pointer hover:bg-emerald-700">
                         <GoPlus /> Zutat hinzufügen
                     </Button>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
@@ -500,9 +500,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     </label>
                                 ))
                             ) : (
-                                <p className="text-sm text-gray-500">
-                                    Noch keine Bilder vorhanden.
-                                </p>
+                                <div className="border-2 border-dotted rounded-lg w-48 flex items-center justify-center aspect-video">
+                                    <p className="text-xs text-gray-500">
+                                        Noch kein Bild vorhanden.
+                                    </p>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -516,9 +518,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <Textarea
                             id="preparation_instructions"
                             value={data.preparation_instructions}
-                            rows={5}
+                            rows={8}
                             placeholder="Beschreibung der Zubereitung"
-                            className="mt-1 w-full rounded-lg border border-gray-400 px-3 py-2"
+                            className="mt-1 w-full rounded-lg border border-gray-400 shadow px-3 py-2"
                             onChange={(e) => setData('preparation_instructions', e.target.value)}
                         />
                         {errors.preparation_instructions && (

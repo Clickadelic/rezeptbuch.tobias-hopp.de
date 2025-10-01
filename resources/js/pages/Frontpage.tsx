@@ -1,10 +1,29 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
+
 import { Category } from '@/types/Category';
 
-import chefkoch from '@images/svg/Chef-Tobias.svg';
+import { PiCookingPot } from "react-icons/pi";
+import { LiaCocktailSolid } from "react-icons/lia";
+import { RiCake3Line } from "react-icons/ri";
+import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
+import { TbSalad } from "react-icons/tb";
+import { GiKnifeFork } from "react-icons/gi";
 
+import { cn } from "@/lib/utils";
+
+const iconMap: Record<string, JSX.Element> = {
+  vorspeise: <TbSalad className="size-4 inline-flex" />,
+  nachtisch: <RiCake3Line className="size-4 inline-flex" />,
+  hauptgang: <GiKnifeFork className="size-4 inline-flex" />,
+  cocktail: <LiaCocktailSolid className="size-4 inline-flex" />,
+  backen: <GiCakeSlice className="size-4 inline-flex" />,
+  snack: <GiCrystalBars className="size-4 inline-flex" />,
+};
+import chefkoch from '@images/svg/Chef-Tobias.svg';
+import CategoryGrid from '@/components/forms/CategoryGrid';
+import { useState } from 'react';
 
 /**
  * The frontpage of the application.
@@ -16,43 +35,29 @@ import chefkoch from '@images/svg/Chef-Tobias.svg';
  */
 export default function Frontpage() {
     const categories = usePage<SharedPageProps>().props.categories;
+    const recipes = usePage<SharedPageProps>().props.recipes;
+    const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+    console.log(selectedCategoryId)
     return (
         <FullWidthLayout title="Willkommen">
             <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
-                <img src={chefkoch} className="mt-5 size-72" alt="Chef Tobias" />
-                <div className="flex flex-col gap-2">
-                    <h2 className="my-6 text-3xl font-la-belle-aurore text-gray-800 dark:text-gray-300">
-                        ... auf meinem Rezeptbuch.
-                    </h2>
-                    <p className="text-base">
-                        Hier gibt's Rezepte und Cocktail's aus meinem Koch- bzw. Barbuch.
-                    </p>
-                    <p className="text-base">
-                        Nicht immer findet man spontan eine Idee zum Kochen.
-                    </p>
-                    <p className="text-base">
-                        Um ein kleines Nachschlagewerk zu haben, habe ich daher dieses Rezeptbuch
-                        erstellt.
-                    </p>
-                    <p className="text-base">
-                        Wer Lust hat, darf gerne Rezepte nachkochen, sich anmelden und eventuell
-                        sogar mitmachen.
-                    </p>
-                    <p className="text-base">Viele Grüße und frohes Kochen.</p>
-                    <p className="text-2xl font-la-belle-aurore mt-4">Toby</p>
-                </div>
-                {categories.map((category:Category) => {
+                {/* <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+                {recipes?.data?.map((recipe) => {
                     return (
-                        <div className="`flex flex-col gap-2" key={category.id}>
-                            <h2 className="my-6 text-md text-gray-800 dark:text-gray-300">
-                                {category.name}
-                            </h2>
-                            <p className="text-base">
-                                {category.name}
-                            </p>
-                        </div>
+                     <li key={recipe.id}>{recipe.name}</li>   
                     );
                 })}
+                </ul> */}
+                <CategoryGrid selectedCategoryId={selectedCategoryId || undefined} onChange={() => {}} />
+                <ul className="grid">
+                {categories.map((category:Category) => {
+                    return (
+                        <li key={category.id}>
+                            <span>{category.name}</span>
+                        </li> 
+                    );
+                })}
+                </ul>
             </div>
         </FullWidthLayout>
     );

@@ -38,7 +38,7 @@ class RecipeController extends Controller
     {
         return Inertia::render('Recipes/Create', [
             'ingredients' => Ingredient::orderBy('name')->get(),
-            'categories' => Category::orderBy('name')->get(),
+            'categories' => Category::orderBy('id')->get(),
         ]);
     }
 

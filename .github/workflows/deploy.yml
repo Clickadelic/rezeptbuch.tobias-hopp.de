@@ -1,44 +1,102 @@
-name: Deploy Laravel App
+name: Deploy rezeptbuch.tobias-hopp.de
 
 on:
   push:
-    branches:
-      - production
+    branches: ["production"]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-rezeptbuch-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PHP_VERSION: "8.3"
+  NODE_VERSION: "20"
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout Code
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # PHP Dependencies mit Cache
-      - name: Setup PHP
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build frontend (TypeScript + Vite)
+        run: npm run build
+
+      - name: Setup PHP & Composer (for CLI availability)
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.3"
-          extensions: mbstring, bcmath, intl, pdo_mysql
-          coverage: none
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer
+          extensions: mbstring, intl, bcmath, curl, gd, pdo_mysql
 
-      - name: Cache Composer packages
-        uses: actions/cache@v4
+      - name: Ensure remote directory exists
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          path: vendor
-          key: composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: composer-
-
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader
-
-      # Upload mit SFTP/SSH (lftp als FTPS-Alternative)
-      - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.DEPLOY_HOST }}
-          port: ${{ secrets.DEPLOY_PORT }}
+          host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
-          ssh_private_key: ${{ secrets.DEPLOY_KEY }}
-          local_path: ./
-          remote_path: ./www/subdomains/rezeptbuch.tobias-hopp.de/
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          host_fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          script: |
+            mkdir -p "${{ secrets.DEPLOY_PATH }}"
+
+      - name: Upload project via SCP (exclude heavy/unsafe paths)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          host_fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          source: .
+          target: ${{ secrets.DEPLOY_PATH }}
+          overwrite: true
+          strip_components: 0
+          rm: false
+          exclude: |
+            .git*
+            node_modules/**
+            vendor/**
+            tests/**
+            storage/**
+            .env
+            .editorconfig
+            .prettier*
+            .eslint*
+            docker/**
+            .github/**
+
+      - name: Run server-side deploy tasks (Composer + Artisan)
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          host_fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          script: |
+            set -e
+            cd "${{ secrets.DEPLOY_PATH }}"
+            # PHP/Composer
+            composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+            # Laravel app maintenance
+            php artisan key:generate --force || true
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan storage:link || true
+            chmod -R ug+rwx storage bootstrap/cache || true

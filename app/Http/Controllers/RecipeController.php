@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Middleware\CheckRole;
-
+use Illuminate\Http\Request;
 class RecipeController extends Controller
 {
     /**
@@ -287,4 +287,31 @@ class RecipeController extends Controller
         return redirect()->route('recipes.index')->with('success', 'Rezept gelöscht!');
     }
 
+    public function search(Request $request)
+    {
+        $query = trim($request->input('search', ''));
+
+        // Wenn Query exakt einer Kategorie entspricht
+        $category = Category::where('name', 'like', $query)->first();
+
+        if ($category) {
+            $recipes = Recipe::with(['media', 'category', 'user'])
+                ->where('category_id', $category->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(12);
+        } else {
+            // Normale Volltextsuche
+            $ids = Recipe::search($query)->get()->pluck('id');
+
+            $recipes = Recipe::with(['media', 'category', 'user'])
+                ->whereIn('id', $ids)
+                ->orderBy('created_at', 'desc')
+                ->paginate(12);
+        }
+
+        return inertia('Recipes/Search', [
+            'recipes' => $recipes,
+            'filters' => ['search' => $query],
+        ]);
+    }
 }

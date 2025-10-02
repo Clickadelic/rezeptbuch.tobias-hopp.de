@@ -121,6 +121,7 @@ class Recipe extends Model
                'punchline' => $this->punchline,
                'slug' => $this->slug,
                'difficulty' => $this->difficulty,
+               'category' => $this->category?->name,
                'description' => $this->description,
           ];
      }

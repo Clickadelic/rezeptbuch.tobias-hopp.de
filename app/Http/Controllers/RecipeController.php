@@ -291,14 +291,22 @@ class RecipeController extends Controller
     {
         $query = trim($request->input('search', ''));
 
-        if ($query === '') {
-            // 🔹 Fallback: zeige alle Rezepte (oder leer, wenn du lieber "keine Ergebnisse" willst)
-            $recipes = Recipe::with('media', 'category', 'user')
+        // Wenn Query exakt einer Kategorie entspricht
+        $category = Category::where('name', 'like', $query)->first();
+
+        if ($category) {
+            $recipes = Recipe::with(['media', 'category', 'user'])
+                ->where('category_id', $category->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(12);
         } else {
-            // 🔹 Suche via Scout (oder fallback mit where like)
-            $recipes = Recipe::search($query)->paginate(12);
+            // Normale Volltextsuche
+            $ids = Recipe::search($query)->get()->pluck('id');
+
+            $recipes = Recipe::with(['media', 'category', 'user'])
+                ->whereIn('id', $ids)
+                ->orderBy('created_at', 'desc')
+                ->paginate(12);
         }
 
         return inertia('Recipes/Search', [
@@ -306,5 +314,4 @@ class RecipeController extends Controller
             'filters' => ['search' => $query],
         ]);
     }
-
 }

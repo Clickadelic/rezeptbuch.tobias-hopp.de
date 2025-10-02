@@ -1,4 +1,5 @@
 import { useForm } from '@inertiajs/react';
+import { useEffect } from 'react';
 
 import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
@@ -6,16 +7,18 @@ import TextInput from '@/components/TextInput';
 import { Button } from '@/components/ui/button';
 
 import { GoPlus, GoPencil } from 'react-icons/go';
+import { SlClose } from 'react-icons/sl';
 import { cn } from '@/lib/utils';
 
 import { Ingredient } from '@/types/Ingredient';
 
 interface IngredientFormProps {
-    ingredient?: Ingredient; // optional, für Create vs Edit
+    ingredient?: Ingredient;
     className?: string;
+    onFinished?: () => void;
 }
 
-export default function IngredientForm({ ingredient, className }: IngredientFormProps) {
+export default function IngredientForm({ ingredient, className, onFinished }: IngredientFormProps) {
     const isEditing = Boolean(ingredient);
 
     const { data, setData, post, put, processing, errors, reset } = useForm({
@@ -23,20 +26,41 @@ export default function IngredientForm({ ingredient, className }: IngredientForm
         name: ingredient?.name ?? '',
     });
 
+    // sync wenn sich ingredient ändert
+    useEffect(() => {
+        setData({
+            id: ingredient?.id ?? null,
+            name: ingredient?.name ?? '',
+        });
+    }, [ingredient]);
+
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         post(route('ingredients.store'), {
-            onSuccess: () => reset(),
+            onSuccess: () => {
+                reset();
+                onFinished?.();
+            },
             preserveScroll: true,
         });
     }
 
     function update(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        put(route('ingredients.update', { ingredient: data.id }), {
-            onSuccess: () => reset(),
+        if (!data.id) return;
+
+        put(route('ingredients.update', data.id), {
+            onSuccess: () => {
+                reset();
+                onFinished?.();
+            },
             preserveScroll: true,
         });
+    }
+
+    function handleReset() {
+        reset();
+        onFinished?.();
     }
 
     return (
@@ -44,9 +68,20 @@ export default function IngredientForm({ ingredient, className }: IngredientForm
             onSubmit={isEditing ? update : submit}
             className={cn('flex flex-col justify-between items-center space-y-3', className)}
         >
-            {/* Zutatenname */}
+            <div className="w-full flex justify-between items-center">
+                <InputLabel htmlFor="name" value={isEditing ? "Zutat bearbeiten" : "Neue Zutat"} />
+                {isEditing && (
+                    <button
+                        type="button"
+                        onClick={handleReset}
+                        className="p-1 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full transition"
+                    >
+                        <SlClose className="w-4 h-4" />
+                    </button>
+                )}
+            </div>
+
             <div className="w-full">
-                <InputLabel htmlFor="name" value="Name" />
                 <TextInput
                     id="name"
                     type="text"
@@ -59,10 +94,16 @@ export default function IngredientForm({ ingredient, className }: IngredientForm
                 <InputError message={errors.name} className="mt-2" />
             </div>
 
-            {/* Submit */}
             <Button variant="primary" size="lg" className="w-full" disabled={processing}>
-                {ingredient ? <GoPencil className="size-4" /> : <GoPlus className="size-4" />}{' '}
-                {ingredient ? 'Bearbeiten' : 'Hinzufügen'}
+                {isEditing ? (
+                    <>
+                        <GoPencil className="size-4 mr-1" /> Bearbeiten
+                    </>
+                ) : (
+                    <>
+                        <GoPlus className="size-4 mr-1" /> Hinzufügen
+                    </>
+                )}
             </Button>
         </form>
     );

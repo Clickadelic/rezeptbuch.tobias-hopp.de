@@ -48,7 +48,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                 <Card className="relative overflow-hidden">
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
-                                    bg-gray-100 dark:bg-gray-700 text-gray-400 
+                                    bg-gray-100 dark:bg-gray-700 text-gray-400 group-hover:text-primary 
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >

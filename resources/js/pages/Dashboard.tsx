@@ -1,57 +1,56 @@
+import DataCard from '@/components/reusables/DataCard';
+import RecipeCard from '@/components/reusables/RecipeCard';
+import VerifiedBadge from '@/components/reusables/VerifiedBadge';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import FullWidthLayout from '@/layouts/FullWidthLayout';
+import { cn } from '@/lib/utils';
+import { SharedPageProps } from '@/types';
+import { Recipe } from '@/types/Recipe';
 import { usePage } from '@inertiajs/react';
+import { BiDish } from 'react-icons/bi';
 
 import { BsJournalBookmark } from 'react-icons/bs';
+import { GoClock } from 'react-icons/go';
+import { LuUtensilsCrossed } from 'react-icons/lu';
 
+import { PiCookingPot } from "react-icons/pi";
+import { LiaCocktailSolid } from "react-icons/lia";
+import { RiCake3Line } from "react-icons/ri";
+import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
+import { TbSalad, TbSalt } from "react-icons/tb";
+import { GiKnifeFork } from "react-icons/gi";
+import { TbUsers } from "react-icons/tb";
 export default function Dashboard() {
-    const { auth } = usePage().props;
-    const { ingredientCount } = usePage().props;
-    const { recipeCount } = usePage().props;
+    const { auth } = usePage<SharedPageProps>().props;
+    const { ingredientCount } = usePage<SharedPageProps>().props;
+    const { recipeCount } = usePage<SharedPageProps>().props;
+    const { userRecipes } = usePage<SharedPageProps>().props;
+    const { totalRecipeCount } = usePage<SharedPageProps>().props;
+    console.log(totalRecipeCount)
+    let userRecipeCount:number = 0;
+
+
+    if (Array.isArray(userRecipes)) {
+        userRecipeCount = userRecipes.length;
+    }
+    
     return (
         <FullWidthLayout title="Dashboard">
-            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 grid-rows-5 gap-2 md:galg:gap-4">
-                <div className="md:col-span-4 lg:col-span-3 lg:row-span-2 rounded-xl ">
-                    <h2 className="text-lg font-medium mb-3">
-                        Willkommen zurück, Username
-                    </h2>
 
-                    <p>
-                        Aktuell gibt es hier noch nicht allzu viel zu sehen, das wird sich aber mit
-                        der Zeit hoffentlich ändern.
-                    </p>
-                    <p>
-                        Mehr Funktionen sind in der Zukunft geplant, mal sehen, was sich so ergibt.
-                    </p>
+                <div className="grid grid-cols-5 sm:grid-cols-9 gap-2 sm:gap-4">
+                    <div className="col-span-2 md:col-span-5 grid grid-cols-1 md:grid-cols-3 gap-3 rounded-xl">
+                        <DataCard title="Meine Rezepte" count={userRecipes ? userRecipeCount : 0} total={totalRecipeCount} trend="negative" increase="12" icon={<BsJournalBookmark className="size-6 text-primary" />} />
+
+
+                    </div>
+                    <div className="col-span-2 flex justify-between items-start gap-4 rounded-xl ">
+                        asd
+                    </div>
+                    <div className="col-span-2 flex justify-between items-start gap-4 rounded-xl ">
+                        asd
+                    </div>
                 </div>
-                <div className="md:col-span-2 md:col-start-1 lg:col-span-1 lg:row-span-2 lg:col-start-4 rounded-xl ">
-                    <h2 className="text-lg font-medium flex flex-row gap-2">
-                        <BsJournalBookmark className="size-4 mt-1" />
-                        Rezepte {recipeCount as number}
-                    </h2>
-                    <p className="text-sm text-gray-500">
-                        Es gibt insgesamt {recipeCount as number}&nbsp;
-                        {(recipeCount as number) > 1 ? 'Rezepte' : 'Rezept'}.
-                    </p>
-                </div>
-                <div className="md:col-start-1 md:col-span-2 lg:row-span-3 lg:col-span-1 lg:row-start-3 rounded-xl ">
-                    <h2 className="text-lg font-medium">Zutaten</h2>
-                    <p className="text-sm text-gray-500">
-                        Es gibt insgesamt {ingredientCount as number} Zutaten im Rezeptbuch.
-                    </p>
-                </div>
-                <div className="md:col-start-3 md:col-span-2 lg:row-span-2 lg:row-start-3 lg:col-start-2 lg:col-span-3 rounded-xl ">
-                    <h2 className="text-lg font-medium">5</h2>
-                </div>
-                <div className="md:col-start-1 md:col-span-2 lg:row-span-3 lg:col-start-5 lg:col-span-1 rounded-xl ">
-                    <h2 className="text-lg font-medium">6</h2>
-                </div>
-                <div className="p-2 lg:col-span-2 lg:col-start-2 lg:row-start-5 rounded-xl ">
-                    <h2 className="text-lg font-medium">7</h2>
-                </div>
-                <div className="p-2 lg:col-start-4 lg:row-start-5 rounded-xl ">
-                    <h2 className="text-lg font-medium">8</h2>
-                </div>
-            </div>
+
         </FullWidthLayout>
     );
 }

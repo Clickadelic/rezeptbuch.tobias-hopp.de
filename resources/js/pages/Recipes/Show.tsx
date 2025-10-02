@@ -100,7 +100,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 </p>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 md:flex md:flex-row md:justify-start gap-5">
+                        <div className="grid grid-cols-2 md:flex md:flex-row justify-between items-center md:justify-start gap-5">
                             <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
                                 {iconMap[recipe.category?.slug ?? ""] ?? (
                                     <LuUtensilsCrossed className="size-5 text-primary" />

@@ -73,9 +73,9 @@ const Header = () => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 hover:cursor-pointer focus:outline-none gap-2"
+                                                className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:cursor-pointer focus:outline-none gap-2"
                                             >
-                                                <GiCook className="size-5 hidden md:flex rounded-full border text-gray-600 border-gray-600" />
+                                                <GiCook className="size-5 hidden md:flex rounded-full border text-gray-600 dark:text-gray-200 border-gray-600 dark:border-gray-200" />
                                                 {auth.user?.name}
                                                 <svg
                                                     className="-me-0.5 ms-2 h-4 w-4"

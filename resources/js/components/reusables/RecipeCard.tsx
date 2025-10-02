@@ -78,6 +78,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                         })()}
                         {/* Dropdown Actions */}
                         <ContextMenu recipe={recipe} />
+                        
                     </CardHeader>
 
                     {/* Titel + Kategorie */}

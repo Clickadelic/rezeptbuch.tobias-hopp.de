@@ -6,12 +6,10 @@ interface DataCardProps {
     children?: React.ReactNode
     icon?: React.ReactNode
     title?: string
-    userCount?: number | undefined
-    recipes?: Recipe[]
-    mainDishes?: number
-    trend?: "positive" | "negative" | undefined
+    trending?: boolean | undefined
     increase?: number | string | undefined
-    totalCount?: number | string | undefined
+    userCount: number
+    totalCount: number
 }
 
 
@@ -24,7 +22,7 @@ interface DataCardProps {
  * This component displays a single data card with an icon, title, count, totalCount, and increase.
  * The design is based on the Tailwind CSS utility-first classes.
  */
-export default function DataCard({icon, title, userCount, recipes, mainDishes, totalCount, trend, increase, children }: DataCardProps) {
+export default function DataCard({icon, title, userCount, totalCount, trending, increase, children }: DataCardProps) {
     if(children) {
         return (
             <div className="w-full flex flex-col justify-between aspect-video border border-gray-50 dark:border-gray-800 rounded-xl p-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
@@ -39,9 +37,9 @@ export default function DataCard({icon, title, userCount, recipes, mainDishes, t
                     {title}
                 </h4>
                 <div className="flex items-center gap-1 text-sm rounded-full px-1.5">
-                    {trend === "positive" ? <IoIosTrendingUp className="text-emerald-300" /> : <IoIosTrendingDown className="text-rose-400" />}
-                    {trend === "positive" ? <span className="size-3 rounded-full bg-emerald-300"></span> : <span className="size-3 rounded-full bg-rose-400"></span>}
-                    {trend === "positive" ? <span className="text-emerald-300">{increase}%</span> : <span className="text-rose-400">{increase}%</span>}
+                    {trending ? <IoIosTrendingUp className="text-emerald-300" /> : <IoIosTrendingDown className="text-rose-400" />}
+                    {trending ? <span className="size-3 rounded-full bg-emerald-300"></span> : <span className="size-3 rounded-full bg-rose-400"></span>}
+                    {trending ? <span className="text-emerald-300">{increase}%</span> : <span className="text-rose-400">{increase}%</span>}
                 </div>
             </div>
 

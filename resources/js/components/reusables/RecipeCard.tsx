@@ -75,20 +75,22 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                             ) : (
                                 <BiDish className="size-10" />
                             );
-                        })()}
-                        {/* Dropdown Actions */}
-                        <ContextMenu recipe={recipe} />
-                        
+                        })()}    
                     </CardHeader>
 
                     {/* Titel + Kategorie */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
-                        <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm font-oswald line-clamp-1 min-h-[calc(1rem+2px)]">
-                            {recipe.punchline}
-                        </h4>
-                        <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">
-                            {recipe.name}
-                        </h3>
+                        <div className="relative flex flex-row justify-between items-center gap-1">
+                            <div className="w-full shrink-0">
+                                <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm font-oswald line-clamp-1 min-h-[calc(1rem+2px)]">
+                                    {recipe.punchline}
+                                </h4>
+                                <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">
+                                    {recipe.name}
+                                </h3>
+                            </div>
+                            <ContextMenu recipe={recipe} />
+                        </div>
                     </CardContent>
 
                     {/* Footer */}

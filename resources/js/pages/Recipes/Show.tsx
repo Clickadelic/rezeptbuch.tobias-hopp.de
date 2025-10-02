@@ -65,11 +65,11 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                                 (recipe as any)?.media?.[0];
                             return hero ? (
-                                <div className="asd">
+                                <div className="flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
                                     <img
                                         src={hero.url ?? `/storage/${hero.path}`}
                                         alt={recipe.name}
-                                        className="aspect-video rounded size-full object-cover"
+                                        className="aspect-video size-full object-cover"
                                     />
                                     <button className="absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover-text-gray-700" onClick={toggleImageModal}>
                                         <GoZoomIn className="size-5 absolute bottom-7 right-7" />
@@ -77,7 +77,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 </div>
                                 
                             ) : (
-                                <BiDish className="text-gray-400 size-8" />
+                                <BiDish className="text-primary size-8" />
                             );
                         })()}
                         
@@ -121,25 +121,6 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="flex flex-row items-center gap-5">
-                    <Avatar user={user} />
-                    <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
-                        <div className="p-4 bg-white/30 dark:bg-gray-800/30 backdrop-blur overflow-hidden flex flex-col">
-                            {recipe.media?.map((m) => (
-                                <>
-                                    <img
-                                    key={m.id}
-                                    src={m.url ?? `/storage/${m.path}`}
-                                    alt={recipe.name}
-                                    className="inset size-full rounded aspect-video object-cover mb-4"
-                                />
-                                <h5 className="font-medium font-oswald text-gray-600">{recipe.punchline}</h5>
-                                <h4 className="font-medium">{recipe.name}</h4>
-                                </>
-                            ))}
-                        </div>
-                    </Modal>
                 </div>
                 <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
@@ -214,6 +195,22 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     )}
                 </div>
+                <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
+                    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
+                        {recipe.media?.map((m) => (
+                            <>
+                                <img
+                                    key={m.id}
+                                    src={m.url ?? `/storage/${m.path}`}
+                                    alt={recipe.name}
+                                    className="inset size-full rounded aspect-video object-cover mb-4"
+                                />
+                            <h5 className="font-medium font-oswald text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
+                            <h4 className="font-medium text-gray-800 dark:text-gray-200">{recipe.name}</h4>
+                            </>
+                        ))}
+                    </div>
+                </Modal>
             </div>
         </SidebarLeftLayout>
     );

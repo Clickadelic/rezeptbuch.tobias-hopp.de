@@ -64,8 +64,7 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        $ingredient = Ingredient::find($ingredient->id);
-        return Inertia::render('Ingredients/Edit', [
+        return Inertia::render('Ingredients/Index', [
             'ingredient' => $ingredient,
         ]);
     }
@@ -73,17 +72,15 @@ class IngredientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreIngredientRequest $ingredient)
+    public function update(StoreIngredientRequest $request, Ingredient $ingredient)
     {
-        // Name normalisieren (alles klein, Trim)
-        $ingredient = trim(strtolower($ingredient));
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
 
-        // Prüfen ob Zutat schon existiert
-        $ingredient = Ingredient::whereRaw('LOWER(name) = ?', [$ingredient])->first();
-        
-        if ($ingredient) {
-            return redirect()->back()->with('error', 'Zutat ' . $ingredient . ' existiert bereits!');
-        }
+        $ingredient->update($validated);
+
+        return back();
     }
 
     /**

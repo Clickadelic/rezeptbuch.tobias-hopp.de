@@ -50,5 +50,22 @@ export interface SharedPageProps extends InertiaPageProps {
 
     ingredients?: Ingredient[];
 
+    errors?: {
+        [key: string]: string[];
+    };
+
+    latestRecipes?: {
+        data: Recipe[];
+        current_page: number;
+        last_page: number;
+        per_page: number;
+        links: {
+        url: string | null;
+        label: string;
+        active: boolean;
+        }[];
+    };
+
+
     [key: string]: unknown; // Fallback
 }

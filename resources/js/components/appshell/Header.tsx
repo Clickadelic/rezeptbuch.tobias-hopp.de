@@ -14,7 +14,6 @@ import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
 import { TbSalt } from 'react-icons/tb';
-import { RxAvatar } from 'react-icons/rx';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
@@ -33,11 +32,11 @@ const Header = () => {
 
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
-            <div className="mx-auto container px-4 sm:px-6">
+            <div className="mx-auto container px-4">
                 <div className="flex justify-between">
-                    <div className="flex justify-start md:justify-between sm:space-x-4 md:space-x-16 lg:space-x-44">
+                    <div className="flex justify-start md:justify-between sm:space-x-2 md:space-x-6 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo className="mt-2 md:mt-4" />
+                            <AppLogo className="mt-2 sm:mt-4" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink
@@ -74,9 +73,9 @@ const Header = () => {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 hover:cursor-pointer focus:outline-none gap-2"
+                                                className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:cursor-pointer focus:outline-none gap-2"
                                             >
-                                                <GiCook className="size-5 hidden md:flex rounded-full border text-gray-600 border-gray-600" />
+                                                <GiCook className="size-5 hidden md:flex rounded-full border text-gray-600 dark:text-gray-200 border-gray-600 dark:border-gray-200" />
                                                 {auth.user?.name}
                                                 <svg
                                                     className="-me-0.5 ms-2 h-4 w-4"

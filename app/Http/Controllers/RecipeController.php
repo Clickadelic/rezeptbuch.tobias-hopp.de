@@ -192,7 +192,7 @@ class RecipeController extends Controller
 
         // Slug nicht direkt überschreiben – wird vom Sluggable-Plugin verwaltet
         //unset($validated['slug']);
-        if ($request->filled('slug')) {
+        if ($request->has('slug')) {
             $validated['slug'] = Str::slug($request->input('slug'), '-', 'de');
         }
         // 1️⃣ Recipe-Felder aktualisieren

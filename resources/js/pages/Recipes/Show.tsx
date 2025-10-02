@@ -71,7 +71,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                         alt={recipe.name}
                                         className="aspect-video size-full object-cover"
                                     />
-                                    <button className="absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover-text-gray-700" onClick={toggleImageModal}>
+                                    <button className="absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover:text-gray-300" onClick={toggleImageModal}>
                                         <GoZoomIn className="size-5 absolute bottom-7 right-7" />
                                     </button>
                                 </div>
@@ -124,7 +124,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 </div>
                 <hr className="my-5" />
                 <div className="w-full flex flex-col gap-1">
-                    {recipe.ingredients?.length !== 0 && (
+                    {recipe.ingredients && recipe.ingredients.length > 0 && (
                         <>
                             <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
                                 <h4 className="font-medium font-oswald text-lg">Zutaten für</h4>
@@ -198,17 +198,18 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
                     <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
                         {recipe.media?.map((m) => (
-                            <>
+                            <div key={m.id}>
                                 <img
-                                    key={m.id}
                                     src={m.url ?? `/storage/${m.path}`}
                                     alt={recipe.name}
                                     className="inset size-full rounded aspect-video object-cover mb-4"
                                 />
-                            <h5 className="font-medium font-oswald text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
-                            <h4 className="font-medium text-gray-800 dark:text-gray-200">{recipe.name}</h4>
-                            </>
+                                <h5 className="font-medium font-oswald text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
+                                <h4 className="font-medium text-gray-800 dark:text-gray-200">{recipe.name}</h4>
+                            </div>
                         ))}
+
+
                     </div>
                 </Modal>
             </div>

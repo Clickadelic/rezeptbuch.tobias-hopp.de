@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Models\Ingredient;
-
+use Laravel\Scout\Searchable;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -16,6 +16,8 @@ class Recipe extends Model
      use HasFactory;
 
      use Sluggable;
+
+     use Searchable;
 
      public $incrementing = false;
 
@@ -110,5 +112,17 @@ class Recipe extends Model
                ->withPivot('collection', 'is_primary', 'position')
                ->withTimestamps()
                ->orderBy('recipe_media.position');
+     }
+
+     public function toSearchableArray(): array
+     {
+          return [
+               'name' => $this->name,
+               'punchline' => $this->punchline,
+               'slug' => $this->slug,
+               'difficulty' => $this->difficulty,
+               'category' => $this->category?->name,
+               'description' => $this->description,
+          ];
      }
 }

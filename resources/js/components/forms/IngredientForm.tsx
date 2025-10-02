@@ -86,7 +86,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                     id="name"
                     type="text"
                     value={data.name}
-                    className="mt-1 flex w-full"
+                    className="mt-1 py-3 px-2 flex w-full"
                     placeholder="z.B. Kartoffeln"
                     isFocused
                     onChange={(e) => setData('name', e.target.value)}
@@ -94,7 +94,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                 <InputError message={errors.name} className="mt-2" />
             </div>
 
-            <Button variant="primary" size="lg" className="w-full" disabled={processing}>
+            <Button variant="primary" className="w-full rounded" disabled={processing}>
                 {isEditing ? (
                     <>
                         <GoPencil className="size-4 mr-1" /> Bearbeiten

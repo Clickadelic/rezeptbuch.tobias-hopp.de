@@ -1,5 +1,4 @@
 import { Ingredient } from '@/types/Ingredient';
-import { Button } from '../ui/button';
 
 interface BadgeButtonProps {
   ingredient: Ingredient;
@@ -8,12 +7,12 @@ interface BadgeButtonProps {
 
 export default function BadgeButton({ ingredient, onClick }: BadgeButtonProps) {
   return (
-    <Button
+    <button
       type="button"
       onClick={() => onClick?.(ingredient)}
-      className="inline-flex items-center rounded-md px-3 py-1 bg-primary text-white font-semibold hover:bg-primary/90 transition"
+      className="hover:cursor-pointer inline-flex p-1 px-2.5 text-xs items-center rounded-sm bg-primary text-white font-semibold hover:bg-emerald-700 transition"
     >
       {ingredient.name}
-    </Button>
+    </button>
   );
 }

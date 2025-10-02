@@ -22,3 +22,10 @@ require __DIR__.'/upload.php';
 if (config('app.debug')) {
     require __DIR__.'/email.php';
 }
+
+// 404 Fallback
+Route::fallback(function () {
+    return inertia('NotFound', [
+        'title' => 'Seite nicht gefunden 🤯',
+    ]);
+});

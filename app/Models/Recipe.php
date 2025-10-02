@@ -67,7 +67,23 @@ class Recipe extends Model
 
      public function getRouteKeyName()
      {
-     return 'slug';
+          return 'slug';
+     }
+
+     /**
+      * Use a Mutator to always set the slug attribute.
+      *
+      * @param  string  $value
+      * @return void
+      */
+     public function setSlugAttribute($value)
+     {
+          // Wenn leer: aus Name generieren
+          if (empty($value) && !empty($this->attributes['name'])) {
+               $this->attributes['slug'] = Str::slug($this->attributes['name'], '-', 'de');
+          } else {
+               $this->attributes['slug'] = Str::slug($value, '-', 'de');
+          }
      }
 
      public function user()

@@ -27,6 +27,8 @@ import { useState } from 'react';
 import Modal from '@/components/Modal';
 import { Button } from '@/components/ui/button';
 import RecipeSearch from '@/components/appshell/RecipeSearch';
+import { Recipe } from '@/types/Recipe';
+import RecipeCard from '@/components/reusables/RecipeCard';
 
 /**
  * The frontpage of the application.
@@ -40,10 +42,20 @@ export default function Frontpage() {
     const categories = usePage<SharedPageProps>().props.categories;
     const recipes = usePage<SharedPageProps>().props.recipes;
     const [open, setOpen] = useState<boolean>(false);
+    console.log(recipes);
     return (
         <FullWidthLayout title="Willkommen">
-            <div className="flex flex-col sm:flex-row justify-start items-start gap-14">
-                Startseite
+            <div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-5">
+                    {recipes?.data.map((recipe: Recipe) => (
+                        <li key={recipe.id}>
+                            <RecipeCard recipe={recipe} />
+                        </li>
+                    ))}
+                    {recipes?.data.length === 0 && recipes?.data.map((recipe: Recipe) => (
+                        <li key="id_placeholder"><p>Lege das erste Rezept an.</p></li>
+                    ))}
+                </ul>
             </div>
         </FullWidthLayout>
     );

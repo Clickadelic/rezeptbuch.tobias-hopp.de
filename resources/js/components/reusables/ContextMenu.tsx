@@ -57,7 +57,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger
-                className="absolute top-2 right-2 text-gray-500 dark:text-gray-500 p-1 hover:text-gray-300 hover:cursor-pointer shadow-transparent z-20 rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30"
+                className="border border-transparent hover:border-primary focus-ring-2 focus:text-primary hover:text-primary focus:outline-none focus:ring focus:ring-primary absolute top-2 right-0 text-gray-600 dark:text-gray-200 p-1 hover:cursor-pointer shadow-transparent z-20 rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30"
                 onClick={(e) => e.stopPropagation()}
             >
                 <HiOutlineDotsVertical className="size-5" />

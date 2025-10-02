@@ -6,14 +6,24 @@ use Inertia\Inertia;
 
 use App\Models\Recipe;
 use App\Models\Ingredient;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    /**
+     * Shows the dashboard for the current user.
+     * 
+     * @return \Inertia\Response
+     */
     public function index() {
-        $recipeCount = Recipe::all()->count();
+        $totalRecipeCount = Recipe::all()->count();
+        $userRecipes = Recipe::where('user_id', Auth::id())->get();
+        $latestRecipe = Recipe::latest()->first();
         $ingredientCount = Ingredient::all()->count();
         return Inertia::render('Dashboard', [
-            'recipeCount' => $recipeCount,
+            'totalRecipeCount' => $totalRecipeCount,
+            'userRecipes' => $userRecipes,
+            'latestRecipe' => $latestRecipe,
             'ingredientCount' => $ingredientCount
         ]);
     }

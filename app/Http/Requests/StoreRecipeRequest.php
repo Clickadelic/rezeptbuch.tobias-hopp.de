@@ -18,7 +18,8 @@ class StoreRecipeRequest extends FormRequest
 
         return [
             'name' => $nameRule,
-            'slug' => ['nullable', 'string', 'max:255'],
+            // 'slug' => 'required|string|max:255|unique:recipes,slug,' . $recipe->id,
+            'slug' => 'required|string|max:255|unique:recipes,slug,',
             'punchline' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'preparation_time' => ['nullable', 'integer', 'min:0'],

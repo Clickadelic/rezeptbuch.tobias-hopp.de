@@ -145,7 +145,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         } else {
             // Edit → Method Spoofing
             router.post(
-                route('recipes.update', { recipe: recipe.id }),
+                route('recipes.update', { recipe: recipe.slug }),
                 {
                     ...data,
                     _method: 'put',
@@ -221,6 +221,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 1: Basics */}
             {step === 1 && (
                 <section className="space-y-4">
+
                     {/* Kategorie */}
                     <div>
                         <CategoryGrid
@@ -244,6 +245,23 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         />
                         {errors.name && <p className="text-red-500">{errors.name}</p>}
                     </div>
+
+                    {/* Slug */}
+                    
+                        <div>
+                            <InputLabel htmlFor="slug" value="URL/Slug" />
+                            <TextInput
+                                id="slug"
+                                type="text"
+                                value={data.slug}
+                                placeholder="nudeln-mit-sauce"
+                                className="mt-1 w-full"
+                                isFocused
+                                onChange={(e) => setData('slug', e.target.value)}
+                            />
+                            {errors.name && <p className="text-rose-500">{errors.slug}</p>}
+                        </div>
+                    
 
                     {/* Punchline */}
                     <div>

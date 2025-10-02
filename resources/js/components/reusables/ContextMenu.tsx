@@ -46,7 +46,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
 
     const deleteRecipe = (e: React.MouseEvent) => {
         e.stopPropagation();
-        router.delete(route('recipes.destroy', recipe?.id));
+        router.delete(route('recipes.destroy', recipe?.slug));
     };
 
     const copyToClipboard = (e: React.MouseEvent) => {
@@ -68,7 +68,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                         <>
                             <DropdownMenuItem>
                                 <Link
-                                    href={route('recipes.edit', recipe?.id)}
+                                    href={route('recipes.edit', recipe?.slug)}
                                     className="flex flex-row items-center"
                                     onClick={(e) => e.stopPropagation()}
                                 >

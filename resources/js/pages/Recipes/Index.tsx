@@ -23,7 +23,7 @@ export default function Recipes() {
     const { recipes } = props;
     return (
         <FullWidthLayout title="Rezepte">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-5">
                 {recipes?.data.map((recipe: Recipe) => (
                     <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}

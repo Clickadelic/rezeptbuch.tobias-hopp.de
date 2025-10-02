@@ -8,7 +8,7 @@ interface DataCardProps {
     count?: number | undefined
     trend?: "positive" | "negative" | undefined
     increase?: number | string | undefined
-    total: number
+    total?: number | string | undefined
 }
 
 

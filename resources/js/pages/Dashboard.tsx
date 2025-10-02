@@ -39,7 +39,7 @@ export default function Dashboard() {
 
                 <div className="grid grid-cols-5 sm:grid-cols-9 gap-2 sm:gap-4">
                     <div className="col-span-2 md:col-span-5 grid grid-cols-1 md:grid-cols-3 gap-3 rounded-xl">
-                        <DataCard title="Meine Rezepte" count={userRecipes ? userRecipeCount : 0} total={totalRecipeCount} trend="negative" increase="12" icon={<BsJournalBookmark className="size-6 text-primary" />} />
+                        <DataCard title="Meine Rezepte" count={userRecipes ? userRecipeCount : 0} total={totalRecipeCount as number} trend="negative" increase="12" icon={<BsJournalBookmark className="size-6 text-primary" />} />
 
 
                     </div>

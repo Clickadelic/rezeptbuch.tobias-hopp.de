@@ -48,18 +48,11 @@ class RecipeController extends Controller
      * @param  string  $slug
      * @return \Inertia\Response
      */
-    public function show(String $slug)
-    {   
-        $recipe = Recipe::where('slug', $slug)->firstOrFail();
-        $recipe->load([
-            'ingredients' => function ($query) {
-                $query->withPivot(['quantity', 'unit']);
-            },
-            'category',
-            'media',
-            'user'
-        ]);
-        return inertia('Recipes/Show', compact('recipe'));
+    public function show(Recipe $recipe)
+    {
+        $recipe->load(['ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
+                   'category', 'media', 'user']);
+        return Inertia::render('Recipes/Show', compact('recipe'));
     }
 
     /**
@@ -198,8 +191,10 @@ class RecipeController extends Controller
         }
 
         // Slug nicht direkt überschreiben – wird vom Sluggable-Plugin verwaltet
-        unset($validated['slug']);
-
+        //unset($validated['slug']);
+        if ($request->filled('slug')) {
+            $validated['slug'] = Str::slug($request->input('slug'), '-', 'de');
+        }
         // 1️⃣ Recipe-Felder aktualisieren
         $recipe->update($validated);
 
@@ -245,12 +240,7 @@ class RecipeController extends Controller
         // 3️⃣ Pivot-Tabelle syncen
         // Nur synchronisieren, wenn das Feld im Request vorhanden ist.
         if ($request->has('recipe_ingredients')) {
-            if (!empty($recipeIngredients)) {
-                $recipe->ingredients()->sync($recipeIngredients);
-            } else {
-                // Wenn explizit ein leeres Array gesendet wurde, Pivot leeren
-                $recipe->ingredients()->sync([]);
-            }
+            $recipe->ingredients()->sync($recipeIngredients);
         }
 
         // 3️⃣b Primäres Bild setzen (sofern gesendet)

@@ -289,11 +289,20 @@ class RecipeController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('search');
-        $results = Recipe::search($query)->paginate(10);
+        $query = trim($request->input('search', ''));
+
+        if ($query === '') {
+            // 🔹 Fallback: zeige alle Rezepte (oder leer, wenn du lieber "keine Ergebnisse" willst)
+            $recipes = Recipe::with('media', 'category', 'user')
+                ->orderBy('created_at', 'desc')
+                ->paginate(12);
+        } else {
+            // 🔹 Suche via Scout (oder fallback mit where like)
+            $recipes = Recipe::search($query)->paginate(12);
+        }
 
         return inertia('Recipes/Search', [
-            'results' => $results,
+            'recipes' => $recipes,
             'filters' => ['search' => $query],
         ]);
     }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Middleware\CheckRole;
-
+use Illuminate\Http\Request;
 class RecipeController extends Controller
 {
     /**
@@ -285,6 +285,17 @@ class RecipeController extends Controller
         Recipe::destroy($recipe->id);
 
         return redirect()->route('recipes.index')->with('success', 'Rezept gelöscht!');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $results = Recipe::search($query)->paginate(10);
+
+        return inertia('Recipes/Search', [
+            'results' => $results,
+            'filters' => ['search' => $query],
+        ]);
     }
 
 }

@@ -10,5 +10,6 @@ Route::prefix('/rezepte')->group(function () {
     Route::get('/{recipe}/edit', [RecipeController::class, 'edit'])->middleware(['auth', 'verified'])->name('recipes.edit');
     Route::put('/{recipe}', [RecipeController::class, 'update'])->middleware(['auth', 'verified'])->name('recipes.update');
     Route::delete('/{recipe}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipes.destroy');
+    Route::get('/suche', [RecipeController::class, 'search'])->name('recipes.search');
     Route::get('/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
 });

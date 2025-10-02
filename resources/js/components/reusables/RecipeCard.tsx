@@ -81,7 +81,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                     {/* Titel + Kategorie */}
                     <CardContent className="p-2 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
                         <div className="relative flex flex-row justify-between items-center gap-1">
-                            <div className="w-full shrink-0">
+                            <div className="w-full grow mr-8">
                                 <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm font-oswald line-clamp-1 min-h-[calc(1rem+2px)]">
                                     {recipe.punchline}
                                 </h4>

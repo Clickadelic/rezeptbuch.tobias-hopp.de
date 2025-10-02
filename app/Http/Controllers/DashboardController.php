@@ -15,16 +15,26 @@ class DashboardController extends Controller
      * 
      * @return \Inertia\Response
      */
-    public function index() {
-        $totalRecipeCount = Recipe::all()->count();
-        $userRecipes = Recipe::where('user_id', Auth::id())->get();
-        $latestRecipe = Recipe::latest()->first();
-        $ingredientCount = Ingredient::all()->count();
+    public function index()
+    {
+        // Neueste Rezept
+        $latestRecipe = Recipe::latest()->with(['media', 'category'])->first();
+
+        // Globale Counts
+        $totalRecipeCount = Recipe::count();
+        $totalIngredientCount = Ingredient::count();
+
+        // Benutzerbezogene Counts
+        $totalUserRecipeCount = Recipe::where('user_id', Auth::id())->count();
+
+
         return Inertia::render('Dashboard', [
-            'totalRecipeCount' => $totalRecipeCount,
-            'userRecipes' => $userRecipes,
-            'latestRecipe' => $latestRecipe,
-            'ingredientCount' => $ingredientCount
+            'latestRecipe'            => $latestRecipe,
+            'totalUserRecipeCount'    => $totalUserRecipeCount,
+
+            'totalRecipeCount'        => $totalRecipeCount,
+            'totalIngredientCount'    => $totalIngredientCount,
         ]);
     }
+
 }

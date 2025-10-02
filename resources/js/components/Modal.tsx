@@ -63,7 +63,7 @@ export default function Modal({
                     <DialogPanel
                         className={`relative z-10 transform overflow-hidden rounded-lg shadow-lg transition-all sm:mx-auto sm:w-full ${maxWidthClass}`}
                     >
-                        <Button className="absolute right-6 top-6 size-[40px] hover:bg-emerald-700 dark:hover:bg-emerald-600 z-20" variant="primary" onClick={close}>
+                        <Button className="rounded-full absolute right-6 top-6 size-[40px] hover:bg-emerald-700 dark:hover:bg-emerald-600 z-20" variant="primary" onClick={close}>
                             <IoClose className="size-5" />
                         </Button>
                         <div className={className}>

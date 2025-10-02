@@ -44,7 +44,7 @@ export default function NewsletterForm() {
             </div>
             <Button
                 type="submit"
-                className="w-full rounded-lg bg-primary text-gray-100 hover:bg-primary"
+                className="w-full bg-primary text-gray-100 hover:bg-primary"
             >
                 Newsletter abonnieren
             </Button>

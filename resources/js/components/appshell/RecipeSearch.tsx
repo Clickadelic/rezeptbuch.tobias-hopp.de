@@ -29,14 +29,14 @@ export default function RecipeSearch() {
             
             <div
                 className={cn(
-                    "absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-white/30 dark:bg-gray-800/30 animate transition-all duration-200 ease opacity-0 pointer-events-none",  // standard unsichtbar
+                    "absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/10 dark:bg-gray-800/30 animate transition-all duration-500 ease opacity-0 pointer-events-none",  // standard unsichtbar
                     isBlurred && "backdrop-blur-sm opacity-100 pointer-events-auto"
                 )}
             >
 
             </div>
             
-            <div className="z-20 bg-white/30 dark:bg-gray-800/30 dark:text-gray-200 p-1 rounded w-64 md:w-72 lg:w-96">
+            <div className={cn("z-20 bg-white/30 dark:bg-gray-800/30 flex flex-col gap-1 dark:text-gray-200 p-1 rounded mx-4 my-6 lg:w-[36rem]")}>
                 <form method="GET" action={route('recipes.search')} className="flex flex-row justify-end items-center place-items-center bg-white dark:bg-gray-800 dark:text-gray-200 p-1 rounded space-x-1">
                     <input
                         type="text"
@@ -45,7 +45,7 @@ export default function RecipeSearch() {
                         autoComplete='off'
                         onFocus={() => setIsBlurred(true)}
                         onBlur={() => setIsBlurred(false)}
-                        className="w-full font-medium text-base border-none rounded bg-white dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-gray-800"
+                        className="w-full text-base border-none rounded bg-white dark:bg-gray-800 dark:border border-transparent hover:border-primary text-gray-200 focus:outline-none focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-gray-800"
                         placeholder="Was essen wir heute?"
                     />
                     <Button
@@ -56,14 +56,74 @@ export default function RecipeSearch() {
                         <RiSearchLine className="size-6" />
                     </Button>
                 </form>
-                <div className={cn("p-1 bg-rose-400 transition-all duration-200 ease", !isBlurred && "opacity-0")}>
-                    <ul className="grid grid-cols-3 gap-[1px]">
-                        <li><Link href={route('recipes.search', { search: 'Vorspeise' })} className={cn("text-gray-600 flex p-1 py-3 items-center justify-center bg-white text-sm")}><TbSalad className="mr-2 text-primary" />Vorspeisen</Link></li>
-                        <li><Link href={route('recipes.search', { search: 'Hauptgericht' })} className={cn("text-gray-600 flex p-1 py-3 items-center justify-center bg-white text-sm")}><GiKnifeFork className="mr-2 text-primary" />Hauptgericht</Link></li>
-                        <li><Link href={route('recipes.search', { search: 'Nachtisch' })} className={cn("text-gray-600 flex p-1 py-3 items-center justify-center bg-white text-sm")}><GiCakeSlice className="mr-2 text-primary" />Nachtisch</Link></li>
-                        <li><Link href={route('recipes.search', { search: 'Cocktail' })} className={cn("text-gray-600 flex p-1 py-3 items-center justify-center bg-white text-sm")}><LiaCocktailSolid className="mr-2 text-primary" />Cocktail</Link></li>
-                        <li><Link href={route('recipes.search', { search: 'Backen' })} className={cn("text-gray-600 flex p-1 py-3 items-center justify-center bg-white text-sm")}><GiCakeSlice className="mr-2 text-primary" />Backen</Link></li>
-                        <li><Link href={route('recipes.search', { search: 'Snack' })} className={cn("text-gray-600 flex p-1 py-3 items-center justify-center bg-white text-sm")}><GiCrystalBars className="mr-2 text-primary" />Snack</Link></li>
+                <div className={cn("transition-all duration-5000 ease")}>
+                    <ul className={cn("grid grid-cols-3 gap-1")}>
+                        <li>
+                            <Link
+                            href={route('recipes.search', { search: 'Vorspeise' })}
+                            className={cn(
+                                "text-gray-600 dark:text-gray-200 flex px-1 py-4 items-center font-medium justify-center bg-white dark:bg-gray-800 text-sm rounded-tl",
+                                "border border-transparent hover:border-primary focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-0"
+                            )}
+                            >
+                            <TbSalad className="mr-2 text-primary" />Vorspeisen
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                            href={route('recipes.search', { search: 'Hauptgericht' })}
+                            className={cn(
+                                "text-gray-600 dark:text-gray-200 flex px-1 py-4 items-center font-medium justify-center bg-white dark:bg-gray-800 text-sm",
+                                "border border-transparent hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-0"
+                            )}
+                            >
+                            <GiKnifeFork className="mr-2 text-primary" />Hauptgerichte
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                            href={route('recipes.search', { search: 'Nachtisch' })}
+                            className={cn(
+                                "text-gray-600 dark:text-gray-200 flex px-1 py-4 items-center font-medium justify-center bg-white dark:bg-gray-800 text-sm rounded-tr",
+                                "border border-transparent hover:border-primary focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-0"
+                            )}
+                            >
+                            <GiCakeSlice className="mr-2 text-primary" />Nachtisch
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                            href={route('recipes.search', { search: 'Cocktail' })}
+                            className={cn(
+                                "text-gray-600 dark:text-gray-200 flex px-1 py-4 items-center font-medium justify-center bg-white dark:bg-gray-800 text-sm rounded-bl",
+                                "border border-transparent hover:border-primary focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-0"
+                            )}
+                            >
+                            <LiaCocktailSolid className="mr-2 text-primary" />Cocktails
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                            href={route('recipes.search', { search: 'Backen' })}
+                            className={cn(
+                                "text-gray-600 dark:text-gray-200 flex px-1 py-4 items-center font-medium justify-center bg-white dark:bg-gray-800 text-sm",
+                                "border border-transparent hover:border-primary focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-0"
+                            )}
+                            >
+                            <GiCakeSlice className="mr-2 text-primary" />Backen
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                            href={route('recipes.search', { search: 'Snack' })}
+                            className={cn(
+                                "text-gray-600 dark:text-gray-200 flex px-1 py-4 items-center font-medium justify-center bg-white dark:bg-gray-800 text-sm rounded-br",
+                                "border border-transparent hover:border-primary focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-0"
+                            )}
+                            >
+                            <GiCrystalBars className="mr-2 text-primary" />Snack
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

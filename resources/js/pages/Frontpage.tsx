@@ -24,6 +24,7 @@ import Carousel from '@/components/reusables/Carousel/Index';
 import RecipeCard from '@/components/reusables/RecipeCard';
 import { Recipe } from '@/types/Recipe';
 import { IoMdArrowForward } from "react-icons/io";
+import Seperator from '@/components/reusables/Seperator';
 const iconMap: Record<string, JSX.Element> = {
   vorspeise: <TbSalad className="size-4 inline-flex" />,
   hauptgericht: <GiKnifeFork className="size-4 inline-flex" />,
@@ -52,7 +53,7 @@ export default function Frontpage() {
                 <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">Was darf's sein?</h3>
             </div>
             <div className={cn("bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8")}>
-                <ul className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-[1px]")} aria-roledescription="navigation">
+                <ul className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-px")} aria-roledescription="navigation">
                     <li>
                         <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
@@ -71,7 +72,7 @@ export default function Frontpage() {
                     <li>
                         <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                <GiKnifeFork className="size-7 text-primary" />Hauptgerichte
+                                <PiCookingPot className="size-7 text-primary" />Hauptgerichte
                             </span>
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den großen Hunger</span>
                             <Link
@@ -145,7 +146,8 @@ export default function Frontpage() {
                     </li>
                 </ul>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 mt-48">
+            <Seperator />
+            <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="asd">
                     <h3 className="text-3xl mb-5">Empfehlung aus der Küche</h3>
                 </div>

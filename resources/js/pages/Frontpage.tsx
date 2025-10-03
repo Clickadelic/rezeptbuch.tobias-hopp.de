@@ -145,7 +145,7 @@ export default function Frontpage() {
                     </li>
                 </ul>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 mt-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 mt-48">
                 <div className="asd">
                     <h3 className="text-3xl mb-5">Empfehlung aus der Küche</h3>
                 </div>

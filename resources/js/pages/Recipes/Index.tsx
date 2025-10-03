@@ -6,6 +6,8 @@ import Pagination from '@/components/reusables/Pagination';
 
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
+import { Link } from 'lucide-react';
+import { IoMdArrowForward } from 'react-icons/io';
 
 /**
  * Displays a list of all recipes.
@@ -29,9 +31,14 @@ export default function Recipes() {
                 ))}
             </ul>
             {recipes?.data.length === 0 && (
-                <p className="text-xl my-12 col-span-5 text-center text-gray-600">
-                    Lege das erste Rezept an.
-                </p>
+                <>
+                    <p className="text-xl my-12 col-span-5 text-center text-gray-600">
+                        Lege das erste Rezept an.
+                    </p>
+                    <Link href={route('recipes.create')} className="flex items-center justify-center w-64 gap-2 text-base hover:text-primary font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2">
+                        Neues Rezept<IoMdArrowForward className="asd" />
+                    </Link>
+                </>
             )}
             {recipes?.data.length && (
                 <Pagination links={recipes.links} />

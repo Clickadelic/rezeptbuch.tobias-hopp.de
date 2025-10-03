@@ -15,10 +15,11 @@ import { toast } from 'sonner';
 import { SharedPageProps } from '@/types';
 
 interface TwoSidebarsLayoutProps extends PropsWithChildren {
-    children: React.ReactNode;
+    showTitle?: boolean;
     title?: string;
     leftSidebar?: React.ReactNode;
     rightSidebar?: React.ReactNode;
+    children: React.ReactNode;
 }
 
 /**
@@ -26,6 +27,7 @@ interface TwoSidebarsLayoutProps extends PropsWithChildren {
  * The left sidebar appears on the left side of the main content on desktop and below it on mobile screens.
  * The right sidebar is consistently displayed to the right of the main content on desktop and below on mobile screen.
  *
+ * @prop {boolean} [showTitle] - Whether to display the title above the main content.
  * @prop {string} [title] - The title of the page, displayed above the main content.
  * @prop {React.ReactNode} [leftSidebar] - The sidebar you can pass in to be rendered in the left sidebar.
  * @prop {React.ReactNode} [rightSidebar] - The sidebar you can pass in to be rendered in the right sidebar.
@@ -42,6 +44,7 @@ interface TwoSidebarsLayoutProps extends PropsWithChildren {
  */
 
 export default function TwoSidebarsLayout({
+    showTitle = true,
     title,
     leftSidebar,
     rightSidebar,
@@ -78,7 +81,7 @@ export default function TwoSidebarsLayout({
                     <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         {isDesktop && leftSidebar}
                         <main className="pt-4 pb-16 col-span-3">
-                            {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
+                            {showTitle && <h2 className="text-xl font-medium mb-5">{title}</h2>}
                             {children}
                         </main>
                         {!isDesktop && leftSidebar}

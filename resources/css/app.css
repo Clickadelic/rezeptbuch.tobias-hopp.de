@@ -12,8 +12,9 @@
     }
 }
 
+/* --font-open-sans: 'Open Sans Regular', sans-serif; */
+
 @theme {
-    --font-open-sans: 'Open Sans Regular', sans-serif;
     --font-roboto-condensed: 'Roboto', sans-serif;
     --font-oswald: 'Oswald', sans-serif;
     --font-la-belle-aurore: 'La Belle Aurore', serif;
@@ -122,8 +123,4 @@ a[target='_blank']:after {
 // emerald-700
 .arrow-primary {
     fill: @apply primary;
-}
-
-footer a[target='_blank']:after {
-    color: @apply text-gray-200;
 }

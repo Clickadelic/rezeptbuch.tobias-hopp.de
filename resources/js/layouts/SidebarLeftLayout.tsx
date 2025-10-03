@@ -14,6 +14,7 @@ import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import { SharedPageProps } from '@/types';
 interface SidebarLeftLayoutProps extends PropsWithChildren {
+    showTitle?: boolean;
     title?: string;
     sidebar?: React.ReactNode;
     children: React.ReactNode;
@@ -23,6 +24,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  * A layout component that displays a sidebar on the left on desktop devices
  * and on top on mobile devices. It also contains a toaster.
  *
+ * @prop {boolean} [showTitle] - Whether to display the title above the main content.
  * @prop {string} [title] - The title of the page.
  * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
  * @prop {React.ReactNode} children - The content to render in the main area.
@@ -32,7 +34,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  *     <div>My Main Content</div>
  * </SidebarLeftLayout>
  */
-export default function SidebarLeftLayout({ title, sidebar, children }: SidebarLeftLayoutProps) {
+export default function SidebarLeftLayout({ showTitle = true, title, sidebar, children }: SidebarLeftLayoutProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
     const { props } = usePage<SharedPageProps>();
@@ -64,7 +66,7 @@ export default function SidebarLeftLayout({ title, sidebar, children }: SidebarL
                     <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 gap-3 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         {isDesktop && sidebar}
                         <main className="pt-4 pb-16 col-span-4">
-                            {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
+                            {showTitle && <h2 className="text-xl font-medium mb-5">{title}</h2>}
                             {children}
                         </main>
                         {!isDesktop && sidebar}

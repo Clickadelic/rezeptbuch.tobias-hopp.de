@@ -231,6 +231,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             onChange={(id) => setData('category_id', id)}
                         />
                     </div>
+
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />
@@ -239,7 +240,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             type="text"
                             value={data.name}
                             placeholder="z.B. Ofengemüse mit Kartoffeln"
-                            className="mt-1 w-full"
+                            className="w-full"
                             isFocused
                             onChange={(e) => setData('name', e.target.value)}
                         />
@@ -247,22 +248,20 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
 
                     {/* Slug */}
+                    <div>
+                        <InputLabel htmlFor="slug" value="URL/Slug" />
+                        <TextInput
+                            id="slug"
+                            type="text"
+                            value={data.slug}
+                            placeholder="nudeln-mit-sauce"
+                            className="mt-1 w-full"
+                            isFocused
+                            onChange={(e) => setData('slug', e.target.value)}
+                        />
+                        {errors.name && <p className="text-rose-500">{errors.slug}</p>}
+                    </div>
                     
-                        <div>
-                            <InputLabel htmlFor="slug" value="URL/Slug" />
-                            <TextInput
-                                id="slug"
-                                type="text"
-                                value={data.slug}
-                                placeholder="nudeln-mit-sauce"
-                                className="mt-1 w-full"
-                                isFocused
-                                onChange={(e) => setData('slug', e.target.value)}
-                            />
-                            {errors.name && <p className="text-rose-500">{errors.slug}</p>}
-                        </div>
-                    
-
                     {/* Punchline */}
                     <div>
                         <InputLabel htmlFor="punchline" value="Punchline" />
@@ -364,7 +363,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             )}
                         </div>
                     </div>
-                    <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
+
                     <div className="flex justify-between gap-2">
                         <Button
                             asChild

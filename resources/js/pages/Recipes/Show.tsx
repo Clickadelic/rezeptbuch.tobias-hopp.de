@@ -24,6 +24,7 @@ import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/Modal';
 import { IoEye } from 'react-icons/io5';
+import Carousel from '@/components/reusables/Carousel/Index';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -39,6 +40,7 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     const { user } = usePage<SharedPageProps>().props.auth;
+    const { related } = usePage<SharedPageProps>().props;
     const [count, setCount] = useState<number>(1);
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
     
@@ -59,7 +61,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />}>
             <div className="flex flex-col gap-5">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
-                    <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
+                    <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[72rem] overflow-hidden rounded-xl">
                         {(() => {
                             const hero =
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
@@ -77,18 +79,18 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 </div>
                                 
                             ) : (
-                                <BiDish className="text-primary size-8" />
+                                <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
                             );
                         })()}
                         
-                        <div className="absolute size-full bg-gray-400/10 rounded-xl z-10 cursor-default"></div>
+                        <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div>
                     </div>
                     <div className="w-full flex flex-col justify-between gap-5">
                         <div className="flex flex-col items-start gap-2">
                             <div className="w-full flex flex-col">
                                 <div className="relative w-full flex flex-row justify-between items-center">
                                     <div>
-                                        <h4 className="font-medium text-sm font-oswald text-gray-400 dark:text-gray-600">
+                                        <h4 className="font-medium text-sm  text-gray-400 dark:text-gray-600">
                                             {recipe.punchline}
                                         </h4>
                                         <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
@@ -101,23 +103,23 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                         <div className="grid grid-cols-2 md:flex md:flex-row justify-between items-center md:justify-start gap-5">
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 {iconMap[recipe.category?.slug ?? ""] ?? (
                                     <LuUtensilsCrossed className="size-5 text-primary" />
                                 )}
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <VscSymbolEvent className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoClock className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoStar className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
                             </div>
                         </div>
                     </div>
@@ -127,7 +129,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     {recipe.ingredients && recipe.ingredients.length > 0 && (
                         <>
                             <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
-                                <h4 className="font-medium font-oswald text-lg">Zutaten für</h4>
+                                <h4 className="font-medium  text-lg">Zutaten für</h4>
                                 <div className="flex items-center gap-2">
                                     <Button
                                         onClick={() => setCount((prev) => Math.max(1, prev - 1))}
@@ -187,7 +189,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     {recipe.preparation_instructions && (
                         <div className="flex">
                             <div className="w-full flex flex-col gap-2">
-                                <h4 className="font-medium font-oswald text-lg mt-4">Zubereitung</h4>
+                                <h4 className="font-medium text-lg">Zubereitung</h4>
                                 <div className="flex flex-col gap-2">
                                     <p>{recipe.preparation_instructions}</p>
                                 </div>
@@ -195,8 +197,13 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     )}
                 </div>
+                <hr className="my-5" />
+                <div className="flex flex-col gap-5 mb-12">
+                    <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
+                    <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={related as Recipe[]} />
+                </div>
                 <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
-                    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
+                    <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
                         {recipe.media?.map((m) => (
                             <div key={m.id}>
                                 <img
@@ -204,12 +211,10 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                     alt={recipe.name}
                                     className="inset size-full rounded aspect-video object-cover mb-4"
                                 />
-                                <h5 className="font-medium font-oswald text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
+                                <h5 className="font-medium text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
                                 <h4 className="font-medium text-gray-800 dark:text-gray-200">{recipe.name}</h4>
                             </div>
                         ))}
-
-
                     </div>
                 </Modal>
             </div>

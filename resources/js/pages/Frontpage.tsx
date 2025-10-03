@@ -46,7 +46,7 @@ export default function Frontpage() {
     const categories = usePage<SharedPageProps>().props.categories;
     const recipes = usePage<SharedPageProps>().props.recipes;
     return (
-        <FullWidthLayout title="Willkommen" showTitle={false}>
+        <FullWidthLayout aria-label="" title="Willkommen" showTitle={false}>
             <div className="flex flex-col gap-5 items-center justify-center my-16">
                 <h2 className="flex gap-2 text-3xl font-roboto-condensed"><BsBookmarkHeart className="text-primary size-6 mt-1" />Willkommen</h2>
                 
@@ -54,9 +54,9 @@ export default function Frontpage() {
             </div>
             <div className="asd">
                 <div className={cn("bg-gray-200 dark:bg-gray-900 transition-all duration-500 ease my-8")}>
-                    <ul className={cn("grid grid-cols-3 gap-[1px]")}>
+                    <ul className={cn("grid grid-cols-3 gap-[1px]")} aria-roledescription="navigation">
                         <li>
-                            <Link href={route('recipes.search', { search: 'Vorspeise' })} className={cn("rounded-tl-xl flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white dark:bg-gray-900 py-12")}>
+                            <Link href={route('recipes.search', { search: 'Vorspeise' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white dark:bg-gray-900 py-12")} aria-label="Vorspeisen" title="Vorspeisen">
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <TbSalad className="size-7 text-primary" />Vorspeisen
                                 </span>
@@ -64,7 +64,7 @@ export default function Frontpage() {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Hauptgericht' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")}>
+                            <Link href={route('recipes.search', { search: 'Hauptgericht' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")} aria-label="Hauptgerichte" title="Hauptgerichte">
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <GiKnifeFork className="size-7 text-primary" />Hauptgerichte
                                 </span>
@@ -72,7 +72,7 @@ export default function Frontpage() {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Nachtisch' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")}>
+                            <Link href={route('recipes.search', { search: 'Nachtisch' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")} aria-label="Nachtisch" title="Nachtisch">
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <RiCake3Line className="size-7 text-primary" />Nachtisch
                                 </span>
@@ -80,7 +80,7 @@ export default function Frontpage() {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Cocktail' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")}>
+                            <Link href={route('recipes.search', { search: 'Cocktail' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")} aria-label="Cocktails" title="Cocktails">
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <LiaCocktailSolid className="size-7 text-primary" />Cocktails
                                 </span>
@@ -88,7 +88,7 @@ export default function Frontpage() {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Backen' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")}>
+                            <Link href={route('recipes.search', { search: 'Backen' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")} aria-label="Backen" title="Backen">
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <GiCakeSlice className="size-7 text-primary" />Backen
                                 </span>
@@ -96,7 +96,7 @@ export default function Frontpage() {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Snack' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")}>
+                            <Link href={route('recipes.search', { search: 'Snack' })} className={cn("flex flex-col justify-center items-center text-2xl font-roboto-condensed text-gray-800 bg-white py-12")} aria-label="Snacks" title="Snacks">
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <GiCrystalBars className="size-7 text-primary" />Snacks
                                 </span>

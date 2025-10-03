@@ -61,7 +61,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />}>
             <div className="flex flex-col gap-5">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
-                    <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
+                    <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[72rem] overflow-hidden rounded-xl">
                         {(() => {
                             const hero =
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??

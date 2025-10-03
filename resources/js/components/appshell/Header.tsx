@@ -35,7 +35,7 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-2 md:space-x-6 lg:space-x-44">
                         <div className="flex shrink-0">
-                            <AppLogo className="mt-2 sm:mt-4" />
+                            <AppLogo className="mx-auto mt-2 sm:mt-4" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink

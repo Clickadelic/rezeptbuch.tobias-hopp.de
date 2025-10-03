@@ -23,7 +23,7 @@ import Carousel from '@/components/reusables/Carousel/Index';
 
 import RecipeCard from '@/components/reusables/RecipeCard';
 import { Recipe } from '@/types/Recipe';
-
+import { IoMdArrowForward } from "react-icons/io";
 const iconMap: Record<string, JSX.Element> = {
   vorspeise: <TbSalad className="size-4 inline-flex" />,
   hauptgericht: <GiKnifeFork className="size-4 inline-flex" />,
@@ -55,52 +55,94 @@ export default function Frontpage() {
                 <div className={cn("bg-gray-200 dark:bg-gray-900 transition-all duration-500 ease my-8")}>
                     <ul className={cn("grid grid-cols-3 gap-[1px]")} aria-roledescription="navigation">
                         <li>
-                            <Link href={route('recipes.search', { search: 'Vorspeise' })} className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white dark:bg-gray-900 py-12")} aria-label="Vorspeisen" title="Vorspeisen">
+                            <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white dark:bg-gray-900 py-12")}>
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <TbSalad className="size-7 text-primary" />Vorspeisen
                                 </span>
                                 <span className="font-la-belle-aurore text-gray-600 ">für den kleinen Hunger</span>
-                            </Link>
+                                <Link
+                                    href={route('recipes.search', { search: 'Vorspeise' })}
+                                    className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                    title="Zu den Vorspeisen"
+                                    aria-label="Zu den Vorspeisen"
+                                    >Zu den Vorspeisen<IoMdArrowForward className="asd" />
+                                </Link>
+                            </div>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Hauptgericht' })} className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white py-12")} aria-label="Hauptgerichte" title="Hauptgerichte">
+                            <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white dark:bg-gray-900 py-12")}>
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <GiKnifeFork className="size-7 text-primary" />Hauptgerichte
                                 </span>
-                                <span className="font-la-belle-aurore text-gray-600">für den großen Hunger</span>
-                            </Link>
+                                <span className="font-la-belle-aurore text-gray-600 ">für den großen Hunger</span>
+                                <Link
+                                    href={route('recipes.search', { search: 'Vorspeise' })}
+                                    className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                    title="Zu den Hauptgerichten"
+                                    aria-label="Zu den Hauptgerichten"
+                                    >Zu den Hauptgerichten<IoMdArrowForward className="asd" />
+                                </Link>
+                            </div>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Nachtisch' })} className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white py-12")} aria-label="Nachtisch" title="Nachtisch">
+                            <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white dark:bg-gray-900 py-12")}>
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                    <RiCake3Line className="size-7 text-primary" />Nachtisch
+                                    <GiKnifeFork className="size-7 text-primary" />Nachtisch
                                 </span>
-                                <span className="font-la-belle-aurore text-gray-600">für ein süßes Ende</span>
-                            </Link>
+                                <span className="font-la-belle-aurore text-gray-600 ">für ein süßes Ende</span>
+                                <Link
+                                    href={route('recipes.search', { search: 'Nachtisch' })}
+                                    className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                    title="Zu den Nachtisch"
+                                    aria-label="Zum Nachtisch"
+                                    >Zum Nachtisch<IoMdArrowForward className="asd" />
+                                </Link>
+                            </div>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Cocktail' })} className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white py-12")} aria-label="Cocktails" title="Cocktails">
+                            <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white dark:bg-gray-900 py-12")}>
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <LiaCocktailSolid className="size-7 text-primary" />Cocktails
                                 </span>
-                                <span className="font-la-belle-aurore text-gray-600">für einen guten Abend</span>
-                            </Link>
+                                <span className="font-la-belle-aurore text-gray-600 ">für den kleinen Hunger</span>
+                                <Link
+                                    href={route('recipes.search', { search: 'Vorspeise' })}
+                                    className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                    title="Zu den Vorspeisen"
+                                    aria-label="Zu den Cocktails"
+                                    >Zu den Cocktails<IoMdArrowForward className="asd" />
+                                </Link>
+                            </div>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Backen' })} className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white py-12")} aria-label="Backen" title="Backen">
+                            <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white dark:bg-gray-900 py-12")}>
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <GiCakeSlice className="size-7 text-primary" />Backen
                                 </span>
-                                <span className="font-la-belle-aurore text-gray-600">für die gute Zeit</span>
-                            </Link>
+                                <span className="font-la-belle-aurore text-gray-600 ">für eine gute Zeit</span>
+                                <Link
+                                    href={route('recipes.search', { search: 'Vorspeise' })}
+                                    className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                    title="Zum Backen"
+                                    aria-label="Zum Backen"
+                                    >Zum Backen<IoMdArrowForward className="asd" />
+                                </Link>
+                            </div>
                         </li>
                         <li>
-                            <Link href={route('recipes.search', { search: 'Snack' })} className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white py-12")} aria-label="Snacks" title="Snacks">
+                            <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 bg-white dark:bg-gray-900 py-12")}>
                                 <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                     <GiCrystalBars className="size-7 text-primary" />Snacks
                                 </span>
-                                <span className="font-la-belle-aurore text-gray-600">für zwischendurch</span>
-                            </Link>
+                                <span className="font-la-belle-aurore text-gray-600 ">für zwischendurch</span>
+                                <Link
+                                    href={route('recipes.search', { search: 'Vorspeise' })}
+                                    className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                    title="Zu den Snacks"
+                                    aria-label="Zu den Snacks"
+                                    >Zu den Snacks<IoMdArrowForward className="asd" />
+                                </Link>
+                            </div>
                         </li>
                     </ul>
                 </div>

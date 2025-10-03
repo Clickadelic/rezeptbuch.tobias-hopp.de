@@ -124,6 +124,9 @@ a[target='_blank']:after {
     fill: @apply primary;
 }
 
+
+
+
 footer a[target='_blank']:after {
     color: @apply text-gray-200;
 }

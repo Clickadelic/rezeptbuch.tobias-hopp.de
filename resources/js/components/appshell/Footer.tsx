@@ -10,6 +10,13 @@ import { GrNavigate } from 'react-icons/gr';
 
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import NewsletterForm from '../forms/NewsletterForm';
+import { cn } from '@/lib/utils';
+
+
+interface FooterProps {
+    className?: string
+}
+
 
 /**
  * Renders the footer section of the website, containing navigation links, FAQ,
@@ -17,11 +24,10 @@ import NewsletterForm from '../forms/NewsletterForm';
  * site information and legal links at the bottom. The footer is responsive and
  * adapts to different screen sizes using a grid layout.
  */
-
-export default function Footer() {
+export default function Footer({ className }: FooterProps) {
     return (
         <>
-            <div className="bg-gradient-to-b from-stone-800 to-stone-900 border-t-4 border-t-primary text-gray-100">
+            <div className={cn("bg-gradient-to-b from-stone-800 to-stone-900 border-t-4 border-t-primary text-gray-100", className)}>
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div>

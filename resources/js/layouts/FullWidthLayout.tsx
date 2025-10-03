@@ -16,6 +16,7 @@ import { SharedPageProps } from '@/types';
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
+    showTitle?: boolean;
     children: React.ReactNode;
 }
 
@@ -23,6 +24,7 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  * A layout component that occupies the full width of the screen.
  *
  * @prop {string} [title] - The title to display at the top of the content area.
+ * @prop {boolean} [showTitle] - Whether to hide the title.
  * @prop {React.ReactNode} children - The content to render in the main area.
  *
  * @example
@@ -31,7 +33,7 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  * </FullWidthLayout>
  */
 
-export default function FullWidthLayout({ title, children }: FullWidthLayoutProps) {
+export default function FullWidthLayout({ showTitle = true, title, children }: FullWidthLayoutProps) {
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
@@ -53,14 +55,14 @@ export default function FullWidthLayout({ title, children }: FullWidthLayoutProp
             <Head title={title} />
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
                 <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-200">
-                    <div>
+                    <div className='snap-start'>
                         <Header />
                         <RecipeSearch />
                         <BreadcrumbNav />
                     </div>
-                    <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
-                        <main className="pt-4 pb-16">
-                            {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
+                    <div className="mx-auto container grow px-6 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
+                        <main className="pt-5 pb-16">
+                            {showTitle && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
                             {children}
                         </main>
                     </div>

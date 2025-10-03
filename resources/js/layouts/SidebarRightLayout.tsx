@@ -13,6 +13,7 @@ import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import { SharedPageProps } from '@/types';
 interface SidebarRightLayoutProps extends PropsWithChildren {
+    showTitle?: boolean;
     title?: string;
     sidebar?: React.ReactNode;
     children: React.ReactNode;
@@ -22,6 +23,7 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  * A layout component that displays a sidebar on the right on desktop devices
  * and on top on mobile devices.
  *
+ * @prop {boolean} [showTitle] - Whether to display the title above the main content.
  * @prop {string} [title] - The title of the page.
  * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
  * @prop {React.ReactNode} children - The content to render in the main area.
@@ -31,7 +33,7 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  *     <div>My Main Content</div>
  * </SidebarLeftLayout>
  */
-export default function SidebarRightLayout({ title, sidebar, children }: SidebarRightLayoutProps) {
+export default function SidebarRightLayout({ showTitle = true, title, sidebar, children }: SidebarRightLayoutProps) {
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
@@ -60,7 +62,7 @@ export default function SidebarRightLayout({ title, sidebar, children }: Sidebar
                     </div>
                     <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] grid grid-cols-1 md:grid-cols-5 grid-rows-1 gap-4 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         <main className="pt-4 pb-16 col-span-4">
-                            {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
+                            {showTitle && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
                             {children}
                         </main>
                         {sidebar}

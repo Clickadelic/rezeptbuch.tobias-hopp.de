@@ -6,9 +6,10 @@ import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Head } from '@inertiajs/react';
 
 interface AuthLayoutProps extends PropsWithChildren {
-    children: ReactNode;
+    showTitle?: boolean;
     title?: string;
     subtitle?: string;
+    children: ReactNode;
 }
 
 /**
@@ -23,7 +24,7 @@ interface AuthLayoutProps extends PropsWithChildren {
  *     <div>My Login Content</div>
  * </AuthLayout>
  */
-export default function AuthLayout({ title, subtitle, children }: AuthLayoutProps) {
+export default function AuthLayout({ showTitle = true, title, subtitle, children }: AuthLayoutProps) {
     return (
         <>
             <Head title={title} />
@@ -36,12 +37,16 @@ export default function AuthLayout({ title, subtitle, children }: AuthLayoutProp
                                     <div className="flex flex-col items-center justify-center">
                                         <AppLogo className="font-secondary" />
                                         <div className="my-6 text-center space-y-2">
-                                            <h2 className="text-2xl font-medium text-gray-700 dark:text-gray-200 font-secondary">
-                                                {title}
-                                            </h2>
-                                            <h3 className="text-xl font-light text-gray-500 dark:text-gray-400 font-secondary">
-                                                {subtitle}
-                                            </h3>
+                                            {showTitle && (
+                                                <>
+                                                    <h2 className="text-2xl font-medium text-gray-700 dark:text-gray-200 font-secondary">
+                                                        {title}
+                                                    </h2>
+                                                    <h3 className="text-xl font-light text-gray-500 dark:text-gray-400 font-secondary">
+                                                        {subtitle}
+                                                    </h3>
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                     {children}

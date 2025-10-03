@@ -239,7 +239,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             type="text"
                             value={data.name}
                             placeholder="z.B. Ofengemüse mit Kartoffeln"
-                            className="mt-1 w-full"
+                            className="w-full"
                             isFocused
                             onChange={(e) => setData('name', e.target.value)}
                         />
@@ -248,19 +248,19 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                     {/* Slug */}
                     
-                        <div>
-                            <InputLabel htmlFor="slug" value="URL/Slug" />
-                            <TextInput
-                                id="slug"
-                                type="text"
-                                value={data.slug}
-                                placeholder="nudeln-mit-sauce"
-                                className="mt-1 w-full"
-                                isFocused
-                                onChange={(e) => setData('slug', e.target.value)}
-                            />
-                            {errors.name && <p className="text-rose-500">{errors.slug}</p>}
-                        </div>
+                    <div>
+                        <InputLabel htmlFor="slug" value="URL/Slug" />
+                        <TextInput
+                            id="slug"
+                            type="text"
+                            value={data.slug}
+                            placeholder="nudeln-mit-sauce"
+                            className="mt-1 w-full"
+                            isFocused
+                            onChange={(e) => setData('slug', e.target.value)}
+                        />
+                        {errors.name && <p className="text-rose-500">{errors.slug}</p>}
+                    </div>
                     
 
                     {/* Punchline */}

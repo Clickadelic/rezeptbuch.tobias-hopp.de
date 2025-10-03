@@ -196,7 +196,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     )}
                 </div>
                 <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
-                    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
+                    <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
                         {recipe.media?.map((m) => (
                             <div key={m.id}>
                                 <img
@@ -208,8 +208,6 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 <h4 className="font-medium text-gray-800 dark:text-gray-200">{recipe.name}</h4>
                             </div>
                         ))}
-
-
                     </div>
                 </Modal>
             </div>

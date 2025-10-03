@@ -29,6 +29,8 @@ import { Button } from '@/components/ui/button';
 import RecipeSearch from '@/components/appshell/RecipeSearch';
 import { Recipe } from '@/types/Recipe';
 import RecipeCard from '@/components/reusables/RecipeCard';
+import AppLogo from '@/components/appshell/AppLogo';
+import Carousel from '@/components/reusables/Carousel/Index';
 
 /**
  * The frontpage of the application.
@@ -42,20 +44,21 @@ export default function Frontpage() {
     const categories = usePage<SharedPageProps>().props.categories;
     const recipes = usePage<SharedPageProps>().props.recipes;
     const [open, setOpen] = useState<boolean>(false);
-    console.log(recipes);
     return (
         <FullWidthLayout title="Willkommen">
-            <div>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-5">
-                    {recipes?.data.map((recipe: Recipe) => (
-                        <li key={recipe.id}>
-                            <RecipeCard recipe={recipe} />
-                        </li>
-                    ))}
-                    {recipes?.data.length === 0 && recipes?.data.map((recipe: Recipe) => (
-                        <li key="id_placeholder"><p>Lege das erste Rezept an.</p></li>
-                    ))}
-                </ul>
+            <div className="grid grid-cols-12 grid-rows-2">
+                <div className="col-span-6 row-span-2 flex flex-col items-center">
+                    <img src={chefkoch} alt="Chef Tobias" className="w-2/4 mt-12" />
+                    <div className="flex flex-col items-center text-center">
+                        <h1 className="text-xl font-medium text-gray-400 font-oswald mb-3">...auf</h1>
+                        <AppLogo className="mb-4" />
+                        <p className="text-xl text-gray-800 dark:text-gray-200 font-la-belle-aurore">Dein Chefkoch 2.0</p>
+                    </div>
+                </div>
+                <div className="col-span-6">
+                    <Carousel wrapperClassname="asd" carouselClassName="asd" itemClassName="card" recipes={recipes?.data} />
+                </div>
+                
             </div>
         </FullWidthLayout>
     );

@@ -1,0 +1,148 @@
+.carousel {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    scroll-behavior: smooth;
+    anchor-name: --carousel;
+    scroll-snap-type: x mandatory;
+    scroll-marker-group: after;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel::scroll-marker-group {
+    position: relative;
+    top: -1.25rem;
+
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.card::scroll-marker {
+    content: " ";
+    height: .75rem;
+    width: .75rem;
+    background-color: var(--color-gray-900);
+    border-radius: 50%;
+}
+
+.card::scroll-marker:target-current {
+    background-color: var(--color-primary);
+}
+
+.carousel::scroll-button(left),
+.carousel::scroll-button(right) {
+    content: "\2039";
+    border: none;
+    font-size: 2rem;
+    color: var(--color-primary);
+    height: 40px;
+    width: 40px;
+    background: var(--color-gray-100);
+    border-radius: 50%;
+    padding-bottom: 0.1em;
+    cursor: pointer;
+    position: fixed;
+    position-anchor: --carousel;
+    position-area: left center;
+    translate: 50%;
+}
+
+.carousel::scroll-button(right) {
+    content: "\203A";
+    position-anchor: --carousel;
+    position-area: right center;
+    translate: -50%;
+}
+
+/* End of Cards / Disabled */
+.carousel::scroll-button(left):disabled,
+.carousel::scroll-button(right):disabled {
+  opacity: 0.5;
+  cursor: auto;
+}
+
+.card {
+    flex: 0 0 20em;
+    padding: 1rem;
+    border-radius: 0.5em;
+    align-content: center;
+    scroll-snap-align: start;
+}
+
+@media (max-width: 500px) {
+  .card {
+    flex: 0 0 100%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+    .carousel {
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 1.5rem;
+        scroll-behavior: smooth;
+        anchor-name: --carousel;
+        scroll-snap-type: x mandatory;
+        scroll-marker-group: after;
+    }
+
+    .carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carousel::scroll-marker-group {
+        position: relative;
+        top: -1.25rem;
+
+        display: flex;
+        justify-content: center;
+        gap: 0.5em;
+    }
+
+    .card::scroll-marker {
+        content: " ";
+        height: .75rem;
+        width: .75rem;
+        background-color: var(--color-gray-900);
+        border-radius: 50%;
+    }
+
+    .card::scroll-marker:target-current {
+        background-color: var(--color-primary);
+    }
+
+    .carousel::scroll-button(left),
+    .carousel::scroll-button(right) {
+        background: var(--color-gray-900);
+    }
+
+    .carousel::scroll-button(right) {
+        
+    }
+
+    /* End of Cards / Disabled */
+    .carousel::scroll-button(left):disabled,
+    .carousel::scroll-button(right):disabled {
+        
+    }
+
+    .card {
+        flex: 0 0 20em;
+        padding: 1rem;
+        border-radius: 0.5em;
+        align-content: center;
+        scroll-snap-align: start;
+    }
+
+    @media (max-width: 500px) {
+    .card {
+        flex: 0 0 100%;
+    }
+    }
+}

@@ -17,9 +17,11 @@ import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
 
 import ContextMenu from '@/components/reusables/ContextMenu';
+import { cn } from '@/lib/utils';
 
 interface RecipeCardProps {
     recipe: Recipe;
+    className?: string;
 }
 
 /**
@@ -28,7 +30,7 @@ interface RecipeCardProps {
  * @param {RecipeCardProps} props - properties of the component
  * @returns {JSX.Element} - the rendered component
  */
-export default function RecipeCard({ recipe }: RecipeCardProps) {
+export default function RecipeCard({ recipe, className }: RecipeCardProps) {
 
     /**
      * Kategorie -> Icon Mapping
@@ -43,7 +45,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
     };
 
     return (
-        <li className="group w-full max-w-96 mb-5">
+        <li className={cn("group w-72 mb-5", className)}>
             <Link href={route('recipes.show', recipe.slug)} className="block" title={recipe.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader

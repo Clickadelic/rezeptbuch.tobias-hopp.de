@@ -20,6 +20,4 @@ class PageController extends Controller
             'recipes' => $recipes,
         ]);
     }
-
-
 }

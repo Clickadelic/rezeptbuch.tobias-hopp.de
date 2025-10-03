@@ -61,7 +61,7 @@ export default function Frontpage() {
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den kleinen Hunger</span>
                             <Link
                                 href={route('recipes.search', { search: 'Vorspeise' })}
-                                className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
                                 title="Zu den Vorspeisen"
                                 aria-label="Zu den Vorspeisen"
                                 >Zu den Vorspeisen<IoMdArrowForward className="asd" />
@@ -76,7 +76,7 @@ export default function Frontpage() {
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den großen Hunger</span>
                             <Link
                                 href={route('recipes.search', { search: 'Hauptgericht' })}
-                                className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
                                 title="Zu den Hauptgerichten"
                                 aria-label="Zu den Hauptgerichten"
                                 >Zu den Hauptgerichten<IoMdArrowForward className="asd" />
@@ -91,7 +91,7 @@ export default function Frontpage() {
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für ein süßes Ende</span>
                             <Link
                                 href={route('recipes.search', { search: 'Nachtisch' })}
-                                className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
                                 title="Zum Nachtisch"
                                 aria-label="Zum Nachtisch"
                                 >Zum Nachtisch<IoMdArrowForward className="asd" />
@@ -106,7 +106,7 @@ export default function Frontpage() {
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für einen guten Abend</span>
                             <Link
                                 href={route('recipes.search', { search: 'Cocktail' })}
-                                className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
                                 title="Zu den Cocktails"
                                 aria-label="Zu den Cocktails"
                                 >Zu den Cocktails<IoMdArrowForward className="asd" />
@@ -121,7 +121,7 @@ export default function Frontpage() {
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für eine gute Zeit</span>
                             <Link
                                 href={route('recipes.search', { search: 'Backen' })}
-                                className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
                                 title="Zum Backen"
                                 aria-label="Zum Backen"
                                 >Zum Backen<IoMdArrowForward className="asd" />
@@ -136,7 +136,7 @@ export default function Frontpage() {
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für zwischendurch</span>
                             <Link
                                 href={route('recipes.search', { search: 'Snack' })}
-                                className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
                                 title="Zu den Snacks"
                                 aria-label="Zu den Snacks"
                                 >Zu den Snacks<IoMdArrowForward className="asd" />

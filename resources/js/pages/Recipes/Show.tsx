@@ -24,6 +24,7 @@ import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/Modal';
 import { IoEye } from 'react-icons/io5';
+import Carousel from '@/components/reusables/Carousel/Index';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -39,6 +40,7 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     const { user } = usePage<SharedPageProps>().props.auth;
+    const { related } = usePage<SharedPageProps>().props;
     const [count, setCount] = useState<number>(1);
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
     
@@ -194,6 +196,11 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     )}
+                </div>
+                <hr className="my-5" />
+                <div className="related">
+                    <h4 className="text-xl font-oswald">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
+                    <Carousel recipes={related as Recipe[]} itemClassName="card" />
                 </div>
                 <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
                     <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">

@@ -119,7 +119,8 @@
 
     .carousel::scroll-button(left),
     .carousel::scroll-button(right) {
-        background: var(--color-gray-900);
+        background: var(--color-primary);
+        color: var(--color-white);
     }
 
     .carousel::scroll-button(right) {

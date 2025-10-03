@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { SharedPageProps } from '@/types';
 interface NoSidebarsLayoutProps extends PropsWithChildren {
+    showTitle?: boolean;
     children: React.ReactNode;
     title?: string;
 }
@@ -21,6 +22,7 @@ interface NoSidebarsLayoutProps extends PropsWithChildren {
  * The left sidebar appears on the left side of the main content on desktop and below it on mobile screens.
  * The right sidebar is consistently displayed to the right of the main content on desktop and below on mobile screen.
  *
+ * @prop {string} [showTitle] - The title of the page, displayed above the main content.
  * @prop {string} [title] - The title of the page, displayed above the main content.
  * @prop {React.ReactNode} children - The main content to render in the layout.
  *
@@ -32,7 +34,7 @@ interface NoSidebarsLayoutProps extends PropsWithChildren {
  * </NoSidebarsLayout>
  */
 
-export default function NoSidebarsLayout({ title, children }: NoSidebarsLayoutProps) {
+export default function NoSidebarsLayout({ showTitle = true, title, children }: NoSidebarsLayoutProps) {
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 
@@ -61,7 +63,7 @@ export default function NoSidebarsLayout({ title, children }: NoSidebarsLayoutPr
                     </div>
                     <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         <main className="pt-4 pb-16 col-start-2 col-span-3">
-                            {title && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
+                            {showTitle && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
                             {children}
                         </main>
                     </div>

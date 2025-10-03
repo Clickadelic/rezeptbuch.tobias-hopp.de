@@ -27,7 +27,6 @@ import { SharedPageProps } from "@/types";
 
 const Header = () => {
     const { auth } = usePage<SharedPageProps>().props;
-
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (

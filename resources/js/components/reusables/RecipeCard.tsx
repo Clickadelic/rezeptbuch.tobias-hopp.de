@@ -104,7 +104,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                                 </>
                             )}
                             <span className="text-sm text-muted-foreground ">
-                                {recipe.category?.name ?? 'unbekannt'}
+                                {recipe.category?.name ?? 'Nicht kategorisiert'}
                             </span>
                         </div>
 

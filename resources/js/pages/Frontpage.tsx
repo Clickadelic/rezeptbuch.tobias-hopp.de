@@ -49,16 +49,16 @@ export default function Frontpage() {
         <FullWidthLayout aria-label="" title="Willkommen" showTitle={false}>
             <div className="flex flex-col gap-2 items-center justify-center my-16">
                 <h2 className="flex gap-1 text-3xl font-roboto-condensed"><BsBookmarkHeart className="text-primary size-6 mt-1" />Willkommen</h2>
-                <h3 className="text-2xl text-gray-600 font-la-belle-aurore">Was darf's sein?</h3>
+                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">Was darf's sein?</h3>
             </div>
             <div className={cn("bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8")}>
-                <ul className={cn("grid grid-cols-2 lg:grid-cols-3 gap-[1px]")} aria-roledescription="navigation">
+                <ul className={cn("grid grid-cols-1 lg:grid-cols-3 gap-[1px]")} aria-roledescription="navigation">
                     <li>
                         <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                 <TbSalad className="size-7 text-primary" />Vorspeisen
                             </span>
-                            <span className="font-la-belle-aurore text-gray-600 ">für den kleinen Hunger</span>
+                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den kleinen Hunger</span>
                             <Link
                                 href={route('recipes.search', { search: 'Vorspeise' })}
                                 className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
@@ -73,7 +73,7 @@ export default function Frontpage() {
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                 <GiKnifeFork className="size-7 text-primary" />Hauptgerichte
                             </span>
-                            <span className="font-la-belle-aurore text-gray-600 ">für den großen Hunger</span>
+                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den großen Hunger</span>
                             <Link
                                 href={route('recipes.search', { search: 'Hauptgericht' })}
                                 className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
@@ -88,7 +88,7 @@ export default function Frontpage() {
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                 <RiCake3Line className="size-7 text-primary" />Nachtisch
                             </span>
-                            <span className="font-la-belle-aurore text-gray-600 ">für ein süßes Ende</span>
+                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für ein süßes Ende</span>
                             <Link
                                 href={route('recipes.search', { search: 'Nachtisch' })}
                                 className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
@@ -103,7 +103,7 @@ export default function Frontpage() {
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                 <LiaCocktailSolid className="size-7 text-primary" />Cocktails
                             </span>
-                            <span className="font-la-belle-aurore text-gray-600 ">für einen guten Abend</span>
+                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für einen guten Abend</span>
                             <Link
                                 href={route('recipes.search', { search: 'Cocktail' })}
                                 className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
@@ -118,7 +118,7 @@ export default function Frontpage() {
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                 <GiCakeSlice className="size-7 text-primary" />Backen
                             </span>
-                            <span className="font-la-belle-aurore text-gray-600 ">für eine gute Zeit</span>
+                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für eine gute Zeit</span>
                             <Link
                                 href={route('recipes.search', { search: 'Backen' })}
                                 className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
@@ -133,7 +133,7 @@ export default function Frontpage() {
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">
                                 <GiCrystalBars className="size-7 text-primary" />Snacks
                             </span>
-                            <span className="font-la-belle-aurore text-gray-600 ">für zwischendurch</span>
+                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für zwischendurch</span>
                             <Link
                                 href={route('recipes.search', { search: 'Snack' })}
                                 className="flex items-center justify-center w-64 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
@@ -144,6 +144,12 @@ export default function Frontpage() {
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 mt-24">
+                <div className="asd">
+                    <h3 className="text-3xl mb-5">Empfehlung aus der Küche</h3>
+                </div>
+                <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>
         </FullWidthLayout>
     );

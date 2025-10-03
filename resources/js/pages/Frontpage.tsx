@@ -52,7 +52,7 @@ export default function Frontpage() {
                 <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">Was darf's sein?</h3>
             </div>
             <div className={cn("bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8")}>
-                <ul className={cn("grid grid-cols-1 lg:grid-cols-3 gap-[1px]")} aria-roledescription="navigation">
+                <ul className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-[1px]")} aria-roledescription="navigation">
                     <li>
                         <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
                             <span className="flex flex-col items-center justify-center gap-3 mb-1">

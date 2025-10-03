@@ -45,6 +45,7 @@
     position-anchor: --carousel;
     position-area: left center;
     translate: 50%;
+    border-radius: 50%;
 }
 
 .carousel::scroll-button(right) {

@@ -48,15 +48,15 @@ export default function Frontpage() {
         <FullWidthLayout title="Willkommen">
             <div className="grid grid-cols-12">
                 <div className="col-span-5 flex flex-col items-center gap-3">
-                    <h1 className="text-xl font-medium text-gray-200 font-oswald">...auf</h1>
+
                     <AppLogo />
                     <img src={chefkoch} alt="Chef Tobias" className="w-3/4" />
                     <p className="text-xl text-gray-800 dark:text-gray-200 font-la-belle-aurore">Dein Chefkoch 2.0</p>
                 </div>
-                <div className="col-span-7 flex flex-col justify-between gap-4">
+                <div className="col-span-7 flex flex-col justify-center gap-4">
                     <div className="asd">
-                        <h3 className="text-3xl text-gray-600 dark:text-gray-200">Rezeptideen für Dich</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <h3 className="text-xl font-oswald text-gray-800 dark:text-gray-200">Rezeptideen für Dich</h3>
+                        <p>Eine erste kleine Empfehlung der Küche.</p>
                     </div>
                     <Carousel wrapperClassname="asd" carouselClassName="asd" itemClassName="card" recipes={recipes?.data} />
                 </div>

@@ -55,7 +55,7 @@ class RecipeController extends Controller
         $related = Recipe::where('category_id', $recipe->category_id)
                     ->where('id', '!=', $recipe->id) // aktuelles Rezept ausschließen
                     ->inRandomOrder() // zufällige Reihenfolge
-                    ->take(5) // max. 5 Stück
+                    ->take(5)
                     ->get();
         return Inertia::render('Recipes/Show', compact('recipe', 'related'));
     }

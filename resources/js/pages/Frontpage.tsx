@@ -47,9 +47,11 @@ export default function Frontpage() {
     const categories = usePage<SharedPageProps>().props.categories;
     const recipes = usePage<SharedPageProps>().props.recipes;
     return (
-        <FullWidthLayout aria-label="" title="Willkommen" showTitle={false}>
+        <FullWidthLayout title="Willkommen" showTitle={false}>
             <div className="flex flex-col gap-2 items-center justify-center my-16">
-                <h2 className="flex gap-1 text-3xl font-roboto-condensed"><BsBookmarkHeart className="text-primary size-6 mt-1" />Willkommen</h2>
+                <h2 className="flex gap-1 text-3xl font-roboto-condensed">
+                    <BsBookmarkHeart className="text-primary size-6 mt-1" />Willkommen
+                </h2>
                 <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">Was darf's sein?</h3>
             </div>
             <div className={cn("bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8")}>
@@ -149,7 +151,15 @@ export default function Frontpage() {
             <Seperator />
             <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="asd">
-                    <h3 className="text-3xl mb-5">Empfehlung aus der Küche</h3>
+                    <h3 className="text-3xl">Was ist das hier? Wo bin ich?</h3>
+                    <p>Du bist auf einer Webseite gelandet, wo Du Deine Rezepte verwalten kannst.</p>
+                </div>
+                
+            </div>
+            <Seperator />
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="asd">
+                    <h3 className="text-3xl">Empfehlung aus der Küche</h3>
                 </div>
                 <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>

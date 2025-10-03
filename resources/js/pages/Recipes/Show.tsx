@@ -1,4 +1,3 @@
-
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
 import ContextMenu from '@/components/reusables/ContextMenu';
@@ -124,7 +123,6 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     </div>
                 </div>
-                
                 <div className="w-full flex flex-col gap-1">
                     {recipe.ingredients && recipe.ingredients.length > 0 && (
                         <>
@@ -197,7 +195,6 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     )}
                 </div>
-                
                 <div className="flex flex-col gap-5 mb-12">
                     <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
                     <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={related as Recipe[]} />

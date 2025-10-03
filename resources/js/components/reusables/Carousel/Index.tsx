@@ -12,7 +12,7 @@ interface CarouselProps {
 }
 
 /**
- * Carousel component.
+ * A carousel component.
  *
  * @param {string} [wrapperClassname] - Optional wrapper class name
  * @param {string} [carouselClassName] - Optional carousel class name

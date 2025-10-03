@@ -62,7 +62,7 @@ export default function FullWidthLayout({ showTitle = true, title, children }: F
                     </div>
                     <div className="mx-auto container grow px-6 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         <main className="pt-5 pb-16">
-                            {showTitle && <h2 className="text-xl font-medium font-oswald mb-5">{title}</h2>}
+                            {showTitle && <h2 className="text-xl font-medium mb-5">{title}</h2>}
                             {children}
                         </main>
                     </div>

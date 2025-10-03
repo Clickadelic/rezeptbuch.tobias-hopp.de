@@ -33,7 +33,6 @@ export default function RecipeSearch() {
                     isBlurred && "backdrop-blur-sm opacity-100 pointer-events-auto"
                 )}
             >
-
             </div>
             
             <div className={cn("z-20 bg-white/30 dark:bg-gray-800/30 flex flex-col gap-1 dark:text-gray-200 p-1 rounded mx-4 my-6 lg:w-[36rem]")}>
@@ -56,7 +55,6 @@ export default function RecipeSearch() {
                         <RiSearchLine className="size-6" />
                     </Button>
                 </form>
-                
             </div>
         </div>
     );

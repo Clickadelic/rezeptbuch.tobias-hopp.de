@@ -61,7 +61,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />}>
             <div className="flex flex-col gap-5">
                 <div className="flex flex-col md:flex-row justify-start gap-5">
-                    <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[48rem] overflow-hidden rounded-xl">
+                    <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[72rem] overflow-hidden rounded-xl">
                         {(() => {
                             const hero =
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
@@ -90,7 +90,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             <div className="w-full flex flex-col">
                                 <div className="relative w-full flex flex-row justify-between items-center">
                                     <div>
-                                        <h4 className="font-medium text-sm font-oswald text-gray-400 dark:text-gray-600">
+                                        <h4 className="font-medium text-sm  text-gray-400 dark:text-gray-600">
                                             {recipe.punchline}
                                         </h4>
                                         <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
@@ -107,19 +107,19 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 {iconMap[recipe.category?.slug ?? ""] ?? (
                                     <LuUtensilsCrossed className="size-5 text-primary" />
                                 )}
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
                             </div>
                             <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <VscSymbolEvent className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
                             </div>
                             <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoClock className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
                             </div>
                             <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoStar className="size-5 text-primary" />
-                                <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     {recipe.ingredients && recipe.ingredients.length > 0 && (
                         <>
                             <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
-                                <h4 className="font-medium font-oswald text-lg">Zutaten für</h4>
+                                <h4 className="font-medium  text-lg">Zutaten für</h4>
                                 <div className="flex items-center gap-2">
                                     <Button
                                         onClick={() => setCount((prev) => Math.max(1, prev - 1))}
@@ -189,7 +189,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     {recipe.preparation_instructions && (
                         <div className="flex">
                             <div className="w-full flex flex-col gap-2">
-                                <h4 className="font-medium font-oswald text-lg">Zubereitung</h4>
+                                <h4 className="font-medium text-lg">Zubereitung</h4>
                                 <div className="flex flex-col gap-2">
                                     <p>{recipe.preparation_instructions}</p>
                                 </div>
@@ -199,7 +199,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 </div>
                 <hr className="my-5" />
                 <div className="flex flex-col gap-5 mb-12">
-                    <h4 className="text-xl font-oswald">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
+                    <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
                     <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={related as Recipe[]} />
                 </div>
                 <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
@@ -211,7 +211,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                     alt={recipe.name}
                                     className="inset size-full rounded aspect-video object-cover mb-4"
                                 />
-                                <h5 className="font-medium font-oswald text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
+                                <h5 className="font-medium text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
                                 <h4 className="font-medium text-gray-800 dark:text-gray-200">{recipe.name}</h4>
                             </div>
                         ))}

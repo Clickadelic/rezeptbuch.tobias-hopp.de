@@ -33,7 +33,7 @@ export default function DataCard({icon, title, userCount, totalCount, trending, 
     return (
         <div className="w-full flex flex-col justify-between aspect-video border border-gray-50 dark:border-gray-700 rounded-xl p-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
             <div className="flex flex-row justify-between items-center gap-1">
-                <h4 className="text-md text-gray-800 dark:text-gray-200 font-oswald flex justify-between gap-2">
+                <h4 className="text-md text-gray-800 dark:text-gray-200 flex justify-between gap-2">
                     {title}
                 </h4>
                 <div className="flex items-center gap-1 text-sm rounded-full px-1.5">
@@ -45,7 +45,7 @@ export default function DataCard({icon, title, userCount, totalCount, trending, 
 
             <div className="flex justify-between gap-2">
                 <span className="text-gray-400">{icon}</span>
-                <h3 className="text-xl font-oswald">{userCount}/{totalCount}</h3>
+                <h3 className="text-xl">{userCount}/{totalCount}</h3>
             </div>
         </div>
     );

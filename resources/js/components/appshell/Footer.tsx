@@ -33,7 +33,7 @@ export default function Footer({ className }: FooterProps) {
                         <div>
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <GrNavigate className="mt-1" />
-                                <span className="font-medium font-oswald">Navigation</span>
+                                <span className="font-medium">Navigation</span>
                             </h2>
                             <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
                                 <li>
@@ -71,7 +71,7 @@ export default function Footer({ className }: FooterProps) {
                         <div>
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <FaQ className="mt-1" />
-                                <span className="font-medium font-oswald">Weiteres</span>
+                                <span className="font-medium">Weiteres</span>
                             </h2>
                             <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
                                 <li>
@@ -117,7 +117,7 @@ export default function Footer({ className }: FooterProps) {
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <IoIosRibbon className="mt-1" />
-                                <span className="font-medium font-oswald">100% Qualit&auml;t</span>
+                                <span className="font-medium">100% Qualit&auml;t</span>
                             </h2>
                             <p className="mb-5 text-center sm:text-left">
                                 Alle Rezepte wurden entweder schon mal gekocht oder für gut befunden und probiert.
@@ -127,7 +127,7 @@ export default function Footer({ className }: FooterProps) {
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <TbMailHeart className="mt-1" />
-                                <span className="font-medium font-oswald">Newsletter</span>
+                                <span className="font-medium">Newsletter</span>
                             </h2>
                             <p className="mb-8 text-center sm:text-left mx-5 sm:mx-0">
                                 Bleib' auf dem Laufenden, wenn es Neuigkeiten zu meinem Rezeptbuch

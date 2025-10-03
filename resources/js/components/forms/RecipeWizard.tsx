@@ -231,6 +231,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             onChange={(id) => setData('category_id', id)}
                         />
                     </div>
+
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />
@@ -247,7 +248,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
 
                     {/* Slug */}
-                    
                     <div>
                         <InputLabel htmlFor="slug" value="URL/Slug" />
                         <TextInput
@@ -262,7 +262,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {errors.name && <p className="text-rose-500">{errors.slug}</p>}
                     </div>
                     
-
                     {/* Punchline */}
                     <div>
                         <InputLabel htmlFor="punchline" value="Punchline" />
@@ -364,7 +363,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             )}
                         </div>
                     </div>
-                    <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
+
                     <div className="flex justify-between gap-2">
                         <Button
                             asChild

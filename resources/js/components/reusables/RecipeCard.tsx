@@ -45,7 +45,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
     };
 
     return (
-        <li className={cn("group w-72 mb-5", className)}>
+        <li className={cn("group max-w-96 mb-5", className)}>
             <Link href={route('recipes.show', recipe.slug)} className="block" title={recipe.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader
@@ -84,7 +84,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                     <CardContent className="py-2 px-0 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
                         <div className="relative flex flex-row justify-between items-center gap-1">
                             <div className="w-full grow mr-8">
-                                <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm font-oswald line-clamp-1 min-h-[calc(1rem+2px)]">
+                                <h4 className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm line-clamp-1 min-h-[calc(1rem+2px)]">
                                     {recipe.punchline}
                                 </h4>
                                 <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">
@@ -140,7 +140,7 @@ export function RecipeCardSkeleton() {
                 </CardHeader>
 
                 <CardContent className="p-2 block text-lg font-medium transition-colors duration-500 ease-in-out group-hover:text-primary leading-snug">
-                    <h4 className="text-gray-500 dark:text-gray-400 text-base font-oswald line-clamp-1">
+                    <h4 className="text-gray-500 dark:text-gray-400 text-base line-clamp-1">
                         <Skeleton className="w-1/2" />
                     </h4>
                     <h3 className="group-hover:text-primary line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">

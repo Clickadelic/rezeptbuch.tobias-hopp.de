@@ -13,14 +13,14 @@ interface CarouselProps {
 export default function Carousel ({ wrapperClassname, carouselClassName, itemClassName, recipes }: CarouselProps) {
     console.log("Carousel", recipes);
     return (
-        <div className={cn("carousel-wrapper", recipes?.length === 0 && "empty", wrapperClassname)} id="custom-card-carousel">
-            <ul className={cn("carousel", carouselClassName)}>
+        <div className={cn("carousel-wrapper rounded-lg", recipes?.length === 0 && "carousel-empty", wrapperClassname)} id="custom-card-carousel">
+            <ul className={cn("carousel flex w-full overflow-x-auto", carouselClassName)}>
                 {recipes?.map((recipe: Recipe) => (
                     <RecipeCard className={itemClassName} key={recipe.id} recipe={recipe} />
                 ))}
-            {recipes?.length === 0 && recipes?.map((recipe: Recipe) => (
-                <li key="id_placeholder"><p>Lege das erste Rezept an.</p></li>
-            ))}
+                {recipes?.length === 0 && (
+                    <li key="id_placeholder"><p>Lege das erste Rezept an.</p></li>
+                )}
             </ul>
         </div>
     )

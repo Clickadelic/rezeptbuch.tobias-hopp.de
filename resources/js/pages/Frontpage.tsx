@@ -45,22 +45,20 @@ export default function Frontpage() {
     const recipes = usePage<SharedPageProps>().props.recipes;
     const [open, setOpen] = useState<boolean>(false);
     return (
-        <FullWidthLayout title="Willkommen">
+        <FullWidthLayout title="Willkommen" showTitle={false}>
             <div className="grid grid-cols-12">
                 <div className="col-span-5 flex flex-col items-center gap-3">
-
+                    <h2 className="text-4xl font-oswald my-5">Willkommen bei</h2>
                     <AppLogo />
-                    <img src={chefkoch} alt="Chef Tobias" className="w-3/4" />
+                    <img src={chefkoch} alt="Chef Tobias" className="w-2/4" />
                     <p className="text-xl text-gray-800 dark:text-gray-200 font-la-belle-aurore">Dein Chefkoch 2.0</p>
                 </div>
-                <div className="col-span-7 flex flex-col justify-center gap-4">
-                    <div className="asd">
-                        <h3 className="text-xl font-oswald text-gray-800 dark:text-gray-200">Rezeptideen für Dich</h3>
-                        <p>Eine erste kleine Empfehlung der Küche.</p>
+                <div className="col-span-7 flex flex-col justify-start gap-4 mb-24">
+                    <div className="mb-24">
+                        <h3 className="text-xl mt-9 font-oswald text-gray-800 dark:text-gray-200">Eine Empfehlung aus der Küche</h3>
                     </div>
-                    <Carousel wrapperClassname="asd" carouselClassName="asd" itemClassName="card" recipes={recipes?.data} />
+                    <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
                 </div>
-                
             </div>
         </FullWidthLayout>
     );

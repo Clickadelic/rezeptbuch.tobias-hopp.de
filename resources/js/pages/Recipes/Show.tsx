@@ -79,11 +79,11 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 </div>
                                 
                             ) : (
-                                <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400" />
+                                <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
                             );
                         })()}
                         
-                        <div className="absolute size-full bg-gray-100 rounded-xl z-10 cursor-default"></div>
+                        <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div>
                     </div>
                     <div className="w-full flex flex-col justify-between gap-5">
                         <div className="flex flex-col items-start gap-2">
@@ -103,21 +103,21 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                         <div className="grid grid-cols-2 md:flex md:flex-row justify-between items-center md:justify-start gap-5">
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 {iconMap[recipe.category?.slug ?? ""] ?? (
                                     <LuUtensilsCrossed className="size-5 text-primary" />
                                 )}
                                 <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <VscSymbolEvent className="size-5 text-primary" />
                                 <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoClock className="size-5 text-primary" />
                                 <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 text-gray-600 justify-between items-center p-3">
+                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoStar className="size-5 text-primary" />
                                 <p className="font-oswald text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
                             </div>
@@ -189,7 +189,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     {recipe.preparation_instructions && (
                         <div className="flex">
                             <div className="w-full flex flex-col gap-2">
-                                <h4 className="font-medium font-oswald text-lg mt-4">Zubereitung</h4>
+                                <h4 className="font-medium font-oswald text-lg">Zubereitung</h4>
                                 <div className="flex flex-col gap-2">
                                     <p>{recipe.preparation_instructions}</p>
                                 </div>
@@ -198,9 +198,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     )}
                 </div>
                 <hr className="my-5" />
-                <div className="related">
+                <div className="flex flex-col gap-5 mb-12">
                     <h4 className="text-xl font-oswald">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
-                    <Carousel recipes={related as Recipe[]} itemClassName="card" />
+                    <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={related as Recipe[]} />
                 </div>
                 <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
                     <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">

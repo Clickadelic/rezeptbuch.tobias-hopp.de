@@ -52,9 +52,10 @@ class RecipeController extends Controller
     {
         $recipe->load(['ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
                    'category', 'media', 'user']);
-        $related = Recipe::where('category_id', $recipe->category_id)
-                    ->where('id', '!=', $recipe->id) // aktuelles Rezept ausschließen
-                    ->inRandomOrder() // zufällige Reihenfolge
+        $related = Recipe::with(['category', 'user'])
+                    ->where('category_id', $recipe->category_id)
+                    ->where('id', '!=', $recipe->id)
+                    ->inRandomOrder()
                     ->take(5)
                     ->get();
         return Inertia::render('Recipes/Show', compact('recipe', 'related'));

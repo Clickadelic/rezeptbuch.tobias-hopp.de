@@ -47,7 +47,7 @@ export function CircularMenu() {
                             </TooltipTrigger>
                             <TooltipContent side="left" className="text-white">
                                 <p>Neues Gericht</p>
-                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800no drop" />
+                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                                 
                             </TooltipContent>
                         </Tooltip>
@@ -65,7 +65,7 @@ export function CircularMenu() {
                             </TooltipTrigger>
                             <TooltipContent side="left" className="text-white">
                                 <p>Neue Zutat</p>
-                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800no drop" />
+                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -90,7 +90,7 @@ export function CircularMenu() {
                         </TooltipTrigger>
                         <TooltipContent side="left" className="text-white">
                             <p>Neuen Inhalt anlegen</p>
-                            <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800no drop" />
+                            <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>

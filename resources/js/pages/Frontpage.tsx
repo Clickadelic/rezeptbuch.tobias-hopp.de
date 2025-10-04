@@ -9,7 +9,7 @@ import { RiCake3Line } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
 import { GiKnifeFork } from "react-icons/gi";
-import { BsBookmarkHeart } from 'react-icons/bs';
+import { BsBookmarkHeart, BsDoorOpen } from 'react-icons/bs';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { cn } from "@/lib/utils";
 import { Category } from '@/types/Category';
@@ -25,6 +25,7 @@ import RecipeCard from '@/components/reusables/RecipeCard';
 import { Recipe } from '@/types/Recipe';
 import { IoMdArrowForward } from "react-icons/io";
 import Seperator from '@/components/reusables/Seperator';
+import { FiCheckCircle } from 'react-icons/fi';
 
 
 
@@ -158,14 +159,14 @@ export default function Frontpage() {
                 <h2 className="flex gap-2 text-3xl font-roboto-condensed">
                     <BsJournalBookmark className="text-primary size-6 mt-1" />Rezeptbuch
                 </h2>
-                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">persönlich, für dich</h3>
-                <div className="flex gap-2">
+                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">praktisch - digital</h3>
+                <div className="flex gap-2 mt-5">
                     {auth.user ? (
                         <Link href={route('dashboard')} className="border border-gray-800 text-gray-800 rounded px-5 py-1.5">Dashboard</Link>
                     ) : (
                         <>
-                            <Link href={route('register')} className="border border-gray-800 text-gray-800 rounded px-5 py-1.5">Registrieren</Link>
-                            <Link href={route('login')} className="border border-transparent bg-primary text-white rounded px-5 py-1.5">Login</Link>
+                            <Link href={route('register')} className="flex gap-2 border border-gray-800 text-gray-800 rounded px-3 py-1.5"><FiCheckCircle className="size-4 mt-1" />Registrieren</Link>
+                            <Link href={route('login')} className="flex gap-2 border border-transparent bg-primary text-white rounded px-3 py-1.5 hover:bg-emerald-700"><BsDoorOpen className="size-4 mt-1" />Login</Link>
                         </>
                     )}
                 </div>

@@ -54,14 +54,6 @@ const Header = () => {
                             >
                                 Rezepte
                             </NavLink>
-                            <NavLink
-                                href="/zutaten"
-                                active={window.location.pathname.startsWith('/zutaten')}
-                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<TbSalt />}
-                            >
-                                Zutaten
-                            </NavLink>
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">

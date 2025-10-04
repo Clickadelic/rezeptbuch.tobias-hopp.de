@@ -32,7 +32,7 @@ export default function Footer({ className }: FooterProps) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div>
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
-                                <GrNavigate className="mt-1" />
+                                <GrNavigate />
                                 <span className="font-medium">Navigation</span>
                             </h2>
                             <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
@@ -70,7 +70,7 @@ export default function Footer({ className }: FooterProps) {
                         </div>
                         <div>
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
-                                <FaQ className="mt-1" />
+                                <FaQ />
                                 <span className="font-medium">Weiteres</span>
                             </h2>
                             <ul className="space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start">
@@ -116,7 +116,7 @@ export default function Footer({ className }: FooterProps) {
                         </div>
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
-                                <IoIosRibbon className="mt-1" />
+                                <IoIosRibbon />
                                 <span className="font-medium">100% Qualit&auml;t</span>
                             </h2>
                             <p className="mb-5 text-center sm:text-left">
@@ -126,7 +126,7 @@ export default function Footer({ className }: FooterProps) {
                         </div>
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
-                                <TbMailHeart className="mt-1" />
+                                <TbMailHeart />
                                 <span className="font-medium">Newsletter</span>
                             </h2>
                             <p className="mb-8 text-center sm:text-left mx-5 sm:mx-0">

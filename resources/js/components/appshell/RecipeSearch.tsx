@@ -35,8 +35,8 @@ export default function RecipeSearch() {
             >
             </div>
             
-            <div className={cn("z-20 bg-white/30 dark:bg-gray-800/30 flex flex-col gap-1 dark:text-gray-200 p-1 rounded mx-4 my-6 lg:w-[36rem]")}>
-                <form method="GET" action={route('recipes.search')} className="flex flex-row justify-end items-center place-items-center bg-white dark:bg-gray-800 dark:text-gray-200 p-1 rounded space-x-1">
+            <div className={cn("lg:w-[28rem] z-20 bg-white/30 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-6")}>
+                <form method="GET" action={route('recipes.search')} className="flex flex-row justify-end items-center place-items-center bg-white dark:bg-gray-800 p-1 rounded space-x-1">
                     <input
                         type="text"
                         name="search"
@@ -44,7 +44,7 @@ export default function RecipeSearch() {
                         autoComplete='off'
                         onFocus={() => setIsBlurred(true)}
                         onBlur={() => setIsBlurred(false)}
-                        className="w-full text-base border-none rounded bg-white dark:bg-gray-800 dark:border border-transparent hover:border-primary text-gray-200 focus:outline-none focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-gray-800"
+                        className="w-full text-base border-none rounded bg-white dark:bg-gray-800 dark:border border-transparent hover:border-primary text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-gray-800"
                         placeholder="Was essen wir heute?"
                     />
                     <Button

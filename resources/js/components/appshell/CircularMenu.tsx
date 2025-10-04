@@ -28,7 +28,7 @@ export function CircularMenu() {
 
     if(hasRole('writer') || hasRole('admin')) {
         return (
-            <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-12 z-20">
+            <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-[48px] z-20">
                 <div
                     className={cn(
                         'absolute -top-24 left-[4px] flex flex-col items-center space-y-2 transition-all',
@@ -46,7 +46,7 @@ export function CircularMenu() {
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent side="left" className="text-white">
-                                <p>Neues Gericht</p>
+                                <p>Neues Rezept</p>
                                 <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                                 
                             </TooltipContent>

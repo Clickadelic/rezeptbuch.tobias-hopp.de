@@ -137,6 +137,7 @@ const Header = () => {
                         <ModeToggle />
                     </div>
                     <div className="-me-2 flex items-center sm:hidden">
+                        <ModeToggle />
                         <button
                             onClick={() =>
                                 setShowingNavigationDropdown((previousState) => !previousState)

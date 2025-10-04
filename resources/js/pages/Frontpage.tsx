@@ -179,7 +179,7 @@ export default function Frontpage() {
                     <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">vom Chef persönlich</h3>
                     <img src={chefkoch} className="w-full mx-auto sm:w-1/2 md:w-3/4" alt="Chef Tobias" />
                 </div>
-                <Carousel wrapperClassname="lg:mt-32 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
+                <Carousel wrapperClassname="lg:mt-24 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>
         </FullWidthLayout>
     );

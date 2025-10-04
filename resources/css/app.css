@@ -119,8 +119,3 @@ a[target='_blank']:after {
     margin-left: 5px;
     margin-right: 5px;
 }
-
-// emerald-700
-.arrow-primary {
-    fill: @apply primary;
-}

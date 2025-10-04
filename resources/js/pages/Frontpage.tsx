@@ -70,7 +70,7 @@ export default function Frontpage() {
                             <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den kleinen Hunger</span>
                             <Link
                                 href={route('recipes.search', { search: 'Vorspeise' })}
-                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
+                                className="flex items-center justify-center w-56 gap-2 text-base hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
                                 title="Zu den Vorspeisen"
                                 aria-label="Zu den Vorspeisen"
                                 >Zu den Vorspeisen<IoMdArrowForward className="asd" />

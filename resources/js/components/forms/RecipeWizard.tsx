@@ -174,8 +174,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-center md:text-left text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Basics</h3>
-                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</span>
-                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Beschreibung und weitere Dinge sind optional.</p>
+                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</p>
                     </div>
                 </li>
                 <li className="relative w-full mb-6 sm:mb-0">
@@ -188,8 +187,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
-                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bearbeite die Zutatenliste.</span>
-                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Neue oder bestehende Zutaten hinzufügen.</p>
+                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bearbeite die Zutatenliste.</p>
                     </div>
                 </li>
                 <li className="relative w-full mb-6 sm:mb-0">
@@ -202,12 +200,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
                         <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Details</h3>
-                        <span className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bilder &amp; Zubereitung.</span>
-                        <p className="hidden lg:block text-base font-normal text-gray-500 dark:text-gray-400">Füge ein Bild hinzu, beschreibe die Zubereitung.</p>
+                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bilder &amp; Zubereitung.</p>
                     </div>
                 </li>
             </ol>
-            <Seperator />
             {!canNextFromStep1 && (
                 <div
                     className="border border-sky-400 bg-sky-200 text-sm text-sky-700 px-4 py-3 mb-4 rounded relative"
@@ -223,15 +219,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {step === 1 && (
                 <section className="space-y-4">
 
-                    {/* Kategorie */}
-                    <div>
-                        <CategoryGrid
-                            selectedCategoryId={
-                                recipe?.category_id ? Number(recipe.category_id) : undefined
-                            }
-                            onChange={(id) => setData('category_id', id)}
-                        />
-                    </div>
+                    
 
                     {/* Name */}
                     <div>
@@ -246,6 +234,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             onChange={(e) => setData('name', e.target.value)}
                         />
                         {errors.name && <p className="text-red-500">{errors.name}</p>}
+                    </div>
+
+                    {/* Kategorie */}
+                    <div>
+                        <CategoryGrid
+                            selectedCategoryId={
+                                recipe?.category_id ? Number(recipe.category_id) : undefined
+                            }
+                            onChange={(id) => setData('category_id', id)}
+                        />
                     </div>
 
                     {/* Slug */}
@@ -304,7 +302,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     max={600}
                                     value={data.preparation_time}
                                     placeholder="0"
-                                    className="w-24 mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl rounded-bl"
+                                    className="w-36 mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl rounded-bl"
                                     onChange={(e) =>
                                         setData('preparation_time', Number(e.target.value))
                                     }

@@ -136,7 +136,7 @@ const Header = () => {
                         )}
                         <ModeToggle />
                     </div>
-                    <div className="-me-2 flex items-center sm:hidden">
+                    <div className="-me-2 flex gap-2 items-center sm:hidden">
                         <ModeToggle />
                         <button
                             onClick={() =>

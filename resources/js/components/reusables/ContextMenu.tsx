@@ -49,6 +49,8 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
         router.delete(route('recipes.destroy', recipe?.slug));
     };
 
+    // Improve copy to clipboard
+    // TODO: get current url savely, not twice in HTML and JS
     const copyToClipboard = (e: React.MouseEvent) => {
         e.stopPropagation();
         navigator.clipboard.writeText(window.location.origin + '/rezepte/' + recipe?.slug);
@@ -129,7 +131,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                                     Cool, dass Du das Rezept teilen möchtest, hier der Link:
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="mb-3">
-                                    <span id="recipe-link">https://rezeptbuch.tobias-hopp.de/rezept/{recipe?.slug}</span>
+                                    <span id="recipe-link">https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}</span>
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>

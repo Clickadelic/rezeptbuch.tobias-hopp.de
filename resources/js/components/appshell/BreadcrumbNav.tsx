@@ -33,11 +33,11 @@ const BreadcrumbNav = () => {
 
     return (
         <div className="mx-auto container px-6">
-            <ul className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 border-b border-gray-300 py-3">
+            <ul className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 py-3">
                 {/* Home */}
                 <li>
                     <Link href="/" className="hover:text-primary">
-                        <RiHomeLine className="inline mb-1" />
+                        <RiHomeLine className="inline" />
                     </Link>
                 </li>
 

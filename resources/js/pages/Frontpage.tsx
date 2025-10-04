@@ -165,7 +165,7 @@ export default function Frontpage() {
                         <Link href={route('dashboard')} className="border border-gray-800 text-gray-800 rounded px-5 py-1.5">Dashboard</Link>
                     ) : (
                         <>
-                            <Link href={route('register')} className="flex gap-2 border border-gray-800 text-gray-800 rounded px-3 py-1.5"><FiCheckCircle className="size-4 mt-1" />Registrieren</Link>
+                            <Link href={route('register')} className="flex gap-2 border border-gray-800 dark:border-gray-200 dark:hover:border-gray-400 text-gray-800 dark:text-gray-200 dark:hover:text-gray-400 rounded px-3 py-1.5"><FiCheckCircle className="size-4 mt-1" />Registrieren</Link>
                             <Link href={route('login')} className="flex gap-2 border border-transparent bg-primary text-white rounded px-3 py-1.5 hover:bg-emerald-700"><BsDoorOpen className="size-4 mt-1" />Login</Link>
                         </>
                     )}
@@ -180,6 +180,16 @@ export default function Frontpage() {
                     <img src={chefkoch} className="w-full mx-auto sm:w-1/2 md:w-3/4" alt="Chef Tobias" />
                 </div>
                 <Carousel wrapperClassname="lg:mt-24 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
+            </div>
+            <Seperator />
+            <div className="grid grid-cols-1 lg:grid-cols-3">
+                <div className="col-span-2 flex flex-col gap-2 items-center justify-center">
+                    Box 1
+                </div>
+                <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
+                    Box 2 - 3
+                </div>
+                
             </div>
         </FullWidthLayout>
     );

@@ -54,7 +54,7 @@ export default function Frontpage() {
     const recipes = usePage<SharedPageProps>().props.recipes;
     return (
         <FullWidthLayout title="Willkommen" showTitle={false}>
-            <div className="flex flex-col gap-2 items-center justify-center my-16">
+            <div className="flex flex-col gap-2 items-center justify-center my-8">
                 <h2 className="flex gap-2 text-3xl font-roboto-condensed">
                     <BsBookmarkHeart className="text-primary size-6 mt-1" />Willkommen
                 </h2>

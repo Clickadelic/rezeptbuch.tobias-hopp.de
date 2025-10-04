@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { usePage, Link } from '@inertiajs/react';
 
+import * as TooltipPrimitives from '@radix-ui/react-tooltip'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { TooltipArrow } from '@radix-ui/react-tooltip';
-
 import { TbSalt } from 'react-icons/tb';
 import { FiPlus } from 'react-icons/fi';
 import { BsJournalBookmark } from 'react-icons/bs';
@@ -45,9 +45,10 @@ export function CircularMenu() {
                                     <BsJournalBookmark />
                                 </Link>
                             </TooltipTrigger>
-                            <TooltipContent side="left">
+                            <TooltipContent side="left" className="text-white">
                                 <p>Neues Gericht</p>
-                                <TooltipArrow className="arrow-primary" />
+                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
+                                
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -62,9 +63,9 @@ export function CircularMenu() {
                                     <TbSalt />
                                 </Link>
                             </TooltipTrigger>
-                            <TooltipContent side="left">
+                            <TooltipContent side="left" className="text-white">
                                 <p>Neue Zutat</p>
-                                <TooltipArrow className="arrow-primary" />
+                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -87,9 +88,9 @@ export function CircularMenu() {
                                 />
                             </button>
                         </TooltipTrigger>
-                        <TooltipContent side="left">
+                        <TooltipContent side="left" className="text-white">
                             <p>Neuen Inhalt anlegen</p>
-                            <TooltipArrow className="arrow-primary" />
+                            <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>

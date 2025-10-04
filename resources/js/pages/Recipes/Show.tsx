@@ -24,6 +24,7 @@ import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/Modal';
 import { IoEye } from 'react-icons/io5';
 import Carousel from '@/components/reusables/Carousel/Index';
+import Seperator from '@/components/reusables/Seperator';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -195,6 +196,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     )}
                 </div>
+                <Seperator />
                 <div className="flex flex-col gap-5 mb-12">
                     <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
                     <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={related as Recipe[]} />

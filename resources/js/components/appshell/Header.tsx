@@ -123,7 +123,7 @@ const Header = () => {
                                     className="border border-gray-800 text-gray-800 hover:text-gray-600 hover:border-gray-600 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"
                                     icon={<FiCheckCircle className="asd" />}
                                 >
-                                    Registrierung
+                                    Registrieren
                                 </NavButton>
                                 <NavButton
                                     href="/login"

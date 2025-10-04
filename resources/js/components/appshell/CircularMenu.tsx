@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { usePage, Link } from '@inertiajs/react';
 
+import * as TooltipPrimitives from '@radix-ui/react-tooltip'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { TooltipArrow } from '@radix-ui/react-tooltip';
-
 import { TbSalt } from 'react-icons/tb';
 import { FiPlus } from 'react-icons/fi';
 import { BsJournalBookmark } from 'react-icons/bs';
@@ -28,7 +28,7 @@ export function CircularMenu() {
 
     if(hasRole('writer') || hasRole('admin')) {
         return (
-            <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-12 z-20">
+            <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-[48px] z-20">
                 <div
                     className={cn(
                         'absolute -top-24 left-[4px] flex flex-col items-center space-y-2 transition-all',
@@ -45,9 +45,10 @@ export function CircularMenu() {
                                     <BsJournalBookmark />
                                 </Link>
                             </TooltipTrigger>
-                            <TooltipContent side="left">
-                                <p>Neues Gericht</p>
-                                <TooltipArrow className="arrow-primary" />
+                            <TooltipContent side="left" className="text-white">
+                                <p>Neues Rezept</p>
+                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
+                                
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -62,9 +63,9 @@ export function CircularMenu() {
                                     <TbSalt />
                                 </Link>
                             </TooltipTrigger>
-                            <TooltipContent side="left">
+                            <TooltipContent side="left" className="text-white">
                                 <p>Neue Zutat</p>
-                                <TooltipArrow className="arrow-primary" />
+                                <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -87,9 +88,9 @@ export function CircularMenu() {
                                 />
                             </button>
                         </TooltipTrigger>
-                        <TooltipContent side="left">
+                        <TooltipContent side="left" className="text-white">
                             <p>Neuen Inhalt anlegen</p>
-                            <TooltipArrow className="arrow-primary" />
+                            <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>

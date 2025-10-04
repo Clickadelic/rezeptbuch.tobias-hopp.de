@@ -33,16 +33,16 @@ export default function Dashboard() {
     console.log("totalIngredientCount", totalIngredientCount);
     return (
         <FullWidthLayout title="Dashboard">
-            <div className={cn("bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8")}>
+            <div className={cn("bg-gray-200 dark:bg-gray-800 transition-all duration-500 ease my-8")}>
                 <div className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-px")} aria-roledescription="navigation">
-                    <div className="bg-rose-200">
+                    <div className="asd">
                         <Chart />
                     </div>
-                    <div className="bg-sky-200">
-                        Test
+                    <div className="asd">
+                        &nbsp;
                     </div>
-                    <div className="bg-fuchsia-200">
-                        Test
+                    <div className="asd">
+                        &nbsp;
                     </div>
                 </div>
             </div>

@@ -47,8 +47,8 @@
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
-
     --color-card: 161.4 93.5% 30.4%;
+    --color-mint-500: oklch(0.72 0.11 178);
 }
 
 @layer base {
@@ -118,9 +118,4 @@ a[target='_blank']:after {
     color: inherit;
     margin-left: 5px;
     margin-right: 5px;
-}
-
-// emerald-700
-.arrow-primary {
-    fill: @apply primary;
 }

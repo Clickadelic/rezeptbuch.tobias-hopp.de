@@ -24,6 +24,7 @@ export const Chart: React.FC = () => {
             bar: {
                 horizontal: false,
                 columnWidth: "90%",
+                borderRadius: 6,
             },
         },
         dataLabels: {

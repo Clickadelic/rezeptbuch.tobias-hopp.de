@@ -61,6 +61,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
             <DropdownMenuTrigger
                 className="border border-transparent hover:border-primary focus:text-primary hover:text-primary focus:outline-none focus:ring focus:ring-primary absolute top-0 right-[1px] text-gray-600 dark:text-gray-200 p-1 hover:cursor-pointer shadow-transparent z-20 rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30"
                 onClick={(e) => e.stopPropagation()}
+                aria-label="Rezept Optionen"
             >
                 <HiOutlineDotsVertical className="size-5" />
             </DropdownMenuTrigger>

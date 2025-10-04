@@ -10,9 +10,9 @@ import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
 import { GiKnifeFork } from "react-icons/gi";
 import { BsBookmarkHeart } from 'react-icons/bs';
+import { BsJournalBookmark } from 'react-icons/bs';
 import { cn } from "@/lib/utils";
 import { Category } from '@/types/Category';
-
 import chefkoch from '@images/svg/Chef-Tobias.svg';
 import CategoryGrid from '@/components/forms/CategoryGrid';
 import Modal from '@/components/Modal';
@@ -25,6 +25,10 @@ import RecipeCard from '@/components/reusables/RecipeCard';
 import { Recipe } from '@/types/Recipe';
 import { IoMdArrowForward } from "react-icons/io";
 import Seperator from '@/components/reusables/Seperator';
+
+
+
+
 const iconMap: Record<string, JSX.Element> = {
   vorspeise: <TbSalad className="size-4 inline-flex" />,
   hauptgericht: <GiKnifeFork className="size-4 inline-flex" />,
@@ -44,12 +48,13 @@ const iconMap: Record<string, JSX.Element> = {
  * @return {JSX.Element} The frontpage component.
  */
 export default function Frontpage() {
+    const { auth } = usePage<SharedPageProps>().props;
     const categories = usePage<SharedPageProps>().props.categories;
     const recipes = usePage<SharedPageProps>().props.recipes;
     return (
         <FullWidthLayout title="Willkommen" showTitle={false}>
             <div className="flex flex-col gap-2 items-center justify-center my-16">
-                <h2 className="flex gap-1 text-3xl font-roboto-condensed">
+                <h2 className="flex gap-2 text-3xl font-roboto-condensed">
                     <BsBookmarkHeart className="text-primary size-6 mt-1" />Willkommen
                 </h2>
                 <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">Was darf's sein?</h3>
@@ -149,19 +154,31 @@ export default function Frontpage() {
                 </ul>
             </div>
             <Seperator />
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="asd">
-                    <h3 className="text-3xl">Was ist das hier? Wo bin ich?</h3>
-                    <p>Du bist auf einer Webseite gelandet, wo Du Deine Rezepte verwalten kannst.</p>
+            <div className="flex flex-col gap-2 items-center justify-center my-16">
+                <h2 className="flex gap-2 text-3xl font-roboto-condensed">
+                    <BsJournalBookmark className="text-primary size-6 mt-1" />Rezeptbuch
+                </h2>
+                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">persönlich, für dich</h3>
+                <div className="flex gap-2">
+                    {auth.user ? (
+                        <Link href={route('dashboard')} className="border border-gray-800 text-gray-800 rounded px-5 py-1.5">Dashboard</Link>
+                    ) : (
+                        <>
+                            <Link href={route('register')} className="border border-gray-800 text-gray-800 rounded px-5 py-1.5">Registrieren</Link>
+                            <Link href={route('login')} className="border border-transparent bg-primary text-white rounded px-5 py-1.5">Login</Link>
+                        </>
+                    )}
                 </div>
-                
             </div>
+
             <Seperator />
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="asd">
-                    <h3 className="text-3xl">Empfehlung aus der Küche</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-3">
+                <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
+                    <h2 className="text-3xl">Tagestipps</h2>
+                    <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">vom Chef persönlich</h3>
+                    <img src={chefkoch} className="w-full mx-auto sm:w-1/2 md:w-3/4" alt="Chef Tobias" />
                 </div>
-                <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
+                <Carousel wrapperClassname="lg:mt-32 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>
         </FullWidthLayout>
     );

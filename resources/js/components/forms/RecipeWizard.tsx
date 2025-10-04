@@ -25,6 +25,7 @@ import { Category } from '@/types/Category';
 import { Difficulty } from '@/types/Difficulty';
 
 import { cn } from '@/lib/utils';
+import Seperator from '../reusables/Seperator';
 
 interface RecipeIngredientData {
     ingredient_id: string;
@@ -206,7 +207,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                 </li>
             </ol>
-
+            <Seperator />
             {!canNextFromStep1 && (
                 <div
                     className="border border-sky-400 bg-sky-200 text-sm text-sky-700 px-4 py-3 mb-4 rounded relative"

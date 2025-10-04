@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 
 import SidebarRightLayout from '@/layouts/SidebarRightLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
+import Seperator from '@/components/reusables/Seperator';
 
 /**
  * The Impressum page.
@@ -35,6 +36,7 @@ export default function Impressum() {
                 <li>56566 Neuwied</li>
                 <li>Deutschland</li>
             </ul>
+            <Seperator />
             <h3 className="my-5 font-medium text-lg">Haftung für Inhalte</h3>
             <p>
                 Als Diensteanbieter bin ich gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten
@@ -50,6 +52,7 @@ export default function Impressum() {
                 Bei Bekanntwerden von entsprechenden Rechtsverletzungen werde ich diese Inhalte
                 umgehend entfernen.
             </p>
+            <Seperator />
             <h3 className="my-5 font-medium text-lg">Haftung für Links</h3>
             <p>
                 Mein Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich
@@ -57,6 +60,7 @@ export default function Impressum() {
                 übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
                 oder Betreiber der Seiten verantwortlich.
             </p>
+            <Seperator />
             <h3 className="my-5 font-medium text-lg">Urherberrechte</h3>
             <p>
                 Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten

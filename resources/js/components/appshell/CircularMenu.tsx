@@ -46,7 +46,7 @@ export function CircularMenu() {
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent side="left" className="text-white">
-                                <p>Neues Gericht</p>
+                                <p>Neues Rezept</p>
                                 <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                                 
                             </TooltipContent>

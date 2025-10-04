@@ -6,7 +6,7 @@ import { IoClose } from 'react-icons/io5';
 export default function Modal({
     children,
     show = false,
-    maxWidth = '2xl',
+    maxWidth = '4xl',
     closeable = true,
     onClose = () => {},
     className = '',
@@ -38,7 +38,7 @@ export default function Modal({
             <Dialog
                 as="div"
                 id="modal"
-                className="fixed inset-0 z-50 flex transform items-center justify-center overflow-y-auto px-4 py-3 transition-all sm:px-0"
+                className="shadow-xl fixed inset-0 z-50 flex transform items-center justify-center overflow-y-auto px-4 py-3 transition-all sm:px-0"
                 onClose={close}
             >
                 <TransitionChild

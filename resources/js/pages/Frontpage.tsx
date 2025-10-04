@@ -162,7 +162,7 @@ export default function Frontpage() {
                 <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">praktisch - digital</h3>
                 <div className="flex gap-2 mt-5">
                     {auth.user ? (
-                        <Link href={route('dashboard')} className="border border-gray-800 text-gray-800 rounded px-5 py-1.5">Dashboard</Link>
+                        <Link href={route('dashboard')} className="border border-transparent bg-primary text-white rounded px-3 py-1.5 hover:bg-emerald-700">Dashboard</Link>
                     ) : (
                         <>
                             <Link href={route('register')} className="flex gap-2 border border-gray-800 dark:border-gray-200 dark:hover:border-gray-400 text-gray-800 dark:text-gray-200 dark:hover:text-gray-400 rounded px-3 py-1.5"><FiCheckCircle className="size-4 mt-1" />Registrieren</Link>

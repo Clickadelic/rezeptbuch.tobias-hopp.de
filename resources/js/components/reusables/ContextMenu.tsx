@@ -63,59 +63,57 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                 <HiOutlineDotsVertical className="size-5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                    {/* Trigger me */}
-                    {isOwner(recipe?.user_id) && (
-                        <>
-                            <DropdownMenuItem>
-                                <Link
-                                    href={route('recipes.edit', recipe?.slug)}
-                                    className="flex flex-row items-center"
-                                    onClick={(e) => e.stopPropagation()}
+                {isOwner(recipe?.user_id) && (
+                    <>
+                        <DropdownMenuItem>
+                            <Link
+                                href={route('recipes.edit', recipe?.slug)}
+                                className="flex flex-row items-center"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <MdOutlineEdit className="size-5 mr-2" />
+                                Bearbeiten
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
+                            <AlertDialog>
+                                <AlertDialogTrigger
+                                    className="w-full flex flex-row items-between gap-2 hover:cursor-pointer text-rose-600"
+                                    onClick={toggleDeleteDialog}
                                 >
-                                    <MdOutlineEdit className="size-5 mr-2" />
-                                    Bearbeiten
-                                </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
-                                <AlertDialog>
-                                    <AlertDialogTrigger
-                                        className="w-full flex flex-row items-between gap-2 hover:cursor-pointer text-rose-600"
-                                        onClick={toggleDeleteDialog}
-                                    >
-                                        <GoTrash className="size-5" />
-                                        <span>Löschen</span>
-                                    </AlertDialogTrigger>
-                                    <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
-                                        <AlertDialogHeader>
-                                            <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
-                                                Bist Du sicher, dass Du das Rezept löschen möchtest?
-                                            </AlertDialogTitle>
-                                            <AlertDialogDescription>
-                                                Dies kann nicht rückgängig gemacht werden.
-                                            </AlertDialogDescription>
-                                        </AlertDialogHeader>
-                                        <AlertDialogFooter>
-                                            <AlertDialogCancel
-                                                className="dark:text-gray-200"
-                                                onClick={toggleDeleteDialog}
-                                            >
-                                                Abbrechen
-                                            </AlertDialogCancel>
-                                            <AlertDialogAction
-                                                className="bg-transparent text-rose-600 border border-rose-600 hover:bg-rose-600 hover:text-white"
-                                                onClick={deleteRecipe}
-                                            >
-                                                <GoTrash className="size-5" />
-                                                Löschen
-                                            </AlertDialogAction>
-                                        </AlertDialogFooter>
-                                    </AlertDialogContent>
-                                </AlertDialog>
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                        </>
-                    )}
-                
+                                    <GoTrash className="size-5" />
+                                    <span>Löschen</span>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
+                                            Bist Du sicher, dass Du das Rezept löschen möchtest?
+                                        </AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                            Dies kann nicht rückgängig gemacht werden.
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel
+                                            className="dark:text-gray-200"
+                                            onClick={toggleDeleteDialog}
+                                        >
+                                            Abbrechen
+                                        </AlertDialogCancel>
+                                        <AlertDialogAction
+                                            className="bg-transparent text-rose-600 border border-rose-600 hover:bg-rose-600 hover:text-white"
+                                            onClick={deleteRecipe}
+                                        >
+                                            <GoTrash className="size-5" />
+                                            Löschen
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                    </>
+                )}
                 <DropdownMenuItem>
                     <AlertDialog>
                         <AlertDialogTrigger

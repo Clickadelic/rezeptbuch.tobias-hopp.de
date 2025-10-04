@@ -61,7 +61,7 @@ export function IngredientComboBox({
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className={cn('w-72 justify-between', triggerClassName)}
+                    className={cn('w-96 justify-between', triggerClassName)}
                 >
                     <span className={cn(!selected && !value && 'text-muted-foreground')}>
                         {displayLabel}
@@ -69,7 +69,7 @@ export function IngredientComboBox({
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-80 p-0">
+            <PopoverContent className="p-0">
                 <Command>
                     <CommandInput
                         placeholder="Zutat suchen oder neu anlegen"

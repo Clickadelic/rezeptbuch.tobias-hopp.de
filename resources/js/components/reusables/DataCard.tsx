@@ -8,8 +8,8 @@ interface DataCardProps {
     title?: string
     trending?: boolean | undefined
     increase?: number | string | undefined
-    userCount: number
-    totalCount: number
+    userCount?: number
+    totalCount?: number
 }
 
 
@@ -23,13 +23,7 @@ interface DataCardProps {
  * The design is based on the Tailwind CSS utility-first classes.
  */
 export default function DataCard({icon, title, userCount, totalCount, trending, increase, children }: DataCardProps) {
-    if(children) {
-        return (
-            <div className="w-full flex flex-col justify-between aspect-video border border-gray-50 dark:border-gray-800 rounded-xl p-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
-                {children}
-            </div>
-        )
-    }
+    
     return (
         <div className="w-full flex flex-col justify-between aspect-video border border-gray-50 dark:border-gray-700 rounded-xl p-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
             <div className="flex flex-row justify-between items-center gap-1">
@@ -42,7 +36,7 @@ export default function DataCard({icon, title, userCount, totalCount, trending, 
                     {trending ? <span className="text-emerald-300">{increase}%</span> : <span className="text-rose-400">{increase}%</span>}
                 </div>
             </div>
-
+            {children}
             <div className="flex justify-between gap-2">
                 <span className="text-gray-400">{icon}</span>
                 <h3 className="text-xl">{userCount}/{totalCount}</h3>

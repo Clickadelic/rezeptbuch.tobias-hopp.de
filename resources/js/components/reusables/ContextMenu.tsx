@@ -51,7 +51,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
 
     const copyToClipboard = (e: React.MouseEvent) => {
         e.stopPropagation();
-        alert("Yo");
+        navigator.clipboard.writeText(window.location.origin + '/rezepte/' + recipe?.slug);
     };
     
     return (

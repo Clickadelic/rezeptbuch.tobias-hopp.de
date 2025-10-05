@@ -82,7 +82,6 @@ class RecipeController extends Controller
      * @param  \App\Http\Requests\StoreRecipeRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    
     public function store(StoreRecipeRequest $request)
     {
         // 1️⃣ recipe anlegen (verwende optional mitgegebenes id für frühes Medien-Handling)
@@ -335,4 +334,6 @@ class RecipeController extends Controller
             'filters' => ['search' => $query],
         ]);
     }
+
+    
 }

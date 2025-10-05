@@ -62,7 +62,7 @@ export default function FavoriteButton({
       disabled={loading}
       variant="flat"
       className={cn(
-        "shadow-none text-gray-600 rounded-full transition-colors",
+        "shadow-none text-gray-400 rounded-full transition-colors",
         "hover:text-primary hover:fill-primary",
         active && "text-primary fill-primary", // Favorit aktiv → grün
         "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",

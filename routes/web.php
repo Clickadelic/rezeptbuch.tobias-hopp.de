@@ -4,12 +4,16 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
 Route::get('/impressum', function () {
     return Inertia::render('Impressum');
 });
+
+Route::get('/favorites', [FavoritesController::class, 'getFavorites'])->middleware([CheckRole::class . ':user'])->name('recipes.favorites');
+Route::post('/favorites/toggle/{recipe}', [FavoritesController::class, 'toggle'])->middleware([CheckRole::class . ':user'])->name('favorites.toggle');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
@@ -20,10 +24,7 @@ require __DIR__.'/recipes.php';
 require __DIR__.'/ingredients.php';
 require __DIR__.'/upload.php';
 
-Route::middleware(['auth'])->group(function () {
-    Route::post('/favorites/toggle/{recipe}', [FavoritesController::class, 'toggle'])
-        ->name('favorites.toggle');
-});
+
 
 if (config('app.debug')) {
     require __DIR__.'/email.php';
@@ -32,6 +33,6 @@ if (config('app.debug')) {
 // 404 Fallback
 Route::fallback(function () {
     return inertia('NotFound', [
-        'title' => 'Seite nicht gefunden 🤯',
+        'title' => 'Seite nicht gefunden',
     ]);
 });

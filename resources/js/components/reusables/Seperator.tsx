@@ -16,13 +16,13 @@ interface SeperatorProps {
  * A separator component that renders an icon above a horizontal line.
  * 
  * @param {SeperatorProps} props - The props object
- * @param {number} [props.size=7] - The size of the icon, default is 7
+ * @param {number} [props.size=9] - The size of the icon, default is 7
  * @param {string} [props.style] - The style of the icon, one of "fork-knife-spoon", "fork-knife","cooking-pot", "salad", "heart"
  * 
  * @example
  * <Seperator size={10} style="cooking-pot" />
  */
-export default function Seperator({ size = 7, style }: SeperatorProps) {
+export default function Seperator({ size = 9, style }: SeperatorProps) {
     
     let icon = <GiKnifeFork className={cn("text-gray-200 dark:text-gray-700 size-" + size)} />
     
@@ -44,7 +44,7 @@ export default function Seperator({ size = 7, style }: SeperatorProps) {
     }
     
     return (
-        <div className="relative mx-auto w-full max-w-[52rem] flex items-center justify-center my-16">
+        <div className="relative mx-auto w-full max-w-[52rem] flex items-center justify-center my-12">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full z-20">
                 <div className="flex items-center justify-center gap-2">
                     {icon}

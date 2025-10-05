@@ -8,7 +8,6 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->uuid('id')->primary();
 
             // numerischer User
             $table->unsignedBigInteger('user_id');
@@ -18,7 +17,7 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            $table->unique(['user_id', 'recipe_id']);
+            $table->primary(['user_id', 'recipe_id']);
 
             $table->foreign('user_id')
                 ->references('id')
@@ -30,7 +29,6 @@ return new class extends Migration {
                 ->on('recipes')
                 ->cascadeOnDelete();
         });
-
     }
 
     public function down(): void

@@ -12,12 +12,17 @@ import { LiaCocktailSolid } from "react-icons/lia";
 import { RiCake3Line } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
-
+import { IoMdHeartEmpty } from "react-icons/io";
+import { IoHeart } from "react-icons/io5";
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
-
+import FavoriteButton from '@/components/reusables/FavoriteButton';
 import ContextMenu from '@/components/reusables/ContextMenu';
 import { cn } from '@/lib/utils';
+import { FaHeart } from 'react-icons/fa6';
+
+import { Toggle } from "@/components/ui/toggle"
+import { useState } from 'react';
 
 interface RecipeCardProps {
     recipe: Recipe;
@@ -31,6 +36,7 @@ interface RecipeCardProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function RecipeCard({ recipe, className }: RecipeCardProps) {
+    console.log(recipe);
 
     /**
      * Kategorie -> Icon Mapping
@@ -62,7 +68,9 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                 )}
                             </div>
                         )} */}
-
+                        <div className="absolute top-1 left-1 z-20 flex items-center justify-center">
+                            <FavoriteButton recipeId={recipe.id} isFavorite={recipe.is_favorite} />
+                        </div>
                         {/* Hero image */}
                         {(() => {
                             const hero =

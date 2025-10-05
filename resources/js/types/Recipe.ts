@@ -39,6 +39,7 @@ export type Recipe = {
     };
     category_id?: number; // Für DB-Relation
     category?: Category;
+    is_favorite?: boolean;
     created_at: string;
     updated_at: string;
     deleted_at?: string;

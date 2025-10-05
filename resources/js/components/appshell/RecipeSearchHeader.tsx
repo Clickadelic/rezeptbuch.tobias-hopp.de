@@ -21,23 +21,24 @@ import { SharedPageProps } from '@/types';
  *
  * @returns {JSX.Element} The rendered search bar component.
  */
-export default function RecipeSearch() {
+export default function RecipeSearchHeader() {
     const [isBlurred, setIsBlurred] = useState<boolean>(false);
 
     return (
-        <div className={cn("relative w-full h-48 lg:h-72 bg-[url('../images/Cocktail-at-the-pool.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-center items-center")}>
+        <div className={cn("relative w-full h-48 lg:h-72 bg-[url('../images/Cocktail-at-the-pool.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-between items-center")}>
             
-            
+            <div className="w-full h-1 backdrop backdrop-blur"></div>
+
                 <div
                     className={cn(
                         "absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/10 dark:bg-gray-800/30 animate transition-all duration-200 ease opacity-0 pointer-events-none",  // standard unsichtbar
-                        isBlurred && "backdrop-blur-sm opacity-100 pointer-events-auto"
+                        isBlurred && "backdrop-blur-xs opacity-100 pointer-events-auto"
                     )}
                 >
                 </div>
                 
-                <div className={cn("lg:w-[28rem] z-20 bg-white/30 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-6")}>
-                    <form method="GET" action={route('recipes.search')} className="flex flex-row justify-end items-center place-items-center bg-white dark:bg-gray-800 p-1 rounded space-x-1">
+                <div className={cn("lg:w-[28rem] bg-white/30 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-6")}>
+                    <form method="GET" action={route('recipes.search')} className="flex flex-row justify-end items-center place-items-center bg-white dark:bg-gray-800 p-1 rounded space-x-1 relative z-20">
                         <input
                             type="text"
                             name="search"
@@ -57,6 +58,11 @@ export default function RecipeSearch() {
                         </Button>
                     </form>
                 </div>
+
+            <div className="w-full h-1 backdrop backdrop-blur"></div>
+                
+                
+               
 
         </div>
     );

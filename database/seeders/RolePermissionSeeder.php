@@ -14,14 +14,14 @@ class RolePermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Permissions anlegen
-        Permission::create(['name' => 'edit articles']);
-        Permission::create(['name' => 'delete articles']);
-        Permission::create(['name' => 'publish articles']);
-        Permission::create(['name' => 'unpublish articles']);
+        Permission::create(['name' => 'edit recipes']);
+        Permission::create(['name' => 'delete recipes']);
+        Permission::create(['name' => 'publish recipes']);
+        Permission::create(['name' => 'unpublish recipes']);
 
-        // Rolle "writer" mit Rechten
-        $writer = Role::create(['name' => 'writer']);
-        $writer->givePermissionTo(['edit articles', 'publish articles']);
+        // Rolle "user" mit Rechten
+        $user = Role::create(['name' => 'user']);
+        $user->givePermissionTo(['edit recipes', 'publish recipes']);
 
         // Rolle "admin" mit allen Rechten
         $admin = Role::create(['name' => 'admin']);

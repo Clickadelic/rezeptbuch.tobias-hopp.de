@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CheckRole;
 use Inertia\Inertia;
 
 use App\Models\Ingredient;
 use App\Http\Requests\StoreIngredientRequest;
+
+use Illuminate\Support\Facades\Auth;
 
 class IngredientController extends Controller
 {
@@ -43,7 +46,8 @@ class IngredientController extends Controller
         if ($ingredient) {
             return redirect()->back()->with('error', 'Zutat ' . $name . ' existiert bereits!');
         }
-
+        $ingredient = Ingredient::find($request->id);
+        
         Ingredient::create([
             'name' => ucfirst($name),
         ]);

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name')->unique();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->index('user_id');
             $table->timestamps();
         });
     }

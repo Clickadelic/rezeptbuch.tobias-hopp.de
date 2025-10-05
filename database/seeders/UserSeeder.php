@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
         // Rollen sicherstellen
         // Role::firstOrCreate(['name' => 'admin']);
-        // Role::firstOrCreate(['name' => 'writer']);
+        // Role::firstOrCreate(['name' => 'user']);
 
         // Admin User
         $admin = User::firstOrCreate(
@@ -25,39 +25,41 @@ class UserSeeder extends Seeder
         );
         $admin->assignRole('admin');
 
-        // Writer User
-        $writer = User::firstOrCreate(
+        // Normaler "User"
+        $user = User::firstOrCreate(
             ['email' => 'johndough@example.com'],
             [
                 'name' => 'John Dough',
-                'password' => Hash::make('johndough'), // Bitte anpassen 
+                'password' => Hash::make('johndough'),
             ]
         );
+        $user->assignRole('user');
 
-        $writer = User::firstOrCreate(
+        $user = User::firstOrCreate(
             ['email' => 'toby.hopp+batman@gmail.com'],
             [
                 'name' => 'Batman',
-                'password' => Hash::make('batman'), // Bitte anpassen 
+                'password' => Hash::make('batman'),
             ]
         );
+        $user->assignRole('user');
 
-        $writer = User::firstOrCreate(
+        $user = User::firstOrCreate(
             ['email' => 'toby.hopp+joker@gmail.com'],
             [
                 'name' => 'Joker',
-                'password' => Hash::make('joker'), // Bitte anpassen 
+                'password' => Hash::make('joker'),
             ]
         );
+        $user->assignRole('user');
 
-        $writer = User::firstOrCreate(
+        $user = User::firstOrCreate(
             ['email' => 'toby.hopp+pinguin@gmail.com'],
             [
                 'name' => 'Pinguin',
-                'password' => Hash::make('pinguin'), // Bitte anpassen 
+                'password' => Hash::make('pinguin'),
             ]
         );
-        
-        // $writer->assignRole('writer');
+        $user->assignRole('user');
     }
 }

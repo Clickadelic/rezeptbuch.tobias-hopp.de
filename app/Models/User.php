@@ -57,7 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected static function booted()
     {
         static::created(function ($user) {
-            $user->assignRole('writer');
+            $user->assignRole('user');
         });
     }
 
@@ -83,6 +83,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new CustomVerifyEmail);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Recipe::class, 'favorites')
+                    ->withTimestamps();
     }
 
 }

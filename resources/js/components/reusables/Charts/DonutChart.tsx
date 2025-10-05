@@ -29,7 +29,7 @@ export const DonutChart: React.FC = () => {
         },
         colors: ["#059669", "#94A3B8"], // Emerald-Palette 🌿
         dataLabels: {
-            enabled: true,
+            enabled: false,
             formatter: (val: string | number, opts) => {
                 const name = opts.w.globals.labels[opts.seriesIndex];
                 const percent =

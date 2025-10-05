@@ -13,7 +13,7 @@ class Ingredient extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['id', 'name'];
+    protected $fillable = ['id', 'name', 'user_id'];
 
     protected static function booted()
     {
@@ -29,6 +29,11 @@ class Ingredient extends Model
         return $this->belongsToMany(Recipe::class, 'recipe_ingredient')
                     ->withPivot('quantity', 'unit')
                     ->withTimestamps();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function ingredients()

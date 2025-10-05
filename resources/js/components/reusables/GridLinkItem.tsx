@@ -41,14 +41,14 @@ interface GridLinkItemProps {
  */
 export default function GridLinkItem({ icon, title, punchline, buttonText, href, className }: GridLinkItemProps) {
     return (
-        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-lg md:text-xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12", className)}>
+        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-lg md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12", className)}>
             <span className="flex flex-col items-center justify-center gap-3 mb-1">
                 {icon}{title}
             </span>
             <span className="font-la-belle-aurore text-sm sm:text-md md:text-xl text-gray-500 dark:text-gray-400">{punchline}</span>
             <Link
-                href={route('recipes.search', { search: 'Vorspeise' })}
-                className="flex items-center justify-center w-48 sm:w-56 text-xs sm:text-md md:text-base gap-2 hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-1 sm:px-2 md:px-4 py-2"
+                href={href}
+                className="flex items-center justify-center w-40 sm:w-56 text-xs sm:text-md md:text-base gap-2 hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-1 sm:px-2 md:px-4 py-2"
                 title={title}
                 aria-label={title}
                 >{buttonText}<IoMdArrowForward className="asd" />

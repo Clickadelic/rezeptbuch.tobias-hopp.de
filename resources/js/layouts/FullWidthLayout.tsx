@@ -13,7 +13,6 @@ import { toast } from 'sonner';
 
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { SharedPageProps } from '@/types';
-import RecipeSearchHeader from '@/components/appshell/RecipeSearchHeader';
 
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
@@ -58,7 +57,7 @@ export default function FullWidthLayout({ showTitle = true, title, children }: F
                 <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-200">
                     <div>
                         <Header />
-                        <RecipeSearchHeader />
+                        <RecipeSearch />
                         <BreadcrumbNav />
                     </div>
                     <div className="mx-auto container grow px-6 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">

@@ -44,6 +44,9 @@ const AppLogo = ({ h1ClassName = '', className = '', href = '/', title = "Toby's
                 </span>
             </Link>
         </h1>
+        // <div className="absolute top-0 h-[4.5rem] flex gap-4 rounded-bl-lg rounded-br-lg z-50 p-4 text-xl text-white dark:text-gray-800 bg-emerald-800">
+        //     <h1 className="flex items-center gap-2"><Link href="/" title="Zur Startseite"><span className="font-la-belle-aurore inline-flex mt-1">Toby's</span><span className="font-medium">Rezeptbuch</span></Link></h1>
+        // </div>
     );
 };
 

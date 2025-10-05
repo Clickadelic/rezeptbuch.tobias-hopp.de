@@ -9,6 +9,7 @@ export type RecipeIngredientPivot = {
 export interface Ingredient {
     id: string;
     name: string;
+    user_id: number;
     pivot?: {
         quantity: string;
         unit: string;

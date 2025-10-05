@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { router } from '@inertiajs/react';
 import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 import IngredientForm from '@/components/forms/IngredientForm';
-import BadgeButton from '@/components/reusables/BadgeButton';
+import IngredientButton from '@/components/reusables/IngredientButton';
 import { usePermissions } from '@/hooks/usePermissions';
 import { Ingredient } from '@/types/Ingredient';
 import { SharedPageProps } from '@/types';
 
 export default function IngredientsIndex() {
     const { props } = usePage<SharedPageProps>();
-    const { isOwner, can } = usePermissions();
+    const { isOwner, hasRole } = usePermissions();
     const { ingredients } = props;
     const auth = props.auth;
 
@@ -18,7 +18,7 @@ export default function IngredientsIndex() {
 
     return (
         <NoSidebarsLayout title="Zutaten">
-            {auth.user && (
+            {hasRole('user') && (
                 <>
                     <IngredientForm
                         ingredient={editingIngredient ?? undefined}
@@ -33,10 +33,10 @@ export default function IngredientsIndex() {
             <ul className="flex flex-row gap-3 justify-start items-center flex-wrap">
                 {ingredients?.map((ingredient: Ingredient) => (
                     <li key={ingredient.id}>
-                    <BadgeButton
-                        ingredient={ingredient}
-                        onClick={(ing) => setEditingIngredient(ing)}
-                    />
+                        <IngredientButton
+                            ingredient={ingredient}
+                            onClick={(ing) => setEditingIngredient(ing)}
+                        />
                     </li>
                 ))}
             </ul>

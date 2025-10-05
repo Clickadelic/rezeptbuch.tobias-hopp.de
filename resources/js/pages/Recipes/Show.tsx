@@ -149,7 +149,6 @@ export default function Show({ recipe }: ShowRecipeProps) {
                     </>
                 )}
 
-                
                 <div className="flex flex-col gap-5 mb-12">
                     <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
                     <Carousel recipes={related as Recipe[]} carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" />

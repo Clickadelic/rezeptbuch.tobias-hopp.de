@@ -31,6 +31,7 @@ class Recipe extends Model
           'slug',
           'punchline',
           'description',
+          'portion_count',
           'preparation_time',
           'preparation_instructions',
           'rating',
@@ -136,5 +137,13 @@ class Recipe extends Model
           $userId = Auth::id();
           if (!$userId) return false;
           return $this->favoritedBy()->where('user_id', $userId)->exists();
+     }
+
+     // TODO: Im Auge behalten, ob das was taugt.
+     public function getPortionLabelAttribute(): string
+     {
+          return $this->portion_count === 1
+               ? '1 Portion'
+               : "{$this->portion_count} Portionen";
      }
 }

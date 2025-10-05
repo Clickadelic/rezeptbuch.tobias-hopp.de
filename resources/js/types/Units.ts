@@ -8,9 +8,10 @@ export enum UNITS {
     KG = 'kg',
     BT = 'Prise',
     DASH = 'Dash',
+    PART = 'Teil(e)',
     CUP = 'Tasse(n)',
     PIECE = 'Stück',
     CAN = 'Dose(n)',
-    PART = 'Teil(e)',
+    GLASS = 'Glas',
     PACKAGE = 'Paket(e)',
 }

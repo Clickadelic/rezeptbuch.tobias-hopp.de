@@ -3,7 +3,7 @@ import { FiMinus } from 'react-icons/fi';
 import { GoPlus } from 'react-icons/go';
 import { useState } from 'react';
 import { Recipe } from '@/types/Recipe';
-
+import { BiReset } from "react-icons/bi";
 interface IngredientTableProps {
     recipe: Recipe
 }
@@ -15,6 +15,16 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
             <div className="w-full flex flex-col gap-2 justify-between items-center mb-10">
                 <h4 className="font-medium text-xl mb-5">Zutaten für</h4>
                 <div className="flex items-center gap-2">
+                    <Button
+                        onClick={() => setCount(1)}
+                        className="py-2 px-2 hover:cursor-pointer shadow-none border-gray-400 text-gray-400 hover:border-rose-700"
+                        variant="dangerOutline"
+                        size="sm"
+                        title="Personen zurücksetzen"
+                        aria-label="Personen zurücksetzen"
+                    >
+                        <BiReset />
+                    </Button>
                     <Button
                         onClick={() => setCount((prev) => Math.max(1, prev - 1))}
                         className="py-2 px-2 hover:cursor-pointer shadow-none"
@@ -40,9 +50,10 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
                     >
                         <GoPlus />
                     </Button>
+                    
                 </div>
             </div>
-            <table className="table w-full overflow-x-auto text-gray-800">
+            <table className="table mx-auto w-[20rem] overflow-x-auto text-gray-800">
                 <thead className=" text-gray-700 dark:text-gray-400">
                     <tr>
                         <th className="p-3 text-left w-24">Menge</th>

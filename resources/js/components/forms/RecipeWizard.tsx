@@ -173,7 +173,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-center md:text-left text-lg font-semibold text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Basics</h3>
+                        <h3 className={cn('text-center md:text-left text-xl text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Basics</h3>
                         <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</p>
                     </div>
                 </li>
@@ -186,7 +186,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
+                        <h3 className={cn('text-xl text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
                         <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bearbeite die Zutatenliste.</p>
                     </div>
                 </li>
@@ -199,7 +199,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary dark:bg-primary' : '')}></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Details</h3>
+                        <h3 className={cn('text-xl text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Details</h3>
                         <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bilder &amp; Zubereitung.</p>
                     </div>
                 </li>
@@ -447,7 +447,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <Button type="button" variant="primary" onClick={addIngredient} className="mt-5 hover:cursor-pointer hover:bg-emerald-700">
                         <GoPlus /> Zutat hinzufügen
                     </Button>
-                    <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
+                    <Seperator />
                     <div className="flex justify-between gap-2">
                         <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(1)}>
                             <GoArrowLeft className="ml-1" />

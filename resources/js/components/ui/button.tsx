@@ -21,7 +21,7 @@ const buttonVariants = cva(
                     'bg-transparent border border-primary text-primary shadow-sm hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
                 danger: 'bg-rose-700 text-white shadow-sm hover:bg-rose-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2',
                 dangerOutline:
-                    'bg-transparent border border-rose-700 text-rose-700 shadow-sm hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2',
+                    'bg-transparent border border-rose-700 text-rose-700 shadow-sm hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2',
                 secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
                 ghost: 'bg-transparent',
                 glass: 'bg-white/30 text-white hover:bg-white/50 border-none backdrop-blur shadow-none hover:text-emerald-700',

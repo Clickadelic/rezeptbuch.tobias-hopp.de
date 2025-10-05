@@ -29,7 +29,7 @@ export default function RecipeSearch() {
             
             <div
                 className={cn(
-                    "absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/10 dark:bg-gray-800/30 animate transition-all duration-500 ease opacity-0 pointer-events-none",  // standard unsichtbar
+                    "absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/10 dark:bg-gray-800/30 animate transition-all duration-200 ease opacity-0 pointer-events-none",  // standard unsichtbar
                     isBlurred && "backdrop-blur-sm opacity-100 pointer-events-auto"
                 )}
             >

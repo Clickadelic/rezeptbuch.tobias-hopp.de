@@ -25,12 +25,12 @@ class UserSeeder extends Seeder
         );
         $admin->assignRole('admin');
 
-        // user User
+        // Normaler "User"
         $user = User::firstOrCreate(
             ['email' => 'johndough@example.com'],
             [
                 'name' => 'John Dough',
-                'password' => Hash::make('johndough'), // Bitte anpassen 
+                'password' => Hash::make('johndough'),
             ]
         );
         $user->assignRole('user');
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             ['email' => 'toby.hopp+batman@gmail.com'],
             [
                 'name' => 'Batman',
-                'password' => Hash::make('batman'), // Bitte anpassen 
+                'password' => Hash::make('batman'),
             ]
         );
         $user->assignRole('user');
@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
             ['email' => 'toby.hopp+joker@gmail.com'],
             [
                 'name' => 'Joker',
-                'password' => Hash::make('joker'), // Bitte anpassen 
+                'password' => Hash::make('joker'),
             ]
         );
         $user->assignRole('user');
@@ -57,11 +57,9 @@ class UserSeeder extends Seeder
             ['email' => 'toby.hopp+pinguin@gmail.com'],
             [
                 'name' => 'Pinguin',
-                'password' => Hash::make('pinguin'), // Bitte anpassen 
+                'password' => Hash::make('pinguin'),
             ]
         );
         $user->assignRole('user');
-        
-        
     }
 }

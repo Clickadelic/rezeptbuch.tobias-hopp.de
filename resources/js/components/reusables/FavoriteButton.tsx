@@ -3,7 +3,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { router } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
+import { SharedPageProps } from "@/types";
 
 interface FavoriteButtonProps {
   recipeId?: string;        // optional, falls Backend-Toggle aktiv ist
@@ -20,6 +21,8 @@ export default function FavoriteButton({
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const { user } = usePage<SharedPageProps>().props.auth
+
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     // 👇 verhindert Navigation oder bubbling in Link/Card
     e.preventDefault();
@@ -31,28 +34,25 @@ export default function FavoriteButton({
     const next = !active;
     setActive(next);
 
-    if (!recipeId) {
-      alert(next ? "Zu Favoriten hinzugefügt" : "Aus Favoriten entfernt");
-      return;
-    }
-
     try {
-      setLoading(true);
-      await router.post(
-        route("favorites.toggle", recipeId),
-        { favorite: next },
-        {
-          preserveScroll: true,
-          preserveState: true,
-        }
-      );
+        setLoading(true);
+        await router.post(
+          route("favorites.toggle", recipeId),
+          { favorite: next },
+          {
+            preserveScroll: true,
+            preserveState: true,
+          }
+        );
     } catch (error) {
-      console.error("Favorite toggle failed:", error);
-      setActive(!next); // revert bei Fehler
+        console.error("Favorite toggle failed:", error);
+        setActive(!next); // revert bei Fehler
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
   };
+
+  if(!user) return null
 
   return (
     <Button
@@ -62,7 +62,7 @@ export default function FavoriteButton({
       disabled={loading}
       variant="flat"
       className={cn(
-        "shadow-none text-gray-600 rounded-full transition-colors",
+        "shadow-none text-gray-400 rounded-full transition-colors",
         "hover:text-primary hover:fill-primary",
         active && "text-primary fill-primary", // Favorit aktiv → grün
         "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",

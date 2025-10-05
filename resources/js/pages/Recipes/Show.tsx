@@ -28,6 +28,7 @@ import Seperator from '@/components/reusables/Seperator';
 
 import SingleRecipeView from '@/components/reusables/SingleRecipeView';
 import IngredientTable from '@/components/reusables/IngredientTable';
+import { toHumanDate } from '@/lib/utils';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -105,25 +106,40 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 </p>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 md:flex md:flex-row justify-between items-center md:justify-start gap-5">
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                        <div className="flex flex-row gap-2">
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 {iconMap[recipe.category?.slug ?? ""] ?? (
                                     <LuUtensilsCrossed className="size-5 text-primary" />
                                 )}
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <VscSymbolEvent className="size-5 text-primary" />
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoClock className="size-5 text-primary" />
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
-                                <GoStar className="size-5 text-primary" />
-                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
-                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <div className="flex flex-col">
+                    <div className="flex flex-row items-center gap-2">
+                        <div>
+                            {/* <Avatar
+                                src={recipe.user?.avatar}
+                                alt={recipe.user?.name}
+                                user={recipe.user}
+                            /> */}
+                        </div>
+                        <div>
+                            <h3 className="font-medium text-lg">{recipe.user?.name}</h3>
+                            <p className="text-sm text-gray-400 dark:text-gray-600">
+                                {toHumanDate(recipe.created_at)}
+                            </p>
                         </div>
                     </div>
                 </div>

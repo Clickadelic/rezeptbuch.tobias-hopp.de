@@ -21,9 +21,9 @@ import { BsBookmarkHeart, BsDoorOpen, BsJournalBookmark } from 'react-icons/bs';
 
 
 
-import { cn } from "@/lib/utils";
 import GridLinkItem from '@/components/reusables/GridLinkItem';
 import SingleRecipeView from '@/components/reusables/SingleRecipeView';
+import { cn } from "@/lib/utils";
 
 /**
  * The frontpage of the application.
@@ -80,7 +80,6 @@ export default function Frontpage() {
                 </div>
                 <Carousel wrapperClassname="lg:mt-40 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>
-
             <Seperator />
             <div className="grid grid-cols-1 lg:grid-cols-3">
                 <div className="col-span-2">

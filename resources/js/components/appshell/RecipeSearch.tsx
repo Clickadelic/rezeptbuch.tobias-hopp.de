@@ -25,7 +25,7 @@ export default function RecipeSearch() {
     const [isBlurred, setIsBlurred] = useState<boolean>(false);
 
     return (
-        <div className={cn("relative w-full h-48 lg:h-72 bg-[url('../images/Spaghetti-Ingredients.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-center items-center")}>
+        <div className={cn("relative w-full h-48 lg:h-72 bg-[url('../images/Cocktail-at-the-pool.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-center items-center")}>
             
             <div
                 className={cn(

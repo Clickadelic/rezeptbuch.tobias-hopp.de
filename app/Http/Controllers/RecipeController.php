@@ -318,7 +318,7 @@ class RecipeController extends Controller
             $recipes = Recipe::with(['media', 'category', 'user'])
                 ->where('category_id', $category->id)
                 ->orderBy('created_at', 'desc')
-                ->paginate(12);
+                ->paginate(15);
         } else {
             // Normale Volltextsuche
             $ids = Recipe::search($query)->get()->pluck('id');
@@ -326,7 +326,24 @@ class RecipeController extends Controller
             $recipes = Recipe::with(['media', 'category', 'user'])
                 ->whereIn('id', $ids)
                 ->orderBy('created_at', 'desc')
-                ->paginate(12);
+                ->paginate(15);
+        }
+
+        // TODO: FavoritenCheck eventuell in Service auslagern
+        if ($user = Auth::user()) {
+            $recipes->getCollection()->transform(function ($recipe) use ($user) {
+                $recipe->setAttribute(
+                    'is_favorite',
+                    $recipe->favoritedBy()->where('user_id', $user->id)->exists()
+                );
+                return $recipe;
+            });
+        } else {
+            // Nicht eingeloggt → alle auf false
+            $recipes->getCollection()->transform(function ($recipe) {
+                $recipe->setAttribute('is_favorite', false);
+                return $recipe;
+            });
         }
 
         return inertia('Recipes/Search', [

@@ -24,7 +24,7 @@ export function ModeToggle() {
                 <Button
                     variant="flat"
                     size="icon"
-                    className="border border-primary hover:cursor-pointer hover:border-emerald-400 hover:text-emerald-400 dark:hover:text-emerald-400 dark:hover:border-emerald-400"
+                    className="border border-transparent sm:border-primary hover:cursor-pointer hover:border-emerald-400 hover:text-emerald-400 dark:hover:text-emerald-400 dark:hover:border-emerald-400"
                 >
                     <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
                     <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />

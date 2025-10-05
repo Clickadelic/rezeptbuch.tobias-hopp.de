@@ -1,10 +1,15 @@
+import { useState } from "react";
+import { usePage } from "@inertiajs/react";
+import axios from "axios";
+
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart, FaSpinner } from "react-icons/fa6";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
-import { router, usePage } from "@inertiajs/react";
+
 import { SharedPageProps } from "@/types";
+import { cn } from "@/lib/utils";
 
 interface FavoriteButtonProps {
     recipeId?: string;
@@ -31,20 +36,15 @@ export default function FavoriteButton({ recipeId, isFavorite = false, className
     setActive(next);
 
     try {
-        setLoading(true);
-        await router.post(
-          route("favorites.toggle", recipeId),
-          { favorite: next },
-          {
-            preserveScroll: true,
-            preserveState: false,
-          }
-        );
+      setLoading(true);
+      await axios.post(route("favorites.toggle", recipeId), { favorite: next });
+      toast.success(next ? "Zu Favoriten hinzugefügt!" : "Favorit entfernt!");
     } catch (error) {
-        console.error("Favorite toggle failed:", error);
-        setActive(!next); // revert bei Fehler
+      console.error("Favorite toggle failed:", error);
+      setActive(!next);
+      toast.error("Fehler beim Aktualisieren des Favoriten!");
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -67,9 +67,9 @@ export default function FavoriteButton({ recipeId, isFavorite = false, className
       )}
       title={active ? "Favorit entfernen" : "Zu Favoriten hinzufügen"}
       type="button" // 👈 wichtig, sonst submit in Formularen
-    > 
-      {loading && <FaSpinner className="animate-spin" />}
+    >
       {!loading && (isHovered || active) ? <FaHeart /> : <FaRegHeart />}
+      {loading && <FaSpinner className="animate-spin" />}
     </Button>
   );
 }

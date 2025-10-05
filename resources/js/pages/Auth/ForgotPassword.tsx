@@ -1,6 +1,6 @@
-import InputError from '@/components/InputError';
+import InputError from '@/components/reusables/InputError';
 import { Button } from '@/components/ui/button';
-import TextInput from '@/components/TextInput';
+import TextInput from '@/components/reusables/TextInput';
 import AuthLayout from '@/layouts/AuthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';

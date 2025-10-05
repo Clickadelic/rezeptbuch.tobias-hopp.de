@@ -1,11 +1,10 @@
-
+import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import DataCard from '@/components/reusables/DataCard';
 import RecipeCard from '@/components/reusables/RecipeCard';
 import VerifiedBadge from '@/components/reusables/VerifiedBadge';
+
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import FullWidthLayout from '@/layouts/FullWidthLayout';
-import { cn } from '@/lib/utils';
 import { SharedPageProps } from '@/types';
 import { Recipe } from '@/types/Recipe';
 import { usePage } from '@inertiajs/react';
@@ -23,26 +22,52 @@ import { GiKnifeFork } from "react-icons/gi";
 import { TbUsers } from "react-icons/tb";
 import { useState } from 'react';
 
-import Chart from '@/components/reusables/Chart';
+import DonutChart from '@/components/reusables/Charts/DonutChart';
+import BarChart from '@/components/reusables/Charts/BarChart';
+import PieChart from '@/components/reusables/Charts/PieChart';
+
+import { cn } from '@/lib/utils';
+import { Link } from 'lucide-react';
+
 
 export default function Dashboard() {
-    
-    const { latestRecipe, categories, totalUserRecipeCount, totalRecipeCount, totalIngredientCount } = usePage<SharedPageProps>().props;
-    console.log("categories", categories);
-    console.log("latestRecipe", latestRecipe);
-    console.log("totalIngredientCount", totalIngredientCount);
+
+    // TODO: Remove Debugmode when it's finished
+    const isDebugMode = false;
     return (
         <FullWidthLayout title="Dashboard">
-            <div className={cn("bg-gray-200 dark:bg-gray-800 transition-all duration-500 ease my-8")}>
-                <div className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-px")} aria-roledescription="navigation">
-                    <div className="asd">
-                        <Chart />
+            <div className="bg-gray-200 dark:bg-gray-900">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-17 md:grid-rows-2 lg:grid-rows-6 gap-px">
+                    <div className={cn("lg:col-span-4 lg:row-span-3 bg-white p-3", isDebugMode && "bg-rose-200")}>
+                        <h3 className="text-lg">Rezepte</h3>
+                        <div className="test">
+                            Du hast aktuell 23 Rezepte.
+                            <Link href="test" className="underline">Neues Rezept</Link>
+                        </div>
                     </div>
-                    <div className="asd">
-                        &nbsp;
+                    <div className={cn("lg:col-span-4 lg:row-span-3 bg-white p-3", isDebugMode && "bg-sky-200")}>
+                        <h3 className="text-lg">Freie Box</h3>
+                        <div className="test">
+                            Freie Box
+                        </div>
                     </div>
-                    <div className="asd">
-                        &nbsp;
+                    <div className={cn("lg:col-span-4 lg:row-span-3 bg-white p-3", isDebugMode && "bg-emerald-200")}>
+                        <h3 className="text-lg">Freie Box</h3>
+                        <div className="test">
+                            Freie Box
+                        </div>
+                    </div>
+                    <div className={cn("lg:col-span-5 lg:row-span-6 bg-white p-4 w-calc(100% + 2px)", isDebugMode && "bg-teal-200")}>
+                        <h3 className="text-lg">Dein Anteil an Rezepten</h3>
+                        <div className="mt-4">
+                            <DonutChart />
+                        </div>
+                    </div>
+                    <div className={cn("md:cols-span-4 lg:col-span-12 lg:row-span-3 bg-white p-3", isDebugMode && "bg-cyan-200")}>
+                        <h3 className="text-lg">Rezepte</h3>
+                        <div className="test">
+                            Last Box.
+                        </div>
                     </div>
                 </div>
             </div>

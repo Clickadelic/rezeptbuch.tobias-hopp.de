@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
-import TextInput from '@/components/TextInput';
-import InputError from '@/components/InputError';
-import InputLabel from '@/components/InputLabel';
+import TextInput from '@/components/reusables/TextInput';
+import InputError from '@/components/reusables/InputError';
+import InputLabel from '@/components/reusables/InputLabel';
 import { Button } from '../ui/button';
 
 /**

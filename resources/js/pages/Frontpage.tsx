@@ -54,7 +54,7 @@ export default function Frontpage() {
                     <li><GridLinkItem icon={<GiCrystalBars className="size-6 text-primary" />} title="Snacks" punchline="für zwischendurch" buttonText="Zu den Snacks" href={route('recipes.search', { search: 'Snack' })} /></li>
                 </ul>
             </div>
-            <Seperator style="salad" size={6} />
+            <Seperator />
             <div className="flex flex-col gap-2 items-center justify-center my-16">
                 <h2 className="flex gap-2 text-3xl font-roboto-condensed">
                     <BsJournalBookmark className="text-primary size-6 mt-1" />Rezeptbuch
@@ -71,7 +71,6 @@ export default function Frontpage() {
                     )}
                 </div>
             </div>
-
             <Seperator />
             <div className="grid grid-cols-1 lg:grid-cols-3">
                 <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
@@ -96,7 +95,6 @@ export default function Frontpage() {
                         </div>
                     </div>
                 </div>
-                
             </div>
         </FullWidthLayout>
     );

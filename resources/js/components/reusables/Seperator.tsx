@@ -1,38 +1,47 @@
 
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { GiKnifeFork } from "react-icons/gi";
-import { BsBookmarkHeart } from 'react-icons/bs';
 import { PiCookingPot } from "react-icons/pi";
 import { TbSalad } from "react-icons/tb";
-import { cn } from "@/lib/utils";
 import { FaHeart } from "react-icons/fa6";
-import { match } from "assert";
+import { cn } from "@/lib/utils";
+
 
 interface SeperatorProps { 
     size?: number
     style?: string
 }
 
+/**
+ * A separator component that renders an icon above a horizontal line.
+ * 
+ * @param {SeperatorProps} props - The props object
+ * @param {number} [props.size=7] - The size of the icon, default is 7
+ * @param {string} [props.style] - The style of the icon, one of "fork-knife-spoon", "fork-knife","cooking-pot", "salad", "heart"
+ * 
+ * @example
+ * <Seperator size={10} style="cooking-pot" />
+ */
 export default function Seperator({ size = 7, style }: SeperatorProps) {
     
-    let icon = <GiKnifeFork className={cn("text-gray-200 dark:text-gray-700", "size-" + size)} />
+    let icon = <GiKnifeFork className={cn("text-gray-200 dark:text-gray-700 size-" + size)} />
+    
     switch (style) {
         case "fork-knife-spoon":
-            icon = <GiForkKnifeSpoon className={cn("text-gray-200 dark:text-gray-700", "size-" + size)} />
+            icon = <GiForkKnifeSpoon className={cn("text-gray-200 dark:text-gray-700 size-" + size)} />
             break;
         case "cooking-pot":
-            icon = <PiCookingPot className={cn("text-gray-200 dark:text-gray-700", "size-" + size)} />
+            icon = <PiCookingPot className={cn("text-gray-200 dark:text-gray-700 size-" + size)} />
             break;
         case "salad":
-            icon = <TbSalad className={cn("text-gray-200 dark:text-gray-700", "size-" + size)} />
+            icon = <TbSalad className={cn("text-gray-200 dark:text-gray-700 size-" + size)} />
             break;
         case "heart":
-            icon = <FaHeart className={cn("text-gray-200 dark:text-gray-700", "size-" + size)} />
+            icon = <FaHeart className={cn("text-gray-200 dark:text-gray-700 size-" + size)} />
             break;
         default:
-            icon = <GiKnifeFork className={cn("text-gray-200 dark:text-gray-700", "size-" + size)} />
+            icon = <GiKnifeFork className={cn("text-gray-200 dark:text-gray-700 size-" + size)} />
     }
-    
     
     return (
         <div className="relative mx-auto w-full max-w-[52rem] flex items-center justify-center my-16">

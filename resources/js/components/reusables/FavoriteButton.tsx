@@ -37,7 +37,7 @@ export default function FavoriteButton({ recipeId, isFavorite = false, className
           { favorite: next },
           {
             preserveScroll: true,
-            preserveState: true,
+            preserveState: false,
           }
         );
     } catch (error) {
@@ -69,7 +69,7 @@ export default function FavoriteButton({ recipeId, isFavorite = false, className
       type="button" // 👈 wichtig, sonst submit in Formularen
     > 
       {loading && <FaSpinner className="animate-spin" />}
-      {!loading && isHovered || active ? <FaHeart /> : <FaRegHeart />}
+      {!loading && (isHovered || active) ? <FaHeart /> : <FaRegHeart />}
     </Button>
   );
 }

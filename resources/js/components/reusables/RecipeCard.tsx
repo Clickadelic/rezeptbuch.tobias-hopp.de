@@ -69,7 +69,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                             </div>
                         )} */}
                         <div className="absolute top-1 left-1 z-20 flex items-center justify-center">
-                            <FavoriteButton recipeId={recipe.id} isFavorite={recipe.is_favorite} />
+                            <FavoriteButton key={recipe.id} recipeId={recipe.id} isFavorite={recipe.is_favorite} />
                         </div>
                         {/* Hero image */}
                         {(() => {

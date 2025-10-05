@@ -1,7 +1,15 @@
-import FullWidthLayout from '@/layouts/FullWidthLayout';
 import { Link, usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
-import { useState } from 'react';
+
+import FullWidthLayout from '@/layouts/FullWidthLayout';
+import Carousel from '@/components/reusables/Carousel/Index';
+import Seperator from '@/components/reusables/Seperator';
+
+import chefkoch from '@images/svg/Chef-Tobias.svg';
+
+import { FaRegHeart } from "react-icons/fa";
+import { FiCheckCircle } from 'react-icons/fi';
+
 
 import { PiCookingPot } from "react-icons/pi";
 import { LiaCocktailSolid } from "react-icons/lia";
@@ -9,36 +17,12 @@ import { RiCake3Line } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
 import { GiKnifeFork } from "react-icons/gi";
-import { BsBookmarkHeart, BsDoorOpen } from 'react-icons/bs';
-import { BsJournalBookmark } from 'react-icons/bs';
+import { BsBookmarkHeart, BsDoorOpen, BsJournalBookmark } from 'react-icons/bs';
+
+
+
 import { cn } from "@/lib/utils";
-import { Category } from '@/types/Category';
-import chefkoch from '@images/svg/Chef-Tobias.svg';
-import CategoryGrid from '@/components/forms/CategoryGrid';
-import Modal from '@/components/Modal';
-import { Button } from '@/components/ui/button';
-
-import AppLogo from '@/components/appshell/AppLogo';
-import Carousel from '@/components/reusables/Carousel/Index';
-
-import RecipeCard from '@/components/reusables/RecipeCard';
-import { Recipe } from '@/types/Recipe';
-import { IoMdArrowForward } from "react-icons/io";
-import Seperator from '@/components/reusables/Seperator';
-import { FiCheckCircle } from 'react-icons/fi';
-
-
-
-
-const iconMap: Record<string, JSX.Element> = {
-  vorspeise: <TbSalad className="size-4 inline-flex" />,
-  hauptgericht: <GiKnifeFork className="size-4 inline-flex" />,
-  nachtisch: <RiCake3Line className="size-4 inline-flex" />,
-  cocktail: <LiaCocktailSolid className="size-4 inline-flex" />,
-  backen: <GiCakeSlice className="size-4 inline-flex" />,
-  snack: <GiCrystalBars className="size-4 inline-flex" />,
-};
-
+import GridLinkItem from '@/components/reusables/GridLinkItem';
 
 /**
  * The frontpage of the application.
@@ -50,108 +34,23 @@ const iconMap: Record<string, JSX.Element> = {
  */
 export default function Frontpage() {
     const { auth } = usePage<SharedPageProps>().props;
-    const categories = usePage<SharedPageProps>().props.categories;
     const recipes = usePage<SharedPageProps>().props.recipes;
     return (
         <FullWidthLayout title="Willkommen" showTitle={false}>
             <div className="flex flex-col gap-2 items-center justify-center my-8">
                 <h2 className="flex gap-2 text-3xl font-roboto-condensed">
-                    <BsBookmarkHeart className="text-primary size-6 mt-1" />Willkommen
+                    <FaRegHeart className="text-primary size-6 mt-1" />Willkommen
                 </h2>
                 <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">Was darf's sein?</h3>
             </div>
             <div className={cn("bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8")}>
-                <ul className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-px")} aria-roledescription="navigation">
-                    <li>
-                        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
-                            <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                <TbSalad className="size-7 text-primary" />Vorspeisen
-                            </span>
-                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den kleinen Hunger</span>
-                            <Link
-                                href={route('recipes.search', { search: 'Vorspeise' })}
-                                className="flex items-center justify-center w-56 gap-2 text-base hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
-                                title="Zu den Vorspeisen"
-                                aria-label="Zu den Vorspeisen"
-                                >Zu den Vorspeisen<IoMdArrowForward className="asd" />
-                            </Link>
-                        </div>
-                    </li>
-                    <li>
-                        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
-                            <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                <PiCookingPot className="size-7 text-primary" />Hauptgerichte
-                            </span>
-                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für den großen Hunger</span>
-                            <Link
-                                href={route('recipes.search', { search: 'Hauptgericht' })}
-                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
-                                title="Zu den Hauptgerichten"
-                                aria-label="Zu den Hauptgerichten"
-                                >Zu den Hauptgerichten<IoMdArrowForward className="asd" />
-                            </Link>
-                        </div>
-                    </li>
-                    <li>
-                        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
-                            <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                <RiCake3Line className="size-7 text-primary" />Nachtisch
-                            </span>
-                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für ein süßes Ende</span>
-                            <Link
-                                href={route('recipes.search', { search: 'Nachtisch' })}
-                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
-                                title="Zum Nachtisch"
-                                aria-label="Zum Nachtisch"
-                                >Zum Nachtisch<IoMdArrowForward className="asd" />
-                            </Link>
-                        </div>
-                    </li>
-                    <li>
-                        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
-                            <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                <LiaCocktailSolid className="size-7 text-primary" />Cocktails
-                            </span>
-                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für einen guten Abend</span>
-                            <Link
-                                href={route('recipes.search', { search: 'Cocktail' })}
-                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
-                                title="Zu den Cocktails"
-                                aria-label="Zu den Cocktails"
-                                >Zu den Cocktails<IoMdArrowForward className="asd" />
-                            </Link>
-                        </div>
-                    </li>
-                    <li>
-                        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
-                            <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                <GiCakeSlice className="size-7 text-primary" />Backen
-                            </span>
-                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für eine gute Zeit</span>
-                            <Link
-                                href={route('recipes.search', { search: 'Backen' })}
-                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
-                                title="Zum Backen"
-                                aria-label="Zum Backen"
-                                >Zum Backen<IoMdArrowForward className="asd" />
-                            </Link>
-                        </div>
-                    </li>
-                    <li>
-                        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12")}>
-                            <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                                <GiCrystalBars className="size-7 text-primary" />Snacks
-                            </span>
-                            <span className="font-la-belle-aurore text-gray-500 dark:text-gray-400">für zwischendurch</span>
-                            <Link
-                                href={route('recipes.search', { search: 'Snack' })}
-                                className="flex items-center justify-center w-56 gap-2 text-base  hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
-                                title="Zu den Snacks"
-                                aria-label="Zu den Snacks"
-                                >Zu den Snacks<IoMdArrowForward className="asd" />
-                            </Link>
-                        </div>
-                    </li>
+                <ul className={cn("grid grid-cols-2 lg:grid-cols-3 gap-px")} aria-roledescription="navigation">
+                    <li><GridLinkItem icon={<TbSalad className="size-6 text-primary" />} title="Vorspeisen" punchline="für den kleinen Hunger" buttonText="Zu den Vorspeisen" href={route('recipes.search', { search: 'Vorspeise' })} /></li>
+                    <li><GridLinkItem icon={<PiCookingPot className="size-6 text-primary" />} title="Hauptgerichte" punchline="für den großen Hunger" buttonText="Zu den Hauptgerichten" href={route('recipes.search', { search: 'Hauptgericht' })} /></li>
+                    <li><GridLinkItem icon={<GiCakeSlice className="size-6 text-primary" />} title="Nachtisch" punchline="für ein süßes Ende" buttonText="Zum Nachtisch" href={route('recipes.search', { search: 'Nachtisch' })} /></li>
+                    <li><GridLinkItem icon={<LiaCocktailSolid className="size-6 text-primary" />} title="Cocktails" punchline="für einen schönen Abend" buttonText="Zu den Cocktails"href={route('recipes.search', { search: 'Cocktail' })} /></li>
+                    <li><GridLinkItem icon={<RiCake3Line className="size-6 text-primary" />} title="Backen" punchline="für eine gute Zeit" buttonText="Zum Backen" href={route('recipes.search', { search: 'Backen' })} /></li>
+                    <li><GridLinkItem icon={<GiCrystalBars className="size-6 text-primary" />} title="Snacks" punchline="für zwischendurch" buttonText="Zu den Snacks" href={route('recipes.search', { search: 'Snack' })} /></li>
                 </ul>
             </div>
             <Seperator />

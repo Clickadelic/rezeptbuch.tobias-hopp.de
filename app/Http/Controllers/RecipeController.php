@@ -24,6 +24,7 @@ class RecipeController extends Controller
     public function index()
     {
         $recipes = Recipe::with('media', 'category', 'user')->paginate(15);
+        // TODO: FavoritenCheck eventuell in Service auslagern
         if ($user = Auth::user()) {
             $recipes->getCollection()->transform(function ($recipe) use ($user) {
                 $recipe->setAttribute(

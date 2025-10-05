@@ -1,22 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa6";
+import { FaHeart, FaSpinner } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { router, usePage } from "@inertiajs/react";
 import { SharedPageProps } from "@/types";
 
 interface FavoriteButtonProps {
-  recipeId?: string;        // optional, falls Backend-Toggle aktiv ist
-  isFavorite?: boolean;     // initialer Zustand
-  className?: string;
+    recipeId?: string;
+    isFavorite?: boolean;
+    className?: string;
 }
 
-export default function FavoriteButton({
-  recipeId,
-  isFavorite = false,
-  className,
-}: FavoriteButtonProps) {
+export default function FavoriteButton({ recipeId, isFavorite = false, className}: FavoriteButtonProps) {
   const [active, setActive] = useState<boolean>(isFavorite);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,16 +59,17 @@ export default function FavoriteButton({
       variant="flat"
       className={cn(
         "shadow-none text-gray-400 rounded-full transition-colors",
-        "hover:text-primary hover:fill-primary",
-        active && "text-primary fill-primary", // Favorit aktiv → grün
-        "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+        "hover:text-rose-600 hover:fill-rose-600",
+        active && "text-rose-600 fill-rose-600", // Favorit aktiv → grün
+        "focus-visible:ring-2 focus-visible:ring-rose-600 focus-visible:ring-offset-2",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         className
       )}
       title={active ? "Favorit entfernen" : "Zu Favoriten hinzufügen"}
       type="button" // 👈 wichtig, sonst submit in Formularen
-    >
-      {isHovered || active ? <FaHeart /> : <FaRegHeart />}
+    > 
+      {loading && <FaSpinner className="animate-spin" />}
+      {!loading && isHovered || active ? <FaHeart /> : <FaRegHeart />}
     </Button>
   );
 }

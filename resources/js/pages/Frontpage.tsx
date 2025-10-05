@@ -23,6 +23,7 @@ import { BsBookmarkHeart, BsDoorOpen, BsJournalBookmark } from 'react-icons/bs';
 
 import { cn } from "@/lib/utils";
 import GridLinkItem from '@/components/reusables/GridLinkItem';
+import SingleRecipeView from '@/components/reusables/SingleRecipeView';
 
 /**
  * The frontpage of the application.
@@ -53,7 +54,7 @@ export default function Frontpage() {
                     <li><GridLinkItem icon={<GiCrystalBars className="size-6 text-primary" />} title="Snacks" punchline="für zwischendurch" buttonText="Zu den Snacks" href={route('recipes.search', { search: 'Snack' })} /></li>
                 </ul>
             </div>
-            <Seperator />
+            <Seperator style="salad" size={6} />
             <div className="flex flex-col gap-2 items-center justify-center my-16">
                 <h2 className="flex gap-2 text-3xl font-roboto-condensed">
                     <BsJournalBookmark className="text-primary size-6 mt-1" />Rezeptbuch
@@ -78,15 +79,22 @@ export default function Frontpage() {
                     <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">vom Chef persönlich</h3>
                     <img src={chefkoch} className="w-full mx-auto sm:w-1/2 md:w-3/4" alt="Chef Tobias" />
                 </div>
-                <Carousel wrapperClassname="lg:mt-24 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
+                <Carousel wrapperClassname="lg:mt-40 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>
+
             <Seperator />
             <div className="grid grid-cols-1 lg:grid-cols-3">
-                <div className="col-span-2 flex flex-col gap-2 items-center justify-center">
-                    Box 1
+                <div className="col-span-2">
+                    <SingleRecipeView />
                 </div>
-                <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
-                    Box 2 - 3
+                <div className="col-span-1">
+                    <div className="bg-rose-200">
+                        <h2 className="text-3xl">Rezept der Woche</h2>
+                        <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">der Woche</h3>
+                        <div className="w-full h-full">
+                            bla
+                        </div>
+                    </div>
                 </div>
                 
             </div>

@@ -5,7 +5,7 @@ import AppLogo from '@/components/appshell/AppLogo';
 import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
-import Dropdown from '@/components/Dropdown';
+import Dropdown from '@/components/reusables/Dropdown';
 import { ModeToggle } from '@/components/appshell/ModeToggle';
 
 import { GiCook } from 'react-icons/gi';
@@ -13,7 +13,6 @@ import { BsHouse } from 'react-icons/bs';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
-import { TbSalt } from 'react-icons/tb';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';

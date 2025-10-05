@@ -21,7 +21,7 @@ import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
-import Modal from '@/components/Modal';
+import Modal from '@/components/reusables/Modal';
 import { IoEye } from 'react-icons/io5';
 import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';

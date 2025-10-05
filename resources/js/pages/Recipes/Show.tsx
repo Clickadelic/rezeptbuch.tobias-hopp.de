@@ -26,6 +26,8 @@ import { IoEye } from 'react-icons/io5';
 import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';
 
+import SingleRecipeView from '@/components/reusables/SingleRecipeView';
+
 interface ShowRecipeProps {
     recipe: Recipe;
 }

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
+import { useRoleCheck } from '@/hooks/usePermissions';
+
 import AppLogo from '@/components/appshell/AppLogo';
 import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
@@ -18,6 +20,7 @@ import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { SharedPageProps } from "@/types";
+
 /**
  * The application header.
  *
@@ -30,7 +33,7 @@ const Header = () => {
 
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
-            <div className="mx-auto container px-4">
+            <div className="mx-auto container px-6">
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-2 md:space-x-6 lg:space-x-44">
                         <div className="flex shrink-0">
@@ -83,10 +86,12 @@ const Header = () => {
                                         </span>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href="/admin" className="flex gap-2">
-                                            <MdOutlineAdminPanelSettings className="size-4" />
-                                            Admin
-                                        </Dropdown.Link>
+                                        {useRoleCheck('admin') && (
+                                            <Dropdown.Link href="/admin" className="flex gap-2">
+                                                <MdOutlineAdminPanelSettings className="size-4" />
+                                                Admin
+                                            </Dropdown.Link>
+                                        )}
                                         <Dropdown.Link href="/dashboard" className="flex gap-2">
                                             <RiDashboardHorizontalLine className="size-4" />
                                             Dashboard

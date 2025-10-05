@@ -26,3 +26,8 @@ export function usePermissions() {
 
     return { hasRole, can, isOwner };
 }
+
+export function useRoleCheck(role: string) {
+    const { hasRole } = usePermissions();
+    return hasRole(role);
+}

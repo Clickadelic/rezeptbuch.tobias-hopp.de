@@ -29,7 +29,7 @@ export default function Footer({ className }: FooterProps) {
         <>
             <div className={cn("bg-gradient-to-b from-stone-800 to-stone-900 border-t-4 border-t-primary text-gray-100", className)}>
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-b-black ">
                         <div>
                             <h2 className="mb-8 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start">
                                 <GrNavigate />
@@ -136,7 +136,7 @@ export default function Footer({ className }: FooterProps) {
                             <NewsletterForm />
                         </div>
                     </div>
-                    <div className="flex flex-row justify-center items-center border-t border-t-stone-500 pt-6 mt-12">
+                    <div className="flex flex-row justify-center items-center border-t border-stone-700 pt-6">
                         <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">
                             <li>
                                 <Link

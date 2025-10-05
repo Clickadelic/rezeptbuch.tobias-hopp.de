@@ -8,6 +8,10 @@ use App\Http\Middleware\CheckRole;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
+Route::get('/test', function () {
+    return Inertia::render('Test');
+});
+
 Route::get('/impressum', function () {
     return Inertia::render('Impressum');
 });

@@ -9,9 +9,10 @@ export type Recipe = {
     slug?: string;
     punchline?: string;
     description?: string;
-    rating?: number;
+    portion_count?: number;
     preparation_time?: number;
     preparation_instructions?: string;
+    rating?: number;
     difficulty?: Difficulty;
     ingredients?: Ingredient[]; // jetzt mit optionalem pivot
     media?: Array<{

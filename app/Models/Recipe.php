@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Models\Ingredient;
 use Laravel\Scout\Searchable;
-
 use Cviebrock\EloquentSluggable\Sluggable;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Recipe extends Model
 {
@@ -127,5 +129,12 @@ class Recipe extends Model
      public function favoritedBy()
      {
           return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+     }
+
+     public function getIsFavoriteAttribute(): bool
+     {
+          $userId = Auth::id();
+          if (!$userId) return false;
+          return $this->favoritedBy()->where('user_id', $userId)->exists();
      }
 }

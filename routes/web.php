@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\FavoritesController;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
@@ -19,7 +20,10 @@ require __DIR__.'/recipes.php';
 require __DIR__.'/ingredients.php';
 require __DIR__.'/upload.php';
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favorites/toggle/{recipe}', [FavoritesController::class, 'toggle'])
+        ->name('favorites.toggle');
+});
 
 if (config('app.debug')) {
     require __DIR__.'/email.php';

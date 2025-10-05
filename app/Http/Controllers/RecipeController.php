@@ -24,6 +24,21 @@ class RecipeController extends Controller
     public function index()
     {
         $recipes = Recipe::with('media', 'category', 'user')->paginate(15);
+        if ($user = Auth::user()) {
+            $recipes->getCollection()->transform(function ($recipe) use ($user) {
+                $recipe->setAttribute(
+                    'is_favorite',
+                    $recipe->favoritedBy()->where('user_id', $user->id)->exists()
+                );
+                return $recipe;
+            });
+        } else {
+            // Nicht eingeloggt → alle auf false
+            $recipes->getCollection()->transform(function ($recipe) {
+                $recipe->setAttribute('is_favorite', false);
+                return $recipe;
+            });
+        }
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes,
         ]);

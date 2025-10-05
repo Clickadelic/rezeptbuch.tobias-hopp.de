@@ -11,6 +11,7 @@ import { RxClipboardCopy } from "react-icons/rx";
 import { Recipe } from '@/types/Recipe';
 import { usePermissions } from '@/hooks/usePermissions';
 import { SharedPageProps } from '@/types';
+import { toast } from 'sonner';
 interface ContextMenuProps {
     recipe?: Recipe | null;
 }
@@ -27,7 +28,8 @@ interface ContextMenuProps {
 export default function ContextMenu({ recipe }: ContextMenuProps) {
     const { auth } = usePage<SharedPageProps>().props;
     const { hasRole, isOwner } = usePermissions();
-
+    const { props } = usePage<SharedPageProps>();
+    const { flash } = props;
     // console.log("ContextMenu >> Userroles:", auth.user?.roles[0]);
     // console.log("ContextMenu >> Permissions:", auth.user?.permissions[0]);
 
@@ -54,7 +56,25 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
     const copyToClipboard = (e: React.MouseEvent) => {
         e.stopPropagation();
         navigator.clipboard.writeText(window.location.origin + '/rezepte/' + recipe?.slug);
+        toast.success('Link kopiert', {
+            duration: 3000
+        })
     };
+
+    
+
+    useEffect(() => {
+        if (flash?.success) {
+            toast.success(flash.success, {
+                duration: 3000,
+            });
+        }
+        if (flash?.error) {
+            toast.error(flash.error, {
+                duration: 4000,
+            });
+        }
+    }, [flash]);
     
     return (
         <DropdownMenu>

@@ -55,7 +55,7 @@ export default function FullWidthLayout({ showTitle = true, title, children }: F
             <Head title={title} />
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
                 <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-200">
-                    <div className='snap-start'>
+                    <div>
                         <Header />
                         <RecipeSearch />
                         <BreadcrumbNav />

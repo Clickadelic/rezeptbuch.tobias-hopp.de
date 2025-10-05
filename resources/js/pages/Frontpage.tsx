@@ -13,7 +13,7 @@ import { FiCheckCircle } from 'react-icons/fi';
 
 import { PiCookingPot } from "react-icons/pi";
 import { LiaCocktailSolid } from "react-icons/lia";
-import { RiCake3Line } from "react-icons/ri";
+import { RiCake3Line, RiDashboardHorizontalLine } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
 import { GiKnifeFork } from "react-icons/gi";
@@ -61,7 +61,7 @@ export default function Frontpage() {
                 <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">praktisch - digital</h3>
                 <div className="flex gap-2 mt-5">
                     {auth.user ? (
-                        <Link href={route('dashboard')} className="border border-transparent bg-primary text-white rounded px-3 py-1.5 hover:bg-emerald-700">Dashboard</Link>
+                        <Link href={route('dashboard')} className="flex gap-2 border border-transparent bg-primary text-white rounded px-3 py-1.5 hover:bg-emerald-700"><RiDashboardHorizontalLine className="size-4 mt-1" />Zum Dashboard</Link>
                     ) : (
                         <>
                             <Link href={route('register')} className="flex gap-2 border border-gray-800 dark:border-gray-200 dark:hover:border-gray-400 text-gray-800 dark:text-gray-200 dark:hover:text-gray-400 rounded px-3 py-1.5"><FiCheckCircle className="size-4 mt-1" />Registrieren</Link>

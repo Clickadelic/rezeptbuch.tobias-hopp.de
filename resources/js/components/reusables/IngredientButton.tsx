@@ -1,5 +1,8 @@
 import { Ingredient } from '@/types/Ingredient';
 import { usePermissions } from '@/hooks/usePermissions';
+import { usePage } from '@inertiajs/react';
+import { SharedPageProps } from '@/types';
+import { cn } from '@/lib/utils';
 
 interface IngredientButtonProps {
   ingredient: Ingredient;
@@ -16,8 +19,8 @@ interface IngredientButtonProps {
  * <IngredientButton ingredient={ingredient} onClick={(ingredient) => console.log(ingredient)}/>
  */
 export default function IngredientButton({ ingredient, onClick }: IngredientButtonProps) {
-    const { can } = usePermissions();
-    if(can('edit articles')) {
+    const { isOwner } = usePermissions();
+    if(isOwner(ingredient.user_id)) {
         return (
             <button
               type="button"
@@ -29,18 +32,8 @@ export default function IngredientButton({ ingredient, onClick }: IngredientButt
         );
     }
     return (
-        <span className="inline-flex p-1 px-2.5 text-xs items-center rounded-sm bg-primary text-white hover:bg-emerald-700 transition">
-          {ingredient.name}
+        <span className={cn("inline-flex p-1 px-2.5 text-xs items-center rounded-sm bg-primary text-white hover:bg-emerald-700 transition", !isOwner(ingredient.user_id) && "cursor-not-allowed")}>
+            {ingredient.name}
         </span> 
-    );
-
-    return (
-        <button
-          type="button"
-          onClick={() => onClick?.(ingredient)}
-          className="hover:cursor-pointer inline-flex p-1 px-2.5 text-xs items-center rounded-sm bg-primary text-white font-semibold hover:bg-emerald-700 transition"
-        >
-          {ingredient.name}
-        </button> 
     );
 }

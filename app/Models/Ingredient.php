@@ -13,7 +13,7 @@ class Ingredient extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['id', 'name'];
+    protected $fillable = ['id', 'name', 'user_id'];
 
     protected static function booted()
     {

@@ -31,7 +31,9 @@ import { Link } from 'lucide-react';
 
 
 export default function Dashboard() {
-
+    const { recipes } = usePage<SharedPageProps>().props;
+    const [isFavorited, setIsFavorited] = useState(true);
+    const userFavorites = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     // TODO: Remove Debugmode when it's finished
     const isDebugMode = false;
     return (

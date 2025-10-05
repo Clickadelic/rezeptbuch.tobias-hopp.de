@@ -1,7 +1,5 @@
 import { Ingredient } from '@/types/Ingredient';
-import { usePermissions, useRoleCheck } from '@/hooks/usePermissions';
-import { usePage } from '@inertiajs/react';
-import { SharedPageProps } from '@/types';
+import { usePermissions } from '@/hooks/usePermissions';
 
 interface IngredientButtonProps {
   ingredient: Ingredient;
@@ -18,9 +16,8 @@ interface IngredientButtonProps {
  * <IngredientButton ingredient={ingredient} onClick={(ingredient) => console.log(ingredient)}/>
  */
 export default function IngredientButton({ ingredient, onClick }: IngredientButtonProps) {
-    const { auth } = usePage<SharedPageProps>().props;
-
-    if(useRoleCheck('writer')) {
+    const { can } = usePermissions();
+    if(can('edit articles')) {
         return (
             <button
               type="button"

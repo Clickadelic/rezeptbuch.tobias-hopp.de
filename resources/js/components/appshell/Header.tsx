@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
-import { useRoleCheck } from '@/hooks/usePermissions';
+import { usePermissions } from '@/hooks/usePermissions';
 
 import AppLogo from '@/components/appshell/AppLogo';
 import NavLink from '@/components/reusables/NavLink';
@@ -30,7 +30,7 @@ import { SharedPageProps } from "@/types";
 const Header = () => {
     const { auth } = usePage<SharedPageProps>().props;
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-
+    const { hasRole } = usePermissions();
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
             <div className="mx-auto container px-6">
@@ -86,7 +86,7 @@ const Header = () => {
                                         </span>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        {useRoleCheck('admin') && (
+                                        {hasRole('admin') && (
                                             <Dropdown.Link href="/admin" className="flex gap-2">
                                                 <MdOutlineAdminPanelSettings className="size-4" />
                                                 Admin

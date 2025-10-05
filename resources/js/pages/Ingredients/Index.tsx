@@ -18,7 +18,7 @@ export default function IngredientsIndex() {
 
     return (
         <NoSidebarsLayout title="Zutaten">
-            {auth.user && (
+            {can('edit articles') && (
                 <>
                     <IngredientForm
                         ingredient={editingIngredient ?? undefined}

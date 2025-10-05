@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 import { usePermissions } from '@/hooks/usePermissions';
 
 /**
- * A circular menu that appears on the bottom right of the screen when the user has the writer role.
+ * A circular menu that appears on the bottom right of the screen when the user has the user role.
  * It contains buttons to create a new recipe and to view all ingredients.
  */
 export function CircularMenu() {
@@ -26,7 +26,7 @@ export function CircularMenu() {
         return null;
     }
 
-    if(hasRole('writer') || hasRole('admin')) {
+    if(hasRole('user') || hasRole('admin')) {
         return (
             <div className="fixed right-4 bottom-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 max-w-[48px] z-20">
                 <div

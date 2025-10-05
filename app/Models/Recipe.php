@@ -120,8 +120,12 @@ class Recipe extends Model
                'punchline' => $this->punchline,
                'slug' => $this->slug,
                'difficulty' => $this->difficulty,
-               // 'category_name' => $this->category?->name,
                'description' => $this->description,
           ];
+     }
+
+     public function favoritedBy()
+     {
+          return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
      }
 }

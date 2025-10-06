@@ -1,5 +1,9 @@
 import { AuthUser } from "@/types";
 import { GiCook } from "react-icons/gi";
+
+import { Avatar as ShadCnAvatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+
 interface AvatarProps {
     user?: AuthUser;
 }
@@ -12,18 +16,9 @@ export default function Avatar({ user }: AvatarProps) {
     }
 
     return (
-        <>
-            {user.avatar ? (
-                <img
-                    src={user.avatar}
-                    alt={user.name}
-                    className="w-8 h-8 rounded-full object-cover"
-                />
-            ) : (
-                <span className="text-gray-400">
-                    <GiCook />
-                </span>
-            )}
-        </>
+        <ShadCnAvatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+        </ShadCnAvatar>
     );
 }

@@ -11,9 +11,7 @@ export default function Test (){
     return (
         <FullWidthLayout>
             <div className="mx-auto w-[800px] bg-white dark:bg-gray-800 p-5 rounded">
-                asd
-
-
+                Test
             </div>
         </FullWidthLayout>
     )

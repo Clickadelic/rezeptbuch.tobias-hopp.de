@@ -14,7 +14,7 @@ import { BsJournalBookmark, BsInfoCircle } from 'react-icons/bs';
 import { GoCommentDiscussion } from "react-icons/go";
 import { TfiCommentAlt } from "react-icons/tfi";
 
-
+import { FaQuoteLeft } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 
 interface SeparatorProps {
@@ -35,6 +35,7 @@ interface SeparatorProps {
         "salad" |
         "heart-outline" |
         "heart" |
+        "quote" |
         "snack";
 }
 
@@ -95,6 +96,9 @@ export default function Separator({ size = 6, style = "fork-knife" }: SeparatorP
             break;
         case "heart":
             IconComponent = FaHeart;
+            break;
+        case "quote":
+            IconComponent = FaQuoteLeft;
             break;
         case "snack":
             IconComponent = GiCrystalBars;

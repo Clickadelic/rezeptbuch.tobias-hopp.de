@@ -1,9 +1,11 @@
-import { Button } from '@/components/ui/button';
-import { FiMinus } from 'react-icons/fi';
-import { GoPlus } from 'react-icons/go';
 import { useState } from 'react';
 import { Recipe } from '@/types/Recipe';
-import { BiReset } from "react-icons/bi";
+
+import { Button } from '@/components/ui/button';
+import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/ui/button-group"
+import { RiResetLeftFill } from "react-icons/ri";
+import { MinusIcon, PlusIcon } from "lucide-react"
+
 interface IngredientTableProps {
     recipe: Recipe
 }
@@ -15,42 +17,21 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
             <div className="w-full flex flex-col gap-2 justify-between items-center mb-10">
                 <h4 className="font-medium text-xl mb-5">Zutaten für</h4>
                 <div className="flex items-center gap-2">
-                    <Button
-                        onClick={() => setCount(1)}
-                        className="py-2 px-2 hover:cursor-pointer shadow-none border-gray-400 text-gray-400 hover:border-rose-700"
-                        variant="dangerOutline"
-                        size="sm"
-                        title="Personen zurücksetzen"
-                        aria-label="Personen zurücksetzen"
-                    >
-                        <BiReset />
-                    </Button>
-                    <Button
-                        onClick={() => setCount((prev) => Math.max(1, prev - 1))}
-                        className="py-2 px-2 hover:cursor-pointer shadow-none"
-                        variant="primaryOutline"
-                        size="sm"
-                        disabled={count === 1}
-                        title="Personen reduzieren"
-                        aria-label="Personen reduzieren"
-                    >
-                        <FiMinus />
-                    </Button>
-                    <div className="cursor-default w-[10rem] font-medium text-xl px-3 text-center">
-                        {count}
-                        <span>{count > 1 ? ' Personen' : ' Person'}</span>
-                    </div>
-                    <Button
-                        onClick={() => setCount((prev) => prev + 1)}
-                        className="py-2 px-2 hover:cursor-pointer shadow-none"
-                        variant="primaryOutline"
-                        size="sm"
-                        title="Personen erhöhen"
-                        aria-label="Personen erhöhen"
-                    >
-                        <GoPlus />
-                    </Button>
-                    
+                    <ButtonGroup>
+                        <Button variant="outline" onClick={() => setCount(1)} title="Personen zurücksetzen" aria-label="Personen zurücksetzen">
+                            <RiResetLeftFill />
+                        </Button>
+                        <Button variant="outline" onClick={() => setCount((prev) => Math.max(1, prev - 1))} disabled={count === 1} title="Personen reduzieren" aria-label="Personen reduzieren">
+                            <MinusIcon />
+                        </Button>
+                        <Button variant="outline" disabled>
+                            {count}
+                            <span>{count > 1 ? ' Personen' : ' Person'}</span>
+                        </Button>
+                        <Button variant="outline" onClick={() => setCount((prev) => prev + 1)} title="Personen erhöhen" aria-label="Personen erhöhen">
+                            <PlusIcon />
+                        </Button>
+                    </ButtonGroup>
                 </div>
             </div>
             <table className="table mx-auto w-[20rem] overflow-x-auto text-gray-800">

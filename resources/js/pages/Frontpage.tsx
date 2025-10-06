@@ -1,4 +1,4 @@
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
@@ -8,10 +8,11 @@ import TitleBlock from '@/components/reusables/TitleBlock';
 import Carousel from '@/components/reusables/Carousel/Index';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
-
+import { IoMailOpenOutline } from "react-icons/io5";
 import chefkoch from '@images/svg/Chef-Tobias.svg';
 
-import { FaCircleCheck, FaRegHeart } from 'react-icons/fa6';
+import { FaCircleCheck, FaHeadphones, FaRegHeart } from 'react-icons/fa6';
+import ContactBlock from '@/components/reusables/ContactBlock';
 
 
 /**
@@ -40,8 +41,9 @@ export default function Frontpage() {
                 <Carousel wrapperClassname="lg:mt-40 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>
             <Seperator style="info" />
-            <TitleBlock title="FAQ" punchline="und Infos" icon={<FaCircleCheck className="text-primary size-6 mt-1" />} />
             <FaqAccordeon />
+            <Seperator style="mail" />
+            <ContactBlock />
         </FullWidthLayout>
     );
 }

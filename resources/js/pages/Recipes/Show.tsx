@@ -18,11 +18,11 @@ import { BiDish } from 'react-icons/bi';
 import { GiCrystalBars } from "react-icons/gi";
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { Recipe } from '@/types/Recipe';
+import { IoEye } from 'react-icons/io5';
 import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/reusables/Modal';
-import { IoEye } from 'react-icons/io5';
 import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';
 
@@ -143,7 +143,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         </div>
                     </div>
                 </div>
-                <Seperator />
+                <Seperator style="journal" />
                 {recipe.ingredients && recipe.ingredients.length > 0 && (
                     <>
                         <IngredientTable recipe={recipe} />

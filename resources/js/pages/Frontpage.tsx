@@ -1,28 +1,26 @@
-import { Link, usePage } from '@inertiajs/react';
-import { SharedPageProps } from '@/types';
-
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';
 
 import chefkoch from '@images/svg/Chef-Tobias.svg';
 
+import { Link, usePage } from '@inertiajs/react';
+import { SharedPageProps } from '@/types';
+
 import { FaRegHeart } from "react-icons/fa";
 import { FiCheckCircle } from 'react-icons/fi';
-
 
 import { PiCookingPot } from "react-icons/pi";
 import { LiaCocktailSolid } from "react-icons/lia";
 import { RiCake3Line, RiDashboardHorizontalLine } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
 import { TbSalad } from "react-icons/tb";
-import { GiKnifeFork } from "react-icons/gi";
-import { BsBookmarkHeart, BsDoorOpen, BsJournalBookmark } from 'react-icons/bs';
-
-
+import { BsInfoCircle } from "react-icons/bs";
+import { BsDoorOpen, BsJournalBookmark } from 'react-icons/bs';
 
 import GridLinkItem from '@/components/reusables/GridLinkItem';
 import SingleRecipeView from '@/components/reusables/SingleRecipeView';
+
 import { cn } from "@/lib/utils";
 
 /**

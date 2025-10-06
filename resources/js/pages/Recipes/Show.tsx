@@ -27,6 +27,8 @@ import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';
 
 import SingleRecipeView from '@/components/reusables/SingleRecipeView';
+import IngredientTable from '@/components/reusables/IngredientTable';
+import { toHumanDate } from '@/lib/utils';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -104,104 +106,68 @@ export default function Show({ recipe }: ShowRecipeProps) {
                                 </p>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 md:flex md:flex-row justify-between items-center md:justify-start gap-5">
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                        <div className="flex flex-row gap-2">
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 {iconMap[recipe.category?.slug ?? ""] ?? (
                                     <LuUtensilsCrossed className="size-5 text-primary" />
                                 )}
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <VscSymbolEvent className="size-5 text-primary" />
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GoClock className="size-5 text-primary" />
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
                             </div>
-                            <div className="w-28 gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
-                                <GoStar className="size-5 text-primary" />
-                                <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.rating} Sterne</p>
-                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <div className="flex flex-col">
+                    <div className="flex flex-row items-center gap-2">
+                        <div>
+                            {/* <Avatar
+                                src={recipe.user?.avatar}
+                                alt={recipe.user?.name}
+                                user={recipe.user}
+                            /> */}
+                        </div>
+                        <div>
+                            <h3 className="font-medium text-lg">{recipe.user?.name}</h3>
+                            <p className="text-sm text-gray-400 dark:text-gray-600">
+                                {toHumanDate(recipe.created_at)}
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex flex-col gap-1">
-                    {recipe.ingredients && recipe.ingredients.length > 0 && (
-                        <>
-                            <div className="w-full flex flex-col gap-2 md:flex-row justify-between items-center mb-5">
-                                <h4 className="font-medium  text-lg">Zutaten für</h4>
-                                <div className="flex items-center gap-2">
-                                    <Button
-                                        onClick={() => setCount((prev) => Math.max(1, prev - 1))}
-                                        className="py-5 hover:cursor-pointer shadow-none"
-                                        variant="primaryOutline"
-                                        size="sm"
-                                        disabled={count === 1}
-                                        title="Personen reduzieren"
-                                        aria-label="Personen reduzieren"
-                                    >
-                                        <FiMinus />
-                                    </Button>
-                                    <div className="bg-gray-100 cursor-default dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-2 px-3 w-[7.5rem] rounded-lg border border-gray-200 dark:border-gray-700">
-                                        {count}
-                                        {count > 1 ? ' Personen' : ' Person'}
-                                    </div>
-                                    <Button
-                                        onClick={() => setCount((prev) => prev + 1)}
-                                        className="py-5 hover:cursor-pointer shadow-none"
-                                        variant="primaryOutline"
-                                        size="sm"
-                                        title="Personen erhöhen"
-                                        aria-label="Personen erhöhen"
-                                    >
-                                        <GoPlus />
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className="flex flex-row">
-                                <table className="table w-full text-gray-800">
-                                    <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-400">
-                                        <tr>
-                                            <th className="p-3 w-full text-left rounded-tl-lg">Zutat</th>
-                                            <th className="p-3 text-right">Menge</th>
-                                            <th className="p-3 text-right rounded-tr-lg">Einheit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="dark:text-gray-200">
-                                        {recipe.ingredients?.map((ingredient) => (
-                                            <tr
-                                                key={ingredient.id}
-                                                className="hover:bg-gray-100 dark:hover:bg-gray-700"
-                                            >
-                                                <td className="p-3">{ingredient.name}</td>
-                                                <td className="p-3 text-right">
-                                                    {((ingredient.pivot?.quantity ?? 0) as number) * count}
-                                                </td>
-                                                <td className="p-3 text-right">{ingredient.pivot?.unit}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div> 
-                            
-                        </>
-                    )}
-                    {recipe.preparation_instructions && (
+                <Seperator />
+                {recipe.ingredients && recipe.ingredients.length > 0 && (
+                    <>
+                        <IngredientTable recipe={recipe} />
+                        <Seperator />
+                    </>
+                )}
+
+                {recipe.preparation_instructions && (
+                    <>
                         <div className="flex">
                             <div className="w-full flex flex-col gap-2">
-                                <h4 className="font-medium text-lg">Zubereitung</h4>
+                                <h4 className="font-medium text-xl">Zubereitung</h4>
                                 <div className="flex flex-col gap-2">
                                     <p>{recipe.preparation_instructions}</p>
                                 </div>
                             </div>
                         </div>
-                    )}
-                </div>
-                <Seperator />
+                        <Seperator />
+                    </>
+                )}
+
                 <div className="flex flex-col gap-5 mb-12">
                     <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
-                    <Carousel carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={related as Recipe[]} />
+                    <Carousel recipes={related as Recipe[]} carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" />
                 </div>
                 <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
                     <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">

@@ -1,7 +1,7 @@
 import { AuthUser } from "@/types";
 import { GiCook } from "react-icons/gi";
 interface AvatarProps {
-    user?: AuthUser | null;
+    user?: AuthUser;
 }
 
 export default function Avatar({ user }: AvatarProps) {

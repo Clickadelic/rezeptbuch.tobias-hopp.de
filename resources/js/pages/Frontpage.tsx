@@ -21,9 +21,9 @@ import { BsBookmarkHeart, BsDoorOpen, BsJournalBookmark } from 'react-icons/bs';
 
 
 
-import { cn } from "@/lib/utils";
 import GridLinkItem from '@/components/reusables/GridLinkItem';
 import SingleRecipeView from '@/components/reusables/SingleRecipeView';
+import { cn } from "@/lib/utils";
 
 /**
  * The frontpage of the application.
@@ -48,9 +48,9 @@ export default function Frontpage() {
                 <ul className={cn("grid grid-cols-2 lg:grid-cols-3 gap-px")} aria-roledescription="navigation">
                     <li><GridLinkItem icon={<TbSalad className="size-6 text-primary" />} title="Vorspeisen" punchline="für den kleinen Hunger" buttonText="Zu den Vorspeisen" href={route('recipes.search', { search: 'Vorspeise' })} /></li>
                     <li><GridLinkItem icon={<PiCookingPot className="size-6 text-primary" />} title="Hauptgerichte" punchline="für den großen Hunger" buttonText="Zu den Hauptgerichten" href={route('recipes.search', { search: 'Hauptgericht' })} /></li>
-                    <li><GridLinkItem icon={<GiCakeSlice className="size-6 text-primary" />} title="Nachtisch" punchline="für ein süßes Ende" buttonText="Zum Nachtisch" href={route('recipes.search', { search: 'Nachtisch' })} /></li>
+                    <li><GridLinkItem icon={<RiCake3Line className="size-6 text-primary" />} title="Nachtisch" punchline="für ein süßes Ende" buttonText="Zum Nachtisch" href={route('recipes.search', { search: 'Nachtisch' })} /></li>
                     <li><GridLinkItem icon={<LiaCocktailSolid className="size-6 text-primary" />} title="Cocktails" punchline="für einen schönen Abend" buttonText="Zu den Cocktails"href={route('recipes.search', { search: 'Cocktail' })} /></li>
-                    <li><GridLinkItem icon={<RiCake3Line className="size-6 text-primary" />} title="Backen" punchline="für eine gute Zeit" buttonText="Zum Backen" href={route('recipes.search', { search: 'Backen' })} /></li>
+                    <li><GridLinkItem icon={<GiCakeSlice className="size-6 text-primary" />} title="Backen" punchline="für eine gute Zeit" buttonText="Zum Backen" href={route('recipes.search', { search: 'Backen' })} /></li>
                     <li><GridLinkItem icon={<GiCrystalBars className="size-6 text-primary" />} title="Snacks" punchline="für zwischendurch" buttonText="Zu den Snacks" href={route('recipes.search', { search: 'Snack' })} /></li>
                 </ul>
             </div>
@@ -80,7 +80,6 @@ export default function Frontpage() {
                 </div>
                 <Carousel wrapperClassname="lg:mt-40 col-span-2" carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" recipes={recipes?.data} />
             </div>
-
             <Seperator />
             <div className="grid grid-cols-1 lg:grid-cols-3">
                 <div className="col-span-2">

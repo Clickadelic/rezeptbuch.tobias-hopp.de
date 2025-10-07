@@ -35,6 +35,7 @@ export type Recipe = {
     user_id?: number;
     // Tempwise  user data
     user?: AuthUser;
+    is_favorite?: boolean;
     // noch Check auf Richtigkeit machen...
     category_id?: number; // Für DB-Relation
     category?: Category;

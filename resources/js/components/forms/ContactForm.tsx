@@ -15,68 +15,38 @@ import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
 
-import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
-import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
-import CategoryGrid from '@/components/forms/CategoryGrid';
 
-import { Recipe } from '@/types/Recipe';
-import { UNITS } from '@/types/Units';
-import { Category } from '@/types/Category';
-import { Difficulty } from '@/types/Difficulty';
 
-import { cn } from '@/lib/utils';
 import Seperator from '../reusables/Seperator';
-
 import logoSrc from '../../../images/svg/tom_Cheese_Board.svg';
+import { cn } from '@/lib/utils';
 
 
 interface ContactFormProps {
-
+    className?: string
 }
 
-export default function ContactForm() {
-    const [recipe, setRecipe] = useState<Recipe | null>(null);
-    const [className, setClassName] = useState<string | null>(null);
-
-    // useForm initialisieren → Create oder Edit
-    const { data, setData, post, processing, errors, reset } = useForm({
-        id: recipe?.id ?? null,
-        name: recipe?.name ?? '',
-        slug: recipe?.slug ?? '',
-        punchline: recipe?.punchline ?? '',
-        description: recipe?.description ?? '',
-
-    });
+export default function ContactForm({ className }: ContactFormProps) {
     
+    const [formSubmission, setFormSubmission] = useState<FormEvent<HTMLFormElement> | null>(null);
 
-
+    const { data, setData, post, errors, reset, processing } = useForm({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+    });
 
     // Submit Handler → unterscheidet Create vs Edit
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!recipe) {
-            // Create
-            post(route('recipes.store'), {
-                forceFormData: true,
-                onSuccess: () => reset(),
-                preserveScroll: true,
-            });
-        } else {
-            // Edit → Method Spoofing
-            router.post(
-                route('recipes.update', { recipe: recipe.slug }),
-                {
-                    ...data,
-                    _method: 'put',
-                },
-                {
-                    forceFormData: true,
-                    onSuccess: () => reset(),
-                    preserveScroll: true,
-                },
-            );
-        }
+        post(route('contact.store'), {
+            forceFormData: true,
+            onSuccess: () => reset(),
+            preserveScroll: true,
+        });
+
     };
 
     return (
@@ -101,7 +71,7 @@ export default function ContactForm() {
                         isFocused
                         onChange={(e) => setData('email', e.target.value)}
                     />
-                    {errors.name && <p className="text-red-500">{errors.name}</p>}
+                    <InputError message={errors.email} />
                 </div>
                 <div>
                     <InputLabel htmlFor="name" value="Dein Name" />

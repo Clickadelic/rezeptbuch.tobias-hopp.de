@@ -13,6 +13,7 @@ import chefkoch from '@images/svg/Chef-Tobias.svg';
 
 import { FaCircleCheck, FaHeadphones, FaRegHeart } from 'react-icons/fa6';
 import ContactBlock from '@/components/reusables/ContactBlock';
+import AlteringBlock from '@/components/reusables/AlteringBlock';
 
 
 /**
@@ -44,6 +45,7 @@ export default function Frontpage() {
             <FaqAccordeon />
             <Seperator style="mail" />
             <ContactBlock />
+            <AlteringBlock />
         </FullWidthLayout>
     );
 }

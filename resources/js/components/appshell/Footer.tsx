@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 
-import BackToTopButton from '@/components/reusables/BackToTopButton';
+import BackToTopButton from '@/components/appshell/BackToTopButton/Index';
 import NewsletterForm from '../forms/NewsletterForm';
 
 import badgeSrc from '@images/Quality-Symbol.png';
@@ -17,7 +17,6 @@ import { cn } from '@/lib/utils';
 interface FooterProps {
     className?: string
 }
-
 
 /**
  * Renders the footer section of the website, containing navigation links, FAQ,

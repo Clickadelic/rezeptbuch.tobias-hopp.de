@@ -9,7 +9,7 @@ import { FiCheckCircle } from 'react-icons/fi';
 import { LiaCocktailSolid } from "react-icons/lia";
 import { RiCake3Line, } from "react-icons/ri";
 import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
-
+import { IoMailOpenOutline } from "react-icons/io5";
 import { BsJournalBookmark, BsInfoCircle } from 'react-icons/bs';
 import { GoCommentDiscussion } from "react-icons/go";
 import { TfiCommentAlt } from "react-icons/tfi";
@@ -32,6 +32,7 @@ interface SeparatorProps {
         "fork-knife" |
         "info" |
         "muffin" |
+        "mail" |
         "salad" |
         "heart-outline" |
         "heart" |
@@ -81,6 +82,9 @@ export default function Separator({ size = 6, style = "fork-knife" }: SeparatorP
             break;
         case "muffin":
             IconComponent = RiCake3Line;
+            break;
+        case "mail":
+            IconComponent = IoMailOpenOutline;
             break;
         case "fork-knife":
             IconComponent = GiKnifeFork;

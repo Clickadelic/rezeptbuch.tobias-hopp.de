@@ -121,11 +121,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <div className="flex flex-col">
                 <div className="flex flex-row items-center gap-2">
                     <div>
-                        {/* <Avatar
-                            src={recipe.user?.avatar}
-                            alt={recipe.user?.name}
-                            user={recipe.user}
-                        /> */}
+                        <Avatar user={recipe.user?.avatar} />
                     </div>
                     <div>
                         <h3 className="font-medium text-lg">{recipe.user?.name}</h3>

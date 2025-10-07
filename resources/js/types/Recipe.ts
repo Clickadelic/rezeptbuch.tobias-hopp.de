@@ -2,6 +2,7 @@
 import { Difficulty } from './Difficulty';
 import { Ingredient } from './Ingredient';
 import { Category } from './Category';
+import { AuthUser } from '.';
 
 export type Recipe = {
     id?: string;
@@ -33,14 +34,10 @@ export type Recipe = {
     }>;
     user_id?: number;
     // Tempwise  user data
-    user?: {
-        id: number;
-        name: string;
-        roles: string[];
-    };
+    user?: AuthUser;
+    // noch Check auf Richtigkeit machen...
     category_id?: number; // Für DB-Relation
     category?: Category;
-    is_favorite?: boolean;
     created_at: string;
     updated_at: string;
     deleted_at?: string;

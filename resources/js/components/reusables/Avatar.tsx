@@ -9,18 +9,12 @@ interface AvatarProps {
 }
 
 export default function Avatar({ user }: AvatarProps) {
-    if (!user) {
-        return (
-            <ShadCnAvatar>
-                <AvatarFallback><GiCook /></AvatarFallback>
-            </ShadCnAvatar>
-        );
-    }
+    
 
     return (
-        <ShadCnAvatar className="border border-gray-400 dark:border-gray-700">
-            <AvatarImage src={user.avatar || ""} />
-            <AvatarFallback><GiCook className="text-gray-600" /></AvatarFallback>
+        <ShadCnAvatar className="border border-gray-200 dark:border-gray-700">
+            <AvatarImage src={user?.avatar || ""} />
+            <AvatarFallback><GiCook className="text-gray-400" /></AvatarFallback>
         </ShadCnAvatar>
     );
 }

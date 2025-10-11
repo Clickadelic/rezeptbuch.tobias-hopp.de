@@ -9,10 +9,10 @@ export default function AlteringBlock({ className }: AlteringBlockProps) {
     return (
         <div className="w-full max-w-2xl mx-auto">
             <div className={cn("w-full flex gap-2 items-center justify-center", className ?? "")}>
-                <div className="w-1/2 h-1 bg-primary">
-                    img
+                <div className="w-1/2 h-12 bg-primary">
+                    <img src="asd" />
                 </div>
-                <div className="w-1/2 h-1 bg-primary">
+                <div className="w-1/2 h-12 bg-primary">
                     Text
                 </div>
             </div>

@@ -42,9 +42,8 @@ export default function ContactForm({ className }: ContactFormProps) {
         e.preventDefault();
 
         post(route('contact.store'), {
-            forceFormData: true,
-            onSuccess: () => reset(),
-            preserveScroll: true,
+            // forceFormData: true,
+            // onSuccess: () => reset(),
         });
 
     };
@@ -68,7 +67,6 @@ export default function ContactForm({ className }: ContactFormProps) {
                         value={data.email}
                         placeholder="max.mustermann@me.com"
                         className="w-full"
-                        isFocused
                         onChange={(e) => setData('email', e.target.value)}
                     />
                     <InputError message={errors.email} />
@@ -81,7 +79,6 @@ export default function ContactForm({ className }: ContactFormProps) {
                         value={data.name}
                         placeholder="Wie darf ich Dich ansprechen?"
                         className="w-full"
-                        isFocused
                         onChange={(e) => setData('name', e.target.value)}
                     />
                     {errors.name && <p className="text-red-500">{errors.name}</p>}

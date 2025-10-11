@@ -2,7 +2,6 @@ import Avatar from "./Avatar";
 import VerifiedBadge from "./VerifiedBadge";
 
 export default function DataTable ({ users }: any) {
-    console.log("Datatable", users);
     return (
         <div className="rounded-3xl border border-white/40 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
             <header className="flex flex-col gap-2 border-b border-gray-200/70 py-6 dark:border-gray-800 md:flex-row md:items-center md:justify-between">
@@ -27,13 +26,13 @@ export default function DataTable ({ users }: any) {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((u: any) => (
-                            <tr key={u.id} className="border-b border-gray-200 dark:border-gray-700">
-                                <td className="px-6 py-4">{u.id}</td>
-                                <td className="px-6 py-4"><Avatar user={u} /></td>
-                                <td className="px-6 py-4">{u.name}</td>
-                                <td className="px-6 py-4">{u.email}</td>
-                                <td className="px-6 py-4">{u.email_verified_at ? <VerifiedBadge verified={true} /> : <VerifiedBadge verified={false} />}</td>
+                        {users.map((user: any) => (
+                            <tr key={user.id} className="border-b border-gray-200 dark:border-gray-700">
+                                <td className="px-6 py-4">{user.id}</td>
+                                <td className="px-6 py-4"><Avatar url={user?.avatar} /></td>
+                                <td className="px-6 py-4">{user.name}</td>
+                                <td className="px-6 py-4">{user.email}</td>
+                                <td className="px-6 py-4">{user.email_verified_at ? <VerifiedBadge verified={true} /> : <VerifiedBadge verified={false} />}</td>
                                 <td className="px-6 py-4">
                                     <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">bearbeiten</a>
                                 </td>

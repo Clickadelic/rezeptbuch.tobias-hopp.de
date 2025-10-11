@@ -21,9 +21,6 @@ import ContextMenu from '@/components/reusables/ContextMenu';
 import { cn } from '@/lib/utils';
 import { FaHeart } from 'react-icons/fa6';
 
-import { Toggle } from "@/components/ui/toggle"
-import { useState } from 'react';
-
 interface RecipeCardProps {
     recipe: Recipe;
     className?: string;
@@ -36,7 +33,6 @@ interface RecipeCardProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function RecipeCard({ recipe, className }: RecipeCardProps) {
-    console.log(recipe);
 
     /**
      * Kategorie -> Icon Mapping

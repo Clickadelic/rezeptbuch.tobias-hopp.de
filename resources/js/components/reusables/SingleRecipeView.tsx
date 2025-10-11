@@ -39,7 +39,8 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     const { related } = usePage<SharedPageProps>().props;
     const [count, setCount] = useState<number>(1);
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
-    
+    const avatar = "./storage/" + user?.avatar;
+    console.log("Avatar from Recipe", avatar);
     const toggleImageModal = () => {
         setIsImageModalOpen(!isImageModalOpen);
     }
@@ -121,7 +122,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <div className="flex flex-col">
                 <div className="flex flex-row items-center gap-2">
                     <div>
-                        <Avatar user={recipe.user} />
+                        <Avatar url={recipe?.user?.avatar} />
                     </div>
                     <div>
                         <h3 className="font-medium text-lg">{recipe.user?.name}</h3>

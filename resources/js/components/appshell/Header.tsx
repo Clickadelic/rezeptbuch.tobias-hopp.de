@@ -9,8 +9,7 @@ import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/reusables/Dropdown';
 import { ModeToggle } from '@/components/appshell/ModeToggle';
-
-import { GiCook } from 'react-icons/gi';
+import Avatar from '@/components/reusables/Avatar';
 import { BsHouse } from 'react-icons/bs';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
@@ -20,6 +19,7 @@ import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { SharedPageProps } from "@/types";
+import { Link } from "@inertiajs/react";
 
 /**
  * The application header.
@@ -68,7 +68,7 @@ const Header = () => {
                                                 type="button"
                                                 className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:cursor-pointer focus:outline-none gap-2"
                                             >
-                                                <GiCook className="size-5 hidden md:flex rounded-full border text-gray-600 dark:text-gray-200 border-gray-600 dark:border-gray-200" />
+                                                <Avatar url={auth?.user?.avatar} />
                                                 {auth.user?.name}
                                                 <svg
                                                     className="-me-0.5 ms-2 h-4 w-4"

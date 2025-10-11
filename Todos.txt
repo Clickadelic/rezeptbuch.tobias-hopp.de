@@ -6,3 +6,6 @@
 // evtl. Neues Formular ??
 // Header und Footer überarbeiten
 // Weitere Ideen für Startseite sammeln
+
+// Favicon
+// https://www.svgrepo.com/svg/276548/recipe?edit=true

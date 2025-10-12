@@ -61,7 +61,7 @@ export default function FullWidthLayout({ showTitle = true, title, children }: F
                         <BreadcrumbNav />
                     </div>
                     <div className="mx-auto container grow px-6 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
-                        <main className="pt-5 pb-24">
+                        <main className="pt-5 pb-24 overflow-hidden">
                             {showTitle && <h2 className="text-xl font-medium mb-5">{title}</h2>}
                             {children}
                         </main>

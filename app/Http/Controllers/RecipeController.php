@@ -308,6 +308,14 @@ class RecipeController extends Controller
         return redirect()->route('recipes.index')->with('success', 'Rezept gelöscht!');
     }
 
+    /**
+     * Searches for recipes by title, description, ingredients, or instructions.
+     * If the search query exactly matches a category name, it will return recipes from that category.
+     * Otherwise, it will return recipes from a full-text search.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
     public function search(Request $request)
     {
         $query = trim($request->input('search', ''));
@@ -352,6 +360,4 @@ class RecipeController extends Controller
             'filters' => ['search' => $query],
         ]);
     }
-
-    
 }

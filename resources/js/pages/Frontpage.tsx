@@ -2,7 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import AuthTeaserBox from '@/components/reusables/AuthTeaserBox';
+import AuthTeaserBox from '@/components/reusables/AuthTeaserBlock';
 import CategoryGrid from '@/components/reusables/CategoryGrid/Index';
 import TitleBlock from '@/components/reusables/TitleBlock';
 import Carousel from '@/components/reusables/Carousel/Index';

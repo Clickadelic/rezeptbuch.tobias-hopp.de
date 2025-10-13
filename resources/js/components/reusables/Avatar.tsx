@@ -6,7 +6,6 @@ interface AvatarProps {
 }
 
 export default function Avatar({ url }: AvatarProps) {
-    // console.log("Avatar in Avatar", url);
     const avatarUrl = "/storage/" + url;
     return (
         <>

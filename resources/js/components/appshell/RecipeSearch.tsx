@@ -3,16 +3,6 @@ import { RiSearchLine } from 'react-icons/ri';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 
-import { PiCookingPot } from "react-icons/pi";
-import { LiaCocktailSolid } from "react-icons/lia";
-import { RiCake3Line } from "react-icons/ri";
-import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
-import { TbSalad } from "react-icons/tb";
-import { GiKnifeFork } from "react-icons/gi";
-import { Link, usePage } from '@inertiajs/react';
-import { SharedPageProps } from '@/types';
-
-
 /**
  * A search bar for recipes.
  *
@@ -55,7 +45,6 @@ export default function RecipeSearch() {
                         </Button>
                     </form>
                 </div>
-
         </div>
     );
 }

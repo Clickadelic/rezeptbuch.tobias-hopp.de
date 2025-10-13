@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent, useEffect } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 
@@ -17,7 +17,7 @@ import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
 
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
-import CategoryGrid from '@/components/forms/CategoryGrid';
+import CategoryGrid from '@/components/forms/CategoryToggle';
 
 import { Recipe } from '@/types/Recipe';
 import { UNITS } from '@/types/Units';

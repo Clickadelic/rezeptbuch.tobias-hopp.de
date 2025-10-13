@@ -116,7 +116,7 @@ export default function UpdateProfileInformation({
                 <div>
                     <label
                         htmlFor="avatar"
-                        className={cn("mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition", data.avatar)}
+                        className={cn("mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition", data.avatar)}
                     >
                         {data.avatar ? (
                             <p className="text-xs text-gray-500">{data.avatar.name}</p>

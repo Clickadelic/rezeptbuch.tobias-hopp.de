@@ -1,8 +1,4 @@
 import { Avatar as ShadCnAvatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
-import { AuthUser } from "@/types";
-import { Recipe } from "@/types/Recipe";
-
 import { GiCook } from "react-icons/gi";
 
 interface AvatarProps {

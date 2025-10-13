@@ -28,7 +28,7 @@ export default function UpdateProfileInformation({
     className?: string;
 }) {
     const user = usePage<SharedPageProps>().props.auth.user;
-    console.log("User", user);
+
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name ?? "",
         email: user.email ?? "",

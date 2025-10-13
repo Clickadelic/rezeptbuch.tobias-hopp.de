@@ -26,12 +26,10 @@ interface ContextMenuProps {
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
 export default function ContextMenu({ recipe }: ContextMenuProps) {
-    const { auth } = usePage<SharedPageProps>().props;
-    const { hasRole, isOwner } = usePermissions();
+
+    const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
-    // console.log("ContextMenu >> Userroles:", auth.user?.roles[0]);
-    // console.log("ContextMenu >> Permissions:", auth.user?.permissions[0]);
 
     const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
     const [isSocialShareOpen, setIsSocialShareOpen] = useState<boolean>(false);

@@ -1,13 +1,9 @@
-import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
-import MainSidebar from '@/components/sidebars/MainSidebar';
-import ContextMenu from '@/components/reusables/ContextMenu';
-
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import ContextMenu from '@/components/reusables/ContextMenu';
 
-import { GoClock, GoPlus, GoStar, GoZoomIn } from 'react-icons/go';
-import { FiMinus } from 'react-icons/fi';
+import { GoClock, GoZoomIn } from 'react-icons/go';
+
 import { LuUtensilsCrossed } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi";
 import { LiaCocktailSolid } from "react-icons/lia";
@@ -18,7 +14,7 @@ import { BiDish } from 'react-icons/bi';
 import { GiCrystalBars } from "react-icons/gi";
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { Recipe } from '@/types/Recipe';
-import { IoEye } from 'react-icons/io5';
+
 import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
@@ -33,14 +29,13 @@ interface ShowRecipeProps {
     recipe: Recipe;
 }
 
-
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     const { user } = usePage<SharedPageProps>().props.auth;
     const { related } = usePage<SharedPageProps>().props;
-    const [count, setCount] = useState<number>(1);
+    
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
     const avatar = "./storage/" + user?.avatar;
-    console.log("Avatar from Recipe", avatar);
+
     const toggleImageModal = () => {
         setIsImageModalOpen(!isImageModalOpen);
     }
@@ -79,7 +74,6 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
                         );
                     })()}
-                    
                     <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div>
                 </div>
                 <div className="w-full flex flex-col justify-between gap-5">

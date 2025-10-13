@@ -1,18 +1,21 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 
-import DataCard from '@/components/reusables/DataCard';
-import RecipeCard from '@/components/reusables/RecipeCard';
-import VerifiedBadge from '@/components/reusables/VerifiedBadge';
+import FavoritesList from '@/components/reusables/FavoritesList';
+
+import donutChartSvg from '@/images/svg/donut-chart.svg';
+import Seperator from '@/components/reusables/Seperator';
+import DataTable from '@/components/reusables/DataTable';
+import { columns } from "@/components/reusables/Columns"
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { SharedPageProps } from '@/types';
 import { Recipe } from '@/types/Recipe';
 import { usePage } from '@inertiajs/react';
+
 import { BiDish } from 'react-icons/bi';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { GoClock } from 'react-icons/go';
 import { LuUtensilsCrossed } from 'react-icons/lu';
-
 import { PiCookingPot } from "react-icons/pi";
 import { LiaCocktailSolid } from "react-icons/lia";
 import { RiCake3Line } from "react-icons/ri";
@@ -29,49 +32,48 @@ import PieChart from '@/components/reusables/Charts/PieChart';
 import { cn } from '@/lib/utils';
 import { Link } from 'lucide-react';
 
-
 export default function Dashboard() {
-    const { recipes } = usePage<SharedPageProps>().props;
-    const [isFavorited, setIsFavorited] = useState(true);
-    const userFavorites = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    // TODO: Remove Debugmode when it's finished
-    const isDebugMode = false;
+    const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites } = usePage<SharedPageProps>().props;
+
     return (
-        <FullWidthLayout title="Dashboard">
-            <div className="bg-gray-200 dark:bg-gray-900">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-17 md:grid-rows-2 lg:grid-rows-6 gap-px">
-                    <div className={cn("lg:col-span-4 lg:row-span-3 bg-white p-3", isDebugMode && "bg-rose-200")}>
-                        <h3 className="text-lg">Rezepte</h3>
-                        <div className="test">
-                            Du hast aktuell 23 Rezepte.
-                            <Link href="test" className="underline">Neues Rezept</Link>
+        <FullWidthLayout title="Dashboard" showTitle={false}>
+            <div className="rounded-lg overflow-hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-5 mb-12">
+                    <div className="col-span-2 row-span-1">
+                        <div className="flex justify-start items-start gap-2">
+                            <h3 className="text-2xl font-medium">Persönliche Rezepte</h3>
+                            <h4 className="text-2xl font-medium">{totalUserRecipeCount}</h4>
                         </div>
+                        <p className="text-sm text-gray-500">Du hast aktuell {totalUserRecipeCount} Rezepte</p>
                     </div>
-                    <div className={cn("lg:col-span-4 lg:row-span-3 bg-white p-3", isDebugMode && "bg-sky-200")}>
-                        <h3 className="text-lg">Freie Box</h3>
-                        <div className="test">
-                            Freie Box
+                    <div className="col-span-2 row-span-1">
+                        <div className="flex justify-start items-start gap-2">
+                            <h3 className="text-2xl font-medium">Rezepte gesamt</h3>
+                            <h4 className="text-2xl font-medium">{totalRecipeCount}</h4>
                         </div>
+                        <p className="text-sm text-gray-500">Insgesamt gibt es {totalRecipeCount} Rezepte</p>
                     </div>
-                    <div className={cn("lg:col-span-4 lg:row-span-3 bg-white p-3", isDebugMode && "bg-emerald-200")}>
-                        <h3 className="text-lg">Freie Box</h3>
-                        <div className="test">
-                            Freie Box
+                    <div className="col-span-2 row-span-1">
+                        <div className="flex justify-start items-start gap-2">
+                            <h3 className="text-2xl font-medium">Zutaten gesamt</h3>
+                            <h4 className="text-2xl font-medium">{totalIngredientCount}</h4>
                         </div>
+                        <p className="text-sm text-gray-500">Insgesamt gibt es {totalIngredientCount} Zutaten</p>
                     </div>
-                    <div className={cn("lg:col-span-5 lg:row-span-6 bg-white p-4 w-calc(100% + 2px)", isDebugMode && "bg-teal-200")}>
-                        <h3 className="text-lg">Dein Anteil an Rezepten</h3>
-                        <div className="mt-4">
-                            <DonutChart />
+                    <div className="col-span-2 row-span-1">
+                        <div className="flex justify-start items-start gap-2">
+                            <h3 className="text-2xl font-medium">Benutzer</h3>
+                            <h4 className="text-2xl font-medium">6</h4>
                         </div>
+                        <p className="text-sm text-gray-500">Insgesamt gibt es {} Zutaten</p>
                     </div>
-                    <div className={cn("md:cols-span-4 lg:col-span-12 lg:row-span-3 bg-white p-3", isDebugMode && "bg-cyan-200")}>
-                        <h3 className="text-lg">Rezepte</h3>
-                        <div className="test">
-                            Last Box.
-                        </div>
+                    <div className="col-span-4">
+                        <h3>DonutChart</h3>
                     </div>
                 </div>
+                <Seperator style="heart-outline" />
+                <h3 className="text-xl font-medium mb-3">Deine Favoriten</h3>
+                <DataTable columns={columns} data={userFavorites as Recipe[]} />
             </div>
         </FullWidthLayout>
     );

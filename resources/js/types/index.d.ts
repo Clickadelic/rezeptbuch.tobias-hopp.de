@@ -70,6 +70,8 @@ export interface SharedPageProps extends InertiaPageProps {
     totalIngredientCount: number;
     totalRecipeCount: number;
 
-
+    favorites?: {
+        recipe: Recipe[];
+    }
     [key: string]: unknown; // Fallback
 }

@@ -11,9 +11,11 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\CustomVerifyEmail;
 
 /**
+ * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $favorites
  * @method \Illuminate\Support\Collection getRoleNames()
  * @method \Illuminate\Support\Collection getAllPermissions()
  */
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasRoles;
@@ -85,6 +87,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new CustomVerifyEmail);
     }
 
+    /**
+     * Get all recipes favorited by the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function favorites()
     {
         return $this->belongsToMany(Recipe::class, 'favorites')->withTimestamps();

@@ -26,12 +26,16 @@ class DashboardController extends Controller
 
         // Benutzerbezogene Counts
         $totalUserRecipeCount = Recipe::where('user_id', Auth::id())->count();
+        
+        // Alle Favoriten des Users:
+        $userFavorites = Auth::user()->favorites()->with(['media', 'category'])->get();
 
         return Inertia::render('Dashboard', [
             'latestRecipe'            => $latestRecipe,
             'totalUserRecipeCount'    => $totalUserRecipeCount,
             'totalRecipeCount'        => $totalRecipeCount,
             'totalIngredientCount'    => $totalIngredientCount,
+            'userFavorites'           => $userFavorites
         ]);
     }
 

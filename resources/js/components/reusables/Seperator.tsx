@@ -46,7 +46,7 @@ interface SeparatorProps {
  * @example
  * <Separator size={8} style="cooking-pot" />
  */
-export default function Separator({ size = 6, style = "fork-knife" }: SeparatorProps) {
+export default function Separator({ size = 5, style = "fork-knife" }: SeparatorProps) {
     // Tailwind Formula
     const baseStyle = {
         fontSize: `${size * 0.25}rem`, // flexible scaling
@@ -112,7 +112,7 @@ export default function Separator({ size = 6, style = "fork-knife" }: SeparatorP
     }
 
     return (
-        <div className="relative my-12 mx-auto w-full max-w-[52rem] flex items-center justify-center">
+        <div className="relative my-4 md:my-8 mx-auto w-full max-w-[52rem] flex items-center justify-center">
             {/* Linie */}
             <div className="absolute left-0 right-0 top-1/2 h-px bg-gray-200  dark:bg-gray-700"></div>
 

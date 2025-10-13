@@ -40,11 +40,10 @@ export default function ContactForm({ className }: ContactFormProps) {
     // Submit Handler → unterscheidet Create vs Edit
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        
         post(route('contact.store'), {
             forceFormData: true,
             onSuccess: () => reset(),
-            preserveScroll: true,
         });
 
     };
@@ -68,7 +67,6 @@ export default function ContactForm({ className }: ContactFormProps) {
                         value={data.email}
                         placeholder="max.mustermann@me.com"
                         className="w-full"
-                        isFocused
                         onChange={(e) => setData('email', e.target.value)}
                     />
                     <InputError message={errors.email} />
@@ -81,10 +79,21 @@ export default function ContactForm({ className }: ContactFormProps) {
                         value={data.name}
                         placeholder="Wie darf ich Dich ansprechen?"
                         className="w-full"
-                        isFocused
                         onChange={(e) => setData('name', e.target.value)}
                     />
                     {errors.name && <p className="text-red-500">{errors.name}</p>}
+                </div>
+                {/* Beschreibung */}
+                <div>
+                    <InputLabel htmlFor="message" value="Dein Feedback" />
+                    <Textarea
+                        value={data.message}
+                        rows={3}
+                        placeholder="Hi, melde mich, da.."
+                        className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2"
+                        onChange={(e) => setData('message', e.target.value)}
+                    />
+                    {errors.message && <p className="text-red-500">{errors.message}</p>}
                 </div>
                 <Button type="submit" variant="primary" className="mt-4" disabled={processing}>
                     Feedback Senden

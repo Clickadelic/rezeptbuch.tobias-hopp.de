@@ -1,8 +1,9 @@
 import { useForm } from '@inertiajs/react';
+
 import TextInput from '@/components/reusables/TextInput';
 import InputError from '@/components/reusables/InputError';
 import InputLabel from '@/components/reusables/InputLabel';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 
 /**
  * NewsletterForm
@@ -17,30 +18,30 @@ export default function NewsletterForm() {
         email: '',
     });
     return (
-        <form className="flex flex-col justify-between items-start gap-2">
+        <form className="flex flex-col justify-between items-start gap-3">
             <div className="w-full">
-                <InputLabel htmlFor="name" value="Name" className="hidden" />
+                <InputLabel htmlFor="name" value="Name" className="text-gray-100 dark:text-gray-200" />
                 <TextInput
                     type="text"
                     name="name"
                     id="name"
-                    className="w-full"
+                    className="w-full border-stone-100 dark:bg-stone-800 dark:placeholder:text-stone-500 dark:border-stone-600"
                     autoComplete="name"
                     placeholder="Name"
                 />
                 <InputError message={errors.name} className="mt-2" />
             </div>
             <div className="w-full">
-                <InputLabel value="E-Mail" className="hidden" />
+                <InputLabel htmlFor="email" value="E-Mail" className="text-gray-100 dark:text-gray-200" />
                 <TextInput
-                    type="email"
+                    type="text"
                     name="email"
                     id="email"
-                    className="w-full"
-                    autoComplete="email"
+                    className="w-full border-stone-100 dark:bg-stone-800 dark:placeholder:text-stone-500 dark:border-stone-600"
+                    autoComplete="e-mail"
                     placeholder="E-Mail"
                 />
-                <InputError message={errors.name} className="mt-2" />
+                <InputError message={errors.email} className="mt-2" />
             </div>
             <Button
                 type="submit"

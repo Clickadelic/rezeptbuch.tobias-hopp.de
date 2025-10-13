@@ -61,8 +61,6 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
         })
     };
 
-    
-
     useEffect(() => {
         if (flash?.success) {
             toast.success(flash.success, {
@@ -173,7 +171,9 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                         </AlertDialogContent>
                     </AlertDialog>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                {/* TODO: Drucken */}
+                
+                {/* <DropdownMenuItem>
                     <Link
                         href="/"
                         className="flex flex-row items-center"
@@ -182,7 +182,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                         <IoPrintOutline className="size-5 mr-2" />
                         Drucken
                     </Link>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
             </DropdownMenuContent>
         </DropdownMenu>
     );

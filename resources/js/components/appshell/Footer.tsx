@@ -27,9 +27,9 @@ interface FooterProps {
 export default function Footer({ className }: FooterProps) {
     return (
         <>  
-            <BackToTopButton />
             <div className={cn("bg-gradient-to-b from-stone-800 to-stone-900 border-t-4 border-t-primary text-gray-100", className)}>
-                <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-14">
+                <BackToTopButton />
+                <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-12">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-b-black ">
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">

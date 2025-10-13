@@ -1,49 +1,65 @@
-import Avatar from "./Avatar";
-import VerifiedBadge from "./VerifiedBadge";
+"use client"
 
-export default function DataTable ({ users }: any) {
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
+
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
+}
+
+export default function DataTable<TData, TValue>({ columns, data, }: DataTableProps<TData, TValue>) {
+
+    const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+    })
+
     return (
-        <div className="rounded-3xl border border-white/40 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
-            <header className="flex flex-col gap-2 border-b border-gray-200/70 py-6 dark:border-gray-800 md:flex-row md:items-center md:justify-between">
-                
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Benutzer</h2>
-                <div className="inline-flex items-center gap-4 rounded-full bg-gray-100/80 px-4 py-2 text-xs font-semibold text-gray-500 dark:bg-gray-800/60 dark:text-gray-300">
-                    <VerifiedBadge verified={true} />
-                    <VerifiedBadge verified={false} />
-                </div>
-            </header>
-            <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 overflow-x-auto">
-                    <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">Id</th>
-                            <th scope="col" className="px-6 py-3">Avatar</th>
-                            <th scope="col" className="px-6 py-3">Benutzername</th>
-                            <th scope="col" className="px-6 py-3">E-Mail</th>
-                            <th scope="col" className="px-6 py-3">Status</th>
-                            <th scope="col" className="px-6 py-3"><span className="sr-only">bearbeiten</span></th>
-                            <th scope="col" className="px-6 py-3"><span className="sr-only">löschen</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user: any) => (
-                            <tr key={user.id} className="border-b border-gray-200 dark:border-gray-700">
-                                <td className="px-6 py-4">{user.id}</td>
-                                <td className="px-6 py-4"><Avatar url={user?.avatar} /></td>
-                                <td className="px-6 py-4">{user.name}</td>
-                                <td className="px-6 py-4">{user.email}</td>
-                                <td className="px-6 py-4">{user.email_verified_at ? <VerifiedBadge verified={true} /> : <VerifiedBadge verified={false} />}</td>
-                                <td className="px-6 py-4">
-                                    <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">bearbeiten</a>
-                                </td>
-                                <td className="px-6 py-4">
-                                    <a href="#" className="text-red-600 hover:underline dark:text-red-500">löschen</a>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+        <div className="overflow-hidden rounded-md border">
+            <Table>
+                <TableHeader>
+                {table.getHeaderGroups().map((headerGroup) => (
+                    <TableRow key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => {
+                            return (
+                            <TableHead key={header.id}>
+                                {header.isPlaceholder
+                                ? null
+                                : flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext()
+                                    )}
+                            </TableHead>
+                            )
+                        })}
+                    </TableRow>
+                ))}
+                </TableHeader>
+                <TableBody>
+                    {table.getRowModel().rows?.length ? (
+                        table.getRowModel().rows.map((row) => (
+                        <TableRow
+                            key={row.id}
+                            data-state={row.getIsSelected() && "selected"}
+                        >
+                            {row.getVisibleCells().map((cell) => (
+                            <TableCell key={cell.id}>
+                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            </TableCell>
+                            ))}
+                        </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                        <TableCell colSpan={columns.length} className="h-24 text-center">
+                            No results.
+                        </TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
         </div>
-    );
+    )
 }

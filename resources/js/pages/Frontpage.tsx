@@ -45,7 +45,9 @@ export default function Frontpage() {
             <FaqAccordeon />
             <Seperator style="mail" />
             <ContactBlock />
+            <Seperator style="heart" />
             <AlteringBlock />
+            <AlteringBlock reverse={true} />
         </FullWidthLayout>
     );
 }

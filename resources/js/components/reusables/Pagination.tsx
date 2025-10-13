@@ -9,7 +9,8 @@ interface PaginationProps {
 }
 
 export default function Pagination({ links }: PaginationProps) {
-  if (!links.length) return null
+  console.log(links);
+  if (links.length >= 2) return null
 
   return (
     <div className="flex items-center justify-center space-x-2 mt-12">

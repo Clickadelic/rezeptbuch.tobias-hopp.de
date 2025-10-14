@@ -5,7 +5,7 @@ import FavoritesList from '@/components/reusables/FavoritesList';
 import donutChartSvg from '@/images/svg/donut-chart.svg';
 import Seperator from '@/components/reusables/Seperator';
 import DataTable from '@/components/reusables/DataTable';
-import { columns } from "@/components/reusables/Columns"
+import { columns } from '@/components/reusables/Columns';
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { SharedPageProps } from '@/types';
@@ -16,13 +16,13 @@ import { BiDish } from 'react-icons/bi';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { GoClock } from 'react-icons/go';
 import { LuUtensilsCrossed } from 'react-icons/lu';
-import { PiCookingPot } from "react-icons/pi";
-import { LiaCocktailSolid } from "react-icons/lia";
-import { RiCake3Line } from "react-icons/ri";
-import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
-import { TbSalad, TbSalt } from "react-icons/tb";
-import { GiKnifeFork } from "react-icons/gi";
-import { TbUsers } from "react-icons/tb";
+import { PiCookingPot } from 'react-icons/pi';
+import { LiaCocktailSolid } from 'react-icons/lia';
+import { RiCake3Line } from 'react-icons/ri';
+import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
+import { TbSalad, TbSalt } from 'react-icons/tb';
+import { GiKnifeFork } from 'react-icons/gi';
+import { TbUsers } from 'react-icons/tb';
 import { useState } from 'react';
 
 import DonutChart from '@/components/reusables/Charts/DonutChart';
@@ -33,7 +33,8 @@ import { cn } from '@/lib/utils';
 import { Link } from 'lucide-react';
 
 export default function Dashboard() {
-    const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites } = usePage<SharedPageProps>().props;
+    const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites } =
+        usePage<SharedPageProps>().props;
 
     return (
         <FullWidthLayout title="Dashboard" showTitle={false}>
@@ -44,21 +45,27 @@ export default function Dashboard() {
                             <h3 className="text-2xl font-medium">Persönliche Rezepte</h3>
                             <h4 className="text-2xl font-medium">{totalUserRecipeCount}</h4>
                         </div>
-                        <p className="text-sm text-gray-500">Du hast aktuell {totalUserRecipeCount} Rezepte</p>
+                        <p className="text-sm text-gray-500">
+                            Du hast aktuell {totalUserRecipeCount} Rezepte
+                        </p>
                     </div>
                     <div className="col-span-2 row-span-1">
                         <div className="flex justify-start items-start gap-2">
                             <h3 className="text-2xl font-medium">Rezepte gesamt</h3>
                             <h4 className="text-2xl font-medium">{totalRecipeCount}</h4>
                         </div>
-                        <p className="text-sm text-gray-500">Insgesamt gibt es {totalRecipeCount} Rezepte</p>
+                        <p className="text-sm text-gray-500">
+                            Insgesamt gibt es {totalRecipeCount} Rezepte
+                        </p>
                     </div>
                     <div className="col-span-2 row-span-1">
                         <div className="flex justify-start items-start gap-2">
                             <h3 className="text-2xl font-medium">Zutaten gesamt</h3>
                             <h4 className="text-2xl font-medium">{totalIngredientCount}</h4>
                         </div>
-                        <p className="text-sm text-gray-500">Insgesamt gibt es {totalIngredientCount} Zutaten</p>
+                        <p className="text-sm text-gray-500">
+                            Insgesamt gibt es {totalIngredientCount} Zutaten
+                        </p>
                     </div>
                     <div className="col-span-2 row-span-1">
                         <div className="flex justify-start items-start gap-2">
@@ -77,5 +84,4 @@ export default function Dashboard() {
             </div>
         </FullWidthLayout>
     );
-}    
-
+}

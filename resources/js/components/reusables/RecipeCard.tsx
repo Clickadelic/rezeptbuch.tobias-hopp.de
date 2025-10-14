@@ -6,14 +6,14 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Recipe } from '@/types/Recipe';
 
 // Icons für Kategorien
-import { LuUtensilsCrossed } from "react-icons/lu";
-import { PiCookingPot } from "react-icons/pi";
-import { LiaCocktailSolid } from "react-icons/lia";
-import { RiCake3Line } from "react-icons/ri";
-import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
-import { TbSalad } from "react-icons/tb";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { IoHeart } from "react-icons/io5";
+import { LuUtensilsCrossed } from 'react-icons/lu';
+import { PiCookingPot } from 'react-icons/pi';
+import { LiaCocktailSolid } from 'react-icons/lia';
+import { RiCake3Line } from 'react-icons/ri';
+import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
+import { TbSalad } from 'react-icons/tb';
+import { IoMdHeartEmpty } from 'react-icons/io';
+import { IoHeart } from 'react-icons/io5';
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
@@ -33,7 +33,6 @@ interface RecipeCardProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function RecipeCard({ recipe, className }: RecipeCardProps) {
-
     /**
      * Kategorie -> Icon Mapping
      */
@@ -47,7 +46,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
     };
 
     return (
-        <li className={cn("group max-w-96 mb-5", className)}>
+        <li className={cn('group max-w-96 mb-5', className)}>
             <Link href={route('recipes.show', recipe.slug)} className="block" title={recipe.name}>
                 <Card className="relative overflow-hidden">
                     <CardHeader
@@ -56,7 +55,6 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
-                    
                         {/* {recipe.category && (
                             <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-8">
                                 {iconMap[recipe.category.slug ?? ''] ?? (
@@ -65,7 +63,11 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                             </div>
                         )} */}
                         <div className="absolute top-1 left-1 z-20 flex items-center justify-center">
-                            <FavoriteButton key={recipe.id} recipeId={recipe.id} isFavorite={recipe.is_favorite} />
+                            <FavoriteButton
+                                key={recipe.id}
+                                recipeId={recipe.id}
+                                isFavorite={recipe.is_favorite}
+                            />
                         </div>
                         {/* Hero image */}
                         {(() => {
@@ -81,7 +83,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                             ) : (
                                 <BiDish className="size-10" />
                             );
-                        })()}    
+                        })()}
                     </CardHeader>
 
                     {/* Titel + Kategorie */}

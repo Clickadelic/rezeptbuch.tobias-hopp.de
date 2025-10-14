@@ -4,14 +4,14 @@ import ContextMenu from '@/components/reusables/ContextMenu';
 
 import { GoClock, GoZoomIn } from 'react-icons/go';
 
-import { LuUtensilsCrossed } from "react-icons/lu";
-import { PiCookingPot } from "react-icons/pi";
-import { LiaCocktailSolid } from "react-icons/lia";
-import { RiCake3Line } from "react-icons/ri";
-import { GiCakeSlice } from "react-icons/gi";
-import { TbSalad } from "react-icons/tb";
+import { LuUtensilsCrossed } from 'react-icons/lu';
+import { PiCookingPot } from 'react-icons/pi';
+import { LiaCocktailSolid } from 'react-icons/lia';
+import { RiCake3Line } from 'react-icons/ri';
+import { GiCakeSlice } from 'react-icons/gi';
+import { TbSalad } from 'react-icons/tb';
 import { BiDish } from 'react-icons/bi';
-import { GiCrystalBars } from "react-icons/gi";
+import { GiCrystalBars } from 'react-icons/gi';
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { Recipe } from '@/types/Recipe';
 
@@ -32,13 +32,13 @@ interface ShowRecipeProps {
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     const { user } = usePage<SharedPageProps>().props.auth;
     const { related } = usePage<SharedPageProps>().props;
-    
+
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
-    const avatar = "./storage/" + user?.avatar;
+    const avatar = './storage/' + user?.avatar;
 
     const toggleImageModal = () => {
         setIsImageModalOpen(!isImageModalOpen);
-    }
+    };
 
     const iconMap: Record<string, JSX.Element> = {
         vorspeise: <TbSalad className="size-5 text-primary" />,
@@ -50,7 +50,6 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     };
 
     return (
-
         <div className="flex flex-col gap-5">
             <div className="flex flex-col md:flex-row justify-start gap-5">
                 <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[72rem] overflow-hidden rounded-xl">
@@ -65,11 +64,13 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                     alt={recipe.name}
                                     className="aspect-video size-full object-cover"
                                 />
-                                <button className="absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover:text-gray-300" onClick={toggleImageModal}>
+                                <button
+                                    className="absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover:text-gray-300"
+                                    onClick={toggleImageModal}
+                                >
                                     <GoZoomIn className="size-5 absolute bottom-7 right-7" />
                                 </button>
                             </div>
-                            
                         ) : (
                             <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
                         );
@@ -95,23 +96,27 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     </div>
                     <div className="flex flex-row gap-2">
                         <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
-                            {iconMap[recipe.category?.slug ?? ""] ?? (
+                            {iconMap[recipe.category?.slug ?? ''] ?? (
                                 <LuUtensilsCrossed className="size-5 text-primary" />
                             )}
-                            <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.category?.name}</p>
+                            <p className=" text-gray-600 dark:text-gray-200 text-sm">
+                                {recipe.category?.name}
+                            </p>
                         </div>
                         <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                             <VscSymbolEvent className="size-5 text-primary" />
-                            <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.difficulty}</p>
+                            <p className=" text-gray-600 dark:text-gray-200 text-sm">
+                                {recipe.difficulty}
+                            </p>
                         </div>
                         <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                             <GoClock className="size-5 text-primary" />
-                            <p className=" text-gray-600 dark:text-gray-200 text-sm">{recipe.preparation_time} Minuten</p>
+                            <p className=" text-gray-600 dark:text-gray-200 text-sm">
+                                {recipe.preparation_time} Minuten
+                            </p>
                         </div>
-
                     </div>
                 </div>
-                
             </div>
             <div className="flex flex-col">
                 <div className="flex flex-row items-center gap-2">
@@ -150,9 +155,18 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
 
             <div className="flex flex-col gap-5 mb-12">
                 <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
-                <Carousel recipes={related as Recipe[]} carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" />
+                <Carousel
+                    recipes={related as Recipe[]}
+                    carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
+                    itemClassName="card"
+                />
             </div>
-            <Modal show={isImageModalOpen} closeable={true} maxWidth="4xl" onClose={() => setIsImageModalOpen(false)}>
+            <Modal
+                show={isImageModalOpen}
+                closeable={true}
+                maxWidth="4xl"
+                onClose={() => setIsImageModalOpen(false)}
+            >
                 <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
                     {recipe.media?.map((m) => (
                         <div key={m.id}>
@@ -161,13 +175,16 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                 alt={recipe.name}
                                 className="inset size-full rounded aspect-video object-cover mb-4"
                             />
-                            <h5 className="font-medium text-gray-600 dark:text-gray-400">{recipe.punchline}</h5>
-                            <h4 className="font-medium text-gray-800 dark:text-gray-200">{recipe.name}</h4>
+                            <h5 className="font-medium text-gray-600 dark:text-gray-400">
+                                {recipe.punchline}
+                            </h5>
+                            <h4 className="font-medium text-gray-800 dark:text-gray-200">
+                                {recipe.name}
+                            </h4>
                         </div>
                     ))}
                 </div>
             </Modal>
         </div>
-
     );
 }

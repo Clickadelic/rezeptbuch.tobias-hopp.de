@@ -34,7 +34,11 @@ interface NoSidebarsLayoutProps extends PropsWithChildren {
  * </NoSidebarsLayout>
  */
 
-export default function NoSidebarsLayout({ showTitle = true, title, children }: NoSidebarsLayoutProps) {
+export default function NoSidebarsLayout({
+    showTitle = true,
+    title,
+    children,
+}: NoSidebarsLayoutProps) {
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 

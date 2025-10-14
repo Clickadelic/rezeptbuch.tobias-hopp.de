@@ -8,12 +8,18 @@ import InputError from '@/components/reusables/InputError';
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
-import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from "react-icons/tb";
+import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from 'react-icons/tb';
 
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
@@ -53,7 +59,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             const top = formRef.current.getBoundingClientRect().top + window.scrollY - 20; // 20px Puffer
             window.scrollTo({
                 top,
-                behavior: "smooth",
+                behavior: 'smooth',
             });
         }
     };
@@ -86,11 +92,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         preparation_instructions: recipe?.preparation_instructions ?? '',
         pending_key: recipe ? null : pendingKey,
         primary_media_id: recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null,
-        recipe_ingredients: recipe?.ingredients?.map((i) => ({
-            ingredient_id: i.id!,
-            quantity: i.pivot?.quantity ?? '',
-            unit: i.pivot?.unit ?? 'gr',
-        })) ?? [],
+        recipe_ingredients:
+            recipe?.ingredients?.map((i) => ({
+                ingredient_id: i.id!,
+                quantity: i.pivot?.quantity ?? '',
+                unit: i.pivot?.unit ?? 'gr',
+            })) ?? [],
         category_id: recipe?.category_id,
     });
 
@@ -166,41 +173,115 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             <ol className="items-center w-full space-y-4 flex justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-5">
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
-                        <span className={cn(" text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 1 ? 'bg-primary border-primary text-white dark:text-gray-200' : '')}>
+                        <div
+                            className={cn(
+                                'flex w-full bg-gray-200 h-0.5 dark:bg-gray-700',
+                                step === 1 ? 'bg-primary dark:bg-primary' : '',
+                            )}
+                        ></div>
+                        <span
+                            className={cn(
+                                ' text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1',
+                                step === 1
+                                    ? 'bg-primary border-primary text-white dark:text-gray-200'
+                                    : '',
+                            )}
+                        >
                             <TbNumber1 className="size-4" />
                         </span>
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 1 ? 'bg-primary dark:bg-primary' : '')}></div>
+                        <div
+                            className={cn(
+                                'flex w-full bg-gray-200 h-0.5 dark:bg-gray-700',
+                                step === 1 ? 'bg-primary dark:bg-primary' : '',
+                            )}
+                        ></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-center md:text-left text-xl text-gray-900 dark:text-white', step === 1 ? 'text-primary' : '')}>Basics</h3>
-                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Name ist ein Pflichtfeld.</p>
+                        <h3
+                            className={cn(
+                                'text-center md:text-left text-xl text-gray-900 dark:text-white',
+                                step === 1 ? 'text-primary' : '',
+                            )}
+                        >
+                            Basics
+                        </h3>
+                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                            Name ist ein Pflichtfeld.
+                        </p>
                     </div>
                 </li>
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary dark:bg-primary' : '')}></div>
-                        <span className={cn(" text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 2 ? 'bg-primary text-white dark:text-gray-200' : '')}>
+                        <div
+                            className={cn(
+                                'flex w-full bg-gray-200 h-0.5 dark:bg-gray-700',
+                                step === 2 ? 'bg-primary dark:bg-primary' : '',
+                            )}
+                        ></div>
+                        <span
+                            className={cn(
+                                ' text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1',
+                                step === 2 ? 'bg-primary text-white dark:text-gray-200' : '',
+                            )}
+                        >
                             <TbNumber2 className="size-4" />
                         </span>
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 2 ? 'bg-primary dark:bg-primary' : '')}></div>
+                        <div
+                            className={cn(
+                                'flex w-full bg-gray-200 h-0.5 dark:bg-gray-700',
+                                step === 2 ? 'bg-primary dark:bg-primary' : '',
+                            )}
+                        ></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-xl text-gray-900 dark:text-white', step === 2 ? 'text-primary' : '')}>Zutaten</h3>
-                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bearbeite die Zutatenliste.</p>
+                        <h3
+                            className={cn(
+                                'text-xl text-gray-900 dark:text-white',
+                                step === 2 ? 'text-primary' : '',
+                            )}
+                        >
+                            Zutaten
+                        </h3>
+                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                            Bearbeite die Zutatenliste.
+                        </p>
                     </div>
                 </li>
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary dark:bg-primary' : '')}></div>
-                        <span className={cn(" text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1", step === 3 ? 'bg-primary text-white dark:text-gray-200' : '')}>
+                        <div
+                            className={cn(
+                                'flex w-full bg-gray-200 h-0.5 dark:bg-gray-700',
+                                step === 3 ? 'bg-primary dark:bg-primary' : '',
+                            )}
+                        ></div>
+                        <span
+                            className={cn(
+                                ' text-gray-600 dark:border-gray-600 dark:text-gray-600 rounded-full p-1',
+                                step === 3 ? 'bg-primary text-white dark:text-gray-200' : '',
+                            )}
+                        >
                             <TbNumber3 className="size-4" />
                         </span>
-                        <div className={cn('flex w-full bg-gray-200 h-0.5 dark:bg-gray-700', step === 3 ? 'bg-primary dark:bg-primary' : '')}></div>
+                        <div
+                            className={cn(
+                                'flex w-full bg-gray-200 h-0.5 dark:bg-gray-700',
+                                step === 3 ? 'bg-primary dark:bg-primary' : '',
+                            )}
+                        ></div>
                     </div>
                     <div className="hidden sm:block mt-0 sm:mt-5 sm:pe-8">
-                        <h3 className={cn('text-xl text-gray-900 dark:text-white', step === 3 ? 'text-primary' : '')}>Details</h3>
-                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Bilder &amp; Zubereitung.</p>
+                        <h3
+                            className={cn(
+                                'text-xl text-gray-900 dark:text-white',
+                                step === 3 ? 'text-primary' : '',
+                            )}
+                        >
+                            Details
+                        </h3>
+                        <p className="hidden lg:block  mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                            Bilder &amp; Zubereitung.
+                        </p>
                     </div>
                 </li>
             </ol>
@@ -218,9 +299,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 1: Basics */}
             {step === 1 && (
                 <section className="space-y-4">
-
-                    
-
                     {/* Name */}
                     <div>
                         <InputLabel htmlFor="name" value="Name" />
@@ -258,7 +336,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         />
                         {errors.name && <p className="text-rose-500">{errors.slug}</p>}
                     </div>
-                    
+
                     {/* Punchline */}
                     <div>
                         <InputLabel htmlFor="punchline" value="Punchline" />
@@ -366,7 +444,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             asChild
                             type="button"
                             variant="dangerOutline"
-                            
                             disabled={!canNextFromStep1}
                         >
                             <Link href={route('recipes.index')}>
@@ -374,8 +451,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 Abbrechen
                             </Link>
                         </Button>
-                        
-                        
+
                         <Button
                             type="button"
                             variant="primaryOutline"
@@ -394,18 +470,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                 <section className="space-y-4">
                     <InputLabel htmlFor="ingredients" value="Zutatenliste bearbeiten" />
                     {data.recipe_ingredients?.map((di, idx) => (
-                        <div
-                            key={idx}
-                            className="md:flex gap-2"
-                        >
-                            
+                        <div key={idx} className="md:flex gap-2">
                             <div className="flex justify-start items-start gap-2">
                                 <TextInput
                                     placeholder="Menge"
                                     value={di.quantity}
                                     className="font-medium w-full md:w-32 py-[5px] mt-1"
                                     type="number"
-                                    onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
+                                    onChange={(e) =>
+                                        updateIngredient(idx, 'quantity', e.target.value)
+                                    }
                                 />
                                 <Select
                                     value={di.unit}
@@ -423,7 +497,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     </SelectContent>
                                 </Select>
                             </div>
-                            
+
                             <div className="md:w-full flex gap-2">
                                 <IngredientComboBox
                                     value={di.ingredient_id}
@@ -442,16 +516,29 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             </div>
                         </div>
                     ))}
-                    <Button type="button" variant="primary" onClick={addIngredient} className="mt-5 hover:cursor-pointer hover:bg-emerald-700">
+                    <Button
+                        type="button"
+                        variant="primary"
+                        onClick={addIngredient}
+                        className="mt-5 hover:cursor-pointer hover:bg-emerald-700"
+                    >
                         <GoPlus /> Zutat hinzufügen
                     </Button>
                     <Seperator />
                     <div className="flex justify-between gap-2">
-                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(1)}>
+                        <Button
+                            type="button"
+                            variant="primaryOutline"
+                            onClick={() => handleStepChange(1)}
+                        >
                             <GoArrowLeft className="ml-1" />
                             Zurück
                         </Button>
-                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(3)}>
+                        <Button
+                            type="button"
+                            variant="primaryOutline"
+                            onClick={() => handleStepChange(3)}
+                        >
                             Weiter
                             <GoArrowRight className="ml-1" />
                         </Button>
@@ -541,14 +628,23 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <p className="text-red-500">{errors.preparation_instructions}</p>
                         )}
                     </div>
-                    <hr className="my-5 bg-gray-300 dark:bg-gray-700" />   
+                    <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                     {/* Submit */}
                     <div className="flex justify-between gap-2">
-                        <Button type="button" variant="primaryOutline" onClick={() => handleStepChange(2)}>
+                        <Button
+                            type="button"
+                            variant="primaryOutline"
+                            onClick={() => handleStepChange(2)}
+                        >
                             <GoArrowLeft className="ml-1" />
                             Zurück
                         </Button>
-                        <Button type="submit" variant="primary" disabled={processing} className="w-48">
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            disabled={processing}
+                            className="w-48"
+                        >
                             {recipe ? <GoPencil /> : <GoPlus />}
                             {recipe ? 'Speichern' : 'Erstellen'}
                         </Button>
@@ -558,5 +654,3 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         </form>
     );
 }
-
-

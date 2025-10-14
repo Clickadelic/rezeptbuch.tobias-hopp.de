@@ -1,9 +1,9 @@
 import { Link } from '@inertiajs/react';
-import { BsBookmarkHeart } from 'react-icons/bs';
+
 
 import { cn } from '@/lib/utils';
 
-interface AppLogoProps {
+interface AppLogoNewProps {
     h1ClassName?: string;
     className?: string;
     href?: string;
@@ -22,12 +22,12 @@ interface AppLogoProps {
  * @returns {JSX.Element} The rendered application logo component.
  */
 
-const AppLogo = ({
+const AppLogoNew = ({
     h1ClassName = '',
     className = '',
     href = '/',
     title = "Toby's Rezeptbuch",
-}: AppLogoProps) => {
+}: AppLogoNewProps) => {
     return (
         <h1 className={cn('app-logo', h1ClassName)}>
             <Link
@@ -39,20 +39,11 @@ const AppLogo = ({
                 title={title}
             >
                 <span className="mb-0 text-2xl font-light leading-snug font-la-belle-aurore mt-[1px]">
-                    Toby's
-                </span>
-                <span>
-                    <BsBookmarkHeart className="size-6 mt-1" />
-                </span>
-                <span className="mb-0 text-xl font-medium leading-snug font-roboto-condensed">
                     Rezeptbuch
                 </span>
             </Link>
         </h1>
-        // <div className="absolute top-0 h-[4.5rem] flex gap-4 rounded-bl-lg rounded-br-lg z-50 p-4 text-xl text-white dark:text-gray-800 bg-emerald-800">
-        //     <h1 className="flex items-center gap-2"><Link href="/" title="Zur Startseite"><span className="font-la-belle-aurore inline-flex mt-1">Toby's</span><span className="font-medium">Rezeptbuch</span></Link></h1>
-        // </div>
     );
 };
 
-export default AppLogo;
+export default AppLogoNew;

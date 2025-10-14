@@ -1,8 +1,8 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+    return twMerge(clsx(inputs));
 }
 
 /**
@@ -10,13 +10,13 @@ export function cn(...inputs: ClassValue[]) {
  * into a localized, human-readable German date
  */
 export function toHumanDate(dateString?: string | Date): string {
-    if (!dateString) return "";
+    if (!dateString) return '';
 
-    const date = typeof dateString === "string" ? new Date(dateString) : dateString;
+    const date = typeof dateString === 'string' ? new Date(dateString) : dateString;
 
-    return date.toLocaleDateString("de-DE", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
+    return date.toLocaleDateString('de-DE', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
     });
 }

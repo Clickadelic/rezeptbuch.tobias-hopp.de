@@ -5,18 +5,13 @@ import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 
-
 /**
  * Edit page for user profile.
- * 
+ *
  * @param {SharedPageProps} props - MustVerifyEmail and status
  * @returns {JSX.Element} - Edit page
  */
-export default function Edit({
-    mustVerifyEmail,
-    status,
-}: SharedPageProps) {
-    
+export default function Edit({ mustVerifyEmail, status }: SharedPageProps) {
     return (
         <NoSidebarsLayout title="Profil">
             <div className="mx-auto max-w-lg space-y-4">

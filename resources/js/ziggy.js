@@ -1,5 +1,106 @@
-const Ziggy = {"url":"http:\/\/127.0.0.1","port":null,"defaults":{},"routes":{"debugbar.openhandler":{"uri":"_debugbar\/open","methods":["GET","HEAD"]},"debugbar.clockwork":{"uri":"_debugbar\/clockwork\/{id}","methods":["GET","HEAD"],"parameters":["id"]},"debugbar.assets.css":{"uri":"_debugbar\/assets\/stylesheets","methods":["GET","HEAD"]},"debugbar.assets.js":{"uri":"_debugbar\/assets\/javascript","methods":["GET","HEAD"]},"debugbar.cache.delete":{"uri":"_debugbar\/cache\/{key}\/{tags?}","methods":["DELETE"],"parameters":["key","tags"]},"debugbar.queries.explain":{"uri":"_debugbar\/queries\/explain","methods":["POST"]},"sanctum.csrf-cookie":{"uri":"sanctum\/csrf-cookie","methods":["GET","HEAD"]},"index":{"uri":"\/","methods":["GET","HEAD"]},"register":{"uri":"register","methods":["GET","HEAD"]},"login":{"uri":"login","methods":["GET","HEAD"]},"password.request":{"uri":"forgot-password","methods":["GET","HEAD"]},"password.email":{"uri":"forgot-password","methods":["POST"]},"password.reset":{"uri":"reset-password\/{token}","methods":["GET","HEAD"],"parameters":["token"]},"password.store":{"uri":"reset-password","methods":["POST"]},"verification.notice":{"uri":"verify-email","methods":["GET","HEAD"]},"verification.verify":{"uri":"verify-email\/{id}\/{hash}","methods":["GET","HEAD"],"parameters":["id","hash"]},"verification.send":{"uri":"email\/verification-notification","methods":["POST"]},"password.confirm":{"uri":"confirm-password","methods":["GET","HEAD"]},"password.update":{"uri":"password","methods":["PUT"]},"logout":{"uri":"logout","methods":["POST"]},"profile.edit":{"uri":"profile","methods":["GET","HEAD"]},"profile.update":{"uri":"profile","methods":["PATCH"]},"profile.destroy":{"uri":"profile","methods":["DELETE"]},"dashboard":{"uri":"dashboard","methods":["GET","HEAD"]},"recipes.index":{"uri":"rezepte","methods":["GET","HEAD"]},"recipes.create":{"uri":"rezepte\/neues-rezept","methods":["GET","HEAD"]},"recipes.store":{"uri":"rezepte","methods":["POST"]},"recipes.edit":{"uri":"rezepte\/{recipe}\/edit","methods":["GET","HEAD"],"parameters":["recipe"],"bindings":{"recipe":"id"}},"recipes.update":{"uri":"rezepte\/{recipe}","methods":["PUT"],"parameters":["recipe"],"bindings":{"recipe":"id"}},"recipes.destroy":{"uri":"rezepte\/{recipe}","methods":["DELETE"],"parameters":["recipe"],"bindings":{"recipe":"id"}},"recipes.show":{"uri":"rezepte\/{slug}","methods":["GET","HEAD"],"parameters":["slug"]},"ingredients.index":{"uri":"zutaten","methods":["GET","HEAD"]},"ingredients.create":{"uri":"zutaten\/neue-zutat","methods":["GET","HEAD"]},"ingredients.store":{"uri":"zutaten","methods":["POST"]},"ingredients.edit":{"uri":"zutaten\/{ingredient}\/edit","methods":["GET","HEAD"],"parameters":["ingredient"],"bindings":{"ingredient":"id"}},"ingredients.update":{"uri":"zutaten\/{ingredient}","methods":["PUT"],"parameters":["ingredient"]},"ingredients.destroy":{"uri":"zutaten\/{ingredient}","methods":["DELETE"],"parameters":["ingredient"],"bindings":{"ingredient":"id"}},"ingredients.show":{"uri":"zutaten\/{ingredient}","methods":["GET","HEAD"],"parameters":["ingredient"],"bindings":{"ingredient":"id"}},"upload":{"uri":"upload","methods":["POST"]},"storage.local":{"uri":"storage\/{path}","methods":["GET","HEAD"],"wheres":{"path":".*"},"parameters":["path"]}}};
+const Ziggy = {
+    url: 'http:\/\/127.0.0.1',
+    port: null,
+    defaults: {},
+    routes: {
+        'debugbar.openhandler': { uri: '_debugbar\/open', methods: ['GET', 'HEAD'] },
+        'debugbar.clockwork': {
+            uri: '_debugbar\/clockwork\/{id}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['id'],
+        },
+        'debugbar.assets.css': { uri: '_debugbar\/assets\/stylesheets', methods: ['GET', 'HEAD'] },
+        'debugbar.assets.js': { uri: '_debugbar\/assets\/javascript', methods: ['GET', 'HEAD'] },
+        'debugbar.cache.delete': {
+            uri: '_debugbar\/cache\/{key}\/{tags?}',
+            methods: ['DELETE'],
+            parameters: ['key', 'tags'],
+        },
+        'debugbar.queries.explain': { uri: '_debugbar\/queries\/explain', methods: ['POST'] },
+        'sanctum.csrf-cookie': { uri: 'sanctum\/csrf-cookie', methods: ['GET', 'HEAD'] },
+        index: { uri: '\/', methods: ['GET', 'HEAD'] },
+        register: { uri: 'register', methods: ['GET', 'HEAD'] },
+        login: { uri: 'login', methods: ['GET', 'HEAD'] },
+        'password.request': { uri: 'forgot-password', methods: ['GET', 'HEAD'] },
+        'password.email': { uri: 'forgot-password', methods: ['POST'] },
+        'password.reset': {
+            uri: 'reset-password\/{token}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['token'],
+        },
+        'password.store': { uri: 'reset-password', methods: ['POST'] },
+        'verification.notice': { uri: 'verify-email', methods: ['GET', 'HEAD'] },
+        'verification.verify': {
+            uri: 'verify-email\/{id}\/{hash}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['id', 'hash'],
+        },
+        'verification.send': { uri: 'email\/verification-notification', methods: ['POST'] },
+        'password.confirm': { uri: 'confirm-password', methods: ['GET', 'HEAD'] },
+        'password.update': { uri: 'password', methods: ['PUT'] },
+        logout: { uri: 'logout', methods: ['POST'] },
+        'profile.edit': { uri: 'profile', methods: ['GET', 'HEAD'] },
+        'profile.update': { uri: 'profile', methods: ['PATCH'] },
+        'profile.destroy': { uri: 'profile', methods: ['DELETE'] },
+        dashboard: { uri: 'dashboard', methods: ['GET', 'HEAD'] },
+        'recipes.index': { uri: 'rezepte', methods: ['GET', 'HEAD'] },
+        'recipes.create': { uri: 'rezepte\/neues-rezept', methods: ['GET', 'HEAD'] },
+        'recipes.store': { uri: 'rezepte', methods: ['POST'] },
+        'recipes.edit': {
+            uri: 'rezepte\/{recipe}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['recipe'],
+            bindings: { recipe: 'id' },
+        },
+        'recipes.update': {
+            uri: 'rezepte\/{recipe}',
+            methods: ['PUT'],
+            parameters: ['recipe'],
+            bindings: { recipe: 'id' },
+        },
+        'recipes.destroy': {
+            uri: 'rezepte\/{recipe}',
+            methods: ['DELETE'],
+            parameters: ['recipe'],
+            bindings: { recipe: 'id' },
+        },
+        'recipes.show': { uri: 'rezepte\/{slug}', methods: ['GET', 'HEAD'], parameters: ['slug'] },
+        'ingredients.index': { uri: 'zutaten', methods: ['GET', 'HEAD'] },
+        'ingredients.create': { uri: 'zutaten\/neue-zutat', methods: ['GET', 'HEAD'] },
+        'ingredients.store': { uri: 'zutaten', methods: ['POST'] },
+        'ingredients.edit': {
+            uri: 'zutaten\/{ingredient}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['ingredient'],
+            bindings: { ingredient: 'id' },
+        },
+        'ingredients.update': {
+            uri: 'zutaten\/{ingredient}',
+            methods: ['PUT'],
+            parameters: ['ingredient'],
+        },
+        'ingredients.destroy': {
+            uri: 'zutaten\/{ingredient}',
+            methods: ['DELETE'],
+            parameters: ['ingredient'],
+            bindings: { ingredient: 'id' },
+        },
+        'ingredients.show': {
+            uri: 'zutaten\/{ingredient}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['ingredient'],
+            bindings: { ingredient: 'id' },
+        },
+        upload: { uri: 'upload', methods: ['POST'] },
+        'storage.local': {
+            uri: 'storage\/{path}',
+            methods: ['GET', 'HEAD'],
+            wheres: { path: '.*' },
+            parameters: ['path'],
+        },
+    },
+};
 if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
-  Object.assign(Ziggy.routes, window.Ziggy.routes);
+    Object.assign(Ziggy.routes, window.Ziggy.routes);
 }
 export { Ziggy };

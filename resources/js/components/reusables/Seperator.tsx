@@ -1,110 +1,110 @@
-import { GiForkKnifeSpoon, GiKnifeFork } from "react-icons/gi";
-import { PiCookingPot } from "react-icons/pi";
-import { TbSalad } from "react-icons/tb";
-import { FaC, FaHeart } from "react-icons/fa6";
+import { GiForkKnifeSpoon, GiKnifeFork } from 'react-icons/gi';
+import { PiCookingPot } from 'react-icons/pi';
+import { TbSalad } from 'react-icons/tb';
+import { FaC, FaHeart } from 'react-icons/fa6';
 
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from 'react-icons/fa';
 import { FiCheckCircle } from 'react-icons/fi';
 
-import { LiaCocktailSolid } from "react-icons/lia";
-import { RiCake3Line, } from "react-icons/ri";
-import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
-import { IoMailOpenOutline } from "react-icons/io5";
+import { LiaCocktailSolid } from 'react-icons/lia';
+import { RiCake3Line } from 'react-icons/ri';
+import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
+import { IoMailOpenOutline } from 'react-icons/io5';
 import { BsJournalBookmark, BsInfoCircle } from 'react-icons/bs';
-import { GoCommentDiscussion } from "react-icons/go";
-import { TfiCommentAlt } from "react-icons/tfi";
+import { GoCommentDiscussion } from 'react-icons/go';
+import { TfiCommentAlt } from 'react-icons/tfi';
 
-import { FaQuoteLeft } from "react-icons/fa6";
-import { cn } from "@/lib/utils";
+import { FaQuoteLeft } from 'react-icons/fa6';
+import { cn } from '@/lib/utils';
 
 interface SeparatorProps {
     size?: number;
     style?:
-        "journal" |
-        "check-cirle" |
-        "check" |
-        "comment" |
-        "comment-alt" |
-        "cake" |
-        "cocktail" |
-        "cooking-pot" |
-        "fork-knife-spoon" |
-        "fork-knife" |
-        "info" |
-        "muffin" |
-        "mail" |
-        "salad" |
-        "heart-outline" |
-        "heart" |
-        "quote" |
-        "snack";
+        | 'journal'
+        | 'check-cirle'
+        | 'check'
+        | 'comment'
+        | 'comment-alt'
+        | 'cake'
+        | 'cocktail'
+        | 'cooking-pot'
+        | 'fork-knife-spoon'
+        | 'fork-knife'
+        | 'info'
+        | 'muffin'
+        | 'mail'
+        | 'salad'
+        | 'heart-outline'
+        | 'heart'
+        | 'quote'
+        | 'snack';
 }
 
 /**
  * A separator component with an icon centered above a horizontal line.
- * 
+ *
  * @example
  * <Separator size={8} style="cooking-pot" />
  */
-export default function Separator({ size = 5, style = "fork-knife" }: SeparatorProps) {
+export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorProps) {
     // Tailwind Formula
     const baseStyle = {
         fontSize: `${size * 0.25}rem`, // flexible scaling
     };
 
-    const iconColor = "text-gray-400 dark:text-gray-700";
+    const iconColor = 'text-gray-400 dark:text-gray-700';
 
     let IconComponent = GiKnifeFork;
     switch (style) {
-        case "journal":
+        case 'journal':
             IconComponent = BsJournalBookmark;
             break;
-        case "comment":
+        case 'comment':
             IconComponent = GoCommentDiscussion;
             break;
-        case "comment-alt":
+        case 'comment-alt':
             IconComponent = TfiCommentAlt;
             break;
-        case "cake":
+        case 'cake':
             IconComponent = GiCakeSlice;
             break;
-        case "check-cirle":
+        case 'check-cirle':
             IconComponent = FiCheckCircle;
             break;
-        case "cocktail":
+        case 'cocktail':
             IconComponent = LiaCocktailSolid;
             break;
-        case "cooking-pot":
+        case 'cooking-pot':
             IconComponent = PiCookingPot;
             break;
-        case "info":
+        case 'info':
             IconComponent = BsInfoCircle;
             break;
-        case "muffin":
+        case 'muffin':
             IconComponent = RiCake3Line;
             break;
-        case "mail":
+        case 'mail':
             IconComponent = IoMailOpenOutline;
             break;
-        case "fork-knife":
+        case 'fork-knife':
             IconComponent = GiKnifeFork;
             break;
-        case "fork-knife-spoon":
+        case 'fork-knife-spoon':
             IconComponent = GiForkKnifeSpoon;
             break;
-        case "heart-outline":
+        case 'heart-outline':
             IconComponent = FaRegHeart;
             break;
-        case "salad":
+        case 'salad':
             IconComponent = TbSalad;
             break;
-        case "heart":
+        case 'heart':
             IconComponent = FaHeart;
             break;
-        case "quote":
+        case 'quote':
             IconComponent = FaQuoteLeft;
             break;
-        case "snack":
+        case 'snack':
             IconComponent = GiCrystalBars;
             break;
         default:

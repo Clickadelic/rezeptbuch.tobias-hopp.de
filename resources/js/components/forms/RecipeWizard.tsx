@@ -107,6 +107,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             ...data.recipe_ingredients,
             { ingredient_id: '', quantity: '', unit: 'gr' },
         ]);
+        console.log("Ingredient added:", ...data.recipe_ingredients)
     };
 
     const updateIngredient = (index: number, field: keyof RecipeIngredientData, value: string) => {

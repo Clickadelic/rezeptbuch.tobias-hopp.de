@@ -10,3 +10,4 @@ use App\Http\Middleware\CheckRole;
 
 
 Route::post('/upload', UploadController::class)->middleware(['auth', 'verified'])->name('upload');
+Route::delete('/upload/{media}', [UploadController::class, 'destroy']);

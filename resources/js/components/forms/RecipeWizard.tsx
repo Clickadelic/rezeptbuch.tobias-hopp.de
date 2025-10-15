@@ -5,6 +5,7 @@ import { router } from '@inertiajs/react';
 import InputLabel from '@/components/reusables/InputLabel';
 import TextInput from '@/components/reusables/TextInput';
 import InputError from '@/components/reusables/InputError';
+import axios from 'axios';
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -591,10 +592,35 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                         className="relative w-48 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
                                     >
                                         <img
-                                            src={m.url ?? `/storage/${m.path}`}
+                                            src={m.url ?? `/${m.path}`}
                                             alt={m.name}
                                             className=" object-cover"
                                         />
+                                        <Button
+                                            type="button"
+                                            variant="destructive"
+                                            size="icon"
+                                            className="absolute top-1 right-1 bg-red-600/80 hover:bg-red-700 p-1 rounded"
+                                            onClick={() => {
+                                                if (!confirm('Möchtest du dieses Bild löschen?')) return;
+
+                                                if (recipe) {
+                                                    // Falls schon in DB
+                                                    axios.delete(`/upload/${m.id}`).then(() => {
+                                                        setLiveMedia((prev) => prev.filter((x) => x.id !== m.id));
+                                                    });
+                                                } else {
+                                                    // Nur lokal pending
+                                                    setPendingMedia((prev) => prev.filter((x) => x.id !== m.id));
+                                                }
+
+                                                if (data.primary_media_id === m.id) {
+                                                    setData('primary_media_id', null);
+                                                }
+                                            }}
+                                        >
+                                            <BsTrash3 className="size-4" />
+                                        </Button>
                                         <input
                                             type="radio"
                                             name="primary_media_id"

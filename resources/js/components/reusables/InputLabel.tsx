@@ -19,10 +19,7 @@ export default function InputLabel({
     ...props
 }: LabelHTMLAttributes<HTMLLabelElement> & { value?: string }) {
     return (
-        <label
-            {...props}
-            className={`block mb-1 ` + className}
-        >
+        <label {...props} className={`block mb-1 ` + className}>
             {value ? value : children}
         </label>
     );

@@ -7,7 +7,6 @@ import SidebarLink from '@/components/sidebars/SidebarLink';
  * <AdminSidebar />
  */
 export default function AdminSidebar() {
-    
     return (
         <aside className="py-4">
             <h2 className="text-xl font-medium mb-2">Navigation</h2>

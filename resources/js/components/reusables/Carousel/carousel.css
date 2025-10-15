@@ -18,9 +18,9 @@
 }
 
 .card::scroll-marker {
-    content: " ";
-    height: .75rem;
-    width: .75rem;
+    content: ' ';
+    height: 0.75rem;
+    width: 0.75rem;
     background-color: var(--color-gray-200);
     border-radius: 50%;
 }
@@ -31,14 +31,14 @@
 
 .carousel::scroll-button(left),
 .carousel::scroll-button(right) {
-    content: "\2039";
+    content: '\2039';
     border: none;
     font-size: 2rem;
     color: var(--color-white);
     height: 40px;
     width: 40px;
     background: var(--color-primary);
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     padding-bottom: 0.1em;
     cursor: pointer;
     position: fixed;
@@ -49,7 +49,7 @@
 }
 
 .carousel::scroll-button(right) {
-    content: "\203A";
+    content: '\203A';
     position-anchor: --carousel;
     position-area: right center;
     translate: -50%;

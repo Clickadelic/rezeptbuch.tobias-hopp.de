@@ -1,7 +1,19 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Drawer, DrawerContent, DrawerHeader, DrawerDescription, DrawerTitle } from '@/components/ui/drawer';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import {
+    Drawer,
+    DrawerContent,
+    DrawerHeader,
+    DrawerDescription,
+    DrawerTitle,
+} from '@/components/ui/drawer';
 
 interface ResponsiveDialogProps {
     icon: React.ReactNode;
@@ -18,7 +30,14 @@ interface ResponsiveDialogProps {
  * @param {ResponsiveDialogProps} props - The props for the responsive dialog component.
  * @returns {JSX.Element} - The JSX element for the responsive dialog component.
  */
-export const ResponsiveDialog = ({ icon, title, description, isOpen, setIsOpen, children }: ResponsiveDialogProps) => {
+export const ResponsiveDialog = ({
+    icon,
+    title,
+    description,
+    isOpen,
+    setIsOpen,
+    children,
+}: ResponsiveDialogProps) => {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
     if (isDesktop) {

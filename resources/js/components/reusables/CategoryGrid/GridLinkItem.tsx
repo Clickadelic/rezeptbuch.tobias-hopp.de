@@ -1,4 +1,3 @@
-
 import { Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 
@@ -6,22 +5,22 @@ import { cn } from '@/lib/utils';
 
 import { IoMdArrowForward } from 'react-icons/io';
 
-import { PiCookingPot } from "react-icons/pi";
-import { LiaCocktailSolid } from "react-icons/lia";
-import { RiCake3Line } from "react-icons/ri";
-import { GiCakeSlice, GiCrystalBars } from "react-icons/gi";
-import { TbSalad } from "react-icons/tb";
-import { GiKnifeFork } from "react-icons/gi";
+import { PiCookingPot } from 'react-icons/pi';
+import { LiaCocktailSolid } from 'react-icons/lia';
+import { RiCake3Line } from 'react-icons/ri';
+import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
+import { TbSalad } from 'react-icons/tb';
+import { GiKnifeFork } from 'react-icons/gi';
 import { BsBookmarkHeart, BsDoorOpen } from 'react-icons/bs';
 import { BsJournalBookmark } from 'react-icons/bs';
 
 interface GridLinkItemProps {
-    icon?: React.ReactNode
-    title?: string
-    punchline?: string
-    buttonText?: string
-    href?: string
-    className?: string
+    icon?: React.ReactNode;
+    title?: string;
+    punchline?: string;
+    buttonText?: string;
+    href?: string;
+    className?: string;
 }
 
 /**
@@ -39,20 +38,37 @@ interface GridLinkItemProps {
  * @example
  * <GridLinkItem icon={<TbSalad />} title="Vorspeise" punchline="Salat" buttonText="Discover" />
  */
-export default function GridLinkItem({ icon, title, punchline, buttonText, href, className }: GridLinkItemProps) {
+export default function GridLinkItem({
+    icon,
+    title,
+    punchline,
+    buttonText,
+    href,
+    className,
+}: GridLinkItemProps) {
     return (
-        <div className={cn("flex flex-col justify-center items-center font-roboto-condensed text-lg md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12", className)}>
+        <div
+            className={cn(
+                'flex flex-col justify-center items-center font-roboto-condensed text-lg md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 py-12',
+                className,
+            )}
+        >
             <span className="flex flex-col items-center justify-center gap-3 mb-1">
-                {icon}{title}
+                {icon}
+                {title}
             </span>
-            <span className="font-la-belle-aurore text-sm sm:text-md md:text-xl text-gray-500 dark:text-gray-400">{punchline}</span>
+            <span className="font-la-belle-aurore text-sm sm:text-md md:text-xl text-gray-500 dark:text-gray-400">
+                {punchline}
+            </span>
             <Link
                 href={href}
                 className="bg-primary px-1 lg:px-4 py-2 flex items-center justify-center w-40 md:w-56 text-xs sm:text-md md:text-base gap-2 hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded"
                 title={title}
                 aria-label={title}
-                >{buttonText}<IoMdArrowForward className="hidden sm:flex" />
+            >
+                {buttonText}
+                <IoMdArrowForward className="hidden sm:flex" />
             </Link>
         </div>
-    )
+    );
 }

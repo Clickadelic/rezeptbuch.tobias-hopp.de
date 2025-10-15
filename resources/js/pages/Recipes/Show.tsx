@@ -17,7 +17,6 @@ interface ShowRecipeProps {
  * @returns {JSX.Element}
  */
 export default function Show({ recipe }: ShowRecipeProps) {
-
     return (
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />}>
             <SingleRecipeView recipe={recipe} />

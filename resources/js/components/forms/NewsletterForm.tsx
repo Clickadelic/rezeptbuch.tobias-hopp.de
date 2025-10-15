@@ -20,7 +20,11 @@ export default function NewsletterForm() {
     return (
         <form className="flex flex-col justify-between items-start gap-3">
             <div className="w-full">
-                <InputLabel htmlFor="name" value="Name" className="text-gray-100 dark:text-gray-200" />
+                <InputLabel
+                    htmlFor="name"
+                    value="Name"
+                    className="text-gray-100 dark:text-gray-200"
+                />
                 <TextInput
                     type="text"
                     name="name"
@@ -32,7 +36,11 @@ export default function NewsletterForm() {
                 <InputError message={errors.name} className="mt-2" />
             </div>
             <div className="w-full">
-                <InputLabel htmlFor="email" value="E-Mail" className="text-gray-100 dark:text-gray-200" />
+                <InputLabel
+                    htmlFor="email"
+                    value="E-Mail"
+                    className="text-gray-100 dark:text-gray-200"
+                />
                 <TextInput
                     type="text"
                     name="email"
@@ -43,10 +51,7 @@ export default function NewsletterForm() {
                 />
                 <InputError message={errors.email} className="mt-2" />
             </div>
-            <Button
-                type="submit"
-                className="w-full bg-primary text-gray-100 hover:bg-primary"
-            >
+            <Button type="submit" className="w-full bg-primary text-gray-100 hover:bg-primary">
                 Newsletter abonnieren
             </Button>
         </form>

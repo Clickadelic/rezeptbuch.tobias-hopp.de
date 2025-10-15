@@ -24,7 +24,12 @@ interface AuthLayoutProps extends PropsWithChildren {
  *     <div>My Login Content</div>
  * </AuthLayout>
  */
-export default function AuthLayout({ showTitle = true, title, subtitle, children }: AuthLayoutProps) {
+export default function AuthLayout({
+    showTitle = true,
+    title,
+    subtitle,
+    children,
+}: AuthLayoutProps) {
     return (
         <>
             <Head title={title} />

@@ -3,281 +3,225 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\User;
 use App\Models\Recipe;
 use App\Models\Category;
 use App\Models\Ingredient;
-use App\Http\Requests\StoreRecipeRequest;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use App\Models\Media;
 
-use App\Http\Middleware\CheckRole;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreRecipeRequest;
+
 class RecipeController extends Controller
 {
     /**
      * Displays a list of all recipes.
-     *
-     * @return \Inertia\Response
      */
     public function index()
     {
-        $recipes = Recipe::with('media', 'category', 'user')->paginate(15);
-        // TODO: FavoritenCheck eventuell in Service auslagern
-        if ($user = Auth::user()) {
-            $recipes->getCollection()->transform(function ($recipe) use ($user) {
-                $recipe->setAttribute(
-                    'is_favorite',
-                    $recipe->favoritedBy()->where('user_id', $user->id)->exists()
-                );
-                return $recipe;
-            });
-        } else {
-            // Nicht eingeloggt → alle auf false
-            $recipes->getCollection()->transform(function ($recipe) {
-                $recipe->setAttribute('is_favorite', false);
-                return $recipe;
-            });
-        }
+        $recipes = Recipe::with('media', 'category', 'user')
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
+
+        $recipes = $this->addFavoriteFlags($recipes);
+
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes,
         ]);
     }
 
     /**
-     * Shows a form to create a new recipe.
-     *
-     * @return \Inertia\Response
+     * Shows the creation form.
      */
     public function create()
     {
         return Inertia::render('Recipes/Create', [
-            'ingredients' => Ingredient::orderBy('name')->get(),
-            'categories' => Category::orderBy('id')->get(),
+            'ingredients' => Ingredient::orderBy('name')->select('id', 'name')->get(),
+            'categories'  => Category::orderBy('id')->select('id', 'name')->get(),
         ]);
     }
 
     /**
      * Displays a single recipe.
-     *
-     * @param  string  $slug
-     * @return \Inertia\Response
      */
     public function show(Recipe $recipe)
     {
-        $recipe->load(['ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
-                   'category', 'media', 'user']);
+        $recipe->load([
+            'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
+            'category',
+            'media',
+            'user'
+        ]);
+
         $related = Recipe::with(['category', 'user'])
-                    ->where('category_id', $recipe->category_id)
-                    ->where('id', '!=', $recipe->id)
-                    ->inRandomOrder()
-                    ->take(5)
-                    ->get();
+            ->where('category_id', $recipe->category_id)
+            ->where('id', '!=', $recipe->id)
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
+
         return Inertia::render('Recipes/Show', compact('recipe', 'related'));
     }
 
     /**
      * Store a newly created recipe in storage.
-     *
-     * @param  \App\Http\Requests\StoreRecipeRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRecipeRequest $request)
     {
-        // 1️⃣ recipe anlegen (verwende optional mitgegebenes id für frühes Medien-Handling)
+        // 1️⃣ Rezept anlegen
         $recipe = Recipe::create([
-            'id' => $request->input('id') ?: Str::uuid()->toString(),
-            'name' => $request->input('name'),
-            // Slug mit deutscher Sprachunterstützung
-            'slug' => $request->input('slug') ?? Str::slug($request->input('name'), '-', 'de'),
-            'punchline' => $request->input('punchline'),
-            'description' => $request->input('description'),
-            'difficulty' => $request->input('difficulty'),
-            'rating' => $request->input('rating', 0),
-            'preparation_time' => $request->input('preparation_time', 0),
+            'id'                       => Str::uuid()->toString(),
+            'name'                     => $request->input('name'),
+            'slug'                     => $request->input('slug') ?? Str::slug($request->input('name'), '-', 'de'),
+            'punchline'                => $request->input('punchline'),
+            'description'              => $request->input('description'),
+            'difficulty'               => $request->input('difficulty'),
+            'rating'                   => $request->input('rating', 0),
+            'preparation_time'         => $request->input('preparation_time', 0),
             'preparation_instructions' => $request->input('preparation_instructions'),
-            'user_id' => $request->user()->id,
-            'category_id' => $request->input('category_id'),
+            'user_id'                  => $request->user()->id,
+            'category_id'              => $request->input('category_id'),
         ]);
 
-        // 2️⃣ Zutaten aus Request verarbeiten
+        // 2️⃣ Zutaten verarbeiten
         $recipeIngredients = collect($request->input('recipe_ingredients', []))
             ->mapWithKeys(function ($item) {
-                $ingredientName = trim($item['ingredient_id']); // wenn es Text ist
+                $ingredientValue = trim((string) ($item['ingredient_id'] ?? ''));
+                if ($ingredientValue === '') {
+                    return [];
+                }
+
                 $quantity = $item['quantity'] ?? null;
                 $unit = $item['unit'] ?? 'g';
 
-                // 2a️⃣ Prüfen, ob Zutat schon existiert
-                if (Str::isUuid($ingredientName)) {
-                    // schon bestehende Zutat per UUID
-                    $ingredient = Ingredient::find($ingredientName);
+                if (Str::isUuid($ingredientValue)) {
+                    $ingredient = Ingredient::find($ingredientValue);
                 } else {
-                    // neue Zutat anlegen
-                    $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
+                    $ingredient = Ingredient::firstOrCreate([
+                        'name' => ucfirst(strtolower($ingredientValue)),
+                    ]);
                 }
 
-                return [$ingredient->id => ['quantity' => $quantity, 'unit' => $unit]];
-            })->toArray();
+                return $ingredient
+                    ? [$ingredient->id => ['quantity' => $quantity, 'unit' => $unit]]
+                    : [];
+            })
+            ->toArray();
 
-        // 3️⃣ Pivot-Tabelle syncen (Zutaten)
         $recipe->ingredients()->sync($recipeIngredients);
 
-        // 3️⃣a Pending-Uploads anhand pending_key diesem Recipe zuordnen
+        // 3️⃣ Pending-Uploads zuordnen
         if ($request->filled('pending_key')) {
             $pendingKey = (string) $request->input('pending_key');
             $collection = 'recipe_images';
-            $pendingMedia = \App\Models\Media::where('pending_key', $pendingKey)->get();
+            $pendingMedia = Media::where('pending_key', $pendingKey)->get();
+
             if ($pendingMedia->isNotEmpty()) {
-                // Nächste Position bestimmen
-                $maxPosition = $recipe->media()->wherePivot('collection', $collection)->max('recipe_media.position');
-                $posStart = is_null($maxPosition) ? 0 : ($maxPosition + 1);
+                $maxPosition = $recipe->media()
+                    ->wherePivot('collection', $collection)
+                    ->max('position');
+
+                $posStart = is_null($maxPosition) ? 0 : $maxPosition + 1;
 
                 foreach ($pendingMedia as $offset => $m) {
                     $recipe->media()->attach($m->id, [
                         'collection' => $collection,
                         'is_primary' => false,
-                        'position' => $posStart + $offset,
+                        'position'   => $posStart + $offset,
                     ]);
-                    // Pending-Flag zurücksetzen
-                    $m->pending_key = null;
-                    $m->save();
+                    $m->update(['pending_key' => null]);
                 }
             }
         }
 
-        // 3️⃣b Primäres Bild setzen (sofern gesendet)
-        if ($request->filled('primary_media_id')) {
-            $primaryId = $request->input('primary_media_id');
-            $mediaIds = $recipe->media()->pluck('media.id')->all();
-            if (in_array($primaryId, $mediaIds)) {
-                $recipe->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
-                $recipe->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
-            }
-        }
+        // 4️⃣ Primäres Bild setzen
+        $this->setPrimaryMedia($recipe, $request->input('primary_media_id'));
 
-        return redirect()->route('recipes.show', $recipe->slug)
+        return redirect()
+            ->route('recipes.show', $recipe->slug)
             ->with('success', 'Rezept erfolgreich erstellt.');
     }
 
     /**
-     * Shows the edit form for a recipe.
-     *
-     * @param  \App\Models\Recipe  $recipe
-     * @return \Inertia\Response
+     * Shows the edit form.
      */
     public function edit(Recipe $recipe)
-    {   
-        
-        // Bearbeiten von fremden Rezepten ist aktuell nicht erlaubt
-        if($recipe->user_id !== Auth::id()) {
+    {
+        if ($recipe->user_id !== Auth::id()) {
             return Inertia::render('Recipes/NoEditAllowed');
         }
-        $recipe = Recipe::with([
-            'ingredients' => function ($query) {
-                $query->select('ingredients.id', 'ingredients.name')->withPivot(['quantity', 'unit']);
-            },
+
+        $recipe->load([
+            'ingredients' => fn($q) => $q
+                ->select('ingredients.id', 'ingredients.name')
+                ->withPivot(['quantity', 'unit']),
             'media',
-            'category'
-        ])->findOrFail($recipe->id);
+            'category',
+        ]);
 
         return Inertia::render('Recipes/Edit', [
-            'recipe' => $recipe, // ✅ Kein zweites load() mehr
-            'ingredients' => Ingredient::all(),
+            'recipe'      => $recipe,
+            'ingredients' => Ingredient::orderBy('name')->select('id', 'name')->get(),
         ]);
     }
 
     /**
-     * Updates a recipe in storage.
-     *
-     * @param  \App\Http\Requests\StoreRecipeRequest  $request
-     * @param  \App\Models\Recipe  $recipe
-     * @return \Illuminate\Http\RedirectResponse
+     * Update the specified recipe.
      */
     public function update(StoreRecipeRequest $request, Recipe $recipe)
     {
         $validated = $request->validated();
 
-        // Debug Logging..
         if (config('app.debug')) {
             Log::info('Recipe update payload', [
                 'recipe_id' => $recipe->id,
-                'payload' => $request->all(),
+                'payload'   => $request->all(),
             ]);
         }
 
-        // Optional: Bild speichern, falls hochgeladen (Spalte aktuell nicht vorhanden)
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('recipes', 'public');
-        }
-
-        // Slug nicht direkt überschreiben – wird vom Sluggable-Plugin verwaltet
-        //unset($validated['slug']);
         if ($request->has('slug')) {
             $validated['slug'] = Str::slug($request->input('slug'), '-', 'de');
         }
-        // 1️⃣ Recipe-Felder aktualisieren
+
         $recipe->update($validated);
 
-        // 2️⃣ Zutaten aus Request verarbeiten (gleiches Format wie beim Store)
-        $recipeIngredients = collect($request->input('recipe_ingredients', []))
-            ->mapWithKeys(function ($item) {
-                $ingredientValue = trim((string) ($item['ingredient_id'] ?? ''));
-                $quantity = $item['quantity'] ?? null;
-                $unit = $item['unit'] ?? 'g';
-
-                if (!$ingredientValue) {
-                    return [];
-                }
-
-                // Existierende Zutat per UUID oder neue Zutat per Name
-                if (Str::isUuid($ingredientValue)) {
-                    $ingredient = Ingredient::find($ingredientValue);
-                } else {
-                    $ingredient = Ingredient::firstOrCreate(['name' => $ingredientValue]);
-                }
-
-                if (!$ingredient) {
-                    return [];
-                }
-
-                return [
-                    $ingredient->id => [
-                        'quantity' => $quantity,
-                        'unit' => $unit,
-                    ],
-                ];
-            })
-            ->toArray();
-
-        if (config('app.debug')) {
-            Log::info('Parsed recipe_ingredients for sync', [
-                'recipe_id' => $recipe->id,
-                'parsed' => $recipeIngredients,
-                'has_key' => $request->has('recipe_ingredients'),
-            ]);
-        }
-
-        // 3️⃣ Pivot-Tabelle syncen
-        // Nur synchronisieren, wenn das Feld im Request vorhanden ist.
+        // Zutaten synchronisieren
         if ($request->has('recipe_ingredients')) {
+            $recipeIngredients = collect($request->input('recipe_ingredients', []))
+                ->mapWithKeys(function ($item) {
+                    $ingredientValue = trim((string) ($item['ingredient_id'] ?? ''));
+                    if ($ingredientValue === '') {
+                        return [];
+                    }
+
+                    $quantity = $item['quantity'] ?? null;
+                    $unit = $item['unit'] ?? 'g';
+
+                    if (Str::isUuid($ingredientValue)) {
+                        $ingredient = Ingredient::find($ingredientValue);
+                    } else {
+                        $ingredient = Ingredient::firstOrCreate([
+                            'name' => ucfirst(strtolower($ingredientValue)),
+                        ]);
+                    }
+
+                    return $ingredient
+                        ? [$ingredient->id => ['quantity' => $quantity, 'unit' => $unit]]
+                        : [];
+                })
+                ->toArray();
+
             $recipe->ingredients()->sync($recipeIngredients);
         }
 
-        // 3️⃣b Primäres Bild setzen (sofern gesendet)
-        if ($request->filled('primary_media_id')) {
-            $primaryId = $request->input('primary_media_id');
-            $mediaIds = $recipe->media()->pluck('media.id')->all();
-            // Nur setzen, wenn die Media zum Gericht gehört
-            if (in_array($primaryId, $mediaIds)) {
-                // Alle auf false
-                $recipe->media()->updateExistingPivot($mediaIds, ['is_primary' => false]);
-                // Ausgewähltes auf true
-                $recipe->media()->updateExistingPivot($primaryId, ['is_primary' => true]);
-            }
-        }
+        // Primäres Bild
+        $this->setPrimaryMedia($recipe, $request->input('primary_media_id'));
 
-        // 4️⃣ Slug ggf. aktualisieren
         $recipe->refresh();
 
         return redirect()
@@ -286,42 +230,31 @@ class RecipeController extends Controller
     }
 
     /**
-     * Removes the specified recipe from storage.
-     *
-     * Also deletes the associated image (if it exists).
-     *
-     * @param  \App\Models\Recipe  $recipe
-     * @return \Illuminate\Http\RedirectResponse
+     * Delete the specified recipe.
      */
     public function destroy(Recipe $recipe)
     {
         if ($recipe->user_id !== Auth::id()) {
             abort(403, 'Nicht autorisiert.');
         }
-        // Bild löschen (falls vorhanden)
-        if ($recipe->image && file_exists(public_path('uploads/recipes/'.$recipe->image))) {
-            unlink(public_path('uploads/recipes/'.$recipe->image));
+
+        if ($recipe->image) {
+            Storage::disk('public')->delete($recipe->image);
         }
 
-        Recipe::destroy($recipe->id);
+        $recipe->delete();
 
         return redirect()->route('recipes.index')->with('success', 'Rezept gelöscht!');
     }
 
     /**
-     * Searches for recipes by title, description, ingredients, or instructions.
-     * If the search query exactly matches a category name, it will return recipes from that category.
-     * Otherwise, it will return recipes from a full-text search.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Inertia\Response
+     * Search recipes by text or category.
      */
     public function search(Request $request)
     {
         $query = trim($request->input('search', ''));
 
-        // Wenn Query exakt einer Kategorie entspricht
-        $category = Category::where('name', 'like', $query)->first();
+        $category = Category::where('name', 'LIKE', "%{$query}%")->first();
 
         if ($category) {
             $recipes = Recipe::with(['media', 'category', 'user'])
@@ -329,8 +262,14 @@ class RecipeController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(15);
         } else {
-            // Normale Volltextsuche
-            $ids = Recipe::search($query)->get()->pluck('id');
+            if (!method_exists(Recipe::class, 'search')) {
+                $ids = Recipe::query()
+                    ->where('name', 'LIKE', "%{$query}%")
+                    ->orWhere('description', 'LIKE', "%{$query}%")
+                    ->pluck('id');
+            } else {
+                $ids = Recipe::search($query)->get()->pluck('id');
+            }
 
             $recipes = Recipe::with(['media', 'category', 'user'])
                 ->whereIn('id', $ids)
@@ -338,26 +277,51 @@ class RecipeController extends Controller
                 ->paginate(15);
         }
 
-        // TODO: FavoritenCheck eventuell in Service auslagern
-        if ($user = Auth::user()) {
-            $recipes->getCollection()->transform(function ($recipe) use ($user) {
-                $recipe->setAttribute(
-                    'is_favorite',
-                    $recipe->favoritedBy()->where('user_id', $user->id)->exists()
-                );
-                return $recipe;
-            });
-        } else {
-            // Nicht eingeloggt → alle auf false
-            $recipes->getCollection()->transform(function ($recipe) {
-                $recipe->setAttribute('is_favorite', false);
-                return $recipe;
-            });
-        }
+        $recipes = $this->addFavoriteFlags($recipes);
 
-        return inertia('Recipes/Search', [
+        return Inertia::render('Recipes/Search', [
             'recipes' => $recipes,
             'filters' => ['search' => $query],
         ]);
+    }
+
+    /* ----------------------------------------------
+     | 🧩 Helper Methods
+     |----------------------------------------------*/
+
+    /**
+     * Adds 'is_favorite' flags to recipe collections.
+     */
+    private function addFavoriteFlags($recipes)
+    {
+        $user = Auth::user();
+
+        $recipes->getCollection()->transform(function ($recipe) use ($user) {
+            $recipe->setAttribute(
+                'is_favorite',
+                $user ? $recipe->favoritedBy()->where('user_id', $user->id)->exists() : false
+            );
+            return $recipe;
+        });
+
+        return $recipes;
+    }
+
+    /**
+     * Sets primary media pivot correctly.
+     */
+    private function setPrimaryMedia(Recipe $recipe, ?string $primaryId): void
+    {
+        if (!$primaryId) {
+            return;
+        }
+
+        $mediaIds = $recipe->media()->pluck('media.id')->all();
+
+        if (in_array($primaryId, $mediaIds)) {
+            foreach ($mediaIds as $id) {
+                $recipe->media()->updateExistingPivot($id, ['is_primary' => $id == $primaryId]);
+            }
+        }
     }
 }

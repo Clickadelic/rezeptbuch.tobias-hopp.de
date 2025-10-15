@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->foreignId('category_id') // erstellt automatisch bigint unsigned
+            $table->foreignId('category_id')->after('user_id') // erstellt automatisch bigint unsigned
                 ->nullable()
                 ->constrained('categories') // Verknüpfung zu categories.id
                 ->cascadeOnDelete(); 

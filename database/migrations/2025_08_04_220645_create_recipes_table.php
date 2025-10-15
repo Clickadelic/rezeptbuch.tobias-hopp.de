@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('name');
             $table->string('slug')->default('')->unique();
             $table->string('punchline')->nullable();
@@ -21,10 +22,8 @@ return new class extends Migration
             $table->unsignedInteger('rating')->default(0);
             $table->unsignedInteger('preparation_time')->default(0);
             $table->text('preparation_instructions')->nullable();
-            $table->foreignId('user_id')->constrained('users');
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

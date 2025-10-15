@@ -43,6 +43,15 @@ class RecipeSeeder extends Seeder
                     'preparation_time' => 25,
                     'preparation_instructions' => 'Zwiebeln anschwitzen, Tomaten pürieren, würzen.',
                 ],
+                [
+                    'name' => 'Grüner Spargel mit Speck',
+                    'punchline' => 'Nur im Frühling',
+                    'description' => 'Super leckerer Spargel mit Speck.',
+                    'difficulty' => 'mittel',
+                    'rating' => 4,
+                    'preparation_time' => 25,
+                    'preparation_instructions' => 'Grünen Spargel kurz blanchieren, anschließend in kaltem Wasser kurz abschrecken. Dadurch behält der Spargel seine schöne, grüne Farbe und bleibt knackig.',
+                ],
             ],
 
             'hauptgericht' => [
@@ -194,7 +203,7 @@ class RecipeSeeder extends Seeder
             foreach ($recipes as $data) {
                 Recipe::create(array_merge($data, [
                     'category_id' => $category->id,
-                    'user_id' => rand(1, 5),
+                    'user_id' => 1,
                 ]));
             }
         }

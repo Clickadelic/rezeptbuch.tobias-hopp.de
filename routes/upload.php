@@ -8,6 +8,5 @@ use App\Http\Controllers\UploadController;
 use App\Models\User;
 use App\Http\Middleware\CheckRole;
 
-
 Route::post('/upload', UploadController::class)->middleware(['auth', 'verified'])->name('upload');
-Route::delete('/upload/{media}', [UploadController::class, 'destroy']);
+Route::delete('/upload/{media}', [UploadController::class, 'destroy'])->middleware(['auth', 'verified'])->name('upload.destroy');

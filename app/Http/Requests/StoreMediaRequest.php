@@ -23,11 +23,10 @@ class StoreMediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => [
-                'required',
-                File::types(['png', 'jpg'])
-                    ->max(5 * 1024),
-            ]
+            'file' => 'required|file|mimes:jpg,jpeg,png|max:10240',
+            'collection' => 'nullable|string',
+            'recipe_id' => 'nullable|exists:recipes,id',
+            'pending_key' => 'nullable|string',
         ];
     }
 

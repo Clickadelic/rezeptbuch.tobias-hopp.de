@@ -3,11 +3,7 @@ import { GoPlus } from 'react-icons/go';
 import { Button } from '@/components/ui/button';
 import imageCompression from 'browser-image-compression';
 
-export function RecipeMediaUploader({
-    recipeId,
-    pendingKey,
-    onUploadedJSON,
-}: {
+export function RecipeMediaUploader({ recipeId, pendingKey, onUploadedJSON }: {
     recipeId?: string;
     pendingKey?: string;
     onUploadedJSON?: (m: {
@@ -29,9 +25,9 @@ export function RecipeMediaUploader({
         if (!rawFile) return;
         try {
             const options = {
-                maxSizeMB: 1, // Zielgröße max. ~1MB
-                maxWidthOrHeight: 1920, // maximale Bildbreite oder -höhe
-                useWebWorker: true, // schneller, im Hintergrund
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1920,
+                useWebWorker: true,
             };
 
             const compressedFile = await imageCompression(rawFile, options);
@@ -57,23 +53,22 @@ export function RecipeMediaUploader({
 
         try {
             const formData = new FormData();
-            formData.append('file', file); // das komprimierte Bild!
+            formData.append('file', file, file.name);
             formData.append('collection', 'recipe_images');
 
             if (recipeId) formData.append('recipe_id', recipeId);
             if (pendingKey) formData.append('pending_key', pendingKey);
 
-            // Fallback: axios oder fetch
+            // Axios bevorzugt, ansonsten fetch
             const res = await (window.axios?.post?.('/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data', Accept: 'application/json' },
                 withCredentials: true,
-            }) ??
-                fetch('/upload', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { Accept: 'application/json' },
-                    credentials: 'include',
-                }));
+            }) ?? fetch('/upload', {
+                method: 'POST',
+                body: formData,
+                headers: { Accept: 'application/json' },
+                credentials: 'include',
+            }));
 
             // Response normalisieren
             if (res && 'data' in (res as any)) {
@@ -85,20 +80,15 @@ export function RecipeMediaUploader({
 
             setFile(null);
         } catch (e: any) {
-            setError(e?.response?.data?.message || 'Upload fehlgeschlagen');
+            console.error('Upload-Fehler:', e);
+            setError(e?.response?.data?.message || 'Upload fehlgeschlagen (Recipe Media Uploader).');
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div
-            className="flex flex-col gap-3"
-            onKeyDown={(e) => {
-                if (e.key === 'Enter') e.preventDefault();
-            }}
-            tabIndex={0}
-        >
+        <div className="flex flex-col gap-3">
             {/* Drag & Drop / File Picker */}
             <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                 <GoPlus className="text-primary text-4xl" />
@@ -106,6 +96,7 @@ export function RecipeMediaUploader({
 
                 <input
                     type="file"
+                    name="file" // <- unbedingt setzen
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     accept="image/png,image/jpeg,image/jpg"
                     onChange={(e) => handleFileChange(e.target.files?.[0] || null)}
@@ -115,8 +106,7 @@ export function RecipeMediaUploader({
             {/* Info zur ausgewählten Datei */}
             {file && (
                 <div className="text-sm text-gray-600">
-                    Datei bereit: <strong>{file.name}</strong> (
-                    {(file.size / 1024 / 1024).toFixed(2)} MB)
+                    Datei bereit: <strong>{file.name}</strong> ({(file.size / 1024 / 1024).toFixed(2)} MB)
                 </div>
             )}
 

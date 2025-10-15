@@ -15,6 +15,7 @@ class UploadController
     public function __invoke(StoreMediaRequest $request)
     {
         // Gate::authorize('upload-files'); // vorerst auskommentiert
+        dd($request->all(), $request->file('file'));
 
         $file = $request->file('file');
 
@@ -28,7 +29,7 @@ class UploadController
         $fileName = Str::random(40) . ($originalExt ? ('.' . $originalExt) : '');
 
         // Zielordner unter public/uploads/recipes sicherstellen
-        $destDir = public_path('uploads/recipes');
+        $destDir = storage_path('uploads/recipes');
         if (!is_dir($destDir)) {
             mkdir($destDir, 0775, true);
         }
@@ -38,7 +39,7 @@ class UploadController
         $path = 'uploads/recipes/' . $fileName; // Relativ zu public
 
         // SHA-256 Hash der gespeicherten Datei berechnen (auf Basis der verschobenen Datei)
-        $fileHash = hash_file('sha256', public_path($path));
+        $fileHash = hash_file('sha256', storage_path($path));
 
         // Datenbankeintrag erstellen
         $media = Media::create([
@@ -49,7 +50,7 @@ class UploadController
             'disk' => 'public',                                        // Logischer Diskname
             'file_hash' => $fileHash,                                  // Datei-Hash
             'collection' => $request->get('collection', 'default'),    // Collection
-            'size' => $originalSize ?: filesize(public_path($path)),    // Größe in Bytes
+            'size' => $originalSize ?: filesize(storage_path($path)),    // Größe in Bytes
         ]);
 
         // Optional: direkt einem Gericht zuordnen

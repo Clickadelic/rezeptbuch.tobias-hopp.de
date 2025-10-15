@@ -6,7 +6,7 @@ interface AvatarProps {
 }
 
 export default function Avatar({ url }: AvatarProps) {
-    const avatarUrl = '/storage/' + url;
+    const avatarUrl = url;
     return (
         <>
             <ShadCnAvatar className="border border-gray-200 dark:border-gray-700">

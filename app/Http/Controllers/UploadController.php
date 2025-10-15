@@ -77,4 +77,10 @@ class UploadController
         // Always return JSON to simplify frontend handling
         return response()->json(['media' => $media]);
     }
+
+    public function destroy(Media $media)
+    {
+        $media->delete();
+        return response()->json(['message' => 'Gelöscht']);
+    }
 }

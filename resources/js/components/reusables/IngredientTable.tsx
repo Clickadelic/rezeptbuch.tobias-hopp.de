@@ -17,7 +17,7 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
             <div className="w-full flex flex-col gap-2 justify-between items-center mb-10">
                 <h4 className="font-medium text-xl mb-5">Zutaten für</h4>
                 <div className="flex items-center gap-2">
-                    <ButtonGroup>
+                    <ButtonGroup className="shadow-none">
                         <Button
                             variant="outline"
                             onClick={() => setCount(1)}

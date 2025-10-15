@@ -600,7 +600,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                             type="button"
                                             variant="destructive"
                                             size="icon"
-                                            className="absolute top-1 right-1 bg-red-600/80 hover:bg-red-700 p-1 rounded"
+                                            className="absolute top-1 right-1 bg-rose-600 hover:bg-rose-700 rounded"
                                             onClick={() => {
                                                 if (!confirm('Möchtest du dieses Bild löschen?')) return;
 
@@ -640,7 +640,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     </label>
                                 ))
                             ) : (
-                                <div className="border-2 border-dotted rounded-lg w-48 flex items-center justify-center aspect-video">
+                                <div className="border-2 border-dotted border-gray-600 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-48 flex items-center justify-center aspect-video">
                                     <p className="text-xs text-gray-500">
                                         Noch kein Bild vorhanden.
                                     </p>

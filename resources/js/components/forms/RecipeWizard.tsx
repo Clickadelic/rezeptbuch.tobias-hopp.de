@@ -331,21 +331,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                     {/* Slug */}
                     {recipe && (
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                            Permalink:&nbsp;
-                            <span className="text-primary">
-                                {window.location.origin}/rezepte/{data.slug || recipe.slug}
-                            </span>
-                        </div>
-                    )}
-                    {recipe && (
                         <div>
                             <InputLabel htmlFor="slug" value="URL / Slug" />
                             <div className="flex flex-col gap-1 mt-1">
                                 <TextInput
                                     id="slug"
                                     type="text"
-                                    value={data.slug}
+                                    value={`${data.slug || recipe.slug}`}
                                     placeholder="nudeln-mit-sauce"
                                     className="w-full"
                                     onChange={(e) => setData('slug', e.target.value)}

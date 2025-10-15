@@ -41,7 +41,7 @@ export default function CategoryGrid({
 
     return (
         <>
-            <h4 className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-3">
+            <h4 className="block font-medium text-gray-800 dark:text-gray-200 mb-3">
                 Kategorie
             </h4>
             <ToggleGroup
@@ -83,10 +83,10 @@ export default function CategoryGrid({
                                 )}
                             >
                                 {iconMap[category.slug ?? category.name.toLowerCase()] ?? (
-                                    <PiCookingPot className="size-5 mt-1" />
+                                    <PiCookingPot className="size-5" />
                                 )}
                             </div>
-                            <span className="text-md font-medium">{category.name}</span>
+                            <span className="text-base font-medium">{category.name}</span>
                         </ToggleGroupItem>
                     );
                 })}

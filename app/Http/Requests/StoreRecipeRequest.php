@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRecipeRequest extends FormRequest
 {
@@ -11,15 +12,25 @@ class StoreRecipeRequest extends FormRequest
         return true;
     }
 
-    /** @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string> */
     public function rules(): array
     {
-        $nameRule = $this->isMethod('post') ? ['required', 'string', 'max:255'] : ['sometimes', 'string', 'max:255'];
+        $recipe = $this->route('recipe'); // <-- für unique:recipes,slug,...
 
         return [
-            'name' => $nameRule,
-            // 'slug' => 'required|string|max:255|unique:recipes,slug,' . $recipe->id,
-            'slug' => 'required|string|max:255|unique:recipes,slug,',
+            'name' => [
+                $this->isMethod('post') ? 'required' : 'sometimes',
+                'string',
+                'max:255',
+            ],
+
+            // Slug optional, aber eindeutig, wenn vorhanden
+            'slug' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('recipes', 'slug')->ignore($recipe?->id),
+            ],
+
             'punchline' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'preparation_time' => ['nullable', 'integer', 'min:0'],
@@ -27,14 +38,17 @@ class StoreRecipeRequest extends FormRequest
             'rating' => ['nullable', 'integer', 'min:0', 'max:5'],
             'difficulty' => ['nullable', 'string'],
 
-            // Nested ingredients from the form
+            // Zutaten
             'recipe_ingredients' => ['sometimes', 'array'],
-            'pending_key' => ['nullable', 'string', 'max:255'],
             'recipe_ingredients.*.ingredient_id' => ['nullable', 'string'],
             'recipe_ingredients.*.quantity' => ['nullable', 'string'],
             'recipe_ingredients.*.unit' => ['nullable', 'string'],
 
+            // Bilder & Zuordnung
+            'pending_key' => ['nullable', 'string', 'max:255'],
             'primary_media_id' => ['nullable', 'string'],
+
+            // Referenzen
             'id' => ['nullable', 'string'],
             'category_id' => ['nullable', 'string'],
         ];
@@ -44,10 +58,7 @@ class StoreRecipeRequest extends FormRequest
     {
         return [
             'name.required' => 'Ein Name ist erforderlich.',
-            'image.required' => 'Bitte lade ein Bild hoch.',
-            'image.image' => 'Die Datei muss ein Bild sein.',
-            'image.mimes' => 'Erlaubt sind nur JPG, PNG, WEBP oder GIF.',
-            'image.max' => 'Das Bild darf maximal 2MB groß sein.',
+            'slug.unique' => 'Diese URL wird bereits verwendet.',
         ];
     }
 }

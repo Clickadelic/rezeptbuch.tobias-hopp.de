@@ -90,14 +90,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         rating: Number(recipe?.rating ?? 5),
         preparation_time: Number(recipe?.preparation_time ?? 15),
         preparation_instructions: recipe?.preparation_instructions ?? '',
-        pending_key: recipe ? null : pendingKey,
+        pending_key: recipe ? undefined : pendingKey,
         primary_media_id: recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null,
         recipe_ingredients:
-            recipe?.ingredients?.map((i) => ({
+            Array.isArray(recipe?.ingredients)
+            ? recipe.ingredients.map((i) => ({
                 ingredient_id: i.id!,
                 quantity: i.pivot?.quantity ?? '',
                 unit: i.pivot?.unit ?? 'gr',
-            })) ?? [],
+            }))
+            : [],
         category_id: recipe?.category_id,
     });
 
@@ -107,13 +109,14 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             ...data.recipe_ingredients,
             { ingredient_id: '', quantity: '', unit: 'gr' },
         ]);
-        console.log("Ingredient added:", ...data.recipe_ingredients)
+        console.log("Ingredient added:", data.recipe_ingredients)
     };
-
+    
     const updateIngredient = (index: number, field: keyof RecipeIngredientData, value: string) => {
         const updated = [...data.recipe_ingredients];
         updated[index][field] = value;
         setData('recipe_ingredients', updated);
+        console.log("Ingredient updated:", ...data.recipe_ingredients)
     };
 
     const removeIngredient = (index: number) => {
@@ -144,6 +147,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        console.log(recipe)
         if (!recipe) {
             // Create
             post(route('recipes.store'), {
@@ -152,6 +156,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                 preserveScroll: true,
             });
         } else {
+            console.log(recipe)
             // Edit → Method Spoofing
             router.post(
                 route('recipes.update', { recipe: recipe.slug }),
@@ -169,7 +174,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={cn('flex flex-col', className)}>
+        <form onSubmit={handleSubmit} ref={formRef} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
             <ol className="items-center w-full space-y-4 flex justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-5">
                 <li className="relative w-full mb-6 sm:mb-0">
@@ -325,18 +330,33 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
 
                     {/* Slug */}
-                    <div>
-                        <InputLabel htmlFor="slug" value="URL/Slug" />
-                        <TextInput
-                            id="slug"
-                            type="text"
-                            value={data.slug}
-                            placeholder="nudeln-mit-sauce"
-                            className="mt-1 w-full"
-                            onChange={(e) => setData('slug', e.target.value)}
-                        />
-                        {errors.name && <p className="text-rose-500">{errors.slug}</p>}
-                    </div>
+                    {recipe && (
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                            Permalink:&nbsp;
+                            <span className="text-primary">
+                                {window.location.origin}/rezepte/{data.slug || recipe.slug}
+                            </span>
+                        </div>
+                    )}
+                    {recipe && (
+                        <div>
+                            <InputLabel htmlFor="slug" value="URL / Slug" />
+                            <div className="flex flex-col gap-1 mt-1">
+                                <TextInput
+                                    id="slug"
+                                    type="text"
+                                    value={data.slug}
+                                    placeholder="nudeln-mit-sauce"
+                                    className="w-full"
+                                    onChange={(e) => setData('slug', e.target.value)}
+                                />
+                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                    Die URL kann hier geändert werden. Bitte nur Kleinbuchstaben, Bindestriche und keine Sonderzeichen verwenden.
+                                </p>
+                            </div>
+                            {errors.slug && <p className="text-rose-500 mt-1">{errors.slug}</p>}
+                        </div>
+                    )}
 
                     {/* Punchline */}
                     <div>
@@ -384,7 +404,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                         setData('preparation_time', Number(e.target.value))
                                     }
                                 />
-                                <span className="px-3 py-1 text-gray-800 border border-l-0 rounded-r border-gray-200">
+                                <span className="px-3 py-1 text-gray-800 dark:text-gray-200 border border-l-0 rounded-r border-gray-200">
                                     Minuten
                                 </span>
                             </div>
@@ -420,7 +440,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
                             <Select
                                 name="difficulty"
-                                value={data.difficulty ?? Difficulty.EINFACH}
+                                value={data.difficulty || Difficulty.EINFACH}
                                 onValueChange={(val) => setData('difficulty', val as Difficulty)}
                             >
                                 <SelectTrigger className="w-full mt-1 py-1 shadow-none">

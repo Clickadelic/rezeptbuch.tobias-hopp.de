@@ -1,14 +1,15 @@
 import { usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-
-import { PiCookingPot } from 'react-icons/pi';
-import { LiaCocktailSolid } from 'react-icons/lia';
+import {
+    PiCookingPot,
+} from 'react-icons/pi';
+import {
+    LiaCocktailSolid,
+} from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
-import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
+import { GiCakeSlice, GiCrystalBars, GiKnifeFork } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
-import { GiKnifeFork } from 'react-icons/gi';
-
 import type { Category } from '@/types/Category';
 import type { SharedPageProps } from '@/types';
 import { cn } from '@/lib/utils';
@@ -23,22 +24,19 @@ const iconMap: Record<string, JSX.Element> = {
 };
 
 interface CategoryToggleProps {
-    selectedCategoryId?: number; // Anfangswert z.B. beim Editieren
-    onChange: (id: number) => void; // Callback, wenn der Nutzer auswählt
+    selectedCategoryId?: number;
+    onChange: (id: number) => void;
 }
 
-export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryToggleProps) {
+export default function CategoryGrid({
+    selectedCategoryId,
+    onChange,
+}: CategoryToggleProps) {
     const { categories } = usePage<SharedPageProps>().props;
+    const [activeId, setActiveId] = useState<number | null>(selectedCategoryId ?? null);
 
-    // Lokaler State für die aktive Auswahl
-    const [activeId, setActiveId] = useState<number | null>(null);
-
-    // Wenn sich der initiale Wert ändert (z.B. beim Bearbeiten eines Rezepts),
-    // synchronisieren wir den lokalen State mit dem Prop.
     useEffect(() => {
-        if (selectedCategoryId !== undefined && selectedCategoryId !== null) {
-            setActiveId(selectedCategoryId);
-        }
+        setActiveId(selectedCategoryId ?? null);
     }, [selectedCategoryId]);
 
     return (
@@ -48,12 +46,17 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
             </h4>
             <ToggleGroup
                 type="single"
-                value={activeId !== null ? String(activeId) : undefined}
+                // 👇 Immer ein definierter Wert (leerer String statt undefined)
+                value={activeId !== null ? String(activeId) : ""}
                 onValueChange={(val) => {
                     if (val) {
                         const newId = Number(val);
-                        setActiveId(newId); // Lokaler State aktualisieren
-                        onChange(newId); // Parent informieren
+                        setActiveId(newId);
+                        onChange(newId);
+                    } else {
+                        // Optional: wenn abgewählt (z. B. toggle off)
+                        setActiveId(null);
+                        onChange(0);
                     }
                 }}
                 className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
@@ -75,7 +78,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
                         >
                             <div
                                 className={cn(
-                                    'mb-1 transition-colors',
+                                    'transition-colors',
                                     isActive ? 'text-emerald-700' : 'text-primary',
                                 )}
                             >

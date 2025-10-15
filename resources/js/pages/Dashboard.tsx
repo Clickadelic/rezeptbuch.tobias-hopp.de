@@ -24,7 +24,7 @@ import { TbSalad, TbSalt } from 'react-icons/tb';
 import { GiKnifeFork } from 'react-icons/gi';
 import { TbUsers } from 'react-icons/tb';
 import { useState } from 'react';
-
+import DataCard from '@/components/reusables/DataCard';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
 import BarChart from '@/components/reusables/Charts/BarChart';
 import PieChart from '@/components/reusables/Charts/PieChart';
@@ -41,22 +41,12 @@ export default function Dashboard() {
             <div className="rounded-lg overflow-hidden">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-5 mb-12">
                     <div className="col-span-2 row-span-1">
-                        <div className="flex justify-start items-start gap-2">
-                            <h3 className="text-2xl font-medium">Persönliche Rezepte</h3>
-                            <h4 className="text-2xl font-medium">{totalUserRecipeCount}</h4>
-                        </div>
-                        <p className="text-sm text-gray-500">
-                            Du hast aktuell {totalUserRecipeCount} Rezepte
-                        </p>
+                        
+                        <DataCard title="Persönliche Rezepte" userCount={totalUserRecipeCount} icon={<BiDish className="size-6 mt-1" />} totalCount={totalRecipeCount} />
+                        
                     </div>
                     <div className="col-span-2 row-span-1">
-                        <div className="flex justify-start items-start gap-2">
-                            <h3 className="text-2xl font-medium">Rezepte gesamt</h3>
-                            <h4 className="text-2xl font-medium">{totalRecipeCount}</h4>
-                        </div>
-                        <p className="text-sm text-gray-500">
-                            Insgesamt gibt es {totalRecipeCount} Rezepte
-                        </p>
+                        <DataCard title="Zutaten" userCount={undefined} icon={<TbSalt className="size-6 mt-1" />} totalCount={totalIngredientCount} />
                     </div>
                     <div className="col-span-2 row-span-1">
                         <div className="flex justify-start items-start gap-2">

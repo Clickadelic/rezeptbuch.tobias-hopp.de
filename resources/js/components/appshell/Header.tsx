@@ -4,6 +4,7 @@ import { usePage } from '@inertiajs/react';
 import { usePermissions } from '@/hooks/usePermissions';
 
 import AppLogo from '@/components/appshell/AppLogo';
+import AppLogoNew from '@/components/appshell/AppLogoNew';
 import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
@@ -18,8 +19,8 @@ import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { SharedPageProps } from "@/types";
-import { Link } from "@inertiajs/react";
+import { SharedPageProps } from '@/types';
+import { Link } from '@inertiajs/react';
 
 /**
  * The application header.
@@ -37,7 +38,8 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-2 md:space-x-6 lg:space-x-44">
                         <div className="relative flex shrink-0">
-                            <AppLogo className="mx-auto mt-2 sm:mt-4" />
+                            {/* <AppLogo className="mx-auto mt-2 sm:mt-4" /> */}
+                            <AppLogoNew className="mx-auto mt-2 sm:mt-4" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink
@@ -199,8 +201,20 @@ const Header = () => {
                             </div>
 
                             <div className="mt-3 space-y-1">
-                                <ResponsiveNavLink href="/dashboard" title="Dashboard" aria-label="Dashbaord">Dashboard</ResponsiveNavLink>
-                                <ResponsiveNavLink href="/profile" title="Dashboard" aria-label="Dashbaord">Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink
+                                    href="/dashboard"
+                                    title="Dashboard"
+                                    aria-label="Dashbaord"
+                                >
+                                    Dashboard
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink
+                                    href="/profile"
+                                    title="Dashboard"
+                                    aria-label="Dashbaord"
+                                >
+                                    Profile
+                                </ResponsiveNavLink>
                                 <ResponsiveNavLink method="post" href="/logout" as="button">
                                     Log Out
                                 </ResponsiveNavLink>

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Recipe } from '@/types/Recipe';
 
 import { Button } from '@/components/ui/button';
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/ui/button-group"
-import { RiResetLeftFill } from "react-icons/ri";
-import { MinusIcon, PlusIcon } from "lucide-react"
+import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@/components/ui/button-group';
+import { RiResetLeftFill } from 'react-icons/ri';
+import { MinusIcon, PlusIcon } from 'lucide-react';
 
 interface IngredientTableProps {
-    recipe: Recipe
+    recipe: Recipe;
 }
 
 export default function IngredientTable({ recipe }: IngredientTableProps) {
@@ -18,17 +18,33 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
                 <h4 className="font-medium text-xl mb-5">Zutaten für</h4>
                 <div className="flex items-center gap-2">
                     <ButtonGroup>
-                        <Button variant="outline" onClick={() => setCount(1)} title="Personen zurücksetzen" aria-label="Personen zurücksetzen">
+                        <Button
+                            variant="outline"
+                            onClick={() => setCount(1)}
+                            title="Personen zurücksetzen"
+                            aria-label="Personen zurücksetzen"
+                        >
                             <RiResetLeftFill />
                         </Button>
-                        <Button variant="outline" onClick={() => setCount((prev) => Math.max(1, prev - 1))} disabled={count === 1} title="Personen reduzieren" aria-label="Personen reduzieren">
+                        <Button
+                            variant="outline"
+                            onClick={() => setCount((prev) => Math.max(1, prev - 1))}
+                            disabled={count === 1}
+                            title="Personen reduzieren"
+                            aria-label="Personen reduzieren"
+                        >
                             <MinusIcon />
                         </Button>
                         <Button variant="outline" disabled>
                             {count}
                             <span>{count > 1 ? ' Personen' : ' Person'}</span>
                         </Button>
-                        <Button variant="outline" onClick={() => setCount((prev) => prev + 1)} title="Personen erhöhen" aria-label="Personen erhöhen">
+                        <Button
+                            variant="outline"
+                            onClick={() => setCount((prev) => prev + 1)}
+                            title="Personen erhöhen"
+                            aria-label="Personen erhöhen"
+                        >
                             <PlusIcon />
                         </Button>
                     </ButtonGroup>

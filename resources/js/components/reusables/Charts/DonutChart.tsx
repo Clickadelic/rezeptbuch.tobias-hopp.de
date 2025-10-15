@@ -1,6 +1,6 @@
-import React from "react";
-import { usePage } from "@inertiajs/react";
-import type { SharedPageProps } from "@/types";
+import React from 'react';
+import { usePage } from '@inertiajs/react';
+import type { SharedPageProps } from '@/types';
 
 import donutChartSvg from '@images/svg/donut-chart.svg';
 export const DonutChart: React.FC = () => {

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import UsersTable from '@/components/reusables/UsersTable';
 import { SharedPageProps } from '@/types';
 export default function Index() {
-    const { props }:any = usePage<SharedPageProps>();
+    const { props }: any = usePage<SharedPageProps>();
     const user = props.user;
     const users = props.users;
 

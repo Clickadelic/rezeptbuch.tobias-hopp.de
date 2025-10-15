@@ -33,7 +33,12 @@ interface SidebarRightLayoutProps extends PropsWithChildren {
  *     <div>My Main Content</div>
  * </SidebarLeftLayout>
  */
-export default function SidebarRightLayout({ showTitle = true, title, sidebar, children }: SidebarRightLayoutProps) {
+export default function SidebarRightLayout({
+    showTitle = true,
+    title,
+    sidebar,
+    children,
+}: SidebarRightLayoutProps) {
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 

@@ -69,7 +69,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
             className={cn('flex flex-col justify-between items-center space-y-3', className)}
         >
             <div className="w-full flex justify-between items-center">
-                <InputLabel htmlFor="name" value={isEditing ? "Zutat bearbeiten" : "Neue Zutat"} />
+                <InputLabel htmlFor="name" value={isEditing ? 'Zutat bearbeiten' : 'Neue Zutat'} />
                 {isEditing && (
                     <button
                         type="button"

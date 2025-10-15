@@ -63,15 +63,16 @@ export default function Modal({
                     <DialogPanel
                         className={`relative z-10 transform overflow-hidden rounded-lg shadow-lg transition-all sm:mx-auto sm:w-full ${maxWidthClass}`}
                     >
-                        <Button className="rounded-full absolute top-3 right-3 size-[24px] py-4 hover:bg-emerald-700 dark:hover:bg-emerald-600 z-20" variant="primary" onClick={close}>
+                        <Button
+                            className="rounded-full absolute top-3 right-3 size-[24px] py-4 hover:bg-emerald-700 dark:hover:bg-emerald-600 z-20"
+                            variant="primary"
+                            onClick={close}
+                        >
                             <IoClose className="size-5" />
                         </Button>
-                        <div className={className}>
-                            {children}
-                        </div>
+                        <div className={className}>{children}</div>
                     </DialogPanel>
                 </TransitionChild>
-
             </Dialog>
         </Transition>
     );

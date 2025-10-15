@@ -11,7 +11,7 @@ import { ChevronRight } from 'lucide-react'; // ShadCN Icons
  *
  * On other pages, the breadcrumb navigation is rendered with links to
  * the parent pages.
- * 
+ *
  * @returns {JSX.Element} The breadcrumb navigation component.
  */
 const BreadcrumbNav = () => {

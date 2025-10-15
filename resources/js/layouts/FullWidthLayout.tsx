@@ -33,7 +33,11 @@ interface FullWidthLayoutProps extends PropsWithChildren {
  * </FullWidthLayout>
  */
 
-export default function FullWidthLayout({ showTitle = true, title, children }: FullWidthLayoutProps) {
+export default function FullWidthLayout({
+    showTitle = true,
+    title,
+    children,
+}: FullWidthLayoutProps) {
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
 

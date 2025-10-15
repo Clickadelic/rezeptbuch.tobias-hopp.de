@@ -30,8 +30,8 @@ export default function UpdateProfileInformation({
     const user = usePage<SharedPageProps>().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        name: user.name ?? "",
-        email: user.email ?? "",
+        name: user.name ?? '',
+        email: user.email ?? '',
         avatar: null as File | null,
     });
 
@@ -54,7 +54,6 @@ export default function UpdateProfileInformation({
         );
     };
 
-
     return (
         <section className={className}>
             <header>
@@ -70,7 +69,7 @@ export default function UpdateProfileInformation({
                 {user.avatar && (
                     <div className="mt-6 flex items-center">
                         <img
-                            src={"/storage/" + user.avatar}
+                            src={'/storage/' + user.avatar}
                             className="w-16 h-16 rounded-full object-cover"
                             alt={user.name}
                         />
@@ -116,14 +115,19 @@ export default function UpdateProfileInformation({
                 <div>
                     <label
                         htmlFor="avatar"
-                        className={cn("mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition", data.avatar)}
+                        className={cn(
+                            'mt-2 flex flex-col items-center justify-center w-full py-6 border-2 border-dashed dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition',
+                            data.avatar,
+                        )}
                     >
                         {data.avatar ? (
                             <p className="text-xs text-gray-500">{data.avatar.name}</p>
                         ) : (
                             <>
                                 <Plus className="w-6 h-6 text-gray-500" />
-                                <span className="text-xs text-gray-500 mt-1">Profilbild wählen</span>
+                                <span className="text-xs text-gray-500 mt-1">
+                                    Profilbild wählen
+                                </span>
                             </>
                         )}
                     </label>

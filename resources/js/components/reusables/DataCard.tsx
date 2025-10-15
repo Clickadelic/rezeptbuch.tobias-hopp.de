@@ -1,17 +1,15 @@
-
-import { Recipe } from "@/types/Recipe";
-import { IoIosTrendingUp, IoIosTrendingDown } from "react-icons/io";
-import { MdOutlineMobiledataOff } from "react-icons/md";
+import { Recipe } from '@/types/Recipe';
+import { IoIosTrendingUp, IoIosTrendingDown } from 'react-icons/io';
+import { MdOutlineMobiledataOff } from 'react-icons/md';
 interface DataCardProps {
-    children?: React.ReactNode
-    icon?: React.ReactNode
-    title?: string
-    trending?: boolean | undefined
-    increase?: number | string | undefined
-    userCount?: number
-    totalCount?: number
+    children?: React.ReactNode;
+    icon?: React.ReactNode;
+    title?: string;
+    trending?: boolean | undefined;
+    increase?: number | string | undefined;
+    userCount?: number;
+    totalCount?: number;
 }
-
 
 /**
  * Displays a single data card.
@@ -22,8 +20,15 @@ interface DataCardProps {
  * This component displays a single data card with an icon, title, count, totalCount, and increase.
  * The design is based on the Tailwind CSS utility-first classes.
  */
-export default function DataCard({icon, title, userCount, totalCount, trending, increase, children }: DataCardProps) {
-    
+export default function DataCard({
+    icon,
+    title,
+    userCount,
+    totalCount,
+    trending,
+    increase,
+    children,
+}: DataCardProps) {
     return (
         <div className="w-full flex flex-col justify-between aspect-video border border-gray-50 dark:border-gray-700 rounded-xl p-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
             <div className="flex flex-row justify-between items-center gap-1">
@@ -31,15 +36,29 @@ export default function DataCard({icon, title, userCount, totalCount, trending, 
                     {title}
                 </h4>
                 <div className="flex items-center gap-1 text-sm rounded-full px-1.5">
-                    {trending ? <IoIosTrendingUp className="text-emerald-300" /> : <IoIosTrendingDown className="text-rose-400" />}
-                    {trending ? <span className="size-3 rounded-full bg-emerald-300"></span> : <span className="size-3 rounded-full bg-rose-400"></span>}
-                    {trending ? <span className="text-emerald-300">{increase}%</span> : <span className="text-rose-400">{increase}%</span>}
+                    {trending ? (
+                        <IoIosTrendingUp className="text-emerald-300" />
+                    ) : (
+                        <IoIosTrendingDown className="text-rose-400" />
+                    )}
+                    {trending ? (
+                        <span className="size-3 rounded-full bg-emerald-300"></span>
+                    ) : (
+                        <span className="size-3 rounded-full bg-rose-400"></span>
+                    )}
+                    {trending ? (
+                        <span className="text-emerald-300">{increase}%</span>
+                    ) : (
+                        <span className="text-rose-400">{increase}%</span>
+                    )}
                 </div>
             </div>
             {children}
             <div className="flex justify-between gap-2">
                 <span className="text-gray-400">{icon}</span>
-                <h3 className="text-xl">{userCount}/{totalCount}</h3>
+                <h3 className="text-xl">
+                    {userCount}/{totalCount}
+                </h3>
             </div>
         </div>
     );

@@ -34,7 +34,12 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  *     <div>My Main Content</div>
  * </SidebarLeftLayout>
  */
-export default function SidebarLeftLayout({ showTitle = true, title, sidebar, children }: SidebarLeftLayoutProps) {
+export default function SidebarLeftLayout({
+    showTitle = true,
+    title,
+    sidebar,
+    children,
+}: SidebarLeftLayoutProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
     const { props } = usePage<SharedPageProps>();

@@ -1,13 +1,29 @@
 import { useEffect, useState } from 'react';
 import { router, usePage, Link } from '@inertiajs/react';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem,DropdownMenuTrigger,  DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+    DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
-import { IoShareSocialOutline } from "react-icons/io5";
-import { IoPrintOutline } from "react-icons/io5";
+import { IoShareSocialOutline } from 'react-icons/io5';
+import { IoPrintOutline } from 'react-icons/io5';
 import { GoPlus, GoTrash } from 'react-icons/go';
-import { RxClipboardCopy } from "react-icons/rx";
+import { RxClipboardCopy } from 'react-icons/rx';
 import { Recipe } from '@/types/Recipe';
 import { usePermissions } from '@/hooks/usePermissions';
 import { SharedPageProps } from '@/types';
@@ -26,7 +42,6 @@ interface ContextMenuProps {
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
 export default function ContextMenu({ recipe }: ContextMenuProps) {
-
     const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
     const { flash } = props;
@@ -36,11 +51,11 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
 
     const toggleDeleteDialog = (e: React.MouseEvent) => {
         e.stopPropagation();
-        setIsAlertOpen(prev => !prev);
+        setIsAlertOpen((prev) => !prev);
     };
 
     const toggleSocialShareDialog = (e: React.MouseEvent) => {
-        setIsSocialShareOpen(prev => !prev);
+        setIsSocialShareOpen((prev) => !prev);
         e.stopPropagation();
     };
 
@@ -55,8 +70,8 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
         e.stopPropagation();
         navigator.clipboard.writeText(window.location.origin + '/rezepte/' + recipe?.slug);
         toast.success('Link kopiert', {
-            duration: 3000
-        })
+            duration: 3000,
+        });
     };
 
     useEffect(() => {
@@ -71,7 +86,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
             });
         }
     }, [flash]);
-    
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger
@@ -148,7 +163,9 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                                     Cool, dass Du das Rezept teilen möchtest, hier der Link:
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="mb-3">
-                                    <span id="recipe-link">https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}</span>
+                                    <span id="recipe-link">
+                                        https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}
+                                    </span>
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
@@ -170,7 +187,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                     </AlertDialog>
                 </DropdownMenuItem>
                 {/* TODO: Drucken */}
-                
+
                 {/* <DropdownMenuItem>
                     <Link
                         href="/"

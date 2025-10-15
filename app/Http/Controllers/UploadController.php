@@ -14,8 +14,6 @@ class UploadController
      */
     public function __invoke(StoreMediaRequest $request)
     {
-        // Gate::authorize('upload-files'); // vorerst auskommentiert
-
         $file = $request->file('file');
 
         // Originaldaten vor dem Verschieben auslesen
@@ -24,40 +22,44 @@ class UploadController
         $originalMime = $file->getClientMimeType() ?? $file->getMimeType() ?? 'application/octet-stream';
         $originalSize = $file->getSize();
 
-        // Eindeutigen Dateinamen generieren (ohne Abhängigkeit zu tmp-Datei)
+        // Eindeutigen Dateinamen generieren
         $fileName = Str::random(40) . ($originalExt ? ('.' . $originalExt) : '');
 
-        // Zielordner unter public/uploads/recipes sicherstellen
-        $destDir = storage_path('uploads/recipes');
+        // Zielordner unter storage/app/public/uploads/recipes sicherstellen
+        $destDir = storage_path('app/public/uploads/recipes');
+
         if (!is_dir($destDir)) {
             mkdir($destDir, 0775, true);
         }
 
-        // Datei nach public verschieben
+        // Datei verschieben
         $file->move($destDir, $fileName);
-        $path = 'uploads/recipes/' . $fileName; // Relativ zu public
+        
+        // Pfad relativ zu storage/app/public (für die Datenbank)
+        $path = 'uploads/recipes/' . $fileName;
+        
+        // Vollständiger Pfad zur Datei für Hash-Berechnung
+        $fullPath = storage_path('app/public/' . $path);
 
-        // SHA-256 Hash der gespeicherten Datei berechnen (auf Basis der verschobenen Datei)
-        $fileHash = hash_file('sha256', public_path($path));
+        // SHA-256 Hash der gespeicherten Datei berechnen
+        $fileHash = hash_file('sha256', $fullPath);
 
         // Datenbankeintrag erstellen
         $media = Media::create([
-            'name' => $originalName,                                   // Originalname
-            'file_name' => $fileName,                                   // gespeicherter Name
-            'mime_type' => $originalMime,                               // MIME-Typ
-            'path' => $path,                                           // Speicherpfad relativ zu public
-            'disk' => 'public',                                        // Logischer Diskname
-            'file_hash' => $fileHash,                                  // Datei-Hash
-            'collection' => $request->get('collection', 'default'),    // Collection
-            'size' => $originalSize ?: filesize(public_path($path)),    // Größe in Bytes
+            'name' => $originalName,
+            'file_name' => $fileName,
+            'mime_type' => $originalMime,
+            'path' => $path,
+            'disk' => 'public',
+            'file_hash' => $fileHash,
+            'collection' => $request->get('collection', 'default'),
+            'size' => $originalSize ?: filesize($fullPath),
         ]);
 
         // Optional: direkt einem Gericht zuordnen
         if ($request->filled('recipe_id')) {
-            /** @var \\App\\Models\\recipe|null $recipe */
             $recipe = Recipe::find($request->input('recipe_id'));
             if ($recipe) {
-                // Nächste Position innerhalb der Collection bestimmen
                 $collection = $request->get('collection', 'default');
                 $maxPosition = $recipe->media()->wherePivot('collection', $collection)->max('recipe_media.position');
                 $position = is_null($maxPosition) ? 0 : ($maxPosition + 1);
@@ -69,12 +71,10 @@ class UploadController
                 ]);
             }
         } elseif ($request->filled('pending_key')) {
-            // Kein recipe vorhanden: Media als "pending" markieren
             $media->pending_key = (string) $request->input('pending_key');
             $media->save();
         }
 
-        // Always return JSON to simplify frontend handling
         return response()->json(['media' => $media]);
     }
 

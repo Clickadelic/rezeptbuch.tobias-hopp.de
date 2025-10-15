@@ -8,6 +8,7 @@ import { FormEventHandler } from 'react';
 import { Plus } from 'lucide-react';
 import { SharedPageProps } from '@/types';
 import { cn } from '@/lib/utils';
+
 /**
  * A form component for updating user profile information.
  *

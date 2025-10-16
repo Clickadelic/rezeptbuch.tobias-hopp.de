@@ -327,7 +327,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             onChange={(id) => setData('category_id', id)}
                         />
                     </div>
-
+                    <Seperator style="check-circle" />
                     {/* Slug */}
                     {recipe && (
                         <div>

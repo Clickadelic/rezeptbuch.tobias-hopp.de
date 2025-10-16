@@ -20,6 +20,7 @@ import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { SharedPageProps } from '@/types';
+import { TbSalt } from 'react-icons/tb';
 import { Link } from '@inertiajs/react';
 
 /**
@@ -57,6 +58,14 @@ const Header = () => {
                                 icon={<BsJournalBookmark />}
                             >
                                 Rezepte
+                            </NavLink>
+                            <NavLink
+                                href="/zutaten"
+                                active={window.location.pathname.startsWith('/zutaten')}
+                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<TbSalt />}
+                            >
+                                Zutaten
                             </NavLink>
                             <NavLink
                                 href="/community"

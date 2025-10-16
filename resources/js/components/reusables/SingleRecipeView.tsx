@@ -131,11 +131,11 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     </div>
                 </div>
             </div>
-            <Seperator style="journal" />
+            <Seperator style="check-circle" />
             {recipe.ingredients && recipe.ingredients.length > 0 && (
                 <>
                     <IngredientTable recipe={recipe} />
-                    <Seperator />
+                    <Seperator style="whisk" />
                 </>
             )}
 

@@ -1,8 +1,8 @@
-import InputError from '@/components/reusables/InputError';
-import InputLabel from '@/components/reusables/InputLabel';
+import InputError from '@/components/forms/inputs/InputError';
+import InputLabel from '@/components/forms/inputs/InputLabel';
 import Modal from '@/components/reusables/Modal';
 import { Button } from '@/components/ui/button';
-import TextInput from '@/components/reusables/TextInput';
+import TextInput from '@/components/forms/inputs/TextInput';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef, useState } from 'react';
 

@@ -17,6 +17,15 @@ interface FavoriteButtonProps {
     className?: string;
 }
 
+/**
+ * FavoriteButton - A button component that toggles the favorite status of a recipe.
+ *
+ * @param {string} [recipeId] - The id of the recipe.
+ * @param {boolean} [isFavorite=false] - Indicates whether the recipe is currently favorited.
+ * @param {string} [className] - Additional classnames to add to the button element.
+ *
+ * @returns {JSX.Element} The rendered FavoriteButton component.
+ */
 export default function FavoriteButton({
     recipeId,
     isFavorite = false,

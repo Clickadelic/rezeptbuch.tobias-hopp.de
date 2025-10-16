@@ -7,11 +7,11 @@ import { ColumnDef } from '@tanstack/react-table';
 
 export const columns: ColumnDef<Recipe>[] = [
     {
-        accessorKey: 'name',
-        header: 'Name',
+        accessorKey: 'action',
+        header: 'Aktion',
     },
     {
-        accessorKey: 'description',
-        header: 'Beschreibung',
+        accessorKey: 'name',
+        header: 'Name',
     },
 ];

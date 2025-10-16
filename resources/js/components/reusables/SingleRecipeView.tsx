@@ -58,14 +58,14 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                             (recipe as any)?.media?.[0];
                         return hero ? (
-                            <div className="flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
+                            <div className="relative flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
                                 <img
-                                    src={hero.url ?? `/storage/${hero.path}`}
+                                    src={hero.url.replace('uploads/recipes/', 'storage/uploads/recipes/')}
                                     alt={recipe.name}
-                                    className="aspect-video size-full object-cover"
+                                    className="z-20"
                                 />
                                 <button
-                                    className="absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover:text-gray-300"
+                                    className="bg-transparent opacity-0 absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover:text-gray-300"
                                     onClick={toggleImageModal}
                                 >
                                     <GoZoomIn className="size-5 absolute bottom-7 right-7" />
@@ -170,8 +170,9 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                 <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
                     {recipe.media?.map((m) => (
                         <div key={m.id}>
+                            {/* TODO: Fix the image fix */}
                             <img
-                                src={m.url ?? `/storage/${m.path}`}
+                                src={m.url?.replace('uploads/recipes/', 'storage/uploads/recipes/')}
                                 alt={recipe.name}
                                 className="inset size-full rounded aspect-video object-cover mb-4"
                             />

@@ -2,10 +2,8 @@ import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import FavoritesList from '@/components/reusables/FavoritesList';
 
-import donutChartSvg from '@/images/svg/donut-chart.svg';
-import Seperator from '@/components/reusables/Seperator';
-import DataTable from '@/components/reusables/DataTable';
-import { columns } from '@/components/reusables/Columns';
+import DataTable from '@/components/reusables/DataTable/Index';
+import { columns } from '@/components/reusables/DataTable/Columns';
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { SharedPageProps } from '@/types';
@@ -23,54 +21,37 @@ import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { TbSalad, TbSalt } from 'react-icons/tb';
 import { GiKnifeFork } from 'react-icons/gi';
 import { TbUsers } from 'react-icons/tb';
-import { useState } from 'react';
+
 import DataCard from '@/components/reusables/DataCard';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
 import BarChart from '@/components/reusables/Charts/BarChart';
 import PieChart from '@/components/reusables/Charts/PieChart';
-
-import { cn } from '@/lib/utils';
-import { Link } from 'lucide-react';
 
 export default function Dashboard() {
     const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites } =
         usePage<SharedPageProps>().props;
 
     return (
-        <FullWidthLayout title="Dashboard" showTitle={false}>
+        <FullWidthLayout title="Dashboard">
             <div className="rounded-lg overflow-hidden">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-5 mb-12">
+                <div className="grid grid-cols-1 grid-rows-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-5 mb-12">
                     <div className="col-span-2 row-span-1">
-                        
-                        <DataCard title="Persönliche Rezepte" userCount={totalUserRecipeCount} icon={<BiDish className="size-6 mt-1" />} totalCount={totalRecipeCount} />
-                        
+                        <DataCard title="Meine Rezepte" text="Du hast aktuell" count={totalUserRecipeCount} icon={<BsJournalBookmark className="size-6 mt-1" />} />
                     </div>
                     <div className="col-span-2 row-span-1">
-                        <DataCard title="Zutaten" userCount={undefined} icon={<TbSalt className="size-6 mt-1" />} totalCount={totalIngredientCount} />
+                        <DataCard title="Rezepte gesamt" text="Du hast aktuell" count={totalRecipeCount} icon={<BiDish className="size-6 mt-1" />} />
                     </div>
                     <div className="col-span-2 row-span-1">
-                        <div className="flex justify-start items-start gap-2">
-                            <h3 className="text-2xl font-medium">Zutaten gesamt</h3>
-                            <h4 className="text-2xl font-medium">{totalIngredientCount}</h4>
-                        </div>
-                        <p className="text-sm text-gray-500">
-                            Insgesamt gibt es {totalIngredientCount} Zutaten
-                        </p>
+                        <DataCard title="Zutaten gesamt" text="Du hast aktuell" count={totalIngredientCount} icon={<TbSalt className="size-6 mt-1" />} />
                     </div>
                     <div className="col-span-2 row-span-1">
-                        <div className="flex justify-start items-start gap-2">
-                            <h3 className="text-2xl font-medium">Benutzer</h3>
-                            <h4 className="text-2xl font-medium">6</h4>
-                        </div>
-                        <p className="text-sm text-gray-500">Insgesamt gibt es {} Zutaten</p>
+                        <DataCard title="User" text="Du hast aktuell" count={totalIngredientCount} icon={<TbSalt className="size-6 mt-1" />} />
                     </div>
                     <div className="col-span-4">
-                        <h3>DonutChart</h3>
+                        <h3 className="text-lg font-medium mb-1">Deine Favoriten</h3>
+                        <FavoritesList favorites={userFavorites as Recipe[]} />
                     </div>
                 </div>
-                <Seperator style="heart-outline" />
-                <h3 className="text-xl font-medium mb-3">Deine Favoriten</h3>
-                <DataTable columns={columns} data={userFavorites as Recipe[]} />
             </div>
         </FullWidthLayout>
     );

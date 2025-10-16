@@ -14,10 +14,11 @@ export default function FavoritesList({ className, favorites }: FavoritesListPro
                     <h2 className="text-lg text-center font-medium">Keine Favoriten</h2>
                 </div>
             )}
-            <ul className="list-decimal">
+            <ul className="w-full flex flex-col gap-2">
                 {favorites?.map((recipe: Recipe) => (
-                    <li key={recipe.id}>
-                        <h2 className="text-lg font-medium">{recipe.name}</h2>
+                    <li key={recipe.id} className="flex items-center gap-2">
+
+                        <span>{recipe.name}</span>
                     </li>
                 ))}
             </ul>

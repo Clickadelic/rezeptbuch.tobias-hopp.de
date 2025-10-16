@@ -110,14 +110,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             ...data.recipe_ingredients,
             { ingredient_id: '', quantity: '', unit: 'gr' },
         ]);
-        console.log("Ingredient added:", data.recipe_ingredients)
     };
     
     const updateIngredient = (index: number, field: keyof RecipeIngredientData, value: string) => {
         const updated = [...data.recipe_ingredients];
         updated[index][field] = value;
         setData('recipe_ingredients', updated);
-        console.log("Ingredient updated:", ...data.recipe_ingredients)
     };
 
     const removeIngredient = (index: number) => {
@@ -588,14 +586,14 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {(recipe ? liveMedia : pendingMedia).length > 0 ? (
                                 (recipe ? liveMedia : pendingMedia).map((m) => (
                                     <label
-                                        key={m.id}
-                                        className="relative w-48 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
-                                    >
+                                    key={m.id}
+                                    className="relative w-48 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
+                                    >   {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
                                         <img
-                                            src={m.url ?? `/${m.path}`}
+                                            src={`/storage/${m.path}`}
                                             alt={m.name}
                                             className=" object-cover"
-                                        />
+                                            />
                                         <Button
                                             type="button"
                                             variant="destructive"
@@ -603,7 +601,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                             className="absolute top-1 right-1 bg-rose-600 hover:bg-rose-700 rounded"
                                             onClick={() => {
                                                 if (!confirm('Möchtest du dieses Bild löschen?')) return;
-
+                                                
                                                 if (recipe) {
                                                     // Falls schon in DB
                                                     axios.delete(`/upload/${m.id}`).then(() => {
@@ -613,12 +611,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                                     // Nur lokal pending
                                                     setPendingMedia((prev) => prev.filter((x) => x.id !== m.id));
                                                 }
-
+                                                
                                                 if (data.primary_media_id === m.id) {
                                                     setData('primary_media_id', null);
                                                 }
                                             }}
-                                        >
+                                            >
                                             <BsTrash3 className="size-4" />
                                         </Button>
                                         <input

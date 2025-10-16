@@ -58,6 +58,14 @@ const Header = () => {
                             >
                                 Rezepte
                             </NavLink>
+                            <NavLink
+                                href="/community"
+                                active={window.location.pathname.startsWith('/community')}
+                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<BsJournalBookmark />}
+                            >
+                                Community
+                            </NavLink>
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">

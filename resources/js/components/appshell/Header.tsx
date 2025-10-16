@@ -4,7 +4,6 @@ import { usePage } from '@inertiajs/react';
 import { usePermissions } from '@/hooks/usePermissions';
 
 import AppLogo from '@/components/appshell/AppLogo';
-import AppLogoNew from '@/components/appshell/AppLogoNew/Index';
 
 import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
@@ -43,8 +42,7 @@ const Header = () => {
                 <div className="flex justify-between">
                     <div className="flex justify-start md:justify-between sm:space-x-2 md:space-x-6 lg:space-x-44">
                         <div className="relative flex shrink-0">
-                            {/* <AppLogo className="mx-auto mt-2 sm:mt-4" /> */}
-                            <AppLogoNew className="mx-auto mt-2 sm:mt-4" />
+                            <AppLogo className="mx-auto mt-2 sm:mt-4" />
                         </div>
                         <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
                             <NavLink

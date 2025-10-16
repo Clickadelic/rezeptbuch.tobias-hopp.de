@@ -176,9 +176,9 @@ export default function Footer({ className }: FooterProps) {
                                 </Link>
                             </li>
                             <li className="hidden sm:inline-block">&middot;</li>
-                            <li>Toby's Rezeptbuch</li>
-                            <li className="hidden sm:inline-block">&middot;</li>
                             <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}.</li>
+                            <li className="hidden sm:inline-block">&middot;</li>
+                            <li><a href="https://www.tobias-hopp.de/de" className="hover:text-gray-400 text-sm target-white" title="Tobias Hopp" target="_blank">Tobias Hopp</a></li>
                         </ul>
                     </div>
                 </footer>

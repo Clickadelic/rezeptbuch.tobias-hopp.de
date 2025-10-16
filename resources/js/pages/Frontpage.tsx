@@ -1,6 +1,6 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
-import CategoryBlock from '@/components/reusables/CategoryBlock/Index';
+import CategoryBlock from '@/components/reusables/Blocks/CategoryBlock/Index';
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import ChefkochBlock from '@/components/reusables/Blocks/ChefkochBlock';
 import ContactBlock from '@/components/reusables/Blocks/ContactBlock';

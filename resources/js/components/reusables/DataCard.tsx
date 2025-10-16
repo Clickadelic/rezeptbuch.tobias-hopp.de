@@ -25,11 +25,9 @@ export default function DataCard({
     text
 }: DataCardProps) {
     return (
-        <div className="w-full flex flex-col justify-between text-gray-400 aspect-video border border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
-            <div className="w-full flex flex-col justify-start">
-
-                
-            </div>
+        <div className="w-full flex flex-col justify-between text-gray-600 aspect-video border border-gray-200 dark:border-gray-700 rounded-xl p-3 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
+            <div className="flex gap-2">{icon}{title}</div>
+            <div className="flex justify-between gap-2"><span className="mt-2">{text}</span><h4 className="font-medium text-2xl">{count}</h4></div>
         </div>
     );
 }

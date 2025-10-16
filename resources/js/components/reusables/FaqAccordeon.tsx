@@ -37,35 +37,36 @@ export default function FrontpageCategoryGrid() {
                             >
                                 Tobias Hopp
                             </a>{' '}
-                            - begonnen im August 2025.
+                            - begonnen im August 2025. Es handelt sich dabei um ein digitales Rezeptbuch, um Rezepte zu speichern und im Alltag schnell griffbereit zu haben.
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
                         <AccordionTrigger className="font-medium text-xl">
-                            Kann ich mich hier anmelden?
+                            Kann ich mich hier registrieren?
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Ja, die Registrierung ist kostenlos, keine Abo-Pflicht, kein
-                                Datenklau.
+                                Ja, die Registrierung ist offen und kostenlos. Es besteht keine Abo-Pflicht oder versteckte Kosten.
                             </p>
                             <p>
-                                Bitte sei' Dir aber auch darüber im klaren, dass ich als
+                                Bitte sei' Dir der Nutzung darüber klar, dass ich (Tobias Hopp) als
                                 Privatperson diese Webseite betreibe und keinerlei Haftung
-                                übernehme, sollte es zum Datenverlust kommen.
+                                übernehme, sollte es z.B. zu einem Datenverlust kommen.
                             </p>
                             <br />
                             <p>
-                                Es gibt also keinen Millionenkonzern im Hintergrund, der Deine Daten
-                                abgreift, verkauft, verwendet oder andersweitig nutzt. Deine Daten
+                                Es gibt keinen Konzern im Hintergrund, der Deine Daten
+                                abgreift, verkauft, verwendet oder andersweitig nutzt. Die Daten dieser Platform (Nutzerdaten, Rezeptdaten, etc.)
                                 werden (schriftlich nachweisbar) in Frankfurt am Main in einem
-                                Rechenzentrum gespeichert. Solltest Du weitere Fragen haben zum
-                                Thema Datensicherheit haben, wende Dich bitte, gerne per E-Mail an
-                                mich.
+                                Rechenzentrum gespeichert.
                             </p>
                             <br />
+                            <p>Solltest Du weitere Fragen haben zum
+                                Thema Datensicherheit haben, wende Dich bitte, gerne per E-Mail an
+                                mich.</p>
+                            <br />
                             <p>
-                                Diese App nutzt ein SSL-Zertifikat sowie weitere
+                                Die Platform nutzt ein SSL-Zertifikat sowie weitere
                                 Sicherheitsmechanismen - es werden also keine unverschlüsselten,
                                 persönlichen Daten übertragen.
                             </p>
@@ -77,9 +78,11 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Du kannst die Rezeptbuch-Funktion nutzen, Favoriten anlegen und
-                                Rezepte verwalten. Weitere Features sind in Planung.
+                                Du kannst Dich registrieren, mit Deinen Login-Daten die Rezeptbuch-Funktion kostenlos nutzen,
+                                z.B. Favoriten anlegen und Rezepte verwalten.
                             </p>
+                            <br />
+                            <p>Weitere Features wie sind in Planung.</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

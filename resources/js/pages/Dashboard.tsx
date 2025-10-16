@@ -24,7 +24,7 @@ import { TbUsers } from 'react-icons/tb';
 import { FaRegHeart } from 'react-icons/fa6';
 import DataCard from '@/components/reusables/DataCard';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
-import BarChart from '@/components/reusables/Charts/BarChart';
+import BarChart from '@/components/reusables/Charts/CustomBarChart';
 import PieChart from '@/components/reusables/Charts/PieChart';
 import AddCard from '@/components/reusables/AddCard';
 
@@ -35,23 +35,21 @@ export default function Dashboard() {
     return (
         <FullWidthLayout title="Dashboard">
             <div className="rounded-lg overflow-hidden">
-                <div className="grid grid-cols-1 grid-rows-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-5 mb-12">
-                    <div className="col-span-2 row-span-1">
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-5 mb-12">
+                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
                         <AddCard icon={<GoPlus className="size-5 mt-1" />} title="Neues Rezept" />
                     </div>
-                    <div className="col-span-2 row-span-1">
+                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
                         <DataCard title="Meine Rezepte" text="aktuell" count={totalRecipeCount} icon={<BiDish className="size-4 mt-1 text-primary" />} />
                     </div>
-                    <div className="col-span-2 row-span-1">
-                        <DataCard title="Zutaten gesamt" text="Du hast aktuell" count={totalIngredientCount} icon={<TbSalt className="size-4 mt-1 text-primary" />} />
+                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
+                        <DataCard title="Meine Rezepte" text="aktuell" count={totalRecipeCount} icon={<BiDish className="size-4 mt-1 text-primary" />} />
                     </div>
-                    <div className="col-span-2 row-span-1">
-                        <DataCard title="Meine Favoriten" text="aktuell" count={userFavoritesCount as number} icon={<FaRegHeart className="size-4 mt-1 text-primary" />} />
+                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
+                        <DataCard title="Meine Rezepte" text="aktuell" count={totalRecipeCount} icon={<BiDish className="size-4 mt-1 text-primary" />} />
                     </div>
-                    <div className="col-span-4">
-                        <h3 className="text-lg font-medium mb-1">Deine Favoriten</h3>
-                        <FavoritesList favorites={userFavorites as Recipe[]} />
-                    </div>
+
+                    
                 </div>
             </div>
         </FullWidthLayout>

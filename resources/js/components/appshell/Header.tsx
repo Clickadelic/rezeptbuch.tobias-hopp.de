@@ -22,6 +22,9 @@ import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { SharedPageProps } from '@/types';
 import { TbSalt } from 'react-icons/tb';
 import { Link } from '@inertiajs/react';
+import { LuUsersRound } from "react-icons/lu";
+
+import { RiHomeLine } from 'react-icons/ri';
 
 /**
  * The application header.
@@ -47,7 +50,7 @@ const Header = () => {
                                 href="/"
                                 active={window.location.pathname === '/'}
                                 className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<BsHouse />}
+                                icon={<RiHomeLine />}
                             >
                                 Start
                             </NavLink>
@@ -71,7 +74,7 @@ const Header = () => {
                                 href="/community"
                                 active={window.location.pathname.startsWith('/community')}
                                 className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<BsJournalBookmark />}
+                                icon={<LuUsersRound />}
                             >
                                 Community
                             </NavLink>
@@ -187,22 +190,16 @@ const Header = () => {
                 </div>
             </div>
             {showingNavigationDropdown && (
-                <div className="sm:hidden">
+                <div className="sm:hidden border-b-2 border-primary">
                     <div className="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink href="/" active={window.location.pathname === '/'}>
-                            Start
+                        <ResponsiveNavLink href="/" className="flex gap-3" active={window.location.pathname === '/'}>
+                            <RiHomeLine className="size-4 mt-1" /> Start
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href="/rezepte"
-                            active={window.location.pathname.startsWith('/rezepte')}
-                        >
-                            Rezepte
+                        <ResponsiveNavLink href="/rezepte" className="flex gap-3" active={window.location.pathname.startsWith('/rezepte')}>
+                            <BsJournalBookmark className="size-4 mt-1" /> Rezepte
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href="/zutaten"
-                            active={window.location.pathname === '/zutaten'}
-                        >
-                            Zutaten
+                        <ResponsiveNavLink href="/zutaten" className="flex gap-3" active={window.location.pathname === '/zutaten'}>
+                            <TbSalt className="size-4 mt-1" /> Zutaten
                         </ResponsiveNavLink>
                     </div>
 

@@ -7,15 +7,15 @@ import { LiaCocktailSolid } from 'react-icons/lia';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 
 /**
- * A component that displays a grid of categories with links to search for recipes that match that category.
+ * A component that displays a grid/block of categories with links to search for recipes that match that category.
  * The categories are hardcoded and are: Vorspeisen, Hauptgerichte, Nachtisch, Cocktails, Backen, and Snacks.
  */
 
-export default function CategoryGrid() {
+export default function CategoryBlock() {
     return (
         <div className={cn('bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8')}>
             <ul
-                className={cn('grid grid-cols-2 lg:grid-cols-3 gap-px')}
+                className={cn('grid grid-cols-2 lg:grid-cols-3 sm:gap-px')}
                 aria-roledescription="navigation"
             >
                 <li>

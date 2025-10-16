@@ -26,7 +26,7 @@ class StoreMediaRequest extends FormRequest
             'file' => [
                 'required',
                 File::types(['png', 'jpg'])
-                    ->max(5 * 1024),
+                    ->max(10 * 1024),
             ]
         ];
     }
@@ -36,7 +36,7 @@ class StoreMediaRequest extends FormRequest
         return [
             'file.required' => 'Bitte wähle eine Datei aus.',
             'file.file' => 'Die Datei ist ungültig.',
-            'file.max' => 'Die Datei darf maximal 5MB groß sein.',
+            'file.max' => 'Die Datei darf maximal 10MB groß sein.',
             'file.mimes' => 'Erlaubte Dateiformate: PNG, JPG.',
         ];
     }

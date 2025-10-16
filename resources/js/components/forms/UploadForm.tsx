@@ -55,6 +55,7 @@ export default function UploadForm() {
                 <Input
                     id="file"
                     type="file"
+                    name="file"
                     accept="image/png,image/jpg,image/jpeg"
                     className="invisible p-12 border-dashed border-2 border-gray-400 hover:border-primary w-full rounded-xl"
                     onChange={(e) => setFile(e.target.files?.[0] || null)}

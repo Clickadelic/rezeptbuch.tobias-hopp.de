@@ -1,31 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { router, usePage, Link } from '@inertiajs/react';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-    DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,} from '@/components/ui/dropdown-menu';
+
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
-import { IoPrintOutline } from 'react-icons/io5';
 import { GoPlus, GoTrash } from 'react-icons/go';
-import { RxClipboardCopy } from 'react-icons/rx';
 import { Recipe } from '@/types/Recipe';
 import { usePermissions } from '@/hooks/usePermissions';
+import { RxClipboardCopy } from 'react-icons/rx';
+import { IoPrintOutline } from 'react-icons/io5';
+
 import { SharedPageProps } from '@/types';
 import { toast } from 'sonner';
 interface ContextMenuProps {
@@ -44,7 +30,6 @@ interface ContextMenuProps {
 export default function ContextMenu({ recipe }: ContextMenuProps) {
     const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
-    const { flash } = props;
 
     const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
     const [isSocialShareOpen, setIsSocialShareOpen] = useState<boolean>(false);
@@ -73,19 +58,6 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
             duration: 3000,
         });
     };
-
-    useEffect(() => {
-        if (flash?.success) {
-            toast.success(flash.success, {
-                duration: 3000,
-            });
-        }
-        if (flash?.error) {
-            toast.error(flash.error, {
-                duration: 4000,
-            });
-        }
-    }, [flash]);
 
     return (
         <DropdownMenu>

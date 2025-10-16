@@ -24,9 +24,9 @@ import { TbUsers } from 'react-icons/tb';
 import { FaRegHeart } from 'react-icons/fa6';
 import DataCard from '@/components/reusables/DataCard';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
-import BarChart from '@/components/reusables/Charts/CustomBarChart';
 import PieChart from '@/components/reusables/Charts/PieChart';
 import AddCard from '@/components/reusables/AddCard';
+import BarChart from '@/components/reusables/Charts/BarChart';
 
 export default function Dashboard() {
     const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites, userFavoritesCount } =
@@ -34,22 +34,31 @@ export default function Dashboard() {
 
     return (
         <FullWidthLayout title="Dashboard">
-            <div className="rounded-lg overflow-hidden">
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-5 mb-12">
-                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
-                        <AddCard icon={<GoPlus className="size-5 mt-1" />} title="Neues Rezept" />
-                    </div>
-                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
-                        <DataCard title="Meine Rezepte" text="aktuell" count={totalRecipeCount} icon={<BiDish className="size-4 mt-1 text-primary" />} />
-                    </div>
-                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
-                        <DataCard title="Meine Rezepte" text="aktuell" count={totalRecipeCount} icon={<BiDish className="size-4 mt-1 text-primary" />} />
-                    </div>
-                    <div className="col-span-1 sm:col-span-2 md:col-span-3 row-span-2">
-                        <DataCard title="Meine Rezepte" text="aktuell" count={totalRecipeCount} icon={<BiDish className="size-4 mt-1 text-primary" />} />
-                    </div>
-
-                    
+            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 grid-rows-5 gap-2 md:gap-3 lg:gap-4">
+                <div className="p-3 border border-gray-200 md:col-span-4 lg:col-span-3 lg:row-span-2 rounded-xl">
+                    <BarChart title="Rezepte" />
+                </div>
+                <div className="p-3 border border-gray-200 md:col-span-2 md:col-start-1 lg:col-span-1 lg:row-span-2 lg:col-start-4 rounded-xl">
+                    <DataCard title="Rezepte insgesamt" count={totalRecipeCount} text="aktuell" />
+                </div>
+                <div className="p-3 border border-gray-200 md:col-span-2 md:col-start-3 lg:col-span-1 lg:row-span-2 lg:col-start-5 rounded-xl">
+                    <h2 className="text-lg font-medium">Cocktails 17</h2>
+                    <p className="text-sm text-gray-500">Du hast insgesamt 23 Rezepte</p>
+                </div>
+                <div className="p-3 border border-gray-200 md:col-start-1 md:col-span-2 lg:row-span-5 lg:col-span-1 lg:row-start-3 rounded-xl">
+                    <h2 className="text-lg font-medium">4</h2>
+                </div>
+                <div className="p-3 border border-gray-200 md:col-start-3 md:col-span-2 lg:row-span-2 lg:row-start-3 lg:col-start-2 lg:col-span-3 rounded-xl">
+                    <h2 className="text-lg font-medium">5</h2>
+                </div>
+                <div className="p-3 border border-gray-200 md:col-start-1 md:col-span-2 lg:row-span-5 lg:col-start-5 lg:col-span-1 rounded-xl">
+                    <h2 className="text-lg font-medium">6</h2>
+                </div>
+                <div className="p-2 lg:col-span-2 lg:col-start-2 lg:row-start-5 lg:row-span-3 rounded-xl">
+                    <h2 className="text-lg font-medium">7</h2>
+                </div>
+                <div className="p-2 lg:col-start-4 lg:row-start-5 lg:row-span-3 rounded-xl">
+                    <h2 className="text-lg font-medium">8</h2>
                 </div>
             </div>
         </FullWidthLayout>

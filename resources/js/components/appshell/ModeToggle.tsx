@@ -20,7 +20,7 @@ import { useTheme } from '@/components/appshell/ThemeProvider';
  *
  * When the user clicks on an item, the theme of the application is set to the corresponding corresponding item.
  */
-export function ModeToggle() {
+export default function ModeToggle() {
     const { setTheme } = useTheme();
 
     return (

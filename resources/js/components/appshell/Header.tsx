@@ -5,13 +5,14 @@ import { usePermissions } from '@/hooks/usePermissions';
 
 import AppLogo from '@/components/appshell/AppLogo';
 import AppLogoNew from '@/components/appshell/AppLogoNew';
+
 import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/reusables/Dropdown';
-import { ModeToggle } from '@/components/appshell/ModeToggle';
+import ModeToggle from '@/components/appshell/ModeToggle';
 import Avatar from '@/components/reusables/Avatar';
-import { BsHouse } from 'react-icons/bs';
+
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
@@ -23,8 +24,11 @@ import { SharedPageProps } from '@/types';
 import { TbSalt } from 'react-icons/tb';
 import { Link } from '@inertiajs/react';
 import { LuUsersRound } from "react-icons/lu";
-
+import { GiCook } from 'react-icons/gi';
 import { RiHomeLine } from 'react-icons/ri';
+import { RxExit } from "react-icons/rx";
+
+import { Avatar as ShadCnAvatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 /**
  * The application header.
@@ -192,45 +196,47 @@ const Header = () => {
             {showingNavigationDropdown && (
                 <div className="sm:hidden border-b-2 border-primary">
                     <div className="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink href="/" className="flex gap-3" active={window.location.pathname === '/'}>
+                        <ResponsiveNavLink href="/" className="flex gap-2" active={window.location.pathname === '/'}>
                             <RiHomeLine className="size-4 mt-1" /> Start
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href="/rezepte" className="flex gap-3" active={window.location.pathname.startsWith('/rezepte')}>
+                        <ResponsiveNavLink href="/rezepte" className="flex gap-2" active={window.location.pathname.startsWith('/rezepte')}>
                             <BsJournalBookmark className="size-4 mt-1" /> Rezepte
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href="/zutaten" className="flex gap-3" active={window.location.pathname === '/zutaten'}>
+                        <ResponsiveNavLink href="/zutaten" className="flex gap-2" active={window.location.pathname === '/zutaten'}>
                             <TbSalt className="size-4 mt-1" /> Zutaten
                         </ResponsiveNavLink>
                     </div>
 
                     {auth.user ? (
                         <div className="border-t border-gray-200 pb-1 pt-4">
-                            <div className="px-4">
-                                <div className="text-base font-medium text-gray-800">
-                                    {auth.user.name}
-                                </div>
-                                <div className="text-sm font-medium text-gray-500">
-                                    {auth.user.email}
+                            
+                            <div className="ps-3 pe-4 flex items-start justify-start gap-2">
+                                <Avatar url={auth.user.avatar} className="mt-1" />
+                                <div className="flex flex-col">
+                                    <span>{auth.user.name}</span>
+                                    <span className="text-xs">{auth.user.email}</span>
                                 </div>
                             </div>
-
+                            
                             <div className="mt-3 space-y-1">
                                 <ResponsiveNavLink
                                     href="/dashboard"
+                                    className="flex gap-2"
                                     title="Dashboard"
                                     aria-label="Dashbaord"
                                 >
-                                    Dashboard
+                                    <RiDashboardHorizontalLine className="size-4 mt-1" /> Dashboard
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink
                                     href="/profile"
+                                    className="flex gap-2"
                                     title="Dashboard"
                                     aria-label="Dashbaord"
                                 >
-                                    Profile
+                                    <RiAccountPinBoxLine className="size-4 mt-1" /> Profile
                                 </ResponsiveNavLink>
-                                <ResponsiveNavLink method="post" href="/logout" as="button">
-                                    Log Out
+                                <ResponsiveNavLink method="post" href="/logout" className="flex gap-2" as="button">
+                                    <RxExit className="size-4 mt-1" /> Log Out
                                 </ResponsiveNavLink>
                             </div>
                         </div>

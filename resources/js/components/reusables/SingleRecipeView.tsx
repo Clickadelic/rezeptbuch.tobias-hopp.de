@@ -60,7 +60,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                         return hero ? (
                             <div className="relative flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
                                 <img
-                                    src={hero.url.replace('uploads/recipes/', 'storage/uploads/recipes/')}
+                                    src={hero.url}
                                     alt={recipe.name}
                                     className="z-20"
                                 />
@@ -172,7 +172,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                         <div key={m.id}>
                             {/* TODO: Fix the image fix */}
                             <img
-                                src={m.url?.replace('uploads/recipes/', 'storage/uploads/recipes/')}
+                                src={m.url}
                                 alt={recipe.name}
                                 className="inset size-full rounded aspect-video object-cover mb-4"
                             />

@@ -8,8 +8,12 @@ import { BiCategory } from "react-icons/bi";
 import { BsChevronCompactRight } from 'react-icons/bs';
 import { TbMailHeart } from 'react-icons/tb';
 import { IoIosRibbon } from 'react-icons/io';
-import { FaQ } from 'react-icons/fa6';
 import { GrNavigate } from 'react-icons/gr';
+import { TbSalad } from 'react-icons/tb';
+import { PiCookingPot } from 'react-icons/pi';
+import { LiaCocktailSolid } from 'react-icons/lia';
+import { RiCake3Line } from 'react-icons/ri';
+import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import { cn } from '@/lib/utils';
@@ -45,30 +49,30 @@ export default function Footer({ className }: FooterProps) {
                                 <li>
                                     <Link
                                         href="/"
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                         title="Startseite"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <BsChevronCompactRight className="mt-1 text-primary" />
                                         Startseite
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href="/rezepte"
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                         title="Rezepte"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <BsChevronCompactRight className="mt-1 text-primary" />
                                         Rezepte
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href="/zutaten"
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                         title="Zutaten"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <BsChevronCompactRight className="mt-1 text-primary" />
                                         Zutaten
                                     </Link>
                                 </li>
@@ -83,55 +87,55 @@ export default function Footer({ className }: FooterProps) {
                                 <li>
                                     <a
                                         href={route('recipes.search', { search: 'Vorspeise' })}
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                         title="Vorspeisen"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <TbSalad className="mt-1 text-primary" />
                                         Vorspeisen
                                     </a>
                                 </li>
                                 <li>
                                     <Link
                                         href={route('recipes.search', { search: 'Hauptgericht' })}
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <PiCookingPot className="mt-1 text-primary" />
                                         Hauptgericht
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href={route('recipes.search', { search: 'Nachtisch' })}
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <RiCake3Line className="mt-1 text-primary" />
                                         Nachtisch
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href={route('recipes.search', { search: 'Cocktail' })}
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <LiaCocktailSolid className="mt-1 text-primary" />
                                         Cocktails
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href={route('recipes.search', { search: 'Backen' })}
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <GiCakeSlice className="mt-1 text-primary" />
                                         Backen
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href={route('recipes.search', { search: 'Snack' })}
-                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
                                     >
-                                        <BsChevronCompactRight className="mt-1" />
+                                        <GiCrystalBars className="mt-1 text-primary" />
                                         Snacks
                                     </Link>
                                 </li>

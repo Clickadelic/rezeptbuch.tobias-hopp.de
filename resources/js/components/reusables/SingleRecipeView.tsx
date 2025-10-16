@@ -170,6 +170,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                 <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
                     {recipe.media?.map((m) => (
                         <div key={m.id}>
+                            {/* TODO: Fix the image fix */}
                             <img
                                 src={m.url?.replace('uploads/recipes/', 'storage/uploads/recipes/')}
                                 alt={recipe.name}

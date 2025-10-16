@@ -76,7 +76,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                 (recipe as any)?.media?.[0];
                             return hero ? (
                                 <img
-                                    src={hero.url ?? `/storage/${hero.path}`}
+                                    src={`/storage/${hero.url}`}
                                     alt={recipe.name}
                                     className="absolute scale-100 transform duration-300 ease-out group-hover:scale-105 inset-0 size-full object-cover"
                                 />

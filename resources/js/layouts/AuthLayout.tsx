@@ -34,7 +34,7 @@ export default function AuthLayout({
         <>
             <Head title={title} />
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
-                <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash.jpg')] dark:bg-[url('/resources/images/annie-spratt-R3LcfTvcGWY-unsplash.jpg')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
+                <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/webp/brooke-lark-kXQ3J7_2fpc-unsplash.webp')] dark:bg-[url('/resources/images/webp/annie-spratt-R3LcfTvcGWY-unsplash.webp')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                     <main className="mx-auto container">
                         <div className="m-6 sm:max-w-md lg:max-w-lg sm:mx-auto bg-white/30 dark:bg-gray-800/30 p-2 rounded-xl shadow backdrop-blur">
                             <div className="bg-white dark:bg-gray-800 rounded-lg">

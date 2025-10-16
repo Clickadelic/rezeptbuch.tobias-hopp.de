@@ -5,7 +5,7 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 
-import TitleBlock from './TitleBlock';
+import TitleBlock from './Blocks/TitleBlock';
 import { FaQuora } from 'react-icons/fa';
 
 import { FaQ } from 'react-icons/fa6';

@@ -2,9 +2,9 @@ import { useState, useRef, FormEvent, useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 
-import InputLabel from '@/components/reusables/InputLabel';
-import TextInput from '@/components/reusables/TextInput';
-import InputError from '@/components/reusables/InputError';
+import InputLabel from '@/components/forms/inputs/InputLabel';
+import TextInput from '@/components/forms/inputs/TextInput';
+import InputError from '@/components/forms/inputs/InputError';
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';

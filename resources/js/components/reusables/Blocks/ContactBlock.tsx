@@ -3,7 +3,7 @@ import TitleBlock from './TitleBlock';
 import { IoMailOpenOutline } from 'react-icons/io5';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 
-import ContactForm from '../forms/ContactForm';
+import ContactForm from '@/components/forms/ContactForm';
 
 export default function ContactBlock() {
     return (

@@ -41,9 +41,6 @@ const AppLogo = ({
                 <span className="mb-0 text-2xl font-light leading-snug font-la-belle-aurore mt-[1px]">
                     Toby's
                 </span>
-                <span>
-                    <BsBookmarkHeart className="size-6 mt-1" />
-                </span>
                 <span className="mb-0 text-xl font-medium leading-snug font-roboto-condensed">
                     Rezeptbuch
                 </span>

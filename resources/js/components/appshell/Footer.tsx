@@ -4,7 +4,7 @@ import BackToTopButton from '@/components/appshell/BackToTopButton/Index';
 import NewsletterForm from '../forms/NewsletterForm';
 
 import badgeSrc from '@images/Quality-Symbol.png';
-
+import { BiCategory } from "react-icons/bi";
 import { BsChevronCompactRight } from 'react-icons/bs';
 import { TbMailHeart } from 'react-icons/tb';
 import { IoIosRibbon } from 'react-icons/io';
@@ -76,46 +76,63 @@ export default function Footer({ className }: FooterProps) {
                         </div>
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
-                                <FaQ />
-                                <span className="font-medium">Weiteres</span>
+                                <BiCategory />
+                                <span className="font-medium">Kategorien</span>
                             </h2>
                             <ul className="pt-4 space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start border-t border-stone-700">
                                 <li>
                                     <a
-                                        href="https://www.tobias-hopp.de"
+                                        href={route('recipes.search', { search: 'Vorspeise' })}
                                         className="flex gap-1 text-gray-100 hover:text-gray-400"
-                                        title="Portfolio"
-                                        target="_blank"
+                                        title="Vorspeisen"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
-                                        Portfolio
+                                        Vorspeisen
                                     </a>
                                 </li>
                                 <li>
                                     <Link
-                                        href="#"
+                                        href={route('recipes.search', { search: 'Hauptgericht' })}
                                         className="flex gap-1 text-gray-100 hover:text-gray-400"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
-                                        Link
+                                        Hauptgericht
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        href="#"
+                                        href={route('recipes.search', { search: 'Nachtisch' })}
                                         className="flex gap-1 text-gray-100 hover:text-gray-400"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
-                                        Link
+                                        Nachtisch
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        href="#"
+                                        href={route('recipes.search', { search: 'Cocktail' })}
                                         className="flex gap-1 text-gray-100 hover:text-gray-400"
                                     >
                                         <BsChevronCompactRight className="mt-1" />
-                                        Link
+                                        Cocktails
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href={route('recipes.search', { search: 'Backen' })}
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                    >
+                                        <BsChevronCompactRight className="mt-1" />
+                                        Backen
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href={route('recipes.search', { search: 'Snack' })}
+                                        className="flex gap-1 text-gray-100 hover:text-gray-400"
+                                    >
+                                        <BsChevronCompactRight className="mt-1" />
+                                        Snacks
                                     </Link>
                                 </li>
                             </ul>

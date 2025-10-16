@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/react';
 import { usePermissions } from '@/hooks/usePermissions';
 
 import AppLogo from '@/components/appshell/AppLogo';
-import AppLogoNew from '@/components/appshell/AppLogoNew';
+import AppLogoNew from '@/components/appshell/AppLogoNew/Index';
 
 import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
@@ -22,13 +22,10 @@ import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { SharedPageProps } from '@/types';
 import { TbSalt } from 'react-icons/tb';
-import { Link } from '@inertiajs/react';
+
 import { LuUsersRound } from "react-icons/lu";
-import { GiCook } from 'react-icons/gi';
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from "react-icons/rx";
-
-import { Avatar as ShadCnAvatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 /**
  * The application header.

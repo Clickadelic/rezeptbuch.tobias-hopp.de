@@ -9,15 +9,15 @@ interface FavoritesListProps {
 export default function FavoritesList({ className, favorites }: FavoritesListProps) {
     return (
         <div className={cn('w-full', className)}>
+            <h2 className="text-xl font-medium mb-3">Favoriten</h2>
             {favorites?.length === 0 && (
                 <div className="p-3 rounded-xl">
                     <h2 className="text-lg text-center font-medium">Keine Favoriten</h2>
                 </div>
             )}
-            <ul className="w-full flex flex-col gap-2">
+            <ul className="w-full flex flex-col gap-2 p-3 ">
                 {favorites?.map((recipe: Recipe) => (
-                    <li key={recipe.id} className="flex items-center gap-2">
-
+                    <li key={recipe.id} className="flex odd:bg-gray-200 even:bg-gray-100 p-2 rounded-lg items-center gap-2 line-clamp-1">
                         <span>{recipe.name}</span>
                     </li>
                 ))}

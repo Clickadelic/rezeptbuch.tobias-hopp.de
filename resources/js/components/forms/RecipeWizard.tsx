@@ -4,18 +4,11 @@ import { router } from '@inertiajs/react';
 
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
-import InputError from '@/components/forms/inputs/InputError';
 import axios from 'axios';
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
@@ -28,7 +21,6 @@ import CategoryGrid from '@/components/forms/CategoryToggle';
 
 import { Recipe } from '@/types/Recipe';
 import { UNITS } from '@/types/Units';
-import { Category } from '@/types/Category';
 import { Difficulty } from '@/types/Difficulty';
 
 import { cn } from '@/lib/utils';

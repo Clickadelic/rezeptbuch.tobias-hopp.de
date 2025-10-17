@@ -75,7 +75,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
                         );
                     })()}
-                    <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div>
+                    {/* <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div> */}
                 </div>
                 <div className="w-full flex flex-col justify-between gap-5">
                     <div className="flex flex-col items-start gap-2">

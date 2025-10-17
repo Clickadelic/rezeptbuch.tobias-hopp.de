@@ -22,7 +22,7 @@ export function CircularMenu() {
 
     if (
         !auth.user ||
-        window.location.pathname.endsWith('/neues-rezept') ||
+        window.location.pathname.endsWith('/neu') ||
         window.location.pathname.endsWith('/edit')
     ) {
         return null;

@@ -1,17 +1,15 @@
 import { usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import {
-    PiCookingPot,
-} from 'react-icons/pi';
-import {
-    LiaCocktailSolid,
-} from 'react-icons/lia';
+import { PiCookingPot } from 'react-icons/pi';
+import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars, GiKnifeFork } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
+
 import type { Category } from '@/types/Category';
 import type { SharedPageProps } from '@/types';
+
 import { cn } from '@/lib/utils';
 
 const iconMap: Record<string, JSX.Element> = {
@@ -28,10 +26,8 @@ interface CategoryToggleProps {
     onChange: (id: number) => void;
 }
 
-export default function CategoryGrid({
-    selectedCategoryId,
-    onChange,
-}: CategoryToggleProps) {
+export default function CategoryGrid({ selectedCategoryId, onChange}:CategoryToggleProps) {
+
     const { categories } = usePage<SharedPageProps>().props;
     const [activeId, setActiveId] = useState<number | null>(selectedCategoryId ?? null);
 
@@ -41,12 +37,13 @@ export default function CategoryGrid({
 
     return (
         <>
-            <h4 className="block font-medium text-gray-800 dark:text-gray-200 mb-1">
+            <h4 className="block font-medium text-gray-800 dark:text-gray-200 mb-2">
                 Kategorie
             </h4>
             <ToggleGroup
                 type="single"
                 // 👇 Immer ein definierter Wert (leerer String statt undefined)
+                // TODO: Bessere Lösung
                 value={activeId !== null ? String(activeId) : ""}
                 onValueChange={(val) => {
                     if (val) {
@@ -69,17 +66,16 @@ export default function CategoryGrid({
                             key={category.id}
                             value={String(category.id)}
                             className={cn(
-                                'flex items-center justify-center p-2 rounded border transition cursor-pointer',
-                                'hover:bg-emerald-50 hover:border-emerald-500',
+                                'flex items-center justify-center p-2 rounded border border-primary transition cursor-pointer',
                                 isActive
-                                    ? 'border-emerald-500 bg-emerald-100 text-emerald-700 shadow-sm'
-                                    : 'border-gray-200 bg-white dark:bg-gray-900',
+                                    ? 'bg-primary'
+                                    : 'bg-primary dark:bg-primary text-white dark:text-gray-200',
                             )}
                         >
                             <div
                                 className={cn(
                                     'transition-colors',
-                                    isActive ? 'text-emerald-700' : 'text-primary',
+                                    isActive ? 'text-primary' : 'text-white dark:text-gray-200',
                                 )}
                             >
                                 {iconMap[category.slug ?? category.name.toLowerCase()] ?? (

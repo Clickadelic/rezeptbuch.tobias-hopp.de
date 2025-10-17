@@ -9,7 +9,7 @@ export default function BackToTopButton() {
                 title="Zurück nach oben"
                 variant="primary"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="inverted-corners animate ease-in-out duration-300 p-4 py-5 rounded-none rounded-bl rounded-br shadow-sm hover:shadow-lg z-10"
+                className="inverted-corners absolute -bottom-5 animate ease-in-out duration-300 p-4 py-6 rounded-full shadow-sm hover:shadow-lg z-10"
             >
                 <IoIosArrowUp className="size-8" />
             </Button>

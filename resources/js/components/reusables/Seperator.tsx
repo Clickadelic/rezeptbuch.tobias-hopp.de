@@ -5,7 +5,7 @@ import { FaHeart } from 'react-icons/fa6';
 import { GiWhisk } from "react-icons/gi";
 import { FaRegHeart } from 'react-icons/fa';
 import { FiCheckCircle } from 'react-icons/fi';
-
+import { RiScales2Line } from "react-icons/ri";
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
@@ -16,51 +16,31 @@ import { TfiCommentAlt } from 'react-icons/tfi';
 import { RxMixerVertical } from "react-icons/rx";
 import { FaQuoteLeft } from 'react-icons/fa6';
 import { cn } from '@/lib/utils';
+import { BsCardImage } from "react-icons/bs";
 
 interface SeparatorProps {
     size?: number;
-    style?:
-        | 'journal'
-        | 'check-circle'
-        | 'check'
-        | 'comment'
-        | 'comment-alt'
-        | 'cake'
-        | 'cocktail'
-        | 'cooking-pot'
-        | 'fork-knife-spoon'
-        | 'fork-knife'
-        | 'info'
-        | 'muffin'
-        | 'mix'
-        | 'mail'
-        | 'salad'
-        | 'heart-outline'
-        | 'heart'
-        | 'quote'
-        | 'snack'
-        | 'salt'
-        | 'whisk';
+    style?: string;
 }
 
 /**
  * A separator component with an icon centered above a horizontal line.
  *
  * @example
- * <Separator size={8} style="cooking-pot | comment | comment-alt | check-circle | fork-knife | fork-knife-spoon | quote | snack | mix | heart | heart-outline | journal | comment | comment-alt | cake | cocktail | info | muffin | mail | salad | salt " />
+ * <Separator size={8} style="cake | check-circle | cocktail | comment | comment-alt | cooking-pot | fork-knife | fork-knife-spoon | heart | heart-outline | image | info | journal | mail | mix | muffin | quote | salad | salt | snack " />
  */
 export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorProps) {
-    // Tailwind Formula
-    const baseStyle = {
-        fontSize: `${size * 0.25}rem`, // flexible scaling
-    };
 
+    const baseStyle = { fontSize: `${size * 0.25}rem`};
     const iconColor = 'text-gray-400 dark:text-gray-700';
-
     let IconComponent = GiKnifeFork;
+
     switch (style) {
-        case 'journal':
-            IconComponent = BsJournalBookmark;
+        case 'check-circle':
+            IconComponent = FiCheckCircle;
+            break;
+        case 'cocktail':
+            IconComponent = LiaCocktailSolid;
             break;
         case 'comment':
             IconComponent = GoCommentDiscussion;
@@ -68,20 +48,20 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
         case 'comment-alt':
             IconComponent = TfiCommentAlt;
             break;
-        case 'cake':
-            IconComponent = GiCakeSlice;
-            break;
-        case 'check-circle':
-            IconComponent = FiCheckCircle;
-            break;
-        case 'cocktail':
-            IconComponent = LiaCocktailSolid;
-            break;
         case 'cooking-pot':
             IconComponent = PiCookingPot;
             break;
+        case 'journal':
+            IconComponent = BsJournalBookmark;
+            break;
+        case 'cake':
+            IconComponent = GiCakeSlice;
+            break;
         case 'info':
             IconComponent = BsInfoCircle;
+            break;
+        case 'image':
+            IconComponent = BsCardImage;
             break;
         case 'muffin':
             IconComponent = RiCake3Line;
@@ -119,16 +99,16 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
         case 'whisk':
             IconComponent = GiWhisk;
             break;
+        case 'scale':
+            IconComponent = RiScales2Line;
+            break;
         default:
             IconComponent = GiKnifeFork;
     }
 
     return (
         <div className="relative my-3 md:my-6 mx-auto w-full max-w-[52rem] flex items-center justify-center">
-            {/* Linie */}
             <div className="absolute left-0 right-0 top-1/2 h-px bg-gray-200  dark:bg-gray-700"></div>
-
-            {/* Icon mit Overlay-Hintergrund */}
             <div className="relative z-10 p-4 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center">
                 <IconComponent className={cn(iconColor)} style={baseStyle} />
             </div>

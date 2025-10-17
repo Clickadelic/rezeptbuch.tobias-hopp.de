@@ -12,7 +12,7 @@ export default function Modal({
     className = '',
 }: PropsWithChildren<{
     show: boolean;
-    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
+    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl';
     closeable?: boolean;
     onClose: CallableFunction;
     className?: string;
@@ -31,6 +31,10 @@ export default function Modal({
         '2xl': 'sm:max-w-2xl',
         '3xl': 'sm:max-w-3xl',
         '4xl': 'sm:max-w-4xl',
+        '5xl': 'sm:max-w-5xl',
+        '6xl': 'sm:max-w-6xl',
+        '7xl': 'sm:max-w-7xl',
+        '8xl': 'sm:max-w-8xl',
     }[maxWidth];
 
     return (
@@ -64,7 +68,7 @@ export default function Modal({
                         className={`relative z-10 transform overflow-hidden rounded-lg shadow-lg transition-all sm:mx-auto sm:w-full ${maxWidthClass}`}
                     >
                         <Button
-                            className="rounded-full absolute top-3 right-3 size-[24px] py-4 hover:bg-emerald-700 dark:hover:bg-emerald-600 z-20"
+                            className="rounded-full absolute top-2 right-2 size-[24px] py-4 hover:bg-emerald-700 dark:hover:bg-emerald-600 z-20"
                             variant="primary"
                             onClick={close}
                         >

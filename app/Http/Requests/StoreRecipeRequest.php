@@ -22,6 +22,7 @@ class StoreRecipeRequest extends FormRequest
                 'string',
                 'max:255',
             ],
+            'status' => ['nullable', 'string'],
 
             // Slug optional, aber eindeutig, wenn vorhanden
             'slug' => [
@@ -37,7 +38,7 @@ class StoreRecipeRequest extends FormRequest
             'preparation_instructions' => ['nullable', 'string'],
             'rating' => ['nullable', 'integer', 'min:0', 'max:5'],
             'difficulty' => ['nullable', 'string'],
-
+            'is_veggy' => ['nullable', 'boolean'],
             // Zutaten
             'recipe_ingredients' => ['sometimes', 'array'],
             'recipe_ingredients.*.ingredient_id' => ['nullable', 'string'],

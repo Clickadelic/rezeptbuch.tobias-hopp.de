@@ -25,7 +25,7 @@ class RecipeController extends Controller
     public function index()
     {
         $recipes = Recipe::with('media', 'category', 'user')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'desc')->where('status', 'published')
             ->paginate(15);
 
         $recipes = $this->addFavoriteFlags($recipes);
@@ -56,7 +56,7 @@ class RecipeController extends Controller
             'category',
             'media',
             'user'
-        ]);
+        ])->where('status', 'published');
 
         $related = Recipe::with(['category', 'user'])
             ->where('category_id', $recipe->category_id)
@@ -77,6 +77,7 @@ class RecipeController extends Controller
         $recipe = Recipe::create([
             'id'                       => Str::uuid()->toString(),
             'name'                     => $request->input('name'),
+            'status'                   => $request->input('status'),
             'slug'                     => $request->input('slug') ?? Str::slug($request->input('name'), '-', 'de'),
             'punchline'                => $request->input('punchline'),
             'description'              => $request->input('description'),
@@ -86,6 +87,7 @@ class RecipeController extends Controller
             'preparation_instructions' => $request->input('preparation_instructions'),
             'user_id'                  => $request->user()->id,
             'category_id'              => $request->input('category_id'),
+            'is_veggy'                 => $request->input('is_veggy'),
         ]);
 
         // 2️⃣ Zutaten verarbeiten
@@ -225,7 +227,7 @@ class RecipeController extends Controller
         $recipe->refresh();
 
         return redirect()
-            ->route('recipes.show', $recipe->slug)
+            ->route('recipes.index', $recipe->slug)
             ->with('success', 'Rezept erfolgreich aktualisiert.');
     }
 

@@ -20,11 +20,7 @@ export function CircularMenu() {
     const { auth } = usePage<SharedPageProps>().props;
     const [showCircularMenu, setShowCircularMenu] = useState(false);
 
-    if (
-        !auth.user ||
-        window.location.pathname.endsWith('/neu') ||
-        window.location.pathname.endsWith('/edit')
-    ) {
+    if (!auth.user) {
         return null;
     }
 

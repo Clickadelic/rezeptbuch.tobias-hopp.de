@@ -22,46 +22,49 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
     return (
         <div className="w-full md:w-[32rem] md:mx-auto">
             <div className="w-full flex flex-col gap-2 justify-between items-center mb-10">
-                <div className="flex items-center gap-2">
-                    <Button
-                        onClick={() => setCount(1)}
-                        className="py-2 px-2 hover:cursor-pointer shadow-none border-gray-400 text-gray-400 hover:border-rose-700"
-                        variant="dangerOutline"
-                        size="sm"
-                        title="Personen zurücksetzen"
-                        aria-label="Personen zurücksetzen"
-                    >
-                        <RiResetLeftFill />
-                    </Button>
-                    <Button
-                        onClick={() => setCount((prev) => Math.max(1, prev - 1))}
-                        className="py-2 px-2 hover:cursor-pointer shadow-none"
-                        variant="primaryOutline"
-                        size="sm"
-                        disabled={count === 1}
-                        title="Personen reduzieren"
-                        aria-label="Personen reduzieren"
-                    >
-                        <MinusIcon />
-                    </Button>
-                    <div className="cursor-default w-[14rem] font-medium text-xl flex gap-3 px-3 text-center">
-                        {count}
-                        <span>Zutaten für {count > 1 ? ' Personen' : ' Person'}</span>
+                <div className="flex flex-col items-center justify-center gap-5 md:w-[22rem]">
+                    <div>
+                        <div className="cursor-default w-[14rem] font-medium text-xl flex gap-3 px-3 text-center">
+                            <span>Zutaten für {count > 1 ? `${count} Personen` : '1 Person'}</span>
+                        </div>
                     </div>
-                    <Button
-                        onClick={() => setCount((prev) => prev + 1)}
-                        className="py-2 px-2 hover:cursor-pointer shadow-none"
-                        variant="primaryOutline"
-                        size="sm"
-                        title="Personen erhöhen"
-                        aria-label="Personen erhöhen"
-                    >
-                        <PlusIcon />
-                    </Button>
+                    <div className="flex gap-5">
+                        <Button
+                            onClick={() => setCount(1)}
+                            className="py-2 px-2 hover:cursor-pointer shadow-none text-rose-700 border-rose-700 hover:border-rose-700"
+                            variant="dangerOutline"
+                            size="sm"
+                            title="Personen zurücksetzen"
+                            aria-label="Personen zurücksetzen"
+                        >
+                            <RiResetLeftFill />
+                        </Button>
+                        <Button
+                            onClick={() => setCount((prev) => Math.max(1, prev - 1))}
+                            className="py-2 px-2 hover:cursor-pointer shadow-none"
+                            variant="primaryOutline"
+                            size="sm"
+                            disabled={count === 1}
+                            title="Personen reduzieren"
+                            aria-label="Personen reduzieren"
+                        >
+                            <MinusIcon />
+                        </Button>
+                        <Button
+                            onClick={() => setCount((prev) => prev + 1)}
+                            className="py-2 px-2 hover:cursor-pointer shadow-none"
+                            variant="primary"
+                            size="sm"
+                            title="Personen erhöhen"
+                            aria-label="Personen erhöhen"
+                        >
+                            <PlusIcon />
+                        </Button>
+                    </div>
                 </div>
             </div>
-            <table className="table mx-auto w-full md:w-[32rem] overflow-x-auto text-gray-800">
-                <thead className=" text-gray-700 dark:text-gray-400">
+            <table className="table rounded-lg bg-gray-100 dark:bg-gray-700 mx-auto w-full md:w-[28rem] overflow-x-auto text-gray-800">
+                <thead className=" text-gray-800 dark:text-gray-200 font-normal">
                     <tr>
                         <th className="p-3 text-left w-24">Menge</th>
                         <th className="p-3 text-left">Einheit</th>
@@ -72,7 +75,7 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
                     {recipe.ingredients?.map((ingredient) => (
                         <tr
                             key={ingredient.id}
-                            className="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-900/50 dark:even:bg-gray-950"
+                            className="odd:bg-white even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
                         >
                             <td className="p-3">
                                 {((ingredient.pivot?.quantity ?? 0) as number) * count}

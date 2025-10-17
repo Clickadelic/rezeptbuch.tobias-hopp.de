@@ -97,7 +97,7 @@ export default function ContactForm({ className }: ContactFormProps) {
                     <InputLabel htmlFor="message" value="Dein Feedback" />
                     <Textarea
                         value={data.message}
-                        rows={3}
+                        rows={5}
                         placeholder="Hi, melde mich, da.."
                         className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2"
                         onChange={(e) => setData('message', e.target.value)}

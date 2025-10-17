@@ -12,7 +12,7 @@ interface CarouselProps {
 }
 
 /**
- * A carousel component.
+ * A carousel component, which expects an array of objects.
  *
  * @param {string} [wrapperClassname] - Optional wrapper class name
  * @param {string} [carouselClassName] - Optional carousel class name
@@ -41,7 +41,7 @@ export default function Carousel({
                     <RecipeCard className={itemClassName} key={recipe.id} recipe={recipe} />
                 ))}
                 {recipes?.length === 0 && (
-                    <li key="id_placeholder">
+                    <li key="id_placeholder" className="w-full h-full flex flex-col items-center justify-center">
                         <p>Lege das erste Rezept an.</p>
                     </li>
                 )}

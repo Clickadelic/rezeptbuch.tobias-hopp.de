@@ -82,7 +82,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         description: recipe?.description ?? '',
         difficulty: recipe?.difficulty ?? 'einfach',
         is_veggy: recipe?.is_veggy ?? false,
-        rating: Number(recipe?.rating ?? 5),
+        rating: Number(recipe?.rating ?? 1),
         preparation_time: Number(recipe?.preparation_time ?? 15),
         preparation_instructions: recipe?.preparation_instructions ?? '',
         pending_key: recipe ? undefined : pendingKey,
@@ -363,7 +363,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     )}
                     
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
-                    <div className="flex gap-4">
+                    <div className="grid grid-cols-2 grid-rows-1 lg:flex gap-4">
                         {/* Vegetarisch */}
                         <div className="mr-8">
                             <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />

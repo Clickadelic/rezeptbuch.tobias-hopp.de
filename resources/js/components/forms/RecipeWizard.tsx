@@ -372,11 +372,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="flex gap-4">
                         {/* Zubereitungszeit */}
-                        <div className="w-96">
+                        <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
                             <div className="flex flex-col xl:flex-row gap-5">
                                 <div className="flex justify-end items-end">
-                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 min-w-[70px] w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                    <span className="min-w-[50px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
                                         {data.preparation_time}
                                     </span>
                                     <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
@@ -424,12 +424,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <div>
                             <InputLabel htmlFor="is_veggy" value="vegetarisches Rezept" />
                             <div className="flex items-center gap-2 mt-1">
-                                <Switch className="mt-3" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                                <Switch className="mt-1 mx-5 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
                                 <label htmlFor="is_veggy" className="mt-2">{data.is_veggy ? 'Ja' : 'Nein'}</label>
                             </div>
                         </div>
                     </div>
                     <Seperator style="quote" />
+
                     {/* Punchline */}
                     <div>
                         <InputLabel htmlFor="punchline" value="Punchline" />

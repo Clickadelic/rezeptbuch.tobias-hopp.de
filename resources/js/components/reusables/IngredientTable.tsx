@@ -22,7 +22,7 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
     return (
         <div className="w-full md:w-[32rem] md:mx-auto">
             <div className="w-full flex flex-col gap-2 justify-between items-center mb-10">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-1 md:w-[22rem]">
                     <Button
                         onClick={() => setCount(1)}
                         className="py-2 px-2 hover:cursor-pointer shadow-none border-gray-400 text-gray-400 hover:border-rose-700"
@@ -60,7 +60,7 @@ export default function IngredientTable({ recipe }: IngredientTableProps) {
                     </Button>
                 </div>
             </div>
-            <table className="table mx-auto w-full md:w-[32rem] overflow-x-auto text-gray-800">
+            <table className="table mx-auto w-full md:w-[28rem] overflow-x-auto text-gray-800">
                 <thead className=" text-gray-700 dark:text-gray-400">
                     <tr>
                         <th className="p-3 text-left w-24">Menge</th>

@@ -1,5 +1,4 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import { AuthUser } from '@/types';
 
 import { usePage } from '@inertiajs/react';
 /**

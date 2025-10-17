@@ -360,9 +360,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <InputLabel htmlFor="description" value="Beschreibung" />
                         <Textarea
                             value={data.description}
-                            rows={3}
+                            rows={5}
                             placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                            className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2"
+                            className="mt-2 w-full rounded-lg border border-gray-200 px-3 py-2"
                             onChange={(e) => setData('description', e.target.value)}
                         />
                         {errors.description && <p className="text-red-500">{errors.description}</p>}
@@ -373,21 +373,21 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {/* Zubereitungszeit */}
                         <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
-                            <div className="flex items-end">
+                            <div className="flex justify-start items-start">
                                 <TextInput
                                     id="preparation_time"
                                     type="number"
-                                    min={0}
+                                    min={1}
                                     step={5}
-                                    max={600}
+                                    max={300}
                                     value={data.preparation_time}
                                     placeholder="0"
-                                    className="w-36 mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl rounded-bl"
+                                    className="mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl rounded-bl"
                                     onChange={(e) =>
                                         setData('preparation_time', Number(e.target.value))
                                     }
                                 />
-                                <span className="px-3 py-1 text-gray-800 dark:text-gray-200 border border-l-0 rounded-r border-gray-200">
+                                <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-36 mt-1 flex-1 rounded-none border-l-0 rounded-tr rounded-br">
                                     Minuten
                                 </span>
                             </div>

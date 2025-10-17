@@ -27,7 +27,7 @@ import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 import { Recipe } from '@/types/Recipe';
 import { UNITS } from '@/types/Units';
 import { Difficulty } from '@/types/Difficulty';
-
+import { Media } from '@/types/Media';
 import { cn } from '@/lib/utils';
 
 interface RecipeIngredientData {
@@ -67,9 +67,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     );
 
     // Neue Bilder, die in diesem Durchlauf hochgeladen werden
-    const [pendingMedia, setPendingMedia] = useState<
-        Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>
-    >([]);
+    const [pendingMedia, setPendingMedia] = useState<Partial<Media>[]>([]);
 
     // Bereits gespeicherte Bilder (nur Edit)
     const [liveMedia, setLiveMedia] = useState<Array<any>>(recipe?.media ?? []);
@@ -366,6 +364,15 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="flex gap-4">
+                        {/* Vegetarisch */}
+                        <div className="mr-8">
+                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
+                            <div className="flex items-center gap-2 mt-1">
+                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
+                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
+                            </div>
+                        </div>
                         {/* Zubereitungszeit */}
                         <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
@@ -389,16 +396,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {errors.preparation_time && (
                                 <p className="text-rose-500">{errors.preparation_time}</p>
                             )}
-                        </div>
-
-                        {/* Vegetarisch */}
-                        <div>
-                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
-                            <div className="flex items-center gap-2 mt-1">
-                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
-                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
-                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
-                            </div>
                         </div>
                     </div>
                     <Seperator style="quote" />

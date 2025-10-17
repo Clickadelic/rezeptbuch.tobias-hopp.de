@@ -4,7 +4,7 @@ import type { Media } from './Media';
 import { Difficulty } from './Difficulty';
 import { Ingredient } from './Ingredient';
 import { Category } from './Category';
-import AuthUser from './User';
+import AuthUser from './AuthUser';
 
 export type Recipe = {
     id?: string;

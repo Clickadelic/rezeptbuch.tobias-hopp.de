@@ -14,6 +14,8 @@ import { BiDish } from 'react-icons/bi';
 import { GiCrystalBars } from 'react-icons/gi';
 import { VscSymbolEvent } from 'react-icons/vsc';
 import { Recipe } from '@/types/Recipe';
+import { GiBroccoli } from "react-icons/gi";
+import { TbMeat } from "react-icons/tb";
 
 import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
@@ -52,7 +54,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     return (
         <div className="flex flex-col gap-5">
             <div className="flex flex-col md:flex-row justify-start gap-5">
-                <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[72rem] overflow-hidden rounded-xl">
+                <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[96rem] overflow-hidden rounded-xl">
                     {(() => {
                         const hero =
                             (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
@@ -72,10 +74,12 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                 </button>
                             </div>
                         ) : (
-                            <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
+                            <>
+                                <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
+                                <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div>
+                            </>
                         );
                     })()}
-                    {/* <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div> */}
                 </div>
                 <div className="w-full flex flex-col justify-between gap-5">
                     <div className="flex flex-col items-start gap-2">
@@ -115,6 +119,16 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                 {recipe.preparation_time} Minuten
                             </p>
                         </div>
+                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                            {recipe.is_veggy ? (
+                                <GiBroccoli className="size-5 text-primary" />
+                            ) : (
+                                <TbMeat className="size-5 text-primary" />
+                            )}
+                            <p className=" text-gray-600 dark:text-gray-200 text-sm">
+                                {recipe.is_veggy ? 'vegetarisch' : 'Fleischgericht'}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,7 +152,6 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     <Seperator style="whisk" />
                 </>
             )}
-
             {recipe.preparation_instructions && (
                 <>
                     <div className="flex">
@@ -152,7 +165,6 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     <Seperator />
                 </>
             )}
-
             <div className="flex flex-col gap-5 mb-12">
                 <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
                 <Carousel
@@ -164,26 +176,30 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <Modal
                 show={isImageModalOpen}
                 closeable={true}
-                maxWidth="4xl"
+                maxWidth="6xl"
                 onClose={() => setIsImageModalOpen(false)}
             >
-                <div className="p-2 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
-                    {recipe.media?.map((m) => (
-                        <div key={m.id}>
-                            {/* TODO: Fix the image fix */}
-                            <img
-                                src={m.url}
-                                alt={recipe.name}
-                                className="inset size-full rounded aspect-video object-cover mb-4"
-                            />
-                            <h5 className="font-medium text-gray-600 dark:text-gray-400">
-                                {recipe.punchline}
-                            </h5>
-                            <h4 className="font-medium text-gray-800 dark:text-gray-200">
-                                {recipe.name}
-                            </h4>
-                        </div>
-                    ))}
+                <div className="rounded-xl p-1 bg-white/30 dark:bg-gray-900/30">
+                    <div className="p-2 bg-white dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col">
+                        {recipe.media?.map((m) => (
+                            <div key={m.id}>
+                                {/* TODO: Fix the image fix */}
+                                <img
+                                    src={m.url}
+                                    alt={recipe.name}
+                                    className="inset size-full rounded aspect-video object-cover mb-4"
+                                />
+                                <div className="w-full ms-3 mb-3">
+                                    <h5 className="font-medium text-gray-600 dark:text-gray-400">
+                                        {recipe.punchline}
+                                    </h5>
+                                    <h4 className="font-medium text-gray-800 dark:text-gray-200">
+                                        {recipe.name}
+                                    </h4>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </Modal>
         </div>

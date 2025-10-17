@@ -7,6 +7,7 @@ import { AuthUser } from '.';
 export type Recipe = {
     id?: string;
     name: string;
+    status: string;
     slug?: string;
     punchline?: string;
     description?: string;
@@ -15,6 +16,7 @@ export type Recipe = {
     preparation_instructions?: string;
     rating?: number;
     difficulty?: Difficulty;
+    is_veggy: boolean;
     ingredients?: Ingredient[]; // jetzt mit optionalem pivot
     media?: Array<{
         id: number;
@@ -39,7 +41,7 @@ export type Recipe = {
     // noch Check auf Richtigkeit machen...
     category_id?: number; // Für DB-Relation
     category?: Category;
+    
     created_at: string;
     updated_at: string;
-    deleted_at?: string;
 };

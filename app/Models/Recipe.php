@@ -28,21 +28,29 @@ class Recipe extends Model
      protected $fillable = [
           'id',
           'name',
+          'status',
           'slug',
           'punchline',
           'description',
           'preparation_time',
           'preparation_instructions',
-          'rating',
           'difficulty',
+          'is_veggy',
+          'rating',
+          'community_rating',
+          'community_votes',
           'user_id',
           'category_id'
      ];
 
      protected $casts = [
           'preparation_time' => 'integer',
+          'status' => 'string',
           'rating' => 'integer',
+          'community_rating' => 'integer',
+          'community_votes' => 'integer',
           'category_id' => 'integer',
+          'is_veggy' => 'boolean',
      ];
 
     /**
@@ -137,4 +145,20 @@ class Recipe extends Model
           if (!$userId) return false;
           return $this->favoritedBy()->where('user_id', $userId)->exists();
      }
+
+     public function ratings()
+     {
+          return $this->hasMany(Rating::class);
+     }
+
+    public function updateCommunityRating(): void
+    {
+        $avg = $this->ratings()->avg('rating') ?? 0;
+        $count = $this->ratings()->count();
+
+        $this->update([
+            'community_rating' => round($avg),
+            'community_votes' => $count,
+        ]);
+    }
 }

@@ -27,7 +27,7 @@ import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 import { Recipe } from '@/types/Recipe';
 import { UNITS } from '@/types/Units';
 import { Difficulty } from '@/types/Difficulty';
-
+import { Media } from '@/types/Media';
 import { cn } from '@/lib/utils';
 
 interface RecipeIngredientData {
@@ -46,10 +46,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const formRef = useRef<HTMLFormElement>(null);
 
     /**
-     * Smoothly scrolls to the top of the form element.
-     * @remarks
-     * This function is used to scroll to the top of the form when the user
-     * clicks the "Next" or "Previous" button.
+     * Smoothly scrolls the window to the top of the form.
+     * @returns {void}
      */
     const scrollToTop = () => {
         if (formRef.current) {
@@ -61,7 +59,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         }
     };
 
-    // Pending key für Uploads vor dem Speichern (nur Create)
+    // Pending key fuer Uploads vor dem Speichern (nur Create)
     const [pendingKey] = useState<string>(() =>
         typeof crypto !== 'undefined' && (crypto as any).randomUUID
             ? (crypto as any).randomUUID()
@@ -69,9 +67,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     );
 
     // Neue Bilder, die in diesem Durchlauf hochgeladen werden
-    const [pendingMedia, setPendingMedia] = useState<
-        Array<{ id: number; path: string; name: string; url?: string; pivot?: any }>
-    >([]);
+    const [pendingMedia, setPendingMedia] = useState<Partial<Media>[]>([]);
 
     // Bereits gespeicherte Bilder (nur Edit)
     const [liveMedia, setLiveMedia] = useState<Array<any>>(recipe?.media ?? []);
@@ -143,8 +139,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     // Submit Handler → unterscheidet Create vs Edit
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        console.log(recipe)
         if (!recipe) {
             // Create
             post(route('recipes.store'), {
@@ -153,7 +147,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                 preserveScroll: true,
             });
         } else {
-            console.log(recipe)
             // Edit → Method Spoofing
             router.post(
                 route('recipes.update', { recipe: recipe.slug }),
@@ -173,7 +166,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     return (
         <form onSubmit={handleSubmit} ref={formRef} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
-            <ol className="items-center w-full space-y-4 flex justify-between sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-5">
+            <ol className="flex justify-between items-center w-full space-y-4 sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-5">
                 <li className="relative w-full mb-6 sm:mb-0">
                     <div className="flex items-center">
                         <div
@@ -371,12 +364,21 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="flex gap-4">
+                        {/* Vegetarisch */}
+                        <div className="mr-8">
+                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
+                            <div className="flex items-center gap-2 mt-1">
+                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
+                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
+                            </div>
+                        </div>
                         {/* Zubereitungszeit */}
-                        <div className="w-96">
+                        <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
                             <div className="flex flex-col xl:flex-row gap-5">
                                 <div className="flex justify-end items-end">
-                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 min-w-[70px] w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                    <span className="min-w-[50px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
                                         {data.preparation_time}
                                     </span>
                                     <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
@@ -387,7 +389,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     defaultValue={[data.preparation_time]}
                                     max={240}
                                     step={5}
-                                    className="mt-2"
+                                    className="w-full sm:w-48 md:w-64 mt-2"
                                     onValueChange={(value) => setData('preparation_time', value[0])}
                                 />
                             </div>
@@ -395,7 +397,23 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <p className="text-rose-500">{errors.preparation_time}</p>
                             )}
                         </div>
+                    </div>
+                    <Seperator style="quote" />
 
+                    {/* Punchline */}
+                    <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
+                        <div className="w-full">
+                            <InputLabel htmlFor="punchline" value="Punchline" />
+                            <TextInput
+                                id="punchline"
+                                type="text"
+                                value={data.punchline}
+                                placeholder="z.B. Mediterran und frisch"
+                                className="w-full"
+                                onChange={(e) => setData('punchline', e.target.value)}
+                            />
+                            {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
+                        </div>
                         {/* Schwierigkeitsgrad */}
                         <div>
                             <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
@@ -419,29 +437,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                             )}
                         </div>
-
-                        {/* Vegetarisch */}
-                        <div>
-                            <InputLabel htmlFor="is_veggy" value="vegetarisches Rezept" />
-                            <div className="flex items-center gap-2 mt-1">
-                                <Switch className="mt-3" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
-                                <label htmlFor="is_veggy" className="mt-2">{data.is_veggy ? 'Ja' : 'Nein'}</label>
-                            </div>
-                        </div>
-                    </div>
-                    <Seperator style="quote" />
-                    {/* Punchline */}
-                    <div>
-                        <InputLabel htmlFor="punchline" value="Punchline" />
-                        <TextInput
-                            id="punchline"
-                            type="text"
-                            value={data.punchline}
-                            placeholder="z.B. Mediterran und frisch"
-                            className="mt-1 w-full"
-                            onChange={(e) => setData('punchline', e.target.value)}
-                        />
-                        {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
                     </div>
 
                     {/* Beschreibung */}
@@ -592,7 +587,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 (recipe ? liveMedia : pendingMedia).map((m) => (
                                     <label
                                     key={m.id}
-                                    className="relative w-48 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
+                                    className="relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
                                     >   {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
                                         <img
                                             src={`/storage/${m.path}`}
@@ -643,7 +638,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     </label>
                                 ))
                             ) : (
-                                <div className="border-2 border-dotted border-gray-600 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-48 flex items-center justify-center aspect-video">
+                                <div className="border-2 border-dotted border-gray-600 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-full max-w-72 flex items-center justify-center aspect-video">
                                     <p className="text-xs text-gray-500">
                                         Noch kein Bild vorhanden.
                                     </p>

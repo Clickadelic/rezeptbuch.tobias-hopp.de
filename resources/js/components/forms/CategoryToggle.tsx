@@ -37,13 +37,13 @@ export default function CategoryGrid({ selectedCategoryId, onChange}:CategoryTog
 
     return (
         <>
-            <h4 className="block font-medium text-gray-800 dark:text-gray-200 mb-2">
+            <h4 className="block font-medium text-gray-800 dark:text-gray-200 mb-1">
                 Kategorie
             </h4>
             <ToggleGroup
                 type="single"
                 // 👇 Immer ein definierter Wert (leerer String statt undefined)
-                // TODO: Bessere Lösung
+                // TODO: Bessere Lösung finden
                 value={activeId !== null ? String(activeId) : ""}
                 onValueChange={(val) => {
                     if (val) {
@@ -79,7 +79,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange}:CategoryTog
                                 )}
                             >
                                 {iconMap[category.slug ?? category.name.toLowerCase()] ?? (
-                                    <PiCookingPot className="size-5" />
+                                    <PiCookingPot className="size-4 inline-flex" />
                                 )}
                             </div>
                             <span className="text-base font-medium">{category.name}</span>

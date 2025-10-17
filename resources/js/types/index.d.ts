@@ -3,7 +3,7 @@ import { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Recipe } from './Recipe';
 import { Category } from './Category';
 import { Ingredient } from './Ingredient';
-import { Pagination } from './Pagination';
+import { Paginated } from './Paginated';
 import { AuthUser } from './AuthUser';
 
 /**
@@ -32,9 +32,9 @@ export interface SharedPageProps extends InertiaPageProps {
 
     categories: Category[];
     ingredients?: Ingredient[];
-    recipes?: Pagination<Recipe>;
-    latestRecipes?: Pagination<Recipe>;
-    allUserRecipes?: Pagination<Recipe>;
+    recipes?: Paginated<Recipe>;
+    latestRecipes?: Paginated<Recipe>;
+    allUserRecipes?: Paginated<Recipe>;
     
     totalUserRecipeCount: number;
     totalIngredientCount: number;

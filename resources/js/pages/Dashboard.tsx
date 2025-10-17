@@ -15,8 +15,15 @@ import AddCard from '@/components/reusables/AddCard';
 import BarChart from '@/components/reusables/Charts/BarChart';
 
 export default function Dashboard() {
-    const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites, userFavoritesCount } =
-        usePage<SharedPageProps>().props;
+    // Extract the data from the page
+    const {
+        totalRecipeCount,
+        totalUserRecipeCount,
+        totalIngredientCount,
+        userFavorites,
+        userFavoritesCount,
+        allUserRecipes
+    } = usePage<SharedPageProps>().props;
 
     return (
         <FullWidthLayout title="Dashboard">
@@ -31,7 +38,16 @@ export default function Dashboard() {
                     <FavoritesList favorites={userFavorites as Recipe[]} />
                 </div>
                 <div className="p-3 border border-gray-200 md:col-start-3 md:col-span-2 lg:row-span-2 lg:row-start-3 lg:col-start-2 lg:col-span-3 rounded-xl">
-                    <h2 className="text-lg font-medium">5</h2>
+                    <h2 className="text-lg font-medium">Deine Rezepte</h2>
+                    <ul>
+                        {allUserRecipes.map((recipe:Recipe) => {
+                            return (
+                                <li key={recipe.id} className="asd">
+                                    <h2 className="text-lg font-medium">{recipe.name}</h2>
+                                </li>
+                            );
+                        })}
+                    </ul>
                 </div>
                 <div className="p-3 border border-gray-200 md:col-start-1 md:col-span-2 lg:row-span-5 lg:col-start-5 lg:col-span-1 rounded-xl">
                     <h2 className="text-lg font-medium">6</h2>

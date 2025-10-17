@@ -227,7 +227,7 @@ class RecipeController extends Controller
         $recipe->refresh();
 
         return redirect()
-            ->route('recipes.show', $recipe->slug)
+            ->route('recipes.index', $recipe->slug)
             ->with('success', 'Rezept erfolgreich aktualisiert.');
     }
 

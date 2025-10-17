@@ -119,16 +119,14 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                 {recipe.preparation_time} Minuten
                             </p>
                         </div>
-                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
-                            {recipe.is_veggy ? (
+                        {recipe.is_veggy && (
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GiBroccoli className="size-5 text-primary" />
-                            ) : (
-                                <TbMeat className="size-5 text-primary" />
-                            )}
-                            <p className=" text-gray-600 dark:text-gray-200 text-sm">
-                                {recipe.is_veggy ? 'vegetarisch' : 'Fleischgericht'}
-                            </p>
-                        </div>
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">
+                                    vegetarisch
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -145,7 +143,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     </div>
                 </div>
             </div>
-            <Seperator style="check-circle" />
+            <Seperator style="scale" />
             {recipe.ingredients && recipe.ingredients.length > 0 && (
                 <>
                     <IngredientTable recipe={recipe} />

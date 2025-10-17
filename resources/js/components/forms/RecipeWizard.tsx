@@ -5,7 +5,6 @@ import { router } from '@inertiajs/react';
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
 import axios from 'axios';
-
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText } from "@/components/ui/input-group"
 import { Switch } from "@/components/ui/switch";
 import { TooltipProvider } from '@radix-ui/react-tooltip';
@@ -18,7 +17,8 @@ import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from 'react-icons/tb';
-
+import { SlRefresh } from "react-icons/sl";
+import { ImSpinner10 } from "react-icons/im";
 import Seperator from '@/components/reusables/Seperator';
 import CategoryGrid from '@/components/forms/CategoryToggle';
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
@@ -302,10 +302,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 1: Basics */}
             {step === 1 && (
                 <section className="space-y-4">
-                    {/* Name */}
+                    {/* Name und Status */}
                     <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
+                        {/* Name */}
                         <div className="w-full">
-                            <InputLabel htmlFor="name" value="Name" />
+                            <InputLabel htmlFor="name" value="Rezeptname" />
                             <TextInput
                                 id="name"
                                 type="text"
@@ -324,12 +325,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 value={data.status}
                                 onValueChange={(val) => setData('status', val)}
                             >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+                                <SelectTrigger className="w-full sm:w-44 mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                     <SelectValue placeholder="Status auswählen" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="draft">Entwurf</SelectItem>
-                                    <SelectItem value="published">Veröffentlicht</SelectItem>
+                                    <SelectItem value="published">veröffentlicht</SelectItem>
                                 </SelectContent>
                             </Select>
                             {errors.status && <p className="text-red-500 text-sm mt-1">{errors.status}</p>}
@@ -369,35 +370,29 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     )}
                     
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="flex gap-4">
                         {/* Zubereitungszeit */}
-                        <div>
+                        <div className="w-96">
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
-                            <div className="flex justify-start items-start">
-                                <TextInput
-                                    id="preparation_time"
-                                    type="number"
-                                    min={1}
+                            <div className="flex flex-col xl:flex-row gap-5">
+                                <div className="flex justify-end items-end">
+                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 min-w-[70px] w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                        {data.preparation_time}
+                                    </span>
+                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
+                                        Minuten
+                                    </span>
+                                </div>
+                                <Slider
+                                    defaultValue={[data.preparation_time]}
+                                    max={240}
                                     step={5}
-                                    max={300}
-                                    value={data.preparation_time}
-                                    placeholder="0"
-                                    className="mt-1 flex-1 rounded-none border-r-0 border-gray-200 rounded-tl rounded-bl"
-                                    onChange={(e) => setData('preparation_time', Number(e.target.value))}
+                                    className="mt-2"
+                                    onValueChange={(value) => setData('preparation_time', value[0])}
                                 />
-                                <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-36 mt-1 flex-1 rounded-none border-l-0 rounded-tr rounded-br">
-                                    Minuten
-                                </span>
                             </div>
-                            <Slider
-                                defaultValue={[data.preparation_time]}
-                                max={240}
-                                step={5}
-                                className="my-5"
-                                onValueChange={(value) => setData('preparation_time', value[0])}
-                            />
                             {errors.preparation_time && (
-                                <p className="text-red-500">{errors.preparation_time}</p>
+                                <p className="text-rose-500">{errors.preparation_time}</p>
                             )}
                         </div>
 
@@ -427,8 +422,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                         {/* Vegetarisch */}
                         <div>
-                            <InputLabel htmlFor="is_veggy" value="ist vegetarisch" />
-                            <Switch className="mt-3" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                            <InputLabel htmlFor="is_veggy" value="vegetarisches Rezept" />
+                            <div className="flex items-center gap-2 mt-1">
+                                <Switch className="mt-3" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                                <label htmlFor="is_veggy" className="mt-2">{data.is_veggy ? 'Ja' : 'Nein'}</label>
+                            </div>
                         </div>
                     </div>
                     <Seperator style="quote" />
@@ -459,7 +457,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {errors.description && <p className="text-red-500">{errors.description}</p>}
                     </div>
 
-                    <div className="flex justify-between gap-2">
+                    <div className="flex justify-between gap-2 mt-8">
                         <Button
                             asChild
                             type="button"
@@ -505,7 +503,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     value={di.unit}
                                     onValueChange={(value) => updateIngredient(idx, 'unit', value)}
                                 >
-                                    <SelectTrigger className="w-32 mt-1 py-2 shadow-none font-medium">
+                                    <SelectTrigger className="w-full sm:w-24 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                         <SelectValue placeholder="Einheit auswählen" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -521,7 +519,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <div className="md:w-full flex gap-2">
                                 <IngredientComboBox
                                     value={di.ingredient_id}
-                                    triggerClassName="w-full mt-1 shadow-none"
+                                    triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
                                     onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
                                 />
                                 <Button
@@ -544,8 +542,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     >
                         <GoPlus /> Zutat hinzufügen
                     </Button>
-                    <Seperator />
-                    <div className="flex justify-between gap-2">
+                    <div className="flex justify-between gap-2 mt-8">
                         <Button
                             type="button"
                             variant="primaryOutline"
@@ -586,11 +583,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             }}
                         />
                     </div>
-
+                    <Seperator style="image" />
                     {/* Vorschau */}
                     <div className="w-full space-y-3">
-                        <InputLabel htmlFor="media" value="Bilder zum Gericht" />
-                        <div className="flex flex-wrap gap-3">
+                        <InputLabel htmlFor="media" value="Vorschau der hochgeladenen Bilder" className="sr-only" />
+                        <div className="flex flex-wrap gap-3 justify-center items-center">
                             {(recipe ? liveMedia : pendingMedia).length > 0 ? (
                                 (recipe ? liveMedia : pendingMedia).map((m) => (
                                     <label
@@ -635,7 +632,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                             onChange={() =>
                                                 setData('primary_media_id', m.id as any)
                                             }
-                                            className="absolute top-1 left-1"
+                                            className="absolute top-1 left-1 text-gray-200 dark:text-gray-800"
                                             title="Als Hauptbild auswählen"
                                         />
                                         {data.primary_media_id === m.id && (
@@ -654,7 +651,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             )}
                         </div>
                     </div>
-
+                    <Seperator style="info" />
                     {/* Zubereitung */}
                     <div className="w-full space-y-3">
                         <InputLabel
@@ -666,7 +663,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             value={data.preparation_instructions}
                             rows={8}
                             placeholder="Beschreibung der Zubereitung"
-                            className="mt-1 w-full rounded-lg border border-gray-400 shadow px-3 py-2"
+                            className="mt-2 w-full rounded-lg border border-gray-400 shadow px-3 py-2"
                             onChange={(e) => setData('preparation_instructions', e.target.value)}
                         />
                         {errors.preparation_instructions && (
@@ -690,8 +687,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             disabled={processing}
                             className="w-48"
                         >
-                            {recipe ? <GoPencil /> : <GoPlus />}
-                            {recipe ? 'Speichern' : 'Erstellen'}
+                            {recipe ? <SlRefresh /> : <GoPlus />}
+                            {recipe ? 'Aktualisieren' : 'Erstellen'}
                         </Button>
                     </div>
                 </section>

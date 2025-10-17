@@ -3,19 +3,8 @@ import { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Recipe } from './Recipe';
 import { Category } from './Category';
 import { Ingredient } from './Ingredient';
-
-/**
- * Basis-Benutzerobjekt für Auth
- */
-export interface AuthUser {
-    id: number;
-    name: string;
-    email: string;
-    avatar?: string;
-    roles: string[];
-    permissions: string[];
-    email_verified_at: string | null;
-}
+import { Pagination } from './Pagination';
+import { AuthUser } from './AuthUser';
 
 /**
  * Globale Props, die Laravel/Inertia immer mitsendet
@@ -25,7 +14,6 @@ export interface SharedPageProps extends InertiaPageProps {
         user: AuthUser;
     };
 
-    // Im Auge behalten, warum hier und ob nicht besser im User-Objekt
     mustVerifyEmail: boolean;
     status?: string;
 
@@ -34,44 +22,23 @@ export interface SharedPageProps extends InertiaPageProps {
         error?: string;
     };
 
-    categories: Category[];
-
-    recipes?: {
-        data: Recipe[];
-        current_page: number;
-        last_page: number;
-        per_page: number;
-        links: {
-            url: string | null;
-            label: string;
-            active: boolean;
-        }[];
-    };
-
-    ingredients?: Ingredient[];
-
     errors?: {
         [key: string]: string[];
     };
 
-    latestRecipes?: {
-        data: Recipe[];
-        current_page: number;
-        last_page: number;
-        per_page: number;
-        links: {
-            url: string | null;
-            label: string;
-            active: boolean;
-        }[];
+    favorites?: {
+        recipe: Recipe[];
     };
 
+    categories: Category[];
+    ingredients?: Ingredient[];
+    recipes?: Pagination<Recipe>;
+    latestRecipes?: Pagination<Recipe>;
+    allUserRecipes?: Pagination<Recipe>;
+    
     totalUserRecipeCount: number;
     totalIngredientCount: number;
     totalRecipeCount: number;
 
-    favorites?: {
-        recipe: Recipe[];
-    };
     [key: string]: unknown; // Fallback
 }

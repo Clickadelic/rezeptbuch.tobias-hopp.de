@@ -29,6 +29,7 @@ import { UNITS } from '@/types/Units';
 import { Difficulty } from '@/types/Difficulty';
 import { Media } from '@/types/Media';
 import { cn } from '@/lib/utils';
+import { StarRating } from '@/components/forms/StarRating';
 
 interface RecipeIngredientData {
     ingredient_id: string;
@@ -363,16 +364,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     )}
                     
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
-                    <div className="grid grid-cols-2 grid-rows-1 lg:flex gap-4">
-                        {/* Vegetarisch */}
-                        <div className="mr-8">
-                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
-                            <div className="flex items-center gap-2 mt-1">
-                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
-                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
-                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
                         {/* Zubereitungszeit */}
                         <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
@@ -396,6 +388,23 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {errors.preparation_time && (
                                 <p className="text-rose-500">{errors.preparation_time}</p>
                             )}
+                        </div>
+                        {/* Vegetarisch */}
+                        <div className="mr-8">
+                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
+                            <div className="flex items-center gap-2 mt-1">
+                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
+                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
+                            </div>
+                        </div>
+                        <div className="asd">
+                            <InputLabel htmlFor="rating" value="Deine Bewertung" />
+                            <div className="flex flex-col xl:flex-row gap-5">
+                                <div className="flex justify-end items-end">
+                                    <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <Seperator style="quote" />

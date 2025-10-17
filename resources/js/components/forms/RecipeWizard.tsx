@@ -398,10 +398,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <label htmlFor="is_veggy" className="mt-2">Ja</label>
                             </div>
                         </div>
-                        <div className="asd">
+                        {/* Rating */}
+                        <div>
                             <InputLabel htmlFor="rating" value="Deine Bewertung" />
                             <div className="flex flex-col xl:flex-row gap-5">
-                                <div className="flex justify-end items-end">
+                                <div className="flex justify-center items-center">
                                     <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} />
                                 </div>
                             </div>

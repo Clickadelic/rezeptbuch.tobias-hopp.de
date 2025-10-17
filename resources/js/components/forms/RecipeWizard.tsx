@@ -389,7 +389,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     defaultValue={[data.preparation_time]}
                                     max={240}
                                     step={5}
-                                    className="w-full sm:w-48 md:w-64 mt-2"
+                                    className="w-full sm:w-48 md:w-64 mt-2 hover:cursor-pointer"
                                     onValueChange={(value) => setData('preparation_time', value[0])}
                                 />
                             </div>

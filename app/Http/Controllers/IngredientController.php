@@ -36,24 +36,26 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
+        $userId = Auth::id();
 
-        // Name normalisieren (alles klein, Trim)
-        $name = trim(strtolower($request['name']));
+        $originalName = trim($request->input('name'));
 
-        // Prüfen ob Zutat schon existiert
-        $ingredient = Ingredient::whereRaw('LOWER(name) = ?', [$name])->first();
-        
+        // Prüfen, ob Zutat (case-insensitive) schon existiert
+        $ingredient = Ingredient::whereRaw('LOWER(name) = ?', [strtolower($originalName)])->first();
+
         if ($ingredient) {
-            return redirect()->back()->with('error', 'Zutat ' . $name . ' existiert bereits!');
+            return redirect()->back()->with('error', 'Zutat "' . $originalName . '" existiert bereits!');
         }
-        $ingredient = Ingredient::find($request->id);
-        
+
+        // Neue Zutat mit Originalschreibweise speichern
         Ingredient::create([
-            'name' => ucfirst($name),
+            'name' => $originalName,
+            'user_id' => $userId
         ]);
 
-        return redirect()->back()->with('success', 'Zutat angelegt!');
+        return redirect()->back()->with('success', 'Zutat "' . $originalName . '" wurde angelegt!');
     }
+
 
     /**
      * Display the specified resource.

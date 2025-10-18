@@ -34,6 +34,7 @@ export interface SharedPageProps extends InertiaPageProps {
     categories: Category[];
     ingredients?: Ingredient[];
     recipes?: Paginated<Recipe>;
+    users?: Paginated<AuthUser>;
     latestRecipes?: Paginated<Recipe>;
     allUserRecipes?: Paginated<Recipe>;
     

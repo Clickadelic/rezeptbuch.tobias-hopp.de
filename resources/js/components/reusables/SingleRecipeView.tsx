@@ -127,14 +127,6 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                 </p>
                             </div>
                         )}
-                        {recipe.is_veggy && (
-                            <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
-                                <GiBroccoli className="size-5 text-primary" />
-                                <p className=" text-gray-600 dark:text-gray-200 text-sm">
-                                    vegetarisch
-                                </p>
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>

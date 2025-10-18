@@ -12,11 +12,6 @@ export default function LegalSidebar() {
             <h2 className="text-xl font-medium mb-2">Rechtliches</h2>
             <ul className="flex flex-col">
                 <SidebarLink
-                    href="/impressum"
-                    active={window.location.pathname === '/impressum'}
-                    title="Impressum"
-                />
-                <SidebarLink
                     href="/nutzungsbedingungen"
                     active={window.location.pathname === '/nutzungsbedingungen'}
                     title="Nutzungsbedingungen"
@@ -27,9 +22,14 @@ export default function LegalSidebar() {
                     title="Datenschutz"
                 />
                 <SidebarLink
-                    href="/cookies"
-                    active={window.location.pathname === '/cookies'}
-                    title="Cookies"
+                    href="/cookie-hinweis"
+                    active={window.location.pathname === '/cookie-hinweis'}
+                    title="Cookie-Hinweis"
+                />
+                <SidebarLink
+                    href="/impressum"
+                    active={window.location.pathname === '/impressum'}
+                    title="Impressum"
                 />
             </ul>
         </aside>

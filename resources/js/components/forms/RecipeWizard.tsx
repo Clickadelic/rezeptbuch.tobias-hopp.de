@@ -365,6 +365,15 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
+                        {/* Vegetarisch */}
+                        <div className="sm:mr-6">
+                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
+                            <div className="flex items-center justify-center gap-2 mt-[6px]">
+                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
+                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
+                            </div>
+                        </div>
                         {/* Zubereitungszeit */}
                         <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
@@ -388,24 +397,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {errors.preparation_time && (
                                 <p className="text-rose-500">{errors.preparation_time}</p>
                             )}
-                        </div>
-                        {/* Vegetarisch */}
-                        <div className="mr-8">
-                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
-                            <div className="flex items-center justify-center gap-2 mt-[6px]">
-                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
-                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
-                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
-                            </div>
-                        </div>
-                        {/* Rating */}
-                        <div>
-                            <InputLabel htmlFor="rating" value="Deine Bewertung" />
-                            <div className="flex flex-col xl:flex-row gap-5">
-                                <div className="flex justify-center items-center pt-1">
-                                    <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} />
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <Seperator style="quote" />
@@ -674,6 +665,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {errors.preparation_instructions && (
                             <p className="text-red-500">{errors.preparation_instructions}</p>
                         )}
+                    </div>
+                    {/* Rating */}
+                    <div className="w-full">
+                        <InputLabel htmlFor="rating" value="Deine Bewertung des Rezeptes" />
+                        <div className="flex justify-center items-center pt-1">
+                            <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} />
+                        </div>
                     </div>
                     <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                     {/* Submit */}

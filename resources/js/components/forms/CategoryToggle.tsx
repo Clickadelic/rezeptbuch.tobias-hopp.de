@@ -62,10 +62,10 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
               value={String(category.id)}
               className={cn(
                 "flex items-center justify-center p-2 rounded border border-primary transition cursor-pointer",
-                isActive ? "bg-primary" : "bg-primary dark:bg-primary text-white dark:text-gray-200 hover:text-primary",
+                isActive ? "bg-primary" : "bg-primary dark:bg-primary  text-white dark:text-gray-200 hover:text-primary",
               )}
             >
-              <div className={cn("transition-colors", isActive ? "text-primary" : "text-white dark:text-gray-200")}>
+              <div className={cn("transition-colors", isActive ? "text-primary" : "")}>
                 {iconMap[category.slug ?? category.name.toLowerCase()] ?? (
                   <PiCookingPot className="size-4 inline-flex" />
                 )}

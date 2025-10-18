@@ -9,8 +9,8 @@ Route::get('/impressum', function () {
 Route::get('/datenschutz', function () {
     return Inertia::render('Datenschutz');
 });
-Route::get('/cookies', function () {
-    return Inertia::render('Cookies');
+Route::get('/cookie-hinweis', function () {
+    return Inertia::render('CookieHinweis');
 });
 Route::get('/nutzungsbedingungen', function () {
     return Inertia::render('Nutzungsbedingungen');

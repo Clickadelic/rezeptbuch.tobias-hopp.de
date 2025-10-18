@@ -14,7 +14,7 @@ import { PiCookingPot } from 'react-icons/pi';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
-
+import { FaRegHeart } from 'react-icons/fa';
 
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import { cn } from '@/lib/utils';
@@ -75,6 +75,16 @@ export default function Footer({ className }: FooterProps) {
                                     >
                                         <BsChevronCompactRight className="mt-1 text-primary" />
                                         Zutaten
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/community"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
+                                        title="Community"
+                                    >
+                                        <BsChevronCompactRight className="mt-1 text-primary" />
+                                        Community
                                     </Link>
                                 </li>
                             </ul>
@@ -203,20 +213,18 @@ export default function Footer({ className }: FooterProps) {
                             <li className="hidden sm:inline-block">&middot;</li>
                             <li>
                                 <Link
-                                    href="/cookies"
+                                    href="/cookie-hinweis"
                                     className="hover:text-primary text-sm"
-                                    title="Cookies"
+                                    title="Cookie-Hinweis"
                                 >
-                                    Cookies
+                                    Cookie-Hinweis
                                 </Link>
                             </li>
-                            
                         </ul>
                     </div>
                     <div className="flex flex-row justify-center items-center pt-6">
-                        <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">
-                            <li><a href="https://www.tobias-hopp.de/de" className="hover:text-primary text-sm target-white" title="Tobias Hopp" target="_blank">Tobias Hopp</a></li>
-                            <li className="hidden sm:inline-block">&middot;</li>
+                        <ul className="text-sm mx-auto text-center flex flex-col gap-3">
+                            <li className="inline-flex gap-1 cursor-default">Made with <FaRegHeart className="text-red-500 mt-0.5 mx-1" /> by <a href="https://www.tobias-hopp.de/de" className="hover:text-primary text-sm target-white" title="Tobias Hopp" target="_blank">Tobias Hopp</a></li>
                             <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}.</li>
                         </ul>
                     </div>

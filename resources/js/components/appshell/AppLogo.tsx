@@ -41,7 +41,7 @@ const AppLogo = ({
                 <span className="mb-0 text-2xl font-light leading-snug font-la-belle-aurore mt-[1px]">
                     Toby's
                 </span>
-                <span className="mb-0 text-xl font-medium leading-snug font-roboto-condensed">
+                <span className="mb-0 text-xl font-bold leading-snug font-roboto-condensed">
                     Rezeptbuch
                 </span>
             </Link>

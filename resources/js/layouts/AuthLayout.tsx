@@ -1,10 +1,10 @@
 import AppLogo from '@/components/appshell/AppLogo';
+import CookieNotice from '@/components/appshell/CookieNotice';
 
 import { PropsWithChildren, ReactNode } from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Head } from '@inertiajs/react';
-
 interface AuthLayoutProps extends PropsWithChildren {
     showTitle?: boolean;
     title?: string;

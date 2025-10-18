@@ -16,7 +16,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('media', 'category', 'user')->inRandomOrder()->paginate(5);
+        $recipes = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->paginate(5);
         // TODO: FavoritenCheck eventuell in Service auslagern
         if ($user = Auth::user()) {
             $recipes->getCollection()->transform(function ($recipe) use ($user) {

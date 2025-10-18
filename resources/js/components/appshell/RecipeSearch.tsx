@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { RiSearchLine } from 'react-icons/ri';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-
+import HeaderAlert from '@/components/appshell/HeaderAlert';
 /**
  * A search bar for recipes.
  *
@@ -17,9 +17,10 @@ export default function RecipeSearch() {
     return (
         <div
             className={cn(
-                "relative w-full h-48 lg:h-72 bg-[url('../images/Cocktail-at-the-pool.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-center items-center",
+                "relative w-full bg-[url('../images/Cocktail-at-the-pool.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-center items-center",
             )}
         >
+            {/* <HeaderAlert /> */}
             <div
                 className={cn(
                     'absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/10 dark:bg-gray-800/30 animate transition-all duration-200 ease opacity-0 pointer-events-none', // standard unsichtbar

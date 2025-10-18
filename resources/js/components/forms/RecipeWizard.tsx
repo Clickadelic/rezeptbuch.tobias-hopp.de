@@ -368,7 +368,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {/* Zubereitungszeit */}
                         <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
-                            <div className="flex flex-col xl:flex-row gap-5">
+                            <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
                                 <div className="flex justify-end items-end">
                                     <span className="min-w-[50px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
                                         {data.preparation_time}
@@ -381,7 +381,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     defaultValue={[data.preparation_time]}
                                     max={240}
                                     step={5}
-                                    className="w-full sm:w-48 md:w-64 mt-2 hover:cursor-pointer"
+                                    className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
                                     onValueChange={(value) => setData('preparation_time', value[0])}
                                 />
                             </div>
@@ -392,7 +392,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {/* Vegetarisch */}
                         <div className="mr-8">
                             <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
-                            <div className="flex items-center gap-2 mt-1">
+                            <div className="flex items-center justify-center gap-2 mt-[6px]">
                                 <label htmlFor="is_veggy" className="mt-2">Nein</label>
                                 <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
                                 <label htmlFor="is_veggy" className="mt-2">Ja</label>
@@ -402,7 +402,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <div>
                             <InputLabel htmlFor="rating" value="Deine Bewertung" />
                             <div className="flex flex-col xl:flex-row gap-5">
-                                <div className="flex justify-center items-center">
+                                <div className="flex justify-center items-center pt-1">
                                     <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} />
                                 </div>
                             </div>
@@ -490,10 +490,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
-                <section className="space-y-4">
+                <section className="space-y-4 md:space-y-2">
                     <InputLabel htmlFor="ingredients" value="Zutaten bearbeiten" />
                     {data.recipe_ingredients?.map((di, idx) => (
-                        <div key={idx} className="md:flex gap-2">
+                        <div key={idx} className="flex flex-col md:flex-row gap-2">
                             <div className="flex justify-start items-start gap-2">
                                 <TextInput
                                     placeholder="Menge"

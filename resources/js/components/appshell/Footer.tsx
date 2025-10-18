@@ -181,16 +181,7 @@ export default function Footer({ className }: FooterProps) {
                     </div>
                     <div className="flex flex-row justify-center items-center border-t border-stone-700 pt-6">
                         <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">
-                            <li>
-                                <Link
-                                    href="/impressum"
-                                    className="hover:text-primary text-sm"
-                                    title="Impressum"
-                                >
-                                    Impressum
-                                </Link>
-                            </li>
-                            <li className="hidden sm:inline-block">&middot;</li>
+                            
                             <li>
                                 <Link
                                     href="/nutzungsbedingungen"
@@ -218,6 +209,16 @@ export default function Footer({ className }: FooterProps) {
                                     title="Cookie-Hinweis"
                                 >
                                     Cookie-Hinweis
+                                </Link>
+                            </li>
+                            <li className="hidden sm:inline-block">&middot;</li>
+                            <li>
+                                <Link
+                                    href="/impressum"
+                                    className="hover:text-primary text-sm"
+                                    title="Impressum"
+                                >
+                                    Impressum
                                 </Link>
                             </li>
                         </ul>

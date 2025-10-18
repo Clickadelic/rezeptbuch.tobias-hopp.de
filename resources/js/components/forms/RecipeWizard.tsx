@@ -392,7 +392,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {/* Vegetarisch */}
                         <div className="mr-8">
                             <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
-                            <div className="flex items-center gap-2 mt-[6px]">
+                            <div className="flex items-center justify-center gap-2 mt-[6px]">
                                 <label htmlFor="is_veggy" className="mt-2">Nein</label>
                                 <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
                                 <label htmlFor="is_veggy" className="mt-2">Ja</label>

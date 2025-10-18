@@ -490,10 +490,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
-                <section className="space-y-4">
+                <section className="space-y-4 md:space-y-2">
                     <InputLabel htmlFor="ingredients" value="Zutaten bearbeiten" />
                     {data.recipe_ingredients?.map((di, idx) => (
-                        <div key={idx} className="md:flex gap-2">
+                        <div key={idx} className="flex flex-col md:flex-row gap-2">
                             <div className="flex justify-start items-start gap-2">
                                 <TextInput
                                     placeholder="Menge"

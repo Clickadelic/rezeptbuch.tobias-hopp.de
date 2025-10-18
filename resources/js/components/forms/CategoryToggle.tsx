@@ -17,12 +17,12 @@ import type { SharedPageProps } from "@/types"
 import { cn } from "@/lib/utils"
 
 const iconMap: Record<string, React.ReactElement> = {
-  vorspeise: <TbSalad className="size-4 inline-flex" />,
-  nachtisch: <RiCake3Line className="size-4 inline-flex" />,
-  hauptgang: <GiKnifeFork className="size-4 inline-flex" />,
-  cocktail: <LiaCocktailSolid className="size-4 inline-flex" />,
-  backen: <GiCakeSlice className="size-4 inline-flex" />,
-  snack: <GiCrystalBars className="size-4 inline-flex" />,
+  vorspeise: <TbSalad className="size-4 flex -mt-[3px]" />,
+  hauptgang: <GiKnifeFork className="size-4 flex -mt-1" />,
+  nachtisch: <RiCake3Line className="size-4 flex -mt-1" />,
+  cocktail: <LiaCocktailSolid className="size-4 flex -mt-1" />,
+  backen: <GiCakeSlice className="size-4 flex -mt-.5" />,
+  snack: <GiCrystalBars className="size-4 flex" />,
 }
 
 interface CategoryToggleProps {
@@ -67,7 +67,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
             >
               <div className={cn("transition-colors", isActive ? "text-primary" : "")}>
                 {iconMap[category.slug ?? category.name.toLowerCase()] ?? (
-                  <PiCookingPot className="size-4 inline-flex" />
+                  <PiCookingPot className="size-4 flex" />
                 )}
               </div>
               <span className="text-base font-medium">{category.name}</span>

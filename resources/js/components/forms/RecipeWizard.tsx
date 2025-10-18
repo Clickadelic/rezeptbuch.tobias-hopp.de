@@ -669,11 +669,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     {/* Rating */}
                     <div className="w-full">
                         <InputLabel htmlFor="rating" value="Deine Bewertung des Rezeptes" />
-                        <div className="flex justify-center items-center pt-1">
+                        <div className="flex justify-center items-center pt-1 mb-12">
                             <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} />
                         </div>
                     </div>
-                    <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                     {/* Submit */}
                     <div className="flex justify-between gap-2">
                         <Button

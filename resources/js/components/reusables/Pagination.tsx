@@ -16,7 +16,7 @@ export default function Pagination({ links }: PaginationProps) {
                     key={i}
                     href={link.url || '#'}
                     className={`px-3 py-1 text-sm rounded transition-colors duration-200
-            ${link.active ? 'bg-primary dark:primary text-white' : 'bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-gray-800 hover:bg-gray-200'}
+            ${link.active ? 'bg-primary dark:primary text-white' : 'bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-gray-800 hover:bg-primary hover:text-white'}
             ${!link.url ? 'pointer-events-none opacity-50' : ''}`}
                     dangerouslySetInnerHTML={{ __html: link.label }}
                 />

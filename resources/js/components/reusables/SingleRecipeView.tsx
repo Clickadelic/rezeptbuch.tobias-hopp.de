@@ -53,8 +53,8 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
 
     return (
         <div className="flex flex-col gap-5">
-            <div className="flex flex-col md:flex-row justify-start gap-5">
-                <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full md:w-[96rem] overflow-hidden rounded-xl">
+            <div className="flex flex-col xl:flex-row justify-start gap-5">
+                <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full xl:w-[96rem] overflow-hidden rounded-xl">
                     {(() => {
                         const hero =
                             (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
@@ -82,7 +82,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     })()}
                 </div>
                 <div className="w-full flex flex-col justify-between gap-5">
-                    <div className="flex flex-col items-start gap-2">
+                    <div className="flex flex-col items-start gap-1">
                         <div className="w-full flex flex-col">
                             <div className="relative w-full flex flex-row justify-between items-center">
                                 <div>
@@ -98,8 +98,8 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-row gap-2">
-                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                    <div className="grid grid-cols-2 grid-rows-2 sm:flex sm:flex-row gap-2">
+                        <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-2">
                             {iconMap[recipe.category?.slug ?? ''] ?? (
                                 <LuUtensilsCrossed className="size-5 text-primary" />
                             )}
@@ -107,20 +107,28 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                 {recipe.category?.name}
                             </p>
                         </div>
-                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                        <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-2">
                             <VscSymbolEvent className="size-5 text-primary" />
                             <p className=" text-gray-600 dark:text-gray-200 text-sm">
                                 {recipe.difficulty}
                             </p>
                         </div>
-                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                        <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-2">
                             <GoClock className="size-5 text-primary" />
                             <p className=" text-gray-600 dark:text-gray-200 text-sm">
                                 {recipe.preparation_time} Minuten
                             </p>
                         </div>
                         {recipe.is_veggy && (
-                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                            <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                                <GiBroccoli className="size-5 text-primary" />
+                                <p className=" text-gray-600 dark:text-gray-200 text-sm">
+                                    vegetarisch
+                                </p>
+                            </div>
+                        )}
+                        {recipe.is_veggy && (
+                            <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GiBroccoli className="size-5 text-primary" />
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">
                                     vegetarisch

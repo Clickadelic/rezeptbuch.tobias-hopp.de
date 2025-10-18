@@ -228,7 +228,7 @@ const Header = () => {
                                     title="Dashboard"
                                     aria-label="Dashbaord"
                                 >
-                                    <RiAccountPinBoxLine className="size-4 mt-1" /> Profile
+                                    <RiAccountPinBoxLine className="size-4 mt-1" /> Profil
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink method="post" href="/logout" className="flex gap-2" as="button">
                                     <RxExit className="size-4 mt-1" /> Log Out
@@ -239,7 +239,7 @@ const Header = () => {
                         <div className="border-t border-gray-200 pb-1 pt-4">
                             <div className="mt-3 space-y-1">
                                 <ResponsiveNavLink href="/register" className="flex gap-2">
-                                    <FiCheckCircle className="size-4 mt-1" /> Register
+                                    <FiCheckCircle className="size-4 mt-1" /> Registrieren
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink href="/login" className="flex gap-2">
                                     <BsDoorOpen className="size-4 mt-1" /> Login

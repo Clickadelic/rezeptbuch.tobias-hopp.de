@@ -18,7 +18,7 @@ export default function TitleBlock({
     punchline = 'Alles wird gut.',
 }: TitleBlockProps) {
     return (
-        <div className="flex flex-col gap-2 items-center justify-center my-8">
+        <div className="flex flex-col gap-2 items-center justify-center my-4 sm:my-6 md:my-8">
             <h2 className="flex gap-2 text-3xl font-roboto-condensed">
                 {icon}
                 {title}

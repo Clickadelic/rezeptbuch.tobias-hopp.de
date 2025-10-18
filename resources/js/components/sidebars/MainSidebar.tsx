@@ -1,9 +1,7 @@
 import SidebarLink from '@/components/sidebars/SidebarLink';
 import { usePage } from '@inertiajs/react';
-import { Button } from '../ui/button';
-import { Link } from 'lucide-react';
-import { BsBookmarkHeart } from 'react-icons/bs';
 import { SharedPageProps } from '@/types';
+
 /**
  * A component that renders a sidebar with a title.
  *

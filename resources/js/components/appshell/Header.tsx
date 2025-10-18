@@ -34,7 +34,7 @@ import { RxExit } from "react-icons/rx";
 
 const Header = () => {
     const { auth } = usePage<SharedPageProps>().props;
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState<boolean>(false);
     const { hasRole } = usePermissions();
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">

@@ -20,6 +20,7 @@ export interface SharedPageProps extends InertiaPageProps {
     flash?: {
         success?: string;
         error?: string;
+        alert?: string;
     };
 
     errors?: {

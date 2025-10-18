@@ -39,7 +39,7 @@ export default function Footer({ className }: FooterProps) {
                 )}
             >
                 <BackToTopButton />
-                <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-12">
+                <footer className="mx-auto container px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-14 pb-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-b-black">
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
@@ -222,10 +222,9 @@ export default function Footer({ className }: FooterProps) {
                             </li>
                         </ul>
                     </div>
-                    <div className="flex flex-row justify-center items-center pt-6">
+                    <div className="flex flex-row justify-center items-center pt-10">
                         <ul className="text-sm mx-auto text-center flex flex-col gap-3">
                             <li className="inline-flex gap-1 cursor-default">Made with <FaRegHeart className="text-red-500 mt-0.5 mx-1" /> by <a href="https://www.tobias-hopp.de/de" className="hover:text-primary text-sm target-white" title="Tobias Hopp" target="_blank">Tobias Hopp</a></li>
-                            <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}.</li>
                         </ul>
                     </div>
                 </footer>

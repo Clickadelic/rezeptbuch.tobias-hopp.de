@@ -2,8 +2,8 @@
 
 // die neuen ShadCN Packages ausprobieren
 // Multistep Form-Builder testen
-// Bild-Upload genau untersuchen UND fixen
-// evtl. Neues Formular ??
+
+// Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
 // Header und Footer überarbeiten
 // Weitere Ideen für Startseite sammeln
 

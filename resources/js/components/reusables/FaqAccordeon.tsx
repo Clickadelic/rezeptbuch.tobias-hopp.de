@@ -47,11 +47,7 @@ export default function FrontpageCategoryGrid() {
                         <AccordionContent>
                             <p>Ja, die Registrierung ist offen und kostenlos. Es besteht keine Abo-Pflicht oder versteckte Kosten.</p>
                             <br />
-                            <p>Es gibt keinen Konzern im Hintergrund, der Deine Daten abgreift, verkauft, verwendet oder andersweitig nutzt. Die Daten dieser Platform (Nutzerdaten, Rezeptdaten, etc.) werden (schriftlich nachweisbar) in Frankfurt am Main in einem Rechenzentrum gespeichert.</p>
-                            <br />
-                            <p>Solltest Du weitere Fragen haben zum
-                                Thema Datensicherheit haben, wende Dich bitte, gerne per E-Mail an
-                                mich.</p>
+                            <p>Solltest Du Fragen haben zum Thema Nutzungsbediungungen oder Datensicherheit, wirf' bitte einen Blick ins Impressum bzw. die entsprechenden Seiten im Footer. Solltest Du weitere Fragen haben, kannst Du diese gerne per E-Mail anmich senden.</p>
                             <br />
                             <p>
                                 Die Platform nutzt beispielsweise ein SSL-Zertifikat sowie weitere

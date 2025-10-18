@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
-import SidebarRightLayout from '@/layouts/SidebarRightLayout';
-import MainSidebar from '@/components/sidebars/MainSidebar';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
+import LegalSidebar from '@/components/sidebars/LegalSidebar';
 import Seperator from '@/components/reusables/Seperator';
 
 /**
@@ -10,8 +10,7 @@ import Seperator from '@/components/reusables/Seperator';
  */
 export default function Impressum() {
     return (
-        <SidebarRightLayout title="Impressum" sidebar={<MainSidebar />}>
-            <Head title="Impressum" />
+        <SidebarLeftLayout title="Impressum" sidebar={<LegalSidebar />}>
 
             <h3 className="my-5 font-medium text-lg">Angaben gemäß § 5 TMG</h3>
             <ul className="space-y-1 my-3">
@@ -26,7 +25,6 @@ export default function Impressum() {
                     </a>
                 </li>
             </ul>
-
             <h3 className="my-5 font-medium text-lg">
                 Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
             </h3>
@@ -36,9 +34,7 @@ export default function Impressum() {
                 <li>56566 Neuwied</li>
                 <li>Deutschland</li>
             </ul>
-
             <Seperator />
-
             <h3 className="my-5 font-medium text-lg">Hinweis zum Charakter dieses Angebots</h3>
             <p>
                 Dieses Rezeptbuch ist ein privates, nicht-kommerzielles Projekt. Die Nutzung erfolgt
@@ -50,9 +46,7 @@ export default function Impressum() {
                 Alle Inhalte, insbesondere Rezepte, stammen aus privaten Sammlungen oder wurden von
                 Nutzerinnen und Nutzern freiwillig bereitgestellt.
             </p>
-
             <Seperator />
-
             <h3 className="my-5 font-medium text-lg">Haftung für Inhalte</h3>
             <p>
                 Als privater Betreiber dieser Seite bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte
@@ -69,9 +63,7 @@ export default function Impressum() {
                 konkreten Rechtsverletzung möglich. Bei Bekanntwerden solcher Inhalte werden diese
                 umgehend entfernt.
             </p>
-
             <Seperator />
-
             <h3 className="my-5 font-medium text-lg">Haftung für Links</h3>
             <p>
                 Diese Website enthält ggf. Links zu externen Websites Dritter, auf deren Inhalte ich
@@ -81,9 +73,7 @@ export default function Impressum() {
                 verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht
                 zumutbar.
             </p>
-
             <Seperator />
-
             <h3 className="my-5 font-medium text-lg">Urheberrecht</h3>
             <p>
                 Die durch den Betreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem
@@ -92,9 +82,7 @@ export default function Impressum() {
                 Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors
                 bzw. Erstellers.
             </p>
-
             <Seperator />
-
             <h3 className="my-5 font-medium text-lg">Haftungsausschluss</h3>
             <p>
                 Die Nutzung der Inhalte dieser Website erfolgt auf eigene Gefahr. Der Betreiber
@@ -102,9 +90,7 @@ export default function Impressum() {
                 Nutzung oder Nichtnutzung der bereitgestellten Informationen entstehen, sofern kein
                 nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.
             </p>
-
             <Seperator />
-
             <h3 className="my-5 font-medium text-lg">Datenschutz</h3>
             <p>
                 Dieses Projekt verarbeitet keine personenbezogenen Daten und setzt keine Tracking- oder
@@ -116,6 +102,6 @@ export default function Impressum() {
                 ausschließlich der Sicherstellung des technischen Betriebs und werden automatisch
                 gelöscht.
             </p>
-        </SidebarRightLayout>
+        </SidebarLeftLayout>
     );
 }

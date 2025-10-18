@@ -4,8 +4,10 @@
 // Multistep Form-Builder testen
 
 // Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
-// Header und Footer überarbeiten
+// Besseres Formular für Zutateneingabe (Löschen funktion)
 // Weitere Ideen für Startseite sammeln
-
+// WYSYWIG Editor für Zubereitungsfeld.
+// Header und Footer überarbeiten
+// ----------------------------------------
 // Favicon
 // https://www.svgrepo.com/svg/276548/recipe?edit=true

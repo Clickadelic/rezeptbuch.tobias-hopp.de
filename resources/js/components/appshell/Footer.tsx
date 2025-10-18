@@ -14,6 +14,7 @@ import { PiCookingPot } from 'react-icons/pi';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
+import { FaRegHeart } from 'react-icons/fa';
 
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import { cn } from '@/lib/utils';
@@ -39,7 +40,7 @@ export default function Footer({ className }: FooterProps) {
             >
                 <BackToTopButton />
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-12">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-b-black ">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-b-black">
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <GrNavigate />
@@ -74,6 +75,16 @@ export default function Footer({ className }: FooterProps) {
                                     >
                                         <BsChevronCompactRight className="mt-1 text-primary" />
                                         Zutaten
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/community"
+                                        className="flex gap-3 text-gray-100 hover:text-gray-400"
+                                        title="Community"
+                                    >
+                                        <BsChevronCompactRight className="mt-1 text-primary" />
+                                        Community
                                     </Link>
                                 </li>
                             </ul>
@@ -173,16 +184,48 @@ export default function Footer({ className }: FooterProps) {
                             <li>
                                 <Link
                                     href="/impressum"
-                                    className="hover:text-gray-400 text-sm"
+                                    className="hover:text-primary text-sm"
                                     title="Impressum"
                                 >
                                     Impressum
                                 </Link>
                             </li>
                             <li className="hidden sm:inline-block">&middot;</li>
-                            <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}.</li>
+                            <li>
+                                <Link
+                                    href="/nutzungsbedingungen"
+                                    className="hover:text-primary text-sm"
+                                    title="Nutzungsbedingungen"
+                                >
+                                    Nutzungsbedingungen
+                                </Link>
+                            </li>
                             <li className="hidden sm:inline-block">&middot;</li>
-                            <li><a href="https://www.tobias-hopp.de/de" className="hover:text-gray-400 text-sm target-white" title="Tobias Hopp" target="_blank">Tobias Hopp</a></li>
+                            <li>
+                                <Link
+                                    href="/datenschutz"
+                                    className="hover:text-primary text-sm"
+                                    title="Datenschutz"
+                                >
+                                    Datenschutz
+                                </Link>
+                            </li>
+                            <li className="hidden sm:inline-block">&middot;</li>
+                            <li>
+                                <Link
+                                    href="/cookie-hinweis"
+                                    className="hover:text-primary text-sm"
+                                    title="Cookie-Hinweis"
+                                >
+                                    Cookie-Hinweis
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="flex flex-row justify-center items-center pt-6">
+                        <ul className="text-sm mx-auto text-center flex flex-col gap-3">
+                            <li className="inline-flex gap-1 cursor-default">Made with <FaRegHeart className="text-red-500 mt-0.5 mx-1" /> by <a href="https://www.tobias-hopp.de/de" className="hover:text-primary text-sm target-white" title="Tobias Hopp" target="_blank">Tobias Hopp</a></li>
+                            <li>Alle Rechte vorbehalten &copy; {new Date().getFullYear()}.</li>
                         </ul>
                     </div>
                 </footer>

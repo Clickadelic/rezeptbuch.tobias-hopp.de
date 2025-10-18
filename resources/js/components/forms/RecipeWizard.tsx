@@ -121,7 +121,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
     // Step 1 Validierung
     const canNextFromStep1 = (() => {
-        if (data.category_id === null) {
+        if (data.category_id === null || data.category_id === undefined) {
             return false;
         }
 
@@ -134,7 +134,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
     const handleStepChange = (newStep: number) => {
         setStep(newStep);
-        setTimeout(scrollToTop, 50); // minimaler Delay, damit DOM updatet
+        setTimeout(scrollToTop, 50);
     };
 
     // Submit Handler → unterscheidet Create vs Edit
@@ -288,7 +288,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     role="alert"
                 >
                     <p className="text-base">
-                        Wähle eine Kategorie und gib einen Namen an um fortzufahren.
+                        Wähle eine Kategorie und gib einen Namen an um fortzufahren. Du kannst das Rezept natürlich später nochmal bearbeiten.
                     </p>
                 </div>
             )}

@@ -72,7 +72,9 @@ class RecipeController extends Controller
      * Store a newly created recipe in storage.
      */
     public function store(StoreRecipeRequest $request)
-    {
+    {   
+        
+
         // 1️⃣ Rezept anlegen
         $recipe = Recipe::create([
             'id'                       => Str::uuid()->toString(),

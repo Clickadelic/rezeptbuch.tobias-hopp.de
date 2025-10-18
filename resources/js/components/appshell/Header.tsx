@@ -238,8 +238,12 @@ const Header = () => {
                     ) : (
                         <div className="border-t border-gray-200 pb-1 pt-4">
                             <div className="mt-3 space-y-1">
-                                <ResponsiveNavLink href="/login">Login</ResponsiveNavLink>
-                                <ResponsiveNavLink href="/register">Register</ResponsiveNavLink>
+                                <ResponsiveNavLink href="/register" className="flex gap-2">
+                                    <FiCheckCircle className="size-4 mt-1" /> Register
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink href="/login" className="flex gap-2">
+                                    <BsDoorOpen className="size-4 mt-1" /> Login
+                                </ResponsiveNavLink>
                             </div>
                         </div>
                     )}

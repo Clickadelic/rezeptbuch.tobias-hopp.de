@@ -368,7 +368,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {/* Zubereitungszeit */}
                         <div>
                             <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
-                            <div className="flex flex-col xl:flex-row gap-5">
+                            <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
                                 <div className="flex justify-end items-end">
                                     <span className="min-w-[50px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
                                         {data.preparation_time}

@@ -37,14 +37,16 @@ class IngredientController extends Controller
     public function store(StoreIngredientRequest $request)
     {
         $userId = Auth::id();
-
         $originalName = trim($request->input('name'));
 
         // Prüfen, ob Zutat (case-insensitive) schon existiert
         $ingredient = Ingredient::whereRaw('LOWER(name) = ?', [strtolower($originalName)])->first();
 
         if ($ingredient) {
-            return redirect()->back()->with('error', 'Zutat "' . $originalName . '" existiert bereits!');
+            // Flash-Nachricht für Inertia (z. B. Toast im Frontend)
+            return back()->with('flash', [
+                'error' => $originalName . '" existiert bereits.',
+            ]);
         }
 
         // Neue Zutat mit Originalschreibweise speichern
@@ -53,7 +55,10 @@ class IngredientController extends Controller
             'user_id' => $userId
         ]);
 
-        return redirect()->back()->with('success', 'Zutat "' . $originalName . '" wurde angelegt!');
+        // Erfolgsmeldung als Flash für Inertia
+        return back()->with('flash', [
+            'success' => $originalName . '" wurde erfolgreich angelegt!',
+        ]);
     }
 
 

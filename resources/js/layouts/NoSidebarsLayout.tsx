@@ -6,7 +6,7 @@ import RecipeSearch from '@/components/appshell/RecipeSearch';
 import BreadcrumbNav from '@/components/appshell/BreadcrumbNav';
 import Footer from '@/components/appshell/Footer';
 import CircularMenu from '@/components/appshell/CircularMenu';
-
+import CookieNotice from '@/components/appshell/CookieNotice';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
@@ -73,6 +73,7 @@ export default function NoSidebarsLayout({
                     </div>
                     <Footer />
                     <CircularMenu />
+                    <CookieNotice />
                     <Toaster position="bottom-right" />
                 </div>
             </ThemeProvider>

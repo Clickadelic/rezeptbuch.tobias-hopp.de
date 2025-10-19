@@ -10,20 +10,20 @@ Route::get('/test', function () {
     return Inertia::render('Test');
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-require __DIR__.'/profile.php';
-require __DIR__.'/legal-pages.php';
-require __DIR__.'/favorites.php';
-require __DIR__.'/dashboard.php';
-require __DIR__.'/community.php';
-require __DIR__.'/recipes.php';
-require __DIR__.'/ingredients.php';
-require __DIR__.'/upload.php';
-
+require __DIR__.'/custom/auth.php';
+require __DIR__.'/custom/admin.php';
+require __DIR__.'/custom/contact-submissions.php';
+require __DIR__.'/custom/profile.php';
+require __DIR__.'/custom/legal-pages.php';
+require __DIR__.'/custom/favorites.php';
+require __DIR__.'/custom/dashboard.php';
+require __DIR__.'/custom/community.php';
+require __DIR__.'/custom/recipes.php';
+require __DIR__.'/custom/ingredients.php';
+require __DIR__.'/custom/upload.php';
 
 if (config('app.debug')) {
-    require __DIR__.'/email.php';
+    require __DIR__.'/custom/email.php';
 }
 
 // 404 Fallback

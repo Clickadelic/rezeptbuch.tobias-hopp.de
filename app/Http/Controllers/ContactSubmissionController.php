@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactSubmission;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactSubmissionRequest;
+use App\Models\ContactSubmission;
 
 class ContactSubmissionController extends Controller
 {
@@ -26,9 +27,10 @@ class ContactSubmissionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContactSubmissionRequest $request)
     {
-        //
+        ContactSubmission::create($request->validated());
+        return redirect()->back()->with('success', 'Vielen Dank für deine Nachricht!');
     }
 
     /**

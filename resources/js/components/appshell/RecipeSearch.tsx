@@ -17,7 +17,7 @@ export default function RecipeSearch() {
     return (
         <div
             className={cn(
-                "relative w-full bg-[url('../images/Cocktail-at-the-pool.jpg')] dark:bg-[url('../images/brooke-lark-M4E7X3z80PQ-unsplash-cut.jpg')] bg-cover bg-center flex flex-col justify-center items-center",
+                "relative w-full bg-[url('../images/ella-olsson-4dQiaWKiL-Y-unsplash.jpg')] dark:bg-[url('../images/lottie-griffiths-8op0ziM4Xzs-unsplash.jpg')] bg-cover bg-center flex flex-col justify-center items-center",
             )}
         >
             {/* <HeaderAlert /> */}
@@ -30,7 +30,7 @@ export default function RecipeSearch() {
 
             <div
                 className={cn(
-                    'lg:w-[28rem] z-20 bg-white/40 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-12 sm:my-16 md:my-20 lg:my-24',
+                    'lg:w-[28rem] z-20 bg-white/40 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-12 sm:my-16 md:my-20 lg:my-24 xl:my-32',
                 )}
             >
                 <form

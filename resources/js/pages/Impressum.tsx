@@ -37,6 +37,14 @@ export default function Impressum() {
                     <li>Deutschland</li>
                 </ul>
             </section>
+            <Seperator style="image" />
+            <section>
+                <h3 className="my-5 font-medium text-lg">Bildnachweise</h3>
+                <ul className="list-disc list-inside">
+                    <li>Headerbild: Lightmode Foto von <a href="https://unsplash.com/de/@ellaolsson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" className="underline underline-offset-4 text-primary">Ella Olsson</a> auf <a href="https://unsplash.com/de/fotos/gekochte-gerichte-auf-tellern-und-schusseln-4dQiaWKiL-Y?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" className="underline underline-offset-4 text-primary">Unsplash</a></li>
+                    <li>Headerbild: Darkmode Foto von <a href="https://unsplash.com/de/@lottiegriffiths?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" className="underline underline-offset-4 text-primary">Lottie Griffiths</a> auf <a href="https://unsplash.com/de/fotos/braunes-essen-auf-weissem-keramikteller-8op0ziM4Xzs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" className="underline underline-offset-4 text-primary">Unsplash</a></li>
+                </ul>
+            </section>
             <Seperator />
             <section>
                 <h3 className="my-5 font-medium text-lg">1. Hinweis zum Charakter dieses Angebots</h3>

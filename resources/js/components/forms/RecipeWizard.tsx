@@ -281,11 +281,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             </ol>
             {!canNextFromStep1 && (
                 <div
-                    className="border border-sky-400 bg-sky-200 text-sm text-sky-700 px-4 py-3 mb-4 rounded relative"
+                    className="border border-sky-800 bg-sky-200 text-sm text-sky-800 px-4 py-3 mb-5 rounded relative"
                     role="alert"
                 >
                     <p className="text-base">
-                        Wähle eine Kategorie und gib einen Namen an um fortzufahren. Du kannst das Rezept natürlich später nochmal bearbeiten.
+                        Gib einen Namen an und wähle eine Kategorie um fortzufahren. Du kannst das Rezept später noch bearbeiten.
                     </p>
                 </div>
             )}
@@ -297,7 +297,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
                         {/* Name */}
                         <div className="w-full">
-                            <InputLabel htmlFor="name" value="Rezeptname" />
+                            <InputLabel htmlFor="name" value="Rezeptname" description="Pflichtfeld" />
                             <TextInput
                                 id="name"
                                 type="text"

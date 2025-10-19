@@ -42,7 +42,7 @@ export default function FrontpageCategoryGrid() {
                         <AccordionContent>
                             <p>Ja, die Registrierung ist offen und kostenlos. Es besteht keine Abo-Pflicht oder versteckte Kosten.</p>
                             <br />
-                            <p>Solltest Du Fragen bzw. Bedenken haben bezüglich Registrierung oder Datensicherheit haben, wirf' bitte einen Blick in die <Link href="/nutzungsbedingungen" target="_self" className="underline underline-offset-4 text-primary">Nutzungsbedingungen</Link> bzw. die entsprechenden Seiten im Footer.</p>
+                            <p>Solltest Du Fragen bzw. Bedenken bezüglich Registrierung oder Datensicherheit haben, wirf' bitte einen Blick in die <Link href="/nutzungsbedingungen" target="_self" className="underline underline-offset-4 text-primary">Nutzungsbedingungen</Link> bzw. die entsprechenden Seiten im Footer.</p>
                             <br />
                             <p>Falls Du danach noch weitere Fragen hast, kannst Du Dich natürlich gerne per E-Mail oder Kontaktformular an mich wenden.</p>
                         </AccordionContent>

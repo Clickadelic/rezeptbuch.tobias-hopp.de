@@ -17,10 +17,12 @@ class StoreRecipeRequest extends FormRequest
         $recipe = $this->route('recipe'); // <-- für unique:recipes,slug,...
 
         return [
+            // Oder einfacher:
             'name' => [
-                $this->isMethod('post') ? 'required' : 'sometimes',
-                'string',
+                $this->isMethod('post') ? 'required' : 'sometimes', 
+                'string', 
                 'max:255',
+                'required_with:name' // Stellt sicher, dass das Feld nicht leer ist, wenn es gesendet wird (für PATCH/PUT)
             ],
             'status' => ['nullable', 'string'],
 

@@ -8,6 +8,7 @@ interface TitleBlockProps {
     icon?: React.ReactNode;
     title?: string;
     punchline?: string;
+    children?: React.ReactNode;
 }
 
 /**
@@ -20,6 +21,7 @@ export default function TitleBlock({
     icon = <FaRegHeart className="text-primary size-6 mt-1" />,
     title = 'Willkommen',
     punchline = 'Alles wird gut.',
+    children,
 }: TitleBlockProps) {
     return (
         <div className="flex flex-col gap-2 items-center justify-center my-4 sm:my-6 md:my-8">
@@ -30,9 +32,7 @@ export default function TitleBlock({
             <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
                 {punchline}
             </h3>
-            <Button asChild variant="primary">
-                <Link href={route('recipes.index')}>Zu den Rezepten<IoMdArrowForward /></Link>
-            </Button>
+            {children}
         </div>
     );
 }

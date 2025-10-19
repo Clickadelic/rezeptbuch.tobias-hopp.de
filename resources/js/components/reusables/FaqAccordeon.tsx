@@ -53,11 +53,11 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Du kannst Dich registrieren, mit Deinen Login-Daten die Rezeptbuch-Funktion kostenlos nutzen,
-                                z.B. Favoriten anlegen und Rezepte verwalten.
+                                Du kannst Dich registrieren. Nachdem Du Dich eingeloggt hast, kannst Du die Rezeptbuch-Funktion kostenlos nutzen und
+                                z.B. Favoriten anlegen oder Deine Rezepte verwalten.
                             </p>
                             <br />
-                            <p>Weitere Features wie sind in Planung.</p>
+                            <p>Weitere Features wie sind in Arbeit bzw. in Planung.</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

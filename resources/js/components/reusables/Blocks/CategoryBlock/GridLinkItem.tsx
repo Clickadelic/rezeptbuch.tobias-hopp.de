@@ -52,7 +52,7 @@ export default function GridLinkItem({
             </span>
             <Link
                 href={href}
-                className="bg-primary px-2 min-w-[7.813rem] lg:px-4 py-2 flex items-center justify-center md:w-56 text-xs sm:text-md md:text-base gap-2 hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded"
+                className="bg-primary px-2 min-w-[7.813rem] lg:px-4 py-2 flex items-center justify-center md:w-56 text-xs sm:text-sm gap-2 hover:bg-emerald-700 dark:hover:text-gray-200 dark:hover:bg-emerald-600 font-medium text-white mt-4 font-roboto-condensed rounded shadow-sm"
                 title={title}
                 aria-label={title}
             >

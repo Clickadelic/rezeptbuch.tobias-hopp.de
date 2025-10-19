@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name')->unique();
+            // TODO: Fix this..nullable is bad here..
             $table->unsignedBigInteger('user_id')->nullable();
             $table->index('user_id');
             $table->timestamps();

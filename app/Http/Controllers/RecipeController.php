@@ -73,8 +73,7 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipeRequest $request)
     {   
-        
-
+        $userId = Auth::id();
         // 1️⃣ Rezept anlegen
         $recipe = Recipe::create([
             'id'                       => Str::uuid()->toString(),
@@ -87,7 +86,7 @@ class RecipeController extends Controller
             'rating'                   => $request->input('rating', 0),
             'preparation_time'         => $request->input('preparation_time', 0),
             'preparation_instructions' => $request->input('preparation_instructions'),
-            'user_id'                  => $request->user()->id,
+            'user_id'                  => $userId,
             'category_id'              => $request->input('category_id'),
             'is_veggy'                 => $request->input('is_veggy'),
         ]);
@@ -108,6 +107,7 @@ class RecipeController extends Controller
                 } else {
                     $ingredient = Ingredient::firstOrCreate([
                         'name' => ucfirst(strtolower($ingredientValue)),
+                        'user_id' => Auth::id()
                     ]);
                 }
 
@@ -211,6 +211,7 @@ class RecipeController extends Controller
                     } else {
                         $ingredient = Ingredient::firstOrCreate([
                             'name' => ucfirst(strtolower($ingredientValue)),
+                            'user_id' => Auth::id()
                         ]);
                     }
 

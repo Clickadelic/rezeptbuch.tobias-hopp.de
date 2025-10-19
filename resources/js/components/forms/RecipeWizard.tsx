@@ -4,6 +4,8 @@ import { router } from '@inertiajs/react';
 
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
+import { StarRating } from '@/components/forms/StarRating';
+
 import axios from 'axios';
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText } from "@/components/ui/input-group"
 import { Switch } from "@/components/ui/switch";
@@ -29,7 +31,6 @@ import { UNITS } from '@/types/Units';
 import { Difficulty } from '@/types/Difficulty';
 import { Media } from '@/types/Media';
 import { cn } from '@/lib/utils';
-import { StarRating } from '@/components/forms/StarRating';
 
 interface RecipeIngredientData {
     ingredient_id: string;

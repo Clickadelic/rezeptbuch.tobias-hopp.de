@@ -136,7 +136,7 @@ a[target='_blank']:after {
     display: inline-block;
     color: inherit;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 2px;
 }
 
 a.target-white[target='_blank']:after {

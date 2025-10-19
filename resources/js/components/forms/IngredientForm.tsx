@@ -18,6 +18,14 @@ interface IngredientFormProps {
     onFinished?: () => void;
 }
 
+/**
+ * Formular component for creating or editing an ingredient.
+ *
+ * @param {Object} props - passed props
+ * @param {ingredient} props.ingredient - the ingredient to be edited, or null if creating a new one
+ * @param {string} props.className - the class name for the form
+ * @param {Function} props.onFinished - the function to be called when the form is finished
+ */
 export default function IngredientForm({ ingredient, className, onFinished }: IngredientFormProps) {
     const isEditing = Boolean(ingredient);
 

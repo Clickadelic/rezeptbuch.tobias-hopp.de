@@ -111,7 +111,7 @@ export default function Footer({ className }: FooterProps) {
                                         className="flex gap-3 text-gray-100 hover:text-gray-400"
                                     >
                                         <PiCookingPot className="mt-1 text-primary" />
-                                        Hauptgericht
+                                        Hauptgerichte
                                     </Link>
                                 </li>
                                 <li>

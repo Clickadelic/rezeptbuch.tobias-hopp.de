@@ -1,18 +1,8 @@
 import { Link } from '@inertiajs/react';
-import { Button } from '@/components/ui/button';
 
 import { cn } from '@/lib/utils';
 
 import { IoMdArrowForward } from 'react-icons/io';
-
-import { PiCookingPot } from 'react-icons/pi';
-import { LiaCocktailSolid } from 'react-icons/lia';
-import { RiCake3Line } from 'react-icons/ri';
-import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
-import { TbSalad } from 'react-icons/tb';
-import { GiKnifeFork } from 'react-icons/gi';
-import { BsBookmarkHeart, BsDoorOpen } from 'react-icons/bs';
-import { BsJournalBookmark } from 'react-icons/bs';
 
 interface GridLinkItemProps {
     icon?: React.ReactNode;

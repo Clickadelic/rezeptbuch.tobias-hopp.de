@@ -1,10 +1,5 @@
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from '@/components/ui/accordion';
-
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
+import { Link } from '@inertiajs/react';
 import TitleBlock from './Blocks/TitleBlock';
 import { FaQuora } from 'react-icons/fa';
 
@@ -30,13 +25,13 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             Diese Webseite ist ein privates Hobby-Projekt von{' '}
-                            <a
+                            <Link
                                 href="https://www.tobias-hopp.de/de/"
                                 target="_blank"
                                 className="underline underline-offset-4 text-primary"
                             >
                                 Tobias Hopp
-                            </a>{' '}
+                            </Link>{' '}
                             - begonnen im August 2025. Es handelt sich dabei um ein digitales Rezeptbuch, um Rezepte zu speichern und im Alltag schnell griffbereit zu haben.
                         </AccordionContent>
                     </AccordionItem>
@@ -47,13 +42,9 @@ export default function FrontpageCategoryGrid() {
                         <AccordionContent>
                             <p>Ja, die Registrierung ist offen und kostenlos. Es besteht keine Abo-Pflicht oder versteckte Kosten.</p>
                             <br />
-                            <p>Solltest Du Fragen haben zum Thema Nutzungsbediungungen oder Datensicherheit, wirf' bitte einen Blick ins Impressum bzw. die entsprechenden Seiten im Footer. Solltest Du weitere Fragen haben, kannst Du diese gerne per E-Mail anmich senden.</p>
+                            <p>Solltest Du Fragen bzw. Bedenken haben bezüglich Registrierung oder Datensicherheit haben, wirf' bitte einen Blick in die <Link href="/nutzungsbedingungen" target="_self" className="underline underline-offset-4 text-primary">Nutzungsbedingungen</Link> bzw. die entsprechenden Seiten im Footer.</p>
                             <br />
-                            <p>
-                                Die Platform nutzt beispielsweise ein SSL-Zertifikat sowie weitere
-                                Sicherheitsmechanismen - es werden also keine unverschlüsselten,
-                                persönlichen Daten übertragen.
-                            </p>
+                            <p>Falls Du danach noch weitere Fragen hast, kannst Du Dich natürlich gerne per E-Mail oder Kontaktformular an mich wenden.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">
@@ -62,11 +53,11 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Du kannst Dich registrieren, mit Deinen Login-Daten die Rezeptbuch-Funktion kostenlos nutzen,
-                                z.B. Favoriten anlegen und Rezepte verwalten.
+                                Du kannst Dich registrieren. Nachdem Du Dich eingeloggt hast, kannst Du die Rezeptbuch-Funktion kostenlos nutzen und
+                                z.B. Favoriten anlegen oder Deine Rezepte verwalten.
                             </p>
                             <br />
-                            <p>Weitere Features wie sind in Planung.</p>
+                            <p>Weitere Features wie sind in Arbeit bzw. in Planung.</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

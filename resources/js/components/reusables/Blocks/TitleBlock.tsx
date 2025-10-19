@@ -1,8 +1,4 @@
-import { Link } from '@inertiajs/react';
-import { Button } from '@/components/ui/button';
-
 import { FaRegHeart } from 'react-icons/fa6';
-import { IoMdArrowForward } from 'react-icons/io';
 
 interface TitleBlockProps {
     icon?: React.ReactNode;

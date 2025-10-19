@@ -40,7 +40,7 @@ export default function Dashboard() {
                 <div className="p-3 border border-gray-200 md:col-start-3 md:col-span-2 lg:row-span-2 lg:row-start-3 lg:col-start-2 lg:col-span-3 rounded-xl">
                     <h2 className="text-lg font-medium">Deine Rezepte</h2>
                     <ul>
-                        {allUserRecipes.map((recipe:Recipe) => {
+                        {allUserRecipes.data?.map((recipe:Recipe) => {
                             return (
                                 <li key={recipe.id} className="asd">
                                     <h2 className="text-lg font-medium">{recipe.name}</h2>

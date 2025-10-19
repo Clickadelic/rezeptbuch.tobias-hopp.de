@@ -44,7 +44,7 @@ export default function FrontpageCategoryGrid() {
                             <br />
                             <p>Solltest Du Fragen bzw. Bedenken haben bezüglich Registrierung oder Datensicherheit haben, wirf' bitte einen Blick in die <Link href="/nutzungsbedingungen" target="_self" className="underline underline-offset-4 text-primary">Nutzungsbedingungen</Link> bzw. die entsprechenden Seiten im Footer.</p>
                             <br />
-                            <p>Falls Du danach noch weitere Fragen hast, kannst Du Dich natürlich gerne per E-Mail an mich wenden.</p>
+                            <p>Falls Du danach noch weitere Fragen hast, kannst Du Dich natürlich gerne per E-Mail oder Kontaktformular an mich wenden.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">

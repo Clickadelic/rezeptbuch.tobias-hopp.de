@@ -1,16 +1,15 @@
 import { useState, useRef, FormEvent } from 'react';
 import { useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
+import axios from 'axios';
 
+import Seperator from '@/components/reusables/Seperator';
+import CategoryGrid from '@/components/forms/CategoryToggle';
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
 import { StarRating } from '@/components/forms/StarRating';
 
-import axios from 'axios';
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText } from "@/components/ui/input-group"
 import { Switch } from "@/components/ui/switch";
-import { TooltipProvider } from '@radix-ui/react-tooltip';
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from '@/components/ui/select';
@@ -20,9 +19,6 @@ import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from 'react-icons/tb';
 import { SlRefresh } from "react-icons/sl";
-import { ImSpinner10 } from "react-icons/im";
-import Seperator from '@/components/reusables/Seperator';
-import CategoryGrid from '@/components/forms/CategoryToggle';
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 

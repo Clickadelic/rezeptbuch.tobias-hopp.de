@@ -58,7 +58,7 @@ class RecipeController extends Controller
             'user'
         ])->where('status', 'published');
 
-        $related = Recipe::with(['category', 'user'])
+        $related = Recipe::with(['category', 'user', 'media'])
             ->where('category_id', $recipe->category_id)
             ->where('id', '!=', $recipe->id)
             ->inRandomOrder()

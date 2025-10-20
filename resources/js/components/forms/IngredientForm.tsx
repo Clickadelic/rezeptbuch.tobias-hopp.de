@@ -18,6 +18,14 @@ interface IngredientFormProps {
     onFinished?: () => void;
 }
 
+/**
+ * Formular component for creating or editing an ingredient.
+ *
+ * @param {Object} props - passed props
+ * @param {ingredient} props.ingredient - the ingredient to be edited, or null if creating a new one
+ * @param {string} props.className - the class name for the form
+ * @param {Function} props.onFinished - the function to be called when the form is finished
+ */
 export default function IngredientForm({ ingredient, className, onFinished }: IngredientFormProps) {
     const isEditing = Boolean(ingredient);
 
@@ -70,30 +78,33 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
         >
             <div className="w-full flex justify-between items-center">
                 <InputLabel htmlFor="name" value={isEditing ? 'Zutat bearbeiten' : 'Neue Zutat'} />
-                {isEditing && (
-                    <button
-                        type="button"
-                        onClick={handleReset}
-                        className="p-1 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full transition"
-                    >
-                        <SlClose className="w-4 h-4" />
-                    </button>
-                )}
+                
             </div>
 
             <div className="w-full">
-                <TextInput
-                    id="name"
-                    type="text"
-                    value={data.name}
-                    className="mt-1 py-3 px-2 flex w-full"
-                    placeholder="z.B. Kartoffeln"
-                    isFocused
-                    onChange={(e) => setData('name', e.target.value)}
-                />
+                <div className={cn("flex", isEditing && "items-end gap-2")}>
+                    <TextInput
+                        id="name"
+                        type="text"
+                        value={data.name}
+                        className="mt-1 py-3 px-2 flex w-full"
+                        placeholder="z.B. Kartoffeln"
+                        isFocused
+                        onChange={(e) => setData('name', e.target.value)}
+                    />
+                    {isEditing && (
+                        <Button
+                            type="button"
+                            variant="default"
+                            onClick={handleReset}
+                            className="hover:bg-gray-400 transition"
+                        >
+                            <SlClose className="w-4 h-4" />
+                        </Button>
+                    )}
+                </div>
                 <InputError message={errors.name} className="mt-2" />
             </div>
-
             <Button variant="primary" className="w-full rounded" disabled={processing}>
                 {isEditing ? (
                     <>

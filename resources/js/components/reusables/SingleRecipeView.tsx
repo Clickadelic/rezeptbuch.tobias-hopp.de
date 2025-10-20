@@ -24,7 +24,7 @@ import Modal from '@/components/reusables/Modal';
 import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';
 
-import IngredientTable from '@/components/reusables/IngredientTable';
+import IngredientsTable from '@/components/reusables/IngredientsTable';
 import { toHumanDate } from '@/lib/utils';
 
 interface ShowRecipeProps {
@@ -146,7 +146,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <Seperator style="scale" />
             {recipe.ingredients && recipe.ingredients.length > 0 && (
                 <>
-                    <IngredientTable recipe={recipe} />
+                    <IngredientsTable recipe={recipe} />
                     <Seperator style="whisk" />
                 </>
             )}

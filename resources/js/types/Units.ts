@@ -10,7 +10,7 @@ export enum UNITS {
     DASH = 'Dash',
     PART = 'Teil(e)',
     CUP = 'Tasse(n)',
-    PIECE = 'Stück',
+    PIECE = 'Stück(e)',
     CAN = 'Dose(n)',
     GLASS = 'Glas',
     PACKAGE = 'Paket(e)',

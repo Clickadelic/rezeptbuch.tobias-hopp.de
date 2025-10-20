@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import axios from 'axios';
 
@@ -18,13 +18,7 @@ interface FavoriteButtonProps {
 }
 
 /**
- * FavoriteButton - A button component that toggles the favorite status of a recipe.
- *
- * @param {string} [recipeId] - The id of the recipe.
- * @param {boolean} [isFavorite=false] - Indicates whether the recipe is currently favorited.
- * @param {string} [className] - Additional classnames to add to the button element.
- *
- * @returns {JSX.Element} The rendered FavoriteButton component.
+ * FavoriteButton - toggles favorite status of a recipe
  */
 export default function FavoriteButton({
     recipeId,
@@ -34,15 +28,14 @@ export default function FavoriteButton({
     const [active, setActive] = useState<boolean>(isFavorite);
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     const { user } = usePage<SharedPageProps>().props.auth;
 
     const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        // 👇 verhindert Navigation oder bubbling in Link/Card
         e.preventDefault();
         e.stopPropagation();
 
-        // Doppelklick verhindern, solange loading
         if (loading) return;
 
         const next = !active;
@@ -58,6 +51,8 @@ export default function FavoriteButton({
             toast.error('Fehler beim Aktualisieren des Favoriten!');
         } finally {
             setLoading(false);
+            // 👇 Entfernt Fokus nach Abschluss des Requests (mobile fix)
+            buttonRef.current?.blur();
         }
     };
 
@@ -65,6 +60,7 @@ export default function FavoriteButton({
 
     return (
         <Button
+            ref={buttonRef}
             onClick={handleClick}
             onMouseOver={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -73,13 +69,13 @@ export default function FavoriteButton({
             className={cn(
                 'shadow-none text-gray-400 rounded-full transition-colors',
                 'hover:text-rose-600 hover:fill-rose-600',
-                active && 'text-rose-600 fill-rose-600', // Favorit aktiv → grün
+                active && 'text-rose-600 fill-rose-600',
                 'focus-visible:ring-2 focus-visible:ring-rose-600 focus-visible:ring-offset-2',
                 'disabled:opacity-50 disabled:cursor-not-allowed',
                 className,
             )}
             title={active ? 'Favorit entfernen' : 'Zu Favoriten hinzufügen'}
-            type="button" // 👈 wichtig, sonst submit in Formularen
+            type="button"
         >
             {!loading && (isHovered || active) ? <FaHeart /> : <FaRegHeart />}
             {loading && <FaSpinner className="animate-spin" />}

@@ -17,6 +17,9 @@ interface FavoriteButtonProps {
     className?: string;
 }
 
+/**
+ * FavoriteButton - toggles favorite status of a recipe
+ */
 export default function FavoriteButton({
     recipeId,
     isFavorite = false,
@@ -25,42 +28,9 @@ export default function FavoriteButton({
     const [active, setActive] = useState<boolean>(isFavorite);
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
-    const [pulse, setPulse] = useState<boolean>(false);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     const { user } = usePage<SharedPageProps>().props.auth;
-
-    const removeAnyFocus = () => {
-        // 1) blur the button if possible
-        buttonRef.current?.blur();
-
-        // 2) blur whatever is currently active (link/card might be focused)
-        try {
-            (document.activeElement as HTMLElement | null)?.blur?.();
-        } catch (e) {
-            // ignore
-        }
-
-        // 3) schedule another blur after the next frame and a short timeout (covers Safari/Chrome quirks)
-        requestAnimationFrame(() => {
-            buttonRef.current?.blur();
-            (document.activeElement as HTMLElement | null)?.blur?.();
-
-            setTimeout(() => {
-                buttonRef.current?.blur();
-                (document.activeElement as HTMLElement | null)?.blur?.();
-            }, 50);
-        });
-    };
-
-    const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
-        // Prevent pointer (mouse/touch) from focusing the button, but allow keyboard focus
-        // PointerEvent.pointerType can be 'mouse' | 'pen' | 'touch' | 'keyboard' (keyboard rare)
-        // We only prevent default if it's not keyboard-driven
-        if ((e as any).pointerType && (e as any).pointerType !== 'keyboard') {
-            e.preventDefault();
-        }
-    };
 
     const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -70,7 +40,6 @@ export default function FavoriteButton({
 
         const next = !active;
         setActive(next);
-        setPulse(true);
 
         try {
             setLoading(true);
@@ -82,12 +51,8 @@ export default function FavoriteButton({
             toast.error('Fehler beim Aktualisieren des Favoriten!');
         } finally {
             setLoading(false);
-
-            // robust focus removal (covers many browser quirks)
-            removeAnyFocus();
-
-            // end pulse after short animation
-            setTimeout(() => setPulse(false), 300);
+            // 👇 Entfernt Fokus nach Abschluss des Requests (mobile fix)
+            buttonRef.current?.blur();
         }
     };
 
@@ -97,16 +62,14 @@ export default function FavoriteButton({
         <Button
             ref={buttonRef}
             onClick={handleClick}
-            onPointerDown={handlePointerDown} // prevent pointer focus while keep keyboard focus
             onMouseOver={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             disabled={loading}
             variant="flat"
             className={cn(
-                'shadow-none text-gray-400 rounded-full transition-all',
+                'shadow-none text-gray-400 rounded-full transition-colors',
                 'hover:text-rose-600 hover:fill-rose-600',
                 active && 'text-rose-600 fill-rose-600',
-                pulse && 'scale-110 animate-[pulse_0.3s_ease-in-out]',
                 'focus-visible:ring-2 focus-visible:ring-rose-600 focus-visible:ring-offset-2',
                 'disabled:opacity-50 disabled:cursor-not-allowed',
                 className,

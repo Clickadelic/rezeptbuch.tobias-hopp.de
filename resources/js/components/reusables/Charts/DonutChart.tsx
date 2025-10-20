@@ -14,7 +14,7 @@ export default function DonutChart({ data, title, className }: DonutChartProps) 
     const COLORS = ["#065f46", "#e11d48", "#52525b", "#a1a1aa"];
 
     return (
-        <div className={cn("bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm", className)}>
+        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl ', className)}>
             <h3 className="text-lg mb-3">{title || "Verteilung"}</h3>
             <div className="h-[260px]">
                 <ResponsiveContainer>

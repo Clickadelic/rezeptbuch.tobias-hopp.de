@@ -1,4 +1,4 @@
-import Checkbox from '@/components/reusables/Checkbox';
+import Checkbox from '@/components/forms/inputs/Checkbox';
 import InputError from '@/components/forms/inputs/InputError';
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import { Button } from '@/components/ui/button';

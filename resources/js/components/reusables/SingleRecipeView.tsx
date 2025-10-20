@@ -24,7 +24,7 @@ import Modal from '@/components/reusables/Modal';
 import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';
 
-import IngredientsTable from '@/components/reusables/IngredientsTable';
+import SingleRecipeIngredientsTable from '@/components/reusables/Tables/SingleRecipeIngredientsTable';
 import { toHumanDate } from '@/lib/utils';
 
 interface ShowRecipeProps {
@@ -98,7 +98,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             </p>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 grid-rows-2 sm:flex sm:flex-row gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                             {iconMap[recipe.category?.slug ?? ''] ?? (
                                 <LuUtensilsCrossed className="size-5 text-primary" />
@@ -146,7 +146,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <Seperator style="scale" />
             {recipe.ingredients && recipe.ingredients.length > 0 && (
                 <>
-                    <IngredientsTable recipe={recipe} />
+                    <SingleRecipeIngredientsTable recipe={recipe} />
                     <Seperator style="whisk" />
                 </>
             )}

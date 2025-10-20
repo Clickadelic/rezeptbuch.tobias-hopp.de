@@ -36,11 +36,18 @@ export interface SharedPageProps extends InertiaPageProps {
     recipes?: Paginated<Recipe>;
     users?: Paginated<AuthUser>;
     latestRecipes?: Paginated<Recipe>;
-    allUserRecipes?: Paginated<Recipe>;
-    
+    totalUserRecipes?: Paginated<Recipe>;
     totalUserRecipeCount: number;
     totalIngredientCount: number;
     totalRecipeCount: number;
-
+    totalUserFavorites: Recipe[];
+    userFavoritesCount: number;
+    totalUserCount: number;
+    recipesCountByCategory: {
+        [categoryName: string]: number
+    }
+    // recipesByCategory: {
+    //     [categoryName: string]: number
+    // };
     [key: string]: unknown; // Fallback
 }

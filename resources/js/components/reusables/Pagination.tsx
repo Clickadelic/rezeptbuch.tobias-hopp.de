@@ -6,6 +6,8 @@ interface PaginationProps {
         label: string;
         active: boolean;
     }[];
+    onPageClick?: (link: string) => void;
+    loading?: boolean;
 }
 
 export default function Pagination({ links }: PaginationProps) {

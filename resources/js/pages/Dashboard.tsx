@@ -1,31 +1,46 @@
+import { Link, usePage } from '@inertiajs/react';
+
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-
-import FavoritesTable from '@/components/reusables/FavoritesTable';
-
-import DataTable from '@/components/reusables/DataTable/Index';
-import { columns } from '@/components/reusables/DataTable/Columns';
+import BarChart from '@/components/reusables/Charts/BarChart';
+import DonutChart from '@/components/reusables/Charts/DonutChart';
+import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
+import RecipesTable from '@/components/reusables/Tables/RecipesTable';
 
 import { SharedPageProps } from '@/types';
-import { usePage } from '@inertiajs/react';
 import { Recipe } from '@/types/Recipe';
-import DataCard from '@/components/reusables/DataCard';
-import DonutChart from '@/components/reusables/Charts/DonutChart';
-import PieChart from '@/components/reusables/Charts/PieChart';
-import AddCard from '@/components/reusables/AddCard';
-import BarChart from '@/components/reusables/Charts/BarChart';
 
+import { Button } from '@/components/ui/button';
+import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@/components/ui/button-group';
 import { cn } from '@/lib/utils';
 
 
+
+/**
+ * The Dashboard page displays a variety of information about the user's recipes.
+ * It includes a bar chart that shows the number of recipes, a donut chart that shows the distribution of recipes between the user and other users, and two tables that show the user's recipes and favorites.
+ */
 export default function Dashboard() {
     // Extract the data from the page
-    const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites, userFavoritesCount, allUserRecipes } = usePage<SharedPageProps>().props;
-    // Chart-Daten vorbereiten
+    const {
+        totalRecipeCount,
+        totalUserRecipeCount,
+        totalIngredientCount,
+        totalUserCount,
+        totalUserRecipes,
+        userFavorites,
+        userFavoritesCount,
+        latestRecipe,
+        recipesCountByCategory
+    } = usePage<SharedPageProps>().props;
+    console.log("totalusercount", totalUserCount);
+    // Prepare data for charts
     const barData = [
-        { name: "Alle Rezepte", value: totalRecipeCount },
-        { name: "Meine Rezepte", value: totalUserRecipeCount },
-        { name: "Zutaten", value: totalIngredientCount },
-        { name: "Favoriten", value: userFavoritesCount },
+        { name: "Vorspeisen", value: recipesCountByCategory["Vorspeise"] },
+        { name: "Hauptgerichte", value: recipesCountByCategory["Hauptgericht"] },
+        { name: "Nachtisch", value: recipesCountByCategory["Nachtisch"] },
+        { name: "Cocktails", value: recipesCountByCategory["Cocktail"] },
+        { name: "Backen", value: recipesCountByCategory["Backen"] },
+        { name: "Snack", value: recipesCountByCategory["Snack"] },
     ];
 
     const donutData = [
@@ -33,16 +48,45 @@ export default function Dashboard() {
         { name: "Favoriten", value: userFavoritesCount },
         { name: "Andere Benutzer", value: totalRecipeCount - totalUserRecipeCount },
     ];
+
     return (
         <FullWidthLayout title="Dashboard">
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <BarChart data={barData} title="Rezepte" className="col-span-1 xl:col-span-8" />
-                <DonutChart data={donutData} title="Deine Rezepte" className="col-span-1 xl:col-span-5 xl:col-start-9" />
+                <div className="col-span-1 xl:col-span-3">
+                    <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
+                        <h3 className="text-lg flex justify-between items-center"><span>Rezepte gesamt</span> <span>{totalRecipeCount}</span></h3>
+                    </div>
+                </div>
+                <div className="col-span-1 xl:col-span-3">
+                    <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
+                        <h3 className="text-lg flex justify-between items-center"><span>Zutaten gesamt</span> <span>{totalIngredientCount}</span></h3>
+                    </div>
+                </div>
+                <div className="col-span-1 xl:col-span-3">
+                    <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
+                        <h3 className="text-lg flex justify-between items-center"><span>Favoriten</span> <span>{userFavoritesCount}</span></h3>
+                    </div>
+                </div>
+                <div className="col-span-1 xl:col-span-3">
+                    <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
+                        <h3 className="text-lg flex justify-between items-center"><span>Benutzer gesamt</span> <span>{totalUserCount}</span></h3>
+                    </div>
+                    {/* <ButtonGroup className="w-full">
+                        <Button asChild variant="primary">
+                            <Link >Neues Rezept</Link>
+                        </Button>
+                        <ButtonGroupSeparator />
+                        <Button>Test</Button>
+                    </ButtonGroup> */}
+                </div>
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Rezepte" className="col-span-1 xl:col-span-8" />
-
-                <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Favoriten" className="col-span-1 xl:col-span-4" />
+                <BarChart data={barData} title="Rezepte nach Kategorien" className="col-span-1 xl:col-span-7" />
+                <DonutChart data={donutData} title="Deine Rezepte" className="col-span-1 xl:col-span-5 xl:col-start-8" />
+            </div>
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <RecipesTable initialRecipes={totalUserRecipes} title="Deine Rezepte" className="col-span-1 xl:col-span-6" />
+                <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Favoriten" className="col-span-1 xl:col-span-6" />
             </div>
         </FullWidthLayout>
     );

@@ -11,11 +11,11 @@ interface BarChartProps {
 
 export default function BarChart({ data, title, className }: BarChartProps) {
     return (
-        <div className={cn("bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm", className)}>
+        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl ', className)}>
               <h3 className="text-lg mb-3">{title || "Statistik"}</h3>
               <div className="h-[260px]">
                   <ResponsiveContainer>
-                      <RBarChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }} barSize={20}>
+                      <RBarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }} barSize={60}>
                         <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
                         <XAxis dataKey="name" />
                         <YAxis allowDecimals={false} />

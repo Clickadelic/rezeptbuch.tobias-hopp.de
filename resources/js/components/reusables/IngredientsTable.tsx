@@ -7,7 +7,7 @@ import { RiResetLeftFill } from 'react-icons/ri';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-interface IngredientTableProps {
+interface IngredientsTableProps {
     recipe: Recipe;
 }
 
@@ -17,7 +17,7 @@ interface IngredientTableProps {
  * @param {Recipe} recipe The recipe to display ingredients for.
  * @returns {JSX.Element} The table component.
  */
-export default function IngredientTable({ recipe }: IngredientTableProps) {
+export default function IngredientsTable({ recipe }: IngredientsTableProps) {
     const [count, setCount] = useState<number>(1);
     return (
         <div className="w-full md:w-[32rem] md:mx-auto">

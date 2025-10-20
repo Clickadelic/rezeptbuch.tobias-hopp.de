@@ -3,11 +3,12 @@
 // die neuen ShadCN Packages ausprobieren
 // Multistep Form-Builder testen
 
-// Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
-// Besseres Formular für Zutateneingabe (Löschen funktion)
-// Weitere Ideen für Startseite sammeln
 // WYSYWIG Editor für Zubereitungsfeld.
-// Header und Footer überarbeiten
+
+// Besseres Formular für Zutateneingabe (Löschen funktion)
+// Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
+// Alle Zutaten-Löschen Button im Wizard
+// 
 // ----------------------------------------
 // Favicon
 // https://www.svgrepo.com/svg/276548/recipe?edit=true

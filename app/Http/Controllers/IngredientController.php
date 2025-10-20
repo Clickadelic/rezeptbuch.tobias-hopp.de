@@ -94,12 +94,24 @@ class IngredientController extends Controller
         return back();
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Ingredient $ingredient)
-    {   
+    {
+        // Prüfen, ob die Zutat in einem Rezept verwendet wird
+        if ($ingredient->recipes()->exists()) {
+            return redirect()
+                ->route('ingredients.index')
+                ->with('error', 'Diese Zutat kann nicht gelöscht werden, da sie noch in einem oder mehreren Rezepten verwendet wird.');
+        }
+
         $ingredient->delete();
-        return redirect()->route('ingredients.index')->with('success', 'Zutat gelöscht!');
+
+        return redirect()
+            ->route('ingredients.index')
+            ->with('success', 'Zutat wurde erfolgreich gelöscht.');
     }
+
 }

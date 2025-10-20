@@ -17,7 +17,7 @@ export default function FavoritesList({ className, favorites }: FavoritesListPro
             )}
             <ul className="w-full flex flex-col gap-2 p-3 ">
                 {favorites?.map((recipe: Recipe) => (
-                    <li key={recipe.id} className="flex odd:bg-gray-200 even:bg-gray-100 p-2 rounded-lg items-center gap-2 line-clamp-1">
+                    <li key={recipe.id} className="asd">
                         <span>{recipe.name}</span>
                     </li>
                 ))}

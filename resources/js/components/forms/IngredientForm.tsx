@@ -78,30 +78,33 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
         >
             <div className="w-full flex justify-between items-center">
                 <InputLabel htmlFor="name" value={isEditing ? 'Zutat bearbeiten' : 'Neue Zutat'} />
-                {isEditing && (
-                    <button
-                        type="button"
-                        onClick={handleReset}
-                        className="p-1 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full transition"
-                    >
-                        <SlClose className="w-4 h-4" />
-                    </button>
-                )}
+                
             </div>
 
             <div className="w-full">
-                <TextInput
-                    id="name"
-                    type="text"
-                    value={data.name}
-                    className="mt-1 py-3 px-2 flex w-full"
-                    placeholder="z.B. Kartoffeln"
-                    isFocused
-                    onChange={(e) => setData('name', e.target.value)}
-                />
+                <div className={cn("flex", isEditing && "items-end gap-2")}>
+                    <TextInput
+                        id="name"
+                        type="text"
+                        value={data.name}
+                        className="mt-1 py-3 px-2 flex w-full"
+                        placeholder="z.B. Kartoffeln"
+                        isFocused
+                        onChange={(e) => setData('name', e.target.value)}
+                    />
+                    {isEditing && (
+                        <Button
+                            type="button"
+                            variant="default"
+                            onClick={handleReset}
+                            className="hover:bg-gray-400 transition"
+                        >
+                            <SlClose className="w-4 h-4" />
+                        </Button>
+                    )}
+                </div>
                 <InputError message={errors.name} className="mt-2" />
             </div>
-
             <Button variant="primary" className="w-full rounded" disabled={processing}>
                 {isEditing ? (
                     <>

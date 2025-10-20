@@ -20,10 +20,10 @@ export default function IngredientItem({ ingredient, onSelect }: IngredientItemP
     }
 
     return (
-        <div className="flex gap-2 border">
-            <Button variant="link" className="flex gap-2" onClick={onSelect}>
-                {ingredient.name}
-            </Button>
-        </div>
+
+        <Button variant="link" className="p-0" onClick={onSelect}>
+            {ingredient.name}
+        </Button>
+
     );
 }

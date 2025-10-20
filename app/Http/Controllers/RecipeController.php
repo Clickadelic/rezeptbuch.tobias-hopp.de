@@ -106,10 +106,17 @@ class RecipeController extends Controller
                 if (Str::isUuid($ingredientValue)) {
                     $ingredient = Ingredient::find($ingredientValue);
                 } else {
-                    $ingredient = Ingredient::firstOrCreate([
-                        'name' => ucfirst(strtolower($ingredientValue)),
-                        'user_id' => Auth::id()
-                    ]);
+                    // Case-insensitive prüfen, aber Originalname beibehalten
+                    $existing = Ingredient::whereRaw('LOWER(name) = ?', [strtolower($ingredientValue)])->first();
+
+                    if ($existing) {
+                        $ingredient = $existing;
+                    } else {
+                        $ingredient = Ingredient::create([
+                            'name' => trim($ingredientValue),
+                            'user_id' => Auth::id(),
+                        ]);
+                    }
                 }
 
                 return $ingredient
@@ -210,10 +217,17 @@ class RecipeController extends Controller
                     if (Str::isUuid($ingredientValue)) {
                         $ingredient = Ingredient::find($ingredientValue);
                     } else {
-                        $ingredient = Ingredient::firstOrCreate([
-                            'name' => ucfirst(strtolower($ingredientValue)),
-                            'user_id' => Auth::id()
-                        ]);
+                        // Case-insensitive prüfen, aber Originalname beibehalten
+                        $existing = Ingredient::whereRaw('LOWER(name) = ?', [strtolower($ingredientValue)])->first();
+
+                        if ($existing) {
+                            $ingredient = $existing;
+                        } else {
+                            $ingredient = Ingredient::create([
+                                'name' => trim($ingredientValue),
+                                'user_id' => Auth::id(),
+                            ]);
+                        }
                     }
 
                     return $ingredient

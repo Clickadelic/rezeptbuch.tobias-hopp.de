@@ -12,11 +12,11 @@ export default function NotFound() {
                 </div>
                 <div className="cols-span-1 sm:col-span-2 md:col-span-3 flex justify-center items-center">
                     <div className="flex flex-col items-start justify-center gap-3">
-                        <h2 className="text-xl text-gray-600 dark:text-gray-200">
-                            Tadaa, Fehler 404 - Seite nicht gefunden.
+                        <h2 className="text-lg text-gray-600 dark:text-gray-200">
+                            Fehler 404 - Seite nicht gefunden.
                         </h2>
-                        <h2 className="text-3xl my-5 font-la-belle-aurore">
-                            ..is' mir wohl von der Pfanne gerutscht...
+                        <h2 className="text-2xl my-5 font-la-belle-aurore">
+                            Tadaa, is' mir wohl von der Pfanne gerutscht...
                         </h2>
                         <p className="text-lg mb-5">Die Seite, die du suchst, existiert nicht.</p>
                         <Link

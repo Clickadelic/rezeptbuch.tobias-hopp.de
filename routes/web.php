@@ -12,7 +12,7 @@ Route::get('/test', function () {
 
 require __DIR__.'/custom/auth.php';
 require __DIR__.'/custom/admin.php';
-require __DIR__.'/custom/contact-submissions.php';
+require __DIR__.'/custom/contact.php';
 require __DIR__.'/custom/profile.php';
 require __DIR__.'/custom/legal-pages.php';
 require __DIR__.'/custom/favorites.php';

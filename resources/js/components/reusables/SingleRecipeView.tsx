@@ -91,7 +91,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                     </h4>
                                     <h3 className="font-medium text-2xl mb-3">{recipe.name}</h3>
                                 </div>
-                                <ContextMenu recipe={recipe} />
+                                <ContextMenu recipe={recipe} dotStyle="vertical" />
                             </div>
                             <p className="mb-3 text-gray-800 dark:text-gray-200">
                                 {recipe.description}

@@ -1,6 +1,6 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 
-import FavoritesList from '@/components/reusables/FavoritesList';
+import FavoritesTable from '@/components/reusables/FavoritesTable';
 
 import DataTable from '@/components/reusables/DataTable/Index';
 import { columns } from '@/components/reusables/DataTable/Columns';
@@ -14,50 +14,33 @@ import PieChart from '@/components/reusables/Charts/PieChart';
 import AddCard from '@/components/reusables/AddCard';
 import BarChart from '@/components/reusables/Charts/BarChart';
 
+import { cn } from '@/lib/utils';
+
+
 export default function Dashboard() {
     // Extract the data from the page
-    const {
-        totalRecipeCount,
-        totalUserRecipeCount,
-        totalIngredientCount,
-        userFavorites,
-        userFavoritesCount,
-        allUserRecipes
-    } = usePage<SharedPageProps>().props;
+    const { totalRecipeCount, totalUserRecipeCount, totalIngredientCount, userFavorites, userFavoritesCount, allUserRecipes } = usePage<SharedPageProps>().props;
+    // Chart-Daten vorbereiten
+    const barData = [
+        { name: "Alle Rezepte", value: totalRecipeCount },
+        { name: "Meine Rezepte", value: totalUserRecipeCount },
+        { name: "Zutaten", value: totalIngredientCount },
+        { name: "Favoriten", value: userFavoritesCount },
+    ];
 
+    const donutData = [
+        { name: "Eigene Rezepte", value: totalUserRecipeCount },
+        { name: "Favoriten", value: userFavoritesCount },
+        { name: "Andere Benutzer", value: totalRecipeCount - totalUserRecipeCount },
+    ];
     return (
         <FullWidthLayout title="Dashboard">
-            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 grid-rows-5 gap-2 md:gap-3 lg:gap-4">
-                <div className="p-3 border border-gray-200 md:col-span-4 lg:col-span-3 lg:row-span-2 rounded-xl">
-                    <BarChart title="Rezepte" />
-                </div>
-                <div className="p-3 border border-gray-200 md:col-span-4 md:col-start-1 lg:col-span-2 lg:row-span-2 lg:col-start-4 rounded-xl">
-                    <DonutChart />
-                </div>
-                <div className="p-3 border border-gray-200 md:col-start-1 md:col-span-2 lg:row-span-5 lg:col-span-1 lg:row-start-3 rounded-xl">
-                    <FavoritesList favorites={userFavorites as Recipe[]} />
-                </div>
-                <div className="p-3 border border-gray-200 md:col-start-3 md:col-span-2 lg:row-span-2 lg:row-start-3 lg:col-start-2 lg:col-span-3 rounded-xl">
-                    <h2 className="text-lg font-medium">Deine Rezepte</h2>
-                    <ul>
-                        {allUserRecipes.data?.map((recipe:Recipe) => {
-                            return (
-                                <li key={recipe.id} className="asd">
-                                    <h2 className="text-lg font-medium">{recipe.name}</h2>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
-                <div className="p-3 border border-gray-200 md:col-start-1 md:col-span-2 lg:row-span-5 lg:col-start-5 lg:col-span-1 rounded-xl">
-                    <h2 className="text-lg font-medium">6</h2>
-                </div>
-                <div className="p-2 lg:col-span-2 lg:col-start-2 lg:row-start-5 lg:row-span-3 rounded-xl">
-                    <h2 className="text-lg font-medium">7</h2>
-                </div>
-                <div className="p-2 lg:col-start-4 lg:row-start-5 lg:row-span-3 rounded-xl">
-                    <h2 className="text-lg font-medium">8</h2>
-                </div>
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <BarChart data={barData} title="Rezepte" className="col-span-1 xl:col-span-8" />
+                <DonutChart data={donutData} title="Deine Rezepte" className="col-span-1 xl:col-span-5 xl:col-start-9" />
+            </div>
+            <div className={cn("bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm")}>
+                <FavoritesTable favorites={userFavorites as Recipe[]} />
             </div>
         </FullWidthLayout>
     );

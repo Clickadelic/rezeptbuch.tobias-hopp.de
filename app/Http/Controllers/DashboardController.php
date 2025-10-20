@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $allUserRecipes = Recipe::all()->where('user_id', Auth::id());
 
         // Alle Favoriten des Users:
-        $userFavorites = Auth::user()->favorites()->with(['media', 'category'])->get();
+        $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
         $userFavoritesCount = $userFavorites->count();
 
         return Inertia::render('Dashboard', [

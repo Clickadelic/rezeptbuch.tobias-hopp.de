@@ -34,7 +34,7 @@ export default function DonutChart({ data, title, className }: DonutChartProps) 
                         ))}
                         </Pie>
                         <Tooltip />
-                        <Legend />
+                        <Legend iconType="circle" />
                     </PieChart>
                 </ResponsiveContainer>
             </div>

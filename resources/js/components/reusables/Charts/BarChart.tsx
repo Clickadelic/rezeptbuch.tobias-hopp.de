@@ -32,7 +32,7 @@ export default function BarChart({ data, title, className }: BarChartProps) {
                           itemStyle={{ color: '#065f46' }}
                           cursor={{ fill: '#d1fae5' }}
                         />
-                        <Legend />
+                        <Legend iconType="circle" margin={{ top: 30, right: 0, left: 0, bottom: 0 }} />
                         {/* Balkenfarbe */}
                         <Bar dataKey="value" name="Anzahl" fill="#065f46" radius={[4, 4, 0, 0]} />
                       </RBarChart>

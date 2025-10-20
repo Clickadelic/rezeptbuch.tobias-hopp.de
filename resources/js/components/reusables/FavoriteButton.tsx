@@ -28,6 +28,7 @@ export default function FavoriteButton({
     const [active, setActive] = useState<boolean>(isFavorite);
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const [pulse, setPulse] = useState<boolean>(false);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     const { user } = usePage<SharedPageProps>().props.auth;
@@ -40,6 +41,7 @@ export default function FavoriteButton({
 
         const next = !active;
         setActive(next);
+        setPulse(true); // Animation starten
 
         try {
             setLoading(true);
@@ -51,8 +53,12 @@ export default function FavoriteButton({
             toast.error('Fehler beim Aktualisieren des Favoriten!');
         } finally {
             setLoading(false);
-            // 👇 Entfernt Fokus nach Abschluss des Requests (mobile fix)
-            buttonRef.current?.blur();
+            // Fokus sicher entfernen (auch auf Mobile)
+            setTimeout(() => {
+                buttonRef.current?.blur();
+            }, 100);
+            // Animation beenden nach 300ms
+            setTimeout(() => setPulse(false), 300);
         }
     };
 
@@ -67,9 +73,10 @@ export default function FavoriteButton({
             disabled={loading}
             variant="flat"
             className={cn(
-                'shadow-none text-gray-400 rounded-full transition-colors',
+                'shadow-none text-gray-400 rounded-full transition-all',
                 'hover:text-rose-600 hover:fill-rose-600',
                 active && 'text-rose-600 fill-rose-600',
+                pulse && 'scale-110 animate-[pulse_0.3s_ease-in-out]',
                 'focus-visible:ring-2 focus-visible:ring-rose-600 focus-visible:ring-offset-2',
                 'disabled:opacity-50 disabled:cursor-not-allowed',
                 className,

@@ -17,7 +17,7 @@ export default function RecipeSearch() {
     return (
         <div
             className={cn(
-                "relative w-full bg-[url('../images/ella-olsson-4dQiaWKiL-Y-unsplash.jpg')] dark:bg-[url('../images/lottie-griffiths-8op0ziM4Xzs-unsplash.jpg')] bg-cover bg-center flex flex-col justify-center items-center",
+                "relative w-full bg-[url('../images/ella-olsson-4dQiaWKiL-Y-unsplash.jpg')] dark:bg-[url('../images/pexels-fotios-photos-918328.jpg')] bg-cover bg-center flex flex-col justify-center items-center",
             )}
         >
             {/* <HeaderAlert /> */}

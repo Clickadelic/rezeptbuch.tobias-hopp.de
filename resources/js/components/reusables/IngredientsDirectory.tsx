@@ -10,9 +10,6 @@ import { SharedPageProps } from '@/types';
 import { Ingredient } from '@/types/Ingredient';
 import { cn } from '@/lib/utils';
 
-
-
-
 export default function IngredientsDirectory() {
     const ingredientList = usePage<SharedPageProps>().props.ingredients ?? [];
 
@@ -62,7 +59,7 @@ export default function IngredientsDirectory() {
                     grouped[letter] && (
                         <section key={letter} id={letter} className="scroll-mt-24">
                             <Card>
-                                <CardHeader className="text-lg font-bold text-primary">{letter}</CardHeader>
+                                <CardHeader className="text-lg font-bold">{letter}</CardHeader>
                                 <CardContent>
                                     <ul className="px-5 flex flex-wrap gap-2">
                                         {grouped[letter].map((ingredient) => (

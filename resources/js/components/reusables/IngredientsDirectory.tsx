@@ -9,8 +9,10 @@ import { Separator } from '@/components/ui/separator';
 import { SharedPageProps } from '@/types';
 import { Ingredient } from '@/types/Ingredient';
 import { cn } from '@/lib/utils';
+import { usePermissions } from '@/hooks/usePermissions';
 
 export default function IngredientsDirectory() {
+    const { hasRole } = usePermissions();
     const ingredientList = usePage<SharedPageProps>().props.ingredients ?? [];
 
     // State für die aktuell ausgewählte Zutat
@@ -32,14 +34,9 @@ export default function IngredientsDirectory() {
 
     return (
         <div className="space-y-8">
-            {/* Formular oben */}
-            <IngredientForm
-                key={selectedIngredient?.id || 'new'}
-                ingredient={selectedIngredient}
-                onFinished={() => setSelectedIngredient(undefined)}
-                className="mb-8"
-            />
-
+            {hasRole('user') && (
+                <IngredientForm key={selectedIngredient?.id || 'new'} ingredient={selectedIngredient} onFinished={() => setSelectedIngredient(undefined)} className="mb-8"/>
+            )}
             {/* Alphabet Navigation */}
             <nav className="flex flex-wrap gap-1 md:gap-1.5 justify-center items-center mb-4 sticky top-0 bg-gray-100 rounded dark:bg-gray-900 z-10 p-2 border-b border-gray-200 dark:border-gray-700">
                 {alphabet.map((letter) => (

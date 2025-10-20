@@ -32,8 +32,6 @@ export default function Frontpage() {
             <ChefkochBlock />
             <Seperator style="info" />
             <FaqAccordeon />
-            <Seperator style="mail" />
-            <ContactBlock />
         </FullWidthLayout>
     );
 }

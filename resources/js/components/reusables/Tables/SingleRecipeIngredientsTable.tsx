@@ -17,7 +17,7 @@ interface IngredientsTableProps {
  * @param {Recipe} recipe The recipe to display ingredients for.
  * @returns {JSX.Element} The table component.
  */
-export default function IngredientsTable({ recipe }: IngredientsTableProps) {
+export default function SingleRecipeIngredientsTable({ recipe }: IngredientsTableProps) {
     const [count, setCount] = useState<number>(1);
     return (
         <div className="w-full md:w-[32rem] md:mx-auto">

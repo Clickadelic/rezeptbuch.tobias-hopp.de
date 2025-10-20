@@ -44,12 +44,12 @@ export default function IngredientsDirectory() {
             />
 
             {/* Alphabet Navigation */}
-            <nav className="flex flex-wrap gap-2 mb-4 sticky top-0 bg-white dark:bg-gray-900 z-10 p-2 border-b border-gray-200 dark:border-gray-700">
+            <nav className="flex flex-wrap gap-1 md:gap-1.5 justify-center items-center mb-4 sticky top-0 bg-gray-100 rounded dark:bg-gray-900 z-10 p-2 border-b border-gray-200 dark:border-gray-700">
                 {alphabet.map((letter) => (
                     <a
                         key={letter}
                         href={`#${letter}`}
-                        className="px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+                        className=" px-2 py-1 rounded hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white"
                     >
                         {letter}
                     </a>

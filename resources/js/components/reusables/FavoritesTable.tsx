@@ -8,7 +8,7 @@ import { router, usePage, Link } from '@inertiajs/react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,} from '@/components/ui/dropdown-menu';
 import ContextMenu from '@/components/reusables/ContextMenu';
-import { HiOutlineDotsVertical } from 'react-icons/hi';
+
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import { GoPlus, GoTrash } from 'react-icons/go';
@@ -28,39 +28,39 @@ interface FavoritesListProps {
 }
 
 export default function FavoritesTable({ title, className, favorites }: FavoritesListProps) {
-
+    
     return (
         <div className={cn('w-full', className)}>
-            <h2 className="text-lg mb-3">{title || 'Deine Favoriten'}</h2>
+            <h2 className="text-lg mb-3">{title || 'Deine Daten'}</h2>
             {favorites?.length === 0 && (
                 <div className="p-3 rounded-xl">
-                    <h2 className="text-lg text-center">Keine Favoriten</h2>
+                    <h2 className="text-lg text-center">Keine Daten</h2>
                 </div>
             )}
             <Table>
                 <TableCaption>Eine Liste Deiner Favoriten.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">Status</TableHead>
+                        <TableHead className="w-[80px]">Favorisiert</TableHead>
                         <TableHead className="asd">Name</TableHead>
                         <TableHead className="asd">Kategorie</TableHead>
                         <TableHead className="asd">Schwierigkeit</TableHead>
                         <TableHead className="asd">Bewertung</TableHead>
-                        <TableHead className="asd">Beschreibung</TableHead>
+                        <TableHead className="asd">Benutzer</TableHead>
                         <TableHead className="text-right">Aktion</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {favorites?.map((recipe: Recipe) => (
-                        <TableRow>
-                            <TableCell className="cursor-default">asd</TableCell>
+                        <TableRow key={recipe.id}>
+                            <TableCell className="cursor-default"><FavoriteButton recipeId={recipe.id} isFavorite={true} /></TableCell>
                             <TableCell className="cursor-default">{recipe.name}</TableCell>
                             <TableCell className="cursor-default">{recipe.category?.name}</TableCell>
                             <TableCell className="cursor-default">{recipe.difficulty}</TableCell>
                             <TableCell className="cursor-default">{recipe.rating}</TableCell>
-                            <TableCell className="cursor-default">{recipe.description}</TableCell>
+                            <TableCell className="cursor-default">{recipe.user?.name}</TableCell>
                             <TableCell className="text-right">
-                                <ContextMenu recipe={recipe} />
+                                <ContextMenu recipe={recipe} dotStyle="horizontal" />
                             </TableCell>
                         </TableRow>
                     ))}

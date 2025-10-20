@@ -39,8 +39,10 @@ export default function Dashboard() {
                 <BarChart data={barData} title="Rezepte" className="col-span-1 xl:col-span-8" />
                 <DonutChart data={donutData} title="Deine Rezepte" className="col-span-1 xl:col-span-5 xl:col-start-9" />
             </div>
-            <div className={cn("bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm")}>
-                <FavoritesTable favorites={userFavorites as Recipe[]} />
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Rezepte" className="col-span-1 xl:col-span-8" />
+
+                <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Favoriten" className="col-span-1 xl:col-span-4" />
             </div>
         </FullWidthLayout>
     );

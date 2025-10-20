@@ -11,6 +11,7 @@ import { Recipe } from '@/types/Recipe';
 import { usePermissions } from '@/hooks/usePermissions';
 import { RxClipboardCopy } from 'react-icons/rx';
 import { IoPrintOutline } from 'react-icons/io5';
+import { PiCopySimpleLight } from "react-icons/pi";
 
 import { cn } from '@/lib/utils';
 
@@ -31,7 +32,7 @@ interface ContextMenuProps {
  * @param {Recipe} props.recipe - The recipe to be edited or deleted.
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
-export default function ContextMenu({ recipe, className, dotStyle }: ContextMenuProps) {
+export default function ContextMenu({ recipe, className, dotStyle = "vertical" }: ContextMenuProps) {
     const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
 
@@ -140,7 +141,7 @@ export default function ContextMenu({ recipe, className, dotStyle }: ContextMenu
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="mb-3">
                                     <span id="recipe-link">
-                                        https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}
+                                        <a href="https://rezeptbuch.tobias-hopp.de/rezepte/`${recipe?.slug}`" className="hover:underline underline-offset-4" title="Link öffnen">https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}</a>
                                     </span>
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
@@ -155,7 +156,7 @@ export default function ContextMenu({ recipe, className, dotStyle }: ContextMenu
                                     className="border border-primary text-white bg-primary hover:bg-emerald-700 hover:text-white"
                                     onClick={copyToClipboard}
                                 >
-                                    <GoPlus className="size-5" />
+                                    <RxClipboardCopy className="size-5" />
                                     Link kopieren
                                 </AlertDialogAction>
                             </AlertDialogFooter>

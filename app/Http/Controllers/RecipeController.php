@@ -269,6 +269,35 @@ class RecipeController extends Controller
     }
 
     /**
+     * Toggle the publish status of a recipe.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Recipe $recipe
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function togglePublish(Request $request, Recipe $recipe)
+    {
+        // Optional: prüfen, ob der aktuell angemeldete User das Rezept bearbeiten darf
+        if ($recipe->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Nicht autorisiert'], 403);
+        }
+
+        $status = $request->input('status');
+
+        if (!in_array($status, ['draft', 'published'])) {
+            return response()->json(['message' => 'Ungültiger Status'], 422);
+        }
+
+        $recipe->status = $status;
+        $recipe->save();
+
+        return response()->json([
+            'message' => 'Status erfolgreich aktualisiert',
+            'status' => $recipe->status
+        ]);
+    }
+
+    /**
      * Search recipes by text or category.
      */
     public function search(Request $request)

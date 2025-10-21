@@ -14,7 +14,7 @@ interface FavoritesListProps {
 export default function FavoritesTable({ title, className, favorites }: FavoritesListProps) {
     
     return (
-        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl ', className)}>
+        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-2 xl:p-4 rounded-xl ', className)}>
             <h2 className="text-lg mb-3">{title || 'Deine Daten'}</h2>
             {favorites?.length === 0 && (
                 <div className="p-3 rounded-xl">

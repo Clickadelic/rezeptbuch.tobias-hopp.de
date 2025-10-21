@@ -265,7 +265,7 @@ class RecipeController extends Controller
 
         $recipe->delete();
 
-        return redirect()->route('recipes.index')->with('success', 'Rezept gelöscht!');
+        return redirect()->back()->with('success', 'Rezept gelöscht!');
     }
 
     /**

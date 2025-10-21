@@ -36,7 +36,7 @@ export default function Dashboard() {
         latestRecipe,
         recipesCountByCategory
     } = usePage<SharedPageProps>().props;
-    console.log("totalusercount", totalUserCount);
+    console.log(route('recipes.togglePublish', 123));
     // Prepare data for charts
     const barData = [
         { name: "Vorspeisen", value: recipesCountByCategory["Vorspeise"] },

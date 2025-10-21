@@ -63,7 +63,7 @@ export default function RecipesTable({ title, initialRecipes, className, tableCl
                 <TableBody>
                     {recipes.data.map((recipe: Recipe) => (
                         <TableRow key={recipe.id}>
-                            <TableCell><PublishSwitch checked={recipe.status} /></TableCell>
+                            <TableCell><PublishSwitch recipe={recipe} status={recipe.status as "draft" | "published"} /></TableCell>
                             <TableCell>{recipe.name}</TableCell>
                             <TableCell>{recipe.category?.name}</TableCell>
                             <TableCell>{recipe.difficulty}</TableCell>

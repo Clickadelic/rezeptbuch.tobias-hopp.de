@@ -16,7 +16,7 @@ export default function IngredientItem({ ingredient, onSelect }: IngredientItemP
 
     // Logged out / kein Zugriff
     if (!hasRole('user') || ingredient.user_id !== auth.user?.id) {
-        return <span className="flex gap-2">{ingredient.name}</span>;
+        return <span className="inline-flex">{ingredient.name}</span>;
     }
 
     return (

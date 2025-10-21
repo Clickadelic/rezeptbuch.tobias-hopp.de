@@ -3,7 +3,7 @@ import { router, usePage, Link } from '@inertiajs/react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,} from '@/components/ui/dropdown-menu';
 
-import { HiOutlineDotsVertical } from 'react-icons/hi';
+import { HiOutlineDotsVertical, HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import { GoPlus, GoTrash } from 'react-icons/go';
@@ -11,11 +11,16 @@ import { Recipe } from '@/types/Recipe';
 import { usePermissions } from '@/hooks/usePermissions';
 import { RxClipboardCopy } from 'react-icons/rx';
 import { IoPrintOutline } from 'react-icons/io5';
+import { PiCopySimpleLight } from "react-icons/pi";
+
+import { cn } from '@/lib/utils';
 
 import { SharedPageProps } from '@/types';
 import { toast } from 'sonner';
 interface ContextMenuProps {
     recipe?: Recipe | null;
+    className?: string;
+    dotStyle?: "vertical" | "horizontal";
 }
 
 /**
@@ -27,7 +32,7 @@ interface ContextMenuProps {
  * @param {Recipe} props.recipe - The recipe to be edited or deleted.
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
-export default function ContextMenu({ recipe }: ContextMenuProps) {
+export default function ContextMenu({ recipe, className, dotStyle = "vertical" }: ContextMenuProps) {
     const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
 
@@ -62,11 +67,11 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger
-                className="border border-transparent hover:border-primary focus:text-primary hover:text-primary focus:outline-none focus:ring focus:ring-primary absolute top-0 right-[1px] text-gray-600 dark:text-gray-200 p-1 hover:cursor-pointer shadow-transparent z-20 rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30"
+                className={cn("border border-transparent hover:border-primary focus:text-primary hover:text-primary focus:outline-none focus:ring focus:ring-primary text-gray-600 dark:text-gray-200 p-1 hover:cursor-pointer shadow-transparent z-20 rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30", className)}
                 onClick={(e) => e.stopPropagation()}
                 aria-label="Rezept Optionen"
             >
-                <HiOutlineDotsVertical className="size-5" />
+                {dotStyle === "vertical" ? <HiOutlineDotsVertical className="size-5" /> : <HiOutlineDotsHorizontal className="size-5" />}
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 {isOwner(recipe?.user_id) && (
@@ -136,7 +141,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="mb-3">
                                     <span id="recipe-link">
-                                        https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}
+                                        <a href="https://rezeptbuch.tobias-hopp.de/rezepte/`${recipe?.slug}`" className="hover:underline underline-offset-4" title="Link öffnen">https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}</a>
                                     </span>
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
@@ -151,7 +156,7 @@ export default function ContextMenu({ recipe }: ContextMenuProps) {
                                     className="border border-primary text-white bg-primary hover:bg-emerald-700 hover:text-white"
                                     onClick={copyToClipboard}
                                 >
-                                    <GoPlus className="size-5" />
+                                    <RxClipboardCopy className="size-5" />
                                     Link kopieren
                                 </AlertDialogAction>
                             </AlertDialogFooter>

@@ -36,7 +36,7 @@ export default function Dashboard() {
         latestRecipe,
         recipesCountByCategory
     } = usePage<SharedPageProps>().props;
-    console.log("totalusercount", totalUserCount);
+    console.log(route('recipes.togglePublish', 123));
     // Prepare data for charts
     const barData = [
         { name: "Vorspeisen", value: recipesCountByCategory["Vorspeise"] },
@@ -58,22 +58,22 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center"><span className="flex gap-3"><BsJournalBookmark className="size-4 mt-1.5 text-primary" /> Rezepte</span> <span>{totalRecipeCount}</span></h3>
+                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><BsJournalBookmark className="size-4 mt-1.5 text-primary" /> Rezepte</span> <span>{totalRecipeCount}</span></h3>
                     </div>
                 </div>
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center"><span className="flex gap-3"><TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten</span> <span>{totalIngredientCount}</span></h3>
+                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten</span> <span>{totalIngredientCount}</span></h3>
                     </div>
                 </div>
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center"><span className="flex gap-3"><FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten</span> <span>{userFavoritesCount}</span></h3>
+                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten</span> <span>{userFavoritesCount}</span></h3>
                     </div>
                 </div>
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center"><span className="flex gap-3"><FiUsers className="size-4 mt-1 text-primary" /> Angemeldete Benutzer</span> <span>{totalUserCount}</span></h3>
+                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><FiUsers className="size-4 mt-1 text-primary" /> Angemeldete Benutzer</span> <span>{totalUserCount}</span></h3>
                     </div>
                     {/* <ButtonGroup className="w-full">
                         <Button asChild variant="primary">

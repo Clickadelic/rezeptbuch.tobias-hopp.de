@@ -1,6 +1,8 @@
 import { Link } from '@inertiajs/react';
+import { cn } from '@/lib/utils';
 
 interface PaginationProps {
+    className?: string;
     links: {
         url: string | null;
         label: string;
@@ -10,9 +12,9 @@ interface PaginationProps {
     loading?: boolean;
 }
 
-export default function Pagination({ links }: PaginationProps) {
+export default function Pagination({ className, links }: PaginationProps) {
     return (
-        <div className="flex items-center justify-center space-x-2 mt-12">
+        <div className={cn("flex items-center justify-center space-x-2", className)}>
             {links.map((link, i) => (
                 <Link
                     key={i}

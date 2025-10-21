@@ -14,5 +14,6 @@ Route::prefix('/rezepte')->group(function () {
     Route::delete('/{recipe}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipes.destroy');
     Route::get('/suche', [RecipeController::class, 'search'])->name('recipes.search');
     Route::get('/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+    Route::post('/{recipe}/toggle-publish', [RecipeController::class, 'togglePublish'])->name('recipes.togglePublish');
     Route::post('/recipes/{recipe}/rate', [RatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
 });

@@ -1,17 +1,15 @@
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import LegalSidebar from '@/components/sidebars/LegalSidebar';
-import Seperator from '@/components/reusables/Seperator';
 
 /**
  * Cookies – Rechtliche Informationen
  *
  * Dieser Cookie-Hinweis gilt für das private, nicht-kommerzielle Rezeptbuch-Projekt.
  */
-export default function Cookies() {
+export default function CookieNoticePage() {
     return (
-        <SidebarLeftLayout title="Cookies" sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout title="Cookie-Hinweis" sidebar={<LegalSidebar />}>
             <section>
-                <h3 className="my-5 font-medium text-lg">Cookies-Hinweis</h3>
                 <p>Diese Website verwendet Cookies, um grundlegende Funktionen bereitzustellen und die Nutzung zu erleichtern.</p>
                 <p>Es werden ausschließlich technisch notwendige Cookies gesetzt, z. B. um:</p>
                 <ul className="list-disc list-inside my-3">

@@ -6,6 +6,7 @@ import ContextMenu from '@/components/reusables/ContextMenu';
 import Pagination from '@/components/reusables/Pagination';
 import { cn } from '@/lib/utils';
 import axios from 'axios';
+import PublishSwitch from '@/components/reusables/PublishSwitch';
 
 import { Recipe } from '@/types/Recipe';
 import Paginated from '@/types/Paginated';
@@ -36,7 +37,7 @@ export default function RecipesTable({ title, initialRecipes, className, tableCl
 
 
     return (
-        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl ', className)}>
+        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-2 xl:p-4 rounded-xl ', className)}>
             <h2 className="text-lg mb-3">{title || 'Deine Daten'}</h2>
             <Table className={cn('w-full', tableClasses)}>
                 <TableCaption>
@@ -62,7 +63,7 @@ export default function RecipesTable({ title, initialRecipes, className, tableCl
                 <TableBody>
                     {recipes.data.map((recipe: Recipe) => (
                         <TableRow key={recipe.id}>
-                            <TableCell><Switch checked={recipe.status === 'published'} /></TableCell>
+                            <TableCell><PublishSwitch checked={recipe.status} /></TableCell>
                             <TableCell>{recipe.name}</TableCell>
                             <TableCell>{recipe.category?.name}</TableCell>
                             <TableCell>{recipe.difficulty}</TableCell>

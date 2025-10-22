@@ -56,6 +56,11 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    /**
+     * Hook to execute after a user is created.
+     *
+     * Assigns the user the 'user' role.
+     */
     protected static function booted()
     {
         static::created(function ($user) {
@@ -97,9 +102,25 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Recipe::class, 'favorites')->withTimestamps();
     }
 
+    /**
+     * Checks if the user has favorited the given recipe.
+     *
+     * @param \App\Models\Recipe $recipe
+     * @return bool
+     */
     public function hasFavorite(Recipe $recipe): bool
     {
         return $this->favorites()->where('recipe_id', $recipe->id)->exists();
+    }
+
+    
+    /**
+     * Returns a relation to all comments written by the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
 
 }

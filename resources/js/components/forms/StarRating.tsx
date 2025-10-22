@@ -1,7 +1,9 @@
 "use client"
 
 import { useState } from "react"
+import { usePage } from "@inertiajs/react"
 import { Star } from "lucide-react"
+import { SharedPageProps } from "@/types"
 import { cn } from "@/lib/utils"
 
 interface StarRatingProps {
@@ -14,7 +16,7 @@ interface StarRatingProps {
   className?: string
 }
 
-export function StarRating({
+export default function StarRating({
   rating,
   onRatingChange,
   maxRating = 5,
@@ -23,6 +25,8 @@ export function StarRating({
   showLabel = false,
   className,
 }: StarRatingProps) {
+  
+  const { user } = usePage<SharedPageProps>().props.auth
   const [hoverRating, setHoverRating] = useState(0)
 
   const sizeClasses = {

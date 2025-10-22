@@ -18,7 +18,7 @@ import { RxMixerVertical } from "react-icons/rx";
 import { FaQuoteLeft } from 'react-icons/fa6';
 import { Star } from "lucide-react"
 import { RxGear } from "react-icons/rx";
-
+import { GiScales } from "react-icons/gi";
 import { cn } from '@/lib/utils';
 
 interface SeparatorProps {
@@ -105,7 +105,7 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
             IconComponent = GiWhisk;
             break;
         case 'scale':
-            IconComponent = RiScales2Line;
+            IconComponent = GiScales;
             break;
         case 'star':
             IconComponent = Star;

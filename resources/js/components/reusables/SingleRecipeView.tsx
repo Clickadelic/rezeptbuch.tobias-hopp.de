@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import ContextMenu from '@/components/reusables/ContextMenu';
+import CommentForm from '@/components/forms/CommentForm';
 
 import { GoClock, GoZoomIn } from 'react-icons/go';
 
@@ -16,14 +17,13 @@ import { VscSymbolEvent } from 'react-icons/vsc';
 import { Recipe } from '@/types/Recipe';
 import { GiBroccoli } from "react-icons/gi";
 import { TbMeat } from "react-icons/tb";
-
 import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/reusables/Modal';
 import Carousel from '@/components/reusables/Carousel/Index';
 import Seperator from '@/components/reusables/Seperator';
-
+import StarRating from '@/components/forms/StarRating';
 import SingleRecipeIngredientsTable from '@/components/reusables/Tables/SingleRecipeIngredientsTable';
 import { toHumanDate } from '@/lib/utils';
 
@@ -50,6 +50,15 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
         snack: <GiCrystalBars className="size-5 text-primary" />,
         backen: <GiCakeSlice className="size-5 text-primary" />,
     };
+
+    /**
+     * Alerts the user that their comment has been added.
+     */
+    function onCommentAdded() {
+        return (
+            alert("Your comment has been added!")
+        )
+    }
 
     return (
         <div className="flex flex-col gap-5">
@@ -99,7 +108,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                         </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                             {iconMap[recipe.category?.slug ?? ''] ?? (
                                 <LuUtensilsCrossed className="size-5 text-primary" />
                             )}
@@ -107,20 +116,20 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                                 {recipe.category?.name}
                             </p>
                         </div>
-                        <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                             <VscSymbolEvent className="size-5 text-primary" />
                             <p className=" text-gray-600 dark:text-gray-200 text-sm">
                                 {recipe.difficulty}
                             </p>
                         </div>
-                        <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                        <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                             <GoClock className="size-5 text-primary" />
                             <p className=" text-gray-600 dark:text-gray-200 text-sm">
                                 {recipe.preparation_time} Minuten
                             </p>
                         </div>
                         {recipe.is_veggy && (
-                            <div className="w-24 aspect-video gap-1 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
+                            <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                                 <GiBroccoli className="size-5 text-primary" />
                                 <p className=" text-gray-600 dark:text-gray-200 text-sm">
                                     vegetarisch
@@ -131,15 +140,20 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                 </div>
             </div>
             <div className="flex flex-col">
-                <div className="flex flex-row items-center gap-2">
-                    <div>
-                        <Avatar url={recipe?.user?.avatar} />
+                <div className="flex flex-row items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                        <div>
+                            <Avatar url={recipe?.user?.avatar} />
+                        </div>
+                        <div>
+                            <h3 className="font-medium text-lg">von {recipe.user?.name}</h3>
+                            <p className="text-sm text-gray-400 dark:text-gray-600">
+                                {toHumanDate(recipe.created_at)}
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 className="font-medium text-lg">{recipe.user?.name}</h3>
-                        <p className="text-sm text-gray-400 dark:text-gray-600">
-                            {toHumanDate(recipe.created_at)}
-                        </p>
+                    <div className="flex items-center gap-2">
+                        <StarRating rating={recipe.rating ?? 1} maxRating={5} showLabel={true} />
                     </div>
                 </div>
             </div>
@@ -160,9 +174,11 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                    <Seperator />
+                    <Seperator style="comment" />
                 </>
             )}
+            <CommentForm recipeId={recipe.id} onCommentAdded={onCommentAdded} />
+            <Seperator />
             <div className="flex flex-col gap-5 mb-12">
                 <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
                 <Carousel

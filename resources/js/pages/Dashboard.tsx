@@ -1,6 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
+import Achievements from '@/components/reusables/Achievements';
 import BarChart from '@/components/reusables/Charts/BarChart';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
@@ -8,7 +9,6 @@ import RecipesTable from '@/components/reusables/Tables/RecipesTable';
 
 import { SharedPageProps } from '@/types';
 import { Recipe } from '@/types/Recipe';
-
 import { Button } from '@/components/ui/button';
 import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@/components/ui/button-group';
 import { cn } from '@/lib/utils';
@@ -92,6 +92,7 @@ export default function Dashboard() {
                 <RecipesTable initialRecipes={totalUserRecipes} title="Deine Rezepte" className="col-span-1 xl:col-span-6" />
                 <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Favoriten" className="col-span-1 xl:col-span-6" />
             </div>
+            <Achievements />
         </FullWidthLayout>
     );
 }

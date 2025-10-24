@@ -23,7 +23,7 @@ export default function CommentForm({ recipeId, parentId, onCommentAdded }: Comm
     const [content, setContent] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { user } = usePage<SharedPageProps>().props;
+    const { user } = usePage<SharedPageProps>().props.auth;
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);

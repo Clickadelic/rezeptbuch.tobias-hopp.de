@@ -6,7 +6,7 @@ import BarChart from '@/components/reusables/Charts/BarChart';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
 import RecipesTable from '@/components/reusables/Tables/RecipesTable';
-import CommentsTable from '@/components/reusables/Tables/CommentsTable';
+
 
 import { GoTrophy } from 'react-icons/go';
 import { IoIosStats } from 'react-icons/io';
@@ -135,9 +135,7 @@ export default function Dashboard() {
                     className="col-span-1 xl:col-span-6"
                 />
             </div>
-            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                {/* <CommentsTable title="Deine Kommentare" icon={<FaRegHeart className="mt-1 text-primary" />} className="col-span-1 xl:col-span-6" /> */}
-            </div>
+
         </FullWidthLayout>
     );
 }

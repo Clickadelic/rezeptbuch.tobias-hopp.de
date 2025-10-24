@@ -55,8 +55,8 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                             (recipe as any)?.media?.[0];
                         return hero ? (
-                            <div className="relative flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
-                                <img src={hero.url} alt={recipe.name} className="z-20" />
+                            <div className="relative w-full flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
+                                <img src={hero.url} alt={recipe.name} className="size-full z-20" />
                                 <button
                                     className="bg-transparent opacity-0 absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover:text-gray-300"
                                     onClick={toggleImageModal}

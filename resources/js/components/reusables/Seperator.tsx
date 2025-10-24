@@ -19,6 +19,8 @@ import { FaQuoteLeft } from 'react-icons/fa6';
 import { Star } from 'lucide-react';
 import { RxGear } from 'react-icons/rx';
 import { GiScales } from 'react-icons/gi';
+import { TfiControlShuffle } from "react-icons/tfi";
+
 import { cn } from '@/lib/utils';
 
 interface SeparatorProps {
@@ -97,6 +99,9 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
             break;
         case 'snack':
             IconComponent = GiCrystalBars;
+            break;
+        case 'shuffle':
+            IconComponent = TfiControlShuffle;
             break;
         case 'gear':
             IconComponent = RxGear;

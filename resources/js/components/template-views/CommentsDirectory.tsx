@@ -5,6 +5,7 @@ import CommentItem from './CommentItem';
 import CommentForm from '@/components/forms/CommentForm';
 
 import Seperator from '@/components/reusables/Seperator';
+import { cn } from '@/lib/utils';
 
 interface CommentsDirectoryProps {
     recipeId: string;
@@ -39,8 +40,9 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
     };
 
     return (
-        <>
+        <>  
             <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
+                  <h3 className={cn('text-lg flex gap-2',)}>Kommentare</h3>
                 <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
                 {loading && <p>Lädt...</p>}
 

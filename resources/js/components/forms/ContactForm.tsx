@@ -16,7 +16,6 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ className }: ContactFormProps) {
-
     const { data, setData, post, errors, reset, processing } = useForm({
         name: '',
         email: '',

@@ -16,11 +16,6 @@ export default function AdminSidebar() {
                     active={window.location.pathname === '/admin'}
                     title="Admin"
                 />
-                <SidebarLink
-                    href="/email-preview"
-                    active={window.location.pathname === '/email-preview'}
-                    title="E-Mail Vorschau"
-                />
             </ul>
         </aside>
     );

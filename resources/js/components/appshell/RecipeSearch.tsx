@@ -30,7 +30,7 @@ export default function RecipeSearch() {
 
             <div
                 className={cn(
-                    'lg:w-[28rem] z-20 bg-white/40 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-12 sm:my-16 md:my-20 lg:my-24 xl:my-32',
+                    'shadow-sm lg:w-[28rem] z-20 bg-white/40 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-12 sm:my-16 md:my-20 lg:my-24 xl:my-32',
                 )}
             >
                 <form
@@ -46,11 +46,11 @@ export default function RecipeSearch() {
                         onFocus={() => setIsBlurred(true)}
                         onBlur={() => setIsBlurred(false)}
                         className="w-full text-base border-none rounded bg-white dark:bg-gray-800 dark:border border-transparent hover:border-primary text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-gray-800"
-                        placeholder="Was essen wir heute?"
+                        placeholder="Was suchst du?"
                     />
                     <Button
                         type="submit"
-                        className="bg-primary dark:bg-primary dark:text-gray-200 rounded border-none px-3 py-2"
+                        className="bg-primary dark:bg-primary dark:text-gray-200 rounded border-none p-3"
                         aria-label="Suchen"
                     >
                         <RiSearchLine className="size-6" />

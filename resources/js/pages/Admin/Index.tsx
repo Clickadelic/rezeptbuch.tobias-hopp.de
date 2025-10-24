@@ -2,7 +2,7 @@ import { usePage } from '@inertiajs/react';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import AdminSidebar from '@/components/sidebars/AdminSidebar';
 import { Button } from '@/components/ui/button';
-import UsersTable from '@/components/reusables/UsersTable';
+import UsersTable from '@/components/reusables/Tables/UsersTable';
 import { SharedPageProps } from '@/types';
 export default function Index() {
     const { props }: any = usePage<SharedPageProps>();

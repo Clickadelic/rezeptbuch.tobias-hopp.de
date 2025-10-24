@@ -161,4 +161,8 @@ class Recipe extends Model
             'community_votes' => $count,
         ]);
     }
+
+     public function comments() {
+          return $this->hasMany(Comment::class)->whereNull('parent_id'); // nur Top-Level-Kommentare
+     }
 }

@@ -17,7 +17,7 @@ export default function Community() {
     return (
         <FullWidthLayout title="Community">
             <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
-                {users?.map((user : any) => (
+                {users?.map((user: any) => (
                     <Avatar key={user.id}>
                         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                         <AvatarFallback>CN</AvatarFallback>

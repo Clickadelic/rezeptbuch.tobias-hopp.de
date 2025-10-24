@@ -1,7 +1,9 @@
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
 import { Recipe } from '@/types/Recipe';
-import SingleRecipeView from '@/components/reusables/SingleRecipeView';
+
+// TODO: Mal testen ob das so gut ist..
+import SingleRecipeView from '@/components/template-views/SingleRecipeView';
 
 interface ShowRecipeProps {
     recipe: Recipe;

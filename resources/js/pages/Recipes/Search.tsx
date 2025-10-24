@@ -20,7 +20,7 @@ export default function Search() {
         <FullWidthLayout title={`Suchergebnisse für ${filters.search}`}>
             {recipes.data.length > 0 ? (
                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-5">
-                    {recipes.data.map((recipe : Recipe) => (
+                    {recipes.data.map((recipe: Recipe) => (
                         <li key={recipe.id}>
                             <RecipeCard recipe={recipe} />
                         </li>

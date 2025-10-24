@@ -1,14 +1,21 @@
-// TODO
 
-// die neuen ShadCN Packages ausprobieren
-// Multistep Form-Builder testen
 
-// WYSYWIG Editor für Zubereitungsfeld.
+// TODO Profilbutton korrigieren
+// TODO Drafts excludieren
+// TODO Besseres Formular für Zutateneingabe (Löschen funktion)
+// TODO Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
+// TODO Alle Zutaten-Löschen Button im Wizard
 
-// Besseres Formular für Zutateneingabe (Löschen funktion)
-// Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
-// Alle Zutaten-Löschen Button im Wizard
-// 
+// TODO Achievements erstellen
+// Road to Publisher
+// Stufe 1. Commis de Cuisine - 5 Rezepte Posten, 2 Kommentare Schreiben
+// Stufe 2. Demi-Chef - 5 Rezepte Posten, 
+// Stufe 3. Sous-Chef - 20 Rezepte Posten
+// Stufe 4. Chef - 30 Rezepte Posten
+// Stufe 5. Executive Chef
+
+// Prio M
+// TODO WYSYWIG Editor für Zubereitungsfeld.
+// TODO Image Delete Dialog
+// TODO Kochzeit noch einfügen ?
 // ----------------------------------------
-// Favicon
-// https://www.svgrepo.com/svg/276548/recipe?edit=true

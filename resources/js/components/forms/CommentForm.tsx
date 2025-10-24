@@ -1,58 +1,50 @@
-import { useForm } from '@inertiajs/react';
-import { Button } from '@/components/ui/button';
-
-import { Recipe } from '@/types/Recipe';
-import { Comment } from '@/types/Comment';
+import { useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
-import InputLabel from '@/components/forms/inputs/InputLabel';
-import { cn } from '@/lib/utils';
+import { addComment } from '@/lib/comments';
+import { Comment } from '@/types/Comment';
 
 interface CommentFormProps {
-    recipeId: Recipe['id'];
-    parentId?: number | null;
-    onCommentAdded?: () => void;
-    className?: string
+  recipeId: string;
+  parentId?: string;
+  onCommentAdded: (comment: Comment) => void;
 }
 
-/**
- * Form to add a comment to a recipe.
- *
- * @param {CommentFormProps} props The props for this component.
- * @param {Recipe['id']} props.recipeId The id of the recipe to add a comment to.
- * @param {number | null} props.parentId The id of the parent comment.
- * @param {() => void} props.onCommentAdded A callback to be called when a comment is added successfully.
- * @returns {JSX.Element} The form element.
- */
-export default function CommentForm({ recipeId, parentId = null, onCommentAdded, className }: CommentFormProps) {
-  
-    const { data, setData, post, processing, reset } = useForm({
-        parent_id: parentId,
-        content: '',
-    });
+export default function CommentForm({ recipeId, parentId, onCommentAdded }: CommentFormProps) {
+  const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-    const submit = (e: React.FormEvent) => {
-      e.preventDefault();
-      post(`/rezepte/${recipeId}/comments`, {
-        onSuccess: () => {
-          reset();
-          onCommentAdded?.(); // parent-Komponente kann Liste aktualisieren
-        },
-      });
-    };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const newComment = await addComment(recipeId!, content, parentId);
+      onCommentAdded(newComment);
+      setContent('');
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    return (
-      <div className={cn("asd",className)}>
-        <form onSubmit={submit} className="flex flex-col gap-3">
-            <InputLabel className="text-lg" value="Kommentare" />
-            <Textarea
-              className="w-full border rounded p-2"
-              placeholder="Schreibe einen Kommentar..."
-              value={data.content}
-              rows={4}
-              onChange={(e) => setData('content', e.target.value)}
-            />
-            <Button type="submit" variant="primary" disabled={processing}>Kommentar senden</Button>
-        </form>
-      </div>
-    );
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 inert:opacity-50 inert:pointer-events-none" >
+      <Textarea
+        value={content}
+        onChange={e => setContent(e.target.value)}
+        placeholder="Kommentar schreiben..."
+        rows={4}
+        className="w-full"
+      />
+      {error && <p className="text-red-600 text-sm">{error}</p>}
+      <button
+        type="submit"
+        disabled={loading}
+        className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition"
+      >
+        {loading ? 'Senden...' : 'Kommentar hinzufügen'}
+      </button>
+    </form>
+  );
 }

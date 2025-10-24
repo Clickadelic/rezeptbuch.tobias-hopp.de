@@ -14,14 +14,13 @@ export default function IngredientItem({ ingredient, onSelect }: IngredientItemP
     const { hasRole } = usePermissions();
     const { auth } = usePage<SharedPageProps>().props;
 
-    // Logged out / kein Zugriff
     if (!hasRole('user') || ingredient.user_id !== auth.user?.id) {
-        return <span className="inline-flex">{ingredient.name}</span>;
+        return <div className="mt-1.5">{ingredient.name}</div>;
     }
 
     return (
 
-        <Button variant="link" className="p-0" onClick={onSelect}>
+        <Button variant="link" className="p-0 text-base" onClick={onSelect} title="Diese Zutat gehört Dir">
             {ingredient.name}
         </Button>
 

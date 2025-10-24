@@ -16,7 +16,7 @@ interface StarRatingProps {
   className?: string
 }
 
-export default function StarRating({
+export function StarRating({
   rating,
   onRatingChange,
   maxRating = 5,

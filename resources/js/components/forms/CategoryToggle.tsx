@@ -1,29 +1,15 @@
 "use client"
 
-import type React from "react"
-
 import { usePage } from "@inertiajs/react"
 import { useEffect, useState } from "react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { PiCookingPot } from "react-icons/pi"
-import { LiaCocktailSolid } from "react-icons/lia"
-import { RiCake3Line } from "react-icons/ri"
-import { GiCakeSlice, GiCrystalBars, GiKnifeFork } from "react-icons/gi"
-import { TbSalad } from "react-icons/tb"
 
+import { IconMap } from '@/lib/icon-map';
 import type { Category } from "@/types/Category"
 import type { SharedPageProps } from "@/types"
 
 import { cn } from "@/lib/utils"
-
-const iconMap: Record<string, React.ReactElement> = {
-  vorspeise: <TbSalad className="size-4 flex -mt-[3px]" />,
-  hauptgang: <GiKnifeFork className="size-4 flex -mt-1" />,
-  nachtisch: <RiCake3Line className="size-4 flex -mt-1" />,
-  cocktail: <LiaCocktailSolid className="size-4 flex -mt-1" />,
-  backen: <GiCakeSlice className="size-4 flex -mt-.5" />,
-  snack: <GiCrystalBars className="size-4 flex" />,
-}
 
 interface CategoryToggleProps {
   selectedCategoryId?: number
@@ -59,6 +45,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
           return (
             <ToggleGroupItem
               key={category.id}
+              // TODO: Fix wrong type
               value={String(category.id)}
               className={cn(
                 "flex items-center justify-center p-2 rounded border border-primary transition cursor-pointer",
@@ -66,7 +53,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
               )}
             >
               <div className={cn("transition-colors", isActive ? "text-primary" : "")}>
-                {iconMap[category.slug ?? category.name.toLowerCase()] ?? (
+                {IconMap[category.slug ?? category.name.toLowerCase()] ?? (
                   <PiCookingPot className="size-4 flex" />
                 )}
               </div>

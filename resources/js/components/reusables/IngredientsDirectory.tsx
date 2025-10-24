@@ -8,6 +8,10 @@ import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { SharedPageProps } from '@/types';
 import { Ingredient } from '@/types/Ingredient';
+import { BsArrow90DegUp } from "react-icons/bs";
+import { LuArrowUpFromLine } from "react-icons/lu";
+
+
 import { cn } from '@/lib/utils';
 import { usePermissions } from '@/hooks/usePermissions';
 
@@ -56,12 +60,13 @@ export default function IngredientsDirectory() {
                     grouped[letter] && (
                         <section key={letter} id={letter} className="scroll-mt-24">
                             <Card>
-                                <CardHeader className="text-lg font-bold">{letter}</CardHeader>
+                                <CardHeader className="text-lg font-bold w-full flex flex-row justify-between"><span>{letter}</span><a href="#zutaten-eingabe" className="text-gray-400 text-xs font-normal flex gap-2 hover:text-primary mt-2"><BsArrow90DegUp /> nach oben</a></CardHeader>
                                 <CardContent>
                                     <ul className="px-5 flex flex-wrap gap-2">
                                         {grouped[letter].map((ingredient) => (
                                             <li key={ingredient.id}>
                                                 <IngredientItem
+                                                 
                                                     ingredient={ingredient}
                                                     onSelect={() => setSelectedIngredient(ingredient)}
                                                 />

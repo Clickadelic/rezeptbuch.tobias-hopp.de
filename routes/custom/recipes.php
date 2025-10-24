@@ -14,8 +14,14 @@ Route::prefix('/rezepte')->group(function () {
     Route::delete('/{recipe}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipes.destroy');
     Route::get('/suche', [RecipeController::class, 'search'])->name('recipes.search');
     Route::get('/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+    
+    // Publish
     Route::post('/{recipe}/toggle-publish', [RecipeController::class, 'togglePublish'])->name('recipes.togglePublish');
-    // TODO: Achtung falscher Controller ??? - muss überarbeitet werden
-    Route::post('/{recipe}/comments', [CommentController::class, 'store'])->middleware(['auth'])->name('comments.store');
-    Route::post('/recipes/{recipe}/rate', [RatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
+    
+    // Rate
+    Route::post('/{recipe}/rate', [RatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
+
+    // Comments JSON
+    Route::get('/{recipe}/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::post('/{recipe}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 });

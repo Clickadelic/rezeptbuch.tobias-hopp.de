@@ -1,7 +1,7 @@
 "use client";
 
-import { Link } from "@inertiajs/react";
 import { useState } from "react";
+import { Link } from "@inertiajs/react";
 import axios from "axios";
 
 import { Button } from "@/components/ui/button";
@@ -20,12 +20,14 @@ import { cn } from "@/lib/utils";
 interface RecipesTableProps {
   initialRecipes: Paginated<Recipe>;
   title?: string;
+  icon?: React.ReactNode;
   className?: string;
   tableClasses?: string;
 }
 
 export default function RecipesTable({
   title,
+  icon,
   initialRecipes,
   className,
   tableClasses,
@@ -53,11 +55,11 @@ export default function RecipesTable({
         className
       )}
     >
-      <h2 className={cn("text-lg", recipes && recipes?.data?.length >= 1 && "mb-3")}>{title || "Deine Daten"}</h2>
+      <h3 className={cn("text-lg flex gap-2", recipes && recipes?.data?.length >= 1 && "mb-3")}>{icon}{title || "Deine Daten"}</h3>
       {/* Wenn keine Rezepte vorhanden */}
       {(!recipes || recipes.data.length === 0) && (
         <div className="h-[calc(100%-25px)] flex flex-col gap-2 items-center justify-center">
-            <h3 className="text-gray-600 dark:text-gray-400 text-center mb-2">Du hast noch keine eigenen Rezepte angelegt.</h3>
+            <h4 className="text-gray-600 dark:text-gray-400 text-center mb-2">Du hast noch keine eigenen Rezepte angelegt.</h4>
             <Button asChild variant="primary" className="hover:bg-emerald-700">
                 <Link href={route('recipes.create')} title="Erstelle ein Rezept"><GoPlus /> Rezept erstellen</Link>
             </Button>
@@ -72,28 +74,28 @@ export default function RecipesTable({
             )}
         >
             <TableHeader>
-            <TableRow>
-                <TableHead className="w-[48px]">Status</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Kategorie</TableHead>
-                <TableHead className="hidden sm:table-cell">Schwierigkeit</TableHead>
-                <TableHead className="hidden sm:table-cell">Bewertung</TableHead>
-                <TableHead className="hidden sm:table-cell">Benutzer</TableHead>
-                <TableHead className="text-right">Aktion</TableHead>
-            </TableRow>
+              <TableRow>
+                  <TableHead className="w-[48px]">Status</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Kategorie</TableHead>
+                  <TableHead className="hidden sm:table-cell">Schwierigkeit</TableHead>
+                  <TableHead className="hidden sm:table-cell">Bewertung</TableHead>
+                  <TableHead className="hidden sm:table-cell">Benutzer</TableHead>
+                  <TableHead className="text-right">Aktion</TableHead>
+              </TableRow>
             </TableHeader>
 
             <TableBody>
             {recipes.data.map((recipe: Recipe) => (
-                <TableRow key={recipe.id}>
+                <TableRow key={recipe.id} className="hover:bg-white dark:hover:bg-gray-700">
                 <TableCell>
                     <PublishSwitch recipe={recipe} status={recipe.status as "draft" | "published"} />
                 </TableCell>
-                <TableCell>{recipe.name}</TableCell>
-                <TableCell>{recipe.category?.name}</TableCell>
-                <TableCell className="hidden sm:table-cell">{recipe.difficulty}</TableCell>
-                <TableCell className="hidden sm:table-cell">{recipe.rating}</TableCell>
-                <TableCell className="hidden sm:table-cell">{recipe.user?.name}</TableCell>
+                <TableCell className="cursor-default">{recipe.name}</TableCell>
+                <TableCell className="cursor-default">{recipe.category?.name}</TableCell>
+                <TableCell className="cursor-default hidden sm:table-cell">{recipe.difficulty}</TableCell>
+                <TableCell className="cursor-default hidden sm:table-cell">{recipe.rating}</TableCell>
+                <TableCell className="cursor-default hidden sm:table-cell">{recipe.user?.name}</TableCell>
                 <TableCell className="text-right">
                     <ContextMenu recipe={recipe} dotStyle="horizontal" />
                 </TableCell>

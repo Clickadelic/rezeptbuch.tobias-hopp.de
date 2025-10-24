@@ -7,7 +7,7 @@ import Seperator from '@/components/reusables/Seperator';
 import CategoryGrid from '@/components/forms/CategoryToggle';
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
-import { StarRating } from '@/components/forms/StarRating';
+
 
 import { Switch } from "@/components/ui/switch";
 import { Button } from '@/components/ui/button';
@@ -297,7 +297,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
                         {/* Name */}
                         <div className="w-full">
+
                             <InputLabel htmlFor="name" value="Rezeptname" description="Pflichtfeld" />
+                            
                             <TextInput
                                 id="name"
                                 type="text"
@@ -308,24 +310,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.name && <p className="text-red-500">{errors.name}</p>}
                         </div>
-                        {/* Status */}
-                        <div>
-                            <InputLabel htmlFor="status" value="Status" />
-                            <Select
-                                name="status"
-                                value={data.status}
-                                onValueChange={(val) => setData('status', val)}
-                            >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
-                                    <SelectValue placeholder="Status auswählen" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="draft">Entwurf</SelectItem>
-                                    <SelectItem value="published">veröffentlicht</SelectItem>
-                                </SelectContent>
-                            </Select>
-                            {errors.status && <p className="text-red-500 text-sm mt-1">{errors.status}</p>}
-                        </div>
+                        
                     </div>
 
                     {/* Kategorie */}
@@ -362,18 +347,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
-                        {/* Vegetarisch */}
-                        <div className="sm:mr-6">
-                            <InputLabel htmlFor="is_veggy" value="Vegetarisches Rezept" />
-                            <div className="flex items-center justify-center gap-2 mt-[6px]">
-                                <label htmlFor="is_veggy" className="mt-2">Nein</label>
-                                <Switch className="mt-[6px] mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
-                                <label htmlFor="is_veggy" className="mt-2">Ja</label>
-                            </div>
-                        </div>
-                        {/* Zubereitungszeit */}
+                        
+                        {/* Vorbereitungszeit - Kochzeit noch eweitern */}
                         <div>
-                            <InputLabel htmlFor="preparation_time" value="Zubereitungszeit" />
+                            <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
                             <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
                                 <div className="flex justify-end items-end">
                                     <span className="min-w-[50px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
@@ -387,6 +364,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     defaultValue={[data.preparation_time]}
                                     max={240}
                                     step={5}
+                                    id="preparation_time"
                                     className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
                                     onValueChange={(value) => setData('preparation_time', value[0])}
                                 />
@@ -399,7 +377,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <Seperator style="quote" />
 
                     {/* Punchline */}
-                    <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
+                    <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">
                         <div className="w-full">
                             <InputLabel htmlFor="punchline" value="Punchline" />
                             <TextInput
@@ -412,6 +390,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
                         </div>
+                        
                         {/* Schwierigkeitsgrad */}
                         <div>
                             <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
@@ -434,6 +413,33 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {errors.difficulty && (
                                 <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                             )}
+                        </div>
+                        {/* Status */}
+                        <div>
+                            <InputLabel htmlFor="status" value="Status" />
+                            <Select
+                                name="status"
+                                value={data.status}
+                                onValueChange={(val) => setData('status', val)}
+                            >
+                                <SelectTrigger className="w-full sm:w-44 mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                    <SelectValue placeholder="Status auswählen" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="draft">Entwurf</SelectItem>
+                                    <SelectItem value="published">veröffentlicht</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            {errors.status && <p className="text-red-500 text-sm mt-1">{errors.status}</p>}
+                        </div>
+                        {/* Vegetarisch */}
+                        <div>
+                            <InputLabel htmlFor="is_veggy" value="vegetarisch" />
+                            <div className="flex items-start justify-start gap-2 mt-[6px]">
+                                <label htmlFor="is_veggy" className="mt-1">Nein</label>
+                                <Switch className="mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
+                                <label htmlFor="is_veggy" className="mt-1">Ja</label>
+                            </div>
                         </div>
                     </div>
 
@@ -479,62 +485,63 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 2: Zutaten */}
             {step === 2 && (
                 <section className="space-y-4 md:space-y-2">
-                    <InputLabel htmlFor="ingredients" value="Zutaten bearbeiten" />
-                    {data.recipe_ingredients?.map((di, idx) => (
-                        <div key={idx} className="flex flex-col md:flex-row gap-2">
-                            <div className="flex justify-start items-start gap-2">
-                                <TextInput
-                                    placeholder="Menge"
-                                    value={di.quantity}
-                                    className="font-medium w-full md:w-32 py-[5px] mt-1"
-                                    type="number"
-                                    onChange={(e) =>
-                                        updateIngredient(idx, 'quantity', e.target.value)
-                                    }
-                                />
-                                <Select
-                                    value={di.unit}
-                                    onValueChange={(value) => updateIngredient(idx, 'unit', value)}
-                                >
-                                    <SelectTrigger className="w-full sm:w-24 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
-                                        <SelectValue placeholder="Einheit auswählen" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {Object.entries(UNITS).map(([key, val]) => (
-                                            <SelectItem key={key} value={val}>
-                                                {val}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                    <div>
+                        <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" />
+                        {data.recipe_ingredients?.map((di, idx) => (
+                            <div id={"ingredient-" + idx + "-input"} key={idx} className="flex flex-col md:flex-row gap-2 mb-2">
+                                <div className="flex justify-start items-start gap-2">
+                                    <TextInput
+                                        placeholder="Menge"
+                                        value={di.quantity}
+                                        className="font-medium w-full md:w-32 py-[5px] mt-1"
+                                        type="number"
+                                        onChange={(e) =>
+                                            updateIngredient(idx, 'quantity', e.target.value)
+                                        }
+                                    />
+                                    <Select
+                                        value={di.unit}
+                                        onValueChange={(value) => updateIngredient(idx, 'unit', value)}
+                                    >
+                                        <SelectTrigger className="w-full sm:w-24 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                            <SelectValue placeholder="Einheit auswählen" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {Object.entries(UNITS).map(([key, val]) => (
+                                                <SelectItem key={key} value={val}>
+                                                    {val}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="md:w-full flex gap-5">
+                                    <IngredientComboBox
+                                        value={di.ingredient_id}
+                                        triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
+                                        onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
+                                    />
+                                    <Button
+                                        variant="destructive"
+                                        className="mt-1.5 hover:cursor-pointer rounded-sm shadow-none"
+                                        size="sm"
+                                        type="button"
+                                        onClick={() => removeIngredient(idx)}
+                                    >
+                                        <BsTrash3 />
+                                    </Button>
+                                </div>
                             </div>
-
-                            <div className="md:w-full flex gap-2">
-                                <IngredientComboBox
-                                    value={di.ingredient_id}
-                                    triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
-                                    onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
-                                />
-                                <Button
-                                    variant="destructive"
-                                    className="mt-1.5 hover:cursor-pointer rounded-sm shadow-none"
-                                    size="sm"
-                                    type="button"
-                                    onClick={() => removeIngredient(idx)}
-                                >
-                                    <BsTrash3 />
-                                </Button>
-                            </div>
-                        </div>
-                    ))}
-                    <Button
-                        type="button"
-                        variant="primary"
-                        onClick={addIngredient}
-                        className="mt-5 hover:cursor-pointer hover:bg-emerald-700"
-                    >
-                        <GoPlus /> Zutat hinzufügen
-                    </Button>
+                        ))}
+                        <Button
+                            type="button"
+                            variant="primary"
+                            onClick={addIngredient}
+                            className="mt-5 hover:cursor-pointer hover:bg-emerald-700"
+                        >
+                            <GoPlus /> Zutat hinzufügen
+                        </Button>
+                    </div>
                     <div className="flex justify-between gap-2 mt-8">
                         <Button
                             type="button"
@@ -667,7 +674,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <div className="w-full">
                         <InputLabel htmlFor="rating" value="Deine Bewertung des Rezeptes" />
                         <div className="flex justify-center items-center pt-1 mb-12">
-                            <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} />
+                            {/* <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} /> */}
                         </div>
                     </div>
                     {/* Submit */}

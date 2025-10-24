@@ -11,7 +11,7 @@ class StoreCommentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,7 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'parent_id' => ['nullable'],
             'content' => ['required', 'string', 'max:255'],
         ];
     }
@@ -34,6 +35,7 @@ class StoreCommentRequest extends FormRequest
     public function messages()
     {
         return [
+            'parent_id.exists' => 'Der Kommentar darf nicht leer sein.',
             'content.required' => 'Der Kommentar darf nicht leer sein.',
         ];
     }

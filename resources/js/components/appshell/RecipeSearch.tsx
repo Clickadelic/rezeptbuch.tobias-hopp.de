@@ -46,7 +46,7 @@ export default function RecipeSearch() {
                         onFocus={() => setIsBlurred(true)}
                         onBlur={() => setIsBlurred(false)}
                         className="w-full text-base border-none rounded bg-white dark:bg-gray-800 dark:border border-transparent hover:border-primary text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-primary focus:ring-offset-white dark:focus:ring-offset-gray-800"
-                        placeholder="Was essen wir heute?"
+                        placeholder="Was suchst du?"
                     />
                     <Button
                         type="submit"

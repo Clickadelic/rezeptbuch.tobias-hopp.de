@@ -30,11 +30,13 @@ export interface SharedPageProps extends InertiaPageProps {
     favorites?: {
         recipe: Recipe[];
     };
+    comments?: Paginated<Comment>;
 
     categories: Category[];
     ingredients?: Ingredient[];
     recipes?: Paginated<Recipe>;
     users?: Paginated<AuthUser>;
+    // Dashboard Data Types
     latestRecipes?: Paginated<Recipe>;
     totalUserRecipes?: Paginated<Recipe>;
     totalUserRecipeCount: number;
@@ -46,8 +48,5 @@ export interface SharedPageProps extends InertiaPageProps {
     recipesCountByCategory: {
         [categoryName: string]: number
     }
-    // recipesByCategory: {
-    //     [categoryName: string]: number
-    // };
-    [key: string]: unknown; // Fallback
+    [key: string]: unknown;
 }

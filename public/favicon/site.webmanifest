@@ -1,6 +1,7 @@
 {
-  "name": "Rezeptbuch",
-  "short_name": "Rezeptbuch",
+  "name": "Toby's Rezeptbuch",
+  "short_name": "Toby's Rezeptbuch",
+  "description": "Dein persönliches Rezeptbuch mit Favoriten und Bewertungen.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -17,5 +18,9 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false
 }

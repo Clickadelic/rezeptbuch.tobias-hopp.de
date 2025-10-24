@@ -10,15 +10,15 @@ import { HiOutlineEye } from "react-icons/hi2";
 
 interface FavoritesListProps {
   title?: string;
+  icon?: React.ReactNode;
   className?: string;
   favorites?: Recipe[];
 }
 
-export default function FavoritesTable({ title, className, favorites }: FavoritesListProps) {
+export default function FavoritesTable({ title, icon, className, favorites }: FavoritesListProps) {
   return (
     <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl', className)}>
-      <h2 className={cn("text-lg", favorites && favorites?.length >= 1 && "mb-3")}>{title || 'Deine Favoriten'}</h2>
-
+      <h3 className={cn("text-lg flex gap-2", favorites && favorites?.length >= 1 && "mb-3")}>{icon}{title || 'Deine Favoriten'}</h3>
       {/* Wenn keine Favoriten vorhanden */}
       {(!favorites || favorites.length === 0) && (
         <div className="h-[calc(100%-25px)] flex flex-col gap-2 items-center justify-center">
@@ -47,7 +47,7 @@ export default function FavoritesTable({ title, className, favorites }: Favorite
 
           <TableBody>
             {favorites.map((recipe: Recipe) => (
-              <TableRow key={recipe.id}>
+              <TableRow key={recipe.id} className="hover:bg-white dark:hover:bg-gray-900">
                 <TableCell className="cursor-default">
                   <FavoriteButton recipeId={recipe.id} isFavorite={true} />
                 </TableCell>

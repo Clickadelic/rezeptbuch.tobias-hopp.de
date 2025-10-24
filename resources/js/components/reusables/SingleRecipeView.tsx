@@ -1,30 +1,25 @@
 import { useState } from 'react';
-
-import ContextMenu from '@/components/reusables/ContextMenu';
-import CommentForm from '@/components/forms/CommentForm';
-
-import { GoClock, GoZoomIn } from 'react-icons/go';
-
-import { LuUtensilsCrossed } from 'react-icons/lu';
-import { PiCookingPot } from 'react-icons/pi';
-import { LiaCocktailSolid } from 'react-icons/lia';
-import { RiCake3Line } from 'react-icons/ri';
-import { GiCakeSlice } from 'react-icons/gi';
-import { TbSalad } from 'react-icons/tb';
-import { BiDish } from 'react-icons/bi';
-import { GiCrystalBars } from 'react-icons/gi';
-import { VscSymbolEvent } from 'react-icons/vsc';
-import { Recipe } from '@/types/Recipe';
-import { GiBroccoli } from "react-icons/gi";
-import { TbMeat } from "react-icons/tb";
-import { SharedPageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
+
 import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/reusables/Modal';
-import Carousel from '@/components/reusables/Carousel/Index';
+import RelatedRecipesCarousel from '@/components/reusables/RelatedRecipesCarousel';
 import Seperator from '@/components/reusables/Seperator';
-import StarRating from '@/components/forms/StarRating';
 import SingleRecipeIngredientsTable from '@/components/reusables/Tables/SingleRecipeIngredientsTable';
+import ContextMenu from '@/components/reusables/ContextMenu';
+import CommentsDirectory from '@/components/reusables/CommentsDirectory';
+import CommentList from '@/components/reusables/CommentList';
+import { StarRating } from '@/components/forms/StarRating';
+import { IconMap } from '@/lib/icon-map';
+
+import { GoClock, GoZoomIn } from 'react-icons/go';
+import { LuUtensilsCrossed } from 'react-icons/lu';
+import { BiDish } from 'react-icons/bi';
+import { VscSymbolEvent } from 'react-icons/vsc';
+import { GiBroccoli } from "react-icons/gi";
+
+import { Recipe } from '@/types/Recipe';
+import { SharedPageProps } from '@/types';
 import { toHumanDate } from '@/lib/utils';
 
 interface ShowRecipeProps {
@@ -32,34 +27,17 @@ interface ShowRecipeProps {
 }
 
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
-    const { user } = usePage<SharedPageProps>().props.auth;
-    const { related } = usePage<SharedPageProps>().props;
-
+    
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
+    const { related, comments } = usePage<SharedPageProps>().props;
+    
+    const { user } = usePage<SharedPageProps>().props.auth;
     const avatar = './storage/' + user?.avatar;
 
     const toggleImageModal = () => {
         setIsImageModalOpen(!isImageModalOpen);
     };
-
-    const iconMap: Record<string, JSX.Element> = {
-        vorspeise: <TbSalad className="size-5 text-primary" />,
-        hauptgericht: <PiCookingPot className="size-5 text-primary" />,
-        nachtisch: <RiCake3Line className="size-5 text-primary" />,
-        cocktail: <LiaCocktailSolid className="size-5 text-primary" />,
-        snack: <GiCrystalBars className="size-5 text-primary" />,
-        backen: <GiCakeSlice className="size-5 text-primary" />,
-    };
-
-    /**
-     * Alerts the user that their comment has been added.
-     */
-    function onCommentAdded() {
-        return (
-            alert("Your comment has been added!")
-        )
-    }
-
+    
     return (
         <div className="flex flex-col gap-5">
             <div className="flex flex-col xl:flex-row justify-start gap-5">
@@ -109,7 +87,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     </div>
                     <div className="flex flex-wrap gap-2">
                         <div className="w-24 aspect-video gap-2 cursor-default flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
-                            {iconMap[recipe.category?.slug ?? ''] ?? (
+                            {IconMap[recipe.category?.slug ?? ''] ?? (
                                 <LuUtensilsCrossed className="size-5 text-primary" />
                             )}
                             <p className=" text-gray-600 dark:text-gray-200 text-sm">
@@ -165,28 +143,19 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                 </>
             )}
             {recipe.preparation_instructions && (
-                <>
-                    <div className="flex">
-                        <div className="w-full max-w-4xl mx-auto flex flex-col gap-2">
-                            <h4 className="font-medium text-xl">Zubereitung</h4>
-                            <div className="flex flex-col gap-2">
-                                <p>{recipe.preparation_instructions}</p>
-                            </div>
+                <div className="flex">
+                    <div className="w-full max-w-4xl mx-auto flex flex-col gap-2">
+                        <h4 className="font-medium text-xl">Zubereitung</h4>
+                        <div className="flex flex-col gap-2">
+                            <p>{recipe.preparation_instructions}</p>
                         </div>
                     </div>
-                    <Seperator style="comment" />
-                </>
+                </div>
             )}
-            <CommentForm recipeId={recipe.id} onCommentAdded={onCommentAdded} />
+            {/* <CommentsDirectory commentData={comments} recipeId={recipe.id!} /> */}
+            <CommentList recipeId={recipe.id!} />
             <Seperator />
-            <div className="flex flex-col gap-5 mb-12">
-                <h4 className="text-xl">Weiteres aus der Kategorie: {recipe.category?.name}</h4>
-                <Carousel
-                    recipes={related as Recipe[]}
-                    carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
-                    itemClassName="card"
-                />
-            </div>
+            <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
             <Modal
                 show={isImageModalOpen}
                 closeable={true}

@@ -99,6 +99,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
         <form
             onSubmit={isEditing ? update : submit}
             className={cn('flex flex-col justify-between items-center space-y-3', className)}
+            id="zutaten-eingabe"
         >
             <div className="w-full flex justify-between items-center">
                 <InputLabel htmlFor="name" value={isEditing ? 'Zutat bearbeiten' : 'Neue Zutat'} />
@@ -116,14 +117,41 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                         onChange={(e) => setData('name', e.target.value)}
                     />
                     {isEditing && (
-                        <Button
-                            type="button"
-                            variant="default"
-                            onClick={handleReset}
-                            className="border-0 hover:bg-gray-400 transition"
-                        >
-                            <SlClose className="size-4" />
-                        </Button>
+                        <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+                            <AlertDialogTrigger asChild>
+                                <Button
+                                    type="button"
+                                    variant="destructive"
+                                    className="bg-rose-500"
+                                    aria-label="Zutat löschen"
+                                    onClick={() => setIsDeleteDialogOpen(true)}
+                                >
+                                    <BsTrash3 className="size-4" />
+                                </Button>
+                            </AlertDialogTrigger>
+
+                            <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
+                                        Bist du sicher, dass du diese Zutat löschen möchtest?
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription className="mb-3">
+                                        Diese Aktion kann nicht rückgängig gemacht werden.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel className="dark:text-gray-200">
+                                        Abbrechen
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction
+                                        className="text-white bg-rose-500 hover:bg-rose-600 hover:text-white"
+                                        onClick={handleDelete}
+                                    >
+                                        <BsTrash3 className="size-5 mr-1" /> Löschen
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     )}
                 </div>
                 <InputError message={errors.name} className="mt-2" />
@@ -143,41 +171,14 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                 </Button>
 
                 {isEditing && (
-                    <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-                        <AlertDialogTrigger asChild>
-                            <Button
-                                type="button"
-                                variant="destructive"
-                                className="bg-rose-500"
-                                aria-label="Zutat löschen"
-                                onClick={() => setIsDeleteDialogOpen(true)}
-                            >
-                                <BsTrash3 className="size-4" />
-                            </Button>
-                        </AlertDialogTrigger>
-
-                        <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
-                            <AlertDialogHeader>
-                                <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
-                                    Bist du sicher, dass du diese Zutat löschen möchtest?
-                                </AlertDialogTitle>
-                                <AlertDialogDescription className="mb-3">
-                                    Diese Aktion kann nicht rückgängig gemacht werden.
-                                </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                                <AlertDialogCancel className="dark:text-gray-200">
-                                    Abbrechen
-                                </AlertDialogCancel>
-                                <AlertDialogAction
-                                    className="text-white bg-rose-500 hover:bg-rose-600 hover:text-white"
-                                    onClick={handleDelete}
-                                >
-                                    <BsTrash3 className="size-5 mr-1" /> Löschen
-                                </AlertDialogAction>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-                    </AlertDialog>
+                    <Button
+                        type="button"
+                        variant="default"
+                        onClick={handleReset}
+                        className="border-0 hover:bg-gray-400 transition"
+                    >
+                        <SlClose className="size-4" />
+                    </Button>
                 )}
             </div>
         </form>

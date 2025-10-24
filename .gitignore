@@ -16,7 +16,7 @@
 
 /node_modules
 /public/hot
-#/public/build/assets
+/public/build/assets
 /public/storage
 /public/storage/debugbar/*
 public/uploads/*

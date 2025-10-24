@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-use App\Models\User;
+use App\Http\Resources\CommentResource;
+
 use App\Models\Recipe;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Ingredient;
 use App\Models\Media;
+use App\Models\Comment;
+use App\Models\Rating;
 
 use App\Http\Requests\StoreRecipeRequest;
 
@@ -51,13 +55,28 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
+        // 1. Sicherheits-Check: Prüfen, ob das Rezept veröffentlicht ist (falls nicht schon im Route Model Binding)
+        if ($recipe->status !== 'published') {
+            // 404 zurückgeben (empfohlen, da die URL "nicht existieren" sollte)
+            abort(404); 
+        }
+        
+        // 2. Kommentare paginiert abrufen
+        // Holen Sie die Paginierungsdaten separat, damit Sie die Paginierung an die Blade/Inertia-Komponente übergeben können.
+        $comments = $recipe->comments()
+            ->with('user') // Nötig, um den Kommentator anzuzeigen
+            ->latest()
+            ->paginate(10); 
+
+        // 3. Relationen auf das $recipe-Objekt laden
         $recipe->load([
             'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
             'category',
             'media',
             'user'
-        ])->where('status', 'published');
+        ]);
 
+        // 4. Ähnliche Rezepte abrufen
         $related = Recipe::with(['category', 'user', 'media'])
             ->where('category_id', $recipe->category_id)
             ->where('id', '!=', $recipe->id)
@@ -66,7 +85,12 @@ class RecipeController extends Controller
             ->take(5)
             ->get();
 
-        return Inertia::render('Recipes/Show', compact('recipe', 'related'));
+        // 5. Inertia-Response mit allen Daten
+        return Inertia::render('Recipes/Show', [
+            'recipe' => $recipe, 
+            'comments' => CommentResource::collection($comments), // Verwenden Sie eine Resource für saubere API-Daten
+            'related' => $related,
+        ]);
     }
 
     /**
@@ -265,7 +289,7 @@ class RecipeController extends Controller
 
         $recipe->delete();
 
-        return redirect()->back()->with('success', 'Rezept gelöscht!');
+        return redirect()->refresh()->with('success', 'Rezept gelöscht!');
     }
 
     /**

@@ -1,23 +1,24 @@
-import { Link, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import Achievements from '@/components/reusables/Achievements';
+import Achievements from '@/components/reusables/Achievements/Index';
 import BarChart from '@/components/reusables/Charts/BarChart';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
 import RecipesTable from '@/components/reusables/Tables/RecipesTable';
+import CommentsTable from '@/components/reusables/Tables/CommentsTable';
 
-import { SharedPageProps } from '@/types';
-import { Recipe } from '@/types/Recipe';
-import { Button } from '@/components/ui/button';
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@/components/ui/button-group';
-import { cn } from '@/lib/utils';
-
+import { GoTrophy } from "react-icons/go";
+import { IoIosStats } from "react-icons/io";
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FaRegHeart } from 'react-icons/fa';
-import { FiUsers } from "react-icons/fi";
 import { TbSalt } from 'react-icons/tb';
+import { TbCategory } from "react-icons/tb";
+import { TfiLayoutListThumb } from "react-icons/tfi";
+import { TfiCommentsSmiley } from "react-icons/tfi";
 
+import { Recipe } from '@/types/Recipe';
+import { SharedPageProps } from '@/types';
 
 /**
  * The Dashboard page displays a variety of information about the user's recipes.
@@ -36,7 +37,9 @@ export default function Dashboard() {
         latestRecipe,
         recipesCountByCategory
     } = usePage<SharedPageProps>().props;
-    console.log(route('recipes.togglePublish', 123));
+
+    const { user } = usePage<SharedPageProps>().props.auth;
+    
     // Prepare data for charts
     const barData = [
         { name: "Vorspeisen", value: recipesCountByCategory["Vorspeise"] },
@@ -55,44 +58,43 @@ export default function Dashboard() {
 
     return (
         <FullWidthLayout title="Dashboard">
+            
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><BsJournalBookmark className="size-4 mt-1.5 text-primary" /> Rezepte</span> <span>{totalRecipeCount}</span></h3>
+                       <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-2"><TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" /> Hi {user?.name}</span></h3>
                     </div>
                 </div>
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten</span> <span>{totalIngredientCount}</span></h3>
+                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-2"><BsJournalBookmark className="size-4 mt-1.5 text-primary" /> Rezepte</span> <span>{totalRecipeCount}</span></h3>
                     </div>
                 </div>
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten</span> <span>{userFavoritesCount}</span></h3>
+                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-2"><TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten</span> <span>{totalIngredientCount}</span></h3>
                     </div>
                 </div>
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4">
-                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-3"><FiUsers className="size-4 mt-1 text-primary" /> Angemeldete Benutzer</span> <span>{totalUserCount}</span></h3>
+                        <h3 className="text-lg flex justify-between items-center cursor-default"><span className="flex gap-2"><FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten</span> <span>{userFavoritesCount}</span></h3>
                     </div>
-                    {/* <ButtonGroup className="w-full">
-                        <Button asChild variant="primary">
-                            <Link >Neues Rezept</Link>
-                        </Button>
-                        <ButtonGroupSeparator />
-                        <Button>Test</Button>
-                    </ButtonGroup> */}
                 </div>
+            </div>
+            <div className="grid grid-cols-1 xl:grid-cols-1 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <Achievements title="Dein Weg zum Chefkoch" icon={<GoTrophy className="mt-1 text-primary" />} className="col-span-1 xl:col-span-1 xl:col-start-1" />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <BarChart data={barData} title="Rezepte nach Kategorien" className="col-span-1 xl:col-span-7" />
-                <DonutChart data={donutData} title="Deine Rezepte" className="col-span-1 xl:col-span-5 xl:col-start-8" />
+                <BarChart data={barData} title="Rezepte pro Kategorie" icon={<IoIosStats className="mt-1 text-primary" />} className="col-span-1 xl:col-span-7" />
+                <DonutChart data={donutData} title="Dein Anteil" icon={<TbCategory className="mt-1 text-primary" />} className="col-span-1 xl:col-span-5 xl:col-start-8" />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <RecipesTable initialRecipes={totalUserRecipes} title="Deine Rezepte" className="col-span-1 xl:col-span-6" />
-                <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Favoriten" className="col-span-1 xl:col-span-6" />
+                <RecipesTable initialRecipes={totalUserRecipes} title="Deine Rezepte" icon={<TfiLayoutListThumb className="mt-1 text-primary" />} className="col-span-1 xl:col-span-6" />
+                <FavoritesTable favorites={userFavorites as Recipe[]} title="Deine Favoriten" icon={<FaRegHeart className="mt-1 text-primary" />} className="col-span-1 xl:col-span-6" />
             </div>
-            <Achievements />
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                {/* <CommentsTable title="Deine Kommentare" icon={<FaRegHeart className="mt-1 text-primary" />} className="col-span-1 xl:col-span-6" /> */}
+            </div>
         </FullWidthLayout>
     );
 }

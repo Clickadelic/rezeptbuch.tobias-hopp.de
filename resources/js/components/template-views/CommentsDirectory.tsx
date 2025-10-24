@@ -9,19 +9,20 @@ interface CommentsDirectoryProps {
 }
 
 export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) {
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState(1);
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const [lastPage, setLastPage] = useState(1);
 
-  useEffect(() => {
-    loadComments(page);
-  }, [page]);
+    useEffect(() => {
+      loadComments(page);
+    }, [page]);
 
   const loadComments = async (page = 1) => {
     setLoading(true);
     try {
-      const data = await fetchComments(recipeId, page); // Erwartet Paginated<Comment>
+      // Erwartet <Paginated<Comment>>
+      const data = await fetchComments(recipeId, page);
       setComments(data.data);
       setLastPage(data.last_page);
     } catch (err) {

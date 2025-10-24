@@ -9,7 +9,7 @@ import SingleRecipeIngredientsTable from '@/components/reusables/Tables/SingleRe
 import PreparationInstructions from '@/components/reusables/PreparationInstructsions';
 
 import ContextMenu from '@/components/reusables/ContextMenu';
-import CommentsDirectory from '@/components/reusables/CommentsDirectory';
+import CommentsDirectory from '@/components/template-views/CommentsDirectory';
 
 import { StarRating } from '@/components/forms/StarRating';
 import { IconMap } from '@/lib/icon-map';

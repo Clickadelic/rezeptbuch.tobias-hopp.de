@@ -31,7 +31,7 @@ export interface SharedPageProps extends InertiaPageProps {
         recipe: Recipe[];
     };
     comments?: Paginated<Comment>;
-
+    replies?: Comment[];
     categories: Category[];
     ingredients?: Ingredient[];
     recipes?: Paginated<Recipe>;

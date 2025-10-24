@@ -19,6 +19,8 @@ interface IngredientsTableProps {
  */
 export default function SingleRecipeIngredientsTable({ recipe }: IngredientsTableProps) {
     const [count, setCount] = useState<number>(1);
+    if(!recipe.ingredients) return null;
+
     return (
         <div className="w-full md:w-[32rem] md:mx-auto">
             <div className="w-full flex flex-col gap-2 justify-between items-center mb-10">

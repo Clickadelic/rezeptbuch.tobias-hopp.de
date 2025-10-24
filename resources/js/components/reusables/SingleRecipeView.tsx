@@ -6,9 +6,11 @@ import Modal from '@/components/reusables/Modal';
 import RelatedRecipesCarousel from '@/components/reusables/RelatedRecipesCarousel';
 import Seperator from '@/components/reusables/Seperator';
 import SingleRecipeIngredientsTable from '@/components/reusables/Tables/SingleRecipeIngredientsTable';
+import PreparationInstructions from '@/components/reusables/PreparationInstructsions';
+
 import ContextMenu from '@/components/reusables/ContextMenu';
 import CommentsDirectory from '@/components/reusables/CommentsDirectory';
-import CommentList from '@/components/reusables/CommentList';
+
 import { StarRating } from '@/components/forms/StarRating';
 import { IconMap } from '@/lib/icon-map';
 
@@ -29,7 +31,7 @@ interface ShowRecipeProps {
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
-    const { related, comments } = usePage<SharedPageProps>().props;
+    const { related } = usePage<SharedPageProps>().props;
     
     const { user } = usePage<SharedPageProps>().props.auth;
     const avatar = './storage/' + user?.avatar;
@@ -136,24 +138,9 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                 </div>
             </div>
             <Seperator style="scale" />
-            {recipe.ingredients && recipe.ingredients.length > 0 && (
-                <>
-                    <SingleRecipeIngredientsTable recipe={recipe} />
-                    <Seperator style="whisk" />
-                </>
-            )}
-            {recipe.preparation_instructions && (
-                <div className="flex">
-                    <div className="w-full max-w-4xl mx-auto flex flex-col gap-2">
-                        <h4 className="font-medium text-xl">Zubereitung</h4>
-                        <div className="flex flex-col gap-2">
-                            <p>{recipe.preparation_instructions}</p>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {/* <CommentsDirectory commentData={comments} recipeId={recipe.id!} /> */}
-            <CommentList recipeId={recipe.id!} />
+            <SingleRecipeIngredientsTable recipe={recipe} />    
+            <PreparationInstructions recipe={recipe} />
+            <CommentsDirectory recipeId={recipe.id!} />
             <Seperator />
             <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
             <Modal

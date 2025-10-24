@@ -60,15 +60,8 @@ class RecipeController extends Controller
             // 404 zurückgeben (empfohlen, da die URL "nicht existieren" sollte)
             abort(404); 
         }
-        
-        // 2. Kommentare paginiert abrufen
-        // Holen Sie die Paginierungsdaten separat, damit Sie die Paginierung an die Blade/Inertia-Komponente übergeben können.
-        $comments = $recipe->comments()
-            ->with('user') // Nötig, um den Kommentator anzuzeigen
-            ->latest()
-            ->paginate(10); 
 
-        // 3. Relationen auf das $recipe-Objekt laden
+        // 2. Relationen auf das $recipe-Objekt laden
         $recipe->load([
             'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
             'category',
@@ -76,7 +69,7 @@ class RecipeController extends Controller
             'user'
         ]);
 
-        // 4. Ähnliche Rezepte abrufen
+        // 3. Ähnliche Rezepte abrufen
         $related = Recipe::with(['category', 'user', 'media'])
             ->where('category_id', $recipe->category_id)
             ->where('id', '!=', $recipe->id)
@@ -85,10 +78,9 @@ class RecipeController extends Controller
             ->take(5)
             ->get();
 
-        // 5. Inertia-Response mit allen Daten
+        // 4. Inertia-Response mit allen Daten, Kommentare werden separat asynchron geladen
         return Inertia::render('Recipes/Show', [
             'recipe' => $recipe, 
-            'comments' => CommentResource::collection($comments), // Verwenden Sie eine Resource für saubere API-Daten
             'related' => $related,
         ]);
     }

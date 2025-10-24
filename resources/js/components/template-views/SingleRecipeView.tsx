@@ -4,9 +4,8 @@ import { usePage } from '@inertiajs/react';
 import Avatar from '@/components/reusables/Avatar';
 import Modal from '@/components/reusables/Modal';
 import RelatedRecipesCarousel from '@/components/reusables/RelatedRecipesCarousel';
-import Seperator from '@/components/reusables/Seperator';
 import SingleRecipeIngredientsTable from '@/components/reusables/Tables/SingleRecipeIngredientsTable';
-import PreparationInstructions from '@/components/reusables/PreparationInstructsions';
+import PreparationInstructions from '@/components/template-views/PreparationInstructsions';
 
 import ContextMenu from '@/components/reusables/ContextMenu';
 import CommentsDirectory from '@/components/template-views/CommentsDirectory';
@@ -28,6 +27,14 @@ interface ShowRecipeProps {
     recipe: Recipe;
 }
 
+/**
+ * Displays a single recipe with its details.
+ * 
+ * @param {ShowRecipeProps} props - properties of the component
+ * @param {Recipe} props.recipe - The recipe to display.
+ *
+ * @returns {JSX.Element} - the rendered component
+ */
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
@@ -69,6 +76,35 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             </>
                         );
                     })()}
+                    <Modal
+                        show={isImageModalOpen}
+                        closeable={true}
+                        maxWidth="6xl"
+                        onClose={() => setIsImageModalOpen(false)}
+                    >
+                        <div className="rounded-xl p-1 bg-white/30 dark:bg-gray-900/30">
+                            <div className="p-2 bg-white dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col">
+                                {recipe.media?.map((m) => (
+                                    <div key={m.id}>
+                                        {/* TODO: Fix the image fix */}
+                                        <img
+                                            src={m.url}
+                                            alt={recipe.name}
+                                            className="inset size-full rounded aspect-video object-cover mb-4"
+                                        />
+                                        <div className="w-full ms-3 mb-3">
+                                            <h5 className="font-medium text-gray-600 dark:text-gray-400">
+                                                {recipe.punchline}
+                                            </h5>
+                                            <h4 className="font-medium text-gray-800 dark:text-gray-200">
+                                                {recipe.name}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </Modal>
                 </div>
                 <div className="w-full flex flex-col justify-between gap-5">
                     <div className="flex flex-col items-start gap-1">
@@ -137,41 +173,10 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     </div>
                 </div>
             </div>
-            <Seperator style="scale" />
             <SingleRecipeIngredientsTable recipe={recipe} />    
             <PreparationInstructions recipe={recipe} />
             <CommentsDirectory recipeId={recipe.id!} />
-            <Seperator />
             <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
-            <Modal
-                show={isImageModalOpen}
-                closeable={true}
-                maxWidth="6xl"
-                onClose={() => setIsImageModalOpen(false)}
-            >
-                <div className="rounded-xl p-1 bg-white/30 dark:bg-gray-900/30">
-                    <div className="p-2 bg-white dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col">
-                        {recipe.media?.map((m) => (
-                            <div key={m.id}>
-                                {/* TODO: Fix the image fix */}
-                                <img
-                                    src={m.url}
-                                    alt={recipe.name}
-                                    className="inset size-full rounded aspect-video object-cover mb-4"
-                                />
-                                <div className="w-full ms-3 mb-3">
-                                    <h5 className="font-medium text-gray-600 dark:text-gray-400">
-                                        {recipe.punchline}
-                                    </h5>
-                                    <h4 className="font-medium text-gray-800 dark:text-gray-200">
-                                        {recipe.name}
-                                    </h4>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </Modal>
         </div>
     );
 }

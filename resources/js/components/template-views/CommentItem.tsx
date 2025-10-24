@@ -3,9 +3,9 @@ import CommentForm from '@/components/forms/CommentForm';
 import { Comment } from '@/types/Comment';
 
 interface CommentItemProps {
-  comment: Comment;
-  depth?: number; // für Einrückung
-  onCommentAdded: (comment: Comment) => void;
+    comment: Comment;
+    depth?: number; // für Einrückung
+    onCommentAdded: (comment: Comment) => void;
 }
 
 export default function CommentItem({ comment, depth = 0, onCommentAdded }: CommentItemProps) {
@@ -13,21 +13,26 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded }: Comm
 
   return (
     <div className={`flex flex-col gap-2 ${depth > 0 ? 'ml-6' : ''}`}>
-      <div className="p-2 border rounded bg-gray-50">
-        <div className="text-sm font-semibold">{comment.user?.name || 'Anonym'}</div>
+      <div className="rounded-xl bg-gray-100 dark:bg-gray-900 p-4">
+        <div className="text-sm font-semibold">{comment.user?.name}</div>
+        
+        {/* Comment Content */}
         <div className="text-gray-700">{comment.content}</div>
+        
+        {/* Reply Toggle */}
         <button
           onClick={() => setReplying(!replying)}
-          className="text-xs text-blue-500 mt-1"
+          className="text-xs text-primary mt-1"
         >
           {replying ? 'Antwort abbrechen' : 'Antworten'}
         </button>
       </div>
 
+      {/* Replyformular */}
       {replying && (
         <CommentForm
           parentId={comment.id.toString()}
-          recipeId={comment.recipe_id.toString()}
+          recipeId={comment.recipe_id}
           onCommentAdded={onCommentAdded}
         />
       )}

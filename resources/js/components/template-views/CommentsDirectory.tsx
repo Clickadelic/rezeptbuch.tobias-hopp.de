@@ -37,7 +37,7 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
       <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
 
       {loading && <p>Lädt...</p>}
@@ -46,7 +46,6 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
         <CommentItem
           key={comment.id}
           comment={comment}
-          recipeId={recipeId}
           onCommentAdded={handleCommentAdded}
         />
       ))}

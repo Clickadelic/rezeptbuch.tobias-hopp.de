@@ -76,7 +76,7 @@ export default function CommentForm({ recipeId, parentId, onCommentAdded }: Comm
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Kommentar schreiben..."
                     rows={4}
-                    className="w-full"
+                    className="w-full py-3"
                 />
                 {error && <p className="text-red-600 text-sm">{error}</p>}
                 <button

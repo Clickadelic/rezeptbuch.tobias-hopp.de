@@ -1,5 +1,6 @@
 import Carousel from '@/components/reusables/Carousel/Index';
 import { Recipe } from '@/types/Recipe';
+import Seperator from '@/components/reusables/Seperator';
 
 interface RelatedRecipesCarouselProps {
     categoryName?: string;
@@ -18,6 +19,8 @@ export default function RelatedRecipesCarousel({
     categoryName,
 }: RelatedRecipesCarouselProps) {
     return (
+        <>
+        <Seperator style="shuffle" />
         <div className="flex flex-col gap-5 mb-12">
             <h4 className="text-xl">Weiteres aus der Kategorie: {categoryName}</h4>
             <Carousel
@@ -26,5 +29,6 @@ export default function RelatedRecipesCarousel({
                 itemClassName="card"
             />
         </div>
+        </>
     );
 }

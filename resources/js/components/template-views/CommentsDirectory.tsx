@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { fetchComments } from '@/lib/comments';
-import { Comment } from '@/types/Comment';
+import { Button } from '@/components/ui/button';
+
 import CommentItem from './CommentItem';
 import CommentForm from '@/components/forms/CommentForm';
-
 import Seperator from '@/components/reusables/Seperator';
+
+import { Comment } from '@/types/Comment';
+import { fetchComments } from '@/lib/comments';
 import { cn } from '@/lib/utils';
 
 interface CommentsDirectoryProps {
@@ -39,13 +41,13 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
         setComments((prev) => [comment, ...prev]);
     };
 
-    return (
-        <>  
-            <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
-                  <h3 className={cn('text-lg flex gap-2',)}>Kommentare</h3>
-                <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
-                {loading && <p>Lädt...</p>}
-
+    return ( 
+        <div className="w-full max-w-4xl mx-auto flex flex-col gap-5">
+            
+            <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
+            {loading && <div className="w-full flex flex-col items-center justify-center">Lade Kommentare...</div>}
+            <div className="flex flex-col gap-2">
+                <h3 className={cn('text-lg flex gap-2',)}>{comments.length} Kommentar{comments.length === 1 ? '' : 'e'}</h3>
                 {comments.map((comment) => (
                     <CommentItem
                         key={comment.id}
@@ -53,29 +55,31 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                         onCommentAdded={handleCommentAdded}
                     />
                 ))}
-
-                {/* Pagination */}
-                <div className="flex justify-center gap-2 mt-4">
-                    <button
-                        disabled={page <= 1}
-                        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                        className="px-3 py-1 border rounded disabled:opacity-50"
-                    >
-                        Zurück
-                    </button>
-                    <span>
-                        Seite {page} von {lastPage}
-                    </span>
-                    <button
-                        disabled={page >= lastPage}
-                        onClick={() => setPage((prev) => Math.min(prev + 1, lastPage))}
-                        className="px-3 py-1 border rounded disabled:opacity-50"
-                    >
-                        Weiter
-                    </button>
-                </div>
             </div>
-            <Seperator style="mix" />
-        </>
+            {/* Pagination */}
+            <div className="flex items-center justify-center gap-2 mt-4">
+                <Button
+                    disabled={page <= 1}
+                    type="button"
+                    variant="link"
+                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                    className="px-3 py-1 border rounded disabled:opacity-50 text-xs"
+                >
+                    Zurück
+                </Button>
+                <div className="text-xs text-gray-200 dark:text-gray-400">
+                    Seite {page} von {lastPage}
+                </div>
+                <Button
+                    disabled={page >= lastPage}
+                    type="button"
+                    variant="link"
+                    onClick={() => setPage((prev) => Math.min(prev + 1, lastPage))}
+                    className="px-3 py-1 border rounded disabled:opacity-50 text-xs"
+                >
+                    Weiter
+                </Button>
+            </div>
+        </div>
     );
 }

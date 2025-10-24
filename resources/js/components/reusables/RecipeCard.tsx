@@ -97,7 +97,10 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     {recipe.name}
                                 </h3>
                             </div>
-                            <ContextMenu recipe={recipe} className="absolute top-0 right-[1px] z-10" />
+                            <ContextMenu
+                                recipe={recipe}
+                                className="absolute top-0 right-[1px] z-10"
+                            />
                         </div>
                     </CardContent>
 

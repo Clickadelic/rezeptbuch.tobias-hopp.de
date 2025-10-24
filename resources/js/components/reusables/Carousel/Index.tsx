@@ -41,7 +41,10 @@ export default function Carousel({
                     <RecipeCard className={itemClassName} key={recipe.id} recipe={recipe} />
                 ))}
                 {recipes?.length === 0 && (
-                    <li key="id_placeholder" className="w-full h-full flex flex-col items-center justify-center">
+                    <li
+                        key="id_placeholder"
+                        className="w-full h-full flex flex-col items-center justify-center"
+                    >
                         <p>Lege das erste Rezept an.</p>
                     </li>
                 )}

@@ -14,7 +14,7 @@ interface PaginationProps {
 
 export default function Pagination({ className, links }: PaginationProps) {
     return (
-        <div className={cn("flex items-center justify-center space-x-2", className)}>
+        <div className={cn('flex items-center justify-center space-x-2', className)}>
             {links.map((link, i) => (
                 <Link
                     key={i}

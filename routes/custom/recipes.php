@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\CommentController;
 
 Route::prefix('/rezepte')->group(function () {
     Route::get('/', [RecipeController::class, 'index'])->name('recipes.index');
@@ -14,6 +14,14 @@ Route::prefix('/rezepte')->group(function () {
     Route::delete('/{recipe}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipes.destroy');
     Route::get('/suche', [RecipeController::class, 'search'])->name('recipes.search');
     Route::get('/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+    
+    // Publish
     Route::post('/{recipe}/toggle-publish', [RecipeController::class, 'togglePublish'])->name('recipes.togglePublish');
-    Route::post('/recipes/{recipe}/rate', [RatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
+    
+    // Rate
+    Route::post('/{recipe}/rate', [RatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
+
+    // Comments JSON
+    Route::get('/{recipe}/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::post('/{recipe}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 });

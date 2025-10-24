@@ -6,18 +6,14 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
-Route::get('/test', function () {
-    return Inertia::render('Test');
-});
-
 require __DIR__.'/custom/auth.php';
 require __DIR__.'/custom/admin.php';
-require __DIR__.'/custom/contact.php';
-require __DIR__.'/custom/profile.php';
-require __DIR__.'/custom/legal-pages.php';
-require __DIR__.'/custom/favorites.php';
-require __DIR__.'/custom/dashboard.php';
 require __DIR__.'/custom/community.php';
+require __DIR__.'/custom/contact.php';
+require __DIR__.'/custom/dashboard.php';
+require __DIR__.'/custom/profile.php';
+require __DIR__.'/custom/favorites.php';
+require __DIR__.'/custom/legal-pages.php';
 require __DIR__.'/custom/recipes.php';
 require __DIR__.'/custom/ingredients.php';
 require __DIR__.'/custom/upload.php';

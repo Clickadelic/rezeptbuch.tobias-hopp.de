@@ -6,11 +6,11 @@ import { Recipe } from '@/types/Recipe';
 
 interface PublishSwitchProps {
     recipe: Recipe;
-    status: "draft" | "published";
+    status: 'draft' | 'published';
 }
 
 export default function PublishSwitch({ recipe, status }: PublishSwitchProps) {
-    const [checked, setChecked] = useState(status === "published");
+    const [checked, setChecked] = useState(status === 'published');
     const [loading, setLoading] = useState(false);
 
     const handleChange = async (newChecked: boolean) => {
@@ -21,7 +21,7 @@ export default function PublishSwitch({ recipe, status }: PublishSwitchProps) {
 
         try {
             await axios.post(route('recipes.togglePublish', recipe), {
-                status: newChecked ? 'published' : 'draft'
+                status: newChecked ? 'published' : 'draft',
             });
             toast.success(`Rezept ${newChecked ? 'veröffentlicht' : 'auf Entwurf gesetzt'}!`);
         } catch (error) {

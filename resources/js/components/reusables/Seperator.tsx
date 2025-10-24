@@ -2,10 +2,10 @@ import { GiForkKnifeSpoon, GiKnifeFork } from 'react-icons/gi';
 import { PiCookingPot } from 'react-icons/pi';
 import { TbSalad, TbSalt } from 'react-icons/tb';
 import { FaHeart } from 'react-icons/fa6';
-import { GiWhisk } from "react-icons/gi";
+import { GiWhisk } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { FiCheckCircle } from 'react-icons/fi';
-import { RiScales2Line } from "react-icons/ri";
+import { RiScales2Line } from 'react-icons/ri';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
@@ -13,11 +13,13 @@ import { IoMailOpenOutline } from 'react-icons/io5';
 import { BsJournalBookmark, BsInfoCircle } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';
 import { TfiCommentAlt } from 'react-icons/tfi';
-import { BsCardImage } from "react-icons/bs";
-import { RxMixerVertical } from "react-icons/rx";
+import { BsCardImage } from 'react-icons/bs';
+import { RxMixerVertical } from 'react-icons/rx';
 import { FaQuoteLeft } from 'react-icons/fa6';
-import { Star } from "lucide-react"
-import { RxGear } from "react-icons/rx";
+import { Star } from 'lucide-react';
+import { RxGear } from 'react-icons/rx';
+import { GiScales } from 'react-icons/gi';
+import { TfiControlShuffle } from "react-icons/tfi";
 
 import { cn } from '@/lib/utils';
 
@@ -33,7 +35,7 @@ interface SeparatorProps {
  * <Separator size={8} style="cake | check-circle | cocktail | comment | comment-alt | cooking-pot | fork-knife | fork-knife-spoon | heart | heart-outline | image | info | journal | mail | mix | muffin | quote | salad | salt | snack " />
  */
 export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorProps) {
-    const baseStyle = { fontSize: `${size * 0.25}rem`};
+    const baseStyle = { fontSize: `${size * 0.25}rem` };
     const iconColor = 'text-gray-400 dark:text-gray-700';
     let IconComponent = GiKnifeFork;
 
@@ -98,6 +100,9 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
         case 'snack':
             IconComponent = GiCrystalBars;
             break;
+        case 'shuffle':
+            IconComponent = TfiControlShuffle;
+            break;
         case 'gear':
             IconComponent = RxGear;
             break;
@@ -105,7 +110,7 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
             IconComponent = GiWhisk;
             break;
         case 'scale':
-            IconComponent = RiScales2Line;
+            IconComponent = GiScales;
             break;
         case 'star':
             IconComponent = Star;

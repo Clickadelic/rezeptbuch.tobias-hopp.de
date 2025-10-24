@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-use App\Models\User;
+use App\Http\Resources\CommentResource;
+
 use App\Models\Recipe;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Ingredient;
 use App\Models\Media;
+use App\Models\Comment;
+use App\Models\Rating;
 
 use App\Http\Requests\StoreRecipeRequest;
 
@@ -51,13 +55,21 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
+        // 1. Sicherheits-Check: Prüfen, ob das Rezept veröffentlicht ist (falls nicht schon im Route Model Binding)
+        if ($recipe->status !== 'published') {
+            // 404 zurückgeben (empfohlen, da die URL "nicht existieren" sollte)
+            abort(404); 
+        }
+
+        // 2. Relationen auf das $recipe-Objekt laden
         $recipe->load([
             'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
             'category',
             'media',
             'user'
-        ])->where('status', 'published');
+        ]);
 
+        // 3. Ähnliche Rezepte abrufen
         $related = Recipe::with(['category', 'user', 'media'])
             ->where('category_id', $recipe->category_id)
             ->where('id', '!=', $recipe->id)
@@ -66,7 +78,11 @@ class RecipeController extends Controller
             ->take(5)
             ->get();
 
-        return Inertia::render('Recipes/Show', compact('recipe', 'related'));
+        // 4. Inertia-Response mit allen Daten, Kommentare werden separat asynchron geladen
+        return Inertia::render('Recipes/Show', [
+            'recipe' => $recipe, 
+            'related' => $related,
+        ]);
     }
 
     /**
@@ -265,7 +281,7 @@ class RecipeController extends Controller
 
         $recipe->delete();
 
-        return redirect()->route('recipes.index')->with('success', 'Rezept gelöscht!');
+        return redirect()->refresh()->with('success', 'Rezept gelöscht!');
     }
 
     /**

@@ -1,6 +1,5 @@
 import { Link } from '@inertiajs/react';
 
-
 import { cn } from '@/lib/utils';
 
 interface AppLogoNewProps {

@@ -8,17 +8,22 @@ import CategoryGrid from '@/components/forms/CategoryToggle';
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
 
-
-import { Switch } from "@/components/ui/switch";
+import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from 'react-icons/tb';
-import { SlRefresh } from "react-icons/sl";
+import { SlRefresh } from 'react-icons/sl';
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 
@@ -85,13 +90,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         preparation_instructions: recipe?.preparation_instructions ?? '',
         pending_key: recipe ? undefined : pendingKey,
         primary_media_id: recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null,
-        recipe_ingredients:
-            Array.isArray(recipe?.ingredients)
+        recipe_ingredients: Array.isArray(recipe?.ingredients)
             ? recipe.ingredients.map((i) => ({
-                ingredient_id: i.id!,
-                quantity: i.pivot?.quantity ?? '',
-                unit: i.pivot?.unit ?? 'gr',
-            }))
+                  ingredient_id: i.id!,
+                  quantity: i.pivot?.quantity ?? '',
+                  unit: i.pivot?.unit ?? 'gr',
+              }))
             : [],
         category_id: recipe?.category_id,
     });
@@ -103,7 +107,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             { ingredient_id: '', quantity: '', unit: 'gr' },
         ]);
     };
-    
+
     const updateIngredient = (index: number, field: keyof RecipeIngredientData, value: string) => {
         const updated = [...data.recipe_ingredients];
         updated[index][field] = value;
@@ -285,7 +289,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     role="alert"
                 >
                     <p className="text-base">
-                        Gib einen Namen an und wähle eine Kategorie um fortzufahren. Du kannst das Rezept später noch bearbeiten.
+                        Gib einen Namen an und wähle eine Kategorie um fortzufahren. Du kannst das
+                        Rezept später noch bearbeiten.
                     </p>
                 </div>
             )}
@@ -297,9 +302,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
                         {/* Name */}
                         <div className="w-full">
+                            <InputLabel
+                                htmlFor="name"
+                                value="Rezeptname"
+                                description="Pflichtfeld"
+                            />
 
-                            <InputLabel htmlFor="name" value="Rezeptname" description="Pflichtfeld" />
-                            
                             <TextInput
                                 id="name"
                                 type="text"
@@ -310,7 +318,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.name && <p className="text-red-500">{errors.name}</p>}
                         </div>
-                        
                     </div>
 
                     {/* Kategorie */}
@@ -338,16 +345,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     onChange={(e) => setData('slug', e.target.value)}
                                 />
                                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    Die URL kann hier geändert werden. Bitte nur Kleinbuchstaben, Bindestriche und keine Sonderzeichen verwenden.
+                                    Die URL kann hier geändert werden. Bitte nur Kleinbuchstaben,
+                                    Bindestriche und keine Sonderzeichen verwenden.
                                 </p>
                             </div>
                             {errors.slug && <p className="text-rose-500 mt-1">{errors.slug}</p>}
                         </div>
                     )}
-                    
+
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
-                        
                         {/* Vorbereitungszeit - Kochzeit noch eweitern */}
                         <div>
                             <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
@@ -390,7 +397,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
                         </div>
-                        
+
                         {/* Schwierigkeitsgrad */}
                         <div>
                             <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
@@ -430,15 +437,27 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     <SelectItem value="published">veröffentlicht</SelectItem>
                                 </SelectContent>
                             </Select>
-                            {errors.status && <p className="text-red-500 text-sm mt-1">{errors.status}</p>}
+                            {errors.status && (
+                                <p className="text-red-500 text-sm mt-1">{errors.status}</p>
+                            )}
                         </div>
                         {/* Vegetarisch */}
                         <div>
                             <InputLabel htmlFor="is_veggy" value="vegetarisch" />
                             <div className="flex items-start justify-start gap-2 mt-[6px]">
-                                <label htmlFor="is_veggy" className="mt-1">Nein</label>
-                                <Switch className="mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" checked={data.is_veggy} onCheckedChange={(checked) => setData('is_veggy', checked as boolean)} />
-                                <label htmlFor="is_veggy" className="mt-1">Ja</label>
+                                <label htmlFor="is_veggy" className="mt-1">
+                                    Nein
+                                </label>
+                                <Switch
+                                    className="mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
+                                    checked={data.is_veggy}
+                                    onCheckedChange={(checked) =>
+                                        setData('is_veggy', checked as boolean)
+                                    }
+                                />
+                                <label htmlFor="is_veggy" className="mt-1">
+                                    Ja
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -488,7 +507,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <div>
                         <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" />
                         {data.recipe_ingredients?.map((di, idx) => (
-                            <div id={"ingredient-" + idx + "-input"} key={idx} className="flex flex-col md:flex-row gap-2 mb-2">
+                            <div
+                                id={'ingredient-' + idx + '-input'}
+                                key={idx}
+                                className="flex flex-col md:flex-row gap-2 mb-2"
+                            >
                                 <div className="flex justify-start items-start gap-2">
                                     <TextInput
                                         placeholder="Menge"
@@ -501,7 +524,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     />
                                     <Select
                                         value={di.unit}
-                                        onValueChange={(value) => updateIngredient(idx, 'unit', value)}
+                                        onValueChange={(value) =>
+                                            updateIngredient(idx, 'unit', value)
+                                        }
                                     >
                                         <SelectTrigger className="w-full sm:w-24 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                             <SelectValue placeholder="Einheit auswählen" />
@@ -519,7 +544,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     <IngredientComboBox
                                         value={di.ingredient_id}
                                         triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
-                                        onChange={(val) => updateIngredient(idx, 'ingredient_id', val)}
+                                        onChange={(val) =>
+                                            updateIngredient(idx, 'ingredient_id', val)
+                                        }
                                     />
                                     <Button
                                         variant="destructive"
@@ -586,42 +613,53 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <Seperator style="image" />
                     {/* Vorschau */}
                     <div className="w-full space-y-3">
-                        <InputLabel htmlFor="media" value="Vorschau der hochgeladenen Bilder" className="sr-only" />
+                        <InputLabel
+                            htmlFor="media"
+                            value="Vorschau der hochgeladenen Bilder"
+                            className="sr-only"
+                        />
                         <div className="flex flex-wrap gap-3 justify-center items-center">
                             {(recipe ? liveMedia : pendingMedia).length > 0 ? (
                                 (recipe ? liveMedia : pendingMedia).map((m) => (
                                     <label
-                                    key={m.id}
-                                    className="relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
-                                    >   {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
+                                        key={m.id}
+                                        className="relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
+                                    >
+                                        {' '}
+                                        {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
                                         <img
                                             src={`/storage/${m.path}`}
                                             alt={m.name}
                                             className=" object-cover"
-                                            />
+                                        />
                                         <Button
                                             type="button"
                                             variant="destructive"
                                             size="icon"
                                             className="absolute top-1 right-1 bg-rose-600 hover:bg-rose-700 rounded"
                                             onClick={() => {
-                                                if (!confirm('Möchtest du dieses Bild löschen?')) return;
-                                                
+                                                if (!confirm('Möchtest du dieses Bild löschen?'))
+                                                    return;
+
                                                 if (recipe) {
                                                     // Falls schon in DB
                                                     axios.delete(`/upload/${m.id}`).then(() => {
-                                                        setLiveMedia((prev) => prev.filter((x) => x.id !== m.id));
+                                                        setLiveMedia((prev) =>
+                                                            prev.filter((x) => x.id !== m.id),
+                                                        );
                                                     });
                                                 } else {
                                                     // Nur lokal pending
-                                                    setPendingMedia((prev) => prev.filter((x) => x.id !== m.id));
+                                                    setPendingMedia((prev) =>
+                                                        prev.filter((x) => x.id !== m.id),
+                                                    );
                                                 }
-                                                
+
                                                 if (data.primary_media_id === m.id) {
                                                     setData('primary_media_id', null);
                                                 }
                                             }}
-                                            >
+                                        >
                                             <BsTrash3 className="size-4" />
                                         </Button>
                                         <input

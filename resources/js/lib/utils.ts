@@ -20,5 +20,3 @@ export function toHumanDate(dateString?: string | Date): string {
         year: 'numeric',
     });
 }
-
-

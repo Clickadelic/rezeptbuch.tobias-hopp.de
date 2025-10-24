@@ -20,7 +20,11 @@ export default function Impressum() {
                     <li>Deutschland</li>
                     <li className="font-medium">Kontakt:</li>
                     <li>
-                        <a href="mailto:rezeptbuch@tobias-hopp.de" target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="mailto:rezeptbuch@tobias-hopp.de"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             rezeptbuch@tobias-hopp.de
                         </a>
                     </li>
@@ -41,85 +45,160 @@ export default function Impressum() {
             <section>
                 <h3 className="my-5 font-medium text-lg">Bildnachweise</h3>
                 <ul className="list-disc list-inside">
-                    <li>Headerbild: Lightmode Foto von <a href="https://unsplash.com/de/@ellaolsson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" className="underline underline-offset-4 text-primary" target="_blank">Ella Olsson</a> auf <a href="https://unsplash.com/de/fotos/gekochte-gerichte-auf-tellern-und-schusseln-4dQiaWKiL-Y?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" className="underline underline-offset-4 text-primary" target="_blank">Unsplash</a></li>
-                    <li>Headerbild: Darkmode Foto von <a href="https://www.pexels.com/de-de/foto/schokolade-neben-himbeere-918328/" className="underline underline-offset-4 text-primary" target="_blank">Lisa</a> auf <a href="https://www.pexels.com/de-de/foto/schokolade-neben-himbeere-918328/" className="underline underline-offset-4 text-primary" target="_blank">Pexels</a></li>
-                    <li>Auth-Screen: Lightmode Foto von <a href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="underline underline-offset-4 text-primary" title="Author des Fotos" target="_blank">Brooke Lark</a> auf <a href="https://unsplash.com/de/fotos/green-vegetable-beside-ceramic-bowl-kXQ3J7_2fpc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="underline underline-offset-4 text-primary" title="Unsplash" target="_blank">Unsplash</a></li>
-                    <li>Auth-Screen: Darkmode Foto von <a href="https://unsplash.com/de/@anniespratt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="underline underline-offset-4 text-primary" title="Author des Fotos" target="_blank">Annie Spratt</a> auf <a href="https://unsplash.com/de/fotos/weisses-und-braunes-gericht-auf-braunem-teller-R3LcfTvcGWY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className="underline underline-offset-4 text-primary" title="Unsplash" target="_blank">Unsplash</a></li>
+                    <li>
+                        Headerbild: Lightmode Foto von{' '}
+                        <a
+                            href="https://unsplash.com/de/@ellaolsson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                            className="underline underline-offset-4 text-primary"
+                            target="_blank"
+                        >
+                            Ella Olsson
+                        </a>{' '}
+                        auf{' '}
+                        <a
+                            href="https://unsplash.com/de/fotos/gekochte-gerichte-auf-tellern-und-schusseln-4dQiaWKiL-Y?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                            className="underline underline-offset-4 text-primary"
+                            target="_blank"
+                        >
+                            Unsplash
+                        </a>
+                    </li>
+                    <li>
+                        Headerbild: Darkmode Foto von{' '}
+                        <a
+                            href="https://www.pexels.com/de-de/foto/schokolade-neben-himbeere-918328/"
+                            className="underline underline-offset-4 text-primary"
+                            target="_blank"
+                        >
+                            Lisa
+                        </a>{' '}
+                        auf{' '}
+                        <a
+                            href="https://www.pexels.com/de-de/foto/schokolade-neben-himbeere-918328/"
+                            className="underline underline-offset-4 text-primary"
+                            target="_blank"
+                        >
+                            Pexels
+                        </a>
+                    </li>
+                    <li>
+                        Auth-Screen: Lightmode Foto von{' '}
+                        <a
+                            href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+                            className="underline underline-offset-4 text-primary"
+                            title="Author des Fotos"
+                            target="_blank"
+                        >
+                            Brooke Lark
+                        </a>{' '}
+                        auf{' '}
+                        <a
+                            href="https://unsplash.com/de/fotos/green-vegetable-beside-ceramic-bowl-kXQ3J7_2fpc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+                            className="underline underline-offset-4 text-primary"
+                            title="Unsplash"
+                            target="_blank"
+                        >
+                            Unsplash
+                        </a>
+                    </li>
+                    <li>
+                        Auth-Screen: Darkmode Foto von{' '}
+                        <a
+                            href="https://unsplash.com/de/@anniespratt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+                            className="underline underline-offset-4 text-primary"
+                            title="Author des Fotos"
+                            target="_blank"
+                        >
+                            Annie Spratt
+                        </a>{' '}
+                        auf{' '}
+                        <a
+                            href="https://unsplash.com/de/fotos/weisses-und-braunes-gericht-auf-braunem-teller-R3LcfTvcGWY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+                            className="underline underline-offset-4 text-primary"
+                            title="Unsplash"
+                            target="_blank"
+                        >
+                            Unsplash
+                        </a>
+                    </li>
                 </ul>
             </section>
             <Seperator />
             <section>
-                <h3 className="my-5 font-medium text-lg">1. Hinweis zum Charakter dieses Angebots</h3>
+                <h3 className="my-5 font-medium text-lg">
+                    1. Hinweis zum Charakter dieses Angebots
+                </h3>
                 <p>
-                    Dieses Rezeptbuch ist ein privates, nicht-kommerzielles Projekt. Die Nutzung erfolgt
-                    ausschließlich zu Informations- und Inspirationszwecken. Es besteht kein Anspruch auf
-                    Vollständigkeit, Richtigkeit oder Verfügbarkeit der Inhalte.
+                    Dieses Rezeptbuch ist ein privates, nicht-kommerzielles Projekt. Die Nutzung
+                    erfolgt ausschließlich zu Informations- und Inspirationszwecken. Es besteht kein
+                    Anspruch auf Vollständigkeit, Richtigkeit oder Verfügbarkeit der Inhalte.
                 </p>
                 <br />
                 <p>
-                    Alle Inhalte, insbesondere Rezepte, stammen aus privaten Sammlungen oder wurden von
-                    Nutzerinnen und Nutzern freiwillig bereitgestellt.
+                    Alle Inhalte, insbesondere Rezepte, stammen aus privaten Sammlungen oder wurden
+                    von Nutzerinnen und Nutzern freiwillig bereitgestellt.
                 </p>
             </section>
             <section>
                 <h3 className="my-5 font-medium text-lg">2. Haftung für Inhalte</h3>
                 <p>
-                    Als privater Betreiber dieser Seite bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte
-                    auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Ich übernehme jedoch
-                    keine Gewähr für die Richtigkeit, Vollständigkeit oder Aktualität der bereitgestellten
-                    Informationen.
+                    Als privater Betreiber dieser Seite bin ich gemäß § 7 Abs. 1 TMG für eigene
+                    Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Ich
+                    übernehme jedoch keine Gewähr für die Richtigkeit, Vollständigkeit oder
+                    Aktualität der bereitgestellten Informationen.
                 </p>
                 <p>
-                    Nach §§ 8 bis 10 TMG bin ich nicht verpflichtet, übermittelte oder gespeicherte fremde
-                    Informationen zu überwachen oder nach Umständen zu forschen, die auf eine
-                    rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der
-                    Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.
-                    Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer
-                    konkreten Rechtsverletzung möglich. Bei Bekanntwerden solcher Inhalte werden diese
-                    umgehend entfernt.
+                    Nach §§ 8 bis 10 TMG bin ich nicht verpflichtet, übermittelte oder gespeicherte
+                    fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine
+                    rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung
+                    der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon
+                    unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der
+                    Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden solcher
+                    Inhalte werden diese umgehend entfernt.
                 </p>
             </section>
             <section>
                 <h3 className="my-5 font-medium text-lg">3. Haftung für Links</h3>
                 <p>
-                    Diese Website enthält ggf. Links zu externen Websites Dritter, auf deren Inhalte ich
-                    keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
-                    Anbieter oder Betreiber der Seiten verantwortlich. Zum Zeitpunkt der Verlinkung waren
-                    keine rechtswidrigen Inhalte erkennbar. Eine permanente inhaltliche Kontrolle der
-                    verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht
-                    zumutbar.
+                    Diese Website enthält ggf. Links zu externen Websites Dritter, auf deren Inhalte
+                    ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der
+                    jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Zum Zeitpunkt der
+                    Verlinkung waren keine rechtswidrigen Inhalte erkennbar. Eine permanente
+                    inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete
+                    Anhaltspunkte einer Rechtsverletzung nicht zumutbar.
                 </p>
             </section>
             <section>
                 <h3 className="my-5 font-medium text-lg">4. Urheberrecht</h3>
                 <p>
-                    Die durch den Betreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem
-                    deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Die
-                    Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
-                    Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors
-                    bzw. Erstellers.
+                    Die durch den Betreiber erstellten Inhalte und Werke auf dieser Website
+                    unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche
+                    gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der
+                    Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen
+                    Zustimmung des jeweiligen Autors bzw. Erstellers.
                 </p>
             </section>
             <section>
                 <h3 className="my-5 font-medium text-lg">5. Haftungsausschluss</h3>
                 <p>
                     Die Nutzung der Inhalte dieser Website erfolgt auf eigene Gefahr. Der Betreiber
-                    übernimmt keine Haftung für Schäden materieller oder immaterieller Art, die durch die
-                    Nutzung oder Nichtnutzung der bereitgestellten Informationen entstehen, sofern kein
-                    nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.
+                    übernimmt keine Haftung für Schäden materieller oder immaterieller Art, die
+                    durch die Nutzung oder Nichtnutzung der bereitgestellten Informationen
+                    entstehen, sofern kein nachweislich vorsätzliches oder grob fahrlässiges
+                    Verschulden vorliegt.
                 </p>
             </section>
             <section>
                 <h3 className="my-5 font-medium text-lg">6. Datenschutz</h3>
                 <p>
-                    Dieses Projekt verarbeitet keine personenbezogenen Daten und setzt keine Tracking- oder
-                    Analysewerkzeuge ein. Es werden keine Nutzerprofile erstellt, und es findet keine
-                    Weitergabe von Daten an Dritte statt.
+                    Dieses Projekt verarbeitet keine personenbezogenen Daten und setzt keine
+                    Tracking- oder Analysewerkzeuge ein. Es werden keine Nutzerprofile erstellt, und
+                    es findet keine Weitergabe von Daten an Dritte statt.
                 </p>
                 <p>
-                    Sollten technische Logdaten (z. B. durch den Hosting-Anbieter) anfallen, dienen diese
-                    ausschließlich der Sicherstellung des technischen Betriebs und werden automatisch
-                    gelöscht.
+                    Sollten technische Logdaten (z. B. durch den Hosting-Anbieter) anfallen, dienen
+                    diese ausschließlich der Sicherstellung des technischen Betriebs und werden
+                    automatisch gelöscht.
                 </p>
             </section>
         </SidebarLeftLayout>

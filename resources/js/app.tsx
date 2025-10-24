@@ -11,11 +11,12 @@ axios.defaults.withCredentials = true; // sendet Cookies (Session)
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(reg => console.log('Service Worker registriert:', reg))
-      .catch(err => console.error('Service Worker Fehler:', err));
-  });
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then((reg) => console.log('Service Worker registriert:', reg))
+            .catch((err) => console.error('Service Worker Fehler:', err));
+    });
 }
 
 const appName = import.meta.env.VITE_APP_NAME || "Toby's Rezeptbuch";
@@ -26,7 +27,7 @@ async function bootstrap() {
     createInertiaApp({
         title: (title) => `${title} - ${appName}`,
         resolve: (name) =>
-        resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
+            resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
         setup({ el, App, props }) {
             createRoot(el).render(<App {...props} />);
         },

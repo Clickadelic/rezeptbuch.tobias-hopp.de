@@ -13,11 +13,18 @@ interface RelatedRecipesCarouselProps {
  * @param {Recipe[]} related - The related recipes to display
  * @returns {JSX.Element} - The carousel component
  */
-export default function RelatedRecipesCarousel({related, categoryName}: RelatedRecipesCarouselProps) {
+export default function RelatedRecipesCarousel({
+    related,
+    categoryName,
+}: RelatedRecipesCarouselProps) {
     return (
         <div className="flex flex-col gap-5 mb-12">
             <h4 className="text-xl">Weiteres aus der Kategorie: {categoryName}</h4>
-            <Carousel recipes={related} carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800" itemClassName="card" />
+            <Carousel
+                recipes={related}
+                carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
+                itemClassName="card"
+            />
         </div>
     );
 }

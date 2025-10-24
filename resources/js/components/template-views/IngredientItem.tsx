@@ -19,10 +19,13 @@ export default function IngredientItem({ ingredient, onSelect }: IngredientItemP
     }
 
     return (
-
-        <Button variant="link" className="p-0 text-base" onClick={onSelect} title="Diese Zutat gehört Dir">
+        <Button
+            variant="link"
+            className="p-0 text-base"
+            onClick={onSelect}
+            title="Diese Zutat gehört Dir"
+        >
             {ingredient.name}
         </Button>
-
     );
 }

@@ -12,7 +12,9 @@ export default function Index() {
     return (
         <SidebarLeftLayout title="Admin" sidebar={<AdminSidebar />}>
             <h1>Willkommen {user.name}</h1>
-            <p>Deine Rollen: <strong>{user.roles?.join(', ')}</strong></p>
+            <p>
+                Deine Rollen: <strong>{user.roles?.join(', ')}</strong>
+            </p>
             <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
             {/* TODO: Add User Management */}
             <UsersTable users={users} />

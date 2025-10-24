@@ -4,7 +4,7 @@ import BackToTopButton from '@/components/appshell/BackToTopButton/Index';
 import NewsletterForm from '../forms/NewsletterForm';
 
 import badgeSrc from '@images/Quality-Symbol.png';
-import { BiCategory } from "react-icons/bi";
+import { BiCategory } from 'react-icons/bi';
 import { BsChevronCompactRight } from 'react-icons/bs';
 import { TbMailHeart } from 'react-icons/tb';
 import { IoIosRibbon } from 'react-icons/io';
@@ -181,7 +181,6 @@ export default function Footer({ className }: FooterProps) {
                     </div>
                     <div className="flex flex-row justify-center items-center border-t border-stone-700 pt-6">
                         <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">
-                            
                             <li>
                                 <Link
                                     href="/nutzungsbedingungen"
@@ -225,7 +224,17 @@ export default function Footer({ className }: FooterProps) {
                     </div>
                     <div className="flex flex-row justify-center items-center pt-10">
                         <ul className="text-sm mx-auto text-center flex flex-col gap-3">
-                            <li className="inline-flex gap-1 cursor-default">Made with <FaRegHeart className="text-red-500 mt-0.5 mx-1" /> by <a href="https://www.tobias-hopp.de/de" className="hover:text-primary text-sm target-white" title="Tobias Hopp" target="_blank">Tobias Hopp</a></li>
+                            <li className="inline-flex gap-1 cursor-default">
+                                Made with <FaRegHeart className="text-red-500 mt-0.5 mx-1" /> by{' '}
+                                <a
+                                    href="https://www.tobias-hopp.de/de"
+                                    className="hover:text-primary text-sm target-white"
+                                    title="Tobias Hopp"
+                                    target="_blank"
+                                >
+                                    Tobias Hopp
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </footer>

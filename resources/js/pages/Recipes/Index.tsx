@@ -44,7 +44,9 @@ export default function Recipes() {
                     </Link>
                 </>
             )}
-            {recipes?.data.length && <Pagination links={recipes.links} className="mt-4 sm:mt-8 xl:mt-12" />}
+            {recipes?.data.length && (
+                <Pagination links={recipes.links} className="mt-4 sm:mt-8 xl:mt-12" />
+            )}
         </FullWidthLayout>
     );
 }

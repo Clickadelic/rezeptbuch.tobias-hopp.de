@@ -4,8 +4,10 @@ import { Comment } from '@/types/Comment';
 import CommentItem from './CommentItem';
 import CommentForm from '@/components/forms/CommentForm';
 
+import Seperator from '@/components/reusables/Seperator';
+
 interface CommentsDirectoryProps {
-  recipeId: string;
+    recipeId: string;
 }
 
 export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) {
@@ -15,59 +17,63 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
     const [lastPage, setLastPage] = useState(1);
 
     useEffect(() => {
-      loadComments(page);
+        loadComments(page);
     }, [page]);
 
-  const loadComments = async (page = 1) => {
-    setLoading(true);
-    try {
-      // Erwartet <Paginated<Comment>>
-      const data = await fetchComments(recipeId, page);
-      setComments(data.data);
-      setLastPage(data.last_page);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const loadComments = async (page = 1) => {
+        setLoading(true);
+        try {
+            // Erwartet <Paginated<Comment>>
+            const data = await fetchComments(recipeId, page);
+            setComments(data.data);
+            setLastPage(data.last_page);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  const handleCommentAdded = (comment: Comment) => {
-    setComments(prev => [comment, ...prev]);
-  };
+    const handleCommentAdded = (comment: Comment) => {
+        setComments((prev) => [comment, ...prev]);
+    };
 
-  return (
-    <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
-      <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
+    return (
+        <>
+            <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
+                <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
+                {loading && <p>Lädt...</p>}
 
-      {loading && <p>Lädt...</p>}
+                {comments.map((comment) => (
+                    <CommentItem
+                        key={comment.id}
+                        comment={comment}
+                        onCommentAdded={handleCommentAdded}
+                    />
+                ))}
 
-      {comments.map(comment => (
-        <CommentItem
-          key={comment.id}
-          comment={comment}
-          onCommentAdded={handleCommentAdded}
-        />
-      ))}
-
-      {/* Pagination */}
-      <div className="flex justify-center gap-2 mt-4">
-        <button
-          disabled={page <= 1}
-          onClick={() => setPage(prev => Math.max(prev - 1, 1))}
-          className="px-3 py-1 border rounded disabled:opacity-50"
-        >
-          Zurück
-        </button>
-        <span>Seite {page} von {lastPage}</span>
-        <button
-          disabled={page >= lastPage}
-          onClick={() => setPage(prev => Math.min(prev + 1, lastPage))}
-          className="px-3 py-1 border rounded disabled:opacity-50"
-        >
-          Weiter
-        </button>
-      </div>
-    </div>
-  );
+                {/* Pagination */}
+                <div className="flex justify-center gap-2 mt-4">
+                    <button
+                        disabled={page <= 1}
+                        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                        className="px-3 py-1 border rounded disabled:opacity-50"
+                    >
+                        Zurück
+                    </button>
+                    <span>
+                        Seite {page} von {lastPage}
+                    </span>
+                    <button
+                        disabled={page >= lastPage}
+                        onClick={() => setPage((prev) => Math.min(prev + 1, lastPage))}
+                        className="px-3 py-1 border rounded disabled:opacity-50"
+                    >
+                        Weiter
+                    </button>
+                </div>
+            </div>
+            <Seperator style="mix" />
+        </>
+    );
 }

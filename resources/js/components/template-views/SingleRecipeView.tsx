@@ -17,7 +17,7 @@ import { GoClock, GoZoomIn } from 'react-icons/go';
 import { LuUtensilsCrossed } from 'react-icons/lu';
 import { BiDish } from 'react-icons/bi';
 import { VscSymbolEvent } from 'react-icons/vsc';
-import { GiBroccoli } from "react-icons/gi";
+import { GiBroccoli } from 'react-icons/gi';
 
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
@@ -29,24 +29,23 @@ interface ShowRecipeProps {
 
 /**
  * Displays a single recipe with its details.
- * 
+ *
  * @param {ShowRecipeProps} props - properties of the component
  * @param {Recipe} props.recipe - The recipe to display.
  *
  * @returns {JSX.Element} - the rendered component
  */
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
-    
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
     const { related } = usePage<SharedPageProps>().props;
-    
+
     const { user } = usePage<SharedPageProps>().props.auth;
     const avatar = './storage/' + user?.avatar;
 
     const toggleImageModal = () => {
         setIsImageModalOpen(!isImageModalOpen);
     };
-    
+
     return (
         <div className="flex flex-col gap-5">
             <div className="flex flex-col xl:flex-row justify-start gap-5">
@@ -57,11 +56,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                             (recipe as any)?.media?.[0];
                         return hero ? (
                             <div className="relative flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
-                                <img
-                                    src={hero.url}
-                                    alt={recipe.name}
-                                    className="z-20"
-                                />
+                                <img src={hero.url} alt={recipe.name} className="z-20" />
                                 <button
                                     className="bg-transparent opacity-0 absolute top-0 left-0 right-0 bottom-0 w-full h-full transition ease-in-out z-20 hover:cursor-pointer text-white hover:text-gray-400 dark:hover:text-gray-300"
                                     onClick={toggleImageModal}
@@ -173,10 +168,13 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     </div>
                 </div>
             </div>
-            <SingleRecipeIngredientsTable recipe={recipe} />    
+            <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
             <CommentsDirectory recipeId={recipe.id!} />
-            <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
+            <RelatedRecipesCarousel
+                related={related as Recipe[]}
+                categoryName={recipe.category?.name}
+            />
         </div>
     );
 }

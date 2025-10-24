@@ -47,7 +47,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     };
 
     return (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-1">
             <div className="flex flex-col xl:flex-row justify-start gap-5">
                 <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full xl:w-[96rem] overflow-hidden rounded-xl">
                     {(() => {

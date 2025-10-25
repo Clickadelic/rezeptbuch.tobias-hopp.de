@@ -4,18 +4,8 @@ import axios from 'axios';
 
 import Avatar from '@/components/reusables/Avatar';
 import CommentForm from '@/components/forms/CommentForm';
-
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+import { Textarea } from '@/components/ui/textarea';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { ButtonGroup } from '@/components/ui/button-group';
 import { Button } from '@/components/ui/button';
 
@@ -38,13 +28,21 @@ interface CommentItemProps {
     onCommentUpdated?: (comment: Comment) => void; // NEU
 }
 
-export default function CommentItem({
-    comment,
-    depth = 0,
-    onCommentAdded,
-    onCommentDeleted,
-    onCommentUpdated,
-}: CommentItemProps) {
+/**
+ * CommentItem - displays a single comment with replies
+ *
+ * @param {CommentItemProps} props - comment, depth, onCommentAdded, onCommentDeleted, onCommentUpdated
+ * @returns {JSX.Element} - a single comment with replies
+ * @example
+ * <CommentItem
+ *     comment={comment}
+ *     depth={1}
+ *     onCommentAdded={(comment) => console.log(comment)}
+ *     onCommentDeleted={() => console.log('Comment deleted')}
+ *     onCommentUpdated={(comment) => console.log(comment)}
+ * />
+ */
+export default function CommentItem({ comment, depth = 0, onCommentAdded, onCommentDeleted, onCommentUpdated }: CommentItemProps) {
     const [replying, setReplying] = useState(false);
     const { user } = usePage<SharedPageProps>().props.auth;
     const { hasRole } = usePermissions();
@@ -155,25 +153,26 @@ export default function CommentItem({
                 {/* Comment Content / Edit */}
                 <div
                     className={cn(
-                        'bg-gray-100 dark:bg-gray-900 relative p-4 pl-6 rounded-lg border-b border-gray-200 dark:border-gray-700 mt-3',
+                        'bg-gray-100 dark:bg-gray-900 relative p-4 rounded-lg border-b border-gray-200 dark:border-gray-700 mt-3',
                     )}
                 >
                     <div className="absolute -top-2 left-5 rotate-45 size-4 bg-gray-100 dark:bg-gray-900"></div>
 
                     {editing ? (
                         <div className="flex flex-col gap-2">
-                            <textarea
+                            <Textarea
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
-                                className="w-full p-2 border rounded-md text-sm dark:bg-gray-800 dark:text-gray-200"
+                                className="w-full p-2 border rounded-md text-sm bg-white dark:bg-gray-800 dark:text-gray-200"
                                 rows={3}
                             />
                             <div className="flex gap-2">
-                                <Button size="sm" variant="primary" onClick={handleEditSave}>
-                                    {isLoading ? 'Speichern...' : 'Speichern'}
+                                <Button size="sm" className="rounded" variant="primary" onClick={handleEditSave}>
+                                    {isLoading ? 'Lade...' : 'Kommentar speichern'}
                                 </Button>
                                 <Button
                                     size="sm"
+                                    className="rounded"
                                     variant="secondary"
                                     onClick={() => setEditing(false)}
                                 >

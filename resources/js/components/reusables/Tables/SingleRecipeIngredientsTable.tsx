@@ -21,7 +21,7 @@ interface IngredientsTableProps {
  */
 export default function SingleRecipeIngredientsTable({ recipe, className }: IngredientsTableProps) {
     const [count, setCount] = useState<number>(1);
-    if (!recipe.ingredients) return null;
+    if (recipe.ingredients ?.length === 0) return null;
 
     return (
         <div className={cn("w-full md:w-[32rem] md:mx-auto", className)}>

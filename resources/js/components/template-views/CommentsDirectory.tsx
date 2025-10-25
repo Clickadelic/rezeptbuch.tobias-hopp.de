@@ -65,7 +65,7 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                     {loading && <><FaSpinner className="animate-spin size-3 mt-2" />Lade Kommentare...</>}
                     {!loading && (
                         <span>
-                            {comments.length} Kommentare
+                            {comments.length} Kommentar
                             {comments.length > 1 && 'e'}
                         </span>
                     )} 

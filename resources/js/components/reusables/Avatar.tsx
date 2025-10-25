@@ -28,7 +28,7 @@ export default function Avatar({ url, name, className }: AvatarProps) {
     <ShadCnAvatar className={cn('size-8', className)}>
       <AvatarImage src={avatarUrl} alt={name ?? 'Benutzeravatar'} />
       <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-300 flex items-center justify-center font-medium">
-        {initials || <GiCook className="text-gray-700 dark:text-gray-400" />}
+        {initials}
       </AvatarFallback>
     </ShadCnAvatar>
   );

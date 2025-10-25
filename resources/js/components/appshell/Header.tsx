@@ -81,6 +81,7 @@ const Header = () => {
                             >
                                 Community
                             </NavLink>
+                            
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">

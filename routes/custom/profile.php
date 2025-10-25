@@ -7,6 +7,8 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/avatar', [ProfileController::class, 'uploadAvatar'])->name('profile.avatar');
+
+    Route::post('/avatar', [ProfileController::class, 'uploadAvatar'])->name('profile.avatar'); // POST zum Upload
+    Route::delete('/avatar', [ProfileController::class, 'destroyAvatar'])->name('profile.avatar.destroy'); // DELETE
 });
 

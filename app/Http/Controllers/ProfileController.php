@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use Inertia\Response;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Inertia\Inertia;
-use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): Response
     {
         return Inertia::render('Profile/Edit', [
@@ -24,73 +22,51 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {   
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        // Profilbild hinzufügen
-        if($request->hasFile('avatar')) {
-            // altes Bild löschen
-            if($request->user()->avatar && Storage::disk('public')->exists($request->user()->avatar)) {
-                // Wenn in der Tabelle ein Pfad steht
-                // und hinter dem Pfad wirklich eine Datei existiert
-                Storage::disk('public')->delete($request->user()->avatar); // löschen
-            }
-
-            // Bild in public-Ordner speichern:
-            $path = $request->file('avatar')->store('uploads/avatars', 'public');
-            $request->user()->avatar = $path; // fügt dem Benutzer den Pfad zum Bild zu
-        }
-
-        $request->user()->save();
+        $user->save();
 
         return Redirect::route('profile.edit')->with('success', 'Profil aktualisiert!');
     }
 
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
-    }
-
     public function uploadAvatar(Request $request)
     {
+        $user = $request->user();
+
         $request->validate([
-            'avatar' => ['required', 'image', 'max:2048'],
+            'avatar' => ['required', 'image', 'max:10240'],
         ]);
 
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            $path = $request->file('avatar')->store('uploads/avatars', 'public');
+            $user->avatar = $path;
+            $user->save();
+        }
+
+        // Inertia-kompatibel:
+        return redirect()->back()->with('success', 'Avatar hochgeladen');
+    }
+
+    public function destroyAvatar(Request $request)
+    {
         $user = $request->user();
 
         if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
             Storage::disk('public')->delete($user->avatar);
+            $user->avatar = null;
+            $user->save();
         }
 
-        $path = $request->file('avatar')->store('uploads/avatars', 'public');
-        $user->avatar = $path;
-        $user->save();
-
-        return back()->with('success', 'Profilbild aktualisiert!');
+        return response()->json(['success' => 'Avatar gelöscht']);
     }
 }

@@ -2,6 +2,7 @@ import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
+import UserCard from '@/components/reusables/UserCard';
 
 import Avatar from '@/components/reusables/Avatar';
 /**
@@ -15,9 +16,9 @@ export default function Community() {
 
     return (
         <FullWidthLayout title="Community">
-            <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+            <div className="grid grid-cols-5 gap-3">
                 {users?.map((user: any) => (
-                    <Avatar key={user.id} url={user.avatar} name={user.name} className="data-[slot=avatar]" />
+                    <UserCard key={user.id} name={user.name}  avatarUrl={user.avatar}  />
                 ))}
             </div>
         </FullWidthLayout>

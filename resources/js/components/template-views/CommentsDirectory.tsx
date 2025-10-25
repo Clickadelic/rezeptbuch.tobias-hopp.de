@@ -3,12 +3,11 @@ import { Button } from '@/components/ui/button';
 
 import CommentItem from './CommentItem';
 import CommentForm from '@/components/forms/CommentForm';
-import Seperator from '@/components/reusables/Seperator';
 
 import { Comment } from '@/types/Comment';
 import { fetchComments } from '@/lib/comments';
 import { cn } from '@/lib/utils';
-
+import { FaHeart, FaSpinner } from 'react-icons/fa6';
 interface CommentsDirectoryProps {
     recipeId: string;
 }
@@ -44,14 +43,15 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
     return (
         <div className="w-full max-w-4xl mx-auto flex flex-col gap-5">
             <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
-            {loading && (
-                <div className="w-full flex flex-col items-center justify-center">
-                    Lade Kommentare...
-                </div>
-            )}
             <div className="flex flex-col gap-2">
                 <h3 className={cn('text-lg flex gap-2')}>
-                    {comments.length} Kommentar{comments.length === 1 ? '' : 'e'}
+                    {loading && <><FaSpinner className="animate-spin size-3 mt-2" />Lade Kommentare...</>}
+                    {!loading && (
+                        <>
+                            {comments.length} Kommentar
+                            {comments.length > 1 && 'e'}
+                        </>
+                    )} 
                 </h3>
                 {comments.map((comment) => (
                     <CommentItem

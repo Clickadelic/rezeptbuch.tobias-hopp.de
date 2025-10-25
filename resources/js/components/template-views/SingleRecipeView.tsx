@@ -23,6 +23,8 @@ import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
 import { toHumanDate } from '@/lib/utils';
 
+import AvatarBlock from '@/components/reusables/Blocks/AvatarBlock';
+
 interface ShowRecipeProps {
     recipe: Recipe;
 }
@@ -36,11 +38,10 @@ interface ShowRecipeProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
-    const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
-    const { related } = usePage<SharedPageProps>().props;
 
-    const { user } = usePage<SharedPageProps>().props.auth;
-    const avatar = './storage/' + user?.avatar;
+    const { related } = usePage<SharedPageProps>().props;
+    
+    const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
 
     const toggleImageModal = () => {
         setIsImageModalOpen(!isImageModalOpen);
@@ -151,18 +152,8 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                 </div>
             </div>
 
-            <div className="flex flex-row items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                    <div>
-                        <Avatar url={recipe?.user?.avatar} />
-                    </div>
-                    <div>
-                        <h3 className="font-medium text-lg">von {recipe.user?.name}</h3>
-                        <p className="text-sm text-gray-400 dark:text-gray-600">
-                            {toHumanDate(recipe.created_at)}
-                        </p>
-                    </div>
-                </div>
+            <div className="flex items-start justify-start gap-2">
+                <AvatarBlock url={recipe?.user?.avatar} name={recipe?.user?.name} date={recipe.created_at} />
                 <div className="flex items-center gap-2">
                     <StarRating rating={recipe.rating ?? 1} maxRating={5} showLabel={true} />
                 </div>
@@ -171,10 +162,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
             <CommentsDirectory recipeId={recipe.id!} />
-            <RelatedRecipesCarousel
-                related={related as Recipe[]}
-                categoryName={recipe.category?.name}
-            />
+            <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
         </div>
     );
 }

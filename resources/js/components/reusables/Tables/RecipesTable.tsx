@@ -59,7 +59,7 @@ export default function RecipesTable({
     return (
         <div
             className={cn(
-                'w-full overflow-hidden min-h-44 bg-gray-100 dark:bg-gray-900 p-4 rounded-xl',
+                'w-full overflow-hidden min-h-44 bg-gray-100 dark:bg-gray-900 p-4 border-b border-gray-200 dark:border-gray-700 rounded-xl',
                 className,
             )}
         >

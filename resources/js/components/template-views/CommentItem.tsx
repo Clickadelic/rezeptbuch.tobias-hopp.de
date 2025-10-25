@@ -71,7 +71,7 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
         <div className={`flex flex-col gap-2 ${depth > 0 ? 'ml-6' : ''}`}>
             <div className="flex flex-col gap-2">
                 {/* Comment Header */}
-                <div className="text-sm font-semibold flex flex-start gap-3 pl-3">
+                <div className="text-sm flex flex-start gap-3 pl-3">
                     <Avatar url={comment.user?.avatar} />
                     {comment.created_at && (
                         <div className="w-32 flex flex-col text-xs text-gray-500 dark:text-gray-400">
@@ -114,9 +114,9 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
                 </div>
 
                 {/* Comment Content */}
-                <div className={cn('bg-gray-100 dark:bg-gray-900 relative p-4 rounded-lg mt-3')}>
+                <div className={cn('bg-gray-100 dark:bg-gray-900 relative p-4 pl-6 rounded-lg border-b border-gray-200 dark:border-gray-700 mt-3')}>
                     <div className="absolute -top-2 left-5 rotate-45 size-4 bg-gray-100 dark:bg-gray-900"></div>
-                    {comment.content}
+                    <p>{comment.content}</p>
                 </div>
 
                 {/* Reply Toggle */}

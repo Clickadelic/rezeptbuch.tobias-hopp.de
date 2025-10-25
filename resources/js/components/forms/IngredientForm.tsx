@@ -51,7 +51,6 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
             id: ingredient?.id ?? null,
             name: ingredient?.name ?? '',
         });
-        console.log("Ingredient: ", ingredient);
     }, [ingredient]);
 
     function submit(e: React.FormEvent<HTMLFormElement>) {

@@ -21,7 +21,7 @@ interface BarChartProps {
 
 export default function BarChart({ data, title, className, icon }: BarChartProps) {
     return (
-        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl ', className)}>
+        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl border-b border-gray-200 dark:border-gray-700 ', className)}>
             <h3 className="text-lg mb-3 flex gap-2">
                 {icon}
                 {title || 'Statistik'}

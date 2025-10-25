@@ -19,6 +19,8 @@ import Paginated from '@/types/Paginated';
 import Pagination from '@/components/reusables/Pagination';
 import PublishSwitch from '@/components/reusables/PublishSwitch';
 import { GoPlus } from 'react-icons/go';
+import { IoEyeOutline } from "react-icons/io5";
+
 import { Recipe } from '@/types/Recipe';
 
 import { cn } from '@/lib/utils';
@@ -95,7 +97,8 @@ export default function RecipesTable({
                         <TableRow>
                             <TableHead className="w-[48px]">Status</TableHead>
                             <TableHead>Name</TableHead>
-                            <TableHead>Kategorie</TableHead>
+                            <TableHead className="text-center">Ansehen</TableHead>
+                            <TableHead className="hidden sm:table-cell">Kategorie</TableHead>
                             <TableHead className="hidden sm:table-cell">Schwierigkeit</TableHead>
                             <TableHead className="hidden sm:table-cell">Bewertung</TableHead>
                             <TableHead className="hidden sm:table-cell">Benutzer</TableHead>
@@ -116,6 +119,9 @@ export default function RecipesTable({
                                     />
                                 </TableCell>
                                 <TableCell className="cursor-default">{recipe.name}</TableCell>
+                                <TableCell className="text-center">
+                                    <Link href={route('recipes.show', recipe.id)} className="asd" title="ansehen"><IoEyeOutline /></Link>
+                                </TableCell>
                                 <TableCell className="cursor-default">
                                     {recipe.category?.name}
                                 </TableCell>

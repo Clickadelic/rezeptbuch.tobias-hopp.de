@@ -1,14 +1,12 @@
 import { usePage } from '@inertiajs/react';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import Achievements from '@/components/reusables/Achievements/Index';
+
 import BarChart from '@/components/reusables/Charts/BarChart';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
 import RecipesTable from '@/components/reusables/Tables/RecipesTable';
 
-
-import { GoTrophy } from 'react-icons/go';
 import { IoIosStats } from 'react-icons/io';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FaRegHeart } from 'react-icons/fa';
@@ -99,13 +97,6 @@ export default function Dashboard() {
                         </h3>
                     </div>
                 </div>
-            </div>
-            <div className="grid grid-cols-1 xl:grid-cols-1 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <Achievements
-                    title="Dein Weg zum Chefkoch"
-                    icon={<GoTrophy className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-1 xl:col-start-1"
-                />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <BarChart

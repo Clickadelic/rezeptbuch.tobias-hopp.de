@@ -11,6 +11,19 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { CalendarIcon } from "lucide-react"
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
+
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 import InputError from '@/components/forms/inputs/InputError';
 import InputLabel from '@/components/forms/inputs/InputLabel';
@@ -124,19 +137,21 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                                     variant="destructive"
                                     className="bg-rose-500"
                                     aria-label="Zutat löschen"
+                                    title="Zutat löschen"
                                     onClick={() => setIsDeleteDialogOpen(true)}
                                 >
-                                    <BsTrash3 className="size-4" />
+                                    <BsTrash3 className="size-4" />Zutat löschen
                                 </Button>
+                                
                             </AlertDialogTrigger>
 
                             <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                                 <AlertDialogHeader>
-                                    <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
-                                        Bist du sicher, dass du diese Zutat löschen möchtest?
+                                    <AlertDialogTitle className="font-normal text-gray-800 dark:text-gray-200">
+                                        Bist du sicher, dass du die Zutat <span className="font-bold">{data.name}</span> löschen möchtest?
                                     </AlertDialogTitle>
                                     <AlertDialogDescription className="mb-3">
-                                        Diese Aktion kann nicht rückgängig gemacht werden.
+                                        Diese Aktion kann nicht rückgängig gemacht werden. Sollte die Zutat aktuell noch in Rezepten verwendet werden, wird das Löschen systemseitig nicht zugelassen.
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
@@ -169,7 +184,6 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                         </>
                     )}
                 </Button>
-
                 {isEditing && (
                     <Button
                         type="button"
@@ -177,7 +191,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                         onClick={handleReset}
                         className="border-0 hover:bg-gray-400 transition"
                     >
-                        <SlClose className="size-4" />
+                        <SlClose className="size-4" /> Abbrechen
                     </Button>
                 )}
             </div>

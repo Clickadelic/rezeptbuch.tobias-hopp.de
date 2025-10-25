@@ -1,16 +1,27 @@
 import { useState, useMemo } from 'react';
+
 import Modal from '@/components/reusables/Modal';
 
 import { GoZoomIn } from 'react-icons/go';
 import { BiDish } from 'react-icons/bi';
 
 import { Recipe } from '@/types/Recipe';
+import { cn } from '@/lib/utils';
 
-interface RecipeHeroProps {
+
+interface RecipeImageBlockProps {
     recipe: Recipe;
+    className?: string
 }
 
-export default function RecipeImageBlock({ recipe }: RecipeHeroProps) {
+/**
+ * Displays the hero image of a recipe with a button to open the image in a modal.
+ *
+ * @param {RecipeImageBlockProps} props - properties of the component
+ * @returns {JSX.Element} - the rendered component
+ */
+export default function RecipeImageBlock({ recipe, className }: RecipeImageBlockProps) {
+    
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
 
     const hero = useMemo(() => {
@@ -20,7 +31,7 @@ export default function RecipeImageBlock({ recipe }: RecipeHeroProps) {
     const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
 
     return (
-        <div className="relative z-0 flex flex-col items-center justify-center aspect-video w-full xl:w-[96rem] overflow-hidden rounded-xl">
+        <div className={cn("relative z-0 flex flex-col items-center justify-center aspect-video w-full xl:w-[96rem] overflow-hidden rounded-xl", className)}>
             {hero ? (
                 <div className="relative w-full flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
                     <img

@@ -1,13 +1,22 @@
 import ContextMenu from '@/components/reusables/ContextMenu';
 import { Recipe } from '@/types/Recipe';
+
+import { cn } from '@/lib/utils';
+
 interface RecipeInfoBlockProps {
     recipe: Recipe
+    className?: string
 }
 
-export default function RecipeInfoBlock ({ recipe }: RecipeInfoBlockProps) {
+/**
+ * Displays a recipe's info, including its name, description, and punchline.
+ * Also includes a context menu with options to edit or delete the recipe.
+ * @param {Recipe} recipe - The recipe to display.
+ * @returns {JSX.Element} - The rendered component.
+ */
+export default function RecipeInfoBlock ({ recipe, className }: RecipeInfoBlockProps) {
     return (
-
-        <div className="w-full flex flex-col">
+        <div className={cn("w-full flex flex-col", className)}>
             <div className="relative w-full flex flex-row justify-between items-center">
                 <div>
                     <h4 className="font-medium text-sm  text-gray-400 dark:text-gray-600">
@@ -21,6 +30,5 @@ export default function RecipeInfoBlock ({ recipe }: RecipeInfoBlockProps) {
                 {recipe.description}
             </p>
         </div>
-
     )
 }

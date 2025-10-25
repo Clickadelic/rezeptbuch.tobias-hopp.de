@@ -71,6 +71,11 @@ export default function RecipesTable({
             >
                 {icon}
                 {title || 'Deine Daten'}
+                {recipes && recipes?.data?.length >= 1 && (
+                    <span className="text-gray-400 dark:text-gray-400">
+                        ({recipes.total})
+                    </span>
+                )}
             </h3>
             {/* Wenn keine Rezepte vorhanden */}
             {(!recipes || recipes.data.length === 0) && (
@@ -120,7 +125,7 @@ export default function RecipesTable({
                                 </TableCell>
                                 <TableCell className="cursor-default">{recipe.name}</TableCell>
                                 <TableCell className="text-center">
-                                    <Link href={route('recipes.show', recipe.id)} className="asd" title="ansehen"><IoEyeOutline /></Link>
+                                    <Link href={route('recipes.show', recipe.slug)} className="asd" title="ansehen"><IoEyeOutline /></Link>
                                 </TableCell>
                                 <TableCell className="cursor-default">
                                     {recipe.category?.name}

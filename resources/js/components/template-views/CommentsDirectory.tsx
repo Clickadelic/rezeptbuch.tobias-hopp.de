@@ -47,13 +47,14 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                 <h3 className={cn('text-lg flex gap-2')}>
                     {loading && <><FaSpinner className="animate-spin size-3 mt-2" />Lade Kommentare...</>}
                     {!loading && (
-                        <>
+                        <span>
                             {comments.length} Kommentar
                             {comments.length > 1 && 'e'}
-                        </>
+                        </span>
                     )} 
                 </h3>
-                {comments.map((comment) => (
+                
+                {!loading && comments.map((comment) => (
                     <CommentItem
                         key={comment.id}
                         comment={comment}

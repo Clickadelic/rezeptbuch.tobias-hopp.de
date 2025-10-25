@@ -19,12 +19,12 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded }: Comm
                 
                 {/* Comment Header */}
                 <div className="text-sm font-semibold flex gap-3">
-                  <div className="flex gap-2 pt-1">
+                  <div className="flex gap-2">
                     <Avatar url={comment.user?.avatar} />
                   </div>
                   {comment.created_at && (
                     <div className="w-32 flex flex-col text-xs text-gray-500 dark:text-gray-400">
-                      <div className="text-base">{comment.user?.name}</div>
+                      <div className="text-md">{comment.user?.name}</div>
                       <div className="font-light text-xs">{new Date(comment.created_at).toLocaleString()}</div>
                     </div>
                   )}
@@ -34,7 +34,7 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded }: Comm
                 </div>
 
                 {/* Comment Content */}
-                <div className="text-gray-800 dark:text-gray-200 py-4 text-lg">{comment.content}</div>
+                <div className="text-gray-800 dark:text-gray-200 py-4">{comment.content}</div>
 
                 {/* Reply Toggle */}
                 <button

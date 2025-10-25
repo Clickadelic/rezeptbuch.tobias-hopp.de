@@ -124,11 +124,11 @@ export default function ContextMenu({
                                 </AlertDialogTrigger>
                                 <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                                     <AlertDialogHeader>
-                                        <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
-                                            Bist Du sicher, dass Du das Rezept löschen möchtest?
+                                        <AlertDialogTitle className="font-normal text-gray-800 dark:text-gray-200">
+                                            Bist Du sicher, dass Du das Rezept <span className="font-bold">{recipe?.name}</span> löschen möchtest?
                                         </AlertDialogTitle>
                                         <AlertDialogDescription>
-                                            Dies kann nicht rückgängig gemacht werden.
+                                            Dies kann nicht rückgängig gemacht werden!
                                         </AlertDialogDescription>
                                     </AlertDialogHeader>
                                     <AlertDialogFooter>
@@ -163,8 +163,8 @@ export default function ContextMenu({
                         </AlertDialogTrigger>
                         <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                             <AlertDialogHeader>
-                                <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
-                                    Cool, dass Du das Rezept teilen möchtest, hier der Link:
+                                <AlertDialogTitle className="font-normal text-gray-800 dark:text-gray-200">
+                                    Cool, dass Du <span className="font-bold">{recipe?.name}</span> teilen möchtest, hier der Link:
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="mb-3">
                                     <span id="recipe-link">

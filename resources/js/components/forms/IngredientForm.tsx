@@ -147,8 +147,8 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
 
                             <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                                 <AlertDialogHeader>
-                                    <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
-                                        Bist du sicher, dass du diese Zutat löschen möchtest?
+                                    <AlertDialogTitle className="font-normal text-gray-800 dark:text-gray-200">
+                                        Bist du sicher, dass du die Zutat <span className="font-bold">{data.name}</span> löschen möchtest?
                                     </AlertDialogTitle>
                                     <AlertDialogDescription className="mb-3">
                                         Diese Aktion kann nicht rückgängig gemacht werden. Sollte die Zutat aktuell noch in Rezepten verwendet werden, wird das Löschen systemseitig nicht zugelassen.

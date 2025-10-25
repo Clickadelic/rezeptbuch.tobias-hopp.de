@@ -74,4 +74,23 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function uploadAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => ['required', 'image', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
+        }
+
+        $path = $request->file('avatar')->store('uploads/avatars', 'public');
+        $user->avatar = $path;
+        $user->save();
+
+        return back()->with('success', 'Profilbild aktualisiert!');
+    }
 }

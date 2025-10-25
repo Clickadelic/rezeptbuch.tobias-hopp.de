@@ -1,38 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
+import axios from 'axios';
 
 import Avatar from '@/components/reusables/Avatar';
 import CommentForm from '@/components/forms/CommentForm';
-import axios from 'axios';
-import { BsArrow90DegUp } from 'react-icons/bs';
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import {
-  ButtonGroup,
-  ButtonGroupSeparator,
-  ButtonGroupText,
-} from "@/components/ui/button-group"
-import { usePermissions } from '@/hooks/usePermissions';
-import { SharedPageProps } from '@/types';
-import { Comment } from '@/types/Comment';
-import { cn } from '@/lib/utils';
-import { BsTrash3 } from 'react-icons/bs';
-import { PiTrashLight } from "react-icons/pi";
+
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { ButtonGroup } from "@/components/ui/button-group"
 import { Button } from '@/components/ui/button';
-import { BsReply } from 'react-icons/bs';
-import { BsArrow90DegDown } from 'react-icons/bs';
+
+
+import { SharedPageProps } from '@/types';
+import { usePermissions } from '@/hooks/usePermissions';
+import { Comment } from '@/types/Comment';
+
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import { PiTrashLight } from "react-icons/pi";
 import { TbCancel } from 'react-icons/tb';
+import { BsReply } from 'react-icons/bs';
+
 import { fetchComments } from '@/lib/comments';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+
+import { cn } from '@/lib/utils';
 
 interface CommentItemProps {
     comment: Comment;
@@ -66,6 +55,13 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
             setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (editing) {
+            setEditContent(comment.content);
+        }
+    }, [editing]);
+
 
     return (
         <div className={`flex flex-col gap-2 ${depth > 0 ? 'ml-6' : ''}`}>

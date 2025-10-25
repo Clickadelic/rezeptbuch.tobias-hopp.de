@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Avatar from '@/components/reusables/Avatar';
 /**
  * Displays a list of all users.
  *
@@ -18,10 +18,7 @@ export default function Community() {
         <FullWidthLayout title="Community">
             <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
                 {users?.map((user: any) => (
-                    <Avatar key={user.id}>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                    <Avatar key={user.id} url={user.avatar} name={user.name} className="data-[slot=avatar]" />
                 ))}
             </div>
         </FullWidthLayout>

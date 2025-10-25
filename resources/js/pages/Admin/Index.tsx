@@ -24,9 +24,7 @@ import { SharedPageProps } from '@/types';
  */
 export default function Dashboard() {
     // Extract the data from the page
-    const {
-        
-    } = usePage<SharedPageProps>().props;
+    const {} = usePage<SharedPageProps>().props;
 
     const { user } = usePage<SharedPageProps>().props.auth;
 

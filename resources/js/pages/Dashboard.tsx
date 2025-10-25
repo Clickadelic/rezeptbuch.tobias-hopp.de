@@ -126,7 +126,6 @@ export default function Dashboard() {
                     className="col-span-1 xl:col-span-6"
                 />
             </div>
-
         </FullWidthLayout>
     );
 }

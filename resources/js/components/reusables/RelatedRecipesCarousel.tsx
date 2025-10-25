@@ -20,15 +20,15 @@ export default function RelatedRecipesCarousel({
 }: RelatedRecipesCarouselProps) {
     return (
         <>
-        <Seperator style="shuffle" />
-        <div className="flex flex-col gap-5 mb-12">
-            <h4 className="text-xl">Weiteres aus der Kategorie: {categoryName}</h4>
-            <Carousel
-                recipes={related}
-                carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
-                itemClassName="card"
-            />
-        </div>
+            <Seperator style="shuffle" />
+            <div className="flex flex-col gap-5 mb-12">
+                <h4 className="text-xl">Weiteres aus der Kategorie: {categoryName}</h4>
+                <Carousel
+                    recipes={related}
+                    carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
+                    itemClassName="card"
+                />
+            </div>
         </>
     );
 }

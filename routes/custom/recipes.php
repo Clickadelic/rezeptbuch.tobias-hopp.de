@@ -24,4 +24,6 @@ Route::prefix('/rezepte')->group(function () {
     // Comments JSON
     Route::get('/{recipe}/comments', [CommentController::class, 'index'])->name('comments.index');
     Route::post('/{recipe}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+
+    
 });

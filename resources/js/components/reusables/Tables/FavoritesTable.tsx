@@ -30,9 +30,7 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
                 {icon}
                 {title || 'Deine Favoriten'}
                 {favorites && favorites?.length >= 1 && (
-                    <span className="text-gray-400 dark:text-gray-400">
-                        ({favorites.length})
-                    </span>
+                    <span className="text-gray-400 dark:text-gray-400">({favorites.length})</span>
                 )}
             </h3>
             {/* Wenn keine Favoriten vorhanden */}

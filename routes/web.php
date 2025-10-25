@@ -9,6 +9,7 @@ Route::get('/', [PageController::class, 'index'])->name('index');
 require __DIR__.'/custom/auth.php';
 require __DIR__.'/custom/admin.php';
 require __DIR__.'/custom/community.php';
+require __DIR__.'/custom/comments.php';
 require __DIR__.'/custom/contact.php';
 require __DIR__.'/custom/dashboard.php';
 require __DIR__.'/custom/profile.php';

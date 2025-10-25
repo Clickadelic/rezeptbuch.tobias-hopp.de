@@ -63,11 +63,11 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                     type="button"
                     variant="link"
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                    className="px-3 py-1 border rounded disabled:opacity-50 text-xs"
+                    className="px-3 py-1 text-xs rounded transition-colors duration-200 dark:primary bg-gray-100 dark:bg-gray-900 dark:text-gray-200 text-gray-800 hover:bg-primary hover:text-white"
                 >
                     Zurück
                 </Button>
-                <div className="text-xs text-gray-200 dark:text-gray-400">
+                <div className="text-xs text-gray-800 dark:text-gray-400">
                     Seite {page} von {lastPage}
                 </div>
                 <Button
@@ -75,7 +75,7 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                     type="button"
                     variant="link"
                     onClick={() => setPage((prev) => Math.min(prev + 1, lastPage))}
-                    className="px-3 py-1 border rounded disabled:opacity-50 text-xs"
+                    className="px-3 py-1 text-xs rounded transition-colors duration-200 dark:primary bg-gray-100 dark:bg-gray-900 dark:text-gray-200 text-gray-800 hover:bg-primary hover:text-white"
                 >
                     Weiter
                 </Button>

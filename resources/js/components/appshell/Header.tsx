@@ -12,6 +12,8 @@ import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
 import Avatar from '@/components/reusables/Avatar';
 
+import { Button } from '@/components/ui/button';
+
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
@@ -85,9 +87,9 @@ const Header = () => {
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
-                                            <button
+                                            <Button
                                                 type="button"
-                                                className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:cursor-pointer focus:outline-none gap-2"
+                                                variant="primary"
                                             >
                                                 <Avatar url={auth?.user?.avatar} />
                                                 {auth.user?.name}
@@ -103,21 +105,21 @@ const Header = () => {
                                                         clipRule="evenodd"
                                                     />
                                                 </svg>
-                                            </button>
+                                            </Button>
                                         </span>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         {hasRole('admin') && (
-                                            <Dropdown.Link href="/admin" className="flex gap-2">
+                                            <Dropdown.Link href="/admin" className="flex gap-2 hover:bg-gray-200">
                                                 <MdOutlineAdminPanelSettings className="size-4" />
                                                 Admin
                                             </Dropdown.Link>
                                         )}
-                                        <Dropdown.Link href="/dashboard" className="flex gap-2">
+                                        <Dropdown.Link href="/dashboard" className="flex gap-2 hover:bg-gray-200">
                                             <RiDashboardHorizontalLine className="size-4" />
                                             Dashboard
                                         </Dropdown.Link>
-                                        <Dropdown.Link href="/profile" className="flex gap-2">
+                                        <Dropdown.Link href="/profile" className="flex gap-2 hover:bg-gray-200">
                                             <RiAccountPinBoxLine className="size-4" />
                                             Profil
                                         </Dropdown.Link>
@@ -125,7 +127,7 @@ const Header = () => {
                                             href="/logout"
                                             method="post"
                                             as="button"
-                                            className="flex gap-2 hover:cursor-pointer"
+                                            className="flex gap-2 hover:bg-gray-200 hover:cursor-pointer"
                                         >
                                             <BiExit className="size-4" />
                                             Log Out

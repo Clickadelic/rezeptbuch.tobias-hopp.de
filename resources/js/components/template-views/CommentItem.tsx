@@ -102,7 +102,7 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel>Abbrechen</AlertDialogCancel>
-                                            <AlertDialogAction onClick={() => handleDelete(comment.id)}>
+                                            <AlertDialogAction className="bg-rose-700 hover:bg-rose-500" onClick={() => handleDelete(comment.id)}>
                                                 {isLoading ? 'Löschen...' : 'Kommentar löschen'}
                                             </AlertDialogAction>
                                         </AlertDialogFooter>

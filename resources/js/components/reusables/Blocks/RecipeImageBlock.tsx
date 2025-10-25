@@ -33,7 +33,7 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
     return (
         <div className={cn("relative z-0 flex flex-col items-center justify-center aspect-video w-full xl:w-[96rem] overflow-hidden rounded-xl", className)}>
             {hero ? (
-                <div className="relative w-full flex border border-transparent rounded-xl overflow-hidden hover:border-primary">
+                <div className="relative w-full flex border border-transparent rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
                     <img
                         src={hero.url}
                         alt={recipe.name}

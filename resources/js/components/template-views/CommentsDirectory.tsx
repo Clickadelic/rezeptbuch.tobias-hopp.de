@@ -6,15 +6,23 @@ import CommentForm from '@/components/forms/CommentForm';
 
 import { Comment } from '@/types/Comment';
 import { fetchComments } from '@/lib/comments';
+import { FaSpinner } from 'react-icons/fa6';
+
 import { cn } from '@/lib/utils';
-import { FaHeart, FaSpinner } from 'react-icons/fa6';
+
 interface CommentsDirectoryProps {
     recipeId: string;
 }
 
+/**
+ * CommentsDirectory - displays a list of comments for a recipe
+ *
+ * @param {CommentsDirectoryProps} props - recipeId, onCommentAdded, onCommentDeleted
+ * @returns {JSX.Element} - a list of comments
+ */
 export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) {
     const [comments, setComments] = useState<Comment[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState(1);
 
@@ -48,7 +56,7 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                     {loading && <><FaSpinner className="animate-spin size-3 mt-2" />Lade Kommentare...</>}
                     {!loading && (
                         <span>
-                            {comments.length} Kommentar
+                            {comments.length} Kommentare
                             {comments.length > 1 && 'e'}
                         </span>
                     )} 

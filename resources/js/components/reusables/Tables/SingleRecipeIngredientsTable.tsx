@@ -72,9 +72,9 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
             <table className="table rounded-lg bg-gray-100 dark:bg-gray-700 mx-auto w-full md:w-[28rem] overflow-x-auto text-gray-800">
                 <thead className=" text-gray-800 dark:text-gray-200 font-normal">
                     <tr>
-                        <th className="p-3 text-left w-24">Menge</th>
-                        <th className="p-3 text-left">Einheit</th>
-                        <th className="p-3 text-left">Zutat</th>
+                        <th className="p-3 font-normal">Menge</th>
+                        <th className="p-3 text-left font-normal">Einheit</th>
+                        <th className="p-3 text-left font-normal">Zutat</th>
                     </tr>
                 </thead>
                 <tbody className="dark:text-gray-200 divide-y divide-gray-100 dark:divide-gray-700">
@@ -83,14 +83,13 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                             key={ingredient.id}
                             className="odd:bg-white even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
                         >
-                            <td className="p-3">
-                                {((ingredient.pivot?.quantity ?? 0) as number) * count}
-                            </td>
-                            <td className="p-3">{ingredient.pivot?.unit}</td>
+                            <td className="p-3 text-center">{((ingredient.pivot?.quantity ?? 0) as number) * count}</td>
+                            <td className="p-3 text-left">{ingredient.pivot?.unit}</td>
                             <td className="p-3">{ingredient.name}</td>
                         </tr>
                     ))}
                 </tbody>
+
             </table>
         </div>
     );

@@ -48,7 +48,7 @@ const Trigger = ({ children }: PropsWithChildren) => {
 const Content = ({
     align = 'right',
     width = '48',
-    contentClasses = 'py-1 bg-white dark:bg-gray-800',
+    contentClasses = 'py-1 bg-white dark:bg-gray-800 border-b-2 border-b-primary dark:border-b-primary',
     children,
 }: PropsWithChildren<{
     align?: 'left' | 'right';

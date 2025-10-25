@@ -141,7 +141,7 @@ export default function ContextMenu({
                                             Abbrechen
                                         </AlertDialogCancel>
                                         <AlertDialogAction
-                                            className="bg-transparent text-rose-600 border border-rose-600 hover:bg-rose-600 hover:text-white"
+                                            className="bg-rose-700 hover:bg-rose-500 text-white"
                                             onClick={deleteRecipe}
                                         >
                                             <GoTrash className="size-5" />

@@ -1,7 +1,6 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import { usePage } from '@inertiajs/react';
-import { Link } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 
 import Avatar from '@/components/reusables/Avatar';

@@ -6,6 +6,7 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
+
 require __DIR__.'/custom/auth.php';
 require __DIR__.'/custom/admin.php';
 require __DIR__.'/custom/community.php';

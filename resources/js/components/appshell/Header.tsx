@@ -12,6 +12,8 @@ import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
 import Avatar from '@/components/reusables/Avatar';
 
+import MegaMenu from '@/components/appshell/MegaMenu';
+
 import { Button } from '@/components/ui/button';
 
 import { BsJournalBookmark } from 'react-icons/bs';

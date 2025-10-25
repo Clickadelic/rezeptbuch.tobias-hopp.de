@@ -48,6 +48,15 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
         setComments((prev) => [comment, ...prev]);
     };
 
+    const handleCommentUpdated = (updatedComment: Comment) => {
+        setComments(prev =>
+            prev.map(c => c.id === updatedComment.id ? updatedComment : {
+                ...c,
+                replies: c.replies ? c.replies.map(r => r.id === updatedComment.id ? updatedComment : r) : []
+            })
+        );
+    };
+
     return (
         <div className="w-full max-w-4xl mx-auto flex flex-col gap-5">
             <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
@@ -68,6 +77,7 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                         comment={comment}
                         onCommentAdded={handleCommentAdded}
                         onCommentDeleted={loadComments}
+                        onCommentUpdated={handleCommentUpdated}
                     />
                 ))}
             </div>

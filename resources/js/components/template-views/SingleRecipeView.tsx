@@ -150,24 +150,24 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col">
-                <div className="flex flex-row items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                        <div>
-                            <Avatar url={recipe?.user?.avatar} />
-                        </div>
-                        <div>
-                            <h3 className="font-medium text-lg">von {recipe.user?.name}</h3>
-                            <p className="text-sm text-gray-400 dark:text-gray-600">
-                                {toHumanDate(recipe.created_at)}
-                            </p>
-                        </div>
+
+            <div className="flex flex-row items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                    <div>
+                        <Avatar url={recipe?.user?.avatar} />
                     </div>
-                    <div className="flex items-center gap-2">
-                        <StarRating rating={recipe.rating ?? 1} maxRating={5} showLabel={true} />
+                    <div>
+                        <h3 className="font-medium text-lg">von {recipe.user?.name}</h3>
+                        <p className="text-sm text-gray-400 dark:text-gray-600">
+                            {toHumanDate(recipe.created_at)}
+                        </p>
                     </div>
                 </div>
+                <div className="flex items-center gap-2">
+                    <StarRating rating={recipe.rating ?? 1} maxRating={5} showLabel={true} />
+                </div>
             </div>
+
             <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
             <CommentsDirectory recipeId={recipe.id!} />

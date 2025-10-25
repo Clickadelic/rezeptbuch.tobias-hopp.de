@@ -11,6 +11,7 @@ import { BsDoorOpen, BsJournalBookmark } from 'react-icons/bs';
 
 import { FiCheckCircle } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 interface CommentFormProps {
     recipeId: string;
@@ -78,13 +79,16 @@ export default function CommentForm({ recipeId, parentId, onCommentAdded }: Comm
                     className="w-full py-3"
                 />
                 {error && <p className="text-red-600 text-sm">{error}</p>}
-                <button
+                <Button
                     type="submit"
+                    variant="primary"
                     disabled={loading}
-                    className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition"
+                    title="Kommentar hinzufügen"
+                    aria-label="Kommentar hinzufügen"
+                    className="asd"
                 >
                     {loading ? 'Senden...' : 'Kommentar hinzufügen'}
-                </button>
+                </Button>
             </form>
         </>
     );

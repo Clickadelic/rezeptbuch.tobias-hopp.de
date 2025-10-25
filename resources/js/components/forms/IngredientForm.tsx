@@ -51,6 +51,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
             id: ingredient?.id ?? null,
             name: ingredient?.name ?? '',
         });
+        console.log("Ingredient: ", ingredient);
     }, [ingredient]);
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -72,7 +73,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
             onSuccess: () => {
                 reset();
                 onFinished?.();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0 });
             },
             preserveScroll: true,
         });
@@ -81,7 +82,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
     function handleReset() {
         reset();
         onFinished?.();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0 });
     }
 
     function handleDelete() {
@@ -95,7 +96,6 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
             },
             onError: (err) => {
                 console.error('Löschen fehlgeschlagen:', err);
-                alert('Diese Zutat kann nicht gelöscht werden, da sie in Rezepten verwendet wird.');
             },
         });
     }

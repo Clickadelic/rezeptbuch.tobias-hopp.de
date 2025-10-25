@@ -65,5 +65,29 @@ class CommentController extends Controller
         return response()->json(['success' => 'Kommentar wurde gelöscht'], 200);
     }
 
+    public function update(StoreCommentRequest $request, string $commentId): JsonResponse
+    {
+        $userId = Auth::id();
+        $comment = Comment::find($commentId);
+
+        if (!$comment) {
+            return response()->json(['error' => 'Kommentar nicht gefunden'], 404);
+        }
+
+        // Prüfen, ob der User der Besitzer ist
+        if ($comment->user_id !== $userId) {
+            return response()->json(['error' => 'Keine Berechtigung zum Bearbeiten dieses Kommentars'], 403);
+        }
+
+        $comment->update([
+            'content' => $request->validated()['content'],
+        ]);
+
+        $comment->load('user');
+
+        return response()->json($comment, 200);
+    }
+
+
 
 }

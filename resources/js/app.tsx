@@ -8,21 +8,23 @@ import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true; // sendet Cookies (Session)
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// TODO: Nochmal nachlesen
+// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker
-            .register('/service-worker.js')
-            .then((reg) => console.log('Service Worker registriert:', reg))
-            .catch((err) => console.error('Service Worker Fehler:', err));
-    });
-}
+// Prepared Service Worker
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', () => {
+//         navigator.serviceWorker
+//             .register('/service-worker.js')
+//             .then((reg) => console.log('Service Worker registriert:', reg))
+//             .catch((err) => console.error('Service Worker Fehler:', err));
+//     });
+// }
 
 const appName = import.meta.env.VITE_APP_NAME || "Toby's Rezeptbuch";
 
-async function bootstrap() {
-    await axios.get('/sanctum/csrf-cookie');
+// async function bootstrap() {
+//     await axios.get('/sanctum/csrf-cookie');
 
     createInertiaApp({
         title: (title) => `${title} - ${appName}`,
@@ -33,6 +35,6 @@ async function bootstrap() {
         },
         progress: { color: '#047857' },
     });
-}
+// }
 
-bootstrap();
+// bootstrap();

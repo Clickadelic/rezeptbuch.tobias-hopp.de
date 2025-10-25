@@ -11,10 +11,10 @@ export default function Avatar({ url, className }: AvatarProps) {
     const avatarUrl = url;
     return (
         <>
-            <ShadCnAvatar className={cn('border border-gray-200 dark:border-gray-700', className)}>
+            <ShadCnAvatar className={cn('asd', className)}>
                 <AvatarImage src={avatarUrl} />
-                <AvatarFallback>
-                    <GiCook className="text-gray-400" />
+                <AvatarFallback className="bg-gray-200 dark:bg-gray-900 text-gray-400 dark:text-gray-200">
+                    <GiCook className="" />
                 </AvatarFallback>
             </ShadCnAvatar>
         </>

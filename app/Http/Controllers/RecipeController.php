@@ -325,16 +325,23 @@ class RecipeController extends Controller
         if ($category) {
             $recipes = Recipe::with(['media', 'category', 'user'])
                 ->where('category_id', $category->id)
+                ->where('status', 'is_published') // nur veröffentlichte
                 ->orderBy('created_at', 'desc')
                 ->paginate(15);
         } else {
             if (!method_exists(Recipe::class, 'search')) {
                 $ids = Recipe::query()
-                    ->where('name', 'LIKE', "%{$query}%")
-                    ->orWhere('description', 'LIKE', "%{$query}%")
+                    ->where(function($q) use ($query) {
+                        $q->where('name', 'LIKE', "%{$query}%")
+                        ->orWhere('description', 'LIKE', "%{$query}%");
+                    })
+                    ->where('status', 'is_published') // nur veröffentlichte
                     ->pluck('id');
             } else {
-                $ids = Recipe::search($query)->get()->pluck('id');
+                $ids = Recipe::search($query)
+                    ->where('status', 'is_published') // nur veröffentlichte
+                    ->get()
+                    ->pluck('id');
             }
 
             $recipes = Recipe::with(['media', 'category', 'user'])
@@ -350,6 +357,8 @@ class RecipeController extends Controller
             'filters' => ['search' => $query],
         ]);
     }
+
+
 
     /* ---------------------------------------------- */
     /* 🧩 Helper Methods */

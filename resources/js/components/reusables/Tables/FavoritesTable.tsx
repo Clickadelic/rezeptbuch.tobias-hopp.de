@@ -29,6 +29,11 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
             <h3 className={cn('text-lg flex gap-2', favorites && favorites?.length >= 1 && 'mb-3')}>
                 {icon}
                 {title || 'Deine Favoriten'}
+                {favorites && favorites?.length >= 1 && (
+                    <span className="text-gray-400 dark:text-gray-400">
+                        ({favorites.length})
+                    </span>
+                )}
             </h3>
             {/* Wenn keine Favoriten vorhanden */}
             {(!favorites || favorites.length === 0) && (

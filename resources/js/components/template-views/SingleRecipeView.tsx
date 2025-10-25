@@ -37,7 +37,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     <AttributesBlock recipe={recipe} />
                 </div>
             </div>
-            <AvatarBlock url={recipe?.user?.avatar} name={recipe?.user?.name} date={recipe.created_at} />
+            <AvatarBlock recipe={recipe} />
             <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
             <CommentsDirectory recipeId={recipe.id!} />

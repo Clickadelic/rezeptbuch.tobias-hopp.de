@@ -24,10 +24,10 @@ export default function NavLink({
         <Link
             {...props}
             className={
-                'flex flex-row items-center border-b-2 space-x-2 px-1 transition duration-150 ease-in-out focus:outline-none ' +
+                'flex gap-2 items-center border-b-2 px-1 transition duration-150 ease-in-out focus:outline-none ' +
                 (active
                     ? 'border-primary text-primary hover:text-primary focus:border-primary '
-                    : 'border-transparent text--800-800 dark:text--800-400 hover:border--800-700 hover:text--800-700 dark:hover:text--800-300 dark:hover:border--800-400 focus:border--800-400 focus:text--800-800 ') +
+                    : 'border-transparent text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400 ') +
                 className
             }
         >

@@ -12,11 +12,11 @@ import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
 import Avatar from '@/components/reusables/Avatar';
-import { LuUsersRound } from 'react-icons/lu';
 import MegaMenu from '@/components/appshell/MegaMenu';
 
 import { recipesMegaMenu, featuredRecipes } from '@/lib/mega-menu-columns';
 
+import { LuUsersRound } from 'react-icons/lu';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
@@ -46,34 +46,34 @@ const Header = () => {
         <header className="bg-white dark:bg-gray-800 shadow-lg">
             <div className="mx-auto container px-6">
                 <div className="flex justify-between">
-                    <div className="flex justify-start md:justify-between sm:space-x-2 md:space-x-6 lg:space-x-44">
+                    <div className="w-full flex justify-between">
                         <div className="relative flex shrink-0">
-                            <AppLogo className="mx-auto mt-2 sm:mt-4" />
+                            <AppLogo className="mx-auto mt-2 sm:mt-[14px] mr-1 sm:mr-3" />
                         </div>
-                        <div className="hidden sm:flex sm:space-x-1 md:space-x-2 lg:space-x-8">
+                        <div className="hidden sm:flex sm:gap-1 md:gap-2 lg:gap-3 xl:gap-4 mx-auto">
                             <NavLink
                                 href="/"
                                 active={window.location.pathname === '/'}
                                 title="Zur Startseite"
-                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<RiHomeLine />}
+                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<RiHomeLine className="size-4 text-primary" />}
                             >
                                 Start
                             </NavLink>
-                            <MegaMenu columns={recipesMegaMenu} featured={featuredRecipes} />
+                            <MegaMenu title="Rezepte" icon={<BsJournalBookmark className="size-4" />} columns={recipesMegaMenu} featured={featuredRecipes} />
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname.startsWith('/zutaten')}
-                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<TbSalt />}
+                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<TbSalt className="size-4 text-primary" />}
                             >
                                 Zutaten
                             </NavLink>
                             <NavLink
                                 href="/community"
                                 active={window.location.pathname.startsWith('/community')}
-                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<LuUsersRound />}
+                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<LuUsersRound className="size-4 text-primary" />}
                             >
                                 Community
                             </NavLink>
@@ -84,8 +84,12 @@ const Header = () => {
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md mt-1">
-                                            <Button type="button" variant="flat">
+                                        <span className="inline-flex mt-1">
+                                            <Button
+                                                type="button"
+                                                variant="flat"
+                                                className="text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400"
+                                            >
                                                 <Avatar url={auth?.user?.avatar} />
                                                 {auth.user?.name}
                                                 <svg
@@ -107,40 +111,40 @@ const Header = () => {
                                         {hasRole('admin') && (
                                             <Dropdown.Link
                                                 href="/admin"
-                                                className="flex gap-2 hover:bg-gray-200"
+                                                className="flex gap-2"
                                             >
-                                                <MdOutlineAdminPanelSettings className="size-4" />
+                                                <MdOutlineAdminPanelSettings className="size-4 mt-1 text-primary" />
                                                 Admin
                                             </Dropdown.Link>
                                         )}
                                         <Dropdown.Link
                                             href="/dashboard"
-                                            className="flex gap-2 hover:bg-gray-200"
+                                            className="flex gap-2"
                                         >
-                                            <RiDashboardHorizontalLine className="size-4" />
+                                            <RiDashboardHorizontalLine className="size-4 mt-1 text-primary" />
                                             Dashboard
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href="/profile"
-                                            className="flex gap-2 hover:bg-gray-200"
+                                            className="flex gap-2"
                                         >
-                                            <RiAccountPinBoxLine className="size-4" />
+                                            <RiAccountPinBoxLine className="size-4 mt-1 text-primary" />
                                             Profil
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href="/logout"
                                             method="post"
                                             as="button"
-                                            className="flex gap-2 hover:bg-gray-200 hover:cursor-pointer"
+                                            className="flex gap-2 hover:cursor-pointer"
                                         >
-                                            <BiExit className="size-4" />
+                                            <BiExit className="size-4 mt-1 text-primary" />
                                             Log Out
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>
                         ) : (
-                            <div className="space-x-1 sm:space-x-2 md:space-x-3">
+                            <div className="flex gap-3">
                                 <NavButton
                                     href="/register"
                                     className="border border-gray-800 text-gray-800 hover:text-gray-600 hover:border-gray-600 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"

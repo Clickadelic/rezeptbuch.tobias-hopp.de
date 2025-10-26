@@ -48,8 +48,8 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Ja, die Registrierung ist offen und kostenlos. Es besteht keine
-                                Abo-Pflicht oder versteckte Kosten.
+                                Ja, die Registrierung ist kostenlos. Erstelle mit Deiner E-Mail Adresse einen Account, bestätige diese kurz
+                                und schon kann es losgehen. Versteckte Kosten gibt es nicht.
                             </p>
                             <br />
                             <p>
@@ -61,8 +61,14 @@ export default function FrontpageCategoryGrid() {
                                     className="underline underline-offset-4 text-primary"
                                 >
                                     Nutzungsbedingungen
-                                </Link>{' '}
-                                bzw. die entsprechenden Seiten im Footer.
+                                </Link> oder lies's den {' '} 
+                                <Link
+                                    href="/nutzungsbedingungen"
+                                    target="_self"
+                                    className="underline underline-offset-4 text-primary"
+                                >
+                                    Datenschutzhinweis
+                                </Link>.
                             </p>
                             <br />
                             <p>
@@ -77,12 +83,12 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Du kannst Dich registrieren. Nachdem Du Dich eingeloggt hast, kannst
-                                Du die Rezeptbuch-Funktion kostenlos nutzen und z.B. Favoriten
-                                anlegen oder Deine Rezepte verwalten.
+                                Nachdem Du Dich eingeloggt hast, kannst
+                                Du die Rezeptbuch-Funktion nutzen und eigene Rezepte anlegen und diese Posten.
+                                Darüber hinaus kannst Du auch Rezepte von anderen Nutzern finden und zu Deinen Favoriten hinzufügen.
                             </p>
                             <br />
-                            <p>Weitere Features wie sind in Arbeit bzw. in Planung.</p>
+                            <p>Weitere Features wie sind in in Planung bzw. in Arbeit.</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

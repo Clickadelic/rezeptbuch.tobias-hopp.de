@@ -9,6 +9,8 @@ import CommentsDirectory from '@/components/template-views/CommentsDirectory';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
 
+import Seperator from '@/components/reusables/Seperator';
+
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
 
@@ -37,9 +39,13 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                 </div>
             </div>
             <AvatarBlock recipe={recipe} />
+            <Seperator style="info" />
             <SingleRecipeIngredientsTable recipe={recipe} />
+            <Seperator style="whisk" />
             <PreparationInstructions recipe={recipe} />
+            <Seperator style="comment" />
             <CommentsDirectory recipeId={recipe.id!} />
+            <Seperator style="shuffle" />
             <RelatedRecipesCarousel
                 related={related as Recipe[]}
                 categoryName={recipe.category?.name}

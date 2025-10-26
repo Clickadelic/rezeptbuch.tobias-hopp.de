@@ -49,11 +49,19 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
     };
 
     const handleCommentUpdated = (updatedComment: Comment) => {
-        setComments(prev =>
-            prev.map(c => c.id === updatedComment.id ? updatedComment : {
-                ...c,
-                replies: c.replies ? c.replies.map(r => r.id === updatedComment.id ? updatedComment : r) : []
-            })
+        setComments((prev) =>
+            prev.map((c) =>
+                c.id === updatedComment.id
+                    ? updatedComment
+                    : {
+                          ...c,
+                          replies: c.replies
+                              ? c.replies.map((r) =>
+                                    r.id === updatedComment.id ? updatedComment : r,
+                                )
+                              : [],
+                      },
+            ),
         );
     };
 
@@ -62,24 +70,30 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
             <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
             <div className="flex flex-col gap-2">
                 <h3 className={cn('text-lg flex gap-2')}>
-                    {loading && <><FaSpinner className="animate-spin size-3 mt-2" />Lade Kommentare...</>}
+                    {loading && (
+                        <>
+                            <FaSpinner className="animate-spin size-3 mt-2" />
+                            Lade Kommentare...
+                        </>
+                    )}
                     {!loading && (
                         <span>
                             {comments.length} Kommentar
                             {comments.length > 1 && 'e'}
                         </span>
-                    )} 
+                    )}
                 </h3>
-                
-                {!loading && comments.map((comment) => (
-                    <CommentItem
-                        key={comment.id}
-                        comment={comment}
-                        onCommentAdded={handleCommentAdded}
-                        onCommentDeleted={loadComments}
-                        onCommentUpdated={handleCommentUpdated}
-                    />
-                ))}
+
+                {!loading &&
+                    comments.map((comment) => (
+                        <CommentItem
+                            key={comment.id}
+                            comment={comment}
+                            onCommentAdded={handleCommentAdded}
+                            onCommentDeleted={loadComments}
+                            onCommentUpdated={handleCommentUpdated}
+                        />
+                    ))}
             </div>
             {/* Pagination, nur wenn mehr als eine Seite Kommentare */}
             {page > 1 && (

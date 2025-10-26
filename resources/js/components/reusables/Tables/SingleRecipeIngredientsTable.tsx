@@ -21,17 +21,15 @@ interface IngredientsTableProps {
  */
 export default function SingleRecipeIngredientsTable({ recipe, className }: IngredientsTableProps) {
     const [count, setCount] = useState<number>(1);
-    if (recipe.ingredients ?.length === 0) return null;
+    if (recipe.ingredients?.length === 0) return null;
 
     return (
-        <div className={cn("w-full md:w-[32rem] md:mx-auto", className)}>
+        <div className={cn('w-full md:w-[32rem] md:mx-auto', className)}>
             <div className="w-full flex flex-col gap-2 justify-between items-center mb-10">
                 <div className="flex flex-col items-center justify-center gap-5 md:w-[22rem]">
                     <div>
                         <div className="cursor-default w-[14rem] font-medium text-xl flex gap-3 px-3 text-center">
-                            <span>
-                                Zutaten für {count > 1 ? `${count} Personen` : '1 Person'}
-                            </span>
+                            <span>Zutaten für {count > 1 ? `${count} Personen` : '1 Person'}</span>
                         </div>
                     </div>
                     <div className="flex gap-5">
@@ -83,13 +81,14 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                             key={ingredient.id}
                             className="odd:bg-white even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
                         >
-                            <td className="p-3 text-center">{((ingredient.pivot?.quantity ?? 0) as number) * count}</td>
+                            <td className="p-3 text-center">
+                                {((ingredient.pivot?.quantity ?? 0) as number) * count}
+                            </td>
                             <td className="p-3 text-left">{ingredient.pivot?.unit}</td>
                             <td className="p-3">{ingredient.name}</td>
                         </tr>
                     ))}
                 </tbody>
-
             </table>
         </div>
     );

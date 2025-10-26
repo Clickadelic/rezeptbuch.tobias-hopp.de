@@ -5,7 +5,17 @@ import axios from 'axios';
 import Avatar from '@/components/reusables/Avatar';
 import CommentForm from '@/components/forms/CommentForm';
 import { Textarea } from '@/components/ui/textarea';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { ButtonGroup } from '@/components/ui/button-group';
 import { Button } from '@/components/ui/button';
 
@@ -42,7 +52,13 @@ interface CommentItemProps {
  *     onCommentUpdated={(comment) => console.log(comment)}
  * />
  */
-export default function CommentItem({ comment, depth = 0, onCommentAdded, onCommentDeleted, onCommentUpdated }: CommentItemProps) {
+export default function CommentItem({
+    comment,
+    depth = 0,
+    onCommentAdded,
+    onCommentDeleted,
+    onCommentUpdated,
+}: CommentItemProps) {
     const [replying, setReplying] = useState(false);
     const { user } = usePage<SharedPageProps>().props.auth;
     const { hasRole } = usePermissions();
@@ -127,9 +143,7 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
                                     </AlertDialogTrigger>
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
-                                            <AlertDialogTitle>
-                                                Kommentar löschen?
-                                            </AlertDialogTitle>
+                                            <AlertDialogTitle>Kommentar löschen?</AlertDialogTitle>
                                             <AlertDialogDescription>
                                                 Dies kann nicht rückgängig gemacht werden.
                                             </AlertDialogDescription>
@@ -167,7 +181,12 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
                                 rows={3}
                             />
                             <div className="flex gap-2">
-                                <Button size="sm" className="rounded" variant="primary" onClick={handleEditSave}>
+                                <Button
+                                    size="sm"
+                                    className="rounded"
+                                    variant="primary"
+                                    onClick={handleEditSave}
+                                >
                                     {isLoading ? 'Lade...' : 'Kommentar speichern'}
                                 </Button>
                                 <Button
@@ -191,7 +210,10 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
                         <Button
                             onClick={() => setReplying(!replying)}
                             variant="link"
-                            className={cn('text-sm flex gap-2', replying ? 'text-rose-500' : 'text-primary')}
+                            className={cn(
+                                'text-sm flex gap-2',
+                                replying ? 'text-rose-500' : 'text-primary',
+                            )}
                         >
                             {replying ? <TbCancel /> : <BsReply />}
                             {replying ? 'Antwort abbrechen' : 'Antworten'}

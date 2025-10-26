@@ -26,15 +26,15 @@ const appName = import.meta.env.VITE_APP_NAME || "Toby's Rezeptbuch";
 // async function bootstrap() {
 //     await axios.get('/sanctum/csrf-cookie');
 
-    createInertiaApp({
-        title: (title) => `${title} - ${appName}`,
-        resolve: (name) =>
-            resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
-        setup({ el, App, props }) {
-            createRoot(el).render(<App {...props} />);
-        },
-        progress: { color: '#047857' },
-    });
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) =>
+        resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
+    setup({ el, App, props }) {
+        createRoot(el).render(<App {...props} />);
+    },
+    progress: { color: '#047857' },
+});
 // }
 
 // bootstrap();

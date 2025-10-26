@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 interface PreparationInstructionsProps {
     recipe: Recipe;
-    className?: string
+    className?: string;
 }
 
 /**
@@ -14,13 +14,14 @@ interface PreparationInstructionsProps {
  * @param {className} props.className - A class name to apply to the component.
  * @returns {JSX.Element} - The rendered component.
  */
-export default function PreparationInstructions({ recipe, className }: PreparationInstructionsProps) {
-    
+export default function PreparationInstructions({
+    recipe,
+    className,
+}: PreparationInstructionsProps) {
     if (!recipe.preparation_instructions) return null;
 
     return (
-
-        <div className={cn("flex", className)}>
+        <div className={cn('flex', className)}>
             <div className="w-full max-w-4xl mx-auto flex flex-col gap-2">
                 <h4 className="font-medium text-xl">Zubereitung</h4>
                 <div className="flex flex-col gap-2">
@@ -28,6 +29,5 @@ export default function PreparationInstructions({ recipe, className }: Preparati
                 </div>
             </div>
         </div>
-
     );
 }

@@ -4,8 +4,8 @@ import { Recipe } from '@/types/Recipe';
 import { cn } from '@/lib/utils';
 
 interface RecipeInfoBlockProps {
-    recipe: Recipe
-    className?: string
+    recipe: Recipe;
+    className?: string;
 }
 
 /**
@@ -14,9 +14,9 @@ interface RecipeInfoBlockProps {
  * @param {Recipe} recipe - The recipe to display.
  * @returns {JSX.Element} - The rendered component.
  */
-export default function RecipeInfoBlock ({ recipe, className }: RecipeInfoBlockProps) {
+export default function RecipeInfoBlock({ recipe, className }: RecipeInfoBlockProps) {
     return (
-        <div className={cn("w-full flex flex-col", className)}>
+        <div className={cn('w-full flex flex-col', className)}>
             <div className="relative w-full flex flex-row justify-between items-center">
                 <div>
                     <h4 className="font-medium text-sm  text-gray-400 dark:text-gray-600">
@@ -26,9 +26,7 @@ export default function RecipeInfoBlock ({ recipe, className }: RecipeInfoBlockP
                 </div>
                 <ContextMenu recipe={recipe} dotStyle="vertical" />
             </div>
-            <p className="mb-3 text-gray-800 dark:text-gray-200">
-                {recipe.description}
-            </p>
+            <p className="mb-3 text-gray-800 dark:text-gray-200">{recipe.description}</p>
         </div>
-    )
+    );
 }

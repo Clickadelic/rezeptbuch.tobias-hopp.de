@@ -1,6 +1,6 @@
-import Avatar from "@/components/reusables/Avatar";
-import { Recipe } from "@/types/Recipe";
-import { toHumanDate } from "@/lib/utils";
+import Avatar from '@/components/reusables/Avatar';
+import { Recipe } from '@/types/Recipe';
+import { toHumanDate } from '@/lib/utils';
 
 interface AvatarBlockProps {
     recipe: Recipe;

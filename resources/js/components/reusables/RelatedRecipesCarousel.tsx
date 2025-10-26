@@ -26,13 +26,15 @@ export default function RelatedRecipesCarousel({
     itemClassName,
 }: RelatedRecipesCarouselProps) {
     return (
-
-        <div className={cn("flex flex-col gap-5 mb-12", className)}>
+        <div className={cn('flex flex-col gap-5 mb-12', className)}>
             <h4 className="text-xl">Weiteres aus der Kategorie: {categoryName}</h4>
             <Carousel
                 recipes={related}
-                carouselClassName={cn("gap-5 rounded-lg bg-white dark:bg-gray-800", carouselClassName)}
-                itemClassName={cn("card", itemClassName)}
+                carouselClassName={cn(
+                    'gap-5 rounded-lg bg-white dark:bg-gray-800',
+                    carouselClassName,
+                )}
+                itemClassName={cn('card', itemClassName)}
             />
         </div>
     );

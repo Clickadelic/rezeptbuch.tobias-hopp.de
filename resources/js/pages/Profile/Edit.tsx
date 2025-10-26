@@ -16,10 +16,7 @@ export default function Edit({ mustVerifyEmail, status }: SharedPageProps) {
         <NoSidebarsLayout title="Profil">
             <div className="mx-auto max-w-lg space-y-4">
                 <UpdateAvatarForm />
-                <UpdateProfileInformationForm
-                    mustVerifyEmail={mustVerifyEmail}
-                    status={status}
-                />
+                <UpdateProfileInformationForm mustVerifyEmail={mustVerifyEmail} status={status} />
                 <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
                 <UpdatePasswordForm className="w-full" />
                 <hr className="my-5 bg-gray-300 dark:bg-gray-700" />

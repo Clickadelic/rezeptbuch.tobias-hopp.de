@@ -18,7 +18,7 @@ export default function Community() {
         <FullWidthLayout title="Community">
             <div className="grid grid-cols-5 gap-3">
                 {users?.map((user: any) => (
-                    <UserCard key={user.id} name={user.name}  avatarUrl={user.avatar}  />
+                    <UserCard key={user.id} name={user.name} avatarUrl={user.avatar} />
                 ))}
             </div>
         </FullWidthLayout>

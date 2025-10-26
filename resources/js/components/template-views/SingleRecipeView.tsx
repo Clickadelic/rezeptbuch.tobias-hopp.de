@@ -25,7 +25,6 @@ interface ShowRecipeProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
-
     const { related } = usePage<SharedPageProps>().props;
 
     return (
@@ -41,7 +40,10 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
             <CommentsDirectory recipeId={recipe.id!} />
-            <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
+            <RelatedRecipesCarousel
+                related={related as Recipe[]}
+                categoryName={recipe.category?.name}
+            />
         </div>
     );
 }

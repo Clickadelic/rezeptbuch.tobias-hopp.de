@@ -64,7 +64,12 @@ export default function UpdateProfileInformation({
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <p className="text-sm text-gray-500">
                         Deine E-Mail ist nicht verifiziert.{' '}
-                        <Link href={route('verification.send')} method="post" as="button" className="underline text-indigo-500">
+                        <Link
+                            href={route('verification.send')}
+                            method="post"
+                            as="button"
+                            className="underline text-indigo-500"
+                        >
                             Erneut senden
                         </Link>
                     </p>

@@ -39,7 +39,7 @@ export const recipesMegaMenu = [
             {
                 icon: IconMap['hauptgericht'],
                 title: 'Hauptgerichte',
-                href: route('recipes.search', { search: 'Hauptgerichte' }),
+                href: route('recipes.search', { search: 'Hauptgericht' }),
                 description: 'für den großen Hunger',
             },
             {   

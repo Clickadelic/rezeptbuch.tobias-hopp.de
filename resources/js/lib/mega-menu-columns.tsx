@@ -23,7 +23,7 @@ export const recipesMegaMenu = [
                 icon: <BsJournalBookmark className="text-primary" />,
                 title: 'Alle Rezepte',
                 href: '/rezepte',
-                description: 'Alle Rezepte in der Übersicht.',
+                description: 'Alle Rezepte in der Übersicht',
             }
         ],
     },
@@ -51,7 +51,6 @@ export const recipesMegaMenu = [
         ],
     },
     {
-
         items: [
             {
                 icon: IconMap['cocktail'],
@@ -77,7 +76,8 @@ export const recipesMegaMenu = [
 ];
 
 export const featuredRecipes = {
-    title: 'Freie Box',
-    description: 'Lorem Ipsum dolor sit amet consectutor.',
-    href: '/dashboard',
+    icon: <RiAccountPinBoxLine className="text-primary" />,
+    title: 'Empfehlung',
+    description: 'Das neueste Rezept.',
+    href: '#',
 };

@@ -83,11 +83,11 @@ const Content = ({
                 leaveTo="opacity-0 scale-95"
             >
                 <div
-                    className={`absolute left-0 z-50 shadow-lg mt-2 ${alignmentClasses} ${widthClasses}`}
+                    className={`absolute left-0 z-50 shadow-lg mt-3 ${alignmentClasses} ${widthClasses}`}
                     onClick={() => setOpen(false)}
                 >
-                    <div className={`bg-white/30 dark:bg-gray-900/30 pl-1 pr-1 pb-1 rounded-bl-lg rounded-br-lg ` + contentClasses}>
-                        <div className="p-1 bg-white dark:bg-gray-800 rounded-bl-md rounded-br-md">{children}</div>
+                    <div className={`bg-white/30 dark:bg-gray-900/30 p-1 rounded-lg ` + contentClasses}>
+                        <div className="p-1 bg-white dark:bg-gray-800 rounded-md">{children}</div>
                     </div>
                 </div>
             </Transition>

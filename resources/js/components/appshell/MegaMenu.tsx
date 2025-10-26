@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
-
+import { Transition } from '@headlessui/react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 
 
@@ -89,84 +89,92 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                     )}
                 />
             </button>
-
-            {isOpen && (
-                <div className="hidden sm:block absolute top-full w-screen z-50 max-w-5xl mx-auto sm:-left-72">
-                    <div className="overflow-hidden shadow-lg rounded-b-xl px-1 pb-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
-                        <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-b-lg">
-                            <div className="grid gap-4 p-4 md:grid-cols-4">
-                                {columns.map((section, idx) => (
-                                    <div key={idx} className="space-y-2">
-                                        {(section.title || section.categoryIcon) && (
-                                            <h3 className="text-base flex gap-2 items-center ml-3.5">
-                                                {section.categoryIcon}
-                                                {section.title}
-                                            </h3>
-                                        )}
-                                        {!section.title && !section.categoryIcon && (
-                                            <div className="h-6"></div>
-                                        )}
-                                        <ul className="space-y-3">
-                                            {section.items.map((item, itemIdx) => (
-                                                <li key={itemIdx}>
-                                                    <Link
-                                                        href={item.href}
-                                                        className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900"
-                                                    >
-                                                        <div className="flex flex-col gap-1">
-                                                            <div className="flex items-center gap-2">
-                                                                <div className="flex gap-2 items-center">
-                                                                    {item.icon}
-                                                                    <span className="text-md font-medium group-hover:text-primary">
-                                                                        {item.title}
-                                                                    </span>
-                                                                </div>
-                                                                <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+            <Transition
+                show={isOpen}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+            >
+            <div className="hidden sm:block absolute top-full w-screen z-50 mt-1 max-w-5xl mx-auto sm:-left-72">
+                <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
+                    <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
+                        <div className="grid gap-4 p-4 md:grid-cols-4">
+                            {columns.map((section, idx) => (
+                                <div key={idx} className="space-y-2">
+                                    {(section.title || section.categoryIcon) && (
+                                        <h3 className="text-base flex gap-2 items-center ml-3.5">
+                                            {section.categoryIcon}
+                                            {section.title}
+                                        </h3>
+                                    )}
+                                    {!section.title && !section.categoryIcon && (
+                                        <div className="h-6"></div>
+                                    )}
+                                    <ul className="space-y-3">
+                                        {section.items.map((item, itemIdx) => (
+                                            <li key={itemIdx}>
+                                                <Link
+                                                    href={item.href}
+                                                    className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900"
+                                                >
+                                                    <div className="flex flex-col gap-1">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="flex gap-2 items-center">
+                                                                {item.icon}
+                                                                <span className="text-md font-medium group-hover:text-primary">
+                                                                    {item.title}
+                                                                </span>
                                                             </div>
-                                                            {item.description && (
-                                                                <p className="text-md font-la-belle-aurore text-gray-600 dark:text-gray-300">
-                                                                    {item.description}
-                                                                </p>
-                                                            )}
+                                                            <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                                                         </div>
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
+                                                        {item.description && (
+                                                            <p className="text-md font-la-belle-aurore text-gray-600 dark:text-gray-300">
+                                                                {item.description}
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
 
-                                {featured && (
-                                    <div className="rounded-lg bg-gray-100 dark:bg-gray-900 p-4">
-                                        <div className="flex flex-col justify-between h-full">
-                                            <div>
-                                                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                                    {featured.title}
-                                                </h3>
-                                                <p className="text-sm text-gray-600 dark:text-gray-400">
-                                                    {featured.description}
-                                                </p>
-                                            </div>
-                                            <Link
-                                                href={featured.href}
-                                                className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900 mt-3"
-                                            >
-                                                <div className="flex items-center gap-2">
-                                                    {featured.icon}
-                                                    <span className="text-md font-medium group-hover:text-primary">
-                                                        {featured.title}
-                                                    </span>
-                                                    <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                                                </div>
-                                            </Link>
+                            {featured && (
+                                <div className="rounded-lg bg-gray-100 dark:bg-gray-900 p-4">
+                                    <div className="flex flex-col justify-between h-full">
+                                        <div>
+                                            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                {featured.title}
+                                            </h3>
+                                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                                                {featured.description}
+                                            </p>
                                         </div>
+                                        <Link
+                                            href={featured.href}
+                                            className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900 mt-3"
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                {featured.icon}
+                                                <span className="text-md font-medium group-hover:text-primary">
+                                                    {featured.title}
+                                                </span>
+                                                <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                                            </div>
+                                        </Link>
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
-            )}
+            </div>
+
+            </Transition>
         </div>
     );
 }

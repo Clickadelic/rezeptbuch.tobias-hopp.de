@@ -12,23 +12,26 @@ import { RxExit } from 'react-icons/rx';
 import { Button } from '@/components/ui/button';
 import { BiCategory } from "react-icons/bi";
 import { IconMap } from './icon-map';
-
+import { BsCardList } from "react-icons/bs";
 export const megaMenuSections = [
     {
-        title: 'Menü',
+        title: 'Rezepte',
         categoryIcon: <BsJournalBookmark className="mt-1 text-primary" />,
         items: [
-            {
+            {   
+                icon: <BsCardList className="mt-1 text-primary" />,
                 title: 'Alle Rezepte',
                 href: '/rezepte',
                 description: 'Alle Rezepte in der Übersicht.',
             },
             {
+                icon: <TbSalt className="mt-1 text-primary" />,
                 title: 'Zutaten',
                 href: '/zutaten',
                 description: 'Alles was rein kommt',
             },
             {
+                icon: <LuUsersRound className="mt-1 text-primary" />,
                 title: 'Community',
                 href: '/community',
                 description: 'Alle, die zum Rezeptbuch beitragen.',
@@ -61,7 +64,7 @@ export const megaMenuSections = [
     },
     {
         title: 'Snacks & Getränke',
-        categoryIcon: <BsJournalBookmark />,
+        categoryIcon: <BiCategory className="mt-1 text-primary" />,
         items: [
             {
                 icon: IconMap['cocktail'],
@@ -86,7 +89,7 @@ export const megaMenuSections = [
 ];
 
 export const featured = {
-    title: 'Werde zum Starkoch',
-    description: 'Erreiche die Rezeptbuch-Ziele und erreiche den Rang des Chefkoch\'s.',
+    title: 'Freie Box',
+    description: 'Lorem Ipsum dolor sit amet consectutor.',
     href: '/dashboard',
 };

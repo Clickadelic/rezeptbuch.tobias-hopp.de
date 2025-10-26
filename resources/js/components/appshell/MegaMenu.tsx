@@ -1,10 +1,8 @@
-'use client';
+"use client";
 
 import { useState, useRef } from 'react';
 import { Link } from '@inertiajs/react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import NavButton from '@/components/reusables/NavButton';
 
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
@@ -19,6 +17,7 @@ import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 import { Button } from '@/components/ui/button';
 
+import { cn } from '@/lib/utils';
 
 interface MegaMenuItem {
     icon?: React.ReactNode;
@@ -96,7 +95,7 @@ export default function MegaMenu({ sections, featured }: MegaMenuProps) {
                                                         href={item.href}
                                                         className="group block space-y-1 rounded-md p-2 transition-colors hover:bg-muted"
                                                     >
-                                                        <div className="flex flex-start items-start">
+                                                        <div className="flex flex-start items-center">
                                                             <div className="px-3">{item.icon}</div>
                                                             <div className="asd">
                                                                 <div className="flex items-center gap-2">

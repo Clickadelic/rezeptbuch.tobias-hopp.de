@@ -67,6 +67,6 @@ class ProfileController extends Controller
             $user->save();
         }
 
-        return response()->json(['success' => 'Avatar gelöscht']);
+        return redirect()->back()->with('success', 'Avatar gelöscht');
     }
 }

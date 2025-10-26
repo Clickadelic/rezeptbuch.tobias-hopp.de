@@ -26,14 +26,14 @@ interface MegaMenuItem {
     description?: string;
 }
 
-interface MegaMenuSection {
+interface MegaMenuColumn {
     categoryIcon?: React.ReactNode;
-    title: string;
+    title?: string;
     items: MegaMenuItem[];
 }
 
 interface MegaMenuProps {
-    sections: MegaMenuSection[];
+    columns: MegaMenuColumn[];
     featured?: {
         title: string;
         description: string;
@@ -42,7 +42,7 @@ interface MegaMenuProps {
     };
 }
 
-export default function MegaMenu({ sections, featured }: MegaMenuProps) {
+export default function MegaMenu({ columns, featured }: MegaMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout>();
 
@@ -78,34 +78,43 @@ export default function MegaMenu({ sections, featured }: MegaMenuProps) {
                 />
             </button>
             {isOpen && (
-                <div className="absolute top-full z-50 w-screen max-w-6xl mx-auto md:-translate-x-2/5 xl:-translate-x-1/4">
-                    <div className="overflow-hidden border border-border shadow-lg  rounded-bl-xl rounded-br-xl p-1 bg-white/30 dark:bg-gray-900 backdrop-blur">
-                        <div className="overflow-hidden">
-                            <div className="grid gap-8 p-4 md:grid-cols-4">
-                                {sections.map((section, idx) => (
-                                    <div key={idx} className="space-y-4 bg-white p-4 rounded-xl">
-                                        <h3 className="text-lg flex gap-2">
-                                            {section.categoryIcon}
-                                            {section.title}
-                                        </h3>
+                <div className="absolute top-full z-50 w-screen max-w-5xl -translate-x-1/4">
+                    <div className="overflow-hidden shadow-lg  rounded-bl-xl rounded-br-xl px-1 pb-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
+                        <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-bl-lg rounded-br-lg">
+                            <div className="grid gap-4 px-4 pb-4 pt-2 md:grid-cols-4">
+                                {columns.map((section, idx) => (
+                                    <div key={idx} className="space-y-2">
+                                        {(section.title || section.categoryIcon) && (
+                                            <h3 className="text-lg flex">
+                                                {section.categoryIcon}
+                                                {section.title}
+                                            </h3>  
+                                        )}
+                                        {(!section.title && !section.categoryIcon) && (
+                                            <div className="text-lg flex h-[1.75rem]"></div>  
+                                        )}
+                                        
                                         <ul className="space-y-3">
                                             {section.items.map((item, itemIdx) => (
                                                 <li key={itemIdx}>
                                                     <Link
                                                         href={item.href}
-                                                        className="group block space-y-1 rounded-md p-2 transition-colors hover:bg-muted"
+                                                        className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900"
                                                     >
-                                                        <div className="flex flex-start items-center">
-                                                            <div className="px-3">{item.icon}</div>
-                                                            <div className="asd">
+                                                        <div className="flex flex-start items-start">
+                                                            
+                                                            <div className="flex flex-col gap-1">
                                                                 <div className="flex items-center gap-2">
-                                                                    <span className="text-sm font-medium group-hover:text-primary">
-                                                                        {item.title}
-                                                                    </span>
-                                                                    <ArrowRight className="-mt-[2px] h-3 w-3 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                                                                    <div className="flex gap-2 justify-start items-center">
+                                                                        <span>{item.icon}</span>
+                                                                        <span className="text-md font-medium group-hover:text-primary">
+                                                                            {item.title}
+                                                                        </span>
+                                                                    </div>
+                                                                    <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                                                                 </div>
                                                                 {item.description && (
-                                                                    <p className="text-xs leading-relaxed text-gray-600">
+                                                                    <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                                                                         {item.description}
                                                                     </p>
                                                                 )}
@@ -119,7 +128,7 @@ export default function MegaMenu({ sections, featured }: MegaMenuProps) {
                                 ))}
 
                                 {featured && (
-                                    <div className="rounded-lg bg-secondary p-6">
+                                    <div className="rounded-lg bg-gray-100 dark:bg-gray-900 p-6">
                                         <div className="space-y-3">
                                             <h3 className="text-sm font-semibold">
                                                 {featured.title}
@@ -129,7 +138,7 @@ export default function MegaMenu({ sections, featured }: MegaMenuProps) {
                                             </p>
                                             <Link
                                                 href={featured.href}
-                                                className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+                                                className="inline-flex items-center gap-2 text-sm font-medium text-accent "
                                             >
                                                 Learn more
                                                 <ArrowRight className="h-4 w-4" />

@@ -12,9 +12,10 @@ import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
 import Avatar from '@/components/reusables/Avatar';
-
+import { LuUsersRound } from 'react-icons/lu';
 import MegaMenu from '@/components/appshell/MegaMenu';
-import { megaMenuSections, featured } from '@/lib/mega-menu-sections';
+
+import { recipesMegaMenu, featuredRecipes } from '@/lib/mega-menu-columns';
 
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
@@ -59,7 +60,23 @@ const Header = () => {
                             >
                                 Start
                             </NavLink>
-                            <MegaMenu sections={megaMenuSections} featured={featured} />
+                            <MegaMenu columns={recipesMegaMenu} featured={featuredRecipes} />
+                            <NavLink
+                                href="/zutaten"
+                                active={window.location.pathname.startsWith('/zutaten')}
+                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<TbSalt />}
+                            >
+                                Zutaten
+                            </NavLink>
+                            <NavLink
+                                href="/community"
+                                active={window.location.pathname.startsWith('/community')}
+                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<LuUsersRound />}
+                            >
+                                Community
+                            </NavLink>
                         </div>
                     </div>
                     <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
@@ -67,8 +84,8 @@ const Header = () => {
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md">
-                                            <Button type="button" variant="primary">
+                                        <span className="inline-flex rounded-md mt-1">
+                                            <Button type="button" variant="flat">
                                                 <Avatar url={auth?.user?.avatar} />
                                                 {auth.user?.name}
                                                 <svg

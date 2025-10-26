@@ -12,7 +12,7 @@ class CommentController extends Controller
 {   
     public function index(string $recipeId): JsonResponse
     {
-        $perPage = 5; // Anzahl Kommentare pro Seite
+        $perPage = 5;
 
         $comments = Comment::with(['user', 'replies.user'])
             ->where('recipe_id', $recipeId)

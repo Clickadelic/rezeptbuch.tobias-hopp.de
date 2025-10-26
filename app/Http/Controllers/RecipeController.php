@@ -9,15 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-use App\Http\Resources\CommentResource;
-
 use App\Models\Recipe;
-use App\Models\User;
 use App\Models\Category;
 use App\Models\Ingredient;
 use App\Models\Media;
-use App\Models\Comment;
-use App\Models\Rating;
 
 use App\Http\Requests\StoreRecipeRequest;
 
@@ -368,10 +363,6 @@ class RecipeController extends Controller
             'filters' => ['search' => $query],
         ]);
     }
-
-
-
-
 
     /* ---------------------------------------------- */
     /* 🧩 Helper Methods */

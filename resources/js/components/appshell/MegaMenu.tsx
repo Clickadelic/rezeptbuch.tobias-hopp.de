@@ -73,7 +73,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
             <button
                 onClick={toggleMenu}
                 className={cn(
-                    'flex pt-4 pb-4 px-1 items-center gap-2 hover:cursor-pointer focus:outline-none border-b-2 border-transparent text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400',
+                    'flex mt-px pt-4 pb-4 px-1 items-center gap-2 hover:cursor-pointer focus:outline-none border-b-2 border-transparent text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400',
                     isOpen ? 'text-primary' : 'text-gray-800 dark:text-gray-200',
                     active ? 'border-b-primary' : 'border-b-transparent',
                 )}

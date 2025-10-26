@@ -144,7 +144,7 @@ const Header = () => {
                                 </Dropdown>
                             </div>
                         ) : (
-                            <div className="space-x-1 sm:space-x-2 md:space-x-3">
+                            <div className="flex gap-3">
                                 <NavButton
                                     href="/register"
                                     className="border border-gray-800 text-gray-800 hover:text-gray-600 hover:border-gray-600 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"

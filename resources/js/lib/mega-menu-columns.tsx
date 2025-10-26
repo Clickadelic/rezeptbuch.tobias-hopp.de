@@ -10,21 +10,20 @@ import { LuUsersRound } from 'react-icons/lu';
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 import { Button } from '@/components/ui/button';
-import { BiCategory } from "react-icons/bi";
+import { BiCategory } from 'react-icons/bi';
 import { IconMap } from './icon-map';
-import { BsCardList } from "react-icons/bs";
-
+import { BsCardList } from 'react-icons/bs';
 
 export const recipesMegaMenu = [
     {
         title: 'Rezepte',
         items: [
-            {   
+            {
                 icon: <BsJournalBookmark className="text-primary" />,
                 title: 'Alle Rezepte',
                 href: '/rezepte',
-                description: 'Alle Rezepte in der Übersicht',
-            }
+                description: 'Alle Rezepte als Übersicht',
+            },
         ],
     },
     {
@@ -42,7 +41,7 @@ export const recipesMegaMenu = [
                 href: route('recipes.search', { search: 'Hauptgericht' }),
                 description: 'für den großen Hunger',
             },
-            {   
+            {
                 icon: IconMap['nachtisch'],
                 title: 'Nachtisch',
                 href: route('recipes.search', { search: 'Nachtisch' }),

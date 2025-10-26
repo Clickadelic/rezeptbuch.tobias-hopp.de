@@ -48,7 +48,7 @@ const Trigger = ({ children }: PropsWithChildren) => {
 const Content = ({
     align = 'right',
     width = '48',
-    contentClasses = 'py-1 bg-white dark:bg-gray-800 border-b-2 border-b-primary dark:border-b-primary',
+    contentClasses = 'bg-white dark:bg-gray-800',
     children,
 }: PropsWithChildren<{
     align?: 'left' | 'right';
@@ -83,10 +83,12 @@ const Content = ({
                 leaveTo="opacity-0 scale-95"
             >
                 <div
-                    className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
+                    className={`absolute left-0 z-50 shadow-lg mt-2 ${alignmentClasses} ${widthClasses}`}
                     onClick={() => setOpen(false)}
                 >
-                    <div className={`rounded ` + contentClasses}>{children}</div>
+                    <div className={`bg-white/30 dark:bg-gray-900/30 pl-1 pr-1 pb-1 rounded-bl-lg rounded-br-lg ` + contentClasses}>
+                        <div className="p-1 bg-white dark:bg-gray-800 rounded-bl-md rounded-br-md">{children}</div>
+                    </div>
                 </div>
             </Transition>
         </>
@@ -98,7 +100,7 @@ const DropdownLink = ({ className = '', children, ...props }: InertiaLinkProps) 
         <Link
             {...props}
             className={
-                'block w-full px-4 py-2 text-start text-sm leading-5 text-gray-800 dark:text-gray-200 transition duration-150 ease-in-out focus:bg-gray-100 focus:outline-none ' +
+                'block w-full py-2 px-3 text-start text-md text-gray-800 dark:text-gray-200 hover:text-primary hover:bg-gray-100 dark:hover:text-primary dark:hover:bg-gray-900 transition duration-150 ease-in-out focus:bg-gray-100 dark:focus:bg-gray-900 rounded-md focus:outline-none ' +
                 className
             }
         >

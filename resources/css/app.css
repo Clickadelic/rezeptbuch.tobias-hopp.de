@@ -159,11 +159,17 @@ a.target-white[target='_blank']:after {
 }
 
 @keyframes dropdown {
-  0%   { transform: scaleY(0); opacity: 0; }
-  100% { transform: scaleY(1); opacity: 1; }
+    0% {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
 }
 
 .animate-dropdown {
-  animation: dropdown 0.2s ease-out forwards;
-  transform-origin: top;
+    animation: dropdown 0.2s ease-out forwards;
+    transform-origin: top;
 }

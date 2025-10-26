@@ -99,11 +99,10 @@ export default function RecipesTable({
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-[48px]">Status</TableHead>
+                            <TableHead className="w-[44px]">Ansehen</TableHead>
                             <TableHead>Name</TableHead>
-                            <TableHead className="text-center">Ansehen</TableHead>
                             <TableHead className="hidden sm:table-cell">Kategorie</TableHead>
                             <TableHead className="hidden sm:table-cell">Schwierigkeit</TableHead>
-                            <TableHead className="hidden sm:table-cell">Bewertung</TableHead>
                             <TableHead className="hidden sm:table-cell">Benutzer</TableHead>
                             <TableHead className="text-right">Aktion</TableHead>
                         </TableRow>
@@ -119,26 +118,26 @@ export default function RecipesTable({
                                     <PublishSwitch
                                         recipe={recipe}
                                         status={recipe.status as 'draft' | 'published'}
+                                        className="mt-2"
                                     />
                                 </TableCell>
-                                <TableCell className="cursor-default">{recipe.name}</TableCell>
                                 <TableCell className="text-center">
                                     <Link
                                         href={route('recipes.show', recipe.slug)}
-                                        className="asd"
-                                        title="ansehen"
+                                        className="p-1 bg-transparent border border-primary text-primary rounded-md hover:bg-primary hover:text-white inline-flex items-center justify-center"
+                                        title="Rezept ansehen"
                                     >
-                                        <IoEyeOutline />
+                                        <IoEyeOutline className="size-4" />
                                     </Link>
                                 </TableCell>
-                                <TableCell className="cursor-default">
+                                <TableCell className="cursor-default truncate max-w-32">
+                                    {recipe.name}
+                                </TableCell>
+                                <TableCell className="cursor-default hidden sm:table-cell">
                                     {recipe.category?.name}
                                 </TableCell>
                                 <TableCell className="cursor-default hidden sm:table-cell">
                                     {recipe.difficulty}
-                                </TableCell>
-                                <TableCell className="cursor-default hidden sm:table-cell">
-                                    {recipe.rating}
                                 </TableCell>
                                 <TableCell className="cursor-default hidden sm:table-cell">
                                     {recipe.user?.name}

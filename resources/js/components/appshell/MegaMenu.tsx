@@ -1,21 +1,11 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
+
 import { ChevronDown, ArrowRight } from 'lucide-react';
 
-import { BsJournalBookmark } from 'react-icons/bs';
-import { FiCheckCircle } from 'react-icons/fi';
-import { BsDoorOpen } from 'react-icons/bs';
-import { RiDashboardHorizontalLine } from 'react-icons/ri';
-import { RiAccountPinBoxLine } from 'react-icons/ri';
-import { BiExit } from 'react-icons/bi';
-import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { TbSalt } from 'react-icons/tb';
-import { LuUsersRound } from 'react-icons/lu';
-import { RiHomeLine } from 'react-icons/ri';
-import { RxExit } from 'react-icons/rx';
-import { Button } from '@/components/ui/button';
 
 import { cn } from '@/lib/utils';
 
@@ -33,6 +23,9 @@ interface MegaMenuColumn {
 }
 
 interface MegaMenuProps {
+    icon?: React.ReactNode;
+    title: string;
+    className?: string;
     columns: MegaMenuColumn[];
     featured?: {
         title: string;
@@ -42,34 +35,53 @@ interface MegaMenuProps {
     };
 }
 
-export default function MegaMenu({ columns, featured }: MegaMenuProps) {
-    const [isOpen, setIsOpen] = useState(false);
-    const timeoutRef = useRef<NodeJS.Timeout>();
+export default function MegaMenu({ icon, title, className, columns, featured }: MegaMenuProps) {
+    const [active, setActive] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const menuRef = useRef<HTMLDivElement>(null);
 
-    const handleMouseEnter = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
+    const url = usePage().url;
+
+    // Close click outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+
+        
+    }, []);
+    // Bottom border
+    useEffect(() => {
+        if(url.startsWith('/rezepte')) {
+            setActive(true);
         }
-        setIsOpen(true);
-    };
+    }, []);
 
-    const handleMouseLeave = () => {
-        timeoutRef.current = setTimeout(() => {
-            setIsOpen(false);
-        }, 150);
-    };
+    const toggleMenu = () => setIsOpen((prev) => !prev);
 
     return (
-        <div className="relative mt-px mx-auto inline-flex items-center justify-between md:gap-2 sm:px-1 md:px-2 py-1 rounded-sm " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div
+            ref={menuRef}
+            className={cn(
+                "relative inline-block mx-auto items-center justify-between md:gap-2 sm:px-1 md:px-2 rounded-sm"
+            )}
+        >
             <button
+                onClick={toggleMenu}
                 className={cn(
-                    'flex items-center gap-2 hover:cursor-pointer',
-                    isOpen ? 'text-primary' : ' text-gray-800 dark:text-gray-200',
+                    'flex pt-4 pb-4 px-1 items-center gap-2 hover:cursor-pointer focus:outline-none border-b-2 border-transparent text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400',
+                    isOpen ? 'text-primary' : 'text-gray-800 dark:text-gray-200',
+                    active ? 'border-b-primary' : 'border-b-transparent',
                 )}
-                title="Zu den Rezepten"
+                title={title}
+                aria-label={title}
             >
-                <BsJournalBookmark className="size-4" />
-                Rezepte
+                <span className="hidden md:inline-flex">{icon}</span>
+                <span className="inline-flex">{title}</span>
                 <ChevronDown
                     className={cn(
                         'h-4 w-4 transition-transform duration-200 ease-in-out',
@@ -77,23 +89,23 @@ export default function MegaMenu({ columns, featured }: MegaMenuProps) {
                     )}
                 />
             </button>
+
             {isOpen && (
-                <div className="absolute top-full -left-36 z-50 w-screen max-w-4xl">
-                    <div className="overflow-hidden shadow-lg  rounded-bl-xl rounded-br-xl px-1 pb-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
-                        <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-bl-lg rounded-br-lg">
-                            <div className="grid gap-4 px-4 pb-3 pt-2 md:grid-cols-4">
+                <div className="hidden sm:block absolute top-full w-screen z-50 max-w-5xl mx-auto sm:-left-72">
+                    <div className="overflow-hidden shadow-lg rounded-b-xl px-1 pb-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
+                        <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-b-lg">
+                            <div className="grid gap-4 p-4 md:grid-cols-4">
                                 {columns.map((section, idx) => (
                                     <div key={idx} className="space-y-2">
                                         {(section.title || section.categoryIcon) && (
-                                            <h3 className="text-base flex">
+                                            <h3 className="text-base flex gap-2 items-center ml-3.5">
                                                 {section.categoryIcon}
                                                 {section.title}
-                                            </h3>  
+                                            </h3>
                                         )}
-                                        {(!section.title && !section.categoryIcon) && (
-                                            <div className="text-lg flex h-[1.75rem]"></div>  
+                                        {!section.title && !section.categoryIcon && (
+                                            <div className="h-6"></div>
                                         )}
-                                        
                                         <ul className="space-y-3">
                                             {section.items.map((item, itemIdx) => (
                                                 <li key={itemIdx}>
@@ -101,24 +113,21 @@ export default function MegaMenu({ columns, featured }: MegaMenuProps) {
                                                         href={item.href}
                                                         className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900"
                                                     >
-                                                        <div className="flex flex-start items-start">
-                                                            
-                                                            <div className="flex flex-col gap-1">
-                                                                <div className="flex items-center gap-2">
-                                                                    <div className="flex gap-2 justify-start items-center">
-                                                                        <span>{item.icon}</span>
-                                                                        <span className="text-md font-medium group-hover:text-primary">
-                                                                            {item.title}
-                                                                        </span>
-                                                                    </div>
-                                                                    <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                                                        <div className="flex flex-col gap-1">
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="flex gap-2 items-center">
+                                                                    {item.icon}
+                                                                    <span className="text-md font-medium group-hover:text-primary">
+                                                                        {item.title}
+                                                                    </span>
                                                                 </div>
-                                                                {item.description && (
-                                                                    <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                                                                        {item.description}
-                                                                    </p>
-                                                                )}
+                                                                <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                                                             </div>
+                                                            {item.description && (
+                                                                <p className="text-md font-la-belle-aurore text-gray-600 dark:text-gray-300">
+                                                                    {item.description}
+                                                                </p>
+                                                            )}
                                                         </div>
                                                     </Link>
                                                 </li>
@@ -126,10 +135,11 @@ export default function MegaMenu({ columns, featured }: MegaMenuProps) {
                                         </ul>
                                     </div>
                                 ))}
+
                                 {featured && (
                                     <div className="rounded-lg bg-gray-100 dark:bg-gray-900 p-4">
-                                        <div className="h-full flex flex-col justify-between items-start">
-                                            <div className="asd">
+                                        <div className="flex flex-col justify-between h-full">
+                                            <div>
                                                 <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                                                     {featured.title}
                                                 </h3>
@@ -137,32 +147,18 @@ export default function MegaMenu({ columns, featured }: MegaMenuProps) {
                                                     {featured.description}
                                                 </p>
                                             </div>
-                                            <div className="asd">
-                                                <Link
-                                                    href={featured.href}
-                                                    className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900"
-                                                >
-                                                    <div className="flex flex-start items-start">
-                                                        
-                                                        <div className="flex flex-col gap-1">
-                                                            <div className="flex items-center gap-2">
-                                                                <div className="flex gap-2 justify-start items-center">
-                                                                    <span>{featured.icon}</span>
-                                                                    <span className="text-md font-medium group-hover:text-primary">
-                                                                        {featured.title}
-                                                                    </span>
-                                                                </div>
-                                                                <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                                                            </div>
-                                                            {featured.description && (
-                                                                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                                                                    {featured.description}
-                                                                </p>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            </div>
+                                            <Link
+                                                href={featured.href}
+                                                className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900 mt-3"
+                                            >
+                                                <div className="flex items-center gap-2">
+                                                    {featured.icon}
+                                                    <span className="text-md font-medium group-hover:text-primary">
+                                                        {featured.title}
+                                                    </span>
+                                                    <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                                                </div>
+                                            </Link>
                                         </div>
                                     </div>
                                 )}

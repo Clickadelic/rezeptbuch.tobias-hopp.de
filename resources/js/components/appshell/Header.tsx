@@ -56,7 +56,7 @@ const Header = () => {
                                 active={window.location.pathname === '/'}
                                 title="Zur Startseite"
                                 className="p-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<RiHomeLine className="size-4" />}
+                                icon={<RiHomeLine className="size-4 text-primary" />}
                             >
                                 Start
                             </NavLink>
@@ -65,7 +65,7 @@ const Header = () => {
                                 href="/zutaten"
                                 active={window.location.pathname.startsWith('/zutaten')}
                                 className="p-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<TbSalt className="size-4" />}
+                                icon={<TbSalt className="size-4 text-primary" />}
                             >
                                 Zutaten
                             </NavLink>
@@ -73,7 +73,7 @@ const Header = () => {
                                 href="/community"
                                 active={window.location.pathname.startsWith('/community')}
                                 className="p-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<LuUsersRound className="size-4" />}
+                                icon={<LuUsersRound className="size-4 text-primary" />}
                             >
                                 Community
                             </NavLink>
@@ -113,7 +113,7 @@ const Header = () => {
                                                 href="/admin"
                                                 className="flex gap-2"
                                             >
-                                                <MdOutlineAdminPanelSettings className="size-4 mt-1" />
+                                                <MdOutlineAdminPanelSettings className="size-4 mt-1 text-primary" />
                                                 Admin
                                             </Dropdown.Link>
                                         )}
@@ -121,14 +121,14 @@ const Header = () => {
                                             href="/dashboard"
                                             className="flex gap-2"
                                         >
-                                            <RiDashboardHorizontalLine className="size-4 mt-1" />
+                                            <RiDashboardHorizontalLine className="size-4 mt-1 text-primary" />
                                             Dashboard
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href="/profile"
                                             className="flex gap-2"
                                         >
-                                            <RiAccountPinBoxLine className="size-4 mt-1" />
+                                            <RiAccountPinBoxLine className="size-4 mt-1 text-primary" />
                                             Profil
                                         </Dropdown.Link>
                                         <Dropdown.Link
@@ -137,7 +137,7 @@ const Header = () => {
                                             as="button"
                                             className="flex gap-2 hover:cursor-pointer"
                                         >
-                                            <BiExit className="size-4 mt-1" />
+                                            <BiExit className="size-4 mt-1 text-primary" />
                                             Log Out
                                         </Dropdown.Link>
                                     </Dropdown.Content>

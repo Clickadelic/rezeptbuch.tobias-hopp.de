@@ -80,7 +80,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                 title={title}
                 aria-label={title}
             >
-                <span className="hidden md:inline-flex">{icon}</span>
+                <span className="hidden md:inline-flex text-primary">{icon}</span>
                 <span className="inline-flex">{title}</span>
                 <ChevronDown
                     className={cn(

@@ -4,8 +4,8 @@ import { SharedPageProps } from '@/types';
 import chefkochSrc from '@images/svg/Chef-Tobias.svg';
 import Carousel from '@/components/reusables/Carousel/Index';
 
-export default function ChefkochBlock() {
-    const recipes = usePage<SharedPageProps>().props.recipes;
+export default function DailyRecommendationsBlock() {
+    const recommendedRecipes = usePage<SharedPageProps>().props.recipes;
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3">
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
@@ -23,7 +23,7 @@ export default function ChefkochBlock() {
                 wrapperClassname="lg:mt-40 col-span-2"
                 carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
                 itemClassName="card"
-                recipes={recipes?.data}
+                recipes={recommendedRecipes?.data}
             />
         </div>
     );

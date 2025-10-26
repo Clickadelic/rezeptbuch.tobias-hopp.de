@@ -1,9 +1,9 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
-import CategoryBlock from '@/components/reusables/Blocks/CategoryBlock/Index';
+import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelectionsBlock/Index';
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
-import ChefkochBlock from '@/components/reusables/Blocks/ChefkochBlock';
-import ContactBlock from '@/components/reusables/Blocks/ContactBlock';
+import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
+
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 import { Link } from '@inertiajs/react';
@@ -36,11 +36,11 @@ export default function Frontpage() {
                     </Button>
                 }
             />
-            <CategoryBlock />
+            <CategorySelectionBlock />
             <Seperator />
             <AuthTeaserBlock />
             <Seperator />
-            <ChefkochBlock />
+            <DailyRecommendationsBlock />
             <Seperator style="info" />
             <FaqAccordeon />
         </FullWidthLayout>

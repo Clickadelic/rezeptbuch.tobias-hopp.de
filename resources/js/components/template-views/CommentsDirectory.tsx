@@ -3,19 +3,26 @@ import { Button } from '@/components/ui/button';
 
 import CommentItem from './CommentItem';
 import CommentForm from '@/components/forms/CommentForm';
-import Seperator from '@/components/reusables/Seperator';
 
 import { Comment } from '@/types/Comment';
 import { fetchComments } from '@/lib/comments';
+import { FaSpinner } from 'react-icons/fa6';
+
 import { cn } from '@/lib/utils';
 
 interface CommentsDirectoryProps {
     recipeId: string;
 }
 
+/**
+ * CommentsDirectory - displays a list of comments for a recipe
+ *
+ * @param {CommentsDirectoryProps} props - recipeId, onCommentAdded, onCommentDeleted
+ * @returns {JSX.Element} - a list of comments
+ */
 export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) {
     const [comments, setComments] = useState<Comment[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState(1);
 
@@ -41,45 +48,79 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
         setComments((prev) => [comment, ...prev]);
     };
 
-    return ( 
+    const handleCommentUpdated = (updatedComment: Comment) => {
+        setComments((prev) =>
+            prev.map((c) =>
+                c.id === updatedComment.id
+                    ? updatedComment
+                    : {
+                          ...c,
+                          replies: c.replies
+                              ? c.replies.map((r) =>
+                                    r.id === updatedComment.id ? updatedComment : r,
+                                )
+                              : [],
+                      },
+            ),
+        );
+    };
+
+    return (
         <div className="w-full max-w-4xl mx-auto flex flex-col gap-5">
-            
             <CommentForm recipeId={recipeId} onCommentAdded={handleCommentAdded} />
-            {loading && <div className="w-full flex flex-col items-center justify-center">Lade Kommentare...</div>}
             <div className="flex flex-col gap-2">
-                <h3 className={cn('text-lg flex gap-2',)}>{comments.length} Kommentar{comments.length === 1 ? '' : 'e'}</h3>
-                {comments.map((comment) => (
-                    <CommentItem
-                        key={comment.id}
-                        comment={comment}
-                        onCommentAdded={handleCommentAdded}
-                    />
-                ))}
+                <h3 className={cn('text-lg flex gap-2')}>
+                    {loading && (
+                        <>
+                            <FaSpinner className="animate-spin size-3 mt-2" />
+                            Lade Kommentare...
+                        </>
+                    )}
+                    {!loading && (
+                        <span>
+                            {comments.length} Kommentar
+                            {comments.length > 1 && 'e'}
+                        </span>
+                    )}
+                </h3>
+
+                {!loading &&
+                    comments.map((comment) => (
+                        <CommentItem
+                            key={comment.id}
+                            comment={comment}
+                            onCommentAdded={handleCommentAdded}
+                            onCommentDeleted={loadComments}
+                            onCommentUpdated={handleCommentUpdated}
+                        />
+                    ))}
             </div>
-            {/* Pagination */}
-            <div className="flex items-center justify-center gap-2 mt-4">
-                <Button
-                    disabled={page <= 1}
-                    type="button"
-                    variant="link"
-                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                    className="px-3 py-1 text-xs rounded transition-colors duration-200 dark:primary bg-gray-100 dark:bg-gray-900 dark:text-gray-200 text-gray-800 hover:bg-primary hover:text-white"
-                >
-                    Zurück
-                </Button>
-                <div className="text-xs text-gray-800 dark:text-gray-400">
-                    Seite {page} von {lastPage}
+            {/* Pagination, nur wenn mehr als eine Seite Kommentare */}
+            {page > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-4">
+                    <Button
+                        disabled={page <= 1}
+                        type="button"
+                        variant="link"
+                        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                        className="px-3 py-1 text-xs rounded transition-colors duration-200 dark:primary bg-gray-100 dark:bg-gray-900 dark:text-gray-200 text-gray-800 hover:bg-primary hover:text-white"
+                    >
+                        Zurück
+                    </Button>
+                    <div className="text-xs text-gray-800 dark:text-gray-400">
+                        Seite {page} von {lastPage}
+                    </div>
+                    <Button
+                        disabled={page >= lastPage}
+                        type="button"
+                        variant="link"
+                        onClick={() => setPage((prev) => Math.min(prev + 1, lastPage))}
+                        className="px-3 py-1 text-xs rounded transition-colors duration-200 dark:primary bg-gray-100 dark:bg-gray-900 dark:text-gray-200 text-gray-800 hover:bg-primary hover:text-white"
+                    >
+                        Weiter
+                    </Button>
                 </div>
-                <Button
-                    disabled={page >= lastPage}
-                    type="button"
-                    variant="link"
-                    onClick={() => setPage((prev) => Math.min(prev + 1, lastPage))}
-                    className="px-3 py-1 text-xs rounded transition-colors duration-200 dark:primary bg-gray-100 dark:bg-gray-900 dark:text-gray-200 text-gray-800 hover:bg-primary hover:text-white"
-                >
-                    Weiter
-                </Button>
-            </div>
+            )}
         </div>
     );
 }

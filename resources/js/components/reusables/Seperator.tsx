@@ -19,7 +19,7 @@ import { FaQuoteLeft } from 'react-icons/fa6';
 import { Star } from 'lucide-react';
 import { RxGear } from 'react-icons/rx';
 import { GiScales } from 'react-icons/gi';
-import { TfiControlShuffle } from "react-icons/tfi";
+import { TfiControlShuffle } from 'react-icons/tfi';
 
 import { cn } from '@/lib/utils';
 

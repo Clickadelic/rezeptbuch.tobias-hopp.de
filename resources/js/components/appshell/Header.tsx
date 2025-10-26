@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
 import { usePermissions } from '@/hooks/usePermissions';
+import { Button } from '@/components/ui/button';
 
 import AppLogo from '@/components/appshell/AppLogo';
 
@@ -11,20 +12,24 @@ import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
 import Avatar from '@/components/reusables/Avatar';
+import { LuUsersRound } from 'react-icons/lu';
+import MegaMenu from '@/components/appshell/MegaMenu';
+
+import { recipesMegaMenu, featuredRecipes } from '@/lib/mega-menu-columns';
 
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
-import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { SharedPageProps } from '@/types';
 import { TbSalt } from 'react-icons/tb';
+import { BiExit } from 'react-icons/bi';
 
-import { LuUsersRound } from 'react-icons/lu';
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
+
+import { SharedPageProps } from '@/types';
 
 /**
  * The application header.
@@ -36,6 +41,7 @@ const Header = () => {
     const { auth } = usePage<SharedPageProps>().props;
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState<boolean>(false);
     const { hasRole } = usePermissions();
+
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
             <div className="mx-auto container px-6">
@@ -48,19 +54,13 @@ const Header = () => {
                             <NavLink
                                 href="/"
                                 active={window.location.pathname === '/'}
+                                title="Zur Startseite"
                                 className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
                                 icon={<RiHomeLine />}
                             >
                                 Start
                             </NavLink>
-                            <NavLink
-                                href="/rezepte"
-                                active={window.location.pathname.startsWith('/rezepte')}
-                                className="pt-5 pb-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<BsJournalBookmark />}
-                            >
-                                Rezepte
-                            </NavLink>
+                            <MegaMenu columns={recipesMegaMenu} featured={featuredRecipes} />
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname.startsWith('/zutaten')}
@@ -84,11 +84,8 @@ const Header = () => {
                             <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                className="font-medium inline-flex items-center rounded border-2 bg-white dark:bg-gray-700 px-2 py-1 text-gray-800 dark:text-gray-200 border-transparent transition duration-150 ease-in-out hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:cursor-pointer focus:outline-none gap-2"
-                                            >
+                                        <span className="inline-flex rounded-md mt-1">
+                                            <Button type="button" variant="flat">
                                                 <Avatar url={auth?.user?.avatar} />
                                                 {auth.user?.name}
                                                 <svg
@@ -103,21 +100,30 @@ const Header = () => {
                                                         clipRule="evenodd"
                                                     />
                                                 </svg>
-                                            </button>
+                                            </Button>
                                         </span>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         {hasRole('admin') && (
-                                            <Dropdown.Link href="/admin" className="flex gap-2">
+                                            <Dropdown.Link
+                                                href="/admin"
+                                                className="flex gap-2 hover:bg-gray-200"
+                                            >
                                                 <MdOutlineAdminPanelSettings className="size-4" />
                                                 Admin
                                             </Dropdown.Link>
                                         )}
-                                        <Dropdown.Link href="/dashboard" className="flex gap-2">
+                                        <Dropdown.Link
+                                            href="/dashboard"
+                                            className="flex gap-2 hover:bg-gray-200"
+                                        >
                                             <RiDashboardHorizontalLine className="size-4" />
                                             Dashboard
                                         </Dropdown.Link>
-                                        <Dropdown.Link href="/profile" className="flex gap-2">
+                                        <Dropdown.Link
+                                            href="/profile"
+                                            className="flex gap-2 hover:bg-gray-200"
+                                        >
                                             <RiAccountPinBoxLine className="size-4" />
                                             Profil
                                         </Dropdown.Link>
@@ -125,7 +131,7 @@ const Header = () => {
                                             href="/logout"
                                             method="post"
                                             as="button"
-                                            className="flex gap-2 hover:cursor-pointer"
+                                            className="flex gap-2 hover:bg-gray-200 hover:cursor-pointer"
                                         >
                                             <BiExit className="size-4" />
                                             Log Out

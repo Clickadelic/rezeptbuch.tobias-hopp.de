@@ -11,19 +11,11 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon } from 'lucide-react';
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 
 import InputError from '@/components/forms/inputs/InputError';
 import InputLabel from '@/components/forms/inputs/InputLabel';
@@ -80,7 +72,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
             onSuccess: () => {
                 reset();
                 onFinished?.();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0 });
             },
             preserveScroll: true,
         });
@@ -89,7 +81,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
     function handleReset() {
         reset();
         onFinished?.();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0 });
     }
 
     function handleDelete() {
@@ -103,7 +95,6 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
             },
             onError: (err) => {
                 console.error('Löschen fehlgeschlagen:', err);
-                alert('Diese Zutat kann nicht gelöscht werden, da sie in Rezepten verwendet wird.');
             },
         });
     }
@@ -140,18 +131,22 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                                     title="Zutat löschen"
                                     onClick={() => setIsDeleteDialogOpen(true)}
                                 >
-                                    <BsTrash3 className="size-4" />Zutat löschen
+                                    <BsTrash3 className="size-4" />
+                                    Zutat löschen
                                 </Button>
-                                
                             </AlertDialogTrigger>
 
                             <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                                 <AlertDialogHeader>
-                                    <AlertDialogTitle className="font-normal text-gray-800 dark:text-gray-200">
-                                        Bist du sicher, dass du die Zutat <span className="font-bold">{data.name}</span> löschen möchtest?
+                                    <AlertDialogTitle className=" text-gray-800 dark:text-gray-200">
+                                        Bist du sicher, dass du die Zutat{' '}
+                                        <span className="font-bold">{data.name}</span> löschen
+                                        möchtest?
                                     </AlertDialogTitle>
                                     <AlertDialogDescription className="mb-3">
-                                        Diese Aktion kann nicht rückgängig gemacht werden. Sollte die Zutat aktuell noch in Rezepten verwendet werden, wird das Löschen systemseitig nicht zugelassen.
+                                        Diese Aktion kann nicht rückgängig gemacht werden. Sollte
+                                        die Zutat aktuell noch in Rezepten verwendet werden, wird
+                                        das Löschen systemseitig nicht zugelassen.
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>

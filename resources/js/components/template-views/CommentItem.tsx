@@ -107,7 +107,7 @@ export default function CommentItem({
     }, [editing, comment.content]);
 
     return (
-        <div className={`flex flex-col gap-2 ${depth > 0 ? 'ml-6' : ''}`}>
+        <div className={`flex flex-col mt-4 gap-2 ${depth > 0 ? 'ml-6' : ''}`}>
             <div className="flex flex-col gap-2">
                 {/* Header */}
                 <div className="text-sm flex flex-start gap-3 pl-3 items-center">

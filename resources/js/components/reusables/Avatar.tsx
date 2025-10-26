@@ -21,8 +21,8 @@ export default function Avatar({ url, name, className }: AvatarProps) {
             .toUpperCase() ?? '';
 
     return (
-        <ShadCnAvatar className={cn('size-8', className)}>
-            <AvatarImage src={avatarUrl} alt={name ?? 'Benutzeravatar'} />
+        <ShadCnAvatar className={cn('border border-gray-200 dark:border-gray-700', className)}>
+            <AvatarImage src={avatarUrl} className="asd" alt={name ?? 'Benutzeravatar'} />
             <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-300 flex items-center justify-center font-medium">
                 {initials}
             </AvatarFallback>

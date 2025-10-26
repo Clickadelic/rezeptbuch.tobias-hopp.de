@@ -29,7 +29,7 @@ export default function UserCard({
     isFollowing = false,
 }: UserCardProps) {
     return (
-        <Card className="w-full max-w-md overflow-hidden">
+        <Card className="w-full max-w-md overflow-hidden bg-gray-100 dark:bg-gray-900">
             {/* Header Image */}
             <div className="relative h-24 w-full overflow-hidden">
                 <img
@@ -44,7 +44,7 @@ export default function UserCard({
             <div className="relative -mt-16 flex justify-center px-6">
                 <div className="relative">
                     <Avatar
-                        className="h-28 w-28 border-4 border-card shadow-xl"
+                        className="h-24 w-24 border-2 border-primary shadow-xl"
                         url={avatarUrl}
                         name={name}
                     />

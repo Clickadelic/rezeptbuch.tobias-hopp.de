@@ -1,21 +1,21 @@
 import { GiForkKnifeSpoon, GiKnifeFork } from 'react-icons/gi';
 import { PiCookingPot } from 'react-icons/pi';
 import { TbSalad, TbSalt } from 'react-icons/tb';
-import { FaHeart } from 'react-icons/fa6';
+import { FaHeart, FaQuoteLeft } from 'react-icons/fa6';
 import { GiWhisk } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { FiCheckCircle } from 'react-icons/fi';
-import { RiScales2Line } from 'react-icons/ri';
+
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { IoMailOpenOutline } from 'react-icons/io5';
-import { BsJournalBookmark, BsInfoCircle } from 'react-icons/bs';
+import { BsJournalBookmark, BsInfoCircle, BsCardImage } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';
 import { TfiCommentAlt } from 'react-icons/tfi';
-import { BsCardImage } from 'react-icons/bs';
+
 import { RxMixerVertical } from 'react-icons/rx';
-import { FaQuoteLeft } from 'react-icons/fa6';
+
 import { Star } from 'lucide-react';
 import { RxGear } from 'react-icons/rx';
 import { GiScales } from 'react-icons/gi';
@@ -30,9 +30,8 @@ interface SeparatorProps {
 
 /**
  * A separator component with an icon centered above a horizontal line.
- *
  * @example
- * <Separator size={8} style="cake | check-circle | cocktail | comment | comment-alt | cooking-pot | fork-knife | fork-knife-spoon | heart | heart-outline | image | info | journal | mail | mix | muffin | quote | salad | salt | snack " />
+ * <Separator size={8} style="check-circle | cocktail | comment | comment-alt | cooking-pot | journal | cake | info | image | muffin | mail | mix | quote | salad | salt | snack | star | scale | gear " />
  */
 export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorProps) {
     const baseStyle = { fontSize: `${size * 0.25}rem` };

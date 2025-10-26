@@ -6,9 +6,9 @@ import { SharedPageProps } from '@/types';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { VscTrash } from 'react-icons/vsc';
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { PiUserCirclePlusFill } from "react-icons/pi";
-import { FiUpload } from "react-icons/fi";
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
+import { PiUserCirclePlusFill } from 'react-icons/pi';
+import { FiUpload } from 'react-icons/fi';
 export default function UpdateAvatarForm() {
     const user = usePage<SharedPageProps>().props.auth.user;
 
@@ -67,7 +67,7 @@ export default function UpdateAvatarForm() {
                                 variant="destructive"
                                 title="Profilbild löschen"
                                 aria-label="Profilbild löschen"
-                                className="absolute -bottom-3 -right-1 px-[10px] rounded-full opacity-100 hover:opacity-80"
+                                className="bg-rose-500 text-white absolute -bottom-3 -right-1 px-[10px] rounded-full opacity-100 hover:opacity-80"
                                 onClick={handleDelete}
                             >
                                 <VscTrash className="w-4 h-4" />
@@ -86,7 +86,7 @@ export default function UpdateAvatarForm() {
                         {processing ? (
                             <Loader2 className="animate-spin text-gray-500" />
                         ) : data.avatar ? (
-                            <PiUserCirclePlusFill  className="w-5 h-5 text-gray-500" />
+                            <PiUserCirclePlusFill className="w-5 h-5 text-gray-500" />
                         ) : (
                             <div className="asd">
                                 <Plus className="w-5 h-5 text-gray-500" />
@@ -107,7 +107,7 @@ export default function UpdateAvatarForm() {
                 </div>
 
                 {progress && (
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-100 dark:bg-gray-900 rounded-full h-2">
                         <div
                             className="bg-primary h-2 rounded-full transition-all"
                             style={{ width: `${progress.percentage}%` }}
@@ -117,8 +117,15 @@ export default function UpdateAvatarForm() {
 
                 <InputError message={errors.avatar} className="mt-2" />
 
-                <Button variant="primaryOutline" className="flex gap-2" type="submit" disabled={processing || !data.avatar} title="Profilbild hochladen">
-                    <FiUpload className="size-4" />Hochladen
+                <Button
+                    variant="primaryOutline"
+                    className="flex gap-2"
+                    type="submit"
+                    disabled={processing || !data.avatar}
+                    title="Profilbild hochladen"
+                >
+                    <FiUpload className="size-4" />
+                    Hochladen
                 </Button>
             </form>
         </section>

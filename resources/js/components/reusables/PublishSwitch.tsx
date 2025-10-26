@@ -7,9 +7,10 @@ import { Recipe } from '@/types/Recipe';
 interface PublishSwitchProps {
     recipe: Recipe;
     status: 'draft' | 'published';
+    className?: string;
 }
 
-export default function PublishSwitch({ recipe, status }: PublishSwitchProps) {
+export default function PublishSwitch({ recipe, status, className }: PublishSwitchProps) {
     const [checked, setChecked] = useState(status === 'published');
     const [loading, setLoading] = useState(false);
 
@@ -34,12 +35,14 @@ export default function PublishSwitch({ recipe, status }: PublishSwitchProps) {
     };
 
     return (
-        <Switch
-            className="hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-            checked={checked}
-            onCheckedChange={handleChange} // 👈 Wichtig! Nicht onChange
-            disabled={loading}
-            title={checked ? 'Veröffentlicht' : 'Entwurf'}
-        />
+        <div className={className}>
+            <Switch
+                className="hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                checked={checked}
+                onCheckedChange={handleChange} // 👈 Wichtig! Nicht onChange
+                disabled={loading}
+                title={checked ? 'Veröffentlicht' : 'Entwurf'}
+            />
+        </div>
     );
 }

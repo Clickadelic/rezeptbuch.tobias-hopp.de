@@ -43,7 +43,7 @@ class DashboardController extends Controller
         $userFavoritesCount = $userFavorites->count();
 
         return Inertia::render('Dashboard', [
-            // 'alert' => 'Wichtige Ankündigung: Neue Rezepte verfügbar!',
+            'alert' => 'Wichtige Ankündigung: Neue Rezepte verfügbar!',
             'latestRecipe'            => $latestRecipe,
             'totalUserRecipeCount'    => $totalUserRecipeCount,
             'totalUserRecipes'        => $totalUserRecipes,

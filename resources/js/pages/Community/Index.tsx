@@ -1,10 +1,10 @@
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import { usePage } from '@inertiajs/react';
-import { Link } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
+import UserCard from '@/components/reusables/UserCard';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Avatar from '@/components/reusables/Avatar';
 /**
  * Displays a list of all users.
  *
@@ -16,12 +16,9 @@ export default function Community() {
 
     return (
         <FullWidthLayout title="Community">
-            <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+            <div className="grid grid-cols-5 gap-3">
                 {users?.map((user: any) => (
-                    <Avatar key={user.id}>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                    <UserCard key={user.id} name={user.name} avatarUrl={user.avatar} />
                 ))}
             </div>
         </FullWidthLayout>

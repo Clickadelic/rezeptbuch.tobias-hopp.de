@@ -124,8 +124,10 @@ export default function ContextMenu({
                                 </AlertDialogTrigger>
                                 <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                                     <AlertDialogHeader>
-                                        <AlertDialogTitle className="font-normal text-gray-800 dark:text-gray-200">
-                                            Bist Du sicher, dass Du das Rezept <span className="font-bold">{recipe?.name}</span> löschen möchtest?
+                                        <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
+                                            Bist Du sicher, dass Du das Rezept{' '}
+                                            <span className="font-bold">{recipe?.name}</span>{' '}
+                                            löschen möchtest?
                                         </AlertDialogTitle>
                                         <AlertDialogDescription>
                                             Dies kann nicht rückgängig gemacht werden!
@@ -139,7 +141,7 @@ export default function ContextMenu({
                                             Abbrechen
                                         </AlertDialogCancel>
                                         <AlertDialogAction
-                                            className="bg-transparent text-rose-600 border border-rose-600 hover:bg-rose-600 hover:text-white"
+                                            className="bg-rose-700 hover:bg-rose-500 text-white"
                                             onClick={deleteRecipe}
                                         >
                                             <GoTrash className="size-5" />
@@ -163,8 +165,9 @@ export default function ContextMenu({
                         </AlertDialogTrigger>
                         <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                             <AlertDialogHeader>
-                                <AlertDialogTitle className="font-normal text-gray-800 dark:text-gray-200">
-                                    Cool, dass Du <span className="font-bold">{recipe?.name}</span> teilen möchtest, hier der Link:
+                                <AlertDialogTitle className=" text-gray-800 dark:text-gray-200">
+                                    Cool, dass Du <span className="font-bold">{recipe?.name}</span>{' '}
+                                    teilen möchtest, hier der Link:
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="mb-3">
                                     <span id="recipe-link">

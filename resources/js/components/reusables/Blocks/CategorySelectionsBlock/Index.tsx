@@ -11,7 +11,7 @@ import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
  * The categories are hardcoded and are: Vorspeisen, Hauptgerichte, Nachtisch, Cocktails, Backen, and Snacks.
  */
 
-export default function CategoryBlock() {
+export default function CategorySelectionsBlock() {
     return (
         <div className={cn('bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8')}>
             <ul

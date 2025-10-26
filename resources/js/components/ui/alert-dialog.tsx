@@ -16,7 +16,7 @@ const AlertDialogOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <AlertDialogPrimitive.Overlay
         className={cn(
-            'fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+            'fixed inset-0 z-50 bg-black/30 backdrop-blur data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
             className,
         )}
         {...props}
@@ -62,7 +62,7 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <AlertDialogPrimitive.Title
         ref={ref}
-        className={cn('text-lg font-semibold', className)}
+        className={cn('text-lg text-gray-800 dark:text-gray-200', className)}
         {...props}
     />
 ));
@@ -74,7 +74,7 @@ const AlertDialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <AlertDialogPrimitive.Description
         ref={ref}
-        className={cn('text-sm text-muted-foreground', className)}
+        className={cn('text-sm text-gray-600 dark:text-gray-600', className)}
         {...props}
     />
 ));
@@ -94,7 +94,11 @@ const AlertDialogCancel = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <AlertDialogPrimitive.Cancel
         ref={ref}
-        className={cn(buttonVariants({ variant: 'outline' }), 'mt-2 sm:mt-0', className)}
+        className={cn(
+            buttonVariants({ variant: 'outline' }),
+            'mt-2 sm:mt-0 border-gray-600 text-gray-600 dark:text-gray-200',
+            className,
+        )}
         {...props}
     />
 ));

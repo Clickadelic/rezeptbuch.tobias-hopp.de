@@ -34,32 +34,37 @@ class IngredientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+
     public function store(StoreIngredientRequest $request)
     {
         $userId = Auth::id();
         $originalName = trim($request->input('name'));
 
-        // Prüfen, ob Zutat (case-insensitive) schon existiert
         $ingredient = Ingredient::whereRaw('LOWER(name) = ?', [strtolower($originalName)])->first();
 
         if ($ingredient) {
-            // Flash-Nachricht für Inertia (z. B. Toast im Frontend)
-            return back()->with('flash', [
-                'error' => $originalName . '" existiert bereits.',
+            return redirect()->back()->with([
+                'flash' => [
+                    'error' => '"' . $originalName . '" existiert bereits.',
+                ],
             ]);
         }
 
-        // Neue Zutat mit Originalschreibweise speichern
         Ingredient::create([
             'name' => $originalName,
             'user_id' => $userId
         ]);
 
-        // Erfolgsmeldung als Flash für Inertia
-        return back()->with('flash', [
-            'success' => $originalName . '" wurde erfolgreich angelegt!',
+        return redirect()->back()->with([
+            'flash' => [
+                'success' => '"' . $originalName . '" wurde erfolgreich angelegt!',
+            ],
         ]);
     }
+
+
+
 
 
     /**

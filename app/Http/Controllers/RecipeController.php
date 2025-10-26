@@ -320,36 +320,47 @@ class RecipeController extends Controller
     {
         $query = trim($request->input('search', ''));
 
+        if ($query === '') {
+            return redirect()->route('recipes.index');
+        }
+
+        // 🧭 Kategorieprüfung
         $category = Category::where('name', 'LIKE', "%{$query}%")->first();
 
         if ($category) {
+            // Suche nach Kategorie
             $recipes = Recipe::with(['media', 'category', 'user'])
                 ->where('category_id', $category->id)
-                ->where('status', 'is_published') // nur veröffentlichte
-                ->orderBy('created_at', 'desc')
+                ->where('status', 'published') // ✅ hier korrigiert
+                ->orderByDesc('created_at')
                 ->paginate(15);
         } else {
-            if (!method_exists(Recipe::class, 'search')) {
+            // 🔍 Volltextsuche (Scout) oder Fallback auf LIKE
+            try {
+                if (method_exists(Recipe::class, 'search')) {
+                    $ids = Recipe::search($query)->get()->pluck('id');
+                } else {
+                    throw new \Exception('Scout not available');
+                }
+            } catch (\Throwable $e) {
+                // Fallback auf klassische LIKE-Suche
                 $ids = Recipe::query()
-                    ->where(function($q) use ($query) {
+                    ->where(function ($q) use ($query) {
                         $q->where('name', 'LIKE', "%{$query}%")
                         ->orWhere('description', 'LIKE', "%{$query}%");
                     })
-                    ->where('status', 'is_published') // nur veröffentlichte
-                    ->pluck('id');
-            } else {
-                $ids = Recipe::search($query)
-                    ->where('status', 'is_published') // nur veröffentlichte
-                    ->get()
+                    ->where('status', 'published') // ✅ auch hier
                     ->pluck('id');
             }
 
             $recipes = Recipe::with(['media', 'category', 'user'])
                 ->whereIn('id', $ids)
-                ->orderBy('created_at', 'desc')
+                ->where('status', 'published') // ✅ erneut
+                ->orderByDesc('created_at')
                 ->paginate(15);
         }
 
+        // ❤️ Favoriten-Status anhängen (benutzerdefinierte Methode)
         $recipes = $this->addFavoriteFlags($recipes);
 
         return Inertia::render('Recipes/Search', [
@@ -357,6 +368,8 @@ class RecipeController extends Controller
             'filters' => ['search' => $query],
         ]);
     }
+
+
 
 
 

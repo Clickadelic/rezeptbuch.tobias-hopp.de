@@ -86,7 +86,7 @@ const Content = ({
                     className={`absolute left-0 z-50 shadow-lg mt-3 ${alignmentClasses} ${widthClasses}`}
                     onClick={() => setOpen(false)}
                 >
-                    <div className={`bg-white/30 dark:bg-gray-900/30 p-1 rounded-lg ` + contentClasses}>
+                    <div className={`bg-white/30 dark:bg-gray-900/30 backdrop-blur p-1 rounded-lg ` + contentClasses}>
                         <div className="p-1 bg-white dark:bg-gray-800 rounded-md">{children}</div>
                     </div>
                 </div>

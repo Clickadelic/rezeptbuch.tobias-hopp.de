@@ -64,7 +64,7 @@ const Header = () => {
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname.startsWith('/zutaten')}
-                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
+                                className="p-4 text-gray-800 dark:text-gray-200"
                                 icon={<TbSalt className="size-4 text-primary" />}
                             >
                                 Zutaten

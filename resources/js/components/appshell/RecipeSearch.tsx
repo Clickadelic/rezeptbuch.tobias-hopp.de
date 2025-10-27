@@ -30,7 +30,7 @@ export default function RecipeSearch() {
 
             <div
                 className={cn(
-                    'shadow-sm lg:w-[28rem] z-20 bg-white/40 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-12 sm:my-16 md:my-20 lg:my-24 xl:my-32',
+                    'shadow-sm lg:w-[28rem] z-20 bg-white/40 dark:bg-gray-800/30 flex flex-col gap-1 p-1 rounded mx-4 my-12 sm:my-20 md:my-28 lg:my-32 xl:my-40',
                 )}
             >
                 <form

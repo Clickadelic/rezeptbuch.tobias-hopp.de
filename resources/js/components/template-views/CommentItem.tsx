@@ -82,7 +82,7 @@ export default function CommentItem({ comment, depth = 0, onCommentAdded, onComm
         if (editContent.trim() === '') return;
         setIsLoading(true);
         try {
-            const response = await axios.patch(`/comments/${comment.id}`, {
+            const response = await axios.patch(`/rezepte/comments/${comment.id}`, {
                 content: editContent,
             });
             if (onCommentUpdated) onCommentUpdated(response.data); // Parent weiß über Update

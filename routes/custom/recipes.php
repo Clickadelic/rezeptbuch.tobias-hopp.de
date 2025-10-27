@@ -14,14 +14,18 @@ Route::prefix('/rezepte')->group(function () {
     Route::delete('/{recipe}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipes.destroy');
     Route::get('/suche', [RecipeController::class, 'search'])->name('recipes.search');
     Route::get('/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
-    
-    // Publish
+
+    // Publish toggle
     Route::post('/{recipe}/toggle-publish', [RecipeController::class, 'togglePublish'])->name('recipes.togglePublish');
-    
-    // Rate
+
+    // Rate recipe
     Route::post('/{recipe}/rate', [RatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
 
-    // Comments JSON
+    // Comments (JSON + Create)
     Route::get('/{recipe}/comments', [CommentController::class, 'index'])->name('comments.index');
     Route::post('/{recipe}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+
+    Route::patch('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
 });
+

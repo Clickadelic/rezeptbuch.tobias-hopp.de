@@ -52,13 +52,7 @@ interface CommentItemProps {
  *     onCommentUpdated={(comment) => console.log(comment)}
  * />
  */
-export default function CommentItem({
-    comment,
-    depth = 0,
-    onCommentAdded,
-    onCommentDeleted,
-    onCommentUpdated,
-}: CommentItemProps) {
+export default function CommentItem({ comment, depth = 0, onCommentAdded, onCommentDeleted, onCommentUpdated }: CommentItemProps) {
     const [replying, setReplying] = useState(false);
     const { user } = usePage<SharedPageProps>().props.auth;
     const { hasRole } = usePermissions();
@@ -74,7 +68,7 @@ export default function CommentItem({
     const handleDelete = async (commentId: Comment['id']) => {
         setIsLoading(true);
         try {
-            await axios.delete(`/comments/${commentId}`);
+            await axios.delete(`/rezepte/comments/${commentId}`);
             if (onCommentDeleted) onCommentDeleted();
         } catch (error) {
             console.error(error);
@@ -88,7 +82,7 @@ export default function CommentItem({
         if (editContent.trim() === '') return;
         setIsLoading(true);
         try {
-            const response = await axios.patch(`/comments/${comment.id}`, {
+            const response = await axios.patch(`/rezepte/comments/${comment.id}`, {
                 content: editContent,
             });
             if (onCommentUpdated) onCommentUpdated(response.data); // Parent weiß über Update

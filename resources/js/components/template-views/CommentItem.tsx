@@ -52,7 +52,13 @@ interface CommentItemProps {
  *     onCommentUpdated={(comment) => console.log(comment)}
  * />
  */
-export default function CommentItem({ comment, depth = 0, onCommentAdded, onCommentDeleted, onCommentUpdated }: CommentItemProps) {
+export default function CommentItem({
+    comment,
+    depth = 0,
+    onCommentAdded,
+    onCommentDeleted,
+    onCommentUpdated,
+}: CommentItemProps) {
     const [replying, setReplying] = useState(false);
     const { user } = usePage<SharedPageProps>().props.auth;
     const { hasRole } = usePermissions();

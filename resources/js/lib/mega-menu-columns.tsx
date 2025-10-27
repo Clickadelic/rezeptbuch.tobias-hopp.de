@@ -71,12 +71,12 @@ export const recipesMegaMenu = [
             },
         ],
     },
-    
 ];
 
 export const featuredRecipes = {
-    icon: <RiAccountPinBoxLine className="text-primary" />,
-    title: 'Empfehlung',
-    description: 'Das neueste Rezept.',
-    href: '#',
+    icon: <RiDashboardHorizontalLine className="mt-[2px]" />,
+    title: 'Dashboard',
+    description: 'Deine Rezepte, Deine Zahlen.',
+    label: 'Dashboard',
+    href: '/dashboard',
 };

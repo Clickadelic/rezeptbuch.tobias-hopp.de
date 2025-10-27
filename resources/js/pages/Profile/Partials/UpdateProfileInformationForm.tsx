@@ -76,7 +76,9 @@ export default function UpdateProfileInformation({
                 )}
 
                 <div className="flex items-center gap-4">
-                    <Button variant="primary" disabled={processing}>Speichern</Button>
+                    <Button variant="primary" disabled={processing}>
+                        Speichern
+                    </Button>
                     <Transition
                         show={recentlySuccessful}
                         enter="transition ease-in-out"

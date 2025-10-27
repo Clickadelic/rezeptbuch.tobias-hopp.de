@@ -49,9 +49,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
                             value={String(category.id)}
                             className={cn(
                                 'flex items-center justify-center p-2 rounded border border-transparent transition cursor-pointer',
-                                isActive
-                                    ? 'bg-primary text-white'
-                                    : 'bg-transparent',
+                                isActive ? 'bg-primary text-white' : 'bg-transparent',
                             )}
                         >
                             <div

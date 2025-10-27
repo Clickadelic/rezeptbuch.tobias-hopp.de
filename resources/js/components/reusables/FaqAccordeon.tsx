@@ -48,8 +48,9 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Ja, die Registrierung ist kostenlos. Erstelle mit Deiner E-Mail Adresse einen Account, bestätige diese kurz
-                                und schon kann es losgehen. Versteckte Kosten gibt es nicht.
+                                Ja, die Registrierung ist kostenlos. Erstelle mit Deiner E-Mail
+                                Adresse einen Account, bestätige diese kurz und schon kann es
+                                losgehen. Versteckte Kosten gibt es nicht.
                             </p>
                             <br />
                             <p>
@@ -61,14 +62,16 @@ export default function FrontpageCategoryGrid() {
                                     className="underline underline-offset-4 text-primary"
                                 >
                                     Nutzungsbedingungen
-                                </Link> oder lies's den {' '} 
+                                </Link>{' '}
+                                oder lies's den{' '}
                                 <Link
                                     href="/nutzungsbedingungen"
                                     target="_self"
                                     className="underline underline-offset-4 text-primary"
                                 >
                                     Datenschutzhinweis
-                                </Link>.
+                                </Link>
+                                .
                             </p>
                             <br />
                             <p>
@@ -83,9 +86,10 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Nachdem Du Dich eingeloggt hast, kannst
-                                Du die Rezeptbuch-Funktion nutzen und eigene Rezepte anlegen und diese Posten.
-                                Darüber hinaus kannst Du auch Rezepte von anderen Nutzern finden und zu Deinen Favoriten hinzufügen.
+                                Nachdem Du Dich eingeloggt hast, kannst Du die Rezeptbuch-Funktion
+                                nutzen und eigene Rezepte anlegen und diese Posten. Darüber hinaus
+                                kannst Du auch Rezepte von anderen Nutzern finden und zu Deinen
+                                Favoriten hinzufügen.
                             </p>
                             <br />
                             <p>Weitere Features wie sind in in Planung bzw. in Arbeit.</p>

@@ -24,4 +24,8 @@ Route::prefix('/rezepte')->group(function () {
     // Comments (JSON + Create)
     Route::get('/{recipe}/comments', [CommentController::class, 'index'])->name('comments.index');
     Route::post('/{recipe}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+
+    Route::patch('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
 });
+

@@ -48,10 +48,10 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
                             // TODO: Fix wrong type
                             value={String(category.id)}
                             className={cn(
-                                'flex items-center justify-center p-2 rounded border border-primary transition cursor-pointer',
+                                'flex items-center justify-center p-2 rounded border border-transparent transition cursor-pointer',
                                 isActive
-                                    ? 'bg-primary'
-                                    : 'bg-primary dark:bg-primary  text-white dark:text-gray-200 hover:text-primary',
+                                    ? 'bg-primary text-white'
+                                    : 'bg-transparent',
                             )}
                         >
                             <div

@@ -64,7 +64,7 @@ const Header = () => {
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname.startsWith('/zutaten')}
-                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
+                                className="p-4 text-gray-800 dark:text-gray-200"
                                 icon={<TbSalt className="size-4 text-primary" />}
                             >
                                 Zutaten
@@ -221,6 +221,13 @@ const Header = () => {
                             active={window.location.pathname === '/zutaten'}
                         >
                             <TbSalt className="size-4 mt-1" /> Zutaten
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href="/community"
+                            className="flex gap-2"
+                            active={window.location.pathname === '/community'}
+                        >
+                            <TbSalt className="size-4 mt-1" /> Community
                         </ResponsiveNavLink>
                     </div>
 

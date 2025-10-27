@@ -406,7 +406,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 value={data.difficulty || Difficulty.EINFACH}
                                 onValueChange={(val) => setData('difficulty', val as Difficulty)}
                             >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
                                     <SelectValue placeholder="Schwierigkeitsgrad" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -429,7 +429,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 value={data.status}
                                 onValueChange={(val) => setData('status', val)}
                             >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                     <SelectValue placeholder="Status auswählen" />
                                 </SelectTrigger>
                                 <SelectContent>

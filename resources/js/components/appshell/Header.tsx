@@ -222,6 +222,13 @@ const Header = () => {
                         >
                             <TbSalt className="size-4 mt-1" /> Zutaten
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href="/community"
+                            className="flex gap-2"
+                            active={window.location.pathname === '/community'}
+                        >
+                            <TbSalt className="size-4 mt-1" /> Community
+                        </ResponsiveNavLink>
                     </div>
 
                     {auth.user ? (

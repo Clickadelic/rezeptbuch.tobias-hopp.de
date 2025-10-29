@@ -50,7 +50,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
                             className={cn(
                                 'w-full aspect-video flex flex-col items-center justify-center px-2 py-12 rounded-lg border border-transparent transition cursor-pointer',
                                 isActive
-                                    ? '!bg-emerald-800 !text-white' // <-- hier geändert
+                                    ? '!bg-emerald-800 text-white' // <-- hier geändert
                                     : 'border-gray-100 dark:border-gray-700',
                             )}
                         >

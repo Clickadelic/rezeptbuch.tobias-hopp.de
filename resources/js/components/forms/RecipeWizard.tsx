@@ -355,7 +355,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         />
                     </div>
                     
-
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
                         {/* Vorbereitungszeit - Kochzeit noch eweitern */}
@@ -384,7 +383,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             )}
                         </div>
                     </div>
-
 
                     {/* Punchline */}
                     <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">

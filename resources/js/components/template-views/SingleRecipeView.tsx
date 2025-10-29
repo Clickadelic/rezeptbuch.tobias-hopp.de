@@ -8,8 +8,8 @@ import RelatedRecipesCarousel from '@/components/reusables/RelatedRecipesCarouse
 import CommentsDirectory from '@/components/template-views/CommentsDirectory';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
-
-import Seperator from '@/components/reusables/Seperator';
+import FavoriteButton from '@/components/reusables/FavoriteButton';
+import UserStarRating from '@/components/forms/inputs/UserStarRating';
 
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
@@ -30,26 +30,30 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
     const { related } = usePage<SharedPageProps>().props;
 
     return (
-        <div className="flex flex-col gap-1">
-            <div className="flex flex-col xl:flex-row justify-start gap-5">
-                <RecipeImageBlock recipe={recipe} />
-                <div className="w-full flex flex-col justify-between gap-5">
+        <div className="flex flex-col">
+            <div className="flex gap-6">
+                <RecipeImageBlock recipe={recipe} className="w-full md:w-1/2" />
+                <div className="flex flex-col justify-between md:w-1/2">
                     <RecipeInfoBlock recipe={recipe} />
                     <AttributesBlock recipe={recipe} />
                 </div>
             </div>
-            <AvatarBlock recipe={recipe} />
-            <Seperator style="info" />
+            <div className="flex w-full">
+                <AvatarBlock recipe={recipe} />
+                <FavoriteButton recipeId={recipe?.id} isFavorite={recipe?.is_favorite} />
+            </div>
             <SingleRecipeIngredientsTable recipe={recipe} />
-            <Seperator style="whisk" />
             <PreparationInstructions recipe={recipe} />
-            <Seperator style="comment" />
+            {/* <UserStarRating
+                recipeId={recipe.id}
+                readonly={true}
+                rating={recipe.rating as number}
+                communityRating={recipe.community_rating}
+                communityVotes={recipe.community_votes}
+            /> */}
+
             <CommentsDirectory recipeId={recipe.id!} />
-            <Seperator style="shuffle" />
-            <RelatedRecipesCarousel
-                related={related as Recipe[]}
-                categoryName={recipe.category?.name}
-            />
+            <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
         </div>
     );
 }

@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { RiSearchLine } from 'react-icons/ri';
-import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useBlurStore } from '@/stores/useBlurStore';
+
+import { cn } from '@/lib/utils';
 
 export default function RecipeSearch() {
     const [isFocused, setIsFocused] = useState(false);
@@ -31,7 +32,7 @@ export default function RecipeSearch() {
                 <form
                     method="GET"
                     action={route('recipes.search')}
-                    className="flex flex-row justify-end items-center bg-white dark:bg-gray-800 p-1 rounded space-x-1"
+                    className="flex flex-row justify-end items-center bg-white dark:bg-gray-800 p-1 rounded gap-1"
                 >
                     <input
                         type="text"

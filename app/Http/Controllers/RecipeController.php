@@ -58,7 +58,7 @@ class RecipeController extends Controller
 
         // 2. Relationen auf das $recipe-Objekt laden
         $recipe->load([
-            'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
+            'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit'])->orderBy('quantity', 'desc'),
             'category',
             'media',
             'user'
@@ -183,7 +183,7 @@ class RecipeController extends Controller
         $recipe->load([
             'ingredients' => fn($q) => $q
                 ->select('ingredients.id', 'ingredients.name')
-                ->withPivot(['quantity', 'unit']),
+                ->withPivot(['quantity', 'unit'])->orderBy('quantity', 'desc'),
             'media',
             'category',
         ]);
@@ -277,7 +277,7 @@ class RecipeController extends Controller
         $recipe->delete();
 
         return redirect()
-            ->route('recipes.index', $recipe->slug)
+            ->route('recipes.index')
             ->with('success', 'Rezept erfolgreich gelöscht.');
     }
 

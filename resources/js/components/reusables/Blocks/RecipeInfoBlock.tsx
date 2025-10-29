@@ -17,7 +17,7 @@ interface RecipeInfoBlockProps {
 export default function RecipeInfoBlock({ recipe, className }: RecipeInfoBlockProps) {
     return (
         <div className={cn('w-full flex flex-col', className)}>
-            <div className="relative w-full flex flex-row justify-between items-center">
+            <div className="w-full flex flex-row justify-between items-center">
                 <div>
                     <h4 className="font-medium text-sm  text-gray-400 dark:text-gray-600">
                         {recipe.punchline}

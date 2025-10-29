@@ -1,6 +1,7 @@
 import Carousel from '@/components/reusables/Carousel/Index';
-import { Recipe } from '@/types/Recipe';
+import Seperator from '@/components/reusables/Seperator';
 
+import { Recipe } from '@/types/Recipe';
 import { cn } from '@/lib/utils';
 
 interface RelatedRecipesCarouselProps {
@@ -26,16 +27,19 @@ export default function RelatedRecipesCarousel({
     itemClassName,
 }: RelatedRecipesCarouselProps) {
     return (
-        <div className={cn('flex flex-col gap-5 mb-12', className)}>
-            <h4 className="text-xl">Weiteres aus der Kategorie: {categoryName}</h4>
-            <Carousel
-                recipes={related}
-                carouselClassName={cn(
-                    'gap-5 rounded-lg bg-white dark:bg-gray-800',
-                    carouselClassName,
-                )}
-                itemClassName={cn('card', itemClassName)}
-            />
-        </div>
+        <>
+            <Seperator style="shuffle" />
+            <div className={cn('flex flex-col gap-5 mb-12', className)}>
+                <h4 className="text-xl">Weiteres aus der Kategorie: {categoryName}</h4>
+                <Carousel
+                    recipes={related}
+                    carouselClassName={cn(
+                        'gap-5 rounded-lg bg-white dark:bg-gray-800',
+                        carouselClassName,
+                    )}
+                    itemClassName={cn('card', itemClassName)}
+                />
+            </div>
+        </>
     );
 }

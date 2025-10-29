@@ -9,6 +9,9 @@ import { useBlurStore } from '@/stores/useBlurStore'; // 🔹 Import für Blur
 
 import { Button } from '@/components/ui/button';
 
+import CakeUtilities from "@images/svg/Cake-Utilities.svg";
+
+
 interface MegaMenuItem {
     icon?: React.ReactNode;
     title: string;
@@ -103,7 +106,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
             >
                 <div className="hidden sm:block absolute top-full w-screen z-50 mt-1 max-w-5xl mx-auto sm:-left-72">
                     <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
-                        <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
+                        <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-lg ">
                             <div className="grid gap-4 p-4 md:grid-cols-4">
                                 {columns.map((section, idx) => (
                                     <div key={idx} className="space-y-2">
@@ -121,7 +124,8 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                 <li key={itemIdx}>
                                                     <Link
                                                         href={item.href}
-                                                        className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900"
+                                                        className="group block space-y-1 rounded-md p-2 pl-3  border border-transparent hover:border-primary"
+                                                        aria-label={item.title}
                                                     >
                                                         <div className="flex flex-col gap-1">
                                                             <div className="flex items-center gap-2">
@@ -156,6 +160,9 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                                     {featured.description}
                                                 </p>
+                                                <div className="aspect-video bg-gray-200 rounded-lg mt-4">
+                                                    
+                                                </div>
                                             </div>
                                             <Button asChild variant="primary" className="group">
                                                 <Link

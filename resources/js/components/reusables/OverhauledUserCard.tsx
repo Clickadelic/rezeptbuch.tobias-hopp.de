@@ -4,21 +4,16 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 
+import AuthUser from '@/types/AuthUser';
+
+
 import headerImgSrc from '../../../images/Spaghetti-Ingredients.jpg';
 
-interface UserCardProps {
-    name: string;
-    avatarUrl?: string;
-
-    bio?: string;
-    recipesCount?: number;
-    followersCount?: number;
-    rating?: number;
-    specialties?: string[];
-    isFollowing?: boolean;
+interface OverhauledUserCardProps {
+    user: AuthUser
 }
 
-export default function UserCard({ name, avatarUrl, bio = 'Passionate home chef sharing delicious recipes and cooking tips', recipesCount = 42, followersCount = 1234, rating = 4.8, specialties = ['Italian', 'Baking', 'Vegan'], isFollowing = false }: UserCardProps) {
+export default function OverhauledUserCard({ user }: OverhauledUserCardProps) {
     return (
         <Card className="w-full py-0 max-w-md overflow-hidden bg-gray-100 dark:bg-gray-900">
             {/* Header Image */}
@@ -36,8 +31,8 @@ export default function UserCard({ name, avatarUrl, bio = 'Passionate home chef 
                 <div className="relative">
                     <Avatar
                         className="h-24 w-24 border-2 border-primary shadow-xl"
-                        url={avatarUrl}
-                        name={name}
+                        url={user?.avatar}
+                        name={user?.name}
                     />
 
                     <div className="absolute -bottom-1 -right-1 rounded-full bg-accent p-1.5 shadow-lg">
@@ -48,48 +43,52 @@ export default function UserCard({ name, avatarUrl, bio = 'Passionate home chef 
 
             {/* User Info */}
             <div className="px-6 pb-6 pt-4 text-center">
-                <h3 className="text-2xl font-bold text-card-foreground">{name}</h3>
-                <p className="text-sm text-muted-foreground">@USERNAMe</p>
+                <h3 className="text-xl text-gray-800 dark:text-gray-200">{user?.name}</h3>
+                <p className="text-sm text-muted-foreground">@{user?.name}</p>
 
                 {/* Rating */}
                 <div className="mt-2 flex items-center justify-center gap-1">
-                    <Star className="h-4 w-4 fill-accent text-accent" />
-                    <span className="font-semibold text-card-foreground">{rating}</span>
-                    <span className="text-sm text-muted-foreground">/5.0</span>
+                    
+                    <span className="text-sm text-card-foreground">4.9</span>
+                    <span className="text-sm text-card-foreground">/</span>
+                    <span className="text-sm text-muted-foreground">5.0</span>
                 </div>
 
                 {/* Bio */}
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{bio}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Bio</p>
 
                 {/* Specialties */}
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
-                    {specialties.map((specialty) => (
-                        <Badge key={specialty} variant="secondary" className="text-xs">
-                            {specialty}
+                   
+                        <Badge variant="primary" className="text-xs">
+                            Commis de Cuisine
                         </Badge>
-                    ))}
+                        <Badge variant="primary" className="text-xs">
+                            Barkeeper
+                        </Badge>
+                    
                 </div>
 
                 {/* Stats */}
                 <div className="mt-5 flex items-center justify-center gap-6 border-y border-border py-4">
                     <div className="text-center">
-                        <div className="text-xl font-bold text-card-foreground">{recipesCount}</div>
+                        <div className="text-xl font-bold text-card-foreground">54</div>
                         <div className="text-xs text-muted-foreground">Recipes</div>
                     </div>
                     <div className="h-10 w-px bg-border" />
                     <div className="text-center">
                         <div className="text-xl font-bold text-card-foreground">
-                            {followersCount.toLocaleString()}
+                            5
                         </div>
-                        <div className="text-xs text-muted-foreground">Followers</div>
+                        <div className="text-xs text-muted-foreground">Kommentare</div>
                     </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="mt-5 flex gap-2">
-                    <Button className="flex-1" variant={isFollowing ? 'outline' : 'default'}>
-                        <Heart className={`mr-2 h-4 w-4 ${isFollowing ? 'fill-current' : ''}`} />
-                        {isFollowing ? 'Following' : 'Follow'}
+                    <Button className="flex-1" variant="outline">
+                        <Heart className={`mr-2 h-4 w-4`} />
+                        Following
                     </Button>
                     <Button variant="outline" size="icon">
                         <MessageCircle className="h-4 w-4" />

@@ -29,6 +29,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
             <h4 className="block font-medium text-gray-800 dark:text-gray-200 mb-1">Kategorie</h4>
             <ToggleGroup
                 type="single"
+                variant="default"
                 value={activeId !== null ? String(activeId) : undefined}
                 onValueChange={(val) => {
                     if (val) {
@@ -37,7 +38,7 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
                         onChange(newId);
                     }
                 }}
-                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+                className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
             >
                 {categories.map((category: Category) => {
                     const isActive = activeId === category.id;
@@ -45,21 +46,19 @@ export default function CategoryGrid({ selectedCategoryId, onChange }: CategoryT
                     return (
                         <ToggleGroupItem
                             key={category.id}
-                            // TODO: Fix wrong type
                             value={String(category.id)}
                             className={cn(
-                                'flex items-center justify-center p-2 rounded border border-transparent transition cursor-pointer',
-                                isActive ? 'bg-primary text-white' : 'bg-transparent',
+                                'w-full aspect-video flex flex-col items-center justify-center px-2 py-12 rounded-lg border border-transparent transition cursor-pointer',
+                                isActive
+                                    ? '!bg-emerald-800 !text-white' // <-- hier geändert
+                                    : 'border-gray-100 dark:border-gray-700',
                             )}
                         >
-                            <div
-                                className={cn('transition-colors', isActive ? 'text-primary' : '')}
-                            >
-                                {IconMap[category.slug ?? category.name.toLowerCase()] ?? (
-                                    <PiCookingPot className="size-4 flex" />
-                                )}
-                            </div>
-                            <span className="text-base font-medium">{category.name}</span>
+                            {IconMap[category.slug ?? category.name.toLowerCase()] ?? (
+                                <PiCookingPot className="size-4 flex" />
+                            )}
+                            
+                            <span className="text-base">{category.name}</span>
                         </ToggleGroupItem>
                     );
                 })}

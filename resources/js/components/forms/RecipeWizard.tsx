@@ -7,23 +7,22 @@ import Seperator from '@/components/reusables/Seperator';
 import CategoryGrid from '@/components/forms/CategoryToggle';
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
+import UserStarRating from '@/components/forms/inputs/UserStarRating';
 
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
+
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from 'react-icons/tb';
 import { SlRefresh } from 'react-icons/sl';
+import { GiBroccoli } from "react-icons/gi";
+
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 
@@ -104,7 +103,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const addIngredient = () => {
         setData('recipe_ingredients', [
             ...data.recipe_ingredients,
-            { ingredient_id: '', quantity: '', unit: 'gr' },
+            { ingredient_id: '', quantity: '1', unit: 'gr' },
         ]);
     };
 
@@ -132,6 +131,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         }
         return true;
     })();
+
+    const hasInvalidIngredient = data.recipe_ingredients.some(
+        (i) => i.quantity && !i.ingredient_id
+    );
 
     const handleStepChange = (newStep: number) => {
         setStep(newStep);
@@ -299,13 +302,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {step === 1 && (
                 <section className="space-y-4">
                     {/* Name und Status */}
-                    <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
+                    <div className="grid grid-cols-1 grid-rows-2 xl:flex xl:flex-end gap-3">
                         {/* Name */}
                         <div className="w-full">
                             <InputLabel
                                 htmlFor="name"
                                 value="Rezeptname"
-                                description="Pflichtfeld"
+                                description="Pflichtfeld - das Rezept benötigt einen Namen"
                             />
 
                             <TextInput
@@ -318,40 +321,40 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.name && <p className="text-red-500">{errors.name}</p>}
                         </div>
+                        {/* Slug */}
+                        {recipe && (
+                            <div className="w-full flex flex-col">
+                                <InputLabel
+                                    htmlFor="slug"
+                                    value="Slug"
+                                    description="Pflichtfeld - das Rezept benötigt einen Slug"
+                                />
+                                <InputGroup className="py-6">
+                                    <InputGroupAddon>
+                                        <InputGroupText>https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
+                                    </InputGroupAddon>
+                                    <InputGroupInput className="!pl-0.5" id="slug"
+                                            type="text"
+                                            value={`${data.slug || recipe.slug}`}
+                                            placeholder="nudeln-mit-sauce"
+
+                                            onChange={(e) => setData('slug', e.target.value)} />
+                                </InputGroup>
+                                {errors.slug && <p className="text-rose-700 mt-1">{errors.slug}</p>}
+                            </div>
+                        )}
                     </div>
 
                     {/* Kategorie */}
                     <div>
                         <CategoryGrid
                             selectedCategoryId={
-                                recipe?.category_id ? Number(recipe.category_id) : undefined
+                                recipe?.category_id ? Number(recipe.category_id) : 2
                             }
                             onChange={(id) => setData('category_id', id)}
                         />
                     </div>
-                    <Seperator style="mix" />
-
-                    {/* Slug */}
-                    {recipe && (
-                        <div>
-                            <InputLabel htmlFor="slug" value="URL / Slug" />
-                            <div className="flex flex-col gap-1 mt-1">
-                                <TextInput
-                                    id="slug"
-                                    type="text"
-                                    value={`${data.slug || recipe.slug}`}
-                                    placeholder="nudeln-mit-sauce"
-                                    className="w-full"
-                                    onChange={(e) => setData('slug', e.target.value)}
-                                />
-                                <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    Die URL kann hier geändert werden. Bitte nur Kleinbuchstaben,
-                                    Bindestriche und keine Sonderzeichen verwenden.
-                                </p>
-                            </div>
-                            {errors.slug && <p className="text-rose-500 mt-1">{errors.slug}</p>}
-                        </div>
-                    )}
+                    
 
                     {/* Zahlenfelder: Zeit, Rating, Difficulty */}
                     <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
@@ -377,11 +380,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 />
                             </div>
                             {errors.preparation_time && (
-                                <p className="text-rose-500">{errors.preparation_time}</p>
+                                <p className="text-rose-700">{errors.preparation_time}</p>
                             )}
                         </div>
                     </div>
-                    <Seperator style="quote" />
+
 
                     {/* Punchline */}
                     <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">
@@ -441,27 +444,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <p className="text-red-500 text-sm mt-1">{errors.status}</p>
                             )}
                         </div>
-                        {/* Vegetarisch */}
-                        <div>
-                            <InputLabel htmlFor="is_veggy" value="vegetarisch" />
-                            <div className="flex items-start justify-start gap-2 mt-3">
-                                <label htmlFor="is_veggy" className="mt-1">
-                                    Nein
-                                </label>
-                                <Switch
-                                    className="mt-2 mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                                    checked={data.is_veggy}
-                                    onCheckedChange={(checked) =>
-                                        setData('is_veggy', checked as boolean)
-                                    }
-                                />
-                                <label htmlFor="is_veggy" className="mt-1">
-                                    Ja
-                                </label>
-                            </div>
-                        </div>
+                        
                     </div>
-
+                    {/* User Rating */}
+                    <div>
+                        <InputLabel htmlFor="user-rating" value="Deine Bewertung" />
+                        <UserStarRating rating={data.rating} />
+                    </div>
                     {/* Beschreibung */}
                     <div>
                         <InputLabel htmlFor="description" value="Kurze Beschreibung" />
@@ -549,7 +538,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                         }
                                     />
                                     <Button
-                                        variant="destructive"
+                                        variant="danger"
                                         className="mt-1.5 hover:cursor-pointer rounded-sm shadow-none"
                                         size="sm"
                                         type="button"
@@ -560,19 +549,54 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 </div>
                             </div>
                         ))}
-                        <Button
-                            type="button"
-                            variant="primary"
-                            onClick={addIngredient}
-                            className="mt-5 hover:cursor-pointer hover:bg-emerald-700"
-                        >
-                            <GoPlus /> Zutat hinzufügen
-                        </Button>
+                        <div className="flex justify-between">
+                            <Button
+                                type="button"
+                                variant="primary"
+                                onClick={addIngredient}
+                                className="mt-5 hover:cursor-pointer hover:bg-emerald-700"
+                            >
+                                <GoPlus /> Zutat hinzufügen
+                            </Button>
+                            
+                            {/* Vegetarisch */}
+                            <div>
+                                <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
+                                <div className="flex items-start justify-start gap-2 mt-5 border border-primary bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
+                                    <GiBroccoli className="size-4 text-primary" />
+                                    <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
+                                        Rezept ist vegetarisch
+                                    </label>
+                                    <Switch
+                                        className="mx-1 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
+                                        checked={data.is_veggy}
+                                        onCheckedChange={(checked) =>
+                                            setData('is_veggy', checked as boolean)
+                                        }
+                                    />
+                                </div>
+                            </div>
+                            {/* Alle Zutaten löschen */}
+                            <Button
+                                type="button"
+                                variant="danger"
+                                disabled={!data.recipe_ingredients?.length}
+                                className=" mt-5 hover:cursor-pointer"
+                                onClick={() => {
+                                    if (confirm('Alle Zutaten wirklich löschen?')) {
+                                        setData('recipe_ingredients', []);
+                                    }
+                                }}
+                            >
+                                <BsTrash3 className="mr-1" />
+                                Alle Zutaten löschen
+                            </Button>
+                        </div>
                     </div>
                     <div className="flex justify-between gap-2 mt-8">
                         <Button
                             type="button"
-                            variant="primaryOutline"
+                            variant="primary"
                             onClick={() => handleStepChange(1)}
                         >
                             <GoArrowLeft className="ml-1" />
@@ -580,8 +604,19 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </Button>
                         <Button
                             type="button"
-                            variant="primaryOutline"
-                            onClick={() => handleStepChange(3)}
+                            variant={data.recipe_ingredients?.length >= 1 ? 'primary' : 'primaryOutline'}
+                            onClick={() => {
+                                const hasInvalid = data.recipe_ingredients.some(
+                                    (i) => i.quantity && !i.ingredient_id
+                                );
+
+                                if (hasInvalid) {
+                                    alert('Keine Zutat ausgewählt, nur Menge angegeben.');
+                                    return;
+                                }
+
+                                handleStepChange(3);
+                            }}
                         >
                             Weiter
                             <GoArrowRight className="ml-1" />
@@ -593,103 +628,105 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
                 <section className="space-y-4">
-                    {/* Uploader */}
-                    <div className="w-full space-y-3">
-                        <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
-                        <RecipeMediaUploader
-                            recipeId={recipe?.id}
-                            pendingKey={!recipe ? pendingKey : undefined}
-                            onUploadedJSON={(m) => {
-                                if (!recipe) {
-                                    setPendingMedia((prev) => [...prev, m]);
-                                } else {
-                                    setLiveMedia((prev) => [...prev, m]);
-                                }
-                                if (!data.primary_media_id)
-                                    setData('primary_media_id', m.id as any);
-                            }}
-                        />
-                    </div>
-                    <Seperator style="image" />
-                    {/* Vorschau */}
-                    <div className="w-full space-y-3">
-                        <InputLabel
-                            htmlFor="media"
-                            value="Vorschau der hochgeladenen Bilder"
-                            className="sr-only"
-                        />
-                        <div className="flex flex-wrap gap-3 justify-center items-center">
-                            {(recipe ? liveMedia : pendingMedia).length > 0 ? (
-                                (recipe ? liveMedia : pendingMedia).map((m) => (
-                                    <label
-                                        key={m.id}
-                                        className="relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
-                                    >
-                                        {' '}
-                                        {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
-                                        <img
-                                            src={`/storage/${m.path}`}
-                                            alt={m.name}
-                                            className=" object-cover"
-                                        />
-                                        <Button
-                                            type="button"
-                                            variant="destructive"
-                                            size="icon"
-                                            className="absolute top-1 right-1 bg-rose-600 hover:bg-rose-700 rounded"
-                                            onClick={() => {
-                                                if (!confirm('Möchtest du dieses Bild löschen?'))
-                                                    return;
+                    <div className="flex items-center justify-start gap-4">
+                        {/* Uploader */}
+                        <div className="space-y-3">
+                            <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
+                            <RecipeMediaUploader
+                                recipeId={recipe?.id}
+                                pendingKey={!recipe ? pendingKey : undefined}
+                                onUploadedJSON={(m) => {
+                                    if (!recipe) {
+                                        setPendingMedia((prev) => [...prev, m]);
+                                    } else {
+                                        setLiveMedia((prev) => [...prev, m]);
+                                    }
+                                    if (!data.primary_media_id)
+                                        setData('primary_media_id', m.id as any);
+                                }}
+                            />
+                        </div>
 
-                                                if (recipe) {
-                                                    // Falls schon in DB
-                                                    axios.delete(`/upload/${m.id}`).then(() => {
-                                                        setLiveMedia((prev) =>
+                        {/* Vorschau */}
+                        <div className="space-y-3 pt-5">
+                            <InputLabel
+                                htmlFor="media"
+                                value="Vorschau der hochgeladenen Bilder"
+                                className="sr-only"
+                            />
+                            <div className="flex flex-wrap gap-3 justify-center items-center">
+                                {(recipe ? liveMedia : pendingMedia).length > 0 ? (
+                                    (recipe ? liveMedia : pendingMedia).map((m) => (
+                                        <label
+                                            key={m.id}
+                                            className="relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
+                                        >
+                                            {' '}
+                                            {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
+                                            <img
+                                                src={`/storage/${m.path}`}
+                                                alt={m.name}
+                                                className=" object-cover"
+                                            />
+                                            <Button
+                                                type="button"
+                                                variant="destructive"
+                                                size="icon"
+                                                className="absolute top-1 right-1 bg-rose-700 hover:bg-rose-800 rounded"
+                                                onClick={() => {
+                                                    if (!confirm('Möchtest du dieses Bild löschen?'))
+                                                        return;
+
+                                                    if (recipe) {
+                                                        // Falls schon in DB
+                                                        axios.delete(`/upload/${m.id}`).then(() => {
+                                                            setLiveMedia((prev) =>
+                                                                prev.filter((x) => x.id !== m.id),
+                                                            );
+                                                        });
+                                                    } else {
+                                                        // Nur lokal pending
+                                                        setPendingMedia((prev) =>
                                                             prev.filter((x) => x.id !== m.id),
                                                         );
-                                                    });
-                                                } else {
-                                                    // Nur lokal pending
-                                                    setPendingMedia((prev) =>
-                                                        prev.filter((x) => x.id !== m.id),
-                                                    );
-                                                }
+                                                    }
 
-                                                if (data.primary_media_id === m.id) {
-                                                    setData('primary_media_id', null);
+                                                    if (data.primary_media_id === m.id) {
+                                                        setData('primary_media_id', null);
+                                                    }
+                                                }}
+                                            >
+                                                <BsTrash3 className="size-4" />
+                                            </Button>
+                                            <input
+                                                type="radio"
+                                                name="primary_media_id"
+                                                value={m.id}
+                                                checked={data.primary_media_id === (m.id as any)}
+                                                onChange={() =>
+                                                    setData('primary_media_id', m.id as any)
                                                 }
-                                            }}
-                                        >
-                                            <BsTrash3 className="size-4" />
-                                        </Button>
-                                        <input
-                                            type="radio"
-                                            name="primary_media_id"
-                                            value={m.id}
-                                            checked={data.primary_media_id === (m.id as any)}
-                                            onChange={() =>
-                                                setData('primary_media_id', m.id as any)
-                                            }
-                                            className="absolute top-1 left-1 text-gray-200 dark:text-gray-800"
-                                            title="Als Hauptbild auswählen"
-                                        />
-                                        {data.primary_media_id === m.id && (
-                                            <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">
-                                                Aktuell
-                                            </span>
-                                        )}
-                                    </label>
-                                ))
-                            ) : (
-                                <div className="border-2 border-dotted border-gray-600 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-full max-w-72 flex items-center justify-center aspect-video">
-                                    <p className="text-xs text-gray-500">
-                                        Noch kein Bild vorhanden.
-                                    </p>
-                                </div>
-                            )}
+                                                className="absolute top-1 left-1 text-gray-200 dark:text-gray-800"
+                                                title="Als Hauptbild auswählen"
+                                            />
+                                            {data.primary_media_id === m.id && (
+                                                <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">
+                                                    Aktuell
+                                                </span>
+                                            )}
+                                        </label>
+                                    ))
+                                ) : (
+                                    <div className="border-2 border-dotted border-gray-600 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-full max-w-72 flex items-center justify-center aspect-video">
+                                        <p className="text-xs text-gray-500">
+                                            Noch kein Bild vorhanden.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
-                    <Seperator style="info" />
+
                     {/* Zubereitung */}
                     <div className="w-full space-y-3">
                         <InputLabel
@@ -707,13 +744,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {errors.preparation_instructions && (
                             <p className="text-red-500">{errors.preparation_instructions}</p>
                         )}
-                    </div>
-                    {/* Rating */}
-                    <div className="w-full">
-                        <InputLabel htmlFor="rating" value="Deine Bewertung des Rezeptes" />
-                        <div className="flex justify-center items-center pt-1 mb-12">
-                            {/* <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} /> */}
-                        </div>
                     </div>
                     {/* Submit */}
                     <div className="flex justify-between gap-2">

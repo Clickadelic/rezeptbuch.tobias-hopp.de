@@ -1,7 +1,7 @@
 import { BsJournalBookmark } from 'react-icons/bs';
+import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
-import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
@@ -11,8 +11,11 @@ import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 import { Button } from '@/components/ui/button';
 import { BiCategory } from 'react-icons/bi';
-import { IconMap } from './icon-map';
+import { FaRegHeart } from 'react-icons/fa';
 import { BsCardList } from 'react-icons/bs';
+import { GoPlus } from 'react-icons/go';
+
+import { IconMap } from './icon-map';
 
 export const recipesMegaMenu = [
     {
@@ -71,6 +74,7 @@ export const recipesMegaMenu = [
             },
         ],
     },
+    
 ];
 
 export const featuredRecipes = {

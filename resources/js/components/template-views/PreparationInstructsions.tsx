@@ -1,4 +1,5 @@
 import { Recipe } from '@/types/Recipe';
+import Seperator from '@/components/reusables/Seperator';
 import { cn } from '@/lib/utils';
 
 interface PreparationInstructionsProps {
@@ -21,13 +22,16 @@ export default function PreparationInstructions({
     if (!recipe.preparation_instructions) return null;
 
     return (
-        <div className={cn('flex', className)}>
-            <div className="w-full max-w-4xl mx-auto flex flex-col gap-2">
-                <h4 className="font-medium text-xl">Zubereitung</h4>
-                <div className="flex flex-col gap-2">
-                    <p>{recipe.preparation_instructions}</p>
+        <>
+            <Seperator style="whisk" />
+            <div className={cn('flex', className)}>
+                <div className="w-full max-w-4xl mx-auto flex flex-col gap-2">
+                    <h4 className="font-medium text-xl">Zubereitung</h4>
+                    <div className="flex flex-col gap-2">
+                        <p>{recipe.preparation_instructions}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

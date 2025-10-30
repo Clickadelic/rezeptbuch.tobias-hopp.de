@@ -120,13 +120,39 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                         isFocused
                         onChange={(e) => setData('name', e.target.value)}
                     />
-                    {isEditing && (
+                    
+                </div>
+                <InputError message={errors.name} className="mt-2" />
+            </div>
+
+            <div className={cn('w-full flex', isEditing && 'items-end gap-2')}>
+                <Button variant="primary" className="w-full rounded" disabled={processing}>
+                    {isEditing ? (
+                        <>
+                            <GoPencil className="size-4 mr-1" /> Bearbeiten
+                        </>
+                    ) : (
+                        <>
+                            <GoPlus className="size-4 mr-1" /> Hinzufügen
+                        </>
+                    )}
+                </Button>
+                {isEditing && (
+                    <>
+                        <Button
+                            type="button"
+                            variant="default"
+                            onClick={handleReset}
+                            className="border-0 hover:bg-gray-400 transition"
+                        >
+                            <SlClose className="size-4" /> Abbrechen
+                        </Button>
                         <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
                             <AlertDialogTrigger asChild>
                                 <Button
                                     type="button"
                                     variant="destructive"
-                                    className="bg-rose-500"
+                                    className="bg-rose-500 border border-rose-500 text-rose-50 hover:bg-rose-600 hover:border-rose-600"
                                     aria-label="Zutat löschen"
                                     title="Zutat löschen"
                                     onClick={() => setIsDeleteDialogOpen(true)}
@@ -162,32 +188,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
-                    )}
-                </div>
-                <InputError message={errors.name} className="mt-2" />
-            </div>
-
-            <div className={cn('w-full flex', isEditing && 'items-end gap-2')}>
-                <Button variant="primary" className="w-full rounded" disabled={processing}>
-                    {isEditing ? (
-                        <>
-                            <GoPencil className="size-4 mr-1" /> Bearbeiten
-                        </>
-                    ) : (
-                        <>
-                            <GoPlus className="size-4 mr-1" /> Hinzufügen
-                        </>
-                    )}
-                </Button>
-                {isEditing && (
-                    <Button
-                        type="button"
-                        variant="default"
-                        onClick={handleReset}
-                        className="border-0 hover:bg-gray-400 transition"
-                    >
-                        <SlClose className="size-4" /> Abbrechen
-                    </Button>
+                    </>
                 )}
             </div>
         </form>

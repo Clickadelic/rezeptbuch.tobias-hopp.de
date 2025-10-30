@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { IoIosArrowUp } from 'react-icons/io';
-import './back-to-top-button.css';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
+import { TooltipArrow } from '@radix-ui/react-tooltip';
 export default function BackToTopButton() {
     return (
-        <div className="relative w-full flex justify-center items-center">
+        <div className="relative w-full flex flex-col justify-center items-center">
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
@@ -18,6 +18,7 @@ export default function BackToTopButton() {
                     </TooltipTrigger>
                     <TooltipContent side="bottom" className="text-white">
                         <p>Zurück nach oben</p>
+                        <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>

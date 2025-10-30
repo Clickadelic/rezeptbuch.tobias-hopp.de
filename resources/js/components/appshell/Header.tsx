@@ -60,7 +60,12 @@ const Header = () => {
                             >
                                 Start
                             </NavLink>
-                            <MegaMenu title="Rezepte" icon={<BsJournalBookmark className="size-4" />} columns={recipesMegaMenu} featured={featuredRecipes} />
+                            <MegaMenu
+                                title="Rezepte"
+                                icon={<BsJournalBookmark className="size-4" />}
+                                columns={recipesMegaMenu}
+                                featured={featuredRecipes}
+                            />
                             <NavLink
                                 href="/zutaten"
                                 active={window.location.pathname.startsWith('/zutaten')}
@@ -109,25 +114,16 @@ const Header = () => {
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         {hasRole('admin') && (
-                                            <Dropdown.Link
-                                                href="/admin"
-                                                className="flex gap-2"
-                                            >
+                                            <Dropdown.Link href="/admin" className="flex gap-2">
                                                 <MdOutlineAdminPanelSettings className="size-4 mt-1 text-primary" />
                                                 Admin
                                             </Dropdown.Link>
                                         )}
-                                        <Dropdown.Link
-                                            href="/dashboard"
-                                            className="flex gap-2"
-                                        >
+                                        <Dropdown.Link href="/dashboard" className="flex gap-2">
                                             <RiDashboardHorizontalLine className="size-4 mt-1 text-primary" />
                                             Dashboard
                                         </Dropdown.Link>
-                                        <Dropdown.Link
-                                            href="/profile"
-                                            className="flex gap-2"
-                                        >
+                                        <Dropdown.Link href="/profile" className="flex gap-2">
                                             <RiAccountPinBoxLine className="size-4 mt-1 text-primary" />
                                             Profil
                                         </Dropdown.Link>

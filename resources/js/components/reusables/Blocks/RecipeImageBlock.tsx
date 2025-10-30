@@ -31,12 +31,12 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
     return (
         <div
             className={cn(
-                'relative z-0 flex flex-col items-center justify-center aspect-video w-full xl:w-[96rem] overflow-hidden rounded-xl',
+                'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-xl',
                 className,
             )}
         >
             {hero ? (
-                <div className="relative w-full flex border border-transparent rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+                <div className="w-full h-auto flex border border-transparent rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
                     <img
                         src={hero.url}
                         alt={recipe.name}
@@ -44,7 +44,7 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
                     />
                     <button
                         onClick={toggleImageModal}
-                        className="absolute inset-0 bg-transparent opacity-0 hover:opacity-100 transition ease-in-out z-30 cursor-pointer text-white hover:text-gray-300"
+                        className="absolute inset-0 bg-transparent opacity-0 hover:opacity-100 transition ease-in-out z-30 cursor-pointer text-white hover:text-primary"
                         title="Bild vergrößern"
                     >
                         <GoZoomIn className="size-5 absolute bottom-7 right-7" />

@@ -100,6 +100,7 @@ export default function AuthLayout({
                         </a>
                     </p>
                 </div>
+                <CookieNotice />
                 <Toaster position="bottom-right" />
             </ThemeProvider>
         </>

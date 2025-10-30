@@ -15,7 +15,7 @@ interface AttributesBlockProps {
 // TODO: Kategorie Cocktail mit Icon LiaCocktailSolid
 export default function AttributesBlock({ recipe, className }: AttributesBlockProps) {
     return (
-        <div className={cn('flex flex-wrap gap-2', className)}>
+        <div className={cn('flex gap-2', className)}>
             <div className="w-24 aspect-video gap-2 cursor-default flex flex-col bg-gray-100 dark:bg-gray-900 rounded-lg border-b border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                 {IconMap[recipe.category?.slug ?? ''] ?? (
                     <LuUtensilsCrossed className="size-5 text-primary" />

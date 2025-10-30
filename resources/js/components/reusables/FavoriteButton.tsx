@@ -12,6 +12,7 @@ import { SharedPageProps } from '@/types';
 import { cn } from '@/lib/utils';
 
 interface FavoriteButtonProps {
+    showText?: boolean;
     recipeId?: string;
     isFavorite?: boolean;
     className?: string;
@@ -69,7 +70,7 @@ export default function FavoriteButton({
             disabled={loading}
             variant="flat"
             className={cn(
-                'shadow-none text-gray-400 rounded-full transition-colors',
+                'min-w-4.5 shadow-none text-gray-400 rounded-full transition-colors',
                 'hover:text-rose-600 hover:fill-rose-600',
                 active && 'text-rose-600 fill-rose-600',
                 'focus-visible:ring-2 focus-visible:ring-rose-600 focus-visible:ring-offset-2',

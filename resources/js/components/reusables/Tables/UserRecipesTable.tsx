@@ -5,14 +5,7 @@ import { Link } from '@inertiajs/react';
 import axios from 'axios';
 
 import { Button } from '@/components/ui/button';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 import ContextMenu from '@/components/reusables/ContextMenu';
 import Paginated from '@/types/Paginated';
@@ -25,7 +18,7 @@ import { Recipe } from '@/types/Recipe';
 
 import { cn } from '@/lib/utils';
 
-interface RecipesTableProps {
+interface UserRecipesTableProps {
     initialRecipes: Paginated<Recipe>;
     title?: string;
     icon?: React.ReactNode;
@@ -33,13 +26,13 @@ interface RecipesTableProps {
     tableClasses?: string;
 }
 
-export default function RecipesTable({
+export default function UserRecipesTable({
     title,
     icon,
     initialRecipes,
     className,
     tableClasses,
-}: RecipesTableProps) {
+}: UserRecipesTableProps) {
     const [recipes, setRecipes] = useState<Paginated<Recipe>>(initialRecipes);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -103,7 +96,7 @@ export default function RecipesTable({
                             <TableHead>Name</TableHead>
                             <TableHead className="hidden sm:table-cell">Kategorie</TableHead>
                             <TableHead className="hidden sm:table-cell">Schwierigkeit</TableHead>
-                            <TableHead className="hidden sm:table-cell">Benutzer</TableHead>
+
                             <TableHead className="text-right">Aktion</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -138,9 +131,6 @@ export default function RecipesTable({
                                 </TableCell>
                                 <TableCell className="cursor-default hidden sm:table-cell">
                                     {recipe.difficulty}
-                                </TableCell>
-                                <TableCell className="cursor-default hidden sm:table-cell">
-                                    {recipe.user?.name}
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <ContextMenu recipe={recipe} dotStyle="horizontal" />

@@ -18,18 +18,9 @@ interface UserCardProps {
     isFollowing?: boolean;
 }
 
-export default function UserCard({
-    name,
-    avatarUrl,
-    bio = 'Passionate home chef sharing delicious recipes and cooking tips',
-    recipesCount = 42,
-    followersCount = 1234,
-    rating = 4.8,
-    specialties = ['Italian', 'Baking', 'Vegan'],
-    isFollowing = false,
-}: UserCardProps) {
+export default function UserCard({ name, avatarUrl, bio = 'Passionate home chef sharing delicious recipes and cooking tips', recipesCount = 42, followersCount = 1234, rating = 4.8, specialties = ['Italian', 'Baking', 'Vegan'], isFollowing = false }: UserCardProps) {
     return (
-        <Card className="w-full max-w-md overflow-hidden bg-gray-100 dark:bg-gray-900">
+        <Card className="w-full py-0 max-w-md overflow-hidden bg-gray-100 dark:bg-gray-900">
             {/* Header Image */}
             <div className="relative h-24 w-full overflow-hidden">
                 <img

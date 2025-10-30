@@ -5,7 +5,7 @@ import FullWidthLayout from '@/layouts/FullWidthLayout';
 import BarChart from '@/components/reusables/Charts/BarChart';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
-import RecipesTable from '@/components/reusables/Tables/RecipesTable';
+import RecipesTable from '@/components/reusables/Tables/UserRecipesTable';
 
 import { IoIosStats } from 'react-icons/io';
 import { BsJournalBookmark } from 'react-icons/bs';

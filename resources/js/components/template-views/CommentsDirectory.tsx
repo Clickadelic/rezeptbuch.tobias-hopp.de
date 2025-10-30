@@ -84,7 +84,7 @@ export default function CommentsDirectory({ recipeId }: CommentsDirectoryProps) 
                         {!loading && (
                             <span>
                                 {comments.length} Kommentar
-                                {comments.length > 1 && 'e'}
+                                {comments.length === 1 ? '' : 'e'}
                             </span>
                         )}
                     </h3>

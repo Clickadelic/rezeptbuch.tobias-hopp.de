@@ -110,10 +110,10 @@ export default function CommentItem({
         <div className={`flex flex-col mt-4 gap-2 ${depth > 0 ? 'ml-6' : ''}`}>
             <div className="flex flex-col gap-2">
                 {/* Header */}
-                <div className="text-sm flex flex-start gap-3 pl-3 items-center">
+                <div className="text-sm flex flex-start gap-1 sm:gap-3 pl-3 items-center">
                     <Avatar url={comment.user?.avatar} />
                     {comment.created_at && (
-                        <div className="w-32 flex flex-col text-xs text-gray-500 dark:text-gray-400">
+                        <div className="w-32 flex flex-col shrink-0 text-xs text-gray-500 dark:text-gray-400">
                             <div className="text-md text-gray-800 dark:text-gray-200">
                                 {comment.user?.name}:
                             </div>
@@ -125,7 +125,7 @@ export default function CommentItem({
 
                     {/* Buttons: Edit/Delete */}
                     {hasRole('user') && user.id === comment.user?.id && (
-                        <div className="flex flex-grow items-start justify-end">
+                        <div className="w-full flex flex-grow items-start justify-between sm:justify-end">
                             <ButtonGroup aria-label="Button group">
                                 <Button
                                     variant="link"

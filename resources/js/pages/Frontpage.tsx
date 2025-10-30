@@ -3,6 +3,7 @@ import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelectionsBlock/Index';
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
+import CommentsAfterCookingBlock from '@/components/reusables/Blocks/CommentsAfterCookingBlock';
 
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
@@ -38,9 +39,11 @@ export default function Frontpage() {
             />
             <CategorySelectionBlock />
             <Seperator />
+            <DailyRecommendationsBlock />
+            <Seperator />
             <AuthTeaserBlock />
             <Seperator />
-            <DailyRecommendationsBlock />
+            <CommentsAfterCookingBlock />
             <Seperator style="info" />
             <FaqAccordeon />
         </FullWidthLayout>

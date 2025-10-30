@@ -9,7 +9,8 @@ import { useBlurStore } from '@/stores/useBlurStore'; // 🔹 Import für Blur
 
 import { Button } from '@/components/ui/button';
 
-import CakeUtilities from "@images/svg/Cake-Utilities.svg";
+// import decorationSvg from "@images/svg/fruit-basket-bro.svg";
+import decorationSvg from "@images/svg/documents-bro.svg";
 
 
 interface MegaMenuItem {
@@ -104,9 +105,10 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
             >
-                <div className="hidden sm:block absolute top-full w-screen z-50 mt-1 max-w-5xl mx-auto sm:-left-72">
+                <div className="hidden sm:block absolute top-full w-screen z-50 mt-3 max-w-5xl mx-auto sm:-left-72">
                     <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
-                        <div className="overflow-hidden bg-white dark:bg-gray-800 rounded-lg ">
+                        <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
+                            <img src={decorationSvg} alt="Collab-bro" className="absolute left-12 bottom-3 size-40" />
                             <div className="grid gap-4 p-4 md:grid-cols-4">
                                 {columns.map((section, idx) => (
                                     <div key={idx} className="space-y-2">

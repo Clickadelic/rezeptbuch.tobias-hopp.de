@@ -386,6 +386,27 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                     {/* Punchline */}
                     <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">
+                        {/* Status */}
+                        <div>
+                            <InputLabel htmlFor="status" value="Status" />
+                            <Select
+                                name="status"
+                                value={data.status}
+                                onValueChange={(val) => setData('status', val)}
+                            >
+                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                    <SelectValue placeholder="Status auswählen" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="draft">Entwurf</SelectItem>
+                                    <SelectItem value="published">veröffentlicht</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            {errors.status && (
+                                <p className="text-red-500 text-sm mt-1">{errors.status}</p>
+                            )}
+                        </div>
+
                         <div className="w-full">
                             <InputLabel htmlFor="punchline" value="Punchline" />
                             <TextInput
@@ -422,33 +443,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                             )}
                         </div>
-                        {/* Status */}
-                        <div>
-                            <InputLabel htmlFor="status" value="Status" />
-                            <Select
-                                name="status"
-                                value={data.status}
-                                onValueChange={(val) => setData('status', val)}
-                            >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
-                                    <SelectValue placeholder="Status auswählen" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="draft">Entwurf</SelectItem>
-                                    <SelectItem value="published">veröffentlicht</SelectItem>
-                                </SelectContent>
-                            </Select>
-                            {errors.status && (
-                                <p className="text-red-500 text-sm mt-1">{errors.status}</p>
-                            )}
-                        </div>
+                        
                         
                     </div>
-                    {/* User Rating */}
-                    <div>
-                        <InputLabel htmlFor="user-rating" value="Deine Bewertung" />
-                        <UserStarRating rating={data.rating} />
-                    </div>
+
                     {/* Beschreibung */}
                     <div>
                         <InputLabel htmlFor="description" value="Kurze Beschreibung" />

@@ -7,6 +7,7 @@ import Seperator from '@/components/reusables/Seperator';
 
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
+
 import UserStarRating from '@/components/forms/inputs/UserStarRating';
 import StatusSelect from '@/components/forms/inputs/StatusSelect';
 import CategorySelect from '@/components/forms/inputs/CategorySelect';
@@ -295,114 +296,117 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 1: Basics */}
             {step === 1 && (
                 <section className="space-y-4">
-                    <CategorySelect selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
-                        {/* Name */}
+                    <CategorySelect className="w-full max-w-xl mx-auto" selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
+                    
+                    {/* Name */}
+                    <div className="w-full max-w-xl mx-auto flex flex-col">
+                        <InputLabel
+                            htmlFor="name"
+                            value="Rezeptname"
+                            description="Pflichtfeld - das Rezept benötigt einen Namen"
+                        />
+
+                        <TextInput
+                            id="name"
+                            type="text"
+                            value={data.name}
+                            placeholder="z.B. Ofengemüse mit Kartoffeln"
+                            className="w-full"
+                            onChange={(e) => setData('name', e.target.value)}
+                        />
+                        {errors.name && <p className="text-red-500">{errors.name}</p>}
+                    </div>
+
+                    {/* Slug */}
+                    {recipe && (
                         <div className="w-full flex flex-col">
                             <InputLabel
-                                htmlFor="name"
-                                value="Rezeptname"
-                                description="Pflichtfeld - das Rezept benötigt einen Namen"
+                                htmlFor="slug"
+                                value="Slug"
+                                description="Pflichtfeld - das Rezept benötigt einen Slug"
                             />
+                            <InputGroup className="py-6 bg-gray-100 dark:bg-gray-900">
+                                <InputGroupAddon>
+                                    <InputGroupText className="">https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
+                                </InputGroupAddon>
+                                <InputGroupInput className="!pl-0.5" id="slug"
+                                        type="text"
+                                        value={`${data.slug || recipe.slug}`}
+                                        placeholder="nudeln-mit-sauce"
 
-                            <TextInput
-                                id="name"
-                                type="text"
-                                value={data.name}
-                                placeholder="z.B. Ofengemüse mit Kartoffeln"
-                                className="w-full"
-                                onChange={(e) => setData('name', e.target.value)}
-                            />
-                            {errors.name && <p className="text-red-500">{errors.name}</p>}
+                                        onChange={(e) => setData('slug', e.target.value)} />
+                            </InputGroup>
+                            {errors.slug && <p className="text-rose-700 mt-1">{errors.slug}</p>}
                         </div>
-                        {/* Slug */}
-                        {recipe && (
-                            <div className="w-full flex flex-col">
-                                <InputLabel
-                                    htmlFor="slug"
-                                    value="Slug"
-                                    description="Pflichtfeld - das Rezept benötigt einen Slug"
-                                />
-                                <InputGroup className="py-6 bg-gray-100 dark:bg-gray-900">
-                                    <InputGroupAddon>
-                                        <InputGroupText className="">https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
-                                    </InputGroupAddon>
-                                    <InputGroupInput className="!pl-0.5" id="slug"
-                                            type="text"
-                                            value={`${data.slug || recipe.slug}`}
-                                            placeholder="nudeln-mit-sauce"
+                    )}
 
-                                            onChange={(e) => setData('slug', e.target.value)} />
-                                </InputGroup>
-                                {errors.slug && <p className="text-rose-700 mt-1">{errors.slug}</p>}
-                            </div>
-                        )}
-                        <div className="w-full flex flex-col">
-                            <div>
-                                <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" description="Wähle wie aufwendig bzw. schwierig das Rezept ist." />
-                                <DifficultySelect selectedDifficulty={data.difficulty} onChange={(difficulty: string) => setData('difficulty', difficulty)} />
-                                {errors.difficulty && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
-                                )}
-                            </div>
-                            <div>
-                                <InputLabel htmlFor="status" value="Status" description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."  />
-                                <StatusSelect selectedStatus={data.status} onChange={(status: string) => setData('status', status)} />
-                                {errors.status && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.status}</p>
-                                )}
-                            </div>
-                        </div>
-                        
-                        <div className="w-full flex flex-col">
-                            <InputLabel htmlFor="punchline" value="Punchline" />
-                            <TextInput
-                                id="punchline"
-                                type="text"
-                                value={data.punchline}
-                                placeholder="z.B. Mediterran und frisch"
-                                className="w-full"
-                                onChange={(e) => setData('punchline', e.target.value)}
-                            />
-                            {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
-                        </div>
-
-                        <div className="w-full">
-                            <InputLabel htmlFor="description" value="Kurze Beschreibung" description="Ein kurzer Beschreibungstext der Lust darauf macht, das Gericht zu kochen." />
-                            <Textarea
-                                value={data.description}
-                                rows={5}
-                                placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                                className="mt-2 w-full rounded-lg border border-gray-200 bg-gray-100 dark:bg-gray-900 px-3 py-2"
-                                onChange={(e) => setData('description', e.target.value)}
-                            />
-                            {errors.description && <p className="text-red-500">{errors.description}</p>}
-                        </div>
-
-                        {/* Vorbereitungszeit */}
+                    <div className="w-full max-w-xl mx-auto flex flex-col gap-5">
                         <div>
-                            <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
-                            <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
-                                <div className="flex justify-end items-end">
-                                    <span className="min-w-[80px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
-                                        {data.preparation_time}
-                                    </span>
-                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
-                                        Minuten
-                                    </span>
-                                </div>
-                                <Slider
-                                    defaultValue={[data.preparation_time]}
-                                    max={240}
-                                    step={5}
-                                    id="preparation_time"
-                                    className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
-                                    onValueChange={(value) => setData('preparation_time', value[0])}
-                                />
-                            </div>
-                            {errors.preparation_time && (
-                                <p className="text-rose-700">{errors.preparation_time}</p>
+                            <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" description="Wähle wie aufwendig bzw. schwierig das Rezept ist." />
+                            <DifficultySelect selectedDifficulty={data.difficulty} onChange={(difficulty: string) => setData('difficulty', difficulty)} />
+                            {errors.difficulty && (
+                                <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                             )}
                         </div>
+                        <div>
+                            <InputLabel htmlFor="react-select-4-input" value="Status" description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."  />
+                            <StatusSelect selectedStatus={data.status} onChange={(status: string) => setData('status', status)} />
+                            {errors.status && (
+                                <p className="text-red-500 text-sm mt-1">{errors.status}</p>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Vorbereitungszeit */}
+                    <div className="w-full max-w-xl mx-auto">
+                        <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
+                        <div className="w-full flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
+                            <div className="flex justify-end items-end">
+                                <span className="min-w-[80px] p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                    {data.preparation_time}
+                                </span>
+                                <span className="bg-white p-3 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
+                                    Minuten
+                                </span>
+                            </div>
+                            <Slider
+                                defaultValue={[data.preparation_time]}
+                                max={240}
+                                step={5}
+                                id="preparation_time"
+                                className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
+                                onValueChange={(value) => setData('preparation_time', value[0])}
+                            />
+                        </div>
+                        {errors.preparation_time && (
+                            <p className="text-rose-700">{errors.preparation_time}</p>
+                        )}
+                    </div>
+                    
+                    <div className="w-full max-w-xl mx-auto flex flex-col">
+                        <InputLabel htmlFor="punchline" value="Punchline" />
+                        <TextInput
+                            id="punchline"
+                            type="text"
+                            value={data.punchline}
+                            placeholder="z.B. Mediterran und frisch"
+                            className="w-full"
+                            onChange={(e) => setData('punchline', e.target.value)}
+                        />
+                        {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
+                    </div>
+
+                    <div className="w-full max-w-xl mx-auto">
+                        <InputLabel htmlFor="description" value="Kurze Beschreibung" description="Ein kurzer Beschreibungstext der Lust darauf macht, das Gericht zu kochen." />
+                        <Textarea
+                            value={data.description}
+                            rows={5}
+                            placeholder="z.B. Schnell und lecker für die ganze Familie..."
+                            className="mt-2 w-full rounded-lg border border-gray-200 bg-gray-100 dark:bg-gray-900 px-3 py-2"
+                            onChange={(e) => setData('description', e.target.value)}
+                        />
+                        {errors.description && <p className="text-red-500">{errors.description}</p>}
+                    </div>
 
                     <div className="flex justify-between gap-2 mt-8">
                         <Button
@@ -433,7 +437,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 2: Zutaten */}
             {step === 2 && (
                 <section className="space-y-4 md:space-y-2">
-                    <div>
+                    <div className="w-full max-w-xl mx-auto">
                         <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" />
                         {data.recipe_ingredients?.map((di, idx) => (
                             <div

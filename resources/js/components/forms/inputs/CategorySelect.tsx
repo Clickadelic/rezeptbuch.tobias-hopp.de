@@ -10,6 +10,7 @@ import { GiCrystalBars } from "react-icons/gi";
 import { GiCakeSlice } from "react-icons/gi";
 import { useDarkMode } from '@/hooks/useDarkMode';
 
+import { cn } from "@/lib/utils";
 
 const categoryOptions = [
   { value: 1, label: "Vorspeise", icon: <TbSalad className="size-5 text-primary" /> },
@@ -43,11 +44,13 @@ const IconSingleValue = (props: any) => (
 interface CategorySelectProps {
   selectedCategoryId?: number;
   onChange?: (categoryId: number) => void;
+  className?: string;
 }
 
 export default function CategorySelect({
   selectedCategoryId,
   onChange,
+  className
 }: CategorySelectProps) {
   const isDark = useDarkMode();
 
@@ -56,7 +59,7 @@ export default function CategorySelect({
   );
 
   return (
-    <div className="w-64">
+    <div className={cn("w-full", className)}>
       <InputLabel htmlFor="category" value="Kategorie" description="Wähle eine Kategorie unter der das Rezept gelistet wird." />
       <Select
         id="category"

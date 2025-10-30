@@ -43,7 +43,7 @@ export default function DifficultySelect({
   );
 
   return (
-    <div className="w-64">
+    <div className="w-full">
       <Select
         options={difficultyOptions}
         value={selectedOption ?? null} // Wählen… wenn kein Wert

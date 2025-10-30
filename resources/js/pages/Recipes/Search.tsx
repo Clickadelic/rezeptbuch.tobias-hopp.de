@@ -31,7 +31,7 @@ export default function Search() {
                     Keine Rezepte gefunden.
                 </p>
             )}
-            <Pagination links={recipes.links} />
+            <Pagination links={recipes.links} className="flex items-center justify-center space-x-2 mt-4 sm:mt-8 xl:mt-12" />
         </FullWidthLayout>
     );
 }

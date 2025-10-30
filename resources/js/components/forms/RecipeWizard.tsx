@@ -15,6 +15,7 @@ import { Slider } from '@/components/ui/slider';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
@@ -354,38 +355,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             onChange={(id) => setData('category_id', id)}
                         />
                     </div>
-                    
-                    {/* Zahlenfelder: Zeit, Rating, Difficulty */}
-                    <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
-                        {/* Vorbereitungszeit - Kochzeit noch eweitern */}
-                        <div>
-                            <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
-                            <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
-                                <div className="flex justify-end items-end">
-                                    <span className="min-w-[50px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
-                                        {data.preparation_time}
-                                    </span>
-                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
-                                        Minuten
-                                    </span>
-                                </div>
-                                <Slider
-                                    defaultValue={[data.preparation_time]}
-                                    max={240}
-                                    step={5}
-                                    id="preparation_time"
-                                    className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
-                                    onValueChange={(value) => setData('preparation_time', value[0])}
-                                />
-                            </div>
-                            {errors.preparation_time && (
-                                <p className="text-rose-700">{errors.preparation_time}</p>
-                            )}
-                        </div>
-                    </div>
 
                     {/* Punchline */}
                     <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">
+
                         {/* Status */}
                         <div>
                             <InputLabel htmlFor="status" value="Status" />
@@ -420,46 +393,72 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
                         </div>
 
-                        {/* Schwierigkeitsgrad */}
-                        <div>
-                            <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
-                            <Select
-                                name="difficulty"
-                                value={data.difficulty || Difficulty.EINFACH}
-                                onValueChange={(val) => setData('difficulty', val as Difficulty)}
-                            >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-                                    <SelectValue placeholder="Schwierigkeitsgrad" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {Object.entries(Difficulty).map(([key, val]) => (
-                                        <SelectItem key={key} value={val}>
-                                            {val}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                            {errors.difficulty && (
-                                <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
-                            )}
-                        </div>
-                        
-                        
                     </div>
 
                     {/* Beschreibung */}
-                    <div>
-                        <InputLabel htmlFor="description" value="Kurze Beschreibung" />
-                        <Textarea
-                            value={data.description}
-                            rows={5}
-                            placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                            className="mt-2 w-full rounded-lg border border-gray-200 px-3 py-2"
-                            onChange={(e) => setData('description', e.target.value)}
-                        />
-                        {errors.description && <p className="text-red-500">{errors.description}</p>}
+                    <div className="w-full flex gap-5">
+                        <div className="w-full">
+                            <InputLabel htmlFor="description" value="Kurze Beschreibung" />
+                            <Textarea
+                                value={data.description}
+                                rows={5}
+                                placeholder="z.B. Schnell und lecker für die ganze Familie..."
+                                className="mt-2 w-full rounded-lg border border-gray-200 px-3 py-2"
+                                onChange={(e) => setData('description', e.target.value)}
+                            />
+                            {errors.description && <p className="text-red-500">{errors.description}</p>}
+                        </div>
+                        <div className="w-full flex flex-col gap-3">
+                            {/* Schwierigkeitsgrad */}
+                            <div>
+                                <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
+                                <Select
+                                    name="difficulty"
+                                    value={data.difficulty || Difficulty.EINFACH}
+                                    onValueChange={(val) => setData('difficulty', val as Difficulty)}
+                                >
+                                    <SelectTrigger className="w-full sm:w-44 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+                                        <SelectValue placeholder="Schwierigkeitsgrad" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {Object.entries(Difficulty).map(([key, val]) => (
+                                            <SelectItem key={key} value={val}>
+                                                {val}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                {errors.difficulty && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
+                                )}
+                            </div>
+                            {/* Vorbereitungszeit */}
+                            <div>
+                                <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
+                                <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
+                                    <div className="flex justify-end items-end">
+                                        <span className="min-w-[80px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                            {data.preparation_time}
+                                        </span>
+                                        <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
+                                            Minuten
+                                        </span>
+                                    </div>
+                                    <Slider
+                                        defaultValue={[data.preparation_time]}
+                                        max={240}
+                                        step={5}
+                                        id="preparation_time"
+                                        className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
+                                        onValueChange={(value) => setData('preparation_time', value[0])}
+                                    />
+                                </div>
+                                {errors.preparation_time && (
+                                    <p className="text-rose-700">{errors.preparation_time}</p>
+                                )}
+                            </div>
+                        </div>
                     </div>
-
                     <div className="flex justify-between gap-2 mt-8">
                         <Button
                             asChild
@@ -555,23 +554,25 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <GoPlus /> Zutat hinzufügen
                             </Button>
                             
-                            {/* Vegetarisch */}
-                            <div>
-                                <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
-                                <div className="flex items-start justify-start gap-2 mt-5 border border-primary bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
-                                    <GiBroccoli className="size-4 text-primary" />
-                                    <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
-                                        Rezept ist vegetarisch
-                                    </label>
-                                    <Switch
-                                        className="mx-1 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                                        checked={data.is_veggy}
-                                        onCheckedChange={(checked) =>
-                                            setData('is_veggy', checked as boolean)
-                                        }
-                                    />
-                                </div>
-                            </div>
+                            {/* Kategorie Cocktails kein Veggy Switch */}
+                            {data.category_id != 4 && (
+                               <div>
+                                    <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
+                                    <div className="flex items-start justify-start gap-2 mt-5 border border-primary bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
+                                        <GiBroccoli className="size-4 text-primary" />
+                                        <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
+                                            Rezept ist vegetarisch
+                                        </label>
+                                        <Switch
+                                            className="mx-1 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
+                                            checked={data.is_veggy}
+                                            onCheckedChange={(checked) =>
+                                                setData('is_veggy', checked as boolean)
+                                            }
+                                        />
+                                    </div>
+                                </div> 
+                            )}
                             {/* Alle Zutaten löschen */}
                             <Button
                                 type="button"
@@ -587,6 +588,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <BsTrash3 className="mr-1" />
                                 Alle Zutaten löschen
                             </Button>
+                            
                         </div>
                     </div>
                     <div className="flex justify-between gap-2 mt-8">
@@ -626,7 +628,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                 <section className="space-y-4">
                     <div className="flex items-center justify-start gap-4">
                         {/* Uploader */}
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                             <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
                             <RecipeMediaUploader
                                 recipeId={recipe?.id}
@@ -642,9 +644,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 }}
                             />
                         </div>
-
+                                
                         {/* Vorschau */}
-                        <div className="space-y-3 pt-5">
+                        <div className="space-y-2 pt-5">
                             <InputLabel
                                 htmlFor="media"
                                 value="Vorschau der hochgeladenen Bilder"
@@ -655,14 +657,14 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     (recipe ? liveMedia : pendingMedia).map((m) => (
                                         <label
                                             key={m.id}
-                                            className="relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
+                                            className="mt-1 relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
                                         >
                                             {' '}
                                             {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
                                             <img
                                                 src={`/storage/${m.path}`}
                                                 alt={m.name}
-                                                className=" object-cover"
+                                                className="size-full object-cover"
                                             />
                                             <Button
                                                 type="button"
@@ -722,7 +724,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             </div>
                         </div>
                     </div>
-
+                    <Seperator />
                     {/* Zubereitung */}
                     <div className="w-full space-y-3">
                         <InputLabel

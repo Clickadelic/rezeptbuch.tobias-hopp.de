@@ -31,7 +31,7 @@ interface SeparatorProps {
 /**
  * A separator component with an icon centered above a horizontal line.
  * @example
- * <Separator size={8} style="check-circle | cocktail | comment | comment-alt | cooking-pot | journal | cake | info | image | muffin | mail | mix | quote | salad | salt | snack | star | scale | gear " />
+ * <Separator size={8} style="check-circle | cocktail | comment | comment-alt | cooking-pot | ghost | journal | cake | info | image | muffin | mail | mix | quote | salad | salt | snack | star | scale | gear " />
  */
 export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorProps) {
     const baseStyle = { fontSize: `${size * 0.25}rem` };

@@ -56,12 +56,14 @@ export default function DifficultySelect({
           control: (base, state) => ({
             ...base,
             borderRadius: "0.25rem",
-            borderColor: state.isFocused ? "#065f46" : "#e5e7eb",
+            borderColor: state.isFocused ? "#065f46" : "#364153",
             boxShadow: state.isFocused ? "0 0 0 1px #065f46" : "none",
             padding: "2px 4px",
             backgroundColor: isDark ? "#111827" : "#f3f4f6",
+
             "&:hover": {
               borderColor: state.isFocused ? "#065f46" : "#d1d5db",
+              
             },
           }),
           input: (base) => ({
@@ -72,10 +74,12 @@ export default function DifficultySelect({
             width: 0,
             opacity: 0,
           }),
+          // Text when selected
           singleValue: (base) => ({
             ...base,
             color: isDark ? "#f9fafb" : "#1f2937",
           }),
+          // Dropdown text
           option: (base, state) => ({
             ...base,
             color: isDark ? "#f9fafb" : "#1f2937",
@@ -87,6 +91,14 @@ export default function DifficultySelect({
               ? "#111827"
               : "#ffffff",
             cursor: "pointer",
+            borderRadius: "0.35rem",
+          }),
+          menu : (base) => ({
+            ...base,
+            backgroundColor: isDark ? "#111827" : "#f3f4f6",
+            padding: "2px 4px",
+            borderRadius: "0.5rem",
+            border: isDark ? "1px solid #116045" : "1px solid #116045",
           }),
         }}
       />

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import Select, { components } from "react-select";
+
+import InputLabel from "@/components/forms/inputs/InputLabel";
 
 import { TbSalad } from "react-icons/tb";
 import { PiCookingPot } from "react-icons/pi";
@@ -8,13 +9,15 @@ import { LiaCocktailSolid } from "react-icons/lia";
 import { GiCrystalBars } from "react-icons/gi";
 import { GiCakeSlice } from "react-icons/gi";
 import { useDarkMode } from '@/hooks/useDarkMode';
+
+
 const categoryOptions = [
-  { value: 1, label: "Vorspeise", icon: <TbSalad className="size-5" /> },
-  { value: 2, label: "Hauptgericht", icon: <PiCookingPot className="size-5" /> },
-  { value: 3, label: "Nachtisch", icon: <RiCake3Line className="size-5" /> },
-  { value: 4, label: "Cocktail", icon: <LiaCocktailSolid className="size-5" /> },
-  { value: 5, label: "Backen", icon: <GiCakeSlice className="size-5" /> },
-  { value: 6, label: "Snack", icon: <GiCrystalBars className="size-5" /> },
+  { value: 1, label: "Vorspeise", icon: <TbSalad className="size-5 text-primary" /> },
+  { value: 2, label: "Hauptgericht", icon: <PiCookingPot className="size-5 text-primary" /> },
+  { value: 3, label: "Nachtisch", icon: <RiCake3Line className="size-5 text-primary" /> },
+  { value: 4, label: "Cocktail", icon: <LiaCocktailSolid className="size-5 text-primary" /> },
+  { value: 5, label: "Backen", icon: <GiCakeSlice className="size-5 text-primary" /> },
+  { value: 6, label: "Snack", icon: <GiCrystalBars className="size-5 text-primary" /> },
 ];
 
 // Custom Option mit Icon + Label
@@ -54,11 +57,13 @@ export default function CategorySelect({
 
   return (
     <div className="w-64">
+      <InputLabel htmlFor="category" value="Kategorie" description="Wähle eine Kategorie unter der das Rezept gelistet wird." />
       <Select
+        id="category"
         options={categoryOptions}
         value={selectedOption ?? null} // Wählen… wenn kein Wert
         onChange={(option) => onChange?.(option?.value ?? 0)}
-        placeholder="Wählen..."
+        placeholder="Bitte wählen..."
         components={{ Option: IconOption, SingleValue: IconSingleValue }}
         classNamePrefix="react-select"
         isSearchable={false}
@@ -66,12 +71,14 @@ export default function CategorySelect({
           control: (base, state) => ({
             ...base,
             borderRadius: "0.25rem",
-            borderColor: state.isFocused ? "#065f46" : "#e5e7eb",
+            borderColor: state.isFocused ? "#065f46" : "#364153",
             boxShadow: state.isFocused ? "0 0 0 1px #065f46" : "none",
             padding: "2px 4px",
             backgroundColor: isDark ? "#111827" : "#f3f4f6",
+
             "&:hover": {
               borderColor: state.isFocused ? "#065f46" : "#d1d5db",
+              
             },
           }),
           input: (base) => ({
@@ -82,10 +89,12 @@ export default function CategorySelect({
             width: 0,
             opacity: 0,
           }),
+          // Text when selected
           singleValue: (base) => ({
             ...base,
             color: isDark ? "#f9fafb" : "#1f2937",
           }),
+          // Dropdown text
           option: (base, state) => ({
             ...base,
             color: isDark ? "#f9fafb" : "#1f2937",
@@ -97,7 +106,15 @@ export default function CategorySelect({
               ? "#111827"
               : "#ffffff",
             cursor: "pointer",
+            borderRadius: "0.35rem",
           }),
+          menu : (base) => ({
+            ...base,
+            backgroundColor: isDark ? "#111827" : "#f3f4f6",
+            padding: "2px 4px",
+            borderRadius: "0.5rem",
+            border: isDark ? "1px solid #116045" : "1px solid #116045",
+          })
         }}
       />
     </div>

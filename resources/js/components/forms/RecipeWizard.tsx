@@ -295,14 +295,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 1: Basics */}
             {step === 1 && (
                 <section className="space-y-4">
-                    {/* Name und Status */}
-                    <div className="grid grid-cols-1 grid-rows-2 xl:flex xl:flex-end gap-3">
-                        {/* Kategorie */}
-
-                        <CategorySelect selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
-
+                    <CategorySelect selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
                         {/* Name */}
-                        <div className="w-full">
+                        <div className="w-full flex flex-col">
                             <InputLabel
                                 htmlFor="name"
                                 value="Rezeptname"
@@ -341,19 +336,24 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 {errors.slug && <p className="text-rose-700 mt-1">{errors.slug}</p>}
                             </div>
                         )}
-                    </div>
-
-                    {/* Punchline */}
-                    <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">
-                        {/* Status */}
-                        <div>
-                            <InputLabel htmlFor="status" value="Status" description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."  />
-                            <StatusSelect selectedStatus={data.status} onChange={(status: string) => setData('status', status)} />
-                            {errors.status && (
-                                <p className="text-red-500 text-sm mt-1">{errors.status}</p>
-                            )}
+                        <div className="w-full flex flex-col">
+                            <div>
+                                <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" description="Wähle wie aufwendig bzw. schwierig das Rezept ist." />
+                                <DifficultySelect selectedDifficulty={data.difficulty} onChange={(difficulty: string) => setData('difficulty', difficulty)} />
+                                {errors.difficulty && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
+                                )}
+                            </div>
+                            <div>
+                                <InputLabel htmlFor="status" value="Status" description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."  />
+                                <StatusSelect selectedStatus={data.status} onChange={(status: string) => setData('status', status)} />
+                                {errors.status && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.status}</p>
+                                )}
+                            </div>
                         </div>
-                        <div className="w-full">
+                        
+                        <div className="w-full flex flex-col">
                             <InputLabel htmlFor="punchline" value="Punchline" />
                             <TextInput
                                 id="punchline"
@@ -365,10 +365,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
                         </div>
-                    </div>
 
-                    {/* Beschreibung */}
-                    <div className="w-full flex gap-5">
                         <div className="w-full">
                             <InputLabel htmlFor="description" value="Kurze Beschreibung" description="Ein kurzer Beschreibungstext der Lust darauf macht, das Gericht zu kochen." />
                             <Textarea
@@ -380,42 +377,33 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.description && <p className="text-red-500">{errors.description}</p>}
                         </div>
-                        <div className="w-full flex flex-col gap-3">
-                            {/* Schwierigkeitsgrad */}
-                            <div>
-                                <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" description="Wähle wie aufwendig bzw. schwierig das Rezept ist." />
-                                <DifficultySelect selectedDifficulty={data.difficulty} onChange={(difficulty: string) => setData('difficulty', difficulty)} />
-                                {errors.difficulty && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
-                                )}
-                            </div>
-                            {/* Vorbereitungszeit */}
-                            <div>
-                                <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
-                                <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
-                                    <div className="flex justify-end items-end">
-                                        <span className="min-w-[80px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
-                                            {data.preparation_time}
-                                        </span>
-                                        <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
-                                            Minuten
-                                        </span>
-                                    </div>
-                                    <Slider
-                                        defaultValue={[data.preparation_time]}
-                                        max={240}
-                                        step={5}
-                                        id="preparation_time"
-                                        className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
-                                        onValueChange={(value) => setData('preparation_time', value[0])}
-                                    />
+
+                        {/* Vorbereitungszeit */}
+                        <div>
+                            <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
+                            <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
+                                <div className="flex justify-end items-end">
+                                    <span className="min-w-[80px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                        {data.preparation_time}
+                                    </span>
+                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-1.5 px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
+                                        Minuten
+                                    </span>
                                 </div>
-                                {errors.preparation_time && (
-                                    <p className="text-rose-700">{errors.preparation_time}</p>
-                                )}
+                                <Slider
+                                    defaultValue={[data.preparation_time]}
+                                    max={240}
+                                    step={5}
+                                    id="preparation_time"
+                                    className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
+                                    onValueChange={(value) => setData('preparation_time', value[0])}
+                                />
                             </div>
+                            {errors.preparation_time && (
+                                <p className="text-rose-700">{errors.preparation_time}</p>
+                            )}
                         </div>
-                    </div>
+
                     <div className="flex justify-between gap-2 mt-8">
                         <Button
                             asChild

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import { BsCircleFill } from "react-icons/bs";
-
+import { useDarkMode } from '@/hooks/useDarkMode';
 const difficultyOptions = [
   { value: "einfach", label: "Einfach", icon: <BsCircleFill className="text-green-500" /> },
   { value: "mittel", label: "Mittel", icon: <BsCircleFill className="text-yellow-500" /> },
@@ -37,12 +37,7 @@ export default function DifficultySelect({
   selectedDifficulty,
   onChange,
 }: DifficultySelectProps) {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"));
-  }, []);
-
+  const isDark = useDarkMode();
   const selectedOption = difficultyOptions.find(
     (opt) => opt.value === selectedDifficulty
   );

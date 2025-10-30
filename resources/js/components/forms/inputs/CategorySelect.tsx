@@ -7,7 +7,7 @@ import { RiCake3Line } from "react-icons/ri";
 import { LiaCocktailSolid } from "react-icons/lia";
 import { GiCrystalBars } from "react-icons/gi";
 import { GiCakeSlice } from "react-icons/gi";
-
+import { useDarkMode } from '@/hooks/useDarkMode';
 const categoryOptions = [
   { value: 1, label: "Vorspeise", icon: <TbSalad className="size-5" /> },
   { value: 2, label: "Hauptgericht", icon: <PiCookingPot className="size-5" /> },
@@ -46,11 +46,7 @@ export default function CategorySelect({
   selectedCategoryId,
   onChange,
 }: CategorySelectProps) {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"));
-  }, []);
+  const isDark = useDarkMode();
 
   const selectedOption = categoryOptions.find(
     (opt) => opt.value === selectedCategoryId

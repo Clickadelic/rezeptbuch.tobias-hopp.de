@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import { BsCircle, BsCheckCircle } from "react-icons/bs";
-
+import { useDarkMode } from '@/hooks/useDarkMode';
 const statusOptions = [
   { value: "draft", label: "Draft", icon: <BsCircle className="size-5" /> },
   { value: "published", label: "Published", icon: <BsCheckCircle className="size-5" /> },
@@ -33,11 +33,7 @@ interface StatusSelectProps {
 }
 
 export default function StatusSelect({ selectedStatus, onChange }: StatusSelectProps) {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"));
-  }, []);
+  const isDark = useDarkMode();
 
   const selectedOption = statusOptions.find((opt) => opt.value === selectedStatus);
 

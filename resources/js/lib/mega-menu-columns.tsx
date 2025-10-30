@@ -27,7 +27,7 @@ export const recipesMegaMenu = [
         title: 'Rezepte',
         items: [
             {
-                icon: <BsJournalBookmark className="text-primary" />,
+                icon: <BsJournalBookmark className="size-4 text-primary" />,
                 title: 'Alle Rezepte',
                 href: '/rezepte',
                 description: 'Alle Rezepte als Übersicht',
@@ -38,19 +38,19 @@ export const recipesMegaMenu = [
         title: 'Kategorien',
         items: [
             {
-                icon: <TbSalad className="text-primary" />,
+                icon: <TbSalad className="size-4 text-primary" />,
                 title: 'Vorspeisen',
                 href: route('recipes.search', { search: 'Vorspeise' }),
                 description: 'für den kleinen Hunger',
             },
             {
-                icon: <PiCookingPot className="text-primary" />,
+                icon: <PiCookingPot className="size-4 text-primary" />,
                 title: 'Hauptgerichte',
                 href: route('recipes.search', { search: 'Hauptgericht' }),
                 description: 'für den großen Hunger',
             },
             {
-                icon: <RiCake3Line className="text-primary" />,
+                icon: <RiCake3Line className="size-4 text-primary" />,
                 title: 'Nachtisch',
                 href: route('recipes.search', { search: 'Nachtisch' }),
                 description: 'für ein süßes Ende',
@@ -60,19 +60,19 @@ export const recipesMegaMenu = [
     {
         items: [
             {
-                icon: <LiaCocktailSolid className="text-primary" />,
+                icon: <LiaCocktailSolid className="size-4 text-primary" />,
                 title: 'Cocktails',
                 href: route('recipes.search', { search: 'Cocktail' }),
                 description: 'für einen schönen Abend',
             },
             {
-                icon: <GiCakeSlice className="text-primary" />,
+                icon: <GiCakeSlice className="size-4 text-primary" />,
                 title: 'Backen',
                 href: route('recipes.search', { search: 'Backen' }),
                 description: 'für eine gute Zeit',
             },
             {
-                icon: <GiCrystalBars className="text-primary" />,
+                icon: <GiCrystalBars className="size-4 text-primary" />,
                 title: "Snacks",
                 href: route('recipes.search', { search: 'Snack' }),
                 description: 'für zwischendurch',

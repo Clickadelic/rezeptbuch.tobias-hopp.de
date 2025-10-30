@@ -4,10 +4,13 @@ import { router } from '@inertiajs/react';
 import axios from 'axios';
 
 import Seperator from '@/components/reusables/Seperator';
-import CategoryGrid from '@/components/forms/CategoryToggle';
+
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
 import UserStarRating from '@/components/forms/inputs/UserStarRating';
+import StatusSelect from '@/components/forms/inputs/StatusSelect';
+import CategorySelect from '@/components/forms/inputs/CategorySelect';
+import DifficultySelect from '@/components/forms/inputs/DifficultySelect';
 
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
@@ -15,6 +18,7 @@ import { Slider } from '@/components/ui/slider';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
+
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
@@ -287,23 +291,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                 </li>
             </ol>
-            {!canNextFromStep1 && (
-                <div
-                    className="border border-sky-800 bg-sky-200 text-sm text-sky-800 px-4 py-3 mb-5 rounded relative"
-                    role="alert"
-                >
-                    <p className="text-base">
-                        Gib einen Namen an und wähle eine Kategorie um fortzufahren. Du kannst das
-                        Rezept später noch bearbeiten.
-                    </p>
-                </div>
-            )}
 
             {/* STEP 1: Basics */}
             {step === 1 && (
                 <section className="space-y-4">
                     {/* Name und Status */}
                     <div className="grid grid-cols-1 grid-rows-2 xl:flex xl:flex-end gap-3">
+                        {/* Kategorie */}
+
+                        <CategorySelect selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
+
                         {/* Name */}
                         <div className="w-full">
                             <InputLabel
@@ -330,9 +327,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     value="Slug"
                                     description="Pflichtfeld - das Rezept benötigt einen Slug"
                                 />
-                                <InputGroup className="py-6">
+                                <InputGroup className="py-6 bg-gray-100 dark:bg-gray-900">
                                     <InputGroupAddon>
-                                        <InputGroupText>https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
+                                        <InputGroupText className="">https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
                                     </InputGroupAddon>
                                     <InputGroupInput className="!pl-0.5" id="slug"
                                             type="text"
@@ -346,40 +343,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         )}
                     </div>
 
-                    {/* Kategorie */}
-                    <div>
-                        <CategoryGrid
-                            selectedCategoryId={
-                                recipe?.category_id ? Number(recipe.category_id) : 2
-                            }
-                            onChange={(id) => setData('category_id', id)}
-                        />
-                    </div>
-
                     {/* Punchline */}
                     <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">
-
                         {/* Status */}
                         <div>
-                            <InputLabel htmlFor="status" value="Status" />
-                            <Select
-                                name="status"
-                                value={data.status}
-                                onValueChange={(val) => setData('status', val)}
-                            >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
-                                    <SelectValue placeholder="Status auswählen" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="draft">Entwurf</SelectItem>
-                                    <SelectItem value="published">veröffentlicht</SelectItem>
-                                </SelectContent>
-                            </Select>
+                            <InputLabel htmlFor="status" value="Status" description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."  />
+                            <StatusSelect selectedStatus={data.status} onChange={(status: string) => setData('status', status)} />
                             {errors.status && (
                                 <p className="text-red-500 text-sm mt-1">{errors.status}</p>
                             )}
                         </div>
-
                         <div className="w-full">
                             <InputLabel htmlFor="punchline" value="Punchline" />
                             <TextInput
@@ -392,18 +365,17 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             />
                             {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
                         </div>
-
                     </div>
 
                     {/* Beschreibung */}
                     <div className="w-full flex gap-5">
                         <div className="w-full">
-                            <InputLabel htmlFor="description" value="Kurze Beschreibung" />
+                            <InputLabel htmlFor="description" value="Kurze Beschreibung" description="Ein kurzer Beschreibungstext der Lust darauf macht, das Gericht zu kochen." />
                             <Textarea
                                 value={data.description}
                                 rows={5}
                                 placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                                className="mt-2 w-full rounded-lg border border-gray-200 px-3 py-2"
+                                className="mt-2 w-full rounded-lg border border-gray-200 bg-gray-100 dark:bg-gray-900 px-3 py-2"
                                 onChange={(e) => setData('description', e.target.value)}
                             />
                             {errors.description && <p className="text-red-500">{errors.description}</p>}
@@ -411,23 +383,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <div className="w-full flex flex-col gap-3">
                             {/* Schwierigkeitsgrad */}
                             <div>
-                                <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
-                                <Select
-                                    name="difficulty"
-                                    value={data.difficulty || Difficulty.EINFACH}
-                                    onValueChange={(val) => setData('difficulty', val as Difficulty)}
-                                >
-                                    <SelectTrigger className="w-full sm:w-44 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-                                        <SelectValue placeholder="Schwierigkeitsgrad" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {Object.entries(Difficulty).map(([key, val]) => (
-                                            <SelectItem key={key} value={val}>
-                                                {val}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                                <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" description="Wähle wie aufwendig bzw. schwierig das Rezept ist." />
+                                <DifficultySelect selectedDifficulty={data.difficulty} onChange={(difficulty: string) => setData('difficulty', difficulty)} />
                                 {errors.difficulty && (
                                     <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                                 )}
@@ -626,7 +583,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
                 <section className="space-y-4">
-                    <div className="flex items-center justify-start gap-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-start sm:gap-4">
                         {/* Uploader */}
                         <div className="space-y-2">
                             <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
@@ -646,7 +603,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </div>
                                 
                         {/* Vorschau */}
-                        <div className="space-y-2 pt-5">
+                        <div className="space-y-2 pt-5 sm:pt-2">
                             <InputLabel
                                 htmlFor="media"
                                 value="Vorschau der hochgeladenen Bilder"
@@ -715,8 +672,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                         </label>
                                     ))
                                 ) : (
-                                    <div className="border-2 border-dotted border-gray-600 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-full max-w-72 flex items-center justify-center aspect-video">
-                                        <p className="text-xs text-gray-500">
+                                    <div className="border-2 border-dashed border-gray-400 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-full max-w-64 flex items-center justify-center aspect-video">
+                                        <p className="text-xs text-gray-500 text-center w-72">
                                             Noch kein Bild vorhanden.
                                         </p>
                                     </div>

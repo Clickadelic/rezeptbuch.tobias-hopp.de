@@ -33,7 +33,7 @@ export default function InputLabel({
             {description && (
                 <HoverCard>
                     <HoverCardTrigger>
-                        <IoIosInformationCircleOutline className="size-5" />
+                        <IoIosInformationCircleOutline className="size-5 text-gray-600 dark:text-gray-400" />
                     </HoverCardTrigger>
                     <HoverCardContent side="right">
                         {description}

@@ -106,7 +106,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                 <div className="hidden sm:block absolute top-full w-screen z-50 mt-3 max-w-5xl mx-auto sm:-left-72">
                     <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
                         <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
-                            <img src={decorationSvg} alt="Collab-bro" className="absolute left-16 bottom-8 size-28" />
+                            {decorationSvg && <img src={decorationSvg} alt="Menu ´background image" className="absolute left-16 bottom-8 size-28" />}
                             <div className="grid gap-4 p-4 md:grid-cols-4">
                                 {columns.map((section, idx) => (
                                     <div key={idx} className="space-y-2">

@@ -578,10 +578,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
                 <section className="space-y-5 mt-5">
-                    <div className="flex flex-col sm:flex-row items-center justify-start sm:gap-4">
+                    <div className="w-full max-w-xl mx-auto flex flex-col items-center justify-start sm:gap-4">
                         {/* Uploader */}
-                        <div className="space-y-2">
-                            <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
+                        <div className="space-y-3">
+                            <InputLabel htmlFor="mediaUpload" value="Vorschaubild" description="Das Bild wird als Vorschau angezeigt." />
                             <RecipeMediaUploader
                                 recipeId={recipe?.id}
                                 pendingKey={!recipe ? pendingKey : undefined}
@@ -676,12 +676,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             </div>
                         </div>
                     </div>
-                    <Seperator />
+
                     {/* Zubereitung */}
-                    <div className="w-full space-y-3">
+                    <div className="w-full max-w-xl mx-auto space-y-3">
                         <InputLabel
                             htmlFor="preparation_instructions"
                             value="Zubereitung, so geht's…"
+                            description="Die einzelnen Schritte zur Zubereitung des Rezeptes."
                         />
                         <Textarea
                             id="preparation_instructions"

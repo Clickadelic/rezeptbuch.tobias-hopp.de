@@ -13,6 +13,8 @@
 // TODO Kochzeit noch einfügen ?
 
 // ----------------------------------------
+// TODO Social Media Fields, Webseite, Facebook, Instagram, What's App ?, Telegram, GitHub
+// ----------------------------------------
 
 // TODO Achievements erstellen
 // Road to Publisher

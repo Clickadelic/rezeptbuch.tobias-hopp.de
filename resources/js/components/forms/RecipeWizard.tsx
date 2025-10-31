@@ -4,26 +4,31 @@ import { router } from '@inertiajs/react';
 import axios from 'axios';
 
 import Seperator from '@/components/reusables/Seperator';
-import CategoryGrid from '@/components/forms/CategoryToggle';
+
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
 
+import UserStarRating from '@/components/forms/inputs/UserStarRating';
+import StatusSelect from '@/components/forms/inputs/StatusSelect';
+import CategorySelect from '@/components/forms/inputs/CategorySelect';
+import DifficultySelect from '@/components/forms/inputs/DifficultySelect';
+
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
+
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from 'react-icons/tb';
 import { SlRefresh } from 'react-icons/sl';
+import { GiBroccoli } from "react-icons/gi";
+
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
 
@@ -104,7 +109,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const addIngredient = () => {
         setData('recipe_ingredients', [
             ...data.recipe_ingredients,
-            { ingredient_id: '', quantity: '', unit: 'gr' },
+            { ingredient_id: '', quantity: '1', unit: 'gr' },
         ]);
     };
 
@@ -132,6 +137,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         }
         return true;
     })();
+
+    const hasInvalidIngredient = data.recipe_ingredients.some(
+        (i) => i.quantity && !i.ingredient_id
+    );
 
     const handleStepChange = (newStep: number) => {
         setStep(newStep);
@@ -283,193 +292,117 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                 </li>
             </ol>
-            {!canNextFromStep1 && (
-                <div
-                    className="border border-sky-800 bg-sky-200 text-sm text-sky-800 px-4 py-3 mb-5 rounded relative"
-                    role="alert"
-                >
-                    <p className="text-base">
-                        Gib einen Namen an und wähle eine Kategorie um fortzufahren. Du kannst das
-                        Rezept später noch bearbeiten.
-                    </p>
-                </div>
-            )}
 
             {/* STEP 1: Basics */}
             {step === 1 && (
-                <section className="space-y-4">
-                    {/* Name und Status */}
-                    <div className="grid grid-cols-1 grid-rows-2 sm:flex sm:flex-end gap-3">
-                        {/* Name */}
-                        <div className="w-full">
-                            <InputLabel
-                                htmlFor="name"
-                                value="Rezeptname"
-                                description="Pflichtfeld"
-                            />
 
-                            <TextInput
-                                id="name"
-                                type="text"
-                                value={data.name}
-                                placeholder="z.B. Ofengemüse mit Kartoffeln"
-                                className="w-full"
-                                onChange={(e) => setData('name', e.target.value)}
-                            />
-                            {errors.name && <p className="text-red-500">{errors.name}</p>}
-                        </div>
-                    </div>
-
-                    {/* Kategorie */}
-                    <div>
-                        <CategoryGrid
-                            selectedCategoryId={
-                                recipe?.category_id ? Number(recipe.category_id) : undefined
-                            }
-                            onChange={(id) => setData('category_id', id)}
+                <section className="space-y-5 mt-5">
+                    <CategorySelect className="w-full max-w-xl mx-auto" selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
+                    
+                    {/* Name */}
+                    <div className="w-full max-w-xl mx-auto flex flex-col">
+                        <InputLabel
+                            htmlFor="name"
+                            value="Rezeptname"
+                            description="Pflichtfeld - das Rezept benötigt einen Namen."
                         />
+
+                        <TextInput
+                            id="name"
+                            type="text"
+                            value={data.name}
+                            placeholder="z.B. Ofengemüse mit Kartoffeln"
+                            className="w-full"
+                            onChange={(e) => setData('name', e.target.value)}
+                        />
+                        {errors.name && <p className="text-red-500">{errors.name}</p>}
                     </div>
-                    <Seperator style="mix" />
 
                     {/* Slug */}
                     {recipe && (
-                        <div>
-                            <InputLabel htmlFor="slug" value="URL / Slug" />
-                            <div className="flex flex-col gap-1 mt-1">
-                                <TextInput
-                                    id="slug"
-                                    type="text"
-                                    value={`${data.slug || recipe.slug}`}
-                                    placeholder="nudeln-mit-sauce"
-                                    className="w-full"
-                                    onChange={(e) => setData('slug', e.target.value)}
-                                />
-                                <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    Die URL kann hier geändert werden. Bitte nur Kleinbuchstaben,
-                                    Bindestriche und keine Sonderzeichen verwenden.
-                                </p>
-                            </div>
-                            {errors.slug && <p className="text-rose-500 mt-1">{errors.slug}</p>}
+                        <div className="w-full max-w-xl mx-auto flex flex-col">
+                            <InputLabel
+                                htmlFor="slug"
+                                value="Slug"
+                                description="Pflichtfeld - die URL-Schreibweise für den Link."
+                            />
+                            <InputGroup className="py-6 bg-gray-100 dark:bg-gray-900">
+                                <InputGroupAddon>
+                                    <InputGroupText className="">https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
+                                </InputGroupAddon>
+                                <InputGroupInput className="!pl-0.5 !text-lg" id="slug"
+                                        type="text"
+                                        value={`${data.slug || recipe.slug}`}
+                                        placeholder="nudeln-mit-sauce"
+                                        onChange={(e) => setData('slug', e.target.value)} />
+                            </InputGroup>
+                            {errors.slug && <p className="text-rose-700 mt-1">{errors.slug}</p>}
                         </div>
                     )}
 
-                    {/* Zahlenfelder: Zeit, Rating, Difficulty */}
-                    <div className="grid grid-cols-1 grid-rows-2 lg:flex gap-4">
-                        {/* Vorbereitungszeit - Kochzeit noch eweitern */}
+                    <div className="w-full max-w-xl mx-auto flex flex-col gap-5">
                         <div>
-                            <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
-                            <div className="flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
-                                <div className="flex justify-end items-end">
-                                    <span className="min-w-[50px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
-                                        {data.preparation_time}
-                                    </span>
-                                    <span className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary py-[5px] px-3 placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
-                                        Minuten
-                                    </span>
-                                </div>
-                                <Slider
-                                    defaultValue={[data.preparation_time]}
-                                    max={240}
-                                    step={5}
-                                    id="preparation_time"
-                                    className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
-                                    onValueChange={(value) => setData('preparation_time', value[0])}
-                                />
-                            </div>
-                            {errors.preparation_time && (
-                                <p className="text-rose-500">{errors.preparation_time}</p>
-                            )}
-                        </div>
-                    </div>
-                    <Seperator style="quote" />
-
-                    {/* Punchline */}
-                    <div className="grid grid-cols-1 grid-rows-3 sm:flex sm:flex-end gap-3">
-                        <div className="w-full">
-                            <InputLabel htmlFor="punchline" value="Punchline" />
-                            <TextInput
-                                id="punchline"
-                                type="text"
-                                value={data.punchline}
-                                placeholder="z.B. Mediterran und frisch"
-                                className="w-full"
-                                onChange={(e) => setData('punchline', e.target.value)}
-                            />
-                            {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
-                        </div>
-
-                        {/* Schwierigkeitsgrad */}
-                        <div>
-                            <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" />
-                            <Select
-                                name="difficulty"
-                                value={data.difficulty || Difficulty.EINFACH}
-                                onValueChange={(val) => setData('difficulty', val as Difficulty)}
-                            >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-                                    <SelectValue placeholder="Schwierigkeitsgrad" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {Object.entries(Difficulty).map(([key, val]) => (
-                                        <SelectItem key={key} value={val}>
-                                            {val}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                            <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" description="Wähle wie aufwendig bzw. schwierig das Rezept ist." />
+                            <DifficultySelect selectedDifficulty={data.difficulty} onChange={(difficulty: string) => setData('difficulty', difficulty)} />
                             {errors.difficulty && (
                                 <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                             )}
                         </div>
-                        {/* Status */}
                         <div>
-                            <InputLabel htmlFor="status" value="Status" />
-                            <Select
-                                name="status"
-                                value={data.status}
-                                onValueChange={(val) => setData('status', val)}
-                            >
-                                <SelectTrigger className="w-full sm:w-44 mt-1 py-6 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
-                                    <SelectValue placeholder="Status auswählen" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="draft">Entwurf</SelectItem>
-                                    <SelectItem value="published">veröffentlicht</SelectItem>
-                                </SelectContent>
-                            </Select>
+                            <InputLabel htmlFor="react-select-4-input" value="Status" description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."  />
+                            <StatusSelect selectedStatus={data.status} onChange={(status: string) => setData('status', status)} />
                             {errors.status && (
                                 <p className="text-red-500 text-sm mt-1">{errors.status}</p>
                             )}
                         </div>
-                        {/* Vegetarisch */}
-                        <div>
-                            <InputLabel htmlFor="is_veggy" value="vegetarisch" />
-                            <div className="flex items-start justify-start gap-2 mt-[6px]">
-                                <label htmlFor="is_veggy" className="mt-1">
-                                    Nein
-                                </label>
-                                <Switch
-                                    className="mx-4 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                                    checked={data.is_veggy}
-                                    onCheckedChange={(checked) =>
-                                        setData('is_veggy', checked as boolean)
-                                    }
-                                />
-                                <label htmlFor="is_veggy" className="mt-1">
-                                    Ja
-                                </label>
-                            </div>
-                        </div>
                     </div>
 
-                    {/* Beschreibung */}
-                    <div>
-                        <InputLabel htmlFor="description" value="Kurze Beschreibung" />
+                    {/* Vorbereitungszeit */}
+                    <div className="w-full max-w-xl mx-auto">
+                        <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" description="Wie lange dauert die Vorbereitung in etwa?" />
+                        <div className="w-full flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
+                            <div className="flex justify-end items-end">
+                                <span className="min-w-[80px] px-3 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                    {data.preparation_time}
+                                </span>
+                                <span className="bg-gray-100 px-3 py-2 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
+                                    Minuten
+                                </span>
+                            </div>
+                            <Slider
+                                defaultValue={[data.preparation_time]}
+                                max={240}
+                                step={5}
+                                id="preparation_time"
+                                className="w-full mt-1 hover:cursor-pointer"
+                                onValueChange={(value) => setData('preparation_time', value[0])}
+                            />
+                        </div>
+                        {errors.preparation_time && (
+                            <p className="text-rose-700">{errors.preparation_time}</p>
+                        )}
+                    </div>
+                    
+                    <div className="w-full max-w-xl mx-auto flex flex-col">
+                        <InputLabel htmlFor="punchline" value="Punchline" description="Kleine Schlagzeile, die das Rezept gut beschreibt." />
+                        <TextInput
+                            id="punchline"
+                            type="text"
+                            value={data.punchline}
+                            placeholder="z.B. Mediterran und frisch"
+                            className="w-full"
+                            onChange={(e) => setData('punchline', e.target.value)}
+                        />
+                        {errors.punchline && <p className="text-red-500">{errors.punchline}</p>}
+                    </div>
+
+                    <div className="w-full max-w-xl mx-auto">
+                        <InputLabel htmlFor="description" value="Kurze Beschreibung" description="Ein kurzer Beschreibungstext der Lust darauf macht, das Gericht zu kochen." />
                         <Textarea
                             value={data.description}
                             rows={5}
                             placeholder="z.B. Schnell und lecker für die ganze Familie..."
-                            className="mt-2 w-full rounded-lg border border-gray-200 px-3 py-2"
+                            className="mt-2 w-full rounded-lg border border-gray-200 bg-gray-100 dark:bg-gray-900 px-3 py-2"
                             onChange={(e) => setData('description', e.target.value)}
                         />
                         {errors.description && <p className="text-red-500">{errors.description}</p>}
@@ -490,7 +423,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                         <Button
                             type="button"
-                            variant="primaryOutline"
+                            variant="primary"
                             onClick={() => handleStepChange(2)}
                             disabled={!canNextFromStep1}
                         >
@@ -499,24 +432,25 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </Button>
                     </div>
                 </section>
+
             )}
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
-                <section className="space-y-4 md:space-y-2">
-                    <div>
+                <section className="space-y-5 mt-5">
+                    <div className="w-full max-w-xl mx-auto">
                         <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" />
                         {data.recipe_ingredients?.map((di, idx) => (
                             <div
                                 id={'ingredient-' + idx + '-input'}
                                 key={idx}
-                                className="flex flex-col md:flex-row gap-2 mb-2"
+                                className="flex flex-col md:flex-row gap-1 md:gap-2 md:mb-2"
                             >
                                 <div className="flex justify-start items-start gap-2">
                                     <TextInput
                                         placeholder="Menge"
                                         value={di.quantity}
-                                        className="font-medium w-full md:w-32 py-[5px] mt-1"
+                                        className="font-medium w-full md:w-20 py-[5px] mt-1"
                                         type="number"
                                         onChange={(e) =>
                                             updateIngredient(idx, 'quantity', e.target.value)
@@ -528,7 +462,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                             updateIngredient(idx, 'unit', value)
                                         }
                                     >
-                                        <SelectTrigger className="w-full sm:w-24 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                        <SelectTrigger className="w-full rounded-sm sm:w-20 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                             <SelectValue placeholder="Einheit auswählen" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -540,7 +474,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="md:w-full flex gap-5">
+                                <div className="w-full flex gap-2">
                                     <IngredientComboBox
                                         value={di.ingredient_id}
                                         triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
@@ -549,7 +483,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                         }
                                     />
                                     <Button
-                                        variant="destructive"
+                                        variant="danger"
                                         className="mt-1.5 hover:cursor-pointer rounded-sm shadow-none"
                                         size="sm"
                                         type="button"
@@ -560,28 +494,78 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 </div>
                             </div>
                         ))}
-                        <Button
-                            type="button"
-                            variant="primary"
-                            onClick={addIngredient}
-                            className="mt-5 hover:cursor-pointer hover:bg-emerald-700"
-                        >
-                            <GoPlus /> Zutat hinzufügen
-                        </Button>
+                        <div className="flex flex-col sm:flex-row gap-1 justify-between">
+                            <Button
+                                type="button"
+                                variant="primary"
+                                onClick={addIngredient}
+                                className="mt-5 hover:cursor-pointer hover:bg-emerald-700"
+                            >
+                                <GoPlus /> Zutat hinzufügen
+                            </Button>
+                            
+                            {data.category_id != 4 && (
+                                <div>
+                                    <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
+                                    <div className="flex items-start mt-3 md:mt-5 justify-start gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
+                                        <GiBroccoli className="size-4 text-primary" />
+                                        <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
+                                            Rezept ist vegetarisch
+                                        </label>
+                                        <Switch
+                                            className="mx-1 hover:cursor-pointer data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
+                                            checked={data.is_veggy}
+                                            onCheckedChange={(checked) =>
+                                                setData('is_veggy', checked as boolean)
+                                            }
+                                        />
+                                    </div>
+                                </div> 
+                            )}
+                            
+                            {/* Alle Zutaten löschen */}
+                            <Button
+                                type="button"
+                                variant="danger"
+                                disabled={!data.recipe_ingredients?.length}
+                                className="mt-3 md:mt-5 hover:cursor-pointer"
+                                onClick={() => {
+                                    if (confirm('Alle Zutaten wirklich löschen?')) {
+                                        setData('recipe_ingredients', []);
+                                    }
+                                }}
+                            >
+                                <BsTrash3 className="mr-1" />
+                                Alle Zutaten löschen
+                            </Button>
+                            
+                        </div>
                     </div>
                     <div className="flex justify-between gap-2 mt-8">
                         <Button
                             type="button"
-                            variant="primaryOutline"
+                            variant="primary"
                             onClick={() => handleStepChange(1)}
                         >
                             <GoArrowLeft className="ml-1" />
                             Zurück
                         </Button>
+                        
                         <Button
                             type="button"
-                            variant="primaryOutline"
-                            onClick={() => handleStepChange(3)}
+                            variant={data.recipe_ingredients?.length >= 1 ? 'primary' : 'primaryOutline'}
+                            onClick={() => {
+                                const hasInvalid = data.recipe_ingredients.some(
+                                    (i) => i.quantity && !i.ingredient_id
+                                );
+
+                                if (hasInvalid) {
+                                    alert('Keine Zutat ausgewählt, nur Menge angegeben.');
+                                    return;
+                                }
+
+                                handleStepChange(3);
+                            }}
                         >
                             Weiter
                             <GoArrowRight className="ml-1" />
@@ -592,109 +576,112 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
-                <section className="space-y-4">
-                    {/* Uploader */}
-                    <div className="w-full space-y-3">
-                        <InputLabel htmlFor="mediaUpload" value="Bilder hochladen" />
-                        <RecipeMediaUploader
-                            recipeId={recipe?.id}
-                            pendingKey={!recipe ? pendingKey : undefined}
-                            onUploadedJSON={(m) => {
-                                if (!recipe) {
-                                    setPendingMedia((prev) => [...prev, m]);
-                                } else {
-                                    setLiveMedia((prev) => [...prev, m]);
-                                }
-                                if (!data.primary_media_id)
-                                    setData('primary_media_id', m.id as any);
-                            }}
-                        />
-                    </div>
-                    <Seperator style="image" />
-                    {/* Vorschau */}
-                    <div className="w-full space-y-3">
-                        <InputLabel
-                            htmlFor="media"
-                            value="Vorschau der hochgeladenen Bilder"
-                            className="sr-only"
-                        />
-                        <div className="flex flex-wrap gap-3 justify-center items-center">
-                            {(recipe ? liveMedia : pendingMedia).length > 0 ? (
-                                (recipe ? liveMedia : pendingMedia).map((m) => (
-                                    <label
-                                        key={m.id}
-                                        className="relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
-                                    >
-                                        {' '}
-                                        {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
-                                        <img
-                                            src={`/storage/${m.path}`}
-                                            alt={m.name}
-                                            className=" object-cover"
-                                        />
-                                        <Button
-                                            type="button"
-                                            variant="destructive"
-                                            size="icon"
-                                            className="absolute top-1 right-1 bg-rose-600 hover:bg-rose-700 rounded"
-                                            onClick={() => {
-                                                if (!confirm('Möchtest du dieses Bild löschen?'))
-                                                    return;
+                <section className="space-y-5 mt-5">
+                    <div className="w-full max-w-xl mx-auto flex flex-col items-center justify-start sm:gap-4">
+                        {/* Uploader */}
+                        <div className="space-y-3">
+                            <InputLabel htmlFor="mediaUpload" value="Vorschaubild" description="Das Bild wird als Vorschau angezeigt." />
+                            <RecipeMediaUploader
+                                recipeId={recipe?.id}
+                                pendingKey={!recipe ? pendingKey : undefined}
+                                onUploadedJSON={(m) => {
+                                    if (!recipe) {
+                                        setPendingMedia((prev) => [...prev, m]);
+                                    } else {
+                                        setLiveMedia((prev) => [...prev, m]);
+                                    }
+                                    if (!data.primary_media_id)
+                                        setData('primary_media_id', m.id as any);
+                                }}
+                            />
+                        </div>
+                                
+                        {/* Vorschau */}
+                        <div className="space-y-2 pt-5 sm:pt-2">
+                            <InputLabel
+                                htmlFor="media"
+                                value="Vorschau der hochgeladenen Bilder"
+                                className="sr-only"
+                            />
+                            <div className="flex flex-wrap gap-3 justify-center items-center">
+                                {(recipe ? liveMedia : pendingMedia).length > 0 ? (
+                                    (recipe ? liveMedia : pendingMedia).map((m) => (
+                                        <label
+                                            key={m.id}
+                                            className="mt-1 relative w-full max-w-72 rounded-lg aspect-video border overflow-hidden bg-gray-100 cursor-pointer"
+                                        >
+                                            {' '}
+                                            {/* TODO: Pfade alle zusammenfassen bzw. grade biegen zu Storage */}
+                                            <img
+                                                src={`/storage/${m.path}`}
+                                                alt={m.name}
+                                                className="size-full object-cover"
+                                            />
+                                            <Button
+                                                type="button"
+                                                variant="destructive"
+                                                size="icon"
+                                                className="absolute top-1 right-1 bg-rose-700 hover:bg-rose-800 rounded"
+                                                onClick={() => {
+                                                    if (!confirm('Möchtest du dieses Bild löschen?'))
+                                                        return;
 
-                                                if (recipe) {
-                                                    // Falls schon in DB
-                                                    axios.delete(`/upload/${m.id}`).then(() => {
-                                                        setLiveMedia((prev) =>
+                                                    if (recipe) {
+                                                        // Falls schon in DB
+                                                        axios.delete(`/upload/${m.id}`).then(() => {
+                                                            setLiveMedia((prev) =>
+                                                                prev.filter((x) => x.id !== m.id),
+                                                            );
+                                                        });
+                                                    } else {
+                                                        // Nur lokal pending
+                                                        setPendingMedia((prev) =>
                                                             prev.filter((x) => x.id !== m.id),
                                                         );
-                                                    });
-                                                } else {
-                                                    // Nur lokal pending
-                                                    setPendingMedia((prev) =>
-                                                        prev.filter((x) => x.id !== m.id),
-                                                    );
-                                                }
+                                                    }
 
-                                                if (data.primary_media_id === m.id) {
-                                                    setData('primary_media_id', null);
+                                                    if (data.primary_media_id === m.id) {
+                                                        setData('primary_media_id', null);
+                                                    }
+                                                }}
+                                            >
+                                                <BsTrash3 className="size-4" />
+                                            </Button>
+                                            <input
+                                                type="radio"
+                                                name="primary_media_id"
+                                                value={m.id}
+                                                checked={data.primary_media_id === (m.id as any)}
+                                                onChange={() =>
+                                                    setData('primary_media_id', m.id as any)
                                                 }
-                                            }}
-                                        >
-                                            <BsTrash3 className="size-4" />
-                                        </Button>
-                                        <input
-                                            type="radio"
-                                            name="primary_media_id"
-                                            value={m.id}
-                                            checked={data.primary_media_id === (m.id as any)}
-                                            onChange={() =>
-                                                setData('primary_media_id', m.id as any)
-                                            }
-                                            className="absolute top-1 left-1 text-gray-200 dark:text-gray-800"
-                                            title="Als Hauptbild auswählen"
-                                        />
-                                        {data.primary_media_id === m.id && (
-                                            <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">
-                                                Aktuell
-                                            </span>
-                                        )}
-                                    </label>
-                                ))
-                            ) : (
-                                <div className="border-2 border-dotted border-gray-600 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-full max-w-72 flex items-center justify-center aspect-video">
-                                    <p className="text-xs text-gray-500">
-                                        Noch kein Bild vorhanden.
-                                    </p>
-                                </div>
-                            )}
+                                                className="absolute top-1 left-1 text-gray-200 dark:text-gray-800"
+                                                title="Als Hauptbild auswählen"
+                                            />
+                                            {data.primary_media_id === m.id && (
+                                                <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 text-white px-1 rounded">
+                                                    Aktuell
+                                                </span>
+                                            )}
+                                        </label>
+                                    ))
+                                ) : (
+                                    <div className="border-2 border-dashed border-gray-400 hover:cursor-not-allowed dark:border-gray-600 rounded-lg w-full max-w-64 flex items-center justify-center aspect-video">
+                                        <p className="text-xs text-gray-500 text-center w-72">
+                                            Noch kein Bild vorhanden.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
-                    <Seperator style="info" />
+
                     {/* Zubereitung */}
-                    <div className="w-full space-y-3">
+                    <div className="w-full max-w-xl mx-auto space-y-3">
                         <InputLabel
                             htmlFor="preparation_instructions"
                             value="Zubereitung, so geht's…"
+                            description="Die einzelnen Schritte zur Zubereitung des Rezeptes."
                         />
                         <Textarea
                             id="preparation_instructions"
@@ -707,13 +694,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {errors.preparation_instructions && (
                             <p className="text-red-500">{errors.preparation_instructions}</p>
                         )}
-                    </div>
-                    {/* Rating */}
-                    <div className="w-full">
-                        <InputLabel htmlFor="rating" value="Deine Bewertung des Rezeptes" />
-                        <div className="flex justify-center items-center pt-1 mb-12">
-                            {/* <StarRating rating={data.rating} onRatingChange={(rating) => setData('rating', rating)} /> */}
-                        </div>
                     </div>
                     {/* Submit */}
                     <div className="flex justify-between gap-2">

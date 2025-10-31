@@ -6,6 +6,7 @@ import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { SharedPageProps } from '@/types';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -19,6 +20,8 @@ export default function UpdateProfileInformation({
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name ?? '',
         email: user.email ?? '',
+        biotext: user.biotext ?? '',
+        website_url: user.website_url ?? '',
     });
 
     const submit: FormEventHandler = (e) => {
@@ -74,9 +77,33 @@ export default function UpdateProfileInformation({
                         </Link>
                     </p>
                 )}
-
+                <div>
+                    <InputLabel htmlFor="biotext" value="Bio" />
+                    <Textarea
+                        id="name"
+                        className="mt-1 py-3 bg-gray-100 dark:bg-gray-900 block w-full"
+                        value={data.biotext}
+                        rows={4}
+                        placeholder="Ein paar nette Worte über Dich und Deine Kochkünste..."
+                        onChange={(e) => setData('biotext', e.target.value)}
+                    />
+                    <InputError className="mt-2" message={errors.biotext} />
+                </div>
+                <div>
+                    <InputLabel htmlFor="website_url" value="Webseite" />
+                    <TextInput
+                        id="website_url"
+                        className="mt-1 block w-full"
+                        value={data.website_url}
+                        placeholder="https://deine-webseite.de"
+                        onChange={(e) => setData('website_url', e.target.value)}
+                    />
+                    <InputError className="mt-2" message={errors.website_url} />
+                </div>
                 <div className="flex items-center gap-4">
-                    <Button variant="primary" disabled={processing}>Speichern</Button>
+                    <Button variant="primary" disabled={processing}>
+                        Speichern
+                    </Button>
                     <Transition
                         show={recentlySuccessful}
                         enter="transition ease-in-out"

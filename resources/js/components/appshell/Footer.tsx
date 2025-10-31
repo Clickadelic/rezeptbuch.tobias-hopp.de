@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 
-import BackToTopButton from '@/components/appshell/BackToTopButton/Index';
+import BackToTopButton from '@/components/appshell/BackToTopButton';
 import NewsletterForm from '../forms/NewsletterForm';
 
 import badgeSrc from '@images/Quality-Symbol.png';

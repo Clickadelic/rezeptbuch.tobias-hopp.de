@@ -4,7 +4,6 @@ import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelect
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
 
-import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 import { Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
@@ -38,11 +37,11 @@ export default function Frontpage() {
             />
             <CategorySelectionBlock />
             <Seperator />
+            <DailyRecommendationsBlock />
+            <Seperator />
             <AuthTeaserBlock />
             <Seperator />
-            <DailyRecommendationsBlock />
-            <Seperator style="info" />
-            <FaqAccordeon />
+
         </FullWidthLayout>
     );
 }

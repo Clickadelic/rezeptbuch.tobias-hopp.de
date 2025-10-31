@@ -4,6 +4,11 @@ import { IoIosInformationCircleOutline } from 'react-icons/io';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { TooltipArrow } from '@radix-ui/react-tooltip';
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 /**
  * A simple label component that uses the HTML <label> element.
  *
@@ -24,21 +29,18 @@ export default function InputLabel({
     ...props
 }: LabelHTMLAttributes<HTMLLabelElement> & { value?: string; description?: string }) {
     return (
-        <label {...props} className={`flex gap-2 mb-1 ` + className}>
+        <span {...props} className={`flex gap-2 mb-1 ` + className}>
             {description && (
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <IoIosInformationCircleOutline className="size-5" />
-                        </TooltipTrigger>
-                        <TooltipContent side="right">
-                            <p>{description}</p>
-                            <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
+                <HoverCard>
+                    <HoverCardTrigger>
+                        <IoIosInformationCircleOutline className="size-5 text-gray-400 dark:text-gray-400" />
+                    </HoverCardTrigger>
+                    <HoverCardContent side="right">
+                        {description}
+                    </HoverCardContent>
+                </HoverCard>
             )}
             {value ? value : children}
-        </label>
+        </span>
     );
 }

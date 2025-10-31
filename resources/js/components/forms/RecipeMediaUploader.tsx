@@ -97,7 +97,7 @@ export function RecipeMediaUploader({
     };
 
     return (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 w-64">
             {/* Drag & Drop / File Picker */}
             <label className="relative w-full flex flex-col items-center justify-center py-6 text-center border-2 border-dashed border-primary rounded-md hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                 <GoPlus className="text-primary text-4xl" />

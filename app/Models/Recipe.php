@@ -9,7 +9,6 @@ use App\Models\Ingredient;
 use Laravel\Scout\Searchable;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class Recipe extends Model
@@ -151,16 +150,27 @@ class Recipe extends Model
           return $this->hasMany(Rating::class);
      }
 
-    public function updateCommunityRating(): void
-    {
-        $avg = $this->ratings()->avg('rating') ?? 0;
-        $count = $this->ratings()->count();
+     public function updateCommunityRating(): void
+     {
+          $ratings = $this->ratings();
+          $count = $ratings->count();
 
-        $this->update([
-            'community_rating' => round($avg),
-            'community_votes' => $count,
-        ]);
-    }
+          if ($count === 0) {
+               $this->update([
+                    'community_rating' => 0,
+                    'community_votes' => 0,
+               ]);
+               return;
+          }
+
+          $avg = $ratings->avg('rating') ?? 0;
+
+          $this->update([
+               'community_rating' => round($avg, 1), // 1 Nachkommastelle schöner für Sterne
+               'community_votes' => $count,
+          ]);
+     }
+
 
      public function comments() {
           return $this->hasMany(Comment::class)->whereNull('parent_id'); // nur Top-Level-Kommentare

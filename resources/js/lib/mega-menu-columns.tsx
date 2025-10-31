@@ -1,25 +1,33 @@
 import { BsJournalBookmark } from 'react-icons/bs';
+import { RiDashboardHorizontalLine } from 'react-icons/ri';
+
 import { FiCheckCircle } from 'react-icons/fi';
 import { BsDoorOpen } from 'react-icons/bs';
-import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { BiExit } from 'react-icons/bi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { TbSalt } from 'react-icons/tb';
 import { LuUsersRound } from 'react-icons/lu';
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
-import { Button } from '@/components/ui/button';
+
 import { BiCategory } from 'react-icons/bi';
-import { IconMap } from './icon-map';
+import { FaRegHeart } from 'react-icons/fa';
 import { BsCardList } from 'react-icons/bs';
+import { GoPlus } from 'react-icons/go';
+import { PiCookingPot } from 'react-icons/pi';
+import { LiaCocktailSolid } from 'react-icons/lia';
+import { RiCake3Line } from 'react-icons/ri';
+import { GiCakeSlice } from 'react-icons/gi';
+import { TbSalad } from 'react-icons/tb';
+import { GiCrystalBars } from 'react-icons/gi';
+
 
 export const recipesMegaMenu = [
     {
         title: 'Rezepte',
         items: [
             {
-                icon: <BsJournalBookmark className="text-primary" />,
+                icon: <BsJournalBookmark className="size-4 text-primary" />,
                 title: 'Alle Rezepte',
                 href: '/rezepte',
                 description: 'Alle Rezepte als Übersicht',
@@ -30,19 +38,19 @@ export const recipesMegaMenu = [
         title: 'Kategorien',
         items: [
             {
-                icon: IconMap['vorspeise'],
+                icon: <TbSalad className="size-4 text-primary" />,
                 title: 'Vorspeisen',
                 href: route('recipes.search', { search: 'Vorspeise' }),
                 description: 'für den kleinen Hunger',
             },
             {
-                icon: IconMap['hauptgericht'],
+                icon: <PiCookingPot className="size-4 text-primary" />,
                 title: 'Hauptgerichte',
                 href: route('recipes.search', { search: 'Hauptgericht' }),
                 description: 'für den großen Hunger',
             },
             {
-                icon: IconMap['nachtisch'],
+                icon: <RiCake3Line className="size-4 text-primary" />,
                 title: 'Nachtisch',
                 href: route('recipes.search', { search: 'Nachtisch' }),
                 description: 'für ein süßes Ende',
@@ -52,20 +60,20 @@ export const recipesMegaMenu = [
     {
         items: [
             {
-                icon: IconMap['cocktail'],
+                icon: <LiaCocktailSolid className="size-4 text-primary" />,
                 title: 'Cocktails',
                 href: route('recipes.search', { search: 'Cocktail' }),
                 description: 'für einen schönen Abend',
             },
             {
-                icon: IconMap['backen'],
+                icon: <GiCakeSlice className="size-4 text-primary" />,
                 title: 'Backen',
                 href: route('recipes.search', { search: 'Backen' }),
                 description: 'für eine gute Zeit',
             },
             {
-                icon: IconMap['snack'],
-                title: 'Snacks',
+                icon: <GiCrystalBars className="size-4 text-primary" />,
+                title: "Snacks",
                 href: route('recipes.search', { search: 'Snack' }),
                 description: 'für zwischendurch',
             },
@@ -75,8 +83,9 @@ export const recipesMegaMenu = [
 ];
 
 export const featuredRecipes = {
-    icon: <RiAccountPinBoxLine className="text-primary" />,
-    title: 'Empfehlung',
-    description: 'Das neueste Rezept.',
-    href: '#',
+    icon: <RiDashboardHorizontalLine className="mt-[2px]" />,
+    title: 'Dashboard',
+    description: 'Deine Rezepte, Deine Zahlen.',
+    label: 'Dashboard',
+    href: '/dashboard',
 };

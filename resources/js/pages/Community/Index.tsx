@@ -1,8 +1,8 @@
 import { usePage } from '@inertiajs/react';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import OverhauledUserCard from '@/components/reusables/OverhauledUserCard';
 import UserCard from '@/components/reusables/UserCard';
+
 
 import { SharedPageProps } from '@/types';
 
@@ -15,9 +15,9 @@ export default function Community() {
     const { users } = usePage<SharedPageProps>().props;
     return (
         <FullWidthLayout title="Community">
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid sm:grid-cols-3 lg:grid-cols-5 gap-3">
                 {users?.map((user: any) => (
-                    <OverhauledUserCard key={user.id} user={user} />
+                    <UserCard key={user.id} user={user} />
                 ))}
             </div>
         </FullWidthLayout>

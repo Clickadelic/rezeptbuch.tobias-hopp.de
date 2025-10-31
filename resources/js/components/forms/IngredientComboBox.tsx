@@ -70,7 +70,7 @@ export function IngredientComboBox({
                     aria-expanded={open}
                     className={cn('w-96 justify-between', triggerClassName)}
                 >
-                    <span className={cn(!selected && !value && 'text-muted-foreground')}>
+                    <span className={cn(!selected && !value && 'text-muted-foreground ')}>
                         {displayLabel}
                     </span>
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

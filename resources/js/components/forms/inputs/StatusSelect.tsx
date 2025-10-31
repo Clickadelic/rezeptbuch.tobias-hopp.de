@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import { BsCircle, BsCheckCircle } from "react-icons/bs";
 import { useDarkMode } from '@/hooks/useDarkMode';
+
+import { TfiEye } from "react-icons/tfi";
+import { GoEyeClosed } from "react-icons/go";
+
+import { cn } from "@/lib/utils";
+
 const statusOptions = [
-  { value: "draft", label: "Draft", icon: <BsCircle className="size-5" /> },
-  { value: "published", label: "Published", icon: <BsCheckCircle className="size-5" /> },
+  { value: "draft", label: "Entwurf", icon: <GoEyeClosed className="size-5 text-rose-700" /> },
+  { value: "published", label: "veröffentlicht", icon: <TfiEye className="size-5 text-primary" /> },
 ];
 
 // Custom Option mit Icon + Label
@@ -30,15 +36,16 @@ const StatusSingleValue = (props: any) => (
 interface StatusSelectProps {
   selectedStatus?: string;
   onChange?: (status: string) => void;
+  className?: string;
 }
 
-export default function StatusSelect({ selectedStatus, onChange }: StatusSelectProps) {
+export default function StatusSelect({ selectedStatus, onChange, className }: StatusSelectProps) {
   const isDark = useDarkMode();
 
   const selectedOption = statusOptions.find((opt) => opt.value === selectedStatus);
 
   return (
-    <div className="w-64">
+    <div className={cn("w-full", className)}>
       <Select
         options={statusOptions}
         value={selectedOption ?? null} // Wählen… wenn kein Wert
@@ -51,14 +58,12 @@ export default function StatusSelect({ selectedStatus, onChange }: StatusSelectP
           control: (base, state) => ({
             ...base,
             borderRadius: "0.25rem",
-            borderColor: state.isFocused ? "#065f46" : "#364153",
-            boxShadow: state.isFocused ? "0 0 0 1px #065f46" : "none",
+            borderColor: isDark ? "#364153" : "#e5e7eb",
+            boxShadow: isDark ? "#101828" : "#f3f4f6",
             padding: "2px 4px",
-            backgroundColor: isDark ? "#111827" : "#f3f4f6",
-
+            backgroundColor: isDark ? "#101828" : "#f3f4f6",
             "&:hover": {
-              borderColor: state.isFocused ? "#065f46" : "#d1d5db",
-              
+              borderColor: isDark ? "#364153" : "#e5e7eb",
             },
           }),
           input: (base) => ({

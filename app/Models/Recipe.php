@@ -9,7 +9,6 @@ use App\Models\Ingredient;
 use Laravel\Scout\Searchable;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class Recipe extends Model

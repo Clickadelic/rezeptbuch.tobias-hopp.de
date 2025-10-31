@@ -4,15 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import { usePage, Link } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { useBlurStore } from '@/stores/useBlurStore'; // 🔹 Import für Blur
 
 import { Button } from '@/components/ui/button';
 
-// import decorationSvg from "@images/svg/fruit-basket-bro.svg";
-import decorationSvg from "@images/svg/documents-bro.svg";
+import decorationSvg from "@images/svg/Pina-colada-bro.svg";
 
-
+import { cn } from '@/lib/utils';
+import { useBlurStore } from '@/stores/useBlurStore'; // 🔹 Import für Blur
 interface MegaMenuItem {
     icon?: React.ReactNode;
     title: string;
@@ -108,7 +106,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                 <div className="hidden sm:block absolute top-full w-screen z-50 mt-3 max-w-5xl mx-auto sm:-left-72">
                     <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
                         <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
-                            <img src={decorationSvg} alt="Collab-bro" className="absolute left-12 bottom-3 size-40" />
+                            {decorationSvg && <img src={decorationSvg} alt="Menu ´background image" className="absolute left-16 bottom-8 size-28" />}
                             <div className="grid gap-4 p-4 md:grid-cols-4">
                                 {columns.map((section, idx) => (
                                     <div key={idx} className="space-y-2">

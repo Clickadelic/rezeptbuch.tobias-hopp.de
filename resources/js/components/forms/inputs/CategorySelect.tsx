@@ -10,6 +10,7 @@ import { GiCrystalBars } from "react-icons/gi";
 import { GiCakeSlice } from "react-icons/gi";
 import { useDarkMode } from '@/hooks/useDarkMode';
 
+import { cn } from "@/lib/utils";
 
 const categoryOptions = [
   { value: 1, label: "Vorspeise", icon: <TbSalad className="size-5 text-primary" /> },
@@ -43,11 +44,13 @@ const IconSingleValue = (props: any) => (
 interface CategorySelectProps {
   selectedCategoryId?: number;
   onChange?: (categoryId: number) => void;
+  className?: string;
 }
 
 export default function CategorySelect({
   selectedCategoryId,
   onChange,
+  className
 }: CategorySelectProps) {
   const isDark = useDarkMode();
 
@@ -56,7 +59,7 @@ export default function CategorySelect({
   );
 
   return (
-    <div className="w-64">
+    <div className={cn("w-full", className)}>
       <InputLabel htmlFor="category" value="Kategorie" description="Wähle eine Kategorie unter der das Rezept gelistet wird." />
       <Select
         id="category"
@@ -71,14 +74,12 @@ export default function CategorySelect({
           control: (base, state) => ({
             ...base,
             borderRadius: "0.25rem",
-            borderColor: state.isFocused ? "#065f46" : "#364153",
+            borderColor: isDark ? "#364153" : "#e5e7eb",
             boxShadow: state.isFocused ? "0 0 0 1px #065f46" : "none",
             padding: "2px 4px",
             backgroundColor: isDark ? "#111827" : "#f3f4f6",
-
             "&:hover": {
-              borderColor: state.isFocused ? "#065f46" : "#d1d5db",
-              
+              borderColor: isDark ? "#364153" : "#e5e7eb",
             },
           }),
           input: (base) => ({

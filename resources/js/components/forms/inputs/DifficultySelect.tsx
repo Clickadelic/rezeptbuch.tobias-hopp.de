@@ -43,12 +43,12 @@ export default function DifficultySelect({
   );
 
   return (
-    <div className="w-64">
+    <div className="w-full">
       <Select
         options={difficultyOptions}
         value={selectedOption ?? null} // Wählen… wenn kein Wert
         onChange={(option) => onChange?.(option?.value ?? "")}
-        placeholder="Wählen..."
+        placeholder="Bitte wählen..."
         components={{ Option: DifficultyOption, SingleValue: DifficultySingleValue }}
         classNamePrefix="react-select"
         isSearchable={false}
@@ -56,15 +56,13 @@ export default function DifficultySelect({
           control: (base, state) => ({
             ...base,
             borderRadius: "0.25rem",
-            borderColor: state.isFocused ? "#065f46" : "#364153",
+            borderColor: isDark ? "#364153" : "#e5e7eb",
             boxShadow: state.isFocused ? "0 0 0 1px #065f46" : "none",
             padding: "2px 4px",
             backgroundColor: isDark ? "#111827" : "#f3f4f6",
-
             "&:hover": {
-              borderColor: state.isFocused ? "#065f46" : "#d1d5db",
-              
-            },
+              borderColor: isDark ? "#364153" : "#e5e7eb",
+            }
           }),
           input: (base) => ({
             ...base,

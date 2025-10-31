@@ -29,11 +29,11 @@ export default function InputLabel({
     ...props
 }: LabelHTMLAttributes<HTMLLabelElement> & { value?: string; description?: string }) {
     return (
-        <label {...props} className={`flex gap-2 mb-1 ` + className}>
+        <span {...props} className={`flex gap-2 mb-1 ` + className}>
             {description && (
                 <HoverCard>
                     <HoverCardTrigger>
-                        <IoIosInformationCircleOutline className="size-5 text-gray-600 dark:text-gray-400" />
+                        <IoIosInformationCircleOutline className="size-5 text-gray-400 dark:text-gray-400" />
                     </HoverCardTrigger>
                     <HoverCardContent side="right">
                         {description}
@@ -41,6 +41,6 @@ export default function InputLabel({
                 </HoverCard>
             )}
             {value ? value : children}
-        </label>
+        </span>
     );
 }

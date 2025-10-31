@@ -17,7 +17,12 @@ export default function UpdateProfileInformation({
 }) {
     const user = usePage<SharedPageProps>().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<{
+        name: string;
+        email: string;
+        biotext: string;
+        website_url: string;
+    }>({
         name: user.name ?? '',
         email: user.email ?? '',
         biotext: user.biotext ?? '',

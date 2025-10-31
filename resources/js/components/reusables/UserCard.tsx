@@ -63,7 +63,7 @@ export default function UserCard({ user }: UserCardProps) {
 
                 {/* Bio */}
                 <div className="h-12 mt-5 flex flex-col items-start justify-start">
-                    <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">{user?.biotext}</p>
+                    <p className="text-md leading-relaxed line-clamp-2 font-la-belle-aurore text-gray-600">{user?.biotext}</p>
                 </div>
                 
 

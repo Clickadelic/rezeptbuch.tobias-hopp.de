@@ -7,7 +7,7 @@ import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 import AuthUser from '@/types/AuthUser';
 
 
-import headerImgSrc from '../../../images/Spaghetti-Ingredients.jpg';
+import headerImgSrc from '../../../images/webp/User-Card-Header-Background.webp';
 
 interface OverhauledUserCardProps {
     user: AuthUser
@@ -55,16 +55,13 @@ export default function OverhauledUserCard({ user }: OverhauledUserCardProps) {
                 </div>
 
                 {/* Bio */}
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Bio</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{user?.biotext}</p>
 
                 {/* Specialties */}
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
                    
                         <Badge variant="primary" className="text-xs">
-                            Commis de Cuisine
-                        </Badge>
-                        <Badge variant="primary" className="text-xs">
-                            Barkeeper
+                            {user?.rank}
                         </Badge>
                     
                 </div>
@@ -72,13 +69,13 @@ export default function OverhauledUserCard({ user }: OverhauledUserCardProps) {
                 {/* Stats */}
                 <div className="mt-5 flex items-center justify-center gap-6 border-y border-border py-4">
                     <div className="text-center">
-                        <div className="text-xl font-bold text-card-foreground">54</div>
-                        <div className="text-xs text-muted-foreground">Recipes</div>
+                        <div className="text-xl text-card-foreground">{user?.recipes_count}</div>
+                        <div className="text-xs text-muted-foreground">Rezepte</div>
                     </div>
                     <div className="h-10 w-px bg-border" />
                     <div className="text-center">
                         <div className="text-xl font-bold text-card-foreground">
-                            5
+                            {user?.comments_count}
                         </div>
                         <div className="text-xs text-muted-foreground">Kommentare</div>
                     </div>

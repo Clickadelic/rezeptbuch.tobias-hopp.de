@@ -8,7 +8,7 @@ use App\Models\User;
 class CommunityController extends Controller
 {
     public function index() {
-        $users = User::all();
+        $users = User::withCount('recipes', 'favorites', 'comments')->get();
         return Inertia::render('Community/Index', [
             'users' => $users
         ]);

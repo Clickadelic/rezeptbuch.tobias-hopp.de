@@ -30,6 +30,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'avatar',
+        'biotext',
+        'website_url',
+        'rank'
     ];
 
     /**
@@ -53,6 +56,9 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'avatar' => 'string',
+            'biotext' => 'string',
+            'website_url' => 'string',
+            'rank' => 'string'
         ];
     }
 

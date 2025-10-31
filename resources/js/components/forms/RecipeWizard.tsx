@@ -320,21 +320,20 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                     {/* Slug */}
                     {recipe && (
-                        <div className="w-full flex flex-col">
+                        <div className="w-full max-w-xl mx-auto flex flex-col">
                             <InputLabel
                                 htmlFor="slug"
                                 value="Slug"
-                                description="Pflichtfeld - das Rezept benötigt einen Slug"
+                                description="Pflichtfeld - die URL-Schreibweise für den Link."
                             />
                             <InputGroup className="py-6 bg-gray-100 dark:bg-gray-900">
                                 <InputGroupAddon>
                                     <InputGroupText className="">https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
                                 </InputGroupAddon>
-                                <InputGroupInput className="!pl-0.5" id="slug"
+                                <InputGroupInput className="!pl-0.5 !text-lg" id="slug"
                                         type="text"
                                         value={`${data.slug || recipe.slug}`}
                                         placeholder="nudeln-mit-sauce"
-
                                         onChange={(e) => setData('slug', e.target.value)} />
                             </InputGroup>
                             {errors.slug && <p className="text-rose-700 mt-1">{errors.slug}</p>}

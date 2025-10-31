@@ -445,7 +445,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <div
                                 id={'ingredient-' + idx + '-input'}
                                 key={idx}
-                                className="flex flex-col md:flex-row gap-2 mb-2"
+                                className="flex flex-col md:flex-row gap-1 md:gap-2 md:mb-2"
                             >
                                 <div className="flex justify-start items-start gap-2">
                                     <TextInput
@@ -463,7 +463,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                             updateIngredient(idx, 'unit', value)
                                         }
                                     >
-                                        <SelectTrigger className="w-full rounded-sm sm:w-20 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                        <SelectTrigger className="w-full rounded-sm sm:w-20 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                             <SelectValue placeholder="Einheit auswählen" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -495,7 +495,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 </div>
                             </div>
                         ))}
-                        <div className="flex justify-between">
+                        <div className="flex flex-col sm:flex-row gap-1 justify-between">
                             <Button
                                 type="button"
                                 variant="primary"
@@ -508,7 +508,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {data.category_id != 4 && (
                                 <div>
                                     <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
-                                    <div className="flex items-start mt-5 justify-start gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
+                                    <div className="flex items-start mt-3 md:mt-5 justify-start gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
                                         <GiBroccoli className="size-4 text-primary" />
                                         <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
                                             Rezept ist vegetarisch
@@ -529,7 +529,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 type="button"
                                 variant="danger"
                                 disabled={!data.recipe_ingredients?.length}
-                                className=" mt-5 hover:cursor-pointer"
+                                className="mt-3 md:mt-5 hover:cursor-pointer"
                                 onClick={() => {
                                     if (confirm('Alle Zutaten wirklich löschen?')) {
                                         setData('recipe_ingredients', []);

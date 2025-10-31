@@ -304,7 +304,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <InputLabel
                             htmlFor="name"
                             value="Rezeptname"
-                            description="Pflichtfeld - das Rezept benötigt einen Namen"
+                            description="Pflichtfeld - das Rezept benötigt einen Namen."
                         />
 
                         <TextInput
@@ -385,7 +385,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                     
                     <div className="w-full max-w-xl mx-auto flex flex-col">
-                        <InputLabel htmlFor="punchline" value="Punchline" description="Kleine Schlagzeile, die das Rezept kurz beschreibt." />
+                        <InputLabel htmlFor="punchline" value="Punchline" description="Kleine Schlagzeile, die das Rezept gut beschreibt." />
                         <TextInput
                             id="punchline"
                             type="text"

@@ -74,14 +74,12 @@ export default function CategorySelect({
           control: (base, state) => ({
             ...base,
             borderRadius: "0.25rem",
-            borderColor: state.isFocused ? "#065f46" : "#364153",
+            borderColor: isDark ? "#364153" : "#e5e7eb",
             boxShadow: state.isFocused ? "0 0 0 1px #065f46" : "none",
             padding: "2px 4px",
             backgroundColor: isDark ? "#111827" : "#f3f4f6",
-
             "&:hover": {
-              borderColor: state.isFocused ? "#065f46" : "#d1d5db",
-              
+              borderColor: isDark ? "#364153" : "#e5e7eb",
             },
           }),
           input: (base) => ({

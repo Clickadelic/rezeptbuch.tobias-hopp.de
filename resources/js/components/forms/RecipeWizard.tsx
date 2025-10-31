@@ -295,7 +295,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
             {/* STEP 1: Basics */}
             {step === 1 && (
-                <section className="space-y-4">
+
+                <section className="space-y-5 mt-5">
                     <CategorySelect className="w-full max-w-xl mx-auto" selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
                     
                     {/* Name */}
@@ -359,13 +360,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                     {/* Vorbereitungszeit */}
                     <div className="w-full max-w-xl mx-auto">
-                        <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" />
+                        <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" description="Wie lange dauert die Vorbereitung in etwa?" />
                         <div className="w-full flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
                             <div className="flex justify-end items-end">
-                                <span className="min-w-[80px] p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                <span className="min-w-[80px] px-3 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-full mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
                                     {data.preparation_time}
                                 </span>
-                                <span className="bg-white p-3 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
+                                <span className="bg-gray-100 px-3 py-2 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
                                     Minuten
                                 </span>
                             </div>
@@ -374,7 +375,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 max={240}
                                 step={5}
                                 id="preparation_time"
-                                className="w-full sm:w-48 md:w-64 mt-1 hover:cursor-pointer"
+                                className="w-full mt-1 hover:cursor-pointer"
                                 onValueChange={(value) => setData('preparation_time', value[0])}
                             />
                         </div>
@@ -384,7 +385,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
                     
                     <div className="w-full max-w-xl mx-auto flex flex-col">
-                        <InputLabel htmlFor="punchline" value="Punchline" />
+                        <InputLabel htmlFor="punchline" value="Punchline" description="Kleine Schlagzeile, die das Rezept kurz beschreibt." />
                         <TextInput
                             id="punchline"
                             type="text"
@@ -423,7 +424,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                         <Button
                             type="button"
-                            variant="primaryOutline"
+                            variant="primary"
                             onClick={() => handleStepChange(2)}
                             disabled={!canNextFromStep1}
                         >
@@ -432,11 +433,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </Button>
                     </div>
                 </section>
+
             )}
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
-                <section className="space-y-4 md:space-y-2">
+                <section className="space-y-5 mt-5">
                     <div className="w-full max-w-xl mx-auto">
                         <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" />
                         {data.recipe_ingredients?.map((di, idx) => (
@@ -449,7 +451,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     <TextInput
                                         placeholder="Menge"
                                         value={di.quantity}
-                                        className="font-medium w-full md:w-32 py-[5px] mt-1"
+                                        className="font-medium w-full md:w-20 py-[5px] mt-1"
                                         type="number"
                                         onChange={(e) =>
                                             updateIngredient(idx, 'quantity', e.target.value)
@@ -461,7 +463,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                             updateIngredient(idx, 'unit', value)
                                         }
                                     >
-                                        <SelectTrigger className="w-full sm:w-24 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                        <SelectTrigger className="w-full rounded-sm sm:w-20 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                             <SelectValue placeholder="Einheit auswählen" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -473,7 +475,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="md:w-full flex gap-5">
+                                <div className="w-full flex gap-2">
                                     <IngredientComboBox
                                         value={di.ingredient_id}
                                         triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
@@ -503,11 +505,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 <GoPlus /> Zutat hinzufügen
                             </Button>
                             
-                            {/* Kategorie Cocktails kein Veggy Switch */}
                             {data.category_id != 4 && (
-                               <div>
+                                <div>
                                     <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
-                                    <div className="flex items-start justify-start gap-2 mt-5 border border-primary bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
+                                    <div className="flex items-start mt-5 justify-start gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
                                         <GiBroccoli className="size-4 text-primary" />
                                         <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
                                             Rezept ist vegetarisch
@@ -522,6 +523,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                     </div>
                                 </div> 
                             )}
+                            
                             {/* Alle Zutaten löschen */}
                             <Button
                                 type="button"
@@ -549,6 +551,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <GoArrowLeft className="ml-1" />
                             Zurück
                         </Button>
+                        
                         <Button
                             type="button"
                             variant={data.recipe_ingredients?.length >= 1 ? 'primary' : 'primaryOutline'}
@@ -574,7 +577,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
-                <section className="space-y-4">
+                <section className="space-y-5 mt-5">
                     <div className="flex flex-col sm:flex-row items-center justify-start sm:gap-4">
                         {/* Uploader */}
                         <div className="space-y-2">

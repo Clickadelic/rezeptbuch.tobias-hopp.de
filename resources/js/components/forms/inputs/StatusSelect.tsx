@@ -58,14 +58,12 @@ export default function StatusSelect({ selectedStatus, onChange, className }: St
           control: (base, state) => ({
             ...base,
             borderRadius: "0.25rem",
-            borderColor: state.isFocused ? "#065f46" : "#364153",
-            boxShadow: state.isFocused ? "0 0 0 1px #065f46" : "none",
+            borderColor: isDark ? "#364153" : "#e5e7eb",
+            boxShadow: isDark ? "#101828" : "#f3f4f6",
             padding: "2px 4px",
-            backgroundColor: isDark ? "#111827" : "#f3f4f6",
-
+            backgroundColor: isDark ? "#101828" : "#f3f4f6",
             "&:hover": {
-              borderColor: state.isFocused ? "#065f46" : "#d1d5db",
-              
+              borderColor: isDark ? "#364153" : "#e5e7eb",
             },
           }),
           input: (base) => ({

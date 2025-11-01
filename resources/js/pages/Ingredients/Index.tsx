@@ -19,7 +19,7 @@ export default function IngredientsIndex() {
                     <p>In den Rezepten sind folgende Zutaten enthalten:</p>
                 </div>
             </div>
-            <Seperator style="salad" />
+            <Seperator style="carrot" />
             <IngredientDirectory />
         </NoSidebarsLayout>
     );

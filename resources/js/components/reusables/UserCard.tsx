@@ -7,6 +7,8 @@ import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 import { RiHome2Line } from "react-icons/ri";
 import AuthUser from '@/types/AuthUser';
 import { RiHomeLine } from 'react-icons/ri';
+
+import { LiaHomeSolid } from "react-icons/lia";
 import headerImageLight from '../../../images/webp/User-Card-Header-Background-Light.webp';
 import headerImageDark from '../../../images/webp/User-Card-Header-Background-Dark.webp';
 
@@ -42,9 +44,9 @@ export default function UserCard({ user }: UserCardProps) {
                         name={user?.name}
                     />
                     {user.website_url && (
-                        <div className="absolute -bottom-1 -right-1 rounded-full bg-accent p-1.5 shadow-lg">
-                            <a href={user.website_url} className="target-reset text-primary hover:text-emerald-600 dark:hover:text-emerald-600" title="Zur Webseite" target="_blank">
-                                <RiHomeLine className="size-5" />
+                        <div className="absolute -bottom-1 -right-1 rounded-full bg-accent border border-gray-200 dark:border-gray-800 p-1.5 shadow-lg">
+                            <a href={user.website_url} className="target-reset text-primary hover:text-emerald-600 dark:hover:text-emerald-600" title="Zur Webseite" target="_blank" aria-label="Zur Webseite">
+                                <LiaHomeSolid className="size-4" />
                             </a>
                         </div>
                     )}

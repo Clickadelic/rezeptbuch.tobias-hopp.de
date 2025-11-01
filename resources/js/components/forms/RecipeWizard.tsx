@@ -52,7 +52,7 @@ interface RecipeWizardProps {
 export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
-
+    
     /**
      * Smoothly scrolls the window to the top of the form.
      * @returns {void}
@@ -146,6 +146,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         setStep(newStep);
         setTimeout(scrollToTop, 50);
     };
+
+    const handleRatingChange = (newRating: number) => {
+        setData('rating', newRating);
+    }
 
     // Submit Handler → unterscheidet Create vs Edit
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -695,6 +699,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <p className="text-red-500">{errors.preparation_instructions}</p>
                         )}
                     </div>
+                    
+                    <div className="w-full max-w-xl mx-auto space-y-3">
+                        <InputLabel
+                            htmlFor="rating"
+                            value="Deine Bewertung des Rezeptes"
+                            description="Welche Bewertung gibtst Du dem Rezept? Bitte wählen."
+                        />
+                        <UserStarRating rating={data.rating} onRatingChange={handleRatingChange} />
+                    </div>
+
                     {/* Submit */}
                     <div className="flex justify-between gap-2">
                         <Button

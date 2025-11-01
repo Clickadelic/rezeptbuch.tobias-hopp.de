@@ -282,8 +282,21 @@ class RecipeController extends Controller
 
         $recipe->delete();
 
-        return redirect()
-            ->route('recipes.index')
+        // Hole die vorherige URL
+        $previousUrl = url()->previous();
+
+        // URL der gelöschten Show-Seite
+        $recipeShowUrl = route('recipes.show', $recipe->id);
+
+        // Prüfe, ob der User gerade auf der Show-Seite war
+        if ($previousUrl === $recipeShowUrl) {
+            return redirect()
+                ->route('recipes.index')
+                ->with('success', 'Rezept erfolgreich gelöscht.');
+        }
+
+        // Wenn nicht, zurück zur vorherigen Seite
+        return redirect($previousUrl)
             ->with('success', 'Rezept erfolgreich gelöscht.');
     }
 

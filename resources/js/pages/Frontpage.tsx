@@ -3,7 +3,7 @@ import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelectionsBlock/Index';
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
-
+import AlteringBlock from '@/components/reusables/Blocks/AlteringBlock';
 import Seperator from '@/components/reusables/Seperator';
 import { Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
@@ -41,7 +41,7 @@ export default function Frontpage() {
             <Seperator />
             <AuthTeaserBlock />
             <Seperator />
-
+            <AlteringBlock />
         </FullWidthLayout>
     );
 }

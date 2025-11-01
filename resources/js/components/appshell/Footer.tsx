@@ -15,9 +15,12 @@ import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
-
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import { cn } from '@/lib/utils';
+
+import appInstallPromptSrc from '@images/svg/Payment-information-bro.svg';
+
 
 interface FooterProps {
     className?: string;
@@ -167,15 +170,14 @@ export default function Footer({ className }: FooterProps) {
                         </div>
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
-                                <TbMailHeart />
-                                <span className="font-medium">Newsletter</span>
+                                <AiOutlineAppstoreAdd />
+                                <span className="font-medium">Gutes Gelingen</span>
                             </h2>
                             <div className="border-t border-stone-700 pt-4">
                                 <p className="pb-4 text-center sm:text-left mx-5 sm:mx-0">
-                                    Bleib' auf dem Laufenden, wenn es Neuigkeiten zu meinem
-                                    Rezeptbuch gibt.
+                                    Die Community wünscht Dir selbstverständlich Gutes Gelingen mit Deinem Koch-Vorhaben.
                                 </p>
-                                <NewsletterForm />
+                                <img src={appInstallPromptSrc} alt="Rezeptbuch App" className="size-52 mx-auto" />
                             </div>
                         </div>
                     </div>

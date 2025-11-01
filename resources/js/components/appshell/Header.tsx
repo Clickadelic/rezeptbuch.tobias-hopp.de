@@ -149,7 +149,7 @@ const Header = () => {
                             <div className="flex gap-3">
                                 <NavButton
                                     href="/register"
-                                    className="border border-gray-800 text-gray-800 hover:text-gray-600 hover:border-gray-600 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"
+                                    className="border border-gray-800 text-gray-800 hover:text-gray-400 hover:border-gray-400 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"
                                     icon={<FiCheckCircle className="asd" />}
                                 >
                                     Registrieren

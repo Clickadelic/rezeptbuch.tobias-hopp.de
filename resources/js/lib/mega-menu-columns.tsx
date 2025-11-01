@@ -10,6 +10,7 @@ import { LuUsersRound } from 'react-icons/lu';
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 
+import { BsQrCode } from "react-icons/bs";
 import { BiCategory } from 'react-icons/bi';
 import { FaRegHeart } from 'react-icons/fa';
 import { BsCardList } from 'react-icons/bs';
@@ -21,8 +22,8 @@ import { GiCakeSlice } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
 
-
-import megaMenuFeaturedImage from '@images/webp/MegaMenu-Featured-Image.webp';
+import qrCodeImageUrl from '@images/qrcode.png';
+import megaMenuFeaturedImage from '@images/svg/Payment-information-bro.svg';
 
 export const recipesMegaMenu = [
     {
@@ -85,10 +86,11 @@ export const recipesMegaMenu = [
 ];
 
 export const featuredRecipes = {
-    icon: <RiDashboardHorizontalLine className="mt-[2px]" />,
     imageUrl: megaMenuFeaturedImage,
-    title: 'Zufallsrezept',
-    description: 'Eine Empfehlung für Dich',
-    label: 'Dashboard',
-    href: '/dashboard',
+    qrCodeImageUrl: qrCodeImageUrl,
+    title: 'Schon gewusst?',
+    description: 'Rezeptbuch als App installieren.',
+    label: 'Zeige QR-Code',
+    icon: <BsQrCode className="mt-[2px]" />,
+    href: '/login',
 };

@@ -46,7 +46,7 @@ export default function Frontpage() {
             <div className="grid grid-cols-1 lg:grid-cols-3">
                 <div className="col-span-2 flex flex-col gap-2 items-center justify-start pt-10">
                     <h4 className="text-xl">Die Vorteile einer &shy;Registrierung auf einen Blick:</h4>
-                    <ul className="list-disc list-inside space-y-2 mt-12 text-xl">
+                    <ul className="list-disc space-y-2 mt-12 text-xl">
                         <li>Eigene Rezepte anlegen und teilen</li>
                         <li>Eigene Favoriten anlegen und verwalten</li>
                         <li>Übersichtliches Dashboard mit Statistiken</li>

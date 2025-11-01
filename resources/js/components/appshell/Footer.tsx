@@ -43,7 +43,8 @@ export default function Footer({ className }: FooterProps) {
             >
                 <BackToTopButton />
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-14 pb-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-b-black">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-6 border-b border-b-black">
+                        
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <GrNavigate />
@@ -92,6 +93,7 @@ export default function Footer({ className }: FooterProps) {
                                 </li>
                             </ul>
                         </div>
+                        
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <BiCategory />
@@ -169,12 +171,12 @@ export default function Footer({ className }: FooterProps) {
                         </div>
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
-                                <PiPlant />
-                                <span className="font-medium">Kontakt</span>
+                                <AiOutlineAppstoreAdd />
+                                <span className="font-medium">Schon gewusst?</span>
                             </h2>
                             <div className="border-t border-stone-700 pt-4">
                                 <p className="pb-4 text-center sm:text-left mx-5 sm:mx-0">
-                                    Die Community wünscht Dir selbstverständlich Gutes Gelingen mit Deinem Koch-Vorhaben.
+                                    Du kannst das Rezeptbuch auch als App auf Deinem Smartphone installieren (iOS und Android).
                                 </p>
                                 <img src={footerImage} alt="Rezeptbuch App" className="size-48 mx-auto" />
                             </div>

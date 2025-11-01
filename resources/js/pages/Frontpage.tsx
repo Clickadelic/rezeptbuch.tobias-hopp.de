@@ -3,7 +3,7 @@ import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelectionsBlock/Index';
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
-
+import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 import { Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
@@ -39,22 +39,25 @@ export default function Frontpage() {
             <Seperator />
             <DailyRecommendationsBlock />
             <Seperator />
-            <AuthTeaserBlock />
+            <FaqAccordeon />
             <Seperator />
             <div className="grid grid-cols-1 lg:grid-cols-3">
-                <div className="col-span-2 flex flex-col gap-2 items-center justify-center">
-                    
-                    
+                <div className="col-span-2 flex flex-col gap-2 items-center justify-start">
+                    <h4>Die Vorteile auf einen Blick</h4>
+                    <ul className="list-disc list-inside">
+                        <li>Eigene Rezepte anlegen und teilen</li>
+                        <li>Eigene Favoriten anlegen und verwalten</li>
+                    </ul>
                 </div>
-
-                <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
-                    <h2 className="text-3xl">Einmal Registrieren</h2>
+                <div className="col-span-1 flex flex-col gap-2 items-center justify-end">
+                    <h2 className="text-3xl">essen und trinken</h2>
                     <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
-                        überall nutzen
+                        gesund und lecker
                     </h3>
-                    
                 </div>
             </div>
+            <Seperator />
+            <AuthTeaserBlock />
         </FullWidthLayout>
     );
 }

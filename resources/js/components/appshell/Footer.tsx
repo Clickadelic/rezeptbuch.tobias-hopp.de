@@ -44,6 +44,7 @@ export default function Footer({ className }: FooterProps) {
                 <BackToTopButton />
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-14 pb-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-6 border-b border-b-black">
+                        
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <GrNavigate />
@@ -92,6 +93,7 @@ export default function Footer({ className }: FooterProps) {
                                 </li>
                             </ul>
                         </div>
+                        
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <BiCategory />

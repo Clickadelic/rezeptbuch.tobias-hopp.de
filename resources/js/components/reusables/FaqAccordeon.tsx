@@ -22,7 +22,7 @@ export default function FrontpageCategoryGrid() {
                 punchline="und Antworten"
                 icon={<FaQ className="text-primary size-6 mt-1" />}
             />
-            <div className="w-full lg:max-w-xl mx-auto">
+            <div className="w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8">
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="font-medium text-xl">

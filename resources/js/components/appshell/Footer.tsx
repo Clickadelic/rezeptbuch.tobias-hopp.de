@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 
 import BackToTopButton from '@/components/appshell/BackToTopButton';
 import NewsletterForm from '../forms/NewsletterForm';
-import { PiPlant } from "react-icons/pi";
+
 import badgeSrc from '@images/Quality-Symbol.png';
 import { BiCategory } from 'react-icons/bi';
 import { BsChevronCompactRight } from 'react-icons/bs';
@@ -19,7 +19,7 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import { cn } from '@/lib/utils';
 
-import footerImage from "@images/svg/Payment-information-bro.svg";
+import footerImage from "@images/svg/Payment-Information-bro.svg";
 
 
 interface FooterProps {

@@ -31,27 +31,22 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
 
     return (
         <div className="flex flex-col">
-            <div className="flex gap-6">
+            <div className="w-full flex gap-6">
                 <RecipeImageBlock recipe={recipe} className="w-full md:w-1/2" />
                 <div className="flex flex-col justify-between md:w-1/2">
                     <RecipeInfoBlock recipe={recipe} />
                     <AttributesBlock recipe={recipe} />
+                    
                 </div>
             </div>
-            <div className="flex w-full">
+            <div className="flex w-full items-center justify-start gap-2">
                 <AvatarBlock recipe={recipe} />
                 <FavoriteButton recipeId={recipe?.id} isFavorite={recipe?.is_favorite} />
+                <UserStarRating readonly={true} rating={recipe.rating as number} showLabel={false} />
             </div>
             <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
-            {/* <UserStarRating
-                recipeId={recipe.id}
-                readonly={true}
-                rating={recipe.rating as number}
-                communityRating={recipe.community_rating}
-                communityVotes={recipe.community_votes}
-            /> */}
-
+            
             <CommentsDirectory recipeId={recipe.id!} />
             <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
         </div>

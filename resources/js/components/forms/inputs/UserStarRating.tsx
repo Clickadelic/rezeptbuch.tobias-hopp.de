@@ -1,99 +1,75 @@
 'use client';
 
 import { useState } from 'react';
-import { usePage } from '@inertiajs/react';
 import { Star } from 'lucide-react';
-import { SharedPageProps } from '@/types';
 import { cn } from '@/lib/utils';
 
 interface UserStarRatingProps {
-    rating: number;
-    onRatingChange?: (rating: number) => void;
-    maxRating?: number;
-    size?: 'sm' | 'md' | 'lg';
-    readonly?: boolean;
-    showLabel?: boolean;
-    className?: string;
+  rating: number;
+  onRatingChange?: (rating: number) => void;
+  maxRating?: number;
+  size?: 'sm' | 'md' | 'lg';
+  readonly?: boolean;
+  showLabel?: boolean;
+  className?: string;
 }
 
 export default function UserStarRating({
-    rating,
-    onRatingChange,
-    maxRating = 5,
-    size = 'md',
-    readonly = false,
-    showLabel = false,
-    className,
+  rating: initialRating,
+  onRatingChange,
+  maxRating = 5,
+  size = 'md',
+  readonly = false,
+  showLabel = true,
+  className,
 }: UserStarRatingProps) {
-    const { user } = usePage<SharedPageProps>().props.auth;
-    const [hoverRating, setHoverRating] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [rating, setRating] = useState<number>(initialRating);
 
-    const sizeClasses = {
-        sm: 'w-4 h-4',
-        md: 'w-6 h-6',
-        lg: 'w-8 h-8',
-    };
+  const handleClick = (newRating: number) => {
+    if (readonly) return;
+    setRating(newRating);
+    onRatingChange?.(newRating);
+  };
 
-    const handleClick = (value: number) => {
-        if (!readonly && onRatingChange) {
-            onRatingChange(value);
-        }
-    };
+  const sizeClasses = {
+    sm: 'size-4',
+    md: 'size-6',
+    lg: 'size-8',
+  }[size];
 
-    const handleMouseEnter = (value: number) => {
-        if (!readonly) {
-            setHoverRating(value);
-        }
-    };
+  return (
+    <div className={cn('flex flex-col items-center justify-center gap-2', className)}>
+      <div className="flex gap-1">
+        {Array.from({ length: maxRating }).map((_, i) => {
+          const starValue = i + 1;
+          const isFilled = hovered
+            ? starValue <= hovered
+            : starValue <= rating;
 
-    const handleMouseLeave = () => {
-        if (!readonly) {
-            setHoverRating(0);
-        }
-    };
-
-    const displayRating = hoverRating || rating;
-
-    return (
-        <div className={cn('flex items-center gap-2', className)}>
-            <div className="flex items-center gap-1">
-                {Array.from({ length: maxRating }, (_, index) => {
-                    const starValue = index + 1;
-                    const isFilled = starValue <= displayRating;
-
-                    return (
-                        <button
-                            key={starValue}
-                            type="button"
-                            onClick={() => handleClick(starValue)}
-                            onMouseEnter={() => handleMouseEnter(starValue)}
-                            onMouseLeave={handleMouseLeave}
-                            disabled={readonly}
-                            className={cn(
-                                'transition-all duration-150',
-                                !readonly && 'hover:scale-110 cursor-pointer',
-                                readonly && 'cursor-default',
-                            )}
-                            aria-label={`Rate ${starValue} out of ${maxRating} stars`}
-                        >
-                            <Star
-                                className={cn(
-                                    sizeClasses[size],
-                                    'transition-colors duration-150',
-                                    isFilled
-                                        ? 'fill-yellow-400 text-yellow-400'
-                                        : 'fill-transparent text-muted-foreground',
-                                )}
-                            />
-                        </button>
-                    );
-                })}
-            </div>
-            {showLabel && (
-                <span className="text-sm text-muted-foreground">
-                    {displayRating > 0 ? `${displayRating}/${maxRating}` : 'No rating'}
-                </span>
-            )}
-        </div>
-    );
+          return (
+            <Star
+              key={starValue}
+              className={cn(
+                sizeClasses,
+                'cursor-pointer transition-colors duration-150',
+                isFilled
+                  ? 'fill-yellow-400 stroke-yellow-400'
+                  : 'stroke-gray-400 dark:stroke-gray-600',
+                readonly ? 'cursor-default opacity-80' : 'hover:scale-110'
+              )}
+              onMouseEnter={() => !readonly && setHovered(starValue)}
+              onMouseLeave={() => !readonly && setHovered(null)}
+              onClick={() => handleClick(starValue)}
+            />
+          );
+        })}
+      </div>
+      {showLabel && (
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          {rating} / {maxRating} Sterne
+        </p>
+      )}
+    </div>
+  );
 }

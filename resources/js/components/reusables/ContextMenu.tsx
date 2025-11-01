@@ -1,24 +1,8 @@
 import { useState } from 'react';
 import { router, usePage, Link } from '@inertiajs/react';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-    DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu';
-
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,} from '@/components/ui/dropdown-menu';
+import { ResponsiveDialog } from '@/components/reusables/ResponsiveDialog';
 import { HiOutlineDotsVertical, HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
@@ -29,10 +13,14 @@ import { RxClipboardCopy } from 'react-icons/rx';
 import { IoPrintOutline } from 'react-icons/io5';
 import { PiCopySimpleLight } from 'react-icons/pi';
 
-import { cn } from '@/lib/utils';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 
 import { SharedPageProps } from '@/types';
+
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
+
 interface ContextMenuProps {
     recipe?: Recipe | null;
     className?: string;
@@ -48,11 +36,7 @@ interface ContextMenuProps {
  * @param {Recipe} props.recipe - The recipe to be edited or deleted.
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
-export default function ContextMenu({
-    recipe,
-    className,
-    dotStyle = 'vertical',
-}: ContextMenuProps) {
+export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }: ContextMenuProps) {
     const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
 

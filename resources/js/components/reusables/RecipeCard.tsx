@@ -21,6 +21,9 @@ import ContextMenu from '@/components/reusables/ContextMenu';
 import { cn } from '@/lib/utils';
 import { FaHeart } from 'react-icons/fa6';
 
+import RecipeImageBlock from './Blocks/RecipeImageBlock';
+
+
 interface RecipeCardProps {
     recipe: Recipe;
     className?: string;
@@ -84,6 +87,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                 <BiDish className="size-10" />
                             );
                         })()}
+
                     </CardHeader>
 
                     {/* Titel + Kategorie */}

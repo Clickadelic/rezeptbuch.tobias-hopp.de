@@ -24,7 +24,10 @@ class FavoritesController extends Controller
             $user->favorites()->attach($recipe->id);
         }
 
-        return back()->with('success', $exists ? 'Favorit entfernt' : 'Favorit hinzugefügt');
+        return response()->json([
+            'is_favorite' => !$exists,
+            'message' => $exists ? 'Favorit entfernt' : 'Favorit hinzugefügt',
+        ]);
     }
 
     public function getFavorites(Request $request)

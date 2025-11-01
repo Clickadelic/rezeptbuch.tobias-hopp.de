@@ -73,7 +73,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                             />
                         </div>
                         {/* Hero image */}
-                        {/* {(() => {
+                        {(() => {
                             const hero =
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
                                 (recipe as any)?.media?.[0];
@@ -86,8 +86,8 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                             ) : (
                                 <BiDish className="size-10" />
                             );
-                        })()} */}
-                        <RecipeImageBlock recipe={recipe} />
+                        })()}
+
                     </CardHeader>
 
                     {/* Titel + Kategorie */}

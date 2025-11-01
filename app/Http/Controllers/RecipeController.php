@@ -166,9 +166,16 @@ class RecipeController extends Controller
         // 4️⃣ Primäres Bild setzen
         $this->setPrimaryMedia($recipe, $request->input('primary_media_id'));
 
-        return redirect()
+        if($recipe->status === 'published') {
+            // $recipe->user->notify(new RecipePublished($recipe));
+            return redirect()
             ->route('recipes.show', $recipe->slug)
             ->with('success', 'Rezept erfolgreich erstellt.');
+        }
+
+        return redirect()
+            ->route('recipes.index', $recipe->slug)
+            ->with('success', 'Rezept als Entwurf erstellt.');
     }
 
     /**

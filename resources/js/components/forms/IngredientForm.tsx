@@ -142,10 +142,13 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                         <Button
                             type="button"
                             variant="default"
-                            onClick={handleReset}
                             className="border-0 hover:bg-gray-400 transition"
+                            title="Abbrechen"
+                            aria-label="Abbrechen"
+                            onClick={handleReset}
                         >
-                            <SlClose className="size-4" /> Abbrechen
+                            <SlClose className="size-4" />
+                            <span className="hidden md:inline">Abbrechen</span>
                         </Button>
                         <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
                             <AlertDialogTrigger asChild>
@@ -153,12 +156,12 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                                     type="button"
                                     variant="destructive"
                                     className="bg-rose-500 border border-rose-500 text-rose-50 hover:bg-rose-600 hover:border-rose-600"
-                                    aria-label="Zutat löschen"
                                     title="Zutat löschen"
+                                    aria-label="Zutat löschen"
                                     onClick={() => setIsDeleteDialogOpen(true)}
                                 >
                                     <BsTrash3 className="size-4" />
-                                    Zutat löschen
+                                    <span className="hidden md:inline">Löschen</span>
                                 </Button>
                             </AlertDialogTrigger>
 

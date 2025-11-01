@@ -9,7 +9,7 @@ export default function IngredientsIndex() {
         <NoSidebarsLayout title="Zutaten">
             <div className="grid grid-cols-1 sm:grid-cols-3">
                 <div className="sm:col-span-1 flex justify-center items-center">
-                    <img src={srcUrl} className="size-48 my-8 sm:my-0" alt="Chef Tobias" />
+                    <img src={srcUrl} className="size-48 mb-8 sm:my-0" alt="Chef Tobias" />
                 </div>
                 <div className="w-full col-span-1 sm:col-span-4 sm:col-start-2">
                     <p>Gute Zutaten sind die Grundlage für ein gesundes und leckeres Essen. Das Gleiche gilt natürlich auch für Getränke aller Art, frei nach dem Motto:</p>

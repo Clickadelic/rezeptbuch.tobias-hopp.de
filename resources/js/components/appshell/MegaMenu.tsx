@@ -163,9 +163,10 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                     {featured.description}
                                                 </p>
                                                 
-                                                <img src={featured.imageUrl} alt={featured.title} className="mt-2 size-full object-cover aspect-video" />
+                                                <img src={featured.imageUrl} alt={featured.title} className="mt-6 size-36 mx-auto object-cover aspect-video" />
                                                 
                                             </div>
+                                            {featured.label && (
                                             <Button asChild variant="primary" className="group">
                                                 <Link
                                                     href={featured.href}
@@ -180,6 +181,8 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                     </div>
                                                 </Link>
                                             </Button>
+                                            )}
+                                            
                                         </div>
                                     </div>
                                 )}

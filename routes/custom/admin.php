@@ -8,6 +8,7 @@ use App\Http\Controllers\UploadController;
 use App\Models\User;
 use App\Http\Middleware\CheckRole;
 
+// TODO: Create AdminController
 Route::get('/admin', function () {
     $user = Auth::user();
     $users = User::with('roles')->get();

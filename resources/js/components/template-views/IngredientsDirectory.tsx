@@ -63,7 +63,7 @@ export default function IngredientsDirectory() {
                 (letter) =>
                     grouped[letter] && (
                         <>
-                            <section key={letter} id={letter} className="scroll-mt-24 p-4 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-900 hover:cursor-default">
+                            <section key={letter} id={letter} className="scroll-mt-24 p-4 rounded-md transition-all duration-300 delay-100 hover:bg-slate-100 dark:hover:bg-slate-900 hover:cursor-default">
                                 <Card>
                                     <CardHeader className="text-lg font-bold w-full flex flex-row justify-between">
                                         <span>{letter}</span>

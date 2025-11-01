@@ -7,7 +7,6 @@ import { GiCakeSlice } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
 
-import qrCodeImageUrl from '@images/qrcode.png';
 import megaMenuFeaturedImage from '@images/svg/Recipe-book-bro.svg';
 
 export const recipesMegaMenu = [
@@ -72,10 +71,9 @@ export const recipesMegaMenu = [
 
 export const featuredRecipes = {
     imageUrl: megaMenuFeaturedImage,
-    qrCodeImageUrl: qrCodeImageUrl,
-    title: 'Leb\' gesund, koch\' selbst...',
-    description: '...schmeckt eh am besten.',
+    title: 'Gesund essen & trinken.',
+    description: 'Lecker durch\'s Leben.',
     label: '',
-    icon: <PiCookingPot className="mt-[2px]" />,
-    href: '/login',
+    icon: '',
+    href: '',
 };

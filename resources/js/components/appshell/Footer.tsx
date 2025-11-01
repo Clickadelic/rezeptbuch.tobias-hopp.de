@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 
 import BackToTopButton from '@/components/appshell/BackToTopButton';
 import NewsletterForm from '../forms/NewsletterForm';
-
+import { PiPlant } from "react-icons/pi";
 import badgeSrc from '@images/Quality-Symbol.png';
 import { BiCategory } from 'react-icons/bi';
 import { BsChevronCompactRight } from 'react-icons/bs';
@@ -19,7 +19,7 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import { cn } from '@/lib/utils';
 
-import appInstallPromptSrc from '@images/svg/Payment-information-bro.svg';
+import footerImage from "@images/svg/Collab-bro.svg";
 
 
 interface FooterProps {
@@ -43,7 +43,7 @@ export default function Footer({ className }: FooterProps) {
             >
                 <BackToTopButton />
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-14 pb-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-b-black">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-6 border-b border-b-black">
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <GrNavigate />
@@ -162,22 +162,21 @@ export default function Footer({ className }: FooterProps) {
                             </h2>
                             <div className="pt-4 border-t border-stone-700">
                                 <p className="mb-5 text-center sm:text-left">
-                                    Alle Rezepte wurden entweder schon mal gekocht oder für gut
-                                    befunden und probiert.
+                                    Alle Rezepte wurden entweder selbst gekocht oder probiert und für gut befunden.
                                 </p>
                                 <img src={badgeSrc} alt="100% Qualit&auml;t" className="mx-auto" />
                             </div>
                         </div>
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
-                                <AiOutlineAppstoreAdd />
-                                <span className="font-medium">Gutes Gelingen</span>
+                                <PiPlant />
+                                <span className="font-medium">Kontakt</span>
                             </h2>
                             <div className="border-t border-stone-700 pt-4">
                                 <p className="pb-4 text-center sm:text-left mx-5 sm:mx-0">
                                     Die Community wünscht Dir selbstverständlich Gutes Gelingen mit Deinem Koch-Vorhaben.
                                 </p>
-                                <img src={appInstallPromptSrc} alt="Rezeptbuch App" className="size-52 mx-auto" />
+                                <img src={footerImage} alt="Rezeptbuch App" className="size-48 mx-auto" />
                             </div>
                         </div>
                     </div>

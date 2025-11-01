@@ -41,7 +41,20 @@ export default function Frontpage() {
             <Seperator />
             <AuthTeaserBlock />
             <Seperator />
-            <AlteringBlock />
+            <div className="grid grid-cols-1 lg:grid-cols-3">
+                <div className="col-span-2 flex flex-col gap-2 items-center justify-center">
+                    
+                    
+                </div>
+
+                <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
+                    <h2 className="text-3xl">erprobte Rezepte</h2>
+                    <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
+                        Probiert und gekocht
+                    </h3>
+                    
+                </div>
+            </div>
         </FullWidthLayout>
     );
 }

@@ -32,6 +32,7 @@ interface MegaMenuProps {
     featured?: {
         title: string;
         description: string;
+        imageUrl?: string;
         href: string;
         icon?: React.ReactNode;
     };
@@ -160,8 +161,8 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                                     {featured.description}
                                                 </p>
-                                                <div className="aspect-video bg-gray-200 rounded-lg mt-4">
-                                                    
+                                                <div className="aspect-video bg-gray-200 rounded-lg mt-4 overflow-hidden">
+                                                    <img src={featured.imageUrl} alt={featured.title} className="w-full h-full object-cover" />
                                                 </div>
                                             </div>
                                             <Button asChild variant="primary" className="group">

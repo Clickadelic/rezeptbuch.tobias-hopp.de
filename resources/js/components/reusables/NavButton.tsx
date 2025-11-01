@@ -27,9 +27,9 @@ export default function NavButton({
         <Link
             {...props}
             className={
-                'inline-flex items-center justify-between md:gap-2 sm:px-1 md:px-2 py-1 rounded-sm ' +
+                'inline-flex items-center justify-between md:gap-2 sm:px-1 md:px-3 py-1 rounded-sm ' +
                 className +
-                (active ? 'asd' : 'asd')
+                (active ? 'active' : 'not-active')
             }
         >
             <span className="hidden lg:inline-flex">{icon}</span>

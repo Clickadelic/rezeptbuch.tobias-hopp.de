@@ -22,6 +22,8 @@ import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
 
 
+import megaMenuFeaturedImage from '@images/webp/MegaMenu-Featured-Image.webp';
+
 export const recipesMegaMenu = [
     {
         title: 'Rezepte',
@@ -84,8 +86,9 @@ export const recipesMegaMenu = [
 
 export const featuredRecipes = {
     icon: <RiDashboardHorizontalLine className="mt-[2px]" />,
-    title: 'Dashboard',
-    description: 'Deine Rezepte, Deine Zahlen.',
+    imageUrl: megaMenuFeaturedImage,
+    title: 'Zufallsrezept',
+    description: 'Eine Empfehlung für Dich',
     label: 'Dashboard',
     href: '/dashboard',
 };

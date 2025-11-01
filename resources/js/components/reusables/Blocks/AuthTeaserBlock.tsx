@@ -29,7 +29,9 @@ export default function AuthTeaserBox() {
                     <>
                         <Link
                             href={route('register')}
-                            className="flex gap-2 border border-gray-800 dark:border-gray-200 dark:hover:border-gray-400 text-gray-800 dark:text-gray-200 dark:hover:text-gray-400 rounded px-3 py-1.5"
+                            className="flex gap-2 border border-gray-800 dark:border-gray-200 dark:hover:border-gray-400 text-gray-800 hover:text-gray-400 hover:border-gray-400 dark:text-gray-200 dark:hover:text-gray-400 rounded px-3 py-1.5"
+                            title="Registrieren"
+                            aria-label="Registrieren"
                         >
                             <FiCheckCircle className="size-4 mt-1" />
                             Registrieren
@@ -37,6 +39,8 @@ export default function AuthTeaserBox() {
                         <Link
                             href={route('login')}
                             className="flex gap-2 border border-transparent bg-primary text-white rounded px-3 py-1.5 hover:bg-emerald-700"
+                            title="Login"
+                            aria-label="Login"
                         >
                             <BsDoorOpen className="size-4 mt-1" />
                             Login

@@ -50,7 +50,7 @@ const Header = () => {
                         <div className="relative flex shrink-0">
                             <AppLogo className="mx-auto mt-2 sm:mt-[14px] mr-1 sm:mr-3" />
                         </div>
-                        <div className="hidden sm:flex sm:gap-1 md:gap-2 lg:gap-3 xl:gap-4 mx-auto">
+                        <div className="hidden lg:flex lg:gap-1 xl:gap-4 mx-auto">
                             <NavLink
                                 href="/"
                                 active={window.location.pathname === '/'}
@@ -84,9 +84,18 @@ const Header = () => {
                             </NavLink>
                         </div>
                     </div>
-                    <div className="hidden sm:ms-2 sm:flex sm:items-center gap-3">
+                    <div className="hidden lg:ms-2 lg:flex lg:items-center gap-1 md:gap-2 lg:gap-3">
                         {auth.user ? (
-                            <div className="relative ms-3 sm:flex sm:flex-row sm:gap-3">
+                            <>
+                            <NavButton
+                                href="/dashboard"
+                                active={window.location.pathname.startsWith('/dashboard')}
+                                icon={<RiDashboardHorizontalLine className="size-4" />}
+                                className="bg-primary text-white hover:bg-emerald-600"
+                            >
+                                Dashboard         
+                            </NavButton>
+                            <div className="relative sm:flex sm:flex-row sm:gap-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex mt-1">
@@ -119,10 +128,6 @@ const Header = () => {
                                                 Admin
                                             </Dropdown.Link>
                                         )}
-                                        <Dropdown.Link href="/dashboard" className="flex gap-2">
-                                            <RiDashboardHorizontalLine className="size-4 mt-1 text-primary" />
-                                            Dashboard
-                                        </Dropdown.Link>
                                         <Dropdown.Link href="/profile" className="flex gap-2">
                                             <RiAccountPinBoxLine className="size-4 mt-1 text-primary" />
                                             Profil
@@ -139,11 +144,12 @@ const Header = () => {
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>
+                            </>
                         ) : (
                             <div className="flex gap-3">
                                 <NavButton
                                     href="/register"
-                                    className="border border-gray-800 text-gray-800 hover:text-gray-600 hover:border-gray-600 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"
+                                    className="border border-gray-800 text-gray-800 hover:text-gray-400 hover:border-gray-400 dark:text-gray-400 dark:border-gray-400 dark:hover:border-gray-600"
                                     icon={<FiCheckCircle className="asd" />}
                                 >
                                     Registrieren
@@ -159,7 +165,7 @@ const Header = () => {
                         )}
                         <ModeToggle />
                     </div>
-                    <div className="-me-2 flex gap-2 items-center sm:hidden">
+                    <div className="-me-2 flex gap-2 items-center lg:hidden">
                         <ModeToggle />
                         <button
                             onClick={() =>
@@ -195,7 +201,7 @@ const Header = () => {
                 </div>
             </div>
             {showingNavigationDropdown && (
-                <div className="sm:hidden border-b-2 border-primary">
+                <div className="md:hidden border-b-2 border-primary">
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
                             href="/"

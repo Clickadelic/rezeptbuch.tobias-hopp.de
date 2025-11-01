@@ -14,7 +14,7 @@ export default function RecipeSearch() {
     return (
         <div
             className={cn(
-                "relative w-full bg-[url('../images/ella-olsson-4dQiaWKiL-Y-unsplash.jpg')] dark:bg-[url('../images/pexels-fotios-photos-918328.jpg')] bg-cover bg-center flex flex-col justify-center items-center",
+                "relative w-full bg-[url('../images/Rezeptbuch-Tobias-Hopp-Frontpage-Light.webp')] dark:bg-[url('../images/Rezeptbuch-Tobias-Hopp-Frontpage-Dark.webp')] bg-cover bg-center flex flex-col justify-center items-center",
             )}
         >
             <div

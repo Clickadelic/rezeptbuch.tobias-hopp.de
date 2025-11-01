@@ -8,9 +8,9 @@ import { ChevronDown, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 import decorationSvg from "@images/svg/Pina-colada-bro.svg";
-
+import { useBlurStore } from '@/stores/useBlurStore';
 import { cn } from '@/lib/utils';
-import { useBlurStore } from '@/stores/useBlurStore'; // 🔹 Import für Blur
+
 interface MegaMenuItem {
     icon?: React.ReactNode;
     title: string;
@@ -32,7 +32,9 @@ interface MegaMenuProps {
     featured?: {
         title: string;
         description: string;
+        imageUrl?: string;
         href: string;
+        label: string;
         icon?: React.ReactNode;
     };
 }
@@ -160,9 +162,9 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                                     {featured.description}
                                                 </p>
-                                                <div className="aspect-video bg-gray-200 rounded-lg mt-4">
-                                                    
-                                                </div>
+                                                
+                                                <img src={featured.imageUrl} alt={featured.title} className="mt-2 size-full object-cover aspect-video" />
+                                                
                                             </div>
                                             <Button asChild variant="primary" className="group">
                                                 <Link
@@ -172,7 +174,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                     <div className="flex justify-start items-center gap-2 group-hover:text-white group-hover:border-primary">
                                                         <span className="flex gap-2 text-md font-medium group-hover:text-white">
                                                             {featured.icon}
-                                                            {featured.title}
+                                                            {featured.label}
                                                         </span>
                                                         <ArrowRight className="-mt-[3px] h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                                                     </div>

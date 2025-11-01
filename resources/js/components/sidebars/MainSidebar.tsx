@@ -11,7 +11,7 @@ import { SharedPageProps } from '@/types';
 export default function LeftSidebar() {
     const user = usePage<SharedPageProps>().props.auth.user;
     return (
-        <aside className="py-4 space-y-5">
+        <aside className="py-5 space-y-5">
             <h2 className="text-xl font-medium mb-2">Navigation</h2>
             <ul className="flex flex-col">
                 <SidebarLink

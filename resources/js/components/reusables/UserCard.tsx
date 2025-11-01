@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 import { RiHome2Line } from "react-icons/ri";
 import AuthUser from '@/types/AuthUser';
-
+import { RiHomeLine } from 'react-icons/ri';
 import headerImageLight from '../../../images/webp/User-Card-Header-Background-Light.webp';
 import headerImageDark from '../../../images/webp/User-Card-Header-Background-Dark.webp';
 
@@ -22,7 +22,7 @@ interface UserCardProps {
 export default function UserCard({ user }: UserCardProps) {
     const isDark = useDarkMode();
     return (
-        <Card className="w-full py-0 max-w-md overflow-hidden bg-gray-100 dark:bg-gray-900">
+        <Card className="w-full py-0 max-w-md overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
             {/* Header Image */}
             <div className="relative h-32 w-full overflow-hidden">
                 <img
@@ -41,10 +41,14 @@ export default function UserCard({ user }: UserCardProps) {
                         url={user?.avatar}
                         name={user?.name}
                     />
-
-                    <div className="absolute -bottom-1 -right-1 rounded-full bg-accent p-1.5 shadow-lg">
-                        <ChefHat className="h-5 w-5 text-accent-foreground" />
-                    </div>
+                    {user.website_url && (
+                        <div className="absolute -bottom-1 -right-1 rounded-full bg-accent p-1.5 shadow-lg">
+                            <a href={user.website_url} className="target-reset text-primary hover:text-emerald-600 dark:hover:text-emerald-600" title="Zur Webseite" target="_blank">
+                                <RiHomeLine className="size-5" />
+                            </a>
+                        </div>
+                    )}
+                    
                 </div>
             </div>
 

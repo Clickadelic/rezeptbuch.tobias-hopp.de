@@ -14,7 +14,9 @@ export default function IngredientsIndex() {
                 <div className="w-full col-span-4 col-start-2">
                     <p>Gute Zutaten sind die Grundlage für ein gesundes und leckeres Essen. Das Gleiche gilt natürlich auch für Getränke aller Art, frei nach dem Motto:</p>
                     <br />
-                    <p className="italic">"Es ist genau so wichtig, was in Deinen Mund rein geht, <br />wie das was raus kommt."</p>
+                    <p className="italic">"Es ist genau so wichtig, was in Deinen Mund rein geht, wie das was raus kommt."</p>
+                    <br />
+                    <p>In den Rezepten sind folgende Zutaten enthalten:</p>
                 </div>
             </div>
             <Seperator style="salad" />

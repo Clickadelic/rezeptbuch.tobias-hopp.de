@@ -1,14 +1,10 @@
 import { LabelHTMLAttributes } from 'react';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { IoIosInformationCircleOutline } from 'react-icons/io';
-import { TooltipProvider } from '@radix-ui/react-tooltip';
-import { TooltipArrow } from '@radix-ui/react-tooltip';
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
+import { IoIosInformationCircleOutline } from 'react-icons/io';
+
+import { Popover, PopoverContent, PopoverTrigger,
+} from "@/components/ui/popover"
+
 /**
  * A simple label component that uses the HTML <label> element.
  *
@@ -31,14 +27,13 @@ export default function InputLabel({
     return (
         <span {...props} className={`flex gap-2 mb-1 ` + className}>
             {description && (
-                <HoverCard>
-                    <HoverCardTrigger>
-                        <IoIosInformationCircleOutline className="size-5 text-gray-400 dark:text-gray-400" />
-                    </HoverCardTrigger>
-                    <HoverCardContent side="right">
+                <Popover>
+                    <PopoverTrigger><IoIosInformationCircleOutline className="size-5 text-gray-400 dark:text-gray-400" /></PopoverTrigger>
+                    <PopoverContent side="right">
                         {description}
-                    </HoverCardContent>
-                </HoverCard>
+                        
+                    </PopoverContent>
+                </Popover>
             )}
             {value ? value : children}
         </span>

@@ -1,20 +1,5 @@
 import { BsJournalBookmark } from 'react-icons/bs';
-import { RiDashboardHorizontalLine } from 'react-icons/ri';
 
-import { FiCheckCircle } from 'react-icons/fi';
-import { BsDoorOpen } from 'react-icons/bs';
-import { RiAccountPinBoxLine } from 'react-icons/ri';
-import { BiExit } from 'react-icons/bi';
-import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { LuUsersRound } from 'react-icons/lu';
-import { RiHomeLine } from 'react-icons/ri';
-import { RxExit } from 'react-icons/rx';
-
-import { BsQrCode } from "react-icons/bs";
-import { BiCategory } from 'react-icons/bi';
-import { FaRegHeart } from 'react-icons/fa';
-import { BsCardList } from 'react-icons/bs';
-import { GoPlus } from 'react-icons/go';
 import { PiCookingPot } from 'react-icons/pi';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
@@ -23,7 +8,7 @@ import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
 
 import qrCodeImageUrl from '@images/qrcode.png';
-import megaMenuFeaturedImage from '@images/svg/Payment-information-bro.svg';
+import megaMenuFeaturedImage from '@images/svg/Recipe-book-bro.svg';
 
 export const recipesMegaMenu = [
     {
@@ -88,9 +73,9 @@ export const recipesMegaMenu = [
 export const featuredRecipes = {
     imageUrl: megaMenuFeaturedImage,
     qrCodeImageUrl: qrCodeImageUrl,
-    title: 'Schon gewusst?',
-    description: 'Rezeptbuch als App installieren.',
-    label: 'Zeige QR-Code',
-    icon: <BsQrCode className="mt-[2px]" />,
+    title: 'Leb\' gesund, koch\' selbst...',
+    description: '...schmeckt eh am besten.',
+    label: '',
+    icon: <PiCookingPot className="mt-[2px]" />,
     href: '/login',
 };

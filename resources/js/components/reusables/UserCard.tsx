@@ -7,20 +7,26 @@ import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 import { RiHome2Line } from "react-icons/ri";
 import AuthUser from '@/types/AuthUser';
 
+import headerImageLight from '../../../images/webp/User-Card-Header-Background-Light.webp';
+import headerImageDark from '../../../images/webp/User-Card-Header-Background-Dark.webp';
 
-import headerImgSrc from '../../../images/webp/User-Card-Header-Background.webp';
+import { cn } from '@/lib/utils';
+
+import { useDarkMode } from '@/hooks/useDarkMode';
+
 
 interface UserCardProps {
     user: AuthUser
 }
 
 export default function UserCard({ user }: UserCardProps) {
+    const isDark = useDarkMode();
     return (
         <Card className="w-full py-0 max-w-md overflow-hidden bg-gray-100 dark:bg-gray-900">
             {/* Header Image */}
             <div className="relative h-32 w-full overflow-hidden">
                 <img
-                    src={headerImgSrc}
+                    src={isDark ? headerImageDark : headerImageLight}
                     alt="Header background"
                     className="h-full w-full object-cover"
                 />

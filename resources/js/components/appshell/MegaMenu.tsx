@@ -39,6 +39,16 @@ interface MegaMenuProps {
     };
 }
 
+/**
+ * MegaMenu is a dropdown menu component that displays a list of items
+ * organized by categories. It can also display a featured item with an image.
+ *
+ * @param {React.ReactNode} icon - Icon to display next to the menu title
+ * @param {string} title - Title of the menu
+ * @param {string} [className] - Additional CSS classes to apply to the component
+ * @param {MegaMenuColumn[]} columns - List of columns to display in the menu
+ * @param {{ title: string, description: string, imageUrl?: string, href: string, label: string, icon?: React.ReactNode }} [featured] - Featured item to display at the top of the menu
+ */
 export default function MegaMenu({ icon, title, className, columns, featured }: MegaMenuProps) {
     const [active, setActive] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -108,7 +118,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                 <div className="hidden sm:block absolute top-full w-screen z-50 mt-3 max-w-5xl mx-auto sm:-left-72">
                     <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
                         <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
-                            {decorationSvg && <img src={decorationSvg} alt="Menu ´background image" className="absolute left-16 bottom-8 size-28" />}
+                            {decorationSvg && <img src={decorationSvg} alt="Menu background image" className="absolute left-16 bottom-8 size-32" />}
                             <div className="grid gap-4 p-4 md:grid-cols-4">
                                 {columns.map((section, idx) => (
                                     <div key={idx} className="space-y-2">

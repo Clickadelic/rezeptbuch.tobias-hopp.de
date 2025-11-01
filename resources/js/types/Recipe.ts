@@ -17,14 +17,14 @@ export type Recipe = {
     preparation_instructions?: string;
     // Achtung ???!!!!
     rating?: number;
-    user_rating?: number | null; // optional, wenn du sie im Controller mitgibst
+    user_rating: number; // optional, wenn du sie im Controller mitgibst
     difficulty?: Difficulty;
     is_veggy: boolean;
     ingredients?: Ingredient[];
     media?: Media[];
     user_id?: number;
     user?: AuthUser;
-    is_favorite?: boolean;
+    is_favorite: boolean;
     category_id?: number;
     category?: Category;
     community_rating: number;   // 👈 wichtig

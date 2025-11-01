@@ -50,21 +50,22 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        // 1. Sicherheits-Check: Prüfen, ob das Rezept veröffentlicht ist (falls nicht schon im Route Model Binding)
+        // 1️⃣ Sicherheits-Check: Nur veröffentlichte Rezepte anzeigen
         if ($recipe->status !== 'published') {
-            // 404 zurückgeben (empfohlen, da die URL "nicht existieren" sollte)
-            abort(404); 
+            abort(404);
         }
 
-        // 2. Relationen auf das $recipe-Objekt laden
+        // 2️⃣ Relationen laden
         $recipe->load([
-            'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit'])->orderBy('quantity', 'desc'),
+            'ingredients' => fn($q) => $q
+                ->withPivot(['quantity', 'unit'])
+                ->orderBy('quantity', 'desc'),
             'category',
             'media',
             'user'
         ]);
 
-        // 3. Ähnliche Rezepte abrufen
+        // 3️⃣ Ähnliche Rezepte abrufen
         $related = Recipe::with(['category', 'user', 'media'])
             ->where('category_id', $recipe->category_id)
             ->where('id', '!=', $recipe->id)
@@ -73,12 +74,23 @@ class RecipeController extends Controller
             ->take(5)
             ->get();
 
-        // 4. Inertia-Response mit allen Daten, Kommentare werden separat asynchron geladen
+        // 4️⃣ Favoritenstatus prüfen (falls eingeloggt)
+        $is_favorite = false;
+        if (Auth::check()) {
+            $is_favorite = Auth::user()
+                ->favorites()
+                ->where('recipe_id', $recipe->id)
+                ->exists();
+        }
+
+        // 5️⃣ Inertia-Response mit Favoritenstatus
         return Inertia::render('Recipes/Show', [
-            'recipe' => $recipe, 
+            'recipe' => $recipe,
             'related' => $related,
+            'is_favorite' => $is_favorite,
         ]);
     }
+
 
     /**
      * Store a newly created recipe in storage.

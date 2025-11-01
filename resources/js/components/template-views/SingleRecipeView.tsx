@@ -41,7 +41,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             </div>
             <div className="flex w-full items-center justify-between gap-2">
                 <AvatarBlock recipe={recipe} />
-                <FavoriteButton recipeId={recipe?.id} isFavorite={recipe?.is_favorite} />
+                <FavoriteButton recipeId={recipe.id} isFavorite={recipe.is_favorite} />
                 <UserStarRating readonly={true} size="sm" rating={recipe.rating as number} showLabel={true} className="mt-1" />
             </div>
             <SingleRecipeIngredientsTable recipe={recipe} />

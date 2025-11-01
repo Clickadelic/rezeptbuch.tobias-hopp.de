@@ -5,7 +5,7 @@ import { FaHeart, FaQuoteLeft } from 'react-icons/fa6';
 import { GiWhisk } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { FiCheckCircle } from 'react-icons/fi';
-
+import { PiCarrotLight } from "react-icons/pi";
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
@@ -31,7 +31,7 @@ interface SeparatorProps {
 /**
  * A separator component with an icon centered above a horizontal line.
  * @example
- * <Separator size={8} style="check-circle | cocktail | comment | comment-alt | cooking-pot | ghost | journal | cake | info | image | muffin | mail | mix | quote | salad | salt | snack | star | scale | gear " />
+ * <Separator size={8} style="carrot |check-circle | cocktail | comment | comment-alt | cooking-pot | ghost | journal | cake | info | image | muffin | mail | mix | quote | salad | salt | snack | star | scale | gear " />
  */
 export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorProps) {
     const baseStyle = { fontSize: `${size * 0.25}rem` };
@@ -39,6 +39,12 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
     let IconComponent = GiKnifeFork;
 
     switch (style) {
+        case 'cake':
+            IconComponent = GiCakeSlice;
+            break;
+        case 'carrot':
+            IconComponent = PiCarrotLight;
+            break;
         case 'check-circle':
             IconComponent = FiCheckCircle;
             break;
@@ -56,9 +62,6 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
             break;
         case 'journal':
             IconComponent = BsJournalBookmark;
-            break;
-        case 'cake':
-            IconComponent = GiCakeSlice;
             break;
         case 'info':
             IconComponent = BsInfoCircle;

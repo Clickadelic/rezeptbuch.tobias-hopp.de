@@ -39,7 +39,7 @@ export default function UserStarRating({
   }[size];
 
   return (
-    <div className={cn('flex flex-col items-center justify-center gap-2', className)}>
+    <div className={cn('flex flex-col items-center justify-center gap-1', className)}>
       <div className="flex gap-1">
         {Array.from({ length: maxRating }).map((_, i) => {
           const starValue = i + 1;

@@ -62,34 +62,37 @@ export default function IngredientsDirectory() {
             {alphabet.map(
                 (letter) =>
                     grouped[letter] && (
-                        <section key={letter} id={letter} className="scroll-mt-24">
-                            <Card>
-                                <CardHeader className="text-lg font-bold w-full flex flex-row justify-between">
-                                    <span>{letter}</span>
-                                    <a
-                                        href="#zutaten-eingabe"
-                                        className="text-gray-400 text-xs font-normal flex gap-2 hover:text-primary mt-2"
-                                    >
-                                        <BsArrow90DegUp /> nach oben
-                                    </a>
-                                </CardHeader>
-                                <CardContent>
-                                    <ul className="px-5 flex flex-wrap gap-2">
-                                        {grouped[letter].map((ingredient) => (
-                                            <li key={ingredient.id}>
-                                                <IngredientItem
-                                                    ingredient={ingredient}
-                                                    onSelect={() =>
-                                                        setSelectedIngredient(ingredient)
-                                                    }
-                                                />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </CardContent>
-                            </Card>
+                        <>
+                            <section key={letter} id={letter} className="scroll-mt-24 p-4 rounded-md transition-all duration-300 delay-100 hover:bg-slate-100 dark:hover:bg-slate-900 hover:cursor-default">
+                                <Card>
+                                    <CardHeader className="text-lg font-bold w-full flex flex-row justify-between">
+                                        <span>{letter}</span>
+                                        <a
+                                            href="#zutaten-eingabe"
+                                            className="text-gray-400 text-xs font-normal flex gap-2 hover:text-primary mt-2"
+                                        >
+                                            <BsArrow90DegUp /> nach oben
+                                        </a>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <ul className="px-5 flex flex-wrap gap-2">
+                                            {grouped[letter].map((ingredient) => (
+                                                <li key={ingredient.id}>
+                                                    <IngredientItem
+                                                        ingredient={ingredient}
+                                                        onSelect={() =>
+                                                            setSelectedIngredient(ingredient)
+                                                        }
+                                                    />
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </CardContent>
+                                </Card>
+                                
+                            </section>
                             <Separator className="my-4" />
-                        </section>
+                        </>
                     ),
             )}
         </div>

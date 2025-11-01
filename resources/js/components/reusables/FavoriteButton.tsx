@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 interface FavoriteButtonProps {
     showText?: boolean;
+    label?: string;
     recipeId?: string;
     isFavorite?: boolean;
     className?: string;
@@ -25,6 +26,7 @@ export default function FavoriteButton({
     recipeId,
     isFavorite = false,
     className,
+    label
 }: FavoriteButtonProps) {
     const [active, setActive] = useState<boolean>(isFavorite);
     const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -75,10 +77,12 @@ export default function FavoriteButton({
                 className,
             )}
             title={active ? 'Favorit entfernen' : 'Zu Favoriten hinzufügen'}
+            aria-label={active ? 'Favorit entfernen' : 'Zu Favoriten hinzufügen'}
             type="button"
         >
             {!loading && (isHovered || active) ? <FaHeart /> : <FaRegHeart />}
             {loading && <FaSpinner className="animate-spin" />}
+            {label && <span>{label}</span>}
         </Button>
     );
 }

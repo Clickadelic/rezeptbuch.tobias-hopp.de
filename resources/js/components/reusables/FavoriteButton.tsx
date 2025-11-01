@@ -45,8 +45,6 @@ export default function FavoriteButton({
         try {
             setLoading(true);
             await axios.post(route('favorites.toggle', recipeId), { favorite: next });
-            // TODO: Bugfix Testen und im Auge behalten
-            e.bubbles = true;
             toast.success(next ? 'Zu Favoriten hinzugefügt!' : 'Favorit entfernt!');
         } catch (error) {
             console.error('Favorite toggle failed:', error);
@@ -54,7 +52,6 @@ export default function FavoriteButton({
             toast.error('Fehler beim Aktualisieren des Favoriten!');
         } finally {
             setLoading(false);
-            // 👇 Entfernt Fokus nach Abschluss des Requests (mobile fix)
             buttonRef.current?.blur();
         }
     };

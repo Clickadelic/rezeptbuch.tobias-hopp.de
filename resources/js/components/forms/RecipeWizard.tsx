@@ -90,8 +90,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         description: recipe?.description ?? '',
         difficulty: recipe?.difficulty ?? 'einfach',
         is_veggy: recipe?.is_veggy ?? false,
-        rating: Number(recipe?.rating ?? 1),
-        preparation_time: Number(recipe?.preparation_time ?? 15),
+        rating: Number(recipe?.rating ?? 0),
+        preparation_time: Number(recipe?.preparation_time ?? 5),
         preparation_instructions: recipe?.preparation_instructions ?? '',
         pending_key: recipe ? undefined : pendingKey,
         primary_media_id: recipe?.media?.find((m: any) => m?.pivot?.is_primary)?.id ?? null,
@@ -99,7 +99,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             ? recipe.ingredients.map((i) => ({
                   ingredient_id: i.id!,
                   quantity: i.pivot?.quantity ?? '',
-                  unit: i.pivot?.unit ?? 'gr',
+                  unit: i.pivot?.unit ?? 'cl',
               }))
             : [],
         category_id: recipe?.category_id,
@@ -706,7 +706,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             value="Deine Bewertung des Rezeptes"
                             description="Welche Bewertung gibtst Du dem Rezept? Bitte wählen."
                         />
-                        <UserStarRating rating={data.rating} onRatingChange={handleRatingChange} />
+                        <UserStarRating rating={data.rating} onRatingChange={handleRatingChange} className="my-5" />
                     </div>
 
                     {/* Submit */}

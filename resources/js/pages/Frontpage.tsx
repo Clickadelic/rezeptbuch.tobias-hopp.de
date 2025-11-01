@@ -3,7 +3,7 @@ import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelectionsBlock/Index';
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
-import AlteringBlock from '@/components/reusables/Blocks/AlteringBlock';
+
 import Seperator from '@/components/reusables/Seperator';
 import { Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
@@ -48,9 +48,9 @@ export default function Frontpage() {
                 </div>
 
                 <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
-                    <h2 className="text-3xl">erprobte Rezepte</h2>
+                    <h2 className="text-3xl">Einmal Registrieren</h2>
                     <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
-                        Probiert und gekocht
+                        überall nutzen
                     </h3>
                     
                 </div>

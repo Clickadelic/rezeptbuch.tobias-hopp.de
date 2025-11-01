@@ -1,10 +1,13 @@
 import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
-
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import cookingBro from "@images/svg/Cooking-bro.svg";
 import chefkochSrc from '@images/svg/Chef-Tobias.svg';
 import Carousel from '@/components/reusables/Carousel/Index';
 
 export default function DailyRecommendationsBlock() {
+    const isDesktop = useMediaQuery('(min-width: 768px)');
+
     const recommendedRecipes = usePage<SharedPageProps>().props.recipes;
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3">
@@ -14,9 +17,9 @@ export default function DailyRecommendationsBlock() {
                     vom Chef persönlich
                 </h3>
                 <img
-                    src={chefkochSrc}
+                    src={isDesktop ? chefkochSrc : cookingBro}
                     className="w-full mx-auto sm:w-1/2 md:w-3/4"
-                    alt="Chef Tobias"
+                    alt="Chefkoch Tobias"
                 />
             </div>
             <Carousel

@@ -60,7 +60,7 @@ export default function Frontpage() {
                     <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
                         ... und  ess' gesund
                     </h3>
-                    <img src={foodImage} className="size-72" alt="Chef Tobias" />
+                    <img src={foodImage} className="size-64 mx-auto my-4" alt="Chef Tobias" />
                 </div>
             </div>
             <Seperator />

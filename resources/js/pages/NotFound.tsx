@@ -1,5 +1,5 @@
 import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
-import errorImage from '@images/svg/Questions-bro.svg';
+import errorImage from '@images/svg/404-error-with-person-looking-for-bro.svg';
 import { Link } from '@inertiajs/react';
 
 import { RiHomeLine } from 'react-icons/ri';

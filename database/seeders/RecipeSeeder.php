@@ -33,7 +33,7 @@ class RecipeSeeder extends Seeder
                     'difficulty' => 'einfach',
                     'rating' => 4,
                     'preparation_time' => 15,
-                    'preparation_instructions' => 'Brot rösten, Tomaten schneiden, alles anrichten.',
+                    'preparation_instructions' => 'Ciabatta-Brot mit Knoblauch-Chilli-Öl bestreichen und im Ofen leicht knursprig backen. Tomaten in kleine Würfel schneiden, und mit dem Feta in einer Schüssel vermischen. Dann mit etwas mit Salz, Pfeffer und frischer Petersilien würzen. Nun die Tomaten und Feta auf dem Brot verteilen und mit Zitrone betreufeln. Etwas Petersilie darüber. Guten Appetit.',
                     'is_veggy' => true,
                 ],
                 [
@@ -50,8 +50,8 @@ class RecipeSeeder extends Seeder
                 [
                     'name' => 'Grüner Spargel mit Speck',
                     'status' => 'published',
-                    'punchline' => 'Nur im Frühling',
-                    'description' => 'Super leckerer Spargel mit Speck.',
+                    'punchline' => 'Super im Frühling',
+                    'description' => 'Super leckerer Spargel mit Speck ummantelt.',
                     'difficulty' => 'mittel',
                     'rating' => 4,
                     'preparation_time' => 25,

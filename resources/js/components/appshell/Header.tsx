@@ -25,7 +25,7 @@ import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { TbSalt } from 'react-icons/tb';
 import { BiExit } from 'react-icons/bi';
-
+import DraftAlert from "@/components/appshell/DraftAlert";
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 
@@ -36,11 +36,11 @@ import { SharedPageProps } from '@/types';
  *
  * @return {JSX.Element} The header.
  */
-
-const Header = () => {
-    const { auth } = usePage<SharedPageProps>().props;
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState<boolean>(false);
+export default function Header() {
+    const { auth, drafts } = usePage<SharedPageProps>().props;
     const { hasRole } = usePermissions();
+
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState<boolean>(false);
 
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
@@ -87,11 +87,12 @@ const Header = () => {
                     <div className="hidden lg:ms-2 lg:flex lg:items-center gap-1 md:gap-2 lg:gap-3">
                         {auth.user ? (
                             <>
+                            <DraftAlert drafts={drafts} />
                             <NavButton
                                 href="/dashboard"
                                 active={window.location.pathname.startsWith('/dashboard')}
                                 icon={<RiDashboardHorizontalLine className="size-4" />}
-                                className="bg-primary text-white hover:bg-emerald-600"
+                                className="relative bg-primary text-white hover:bg-emerald-600"
                             >
                                 Dashboard         
                             </NavButton>
@@ -287,5 +288,3 @@ const Header = () => {
         </header>
     );
 };
-
-export default Header;

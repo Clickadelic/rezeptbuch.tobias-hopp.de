@@ -3,8 +3,7 @@ import { useState, useMemo } from 'react';
 import Modal from '@/components/reusables/Modal';
 
 import { GoZoomIn } from 'react-icons/go';
-import { BiDish } from 'react-icons/bi';
-
+import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
 import { Recipe } from '@/types/Recipe';
 import { cn } from '@/lib/utils';
 
@@ -28,6 +27,7 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
 
     const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
 
+    
     return (
         <div
             className={cn(
@@ -52,7 +52,7 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
                 </div>
             ) : (
                 <>
-                    <BiDish className="z-20 size-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400" />
+                    <IconCategorySwitcher recipe={recipe} />
                     <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div>
                 </>
             )}

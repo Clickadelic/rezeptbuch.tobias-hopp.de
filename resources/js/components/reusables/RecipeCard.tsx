@@ -1,9 +1,10 @@
 import { Link } from '@inertiajs/react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
-import { BiDish } from 'react-icons/bi';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Recipe } from '@/types/Recipe';
+
+import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
 
 // Icons für Kategorien
 import { LuUtensilsCrossed } from 'react-icons/lu';
@@ -84,7 +85,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     className="absolute scale-100 transform duration-300 ease-out group-hover:scale-105 inset-0 size-full object-cover"
                                 />
                             ) : (
-                                <BiDish className="size-10" />
+                                <IconCategorySwitcher recipe={recipe} />
                             );
                         })()}
 

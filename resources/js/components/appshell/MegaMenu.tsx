@@ -115,10 +115,16 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
             >
-                <div className="hidden sm:block absolute top-full w-screen z-50 mt-3 max-w-5xl mx-auto sm:-left-72">
+                <div className="hidden sm:block absolute top-full z-50 mt-3 w-screen max-w-5xl">
                     <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
                         <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
-                            {decorationSvg && <img src={decorationSvg} alt="Menu background image" className="absolute left-16 bottom-8 size-32" />}
+                            {decorationSvg && (
+                                <img
+                                    src={decorationSvg}
+                                    alt="Menu background image"
+                                    className="absolute left-16 bottom-8 size-32"
+                                />
+                            )}
                             <div className="grid gap-4 p-4 md:grid-cols-4">
                                 {columns.map((section, idx) => (
                                     <div key={idx} className="space-y-2">
@@ -136,7 +142,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                 <li key={itemIdx}>
                                                     <Link
                                                         href={item.href}
-                                                        className="group block space-y-1 rounded-md p-2 pl-3  border border-transparent hover:border-primary"
+                                                        className="group block space-y-1 rounded-md p-2 pl-3 border border-transparent hover:border-primary"
                                                         aria-label={item.title}
                                                     >
                                                         <div className="flex flex-col gap-1">
@@ -172,27 +178,28 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                                     {featured.description}
                                                 </p>
-                                                
-                                                <img src={featured.imageUrl} alt={featured.title} className="mt-6 size-36 mx-auto object-cover aspect-video" />
-                                                
+                                                <img
+                                                    src={featured.imageUrl}
+                                                    alt={featured.title}
+                                                    className="mt-6 size-36 mx-auto object-cover aspect-video"
+                                                />
                                             </div>
                                             {featured.label && (
-                                            <Button asChild variant="primary" className="group">
-                                                <Link
-                                                    href={featured.href}
-                                                    className="group-hover:text-white flex justify-start"
-                                                >
-                                                    <div className="flex justify-start items-center gap-2 group-hover:text-white group-hover:border-primary">
-                                                        <span className="flex gap-2 text-md font-medium group-hover:text-white">
-                                                            {featured.icon}
-                                                            {featured.label}
-                                                        </span>
-                                                        <ArrowRight className="-mt-[3px] h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                                                    </div>
-                                                </Link>
-                                            </Button>
+                                                <Button asChild variant="primary" className="group">
+                                                    <Link
+                                                        href={featured.href}
+                                                        className="group-hover:text-white flex justify-start"
+                                                    >
+                                                        <div className="flex justify-start items-center gap-2 group-hover:text-white group-hover:border-primary">
+                                                            <span className="flex gap-2 text-md font-medium group-hover:text-white">
+                                                                {featured.icon}
+                                                                {featured.label}
+                                                            </span>
+                                                            <ArrowRight className="-mt-[3px] h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                                                        </div>
+                                                    </Link>
+                                                </Button>
                                             )}
-                                            
                                         </div>
                                     </div>
                                 )}
@@ -201,6 +208,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                     </div>
                 </div>
             </Transition>
+
         </div>
     );
 }

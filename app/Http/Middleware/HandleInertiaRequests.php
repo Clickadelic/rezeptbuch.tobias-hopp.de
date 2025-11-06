@@ -34,6 +34,7 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'categories' => fn() => Category::select('id', 'name', 'slug')->get(),
+            'drafts' => fn() => $request->user() ? $request->user()->recipes()->where('status', 'draft')->count() : [],
             'flash' => [
                 'success' => fn() => $request->session()->get('success'),
                 'error' => fn() => $request->session()->get('error'),

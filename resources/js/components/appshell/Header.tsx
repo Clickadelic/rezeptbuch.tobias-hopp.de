@@ -25,7 +25,7 @@ import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { TbSalt } from 'react-icons/tb';
 import { BiExit } from 'react-icons/bi';
-
+import DraftAlert from "@/components/appshell/DraftAlert";
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 
@@ -36,11 +36,11 @@ import { SharedPageProps } from '@/types';
  *
  * @return {JSX.Element} The header.
  */
-
-const Header = () => {
-    const { auth } = usePage<SharedPageProps>().props;
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState<boolean>(false);
+export default function Header() {
+    const { auth, drafts } = usePage<SharedPageProps>().props;
     const { hasRole } = usePermissions();
+
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState<boolean>(false);
 
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
@@ -87,63 +87,64 @@ const Header = () => {
                     <div className="hidden lg:ms-2 lg:flex lg:items-center gap-1 md:gap-2 lg:gap-3">
                         {auth.user ? (
                             <>
-                            <NavButton
-                                href="/dashboard"
-                                active={window.location.pathname.startsWith('/dashboard')}
-                                icon={<RiDashboardHorizontalLine className="size-4" />}
-                                className="bg-primary text-white hover:bg-emerald-600"
-                            >
-                                Dashboard         
-                            </NavButton>
-                            <div className="relative sm:flex sm:flex-row sm:gap-3">
-                                <Dropdown>
-                                    <Dropdown.Trigger>
-                                        <span className="inline-flex mt-1">
-                                            <Button
-                                                type="button"
-                                                variant="flat"
-                                                className="text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400"
-                                            >
-                                                <Avatar url={auth?.user?.avatar} />
-                                                {auth.user?.name}
-                                                <svg
-                                                    className="-me-0.5 ms-2 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
+                                <DraftAlert drafts={drafts} />
+                                <NavButton
+                                    href="/dashboard"
+                                    active={window.location.pathname.startsWith('/dashboard')}
+                                    icon={<RiDashboardHorizontalLine className="size-4" />}
+                                    className="relative bg-primary text-white hover:bg-emerald-600"
+                                >
+                                    Dashboard         
+                                </NavButton>
+                                <div className="relative sm:flex sm:flex-row sm:gap-3">
+                                    <Dropdown>
+                                        <Dropdown.Trigger>
+                                            <span className="inline-flex mt-1">
+                                                <Button
+                                                    type="button"
+                                                    variant="flat"
+                                                    className="text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400"
                                                 >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                            </Button>
-                                        </span>
-                                    </Dropdown.Trigger>
-                                    <Dropdown.Content>
-                                        {hasRole('admin') && (
-                                            <Dropdown.Link href="/admin" className="flex gap-2">
-                                                <MdOutlineAdminPanelSettings className="size-4 mt-1 text-primary" />
-                                                Admin
+                                                    <Avatar url={auth?.user?.avatar} />
+                                                    {auth.user?.name}
+                                                    <svg
+                                                        className="-me-0.5 ms-2 h-4 w-4"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </Button>
+                                            </span>
+                                        </Dropdown.Trigger>
+                                        <Dropdown.Content>
+                                            {hasRole('admin') && (
+                                                <Dropdown.Link href="/admin" className="flex gap-2">
+                                                    <MdOutlineAdminPanelSettings className="size-4 mt-1 text-primary" />
+                                                    Admin
+                                                </Dropdown.Link>
+                                            )}
+                                            <Dropdown.Link href="/profile" className="flex gap-2">
+                                                <RiAccountPinBoxLine className="size-4 mt-1 text-primary" />
+                                                Profil
                                             </Dropdown.Link>
-                                        )}
-                                        <Dropdown.Link href="/profile" className="flex gap-2">
-                                            <RiAccountPinBoxLine className="size-4 mt-1 text-primary" />
-                                            Profil
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
-                                            href="/logout"
-                                            method="post"
-                                            as="button"
-                                            className="flex gap-2 hover:cursor-pointer"
-                                        >
-                                            <BiExit className="size-4 mt-1 text-primary" />
-                                            Log Out
-                                        </Dropdown.Link>
-                                    </Dropdown.Content>
-                                </Dropdown>
-                            </div>
+                                            <Dropdown.Link
+                                                href="/logout"
+                                                method="post"
+                                                as="button"
+                                                className="flex gap-2 hover:cursor-pointer"
+                                            >
+                                                <BiExit className="size-4 mt-1 text-primary" />
+                                                Log Out
+                                            </Dropdown.Link>
+                                        </Dropdown.Content>
+                                    </Dropdown>
+                                </div>
                             </>
                         ) : (
                             <div className="flex gap-3">
@@ -217,6 +218,15 @@ const Header = () => {
                         >
                             <BsJournalBookmark className="size-4 mt-1" /> Rezepte
                         </ResponsiveNavLink>
+                        {/* {drafts && (
+                            <ResponsiveNavLink
+                                href="#"
+                                className="flex gap-2"
+                                active={window.location.pathname.startsWith('/rezepte')}
+                            >
+                                <BsJournalBookmark className="size-4 mt-1" /> Entwürfe
+                            </ResponsiveNavLink>
+                        )} */}
                         <ResponsiveNavLink
                             href="/zutaten"
                             className="flex gap-2"
@@ -287,5 +297,3 @@ const Header = () => {
         </header>
     );
 };
-
-export default Header;

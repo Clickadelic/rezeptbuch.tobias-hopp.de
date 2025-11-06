@@ -15,7 +15,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->paginate(5);
+        $cocktails = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->where('category_id', 4)->paginate(5);
+        $recipes = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->where('category_id', '!=', 4)->paginate(5);
         // TODO: FavoritenCheck eventuell in Service auslagern
         if ($user = Auth::user()) {
             $recipes->getCollection()->transform(function ($recipe) use ($user) {
@@ -34,6 +35,7 @@ class PageController extends Controller
         }
         return Inertia::render('Frontpage', [
             'recipes' => $recipes,
+            'cocktails' => $cocktails
         ]);
     }
 }

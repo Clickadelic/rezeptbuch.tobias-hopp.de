@@ -331,10 +331,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 description="Pflichtfeld - die URL-Schreibweise für den Link."
                             />
                             <InputGroup className="py-6 bg-gray-100 dark:bg-gray-900">
-                                <InputGroupAddon>
-                                    <InputGroupText className="">https://rezeptbuch.tobias-hopp.de/rezepte/</InputGroupText>
-                                </InputGroupAddon>
-                                <InputGroupInput className="!pl-0.5 !text-lg" id="slug"
+
+                                <InputGroupInput className="!text-lg" id="slug"
                                         type="text"
                                         value={`${data.slug || recipe.slug}`}
                                         placeholder="nudeln-mit-sauce"
@@ -444,60 +442,62 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                 <section className="space-y-5 mt-5">
                     <div className="w-full max-w-xl mx-auto">
                         <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" />
-                        {data.recipe_ingredients?.map((di, idx) => (
-                            <div
-                                id={'ingredient-' + idx + '-input'}
-                                key={idx}
-                                className="flex flex-col md:flex-row gap-1 md:gap-2 md:mb-2"
-                            >
-                                <div className="flex justify-start items-start gap-2">
-                                    <TextInput
-                                        placeholder="Menge"
-                                        value={di.quantity}
-                                        className="font-medium w-full md:w-20 py-[5px] mt-1"
-                                        type="number"
-                                        onChange={(e) =>
-                                            updateIngredient(idx, 'quantity', e.target.value)
-                                        }
-                                    />
-                                    <Select
-                                        value={di.unit}
-                                        onValueChange={(value) =>
-                                            updateIngredient(idx, 'unit', value)
-                                        }
-                                    >
-                                        <SelectTrigger className="w-full rounded-sm sm:w-20 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:border-primary focus:ring-primary">
-                                            <SelectValue placeholder="Einheit auswählen" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {Object.entries(UNITS).map(([key, val]) => (
-                                                <SelectItem key={key} value={val}>
-                                                    {val}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
+                        <div className="w-full flex flex-col gap-5 md:gap-1 mb-3 sm:mb-0">
+                            {data.recipe_ingredients?.map((di, idx) => (
+                                <div
+                                    id={'ingredient-' + idx + '-input'}
+                                    key={idx}
+                                    className="flex flex-col md:flex-row gap-1 md:gap-2 md:mb-2"
+                                >
+                                    <div className="flex justify-start items-start gap-2">
+                                        <TextInput
+                                            placeholder="Menge"
+                                            value={di.quantity}
+                                            className="font-medium w-full md:w-20 py-[5px] mt-1"
+                                            type="number"
+                                            onChange={(e) =>
+                                                updateIngredient(idx, 'quantity', e.target.value)
+                                            }
+                                        />
+                                        <Select
+                                            value={di.unit}
+                                            onValueChange={(value) =>
+                                                updateIngredient(idx, 'unit', value)
+                                            }
+                                        >
+                                            <SelectTrigger className="w-full rounded-sm sm:w-20 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                                <SelectValue placeholder="Einheit auswählen" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {Object.entries(UNITS).map(([key, val]) => (
+                                                    <SelectItem key={key} value={val}>
+                                                        {val}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="w-full flex gap-2">
+                                        <IngredientComboBox
+                                            value={di.ingredient_id}
+                                            triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
+                                            onChange={(val) =>
+                                                updateIngredient(idx, 'ingredient_id', val)
+                                            }
+                                        />
+                                        <Button
+                                            variant="danger"
+                                            className="mt-1.5 hover:cursor-pointer rounded-sm shadow-none"
+                                            size="sm"
+                                            type="button"
+                                            onClick={() => removeIngredient(idx)}
+                                        >
+                                            <BsTrash3 />
+                                        </Button>
+                                    </div>
                                 </div>
-                                <div className="w-full flex gap-2">
-                                    <IngredientComboBox
-                                        value={di.ingredient_id}
-                                        triggerClassName="w-full mt-1 shadow-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-primary"
-                                        onChange={(val) =>
-                                            updateIngredient(idx, 'ingredient_id', val)
-                                        }
-                                    />
-                                    <Button
-                                        variant="danger"
-                                        className="mt-1.5 hover:cursor-pointer rounded-sm shadow-none"
-                                        size="sm"
-                                        type="button"
-                                        onClick={() => removeIngredient(idx)}
-                                    >
-                                        <BsTrash3 />
-                                    </Button>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                         <div className="flex flex-col sm:flex-row gap-1 justify-between">
                             <Button
                                 type="button"

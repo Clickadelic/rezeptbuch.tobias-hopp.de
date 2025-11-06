@@ -27,5 +27,8 @@ Route::prefix('/rezepte')->group(function () {
 
     Route::patch('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
+
+    // Duplicate Post
+    Route::post('/recipes/{recipe:slug}/duplicate', [RecipeController::class, 'duplicate'])->name('recipes.duplicate');
 });
 

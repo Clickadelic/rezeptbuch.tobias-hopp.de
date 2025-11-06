@@ -5,6 +5,11 @@ import { Link, usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import { FiCheckCircle } from 'react-icons/fi';
 
+/**
+ * A teaser box for the authentication system.
+ * If the user is logged in, it renders a link to the dashboard.
+ * If the user is not logged in, it renders two links: one to register and one to login.
+ */
 export default function AuthTeaserBox() {
     const { auth } = usePage<SharedPageProps>().props;
     return (

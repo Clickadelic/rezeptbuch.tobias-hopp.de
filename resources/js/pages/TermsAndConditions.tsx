@@ -14,10 +14,11 @@ export default function Datenschutz() {
                 <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
                 <ul className="flex flex-col gap-3 my-3">
                     <li>
-                        Tobias Hopp, E-Mail:
+                        Tobias Hopp, E-Mail:&nbsp;
                         <a
                             href="mailto:rezeptbuch@tobias-hopp.de"
                             target="_blank"
+                            className="text-primary hover:text-emerald-600 underline under-offset-2"
                             rel="noopener noreferrer"
                             title="rezeptbuch@tobias-hopp.de"
                         >
@@ -30,10 +31,10 @@ export default function Datenschutz() {
             <section>
                 <h3 className="my-5 font-medium text-lg">2. Allgemeines zur Datenverarbeitung</h3>
                 <p>
-                    Der Schutz deiner persönlichen Daten ist mir wichtig. Diese Website wird privat
-                    und nicht kommerziell betrieben. Personenbezogene Daten werden nur im
+                    Der Schutz deiner bzw. Ihrer persönlichen Daten ist mir sehr wichtig. Personenbezogene Daten werden nur im
                     notwendigen Umfang erhoben, verarbeitet und gespeichert – ausschließlich zum
-                    Betrieb dieser Anwendung.
+                    Betrieb dieser Anwendung. Es werden keine Tracking-, Analyse- oder Werbe-Cookies
+                    eingesetzt.
                 </p>
             </section>
             <section>
@@ -111,8 +112,7 @@ export default function Datenschutz() {
             <section>
                 <h3 className="my-5 font-medium text-lg">9. Speicherdauer und Löschung</h3>
                 <p>
-                    Deine Daten werden so lange gespeichert, wie dein Benutzerkonto besteht. Du
-                    kannst dein Konto jederzeit löschen oder eine Löschung deiner Daten beantragen.
+                    Daten werden so lange gespeichert, wie das Benutzerkonto besteht. Das Benutzerkonto kann jeder Zeit problemlos, ohne Kosten oder Umwege gelöscht werden.
                 </p>
                 <p>
                     Nach der Löschung werden alle personenbezogenen Informationen vollständig
@@ -120,12 +120,12 @@ export default function Datenschutz() {
                 </p>
             </section>
             <section>
-                <h3 className="my-5 font-medium text-lg">10. Deine Rechte</h3>
-                <p>Du hast jederzeit das Recht auf:</p>
+                <h3 className="my-5 font-medium text-lg">10. Deine/Ihre Rechte</h3>
+                <p>Du/Sie haben jederzeit das Recht auf:</p>
                 <ul className="list-disc list-inside my-3">
-                    <li> Auskunft über gespeicherte Daten (Art. 15 DSGVO)</li>
+                    <li>Auskunft über gespeicherte Daten (Art. 15 DSGVO)</li>
                     <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
-                    <li>Löschung deiner Daten (Art. 17 DSGVO)</li>
+                    <li>Löschung persönlicher Daten (Art. 17 DSGVO)</li>
                     <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
                     <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
                     <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
@@ -150,14 +150,15 @@ export default function Datenschutz() {
             <section>
                 <h3 className="my-5 font-medium text-lg">12. Kontakt</h3>
                 <p>
-                    Fragen zum Datenschutz kannst du jederzeit an folgende Adresse richten:
+                    Fragen zum Datenschutz können an folgende Adresse gerichtet werden:&nbsp;
                     <a
                         href="mailto:rezeptbuch@tobias-hopp.de"
                         target="_blank"
+                        className="text-primary hover:text-emerald-600 underline under-offset-2"
                         title="rezeptbuch@tobias-hopp.de"
                     >
                         rezeptbuch@tobias-hopp.de
-                    </a>
+                    </a>.
                 </p>
             </section>
         </SidebarLeftLayout>

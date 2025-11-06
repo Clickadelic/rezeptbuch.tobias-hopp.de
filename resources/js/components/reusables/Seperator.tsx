@@ -25,6 +25,7 @@ import { cn } from '@/lib/utils';
 
 interface SeparatorProps {
     size?: number;
+    margin?: string;
     style?: string;
 }
 
@@ -33,7 +34,7 @@ interface SeparatorProps {
  * @example
  * <Separator size={8} style="carrot |check-circle | cocktail | comment | comment-alt | cooking-pot | ghost | journal | cake | info | image | muffin | mail | mix | quote | salad | salt | snack | star | scale | gear " />
  */
-export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorProps) {
+export default function Separator({ size = 5, style = 'fork-knife', margin }: SeparatorProps) {
     const baseStyle = { fontSize: `${size * 0.25}rem` };
     const iconColor = 'text-gray-400 dark:text-gray-700';
     let IconComponent = GiKnifeFork;
@@ -122,7 +123,7 @@ export default function Separator({ size = 5, style = 'fork-knife' }: SeparatorP
     }
 
     return (
-        <div className="relative my-1 md:my-3 mx-auto w-full max-w-[52rem] flex items-center justify-center">
+        <div className={cn('relative my-1 md:my-3 mx-auto w-full max-w-[52rem] flex items-center justify-center', margin)}>
             <div className="absolute left-0 right-0 top-1/2 h-px bg-gray-200  dark:bg-gray-700"></div>
             <div className="relative z-10 p-4 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center">
                 <IconComponent className={cn(iconColor)} style={baseStyle} />

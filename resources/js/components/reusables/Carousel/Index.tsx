@@ -1,7 +1,8 @@
 import './carousel.css';
 
-import { Recipe } from '@/types/Recipe';
 import RecipeCard from '@/components/reusables/RecipeCard';
+
+import { Recipe } from '@/types/Recipe';
 import { cn } from '@/lib/utils';
 
 interface CarouselProps {

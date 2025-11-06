@@ -45,7 +45,6 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                         <RecipeInfoBlock recipe={recipe} />
                         <FavoriteButton recipeId={recipe.id} className="me-auto" showText={true} isFavorite={recipe.is_favorite} />
                     </div>
-
                 </div>
             </div>
             <SingleRecipeIngredientsTable recipe={recipe} />

@@ -2,9 +2,14 @@ import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import cookingBro from "@images/svg/Cooking-bro.svg";
-import chefkochSrc from '@images/svg/Chef-bro.svg';
+import chefBro from "@images/svg/Chef-bro.svg";
 import Carousel from '@/components/reusables/Carousel/Index';
 
+/**
+ * A component that displays a block of daily recommended recipes.
+ * The block contains a title, a personal message from the chef, and a carousel of recipe cards.
+ * The layout of the block is responsive and changes depending on the screen size.
+ */
 export default function DailyRecommendationsBlock() {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
@@ -17,7 +22,7 @@ export default function DailyRecommendationsBlock() {
                     vom Chef persönlich
                 </h3>
                 <img
-                    src={isDesktop ? chefkochSrc : cookingBro}
+                    src={isDesktop ? chefBro : cookingBro}
                     className="w-full mx-auto sm:w-1/2 md:w-3/4"
                     alt="Chefkoch Tobias"
                 />

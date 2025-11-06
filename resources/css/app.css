@@ -177,3 +177,43 @@ a.target-reset[target="_blank"]:after {
     animation: dropdown 0.2s ease-out forwards;
     transform-origin: top;
 }
+
+/* 1. Die @keyframes-Regel definieren */
+@keyframes bellshake {
+  0% {
+    transform: rotate(0deg);
+  } /* Startposition */
+  15% {
+    transform: rotate(10deg);
+  } /* Schwingt nach rechts */
+  30% {
+    transform: rotate(-10deg);
+  } /* Schwingt nach links */
+  45% {
+    transform: rotate(7deg);
+  } /* Schwingt etwas weniger stark nach rechts */
+  60% {
+    transform: rotate(-7deg);
+  } /* Schwingt etwas weniger stark nach links */
+  75% {
+    transform: rotate(4deg);
+  }
+  85% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  } /* Endposition */
+}
+
+/* 2. Die Animation auf das Element anwenden */
+.bell {
+  /* Wichtig: transform-origin festlegen, damit die Drehung von oben erfolgt */
+  transform-origin: top center;
+  
+  /* Animationseigenschaften */
+  animation-name: bellshake;
+  animation-duration: 0.8s; /* Wie lange die Schüttelbewegung dauert */
+  animation-timing-function: ease-in-out; /* Beschleunigung/Verlangsamung */
+  animation-iteration-count: 2; /* Wie oft sie läuft. Hier nur einmal. */
+}

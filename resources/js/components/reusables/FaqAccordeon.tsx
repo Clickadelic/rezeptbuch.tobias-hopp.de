@@ -38,19 +38,6 @@ export default function FrontpageCategoryGrid() {
                     </AccordionItem>
                     <AccordionItem value="item-2">
                         <AccordionTrigger className="font-medium text-xl">
-                            Kann ich mich hier registrieren?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                            <p>
-                                Die Registrierung mit Deiner E-Mail Adresse ist frei und kostenlos. Erstelle einen Account, bestätige ihn kurz per Klick auf den Link in Deiner Inbox, und schon kann es
-                                losgehen.
-                            </p>
-                            <br />
-                            <p>Versteckte Kosten gibt es nicht. Schau' in die <Link href="/nutzungsbedingungen" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">Nutzungsbedingungen</Link>.</p>
-                        </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-3">
-                        <AccordionTrigger className="font-medium text-xl">
                             Was kann ich hier machen?
                         </AccordionTrigger>
                         <AccordionContent>
@@ -65,19 +52,31 @@ export default function FrontpageCategoryGrid() {
                                 Allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe.</p>
                         </AccordionContent>
                     </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger className="font-medium text-xl">
+                            Kann ich mich hier registrieren?
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            <p>
+                                Die Registrierung mit Deiner E-Mail Adresse ist frei und kostenlos. Erstelle einen Account, bestätige ihn kurz per Klick auf den Link in Deiner Inbox, und schon kann es
+                                losgehen.
+                            </p>
+                            <br />
+                            <p>Versteckte Kosten gibt es nicht. Schau' in die <Link href="/nutzungsbedingungen" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">Nutzungsbedingungen</Link>.</p>
+                        </AccordionContent>
+                    </AccordionItem>
+                    
                     <AccordionItem value="item-4">
                         <AccordionTrigger className="font-medium text-xl">
                             Ist die Registrierung sicher?
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Ja, ist sie. Abgesehen davon, dass keinerlei Webseiten-Tracker eingesetzt werden (Google Analytics, Matomo, etc.),
-                                verwendet die Webseite bzw. App moderne Sicherheitsstandards wie z.B. eine sichere Verbindung oder einen Registrierungsprozess,
+                                Ja, ist sie. Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung oder einen Registrierungsprozess,
                                 bei dem kein Passwort online versendet wird (nur Du gibst es einmal ein).
                             </p>
                         </AccordionContent>
                     </AccordionItem>
-                    
                 </Accordion>
             </div>
         </>

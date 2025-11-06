@@ -3,7 +3,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 interface TitleBlockProps {
     icon?: React.ReactNode;
     title?: string;
-    punchline?: string;
+    punchline?: string | React.ReactNode | JSX.Element | null;
     children?: React.ReactNode;
 }
 

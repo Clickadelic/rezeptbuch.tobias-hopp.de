@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Mail\ContactSubmissionMail;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
@@ -20,11 +21,22 @@ require __DIR__.'/custom/upload.php';
 
 if (config('app.debug')) {
     require __DIR__.'/custom/email.php';
+
+
+
+    Route::get('/mailable-test', function () {
+        $data = [
+            'name' => 'Max Mustermann',
+            'email' => 'max@example.com',
+            'message' => "Hallo,\ndas ist eine Testnachricht\nmit Zeilenumbruch.",
+        ];
+
+        return new ContactSubmissionMail($data);
+    });
 }
 
-// 404 Fallback
 Route::fallback(function () {
     return inertia('NotFound', [
-        'title' => 'Seite nicht gefunden',
+        'title' => 'Fehler 404 - Seite nicht gefunden',
     ]);
 });

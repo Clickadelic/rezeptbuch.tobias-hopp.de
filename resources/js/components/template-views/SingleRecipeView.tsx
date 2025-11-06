@@ -10,10 +10,11 @@ import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
 import UserStarRating from '@/components/forms/inputs/UserStarRating';
-
+import Seperator from '@/components/reusables/Seperator';
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
-
+import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
+import { FaRegFaceGrinStars } from "react-icons/fa6";
 interface ShowRecipeProps {
     recipe: Recipe;
 }
@@ -37,17 +38,22 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                         <RecipeImageBlock recipe={recipe} className="w-full" />
                         <div className="w-full flex flex-row justify-between">
                             <AvatarBlock recipe={recipe} />
+                            <FavoriteButton recipeId={recipe.id!} isFavorite={recipe.is_favorite} showLabel={true} className="mt-2" />
                         </div>
                     </div>
                 </div>
-                <div className="w-full sm:1/2">
-                    <div className="size-full flex flex-col justify-between">
-                        <RecipeInfoBlock recipe={recipe} />
-                        <FavoriteButton recipeId={recipe.id} className="me-auto" showText={true} isFavorite={recipe.is_favorite} />
-                    </div>
+                <div className="w-full sm:1/2 flex flex-col gap-1 justify-between">
+                    <RecipeInfoBlock recipe={recipe} />
                 </div>
             </div>
+            <AttributesBlock recipe={recipe} className="flex items-center justify-center my-12" />
             <SingleRecipeIngredientsTable recipe={recipe} />
+            <PreparationInstructions recipe={recipe} />
+            <Seperator style="star" />
+            <TitleBlock title="Deine Meinung" punchline="Was denkst Du?" icon={<FaRegFaceGrinStars className="text-primary size-6 mt-1" />} />
+            <UserStarRating recipe={recipe as Recipe} />
+            <CommentsDirectory recipeId={recipe.id!} />
+            <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
         </div>
     );
 }

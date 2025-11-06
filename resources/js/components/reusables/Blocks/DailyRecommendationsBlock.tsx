@@ -5,6 +5,11 @@ import cookingBro from "@images/svg/Cooking-bro.svg";
 import chefBro from "@images/svg/Chef-bro.svg";
 import Carousel from '@/components/reusables/Carousel/Index';
 
+/**
+ * A component that displays a block of daily recommended recipes.
+ * The block contains a title, a personal message from the chef, and a carousel of recipe cards.
+ * The layout of the block is responsive and changes depending on the screen size.
+ */
 export default function DailyRecommendationsBlock() {
     const isDesktop = useMediaQuery('(min-width: 768px)');
 

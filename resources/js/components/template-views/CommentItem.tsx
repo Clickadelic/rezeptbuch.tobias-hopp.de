@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import axios from 'axios';
-
 import Avatar from '@/components/reusables/Avatar';
 import CommentForm from '@/components/forms/CommentForm';
 import { Textarea } from '@/components/ui/textarea';
@@ -27,6 +26,7 @@ import { MdOutlineModeEditOutline } from 'react-icons/md';
 import { PiTrashLight } from 'react-icons/pi';
 import { TbCancel } from 'react-icons/tb';
 import { BsReply } from 'react-icons/bs';
+
 
 import { cn } from '@/lib/utils';
 
@@ -125,21 +125,21 @@ export default function CommentItem({
 
                     {/* Buttons: Edit/Delete */}
                     {hasRole('user') && user.id === comment.user?.id && (
-                        <div className="w-full flex flex-grow items-start justify-between sm:justify-end">
+                        <div className="w-full flex flex-grow items-start justify-end">
                             <ButtonGroup aria-label="Button group">
                                 <Button
                                     variant="link"
                                     onClick={() => setEditing(true)}
                                     className="h-5 mt-[-1px] text-xs flex gap-1 text-primary hover:text-emerald-600 hover:underline"
                                 >
-                                    <MdOutlineModeEditOutline /> Bearbeiten
+                                    <MdOutlineModeEditOutline /> <span className="hidden sm:inline-flex">Bearbeiten</span>
                                 </Button>
                                 <AlertDialog
                                     open={isDeleteDialogOpen}
                                     onOpenChange={setIsDeleteDialogOpen}
                                 >
                                     <AlertDialogTrigger className="flex gap-1 text-xs text-rose-700 font-normal hover:text-rose-500 hover:underline underline-offset-4 hover:cursor-pointer">
-                                        <PiTrashLight className="mt-[1px] size-4" /> Löschen
+                                        <PiTrashLight className="mt-[1px] size-4" /> <span className="hidden sm:inline-flex">Löschen</span>
                                     </AlertDialogTrigger>
                                     <AlertDialogContent>
                                         <AlertDialogHeader>

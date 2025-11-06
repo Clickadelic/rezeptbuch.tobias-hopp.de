@@ -59,46 +59,6 @@ export default function AuthLayout({
                             </div>
                         </div>
                     </main>
-                    <p className="dark:invisible absolute bottom-1 lg:bottom-4 mx-auto text-sm text-gray-900 bg-white/30 backdrop-blur rounded px-4 py-2">
-                        Foto von{' '}
-                        <a
-                            href="https://unsplash.com/de/@brookelark?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                            className="hover:underline"
-                            title="Author des Fotos"
-                            target="_blank"
-                        >
-                            Brooke Lark
-                        </a>{' '}
-                        auf{' '}
-                        <a
-                            href="https://unsplash.com/de/fotos/green-vegetable-beside-ceramic-bowl-kXQ3J7_2fpc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                            className="hover:underline"
-                            title="Unsplash"
-                            target="_blank"
-                        >
-                            Unsplash
-                        </a>
-                    </p>
-                    <p className="invisible dark:visible absolute bottom-1 lg:bottom-4 mx-auto text-sm text-gray-900 dark:text-gray-200 bg-white/30 backdrop-blur rounded px-4 py-2">
-                        Foto von{' '}
-                        <a
-                            href="https://unsplash.com/de/@anniespratt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                            className="hover:underline"
-                            title="Author des Fotos"
-                            target="_blank"
-                        >
-                            Annie Spratt
-                        </a>{' '}
-                        auf{' '}
-                        <a
-                            href="https://unsplash.com/de/fotos/weisses-und-braunes-gericht-auf-braunem-teller-R3LcfTvcGWY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                            className="hover:underline"
-                            title="Unsplash"
-                            target="_blank"
-                        >
-                            Unsplash
-                        </a>
-                    </p>
                 </div>
                 <CookieNotice />
                 <Toaster position="bottom-right" />

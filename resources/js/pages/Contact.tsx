@@ -1,4 +1,4 @@
-import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
+import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 
 import ContactBlock from '@/components/reusables/Blocks/ContactBlock';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
@@ -13,8 +13,8 @@ import { Link } from '@inertiajs/react';
  */
 export default function ContactPage() {
     return (
-        <SidebarLeftLayout title="Kontakt">
+        <NoSidebarsLayout title="Kontakt">
             <ContactBlock />
-        </SidebarLeftLayout>
+        </NoSidebarsLayout>
     );
 }

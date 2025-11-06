@@ -18,8 +18,8 @@ import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 import { cn } from '@/lib/utils';
-
-import footerImage from "@images/svg/Payment-Information-bro.svg";
+import ContactForm from '@/components/forms/ContactForm';
+import footerImage from "@images/svg/Mission-Impossible-bro.svg";
 
 
 interface FooterProps {
@@ -172,13 +172,13 @@ export default function Footer({ className }: FooterProps) {
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <AiOutlineAppstoreAdd />
-                                <span className="font-medium">Schon gewusst?</span>
+                                <span className="font-medium">Kontakt</span>
                             </h2>
                             <div className="border-t border-stone-700 pt-4">
                                 <p className="pb-4 text-center sm:text-left mx-5 sm:mx-0">
-                                    Du kannst das Rezeptbuch auch als App auf Deinem Smartphone installieren (iOS und Android).
+                                    Schreib' mir ein Feedback.
                                 </p>
-                                <img src={footerImage} alt="Rezeptbuch App" className="size-48 mx-auto" />
+                                <img src={footerImage} alt="Kontakt" className="mx-auto" />
                             </div>
                         </div>
                     </div>

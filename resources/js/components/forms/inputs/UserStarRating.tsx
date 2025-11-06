@@ -66,7 +66,7 @@ export default function UserStarRating({
         })}
       </div>
       {showLabel && (
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
           {rating} / {maxRating} Sterne
         </p>
       )}

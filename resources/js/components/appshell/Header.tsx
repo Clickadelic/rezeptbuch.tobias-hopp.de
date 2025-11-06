@@ -13,7 +13,7 @@ import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
 import Avatar from '@/components/reusables/Avatar';
 import MegaMenu from '@/components/appshell/MegaMenu';
-
+import { BsEnvelopeAt } from "react-icons/bs";
 import { recipesMegaMenu, featuredRecipes } from '@/lib/mega-menu-columns';
 
 import { LuUsersRound } from 'react-icons/lu';
@@ -81,6 +81,14 @@ export default function Header() {
                                 icon={<LuUsersRound className="size-4 text-primary" />}
                             >
                                 Community
+                            </NavLink>
+                            <NavLink
+                                href="/kontakt"
+                                active={window.location.pathname.startsWith('/kontakt')}
+                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
+                                icon={<BsEnvelopeAt className="size-4 text-primary" />}
+                            >
+                                Kontakt
                             </NavLink>
                         </div>
                     </div>

@@ -2,7 +2,7 @@ import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import cookingBro from "@images/svg/Cooking-bro.svg";
-import chefkochSrc from '@images/svg/Chef-bro.svg';
+import chefkochSrc from "@images/svg/Chefkoch-bro.svg";
 import Carousel from '@/components/reusables/Carousel/Index';
 
 export default function DailyRecommendationsBlock() {

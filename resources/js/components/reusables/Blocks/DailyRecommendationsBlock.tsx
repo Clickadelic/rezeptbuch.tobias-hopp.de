@@ -2,7 +2,7 @@ import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import cookingBro from "@images/svg/Cooking-bro.svg";
-import chefBro from "@images/svg/Chef-bro.svg";
+import fickDichBro from "@images/svg/FickDich-bro.svg";
 import Carousel from '@/components/reusables/Carousel/Index';
 
 /**
@@ -22,7 +22,7 @@ export default function DailyRecommendationsBlock() {
                     vom Chef persönlich
                 </h3>
                 <img
-                    src={isDesktop ? chefBro : cookingBro}
+                    src={isDesktop ? fickDichBro : cookingBro}
                     className="w-full mx-auto sm:w-1/2 md:w-3/4"
                     alt="Chefkoch Tobias"
                 />

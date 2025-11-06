@@ -12,7 +12,7 @@ import { SharedPageProps } from '@/types';
 import { cn } from '@/lib/utils';
 
 interface FavoriteButtonProps {
-    showText?: boolean;
+    showLabel?: boolean;
     recipeId?: string;
     isFavorite?: boolean;
     className?: string;
@@ -25,7 +25,7 @@ export default function FavoriteButton({
     recipeId,
     isFavorite = false,
     className,
-    showText = false,
+    showLabel = false,
 
 }: FavoriteButtonProps) {
     const [active, setActive] = useState<boolean>(isFavorite);
@@ -82,7 +82,7 @@ export default function FavoriteButton({
         >
             {!loading && (isHovered || active) ? <FaHeart /> : <FaRegHeart />}
             {loading && <FaSpinner className="animate-spin" />}
-            {showText && (active ? 'Favorit entfernen' : 'Zu Favoriten hinzufügen')}
+            {showLabel && (active ? 'Favorit entfernen' : 'Zu Favoriten hinzufügen')}
         </Button>
     );
 }

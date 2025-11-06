@@ -436,4 +436,26 @@ class RecipeController extends Controller
             }
         }
     }
+
+    /**
+     * Creates a duplicate of a given recipe and redirects the user to the edit page of the new recipe.
+     *
+     * The new recipe will have the same name as the original, but with "(Kopie)" appended to it.
+     * The new recipe will also have a new slug, which is the original slug with a random 6-character string appended to it.
+     * The new recipe will have a status of "draft", which means it is not publicly visible.
+     *
+     * @param Recipe $recipe The recipe to be duplicated.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function duplicate(Recipe $recipe)
+    {
+        $newRecipe = $recipe->replicate();
+        $newRecipe->slug = $recipe->slug . '-' . Str::random(6);
+        $newRecipe->name = $recipe->name . ' (Kopie)';
+        $newRecipe->status = 'draft'; // optional, um versehentliche Veröffentlichung zu vermeiden
+        $newRecipe->push();
+
+        return redirect()->route('recipes.edit', $newRecipe->slug)
+            ->with('success', 'Rezept wurde kopiert.');
+    }
 }

@@ -12,7 +12,7 @@ import { usePermissions } from '@/hooks/usePermissions';
 import { RxClipboardCopy } from 'react-icons/rx';
 import { IoPrintOutline } from 'react-icons/io5';
 import { PiCopySimpleLight } from 'react-icons/pi';
-
+import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 
@@ -97,6 +97,22 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                 Bearbeiten
                             </Link>
                         </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                            <Button variant="ghost" className="flex flex-row items-center" onClick={(e) => {
+                                    e.stopPropagation();
+                                    router.post(route('recipes.duplicate', recipe?.slug), {}, {
+                                        onSuccess: () => {
+                                            toast.success('Rezept wurde kopiert! Siehe Dashboard.', { duration: 3000 });
+                                        },
+                                        onError: () => {
+                                            toast.error('Fehler beim Kopieren');
+                                        },
+                                    });
+                                }}>
+                                <PiCopySimpleLight className="size-5 mr-1" />
+                                Kopieren
+                            </Button>
+                        </DropdownMenuItem>
                         <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
                             <AlertDialog>
                                 <AlertDialogTrigger
@@ -136,6 +152,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                             </AlertDialog>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
+                        
                     </>
                 )}
                 <DropdownMenuItem>

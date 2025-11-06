@@ -27,27 +27,28 @@ interface ShowRecipeProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
-    const { related, is_favorite } = usePage<SharedPageProps>().props;
+    const { related } = usePage<SharedPageProps>().props;
 
     return (
         <div className="flex flex-col">
-            <div className="w-full flex gap-6">
-                <RecipeImageBlock recipe={recipe} className="w-full md:w-1/2" />
-                <div className="flex flex-col justify-between md:w-1/2">
-                    <RecipeInfoBlock recipe={recipe} />
-                    <AttributesBlock recipe={recipe} />
+            <div className="w-full flex flex-col sm:flex-row gap-5">
+                <div className="w-full sm:1/2">
+                    <div className="flex flex-col items-start justify-start gap-1">
+                        <RecipeImageBlock recipe={recipe} className="w-full" />
+                        <div className="w-full flex flex-row justify-between">
+                            <AvatarBlock recipe={recipe} />
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full sm:1/2">
+                    <div className="size-full flex flex-col justify-between">
+                        <RecipeInfoBlock recipe={recipe} />
+                        <FavoriteButton recipeId={recipe.id} className="me-auto" showText={true} isFavorite={recipe.is_favorite} />
+                    </div>
+
                 </div>
             </div>
-            <div className="flex w-full items-center justify-between gap-2">
-                <AvatarBlock recipe={recipe} />
-                <FavoriteButton recipeId={recipe.id} isFavorite={is_favorite as boolean} />
-                <UserStarRating readonly={true} size="sm" rating={recipe.rating as number} showLabel={true} className="mt-1" />
-            </div>
             <SingleRecipeIngredientsTable recipe={recipe} />
-            <PreparationInstructions recipe={recipe} />
-            
-            <CommentsDirectory recipeId={recipe.id!} />
-            <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
         </div>
     );
 }

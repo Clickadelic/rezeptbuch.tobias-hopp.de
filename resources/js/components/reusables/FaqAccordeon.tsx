@@ -26,20 +26,14 @@ export default function FrontpageCategoryGrid() {
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="font-medium text-xl">
-                            Was ist das für eine Webseite?
+                            Warum diese Webseite?
                         </AccordionTrigger>
                         <AccordionContent>
-                            Diese Webseite ist ein privates Hobby-Projekt von{' '}
-                            <Link
-                                href="https://www.tobias-hopp.de/de/"
-                                target="_blank"
-                                className="underline underline-offset-4 text-primary"
-                            >
-                                Tobias Hopp
-                            </Link>{' '}
-                            - begonnen im August 2025. Es handelt sich dabei um ein digitales
-                            Rezeptbuch, um Rezepte zu speichern und im Alltag schnell griffbereit zu
-                            haben.
+                            <p>Online-Kochbücher sind mittlerweile mit Werbung und Pop-Ups überladen - findest Du nicht auch?!</p>
+                            <br />
+                            <p>Ich wollte schon immer ein Rezeptbuch haben, welches man bequem in der Tasche hat, falls mal etwas Inspiration zum Kochen für den Alltag fehlt, oder man eine Köstlichkeit mit Freunden teilen möchte.</p>
+                            <br />
+                            <p>Warum machst Du nicht mit?</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
@@ -48,36 +42,11 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Ja, die Registrierung ist kostenlos. Erstelle mit Deiner E-Mail
-                                Adresse einen Account, bestätige diese kurz und schon kann es
-                                losgehen. Versteckte Kosten gibt es nicht.
+                                Die Registrierung mit Deiner E-Mail Adresse ist frei und kostenlos. Erstelle einen Account, bestätige ihn kurz per Klick auf den Link in Deiner Inbox, und schon kann es
+                                losgehen.
                             </p>
                             <br />
-                            <p>
-                                Solltest Du Fragen bzw. Bedenken bezüglich Registrierung oder
-                                Datensicherheit haben, wirf' bitte einen Blick in die{' '}
-                                <Link
-                                    href="/nutzungsbedingungen"
-                                    target="_self"
-                                    className="underline underline-offset-4 text-primary"
-                                >
-                                    Nutzungsbedingungen
-                                </Link>{' '}
-                                oder lies's den{' '}
-                                <Link
-                                    href="/nutzungsbedingungen"
-                                    target="_self"
-                                    className="underline underline-offset-4 text-primary"
-                                >
-                                    Datenschutzhinweis
-                                </Link>
-                                .
-                            </p>
-                            <br />
-                            <p>
-                                Falls Du danach noch weitere Fragen hast, kannst Du Dich natürlich
-                                gerne per E-Mail oder Kontaktformular an mich wenden.
-                            </p>
+                            <p>Versteckte Kosten gibt es nicht. Schau' in die <Link href="/nutzungsbedingungen" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">Nutzungsbedingungen</Link>.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">
@@ -86,15 +55,29 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Nachdem Du Dich eingeloggt hast, kannst Du die Rezeptbuch-Funktion
-                                nutzen und eigene Rezepte anlegen und diese Posten. Darüber hinaus
+                                Nachdem Du Dich eingeloggt hast, kannst Du die Rezeptbuch-Funktionen
+                                nutzen, eigene Rezepte anlegen und speichern, diese Posten und verwalten. Darüber hinaus
                                 kannst Du auch Rezepte von anderen Nutzern finden und zu Deinen
-                                Favoriten hinzufügen.
+                                Favoriten hinzufügen. Ganz ohne Werbung und Pop-Ups.
                             </p>
                             <br />
-                            <p>Weitere Features wie sind in in Planung bzw. in Arbeit.</p>
+                            <p>Updates und Verbesserungen in der Zukunft wird es geben.
+                                Allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe.</p>
                         </AccordionContent>
                     </AccordionItem>
+                    <AccordionItem value="item-4">
+                        <AccordionTrigger className="font-medium text-xl">
+                            Ist die Registrierung sicher?
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            <p>
+                                Ja, ist sie. Abgesehen davon, dass keinerlei Webseiten-Tracker eingesetzt werden (Google Analytics, Matomo, etc.),
+                                verwendet die Webseite bzw. App moderne Sicherheitsstandards wie z.B. eine sichere Verbindung oder einen Registrierungsprozess,
+                                bei dem kein Passwort online versendet wird (nur Du gibst es einmal ein).
+                            </p>
+                        </AccordionContent>
+                    </AccordionItem>
+                    
                 </Accordion>
             </div>
         </>

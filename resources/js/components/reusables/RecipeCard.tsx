@@ -72,7 +72,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                     <CardContent className="py-2 px-0 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
                         <div className="relative flex flex-row justify-between items-center gap-1">
                             <div className="w-full grow mr-8">
-                                <span className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-base line-clamp-1 min-h-[calc(1rem+2px)]">
+                                <span className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm font-extralight line-clamp-1 min-h-[calc(1rem+2px)]">
                                     {recipe.punchline}
                                 </span>
                                 <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">

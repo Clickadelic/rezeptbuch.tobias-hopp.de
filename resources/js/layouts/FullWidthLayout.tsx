@@ -16,6 +16,7 @@ import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { SharedPageProps } from '@/types';
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
+    description?: string;
     showTitle?: boolean;
     children: React.ReactNode;
 }
@@ -36,6 +37,7 @@ interface FullWidthLayoutProps extends PropsWithChildren {
 export default function FullWidthLayout({
     showTitle = true,
     title,
+    description,
     children,
 }: FullWidthLayoutProps) {
     const { props } = usePage<SharedPageProps>();
@@ -56,7 +58,9 @@ export default function FullWidthLayout({
 
     return (
         <>
-            <Head title={title} />
+            <Head title={title}>
+                <meta name="description" content={description} />
+            </Head>
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
                 <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-200">
                     <div>

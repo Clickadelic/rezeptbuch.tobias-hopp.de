@@ -16,6 +16,7 @@ import { SharedPageProps } from '@/types';
 interface SidebarLeftLayoutProps extends PropsWithChildren {
     showTitle?: boolean;
     title?: string;
+    description?: string;
     sidebar?: React.ReactNode;
     children: React.ReactNode;
 }
@@ -26,6 +27,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
  *
  * @prop {boolean} [showTitle] - Whether to display the title above the main content.
  * @prop {string} [title] - The title of the page.
+ * @prop {string} [desciption] - The description of the page.
  * @prop {React.ReactNode} [sidebar] - The sidebar content to render.
  * @prop {React.ReactNode} children - The content to render in the main area.
  *
@@ -37,6 +39,7 @@ interface SidebarLeftLayoutProps extends PropsWithChildren {
 export default function SidebarLeftLayout({
     showTitle = true,
     title,
+    description,
     sidebar,
     children,
 }: SidebarLeftLayoutProps) {
@@ -60,7 +63,9 @@ export default function SidebarLeftLayout({
 
     return (
         <>
-            <Head title={title} />
+            <Head title={title}>
+                <meta name="description" content={description} />
+            </Head>
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
                 <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-200 relative">
                     <div>

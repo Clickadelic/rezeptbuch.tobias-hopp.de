@@ -226,7 +226,7 @@ export default function Header() {
                         >
                             <BsJournalBookmark className="size-4 mt-1" /> Rezepte
                         </ResponsiveNavLink>
-                        {drafts && (
+                        {drafts && auth.user && (
                             <ResponsiveNavLink
                                 href="/dashboard"
                                 className="flex gap-2"

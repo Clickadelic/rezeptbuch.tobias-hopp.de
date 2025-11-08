@@ -115,7 +115,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
             >
-                <div className="hidden sm:block absolute left-1/2 -translate-x-1/3 top-full z-50 mt-3 w-screen max-w-5xl">
+                <div className="hidden sm:block absolute left-1/2 -translate-x-1/4 top-full z-50 mt-3 w-screen max-w-5xl">
                     <div className="overflow-hidden shadow-lg rounded-xl p-1 bg-white/30 dark:bg-gray-800/30 backdrop-blur">
                         <div className="relative overflow-hidden bg-white dark:bg-gray-800 rounded-lg">
                             {decorationSvg && (

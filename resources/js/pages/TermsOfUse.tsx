@@ -28,7 +28,7 @@ export default function Nutzungsbedingungen() {
             <section>
                 <h3 className="my-5 font-medium text-lg">3. Haftungsausschluss</h3>
                 <p>
-                    Der Betreiber, Tobias Hopp, übernimmt keine Gewähr für die Richtigkeit, Vollständigkeit oder
+                    Ich, Tobias Hopp, nachfolgend "der Betreiber" genannt, übernimmt keine Gewähr für die Richtigkeit, Vollständigkeit oder
                     Aktualität der bereitgestellten Inhalte. Die Nutzung der Website erfolgt auf
                     eigene Gefahr. Es besteht keine Haftung für direkte oder indirekte Schäden, die
                     durch die Nutzung oder Nichtnutzung der angebotenen Informationen entstehen.
@@ -37,7 +37,7 @@ export default function Nutzungsbedingungen() {
             <section>
                 <h3 className="my-5 font-medium text-lg">4. Verfügbarkeit und Datenverlust</h3>
                 <p>
-                    Der Betreiber, Tobias Hopp, bemüht sich, den Dienst dauerhaft zugänglich zu halten, kann aber
+                    Der Betreiber, bemüht sich, den Dienst dauerhaft zugänglich zu halten, kann aber
                     keine ständige Verfügbarkeit garantieren. Es wird keine Haftung für
                     Datenverluste, technische Störungen oder Serverausfälle übernommen. Nutzer
                     sollten selbst sicherstellen, dass sie eigene Inhalte, Rezepte oder Daten
@@ -56,7 +56,7 @@ export default function Nutzungsbedingungen() {
             <section>
                 <h3 className="my-5 font-medium text-lg">6. Änderungen</h3>
                 <p>
-                    Der Betreiber (Tobias Hopp) behält sich vor, diese Nutzungsbedingungen jederzeit
+                    Der Betreiber behält sich vor, diese Nutzungsbedingungen jederzeit
                     ohne Ankündigung anzupassen. Es gilt jeweils die aktuelle, auf der Website
                     veröffentlichte Fassung.
                 </p>

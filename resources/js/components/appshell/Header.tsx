@@ -28,7 +28,7 @@ import { BiExit } from 'react-icons/bi';
 import DraftAlert from "@/components/appshell/DraftAlert";
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
-
+import { BsBell } from 'react-icons/bs';
 import { SharedPageProps } from '@/types';
 
 /**
@@ -44,7 +44,7 @@ export default function Header() {
 
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
-            <div className="mx-auto container px-6">
+            <div className="mx-auto container px-6 py-2 lg:py-0">
                 <div className="flex justify-between">
                     <div className="w-full flex justify-between">
                         <div className="relative flex shrink-0">
@@ -226,15 +226,15 @@ export default function Header() {
                         >
                             <BsJournalBookmark className="size-4 mt-1" /> Rezepte
                         </ResponsiveNavLink>
-                        {/* {drafts && (
+                        {drafts && (
                             <ResponsiveNavLink
-                                href="#"
+                                href="/dashboard"
                                 className="flex gap-2"
-                                active={window.location.pathname.startsWith('/rezepte')}
+                                active={window.location.pathname.startsWith('/dashboard')}
                             >
-                                <BsJournalBookmark className="size-4 mt-1" /> Entwürfe
+                                <BsBell className="size-4 mt-1 " />{drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
                             </ResponsiveNavLink>
-                        )} */}
+                        )}
                         <ResponsiveNavLink
                             href="/zutaten"
                             className="flex gap-2"

@@ -96,7 +96,6 @@ export default function UserRecipesTable({
                             <TableHead>Name</TableHead>
                             <TableHead className="hidden sm:table-cell">Kategorie</TableHead>
                             <TableHead className="hidden sm:table-cell">Schwierigkeit</TableHead>
-
                             <TableHead className="text-right">Aktion</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -105,7 +104,7 @@ export default function UserRecipesTable({
                         {recipes.data.map((recipe: Recipe) => (
                             <TableRow
                                 key={recipe.id}
-                                className="hover:bg-white dark:hover:bg-gray-700"
+                                className={cn("hover:bg-white dark:hover:bg-gray-700", recipe.status === 'draft' && 'bg-gray-100 dark:bg-gray-700')}
                             >
                                 <TableCell>
                                     <PublishSwitch

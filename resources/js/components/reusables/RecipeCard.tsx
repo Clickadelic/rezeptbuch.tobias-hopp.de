@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton';
 import { Recipe } from '@/types/Recipe';
 
+import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
 
 // Icons für Kategorien
@@ -21,8 +22,6 @@ import FavoriteButton from '@/components/reusables/FavoriteButton';
 import ContextMenu from '@/components/reusables/ContextMenu';
 import { cn } from '@/lib/utils';
 import { FaHeart } from 'react-icons/fa6';
-
-import RecipeImageBlock from './Blocks/RecipeImageBlock';
 
 
 interface RecipeCardProps {
@@ -59,13 +58,6 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
-                        {/* {recipe.category && (
-                            <div className="absolute top-2 left-2 z-20 flex items-center justify-center size-8">
-                                {iconMap[recipe.category.slug ?? ''] ?? (
-                                <LuUtensilsCrossed className="size-5 text-primary" />
-                                )}
-                            </div>
-                        )} */}
                         <div className="absolute top-1 left-1 z-20 flex items-center justify-center">
                             <FavoriteButton
                                 key={recipe.id}
@@ -73,7 +65,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                 isFavorite={recipe.is_favorite}
                             />
                         </div>
-                        {/* Hero image */}
+                        {/* Hero image
                         {(() => {
                             const hero =
                                 (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
@@ -87,15 +79,15 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                             ) : (
                                 <IconCategorySwitcher recipe={recipe} iconColor="hover:text-primary" />
                             );
-                        })()}
-
+                        })()} */}
+                        <RecipeImageBlock recipe={recipe} />
                     </CardHeader>
 
                     {/* Titel + Kategorie */}
                     <CardContent className="py-2 px-0 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
                         <div className="relative flex flex-row justify-between items-center gap-1">
                             <div className="w-full grow mr-8">
-                                <span className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-base line-clamp-1 min-h-[calc(1rem+2px)] font-la-belle-aurore">
+                                <span className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-base line-clamp-1 min-h-[calc(1rem+2px)]">
                                     {recipe.punchline}
                                 </span>
                                 <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">

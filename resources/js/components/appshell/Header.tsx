@@ -82,14 +82,6 @@ export default function Header() {
                             >
                                 Community
                             </NavLink>
-                            <NavLink
-                                href="/kontakt"
-                                active={window.location.pathname.startsWith('/kontakt')}
-                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<BsEnvelopeAt className="size-4 text-primary" />}
-                            >
-                                Kontakt
-                            </NavLink>
                         </div>
                     </div>
                     <div className="hidden lg:ms-2 lg:flex lg:items-center gap-1 md:gap-2 lg:gap-3">
@@ -248,13 +240,6 @@ export default function Header() {
                             active={window.location.pathname === '/community'}
                         >
                             <TbSalt className="size-4 mt-1" /> Community
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href="/kontakt"
-                            className="flex gap-2"
-                            active={window.location.pathname === '/Kontakt'}
-                        >
-                            <BsEnvelopeAt className="size-4 mt-1" /> Kontakt
                         </ResponsiveNavLink>
                     </div>
 

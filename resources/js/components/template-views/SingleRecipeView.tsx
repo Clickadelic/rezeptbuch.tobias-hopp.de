@@ -28,7 +28,7 @@ interface ShowRecipeProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
-    const { related } = usePage<SharedPageProps>().props;
+    const { related, is_favorite } = usePage<SharedPageProps>().props;
 
     return (
         <div className="flex flex-col">
@@ -38,7 +38,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                         <RecipeImageBlock recipe={recipe} className="w-full" />
                         <div className="w-full flex flex-row justify-between">
                             <AvatarBlock recipe={recipe} />
-                            <FavoriteButton recipeId={recipe.id!} isFavorite={recipe.is_favorite} showLabel={true} className="mt-2" />
+                            <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-2" />
                         </div>
                     </div>
                 </div>

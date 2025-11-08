@@ -85,7 +85,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     className="absolute scale-100 transform duration-300 ease-out group-hover:scale-105 inset-0 size-full object-cover"
                                 />
                             ) : (
-                                <IconCategorySwitcher recipe={recipe} />
+                                <IconCategorySwitcher recipe={recipe} iconColor="hover:text-primary" />
                             );
                         })()}
 

@@ -40,8 +40,8 @@ export default function CommentForm({ recipeId, parentId, onCommentAdded }: Comm
 
     if (!user) {
         return (
-            <div className="flex flex-col gap-2 items-center justify-center md: py-6 sm:py-8">
-                <h3 className="text-2xl text-gray-800 dark:text-gray-200 font-la-belle-aurore">
+            <div className="flex flex-col gap-2 items-center justify-center text-center  sm:py-8 md:py-6 my-3">
+                <h3 className="text-xl text-gray-600 dark:text-gray-400 font-la-belle-aurore">
                     Bitte logge Dich ein um einen Kommentar zu schreiben.
                 </h3>
                 <div className="flex gap-2 mt-5">

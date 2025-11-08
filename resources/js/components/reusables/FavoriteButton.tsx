@@ -82,7 +82,7 @@ export default function FavoriteButton({
         >
             {!loading && (isHovered || active) ? <FaHeart /> : <FaRegHeart />}
             {loading && <FaSpinner className="animate-spin" />}
-            {showLabel && (active ? 'Favorit entfernen' : 'Zu Favoriten hinzufügen')}
+            {showLabel && (active ? 'Entfernen' : 'Speichern')}
         </Button>
     );
 }

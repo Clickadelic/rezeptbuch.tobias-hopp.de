@@ -5,9 +5,11 @@ import { PropsWithChildren, ReactNode } from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Head } from '@inertiajs/react';
+
 interface AuthLayoutProps extends PropsWithChildren {
     showTitle?: boolean;
     title?: string;
+    description?: string;
     subtitle?: string;
     children: ReactNode;
 }
@@ -28,11 +30,14 @@ export default function AuthLayout({
     showTitle = true,
     title,
     subtitle,
+    description,
     children,
 }: AuthLayoutProps) {
     return (
         <>
-            <Head title={title} />
+            <Head title={title}>
+                <meta name="description" content={description} />
+            </Head>
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
                 <div className="min-h-screen flex flex-col justify-center items-center bg-white bg-[url('/resources/images/brooke-lark-kXQ3J7_2fpc-unsplash-compressed.jpg')] dark:bg-[url('/resources/images/webp/annie-spratt-R3LcfTvcGWY-unsplash.webp')] bg-cover bg-no-repeat bg-center transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                     <main className="mx-auto container">

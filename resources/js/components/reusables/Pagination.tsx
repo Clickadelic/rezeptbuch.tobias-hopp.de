@@ -78,7 +78,7 @@ function PageLink({ link }: { link: { url: string | null; label: string; active:
                 link.active
                     ? "bg-primary text-white"
                     : "bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 hover:bg-primary hover:text-white",
-                !link.url && "pointer-events-none opacity-50"
+                !link.url && "pointer-events-none opacity-90"
             )}
             dangerouslySetInnerHTML={{ __html: link.label }}
         />

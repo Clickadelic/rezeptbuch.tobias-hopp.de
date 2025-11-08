@@ -20,7 +20,7 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     return (
-        <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />}>
+        <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
             <SingleRecipeView recipe={recipe} />
         </SidebarLeftLayout>
     );

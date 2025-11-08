@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
-
-use App\Models\User;
 use App\Models\Recipe;
 use App\Models\Ingredient;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 
 class DashboardController extends Controller
 {
@@ -19,8 +18,14 @@ class DashboardController extends Controller
     public function index()
     {
         // Neueste Rezept
-        $latestRecipe = Recipe::latest()->with(['media', 'category'])->first();
-        $totalUserCount = User::all()->count();
+        
+        $comments = Comment::where('user_id', Auth::id())
+            ->with(['recipe', 'user'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+
         $recipesCountByCategory = Recipe::groupBy('category_id')
             ->with('category')
             ->select('category_id')
@@ -42,9 +47,9 @@ class DashboardController extends Controller
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
         $userFavoritesCount = $userFavorites->count();
 
-        return Inertia::render('Dashboard', [
+        return Inertia::render('Dashboard/Index', [
             'alert' => 'Wichtige Ankündigung: Neue Rezepte verfügbar!',
-            'latestRecipe'            => $latestRecipe,
+            'comments'            => $comments,
             'totalUserRecipeCount'    => $totalUserRecipeCount,
             'totalUserRecipes'        => $totalUserRecipes,
             'totalRecipeCount'        => $totalRecipeCount,
@@ -52,7 +57,6 @@ class DashboardController extends Controller
             'userFavorites'           => $userFavorites,
             'userFavoritesCount'      => $userFavoritesCount,
             'recipesCountByCategory'  => $recipesCountByCategory,
-            'totalUserCount'          => $totalUserCount
         ]);
     }
 }

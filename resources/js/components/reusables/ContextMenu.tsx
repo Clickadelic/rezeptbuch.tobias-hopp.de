@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { router, usePage, Link } from '@inertiajs/react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,} from '@/components/ui/dropdown-menu';
-import { ResponsiveDialog } from '@/components/reusables/ResponsiveDialog';
 import { HiOutlineDotsVertical, HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
-import { GoPlus, GoTrash } from 'react-icons/go';
+import { GoTrash } from 'react-icons/go';
 import { Recipe } from '@/types/Recipe';
 import { usePermissions } from '@/hooks/usePermissions';
 import { RxClipboardCopy } from 'react-icons/rx';
@@ -14,6 +13,7 @@ import { IoPrintOutline } from 'react-icons/io5';
 import { PiCopySimpleLight } from 'react-icons/pi';
 import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { ResponsiveDialog } from '@/components/reusables/ResponsiveDialog';
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 
 import { SharedPageProps } from '@/types';
@@ -97,8 +97,14 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                 Bearbeiten
                             </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                            <Button variant="ghost" className="flex flex-row items-center" onClick={(e) => {
+                        <DropdownMenuItem
+                            asChild
+                            className="focus:outline-none hover:outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
+                        >
+                            <Button
+                                variant="ghost"
+                                className="outline-none hover:outline-none focus:outline-none w-full flex flex-row justify-start items-start mb-0"
+                                onClick={(e) => {
                                     e.stopPropagation();
                                     router.post(route('recipes.duplicate', recipe?.slug), {}, {
                                         onSuccess: () => {
@@ -108,7 +114,8 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                             toast.error('Fehler beim Kopieren');
                                         },
                                     });
-                                }}>
+                                }}
+                            >
                                 <PiCopySimpleLight className="size-5 mr-1" />
                                 Kopieren
                             </Button>

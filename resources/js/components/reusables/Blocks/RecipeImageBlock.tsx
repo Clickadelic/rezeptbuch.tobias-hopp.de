@@ -59,7 +59,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
             ) : (
                 <>
                     <IconCategorySwitcher recipe={recipe} />
-                    <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10 cursor-default"></div>
+                    <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10"></div>
                 </>
             )}
 

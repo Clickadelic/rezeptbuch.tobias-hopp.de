@@ -65,21 +65,6 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                 isFavorite={recipe.is_favorite}
                             />
                         </div>
-                        {/* Hero image
-                        {(() => {
-                            const hero =
-                                (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
-                                (recipe as any)?.media?.[0];
-                            return hero ? (
-                                <img
-                                    src={`/storage/${hero.path}`}
-                                    alt={recipe.name}
-                                    className="absolute scale-100 transform duration-300 ease-out group-hover:scale-105 inset-0 size-full object-cover"
-                                />
-                            ) : (
-                                <IconCategorySwitcher recipe={recipe} iconColor="hover:text-primary" />
-                            );
-                        })()} */}
                         <RecipeImageBlock recipe={recipe} />
                     </CardHeader>
 

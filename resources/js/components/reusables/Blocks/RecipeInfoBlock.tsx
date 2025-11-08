@@ -19,9 +19,9 @@ export default function RecipeInfoBlock({ recipe, className }: RecipeInfoBlockPr
         <div className={cn('w-full flex flex-col', className)}>
             <div className="w-full flex flex-row justify-between items-center">
                 <div>
-                    <h4 className="font-medium text-lg font-la-belle-aurore  text-gray-600 dark:text-gray-400">
+                    <span className="font-medium text-lg font-la-belle-aurore  text-gray-600 dark:text-gray-400">
                         {recipe.punchline}
-                    </h4>
+                    </span>
                     <h3 className="font-medium text-xl mb-3">{recipe.name}</h3>
                 </div>
                 <ContextMenu recipe={recipe} dotStyle="vertical" />

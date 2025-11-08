@@ -15,6 +15,7 @@ interface NoSidebarsLayoutProps extends PropsWithChildren {
     showTitle?: boolean;
     children: React.ReactNode;
     title?: string;
+    description?: string;
 }
 
 /**
@@ -37,6 +38,7 @@ interface NoSidebarsLayoutProps extends PropsWithChildren {
 export default function NoSidebarsLayout({
     showTitle = true,
     title,
+    description,
     children,
 }: NoSidebarsLayoutProps) {
     const { props } = usePage<SharedPageProps>();
@@ -57,7 +59,9 @@ export default function NoSidebarsLayout({
 
     return (
         <>
-            <Head title={title} />
+            <Head title={title}>
+                <meta name="description" content={description} />
+            </Head>
             <ThemeProvider defaultTheme="light" storageKey="rezeptbuch-ui-theme">
                 <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-200">
                     <div>

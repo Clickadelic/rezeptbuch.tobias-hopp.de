@@ -38,6 +38,7 @@ const BreadcrumbNav = () => {
                 <li>
                     <Link href="/" className="hover:text-primary">
                         <RiHomeLine className="inline" />
+                        <span className="sr-only">Startseite</span>
                     </Link>
                 </li>
 

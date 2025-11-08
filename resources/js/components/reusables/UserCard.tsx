@@ -88,9 +88,9 @@ export default function UserCard({ user }: UserCardProps) {
                     <div className="h-10 w-px bg-border" />
                     <div className="text-center">
                         <div className="text-xl text-card-foreground">
-                            {user?.comments_count}
+                            {user?.comments_count || 0}
                         </div>
-                        <div className="text-xs text-muted-foreground">Kommentare</div>
+                        <div className="text-xs text-muted-foreground">{user?.comments_count === 1 ? 'Kommentar' : 'Kommentare'}</div>
                     </div>
                 </div>
             </div>

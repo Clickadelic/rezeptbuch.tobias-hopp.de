@@ -25,7 +25,7 @@ class RecipeController extends Controller
     {
         $recipes = Recipe::with('media', 'category', 'user')
             ->orderBy('created_at', 'desc')->where('status', 'published')
-            ->paginate(25);
+            ->paginate(15);
 
         $recipes = $this->addFavoriteFlags($recipes);
 

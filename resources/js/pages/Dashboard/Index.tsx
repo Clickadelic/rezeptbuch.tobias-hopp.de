@@ -7,6 +7,7 @@ import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
 import RecipesTable from '@/components/reusables/Tables/UserRecipesTable';
 
+import { TfiCommentAlt } from 'react-icons/tfi';
 import { IoIosStats } from 'react-icons/io';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FaRegHeart } from 'react-icons/fa';
@@ -28,16 +29,15 @@ export default function Dashboard() {
         totalRecipeCount,
         totalUserRecipeCount,
         totalIngredientCount,
-        totalUserCount,
         totalUserRecipes,
         userFavorites,
         userFavoritesCount,
-        latestRecipe,
         recipesCountByCategory,
+        comments,
     } = usePage<SharedPageProps>().props;
 
     const { user } = usePage<SharedPageProps>().props.auth;
-
+    console.log("Comments", comments?.total);
     // Prepare data for charts
     const barData = [
         { name: 'Vorspeisen', value: recipesCountByCategory['Vorspeise'] },
@@ -56,8 +56,8 @@ export default function Dashboard() {
 
     return (
         <FullWidthLayout title="Dashboard">
-            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <div className="col-span-1 xl:col-span-3">
+            <div className="grid grid-cols-1 xl:grid-cols-10 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <div className="col-span-1 xl:col-span-2">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
@@ -67,7 +67,7 @@ export default function Dashboard() {
                         </h3>
                     </div>
                 </div>
-                <div className="col-span-1 xl:col-span-3">
+                <div className="col-span-1 xl:col-span-2">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
@@ -77,7 +77,7 @@ export default function Dashboard() {
                         </h3>
                     </div>
                 </div>
-                <div className="col-span-1 xl:col-span-3">
+                <div className="col-span-1 xl:col-span-2">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
@@ -87,7 +87,17 @@ export default function Dashboard() {
                         </h3>
                     </div>
                 </div>
-                <div className="col-span-1 xl:col-span-3">
+                <div className="col-span-1 xl:col-span-2">
+                    <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 className="text-lg flex justify-between items-center cursor-default">
+                            <span className="flex gap-2">
+                                <TfiCommentAlt className="size-4 mt-1.5 text-primary" /> Kommentare
+                            </span>{' '}
+                            <span>{comments?.total || 0}</span>
+                        </h3>
+                    </div>
+                </div>
+                <div className="col-span-1 xl:col-span-2">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">

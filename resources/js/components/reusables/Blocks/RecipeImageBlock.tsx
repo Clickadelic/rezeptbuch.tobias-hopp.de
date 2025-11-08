@@ -74,7 +74,7 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
                                     className="w-full rounded aspect-video object-cover mb-4"
                                 />
                                 <div className="w-full ms-3 mb-3">
-                                    <h5 className="font-medium text-gray-600 dark:text-gray-400">
+                                    <h5 className="font-medium text-gray-600 dark:text-gray-400 font-la-belle-aurore">
                                         {recipe.punchline}
                                     </h5>
                                     <h4 className="font-medium text-gray-800 dark:text-gray-200">

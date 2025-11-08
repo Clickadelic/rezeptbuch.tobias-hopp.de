@@ -41,6 +41,7 @@ export default function Pagination({ className, links }: PaginationProps) {
                         className="hover:cursor-pointer px-3 py-1 text-sm rounded bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 hover:bg-primary hover:text-white flex items-center gap-1"
                     >
                     <HiOutlineDotsHorizontal className="size-5" />
+                    <span className="sr-only">Weitere Seiten</span>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="center" side="top">
                         {cleanLinks.slice(3, -2).map((link, i) => (
@@ -51,7 +52,7 @@ export default function Pagination({ className, links }: PaginationProps) {
                                         "block w-full text-sm px-2 py-1 rounded",
                                         link.active
                                             ? "bg-primary text-white"
-                                            : "hover:bg-gray-100 dark:hover:bg-gray-900 border-b border-gray-200 dark:border-gray-700 "
+                                            : "hover:bg-gray-100 dark:hover:bg-gray-900 "
                                     )}
                                     aria-label="Weitere Links"
                                     dangerouslySetInnerHTML={{ __html: link.label }}

@@ -7,6 +7,7 @@ import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelectionsBlock/Index';
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
+import CocktailRecommendationsBlock from '@/components/reusables/Blocks/CocktailRecommendationsBlock';
 
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
@@ -25,7 +26,7 @@ import { IoMdArrowForward } from 'react-icons/io';
  */
 export default function Frontpage() {
     return (
-        <FullWidthLayout title="Willkommen" description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Schau' mal rein." showTitle={false}>
+        <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Schau' mal rein.">
             <TitleBlock
                 icon={<FaRegHeart className="text-primary size-6 mt-1" />}
                 title="Willkommen"
@@ -44,6 +45,7 @@ export default function Frontpage() {
             <AuthTeaserBlock />
             <Seperator style="mix" />
             <DailyRecommendationsBlock />
+            <CocktailRecommendationsBlock />
             <Seperator style="mix" />
             <FaqAccordeon />
         </FullWidthLayout>

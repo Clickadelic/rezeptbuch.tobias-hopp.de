@@ -249,6 +249,13 @@ export default function Header() {
                         >
                             <TbSalt className="size-4 mt-1" /> Community
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href="/kontakt"
+                            className="flex gap-2"
+                            active={window.location.pathname === '/Kontakt'}
+                        >
+                            <BsEnvelopeAt className="size-4 mt-1" /> Kontakt
+                        </ResponsiveNavLink>
                     </div>
 
                     {auth.user ? (

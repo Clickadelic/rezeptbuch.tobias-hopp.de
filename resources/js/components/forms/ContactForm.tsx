@@ -40,7 +40,7 @@ export default function ContactForm({ className }: ContactFormProps) {
                     id="name"
                     type="text"
                     value={data.name}
-                    placeholder="Wie darf ich Dich ansprechen?"
+                    placeholder="Dein Name"
                     className="w-full"
                     onChange={(e) => setData('name', e.target.value)}
                 />
@@ -53,7 +53,7 @@ export default function ContactForm({ className }: ContactFormProps) {
                     id="email"
                     type="email"
                     value={data.email}
-                    placeholder="max.mustermann@me.com"
+                    placeholder="adresse@me.com"
                     className="w-full"
                     onChange={(e) => setData('email', e.target.value)}
                 />

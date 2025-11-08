@@ -5,18 +5,16 @@ import { TfiCommentsSmiley } from 'react-icons/tfi';
 import { FiUsers } from "react-icons/fi";
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
-
+import UsersTable from '@/components/reusables/Tables/UsersTable';
 /**
  * The Dashboard page displays a variety of information about the user's recipes.
  * It includes a bar chart that shows the number of recipes, a donut chart that shows the distribution of recipes between the user and other users, and two tables that show the user's recipes and favorites.
  */
 export default function Admin() {
-    // Extract the data from the page
-    const {} = usePage<SharedPageProps>().props;
 
-    const { users } = usePage<SharedPageProps>().props;
     const { user } = usePage<SharedPageProps>().props.auth;
-
+    const { users } = usePage<SharedPageProps>().props;
+    
     return (
         <FullWidthLayout title="Admin">
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
@@ -62,6 +60,7 @@ export default function Admin() {
                     </div>
                 </div>
             </div>
+            <UsersTable users={users} />
         </FullWidthLayout>
     );
 }

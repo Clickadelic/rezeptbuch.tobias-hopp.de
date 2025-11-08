@@ -82,14 +82,6 @@ export default function Header() {
                             >
                                 Community
                             </NavLink>
-                            <NavLink
-                                href="/kontakt"
-                                active={window.location.pathname.startsWith('/kontakt')}
-                                className="p-4 font-medium text-gray-800 dark:text-gray-200"
-                                icon={<BsEnvelopeAt className="size-4 text-primary" />}
-                            >
-                                Kontakt
-                            </NavLink>
                         </div>
                     </div>
                     <div className="hidden lg:ms-2 lg:flex lg:items-center gap-1 md:gap-2 lg:gap-3">

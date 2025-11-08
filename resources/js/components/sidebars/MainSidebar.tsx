@@ -24,6 +24,11 @@ export default function LeftSidebar() {
                     active={window.location.pathname === '/zutaten'}
                     title="Zutaten"
                 />
+                <SidebarLink
+                    href="/community"
+                    active={window.location.pathname === '/community'}
+                    title="Community"
+                />
             </ul>
         </aside>
     );

@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import Modal from '@/components/reusables/Modal';
-
+import FavoriteButton from '@/components/reusables/FavoriteButton';
 import { GoZoomIn } from 'react-icons/go';
 import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
 import { Recipe } from '@/types/Recipe';
@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 interface RecipeImageBlockProps {
     recipe: Recipe;
     className?: string;
+    useModalWindow?: boolean
 }
 
 /**
@@ -18,16 +19,18 @@ interface RecipeImageBlockProps {
  * @param {RecipeImageBlockProps} props - properties of the component
  * @returns {JSX.Element} - the rendered component
  */
-export default function RecipeImageBlock({ recipe, className }: RecipeImageBlockProps) {
+export default function RecipeImageBlock({ recipe, className, useModalWindow = false }: RecipeImageBlockProps) {
+    
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
+    const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
+    const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
     const hero = useMemo(() => {
         return recipe?.media?.find((m) => m?.pivot?.is_primary) ?? recipe?.media?.[0];
     }, [recipe]);
-
-    const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
-
-    
+    useEffect(() => {
+        setIsFavorite(recipe.is_favorite);
+    }, [recipe.is_favorite])
     return (
         <div
             className={cn(
@@ -42,13 +45,16 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
                         alt={recipe.name}
                         className="w-full h-full object-cover z-20"
                     />
-                    <button
-                        onClick={toggleImageModal}
-                        className="absolute inset-0 bg-transparent opacity-0 hover:opacity-100 transition ease-in-out z-30 cursor-pointer text-white hover:text-primary"
-                        title="Bild vergrößern"
-                    >
-                        <GoZoomIn className="size-5 absolute bottom-7 right-7" />
-                    </button>
+                    {useModalWindow && (
+                        <button
+                            onClick={toggleImageModal}
+                            type="button"
+                            className="absolute inset-0 bg-transparent opacity-0 hover:opacity-100 transition ease-in-out z-30 cursor-pointer text-white"
+                            title="Bild vergrößern"
+                        >
+                            <GoZoomIn className="size-5 absolute bottom-7 right-7" />
+                        </button>
+                    )}
                 </div>
             ) : (
                 <>
@@ -73,13 +79,16 @@ export default function RecipeImageBlock({ recipe, className }: RecipeImageBlock
                                     alt={recipe.name}
                                     className="w-full rounded aspect-video object-cover mb-4"
                                 />
-                                <div className="w-full ms-3 mb-3">
-                                    <h5 className="font-medium text-gray-600 dark:text-gray-400 font-la-belle-aurore">
-                                        {recipe.punchline}
-                                    </h5>
-                                    <h4 className="font-medium text-gray-800 dark:text-gray-200">
-                                        {recipe.name}
-                                    </h4>
+                                <div className="w-full flex justify-between items-center gap-2 ms-3 mb-3">
+                                    <div className="flex flex-col">
+                                        <h5 className="font-medium text-gray-600 dark:text-gray-400 font-la-belle-aurore">
+                                            {recipe.punchline}
+                                        </h5>
+                                        <h4 className="font-medium text-gray-800 dark:text-gray-200">
+                                            {recipe.name}
+                                        </h4>
+                                    </div>
+                                    {/* <FavoriteButton recipeId={recipe.id} showLabel={true} isFavorite={isFavorite} className="mt-2 mr-3" /> */}
                                 </div>
                             </div>
                         ))}

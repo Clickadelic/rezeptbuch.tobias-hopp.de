@@ -216,6 +216,16 @@ export default function Footer({ className }: FooterProps) {
                             <li className="hidden sm:inline-block">&middot;</li>
                             <li>
                                 <Link
+                                    href="/kontakt"
+                                    className="hover:text-primary text-sm"
+                                    title="Kontakt"
+                                >
+                                    Kontakt
+                                </Link>
+                            </li>
+                            <li className="hidden sm:inline-block">&middot;</li>
+                            <li>
+                                <Link
                                     href="/impressum"
                                     className="hover:text-primary text-sm"
                                     title="Impressum"

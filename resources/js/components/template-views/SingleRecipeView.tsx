@@ -35,7 +35,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <div className="w-full flex flex-col sm:flex-row gap-5">
                 <div className="w-full sm:1/2">
                     <div className="flex flex-col items-start justify-start gap-1">
-                        <RecipeImageBlock recipe={recipe} className="w-full" />
+                        <RecipeImageBlock recipe={recipe} className="w-full" useModalWindow={true} />
                         <div className="w-full flex flex-row justify-between">
                             <AvatarBlock recipe={recipe} />
                             <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-2" />

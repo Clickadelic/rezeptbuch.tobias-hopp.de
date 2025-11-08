@@ -22,15 +22,13 @@ interface RecipeImageBlockProps {
 export default function RecipeImageBlock({ recipe, className, useModalWindow = false }: RecipeImageBlockProps) {
     
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
-    const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
 
     const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
     const hero = useMemo(() => {
         return recipe?.media?.find((m) => m?.pivot?.is_primary) ?? recipe?.media?.[0];
     }, [recipe]);
-    useEffect(() => {
-        setIsFavorite(recipe.is_favorite);
-    }, [recipe.is_favorite])
+
     return (
         <div
             className={cn(
@@ -81,7 +79,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
                                 />
                                 <div className="w-full flex justify-between items-center gap-2 ms-3 mb-3">
                                     <div className="flex flex-col">
-                                        <h5 className="font-medium text-gray-600 dark:text-gray-400 font-la-belle-aurore">
+                                        <h5 className="font-medium text-gray-600 dark:text-gray-400">
                                             {recipe.punchline}
                                         </h5>
                                         <h4 className="font-medium text-gray-800 dark:text-gray-200">

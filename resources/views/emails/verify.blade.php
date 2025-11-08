@@ -13,8 +13,7 @@ Falls du dich nicht registriert hast, kannst du diese E-Mail einfach ignorieren.
 
 Danke,<br>
 
-Grüße
+Viele Grüße,<br>
 Tobias
 
-{{ config('app.name') }} Team
 @endcomponent

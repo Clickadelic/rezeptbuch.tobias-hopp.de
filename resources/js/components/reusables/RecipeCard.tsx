@@ -65,21 +65,6 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                 isFavorite={recipe.is_favorite}
                             />
                         </div>
-                        {/* Hero image
-                        {(() => {
-                            const hero =
-                                (recipe as any)?.media?.find((m: any) => m?.pivot?.is_primary) ??
-                                (recipe as any)?.media?.[0];
-                            return hero ? (
-                                <img
-                                    src={`/storage/${hero.path}`}
-                                    alt={recipe.name}
-                                    className="absolute scale-100 transform duration-300 ease-out group-hover:scale-105 inset-0 size-full object-cover"
-                                />
-                            ) : (
-                                <IconCategorySwitcher recipe={recipe} iconColor="hover:text-primary" />
-                            );
-                        })()} */}
                         <RecipeImageBlock recipe={recipe} />
                     </CardHeader>
 
@@ -87,7 +72,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                     <CardContent className="py-2 px-0 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
                         <div className="relative flex flex-row justify-between items-center gap-1">
                             <div className="w-full grow mr-8">
-                                <span className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-base line-clamp-1 min-h-[calc(1rem+2px)]">
+                                <span className="group-hover:text-primary duration-300 text-gray-500 dark:text-gray-400 text-sm font-extralight line-clamp-1 min-h-[calc(1rem+2px)]">
                                     {recipe.punchline}
                                 </span>
                                 <h3 className="group-hover:text-primary duration-300 line-clamp-2 text-gray-800 dark:text-gray-200 min-h-[calc(3rem+2px)]">

@@ -24,7 +24,7 @@ export default function Recipes() {
     const { props } = usePage<SharedPageProps>();
     const { recipes } = props;
     return (
-        <FullWidthLayout title="Rezepte">
+        <FullWidthLayout title="Rezepte" description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept.">
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-5">
                 {recipes?.data.map((recipe: Recipe) => (
                     <RecipeCard key={recipe.id} recipe={recipe} />

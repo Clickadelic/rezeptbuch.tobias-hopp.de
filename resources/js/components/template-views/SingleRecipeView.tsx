@@ -46,7 +46,7 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
                     <RecipeInfoBlock recipe={recipe} />
                 </div>
             </div>
-            <AttributesBlock recipe={recipe} className="flex flex-wrap gap-3 my-12" />
+            <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-12" />
             <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
             <Seperator style="star" />

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import Modal from '@/components/reusables/Modal';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
@@ -20,15 +20,17 @@ interface RecipeImageBlockProps {
  * @returns {JSX.Element} - the rendered component
  */
 export default function RecipeImageBlock({ recipe, className, useModalWindow = false }: RecipeImageBlockProps) {
+    
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
+    const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
+    const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
     const hero = useMemo(() => {
         return recipe?.media?.find((m) => m?.pivot?.is_primary) ?? recipe?.media?.[0];
     }, [recipe]);
-
-    const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
-
-    
+    useEffect(() => {
+        setIsFavorite(recipe.is_favorite);
+    }, [recipe.is_favorite])
     return (
         <div
             className={cn(
@@ -86,7 +88,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
                                             {recipe.name}
                                         </h4>
                                     </div>
-                                    <FavoriteButton recipeId={recipe.id} showLabel={true} isFavorite={recipe.is_favorite} className="mt-2 mr-3" />
+                                    {/* <FavoriteButton recipeId={recipe.id} showLabel={true} isFavorite={isFavorite} className="mt-2 mr-3" /> */}
                                 </div>
                             </div>
                         ))}

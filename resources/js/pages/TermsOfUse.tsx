@@ -28,7 +28,7 @@ export default function Nutzungsbedingungen() {
             <section>
                 <h3 className="my-5 font-medium text-lg">3. Haftungsausschluss</h3>
                 <p>
-                    Ich, Tobias Hopp, nachfolgend "der Betreiber" genannt, übernimmt keine Gewähr für die Richtigkeit, Vollständigkeit oder
+                    Ich, Tobias Hopp, nachfolgend "der Betreiber" genannt, übernehme keinen Gewähr für die Richtigkeit, Vollständigkeit oder
                     Aktualität der bereitgestellten Inhalte. Die Nutzung der Website erfolgt auf
                     eigene Gefahr. Es besteht keine Haftung für direkte oder indirekte Schäden, die
                     durch die Nutzung oder Nichtnutzung der angebotenen Informationen entstehen.

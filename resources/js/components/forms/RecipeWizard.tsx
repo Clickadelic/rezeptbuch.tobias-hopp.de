@@ -109,7 +109,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const addIngredient = () => {
         setData('recipe_ingredients', [
             ...data.recipe_ingredients,
-            { ingredient_id: '', quantity: '1', unit: 'gr' },
+            { ingredient_id: '', quantity: '1', unit: 'cl' },
         ]);
     };
 

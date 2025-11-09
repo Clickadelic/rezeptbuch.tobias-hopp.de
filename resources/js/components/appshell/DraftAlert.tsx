@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "@inertiajs/react";
 import { BsBell } from "react-icons/bs";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -10,6 +8,13 @@ interface DraftAlertProps {
     className?: string
 }
 
+/**
+ * DraftAlert displays a small bell icon with a tooltip that shows the number of drafts.
+ *
+ * @param {number} drafts - The number of drafts.
+ * @param {string} [className] - An optional className to apply to the component.
+ * @returns {ReactElement} - A React element.
+ */
 export default function DraftAlert ({ drafts, className }: DraftAlertProps) {
     if(drafts === 0) return null
     return (

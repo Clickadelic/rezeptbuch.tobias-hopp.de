@@ -7,7 +7,7 @@ Route::get('/impressum', function () {
     return Inertia::render('Disclaimer');
 });
 Route::get('/datenschutz', function () {
-    return Inertia::render('TermsAndConditions');
+    return Inertia::render('TermsOfPrivacy');
 });
 Route::get('/cookie-hinweis', function () {
     return Inertia::render('CookieNotice');

@@ -25,7 +25,7 @@ interface UserListProps {
 
 export default function UsersTable({ title, icon, className, users }: UserListProps) {
     return (
-        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl', className)}>
+        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-4 rounded-xl', className)}>
             <h3 className={cn('text-lg flex gap-2', users && users?.length >= 1 && 'mb-3')}>
                 {icon}
                 {title || 'Benutzer'}

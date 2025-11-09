@@ -8,7 +8,7 @@ import LegalSidebar from '@/components/sidebars/LegalSidebar';
  */
 export default function Datenschutz() {
     return (
-        <SidebarLeftLayout title="Datenschutz" sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout title="Datenschutz" description="Hinweise und Details zur Verwendung von Daten auf dieser Seite." sidebar={<LegalSidebar />}>
             <section>
                 <h3 className="my-5 font-medium text-lg">1. Verantwortlicher</h3>
                 <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>

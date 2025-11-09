@@ -358,32 +358,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             )}
                         </div>
                     </div>
-
-                    {/* Vorbereitungszeit */}
-                    <div className="w-full max-w-xl mx-auto">
-                        <InputLabel htmlFor="preparation_time" value="Vorbereitungszeit" description="Wie lange dauert die Vorbereitung in etwa?" />
-                        <div className="w-full flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
-                            <div className="flex justify-end items-end">
-                                <span className="w-12 px-3 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
-                                    {data.preparation_time}
-                                </span>
-                                <span className="bg-gray-100 px-3 py-2 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
-                                    Minuten
-                                </span>
-                            </div>
-                            <Slider
-                                defaultValue={[data.preparation_time]}
-                                max={240}
-                                step={5}
-                                id="preparation_time"
-                                className="w-full mt-1 hover:cursor-pointer"
-                                onValueChange={(value) => setData('preparation_time', value[0])}
-                            />
-                        </div>
-                        {errors.preparation_time && (
-                            <p className="text-rose-700">{errors.preparation_time}</p>
-                        )}
-                    </div>
                     
                     <div className="w-full max-w-xl mx-auto flex flex-col">
                         <InputLabel htmlFor="punchline" value="Punchline" description="Kleine Schlagzeile, die das Rezept gut beschreibt." />
@@ -580,11 +554,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
             {/* STEP 3: Bilder & Abschluss */}
             {step === 3 && (
-                <section className="space-y-5 mt-5">
+                <section className="space-y-8 mt-5">
                     <div className="w-full max-w-xl mx-auto flex flex-col items-center justify-start sm:gap-4">
                         {/* Uploader */}
                         <div className="space-y-3">
-                            <InputLabel htmlFor="mediaUpload" value="Vorschaubild" description="Das Bild wird als Vorschau angezeigt." />
+                            <InputLabel htmlFor="mediaUpload" value="Vorschaubild" description="(10 MB max.) Das Bild wird als Vorschau verwendet." />
                             <RecipeMediaUploader
                                 recipeId={recipe?.id}
                                 pendingKey={!recipe ? pendingKey : undefined}
@@ -680,6 +654,32 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </div>
                     </div>
 
+                    {/* Koch-/Bearbeitungszeit */}
+                    <div className="w-full max-w-xl mx-auto">
+                        <InputLabel htmlFor="preparation_time" value="Koch-/Bearbeitungszeit" description="Wie lange dauert die Zubereitung des Rezepts in etwa?" />
+                        <div className="w-full flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
+                            <div className="flex justify-end items-end">
+                                <span className="w-12 px-3 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 mt-1 rounded-none border-r-0 rounded-tl rounded-bl">
+                                    {data.preparation_time}
+                                </span>
+                                <span className="bg-gray-100 px-3 py-2 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 w-24 mt-1 rounded-none border-l-0 rounded-tr rounded-br">
+                                    Minuten
+                                </span>
+                            </div>
+                            <Slider
+                                defaultValue={[data.preparation_time]}
+                                max={240}
+                                step={5}
+                                id="preparation_time"
+                                className="w-full mt-1 hover:cursor-pointer"
+                                onValueChange={(value) => setData('preparation_time', value[0])}
+                            />
+                        </div>
+                        {errors.preparation_time && (
+                            <p className="text-rose-700">{errors.preparation_time}</p>
+                        )}
+                    </div>
+
                     {/* Zubereitung */}
                     <div className="w-full max-w-xl mx-auto space-y-3">
                         <InputLabel
@@ -704,7 +704,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         <InputLabel
                             htmlFor="rating"
                             value="Deine Bewertung des Rezeptes"
-                            description="Welche Bewertung gibtst Du dem Rezept? Bitte wählen."
+                            description="Welche Bewertung gibst Du dem Rezept? Die Community kann später auch bewerten."
                         />
                         <UserStarRating rating={data.rating} onRatingChange={handleRatingChange} className="my-5" />
                     </div>

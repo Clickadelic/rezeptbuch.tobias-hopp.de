@@ -22,7 +22,7 @@ export default function DraftAlert ({ drafts, className }: DraftAlertProps) {
                 </TooltipTrigger>
                 <TooltipContent side="left" className="text-white">
                     <p>Du hast {drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}</p>
-                    <TooltipArrow className="fill-emerald-800 dark:fill-emerald-800" />
+                    <TooltipArrow className="fill-primary dark:fill-primary" />
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

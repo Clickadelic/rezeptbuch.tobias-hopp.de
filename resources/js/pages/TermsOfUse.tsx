@@ -8,7 +8,7 @@ import LegalSidebar from '@/components/sidebars/LegalSidebar';
  */
 export default function Nutzungsbedingungen() {
     return (
-        <SidebarLeftLayout title="Nutzungsbedingungen" sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout title="Nutzungsbedingungen" description="Die Nutzungsbedingungen für das Rezeptbuch." sidebar={<LegalSidebar />}>
             <section>
                 <h3 className="my-5 font-medium text-lg">1. Allgemeines</h3>
                 <p>

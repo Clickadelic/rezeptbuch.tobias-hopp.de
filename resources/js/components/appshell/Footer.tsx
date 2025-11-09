@@ -1,12 +1,9 @@
 import { Link } from '@inertiajs/react';
 
 import BackToTopButton from '@/components/appshell/BackToTopButton';
-import NewsletterForm from '../forms/NewsletterForm';
 
-import badgeSrc from '@images/Quality-Symbol.png';
 import { BiCategory } from 'react-icons/bi';
 import { BsChevronCompactRight } from 'react-icons/bs';
-import { TbMailHeart } from 'react-icons/tb';
 import { IoIosRibbon } from 'react-icons/io';
 import { GrNavigate } from 'react-icons/gr';
 import { TbSalad } from 'react-icons/tb';
@@ -17,10 +14,11 @@ import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { CircularMenu } from '@/components/appshell/CircularMenu';
-import { cn } from '@/lib/utils';
-import ContactForm from '@/components/forms/ContactForm';
+
+import badgeSrc from '@images/Quality-Symbol.png';
 import footerImage from "@images/svg/Mission-Impossible-bro.svg";
 
+import { cn } from '@/lib/utils';
 
 interface FooterProps {
     className?: string;
@@ -44,7 +42,6 @@ export default function Footer({ className }: FooterProps) {
                 <BackToTopButton />
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-14 pb-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-6 border-b border-b-black">
-                        
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <GrNavigate />
@@ -93,7 +90,6 @@ export default function Footer({ className }: FooterProps) {
                                 </li>
                             </ul>
                         </div>
-                        
                         <div>
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <BiCategory />

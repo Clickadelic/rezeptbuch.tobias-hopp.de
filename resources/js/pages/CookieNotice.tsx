@@ -8,7 +8,7 @@ import LegalSidebar from '@/components/sidebars/LegalSidebar';
  */
 export default function CookieNoticePage() {
     return (
-        <SidebarLeftLayout title="Cookie-Hinweis" sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout title="Cookie-Hinweis" description="Hinweise und Details zur Verwendung von Cookies auf dieser Seite." sidebar={<LegalSidebar />}>
             <section>
                 <p>
                     Diese Website verwendet Cookies, um grundlegende Funktionen bereitzustellen und

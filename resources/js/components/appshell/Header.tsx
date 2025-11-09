@@ -5,15 +5,15 @@ import { usePermissions } from '@/hooks/usePermissions';
 import { Button } from '@/components/ui/button';
 
 import AppLogo from '@/components/appshell/AppLogo';
-
 import NavLink from '@/components/reusables/NavLink';
 import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
+import DraftAlert from "@/components/appshell/DraftAlert";
 import Avatar from '@/components/reusables/Avatar';
 import MegaMenu from '@/components/appshell/MegaMenu';
-import { BsEnvelopeAt } from "react-icons/bs";
+
 import { recipesMegaMenu, featuredRecipes } from '@/lib/mega-menu-columns';
 
 import { LuUsersRound } from 'react-icons/lu';
@@ -25,10 +25,10 @@ import { RiAccountPinBoxLine } from 'react-icons/ri';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { TbSalt } from 'react-icons/tb';
 import { BiExit } from 'react-icons/bi';
-import DraftAlert from "@/components/appshell/DraftAlert";
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 import { BsBell } from 'react-icons/bs';
+
 import { SharedPageProps } from '@/types';
 
 /**

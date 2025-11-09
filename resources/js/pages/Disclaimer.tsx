@@ -10,7 +10,7 @@ import Seperator from '@/components/reusables/Seperator';
  */
 export default function Impressum() {
     return (
-        <SidebarLeftLayout title="Impressum" sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout title="Impressum" description="Allgemeine Informationen zum Betreiber des Rezeptbuchs." sidebar={<LegalSidebar />}>
             <section>
                 <h3 className="my-5 font-medium text-lg">Angaben gemäß § 5 TMG</h3>
                 <ul className="space-y-1 my-3">

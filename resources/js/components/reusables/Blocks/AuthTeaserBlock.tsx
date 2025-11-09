@@ -5,15 +5,21 @@ import { Link, usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import { FiCheckCircle } from 'react-icons/fi';
 
+import { cn } from '@/lib/utils';
+
+interface AuthTeaserBlockProps {
+    className?: string;
+}
+
 /**
  * A teaser box for the authentication system.
  * If the user is logged in, it renders a link to the dashboard.
  * If the user is not logged in, it renders two links: one to register and one to login.
  */
-export default function AuthTeaserBox() {
+export default function AuthTeaserBox({ className }: AuthTeaserBlockProps) {
     const { auth } = usePage<SharedPageProps>().props;
     return (
-        <div className="flex flex-col gap-2 items-center justify-center my-16">
+        <div className={cn('flex flex-col gap-2 items-center justify-center my-16', className)}>
             <h2 className="flex gap-2 text-3xl font-roboto-condensed">
                 <BsJournalBookmark className="text-primary size-6 mt-1" />
                 Rezeptbuch

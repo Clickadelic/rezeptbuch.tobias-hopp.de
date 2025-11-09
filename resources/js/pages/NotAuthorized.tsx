@@ -1,10 +1,18 @@
+import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import FullWidthLayout from '@/layouts/FullWidthLayout';
+import missionImpossibleBro from "@images/svg/Mission-Impossible-bro.svg";
 
 export default function NotAuthorized() {
     return (
-        <FullWidthLayout title="Keine Berechtigung">
-            <h2 className="font-la-belle-aurore">Du bist wahrscheinlich nicht eingeloggt, oder es ist ein Fehler passiert.</h2>
-            <p>Bitte wende Dich an einen Admin, falls du mehr Berechtigungen haben solltest.</p>
+        <FullWidthLayout title="Nicht angemeldet?" description="Wenn Du nicht angemeldet bist, bist Du nicht angemeldet.">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
+                <img src={missionImpossibleBro} className="w-full sm:w-1/2 max-w-96" alt="Chef Tobias" />
+                <div className="w-full flex flex-col justify-center items-center sm:w-1/2">
+                    <h2 className="mb-3 text-xl">Du bist nicht eingeloggt und möchtest einen geschützen Bereich besuchen.</h2>
+                    <p>Bitte melde Dich an, um Zugriff auf diese Seite zu erhalten.</p>
+                    <AuthTeaserBlock />
+                </div>
+            </div>
         </FullWidthLayout>
     );
 }

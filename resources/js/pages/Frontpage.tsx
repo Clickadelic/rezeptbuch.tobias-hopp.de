@@ -26,7 +26,7 @@ import { IoMdArrowForward } from 'react-icons/io';
  */
 export default function Frontpage() {
     return (
-        <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Schau' mal rein.">
+        <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein.">
             <TitleBlock
                 icon={<FaRegHeart className="text-primary size-6 mt-1" />}
                 title="Willkommen"

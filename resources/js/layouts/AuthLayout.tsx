@@ -6,6 +6,10 @@ import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/appshell/ThemeProvider';
 import { Head } from '@inertiajs/react';
 
+import { Link } from '@inertiajs/react';
+import { BsArrowLeft } from 'react-icons/bs';
+
+
 interface AuthLayoutProps extends PropsWithChildren {
     showTitle?: boolean;
     title?: string;
@@ -60,6 +64,14 @@ export default function AuthLayout({
                                         </div>
                                     </div>
                                     {children}
+                                    <div className="w-full my-3 flex justify-center items-center">
+                                        <ul className="flex gap-2 text-xs">
+                                            <li><Link href="/nutzungsbedingungen" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Nutzungsbedingungen" aria-label="Nutzungsbedingungen">Nutzungsbedingungen</Link></li>
+                                            <li><Link href="/datenschutz" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Datenschutz" aria-label="Datenschutz">Datenschutz</Link></li>
+                                            <li><Link href="/cookie-hinweis" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Cookie-Hinweis" aria-label="Cookie-Hinweis">Cookie-Hinweis</Link></li>
+                                            <li><Link href="/impressum" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Impressum" aria-label="Impressum">Impressum</Link></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

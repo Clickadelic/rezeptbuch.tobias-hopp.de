@@ -16,7 +16,7 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 
 import badgeSrc from '@images/Quality-Symbol.png';
-import footerImage from "@images/svg/Mission-Impossible-bro.svg";
+import footerImage from "@images/svg/File-synchronization-bro.svg";
 
 import { cn } from '@/lib/utils';
 
@@ -168,11 +168,11 @@ export default function Footer({ className }: FooterProps) {
                         <div className="mx-auto max-w-[21.5rem] sm:w-full">
                             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                                 <AiOutlineAppstoreAdd />
-                                <span className="font-medium">Kontakt</span>
+                                <span className="font-medium">Ein Account - überall nutzbar</span>
                             </h2>
                             <div className="border-t border-stone-700 pt-4">
                                 <p className="pb-4 text-center sm:text-left mx-5 sm:mx-0">
-                                    Schreib' mir ein Feedback.
+                                    Probier's aus.
                                 </p>
                                 <img src={footerImage} alt="Kontakt" className="mx-auto" />
                             </div>

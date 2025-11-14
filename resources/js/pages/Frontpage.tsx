@@ -47,12 +47,7 @@ export default function Frontpage() {
             <CategorySelectionBlock />
             <Seperator style="cocktail" />
             <AuthTeaserBlock />
-            <Seperator style="mix" />
-            <DailyRecommendationsBlock />
-            <CocktailRecommendationsBlock />
-            <Seperator style="mix" />
-            <FaqAccordeon />
-            <CustomCarousel recipes={recommendedRecipes} className="mt-8" />
+
         </FullWidthLayout>
     );
 }

@@ -16,6 +16,7 @@ require __DIR__.'/custom/profile.php';
 require __DIR__.'/custom/favorites.php';
 require __DIR__.'/custom/legal-pages.php';
 require __DIR__.'/custom/recipes.php';
+require __DIR__.'/custom/regular-pages.php';
 require __DIR__.'/custom/ingredients.php';
 require __DIR__.'/custom/upload.php';
 

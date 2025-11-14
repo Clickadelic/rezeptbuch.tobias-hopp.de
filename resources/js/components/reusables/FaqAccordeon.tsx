@@ -31,9 +31,9 @@ export default function FrontpageCategoryGrid() {
                         <AccordionContent>
                             <p>Online-Kochbücher sind mittlerweile mit Werbung und Pop-Ups überladen - findest Du nicht auch?!</p>
                             <br />
-                            <p>Ich wollte schon immer ein Rezeptbuch haben, welches man bequem in der Tasche hat, falls mal etwas Inspiration zum Kochen für den Alltag fehlt, oder man eine Köstlichkeit mit Freunden teilen möchte.</p>
+                            <p>Ich wollte schon immer ein Rezeptbuch haben, welches ich bequem in der Tasche habe, falls mal etwas Inspiration zum Kochen für den Alltag fehlt, oder ich eine Köstlichkeit mit Freunden teilen möchte.</p>
                             <br />
-                            <p>Warum machst Du nicht mit?</p>
+                            <p>Nun, wenn schon, denn schon - voilá, ein Rezeptbuch!</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
@@ -42,14 +42,15 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Nachdem Du Dich eingeloggt hast, kannst Du die Rezeptbuch-Funktionen
-                                nutzen, eigene Rezepte anlegen und speichern, diese Posten und verwalten. Darüber hinaus
-                                kannst Du auch Rezepte von anderen Nutzern finden und zu Deinen
+                                Du kannst die Suchfunktion nutzen und leckere Rezepte finden (und diese für Dich verwenden). Darüber hinaus kannst Du Dich aber auch registrieren und
+                                eigene Rezepte anlegen, sie verwalten und mit anderen teilen. Zusätzlich kannst Du natürlich auch Rezepte von anderen Nutzern finden und sie zu Deinen
                                 Favoriten hinzufügen. Ganz ohne Werbung und Pop-Ups.
                             </p>
                             <br />
-                            <p>Updates und Verbesserungen in der Zukunft wird es geben.
-                                Allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe.</p>
+                            <p>Ich stelle das Rezeptbuch der Allgemeinheit zur Verfügung - wer möchte, kann gerne mitmachen.</p>
+                            <br />
+                            <p>Updates, Verbesserungen oder Bugfixes in der Zukunft wird es geben.</p>
+                            <p>Allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe und wie die technische Lage ist.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">
@@ -58,23 +59,25 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Die Registrierung mit Deiner E-Mail Adresse ist frei und kostenlos. Erstelle einen Account, bestätige ihn kurz per Klick auf den Link in Deiner Inbox, und schon kann es
+                                Ja, die Registrierung mit Deiner E-Mail Adresse ist frei und kostenlos. Erstelle einen Account, bestätige ihn kurz per Klick auf den Link in Deiner Inbox, und schon kann es
                                 losgehen.
                             </p>
                             <br />
                             <p>Versteckte Kosten gibt es nicht. Schau' in die <Link href="/nutzungsbedingungen" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">Nutzungsbedingungen</Link>.</p>
                         </AccordionContent>
                     </AccordionItem>
-                    
                     <AccordionItem value="item-4">
                         <AccordionTrigger className="font-medium text-xl">
                             Ist die Registrierung sicher?
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Ja, ist sie. Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung oder einen Registrierungsprozess,
-                                bei dem kein Passwort online versendet wird (nur Du gibst es einmal ein).
+                                Ja, ist sie.
                             </p>
+                            <br />
+                            <p>Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung oder einen Registrierungsprozess, bei dem kein Passwort online versendet wird (nur Du gibst es einmal ein).</p>
+                            <br />
+                            <p>Weitere Informationen zu diesem Thema gibt es aus Sicherheitsgründen nicht.</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

@@ -8,9 +8,11 @@ import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelect
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
 import CocktailRecommendationsBlock from '@/components/reusables/Blocks/CocktailRecommendationsBlock';
-
+import { usePage } from '@inertiajs/react';
+import { SharedPageProps } from '@/types';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
+import CustomCarousel from '@/components/reusables/Carousel';
 
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoMdArrowForward } from 'react-icons/io';
@@ -25,6 +27,8 @@ import { IoMdArrowForward } from 'react-icons/io';
  * @return {JSX.Element} The frontpage component.
  */
 export default function Frontpage() {
+    const recommendedRecipes = usePage<SharedPageProps>().props.recipes;
+    console.log("Recommended Recipes", recommendedRecipes);
     return (
         <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein.">
             <TitleBlock
@@ -48,6 +52,7 @@ export default function Frontpage() {
             <CocktailRecommendationsBlock />
             <Seperator style="mix" />
             <FaqAccordeon />
+            <CustomCarousel recipes={recommendedRecipes} className="mt-8" />
         </FullWidthLayout>
     );
 }

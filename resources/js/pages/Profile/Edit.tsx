@@ -4,7 +4,7 @@ import UpdateAvatarForm from './Partials/UploadAvatarForm';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 /**
  * Edit page for user profile.
  *
@@ -13,15 +13,21 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
  */
 export default function Edit({ mustVerifyEmail, status }: SharedPageProps) {
     return (
-        <NoSidebarsLayout title="Profil">
-            <div className="mx-auto max-w-lg space-y-4">
-                <UpdateAvatarForm />
-                <UpdateProfileInformationForm mustVerifyEmail={mustVerifyEmail} status={status} />
-                <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
-                <UpdatePasswordForm className="w-full" />
-                <hr className="my-5 bg-gray-300 dark:bg-gray-700" />
-                <DeleteUserForm className="w-full" />
-            </div>
+        <NoSidebarsLayout title="Dein Profil">
+            <UpdateAvatarForm className="mb-5" />
+            <Tabs defaultValue="account" className="w-full">
+                <TabsList className="w-full">
+                    <TabsTrigger value="community">Community</TabsTrigger>
+                    <TabsTrigger value="account">Account</TabsTrigger>
+                </TabsList>
+                <TabsContent value="community">
+                    <UpdateProfileInformationForm mustVerifyEmail={mustVerifyEmail} status={status} />
+                </TabsContent>
+                <TabsContent value="account">
+                    <UpdatePasswordForm className="w-full" />
+                    <DeleteUserForm className="w-full" />
+                </TabsContent>
+            </Tabs>
         </NoSidebarsLayout>
     );
 }

@@ -7,6 +7,7 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { SharedPageProps } from '@/types';
 import { Textarea } from '@/components/ui/textarea';
+import { Badge } from '@/components/ui/badge';
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -104,6 +105,13 @@ export default function UpdateProfileInformation({
                         onChange={(e) => setData('website_url', e.target.value)}
                     />
                     <InputError className="mt-2" message={errors.website_url} />
+                </div>
+                <div>
+                    <div className="mt-4 flex flex-wrap justify-center gap-2">
+                        <Badge variant="primary" className="text-xs">
+                            {user?.rank}
+                        </Badge>
+                    </div>
                 </div>
                 <div className="flex items-center gap-4">
                     <Button variant="primary" disabled={processing}>

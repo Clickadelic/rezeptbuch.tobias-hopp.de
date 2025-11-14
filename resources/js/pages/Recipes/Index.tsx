@@ -2,8 +2,8 @@ import { usePage } from '@inertiajs/react';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import RecipeCard from '@/components/reusables/RecipeCard';
+import OverhauledRecipeCard from '@/components/reusables/OverhauledRecipeCard';
 import Pagination from '@/components/reusables/Pagination';
-
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
 import { Link } from 'lucide-react';
@@ -27,7 +27,7 @@ export default function Recipes() {
         <FullWidthLayout title="Rezepte" description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept.">
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-5">
                 {recipes?.data.map((recipe: Recipe) => (
-                    <RecipeCard key={recipe.id} recipe={recipe} />
+                    <OverhauledRecipeCard key={recipe.id} recipe={recipe} />
                 ))}
             </ul>
             {recipes?.data.length === 0 && (

@@ -1,4 +1,4 @@
-import Carousel from '@/components/reusables/Carousel/Index';
+import Carousel from '@/components/reusables/Carousel______/__old__Index';
 import Seperator from '@/components/reusables/Seperator';
 
 import { Recipe } from '@/types/Recipe';

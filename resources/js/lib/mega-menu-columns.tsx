@@ -7,7 +7,9 @@ import { GiCakeSlice } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
 
-import megaMenuFeaturedImage from '@images/svg/Recipe-book-bro.svg';
+// import featuredImg from '@images/svg/Top-Secret-bro.svg';
+// import featuredImg from '@images/svg/File-synchronization-bro.svg';
+import featuredImg from '@images/svg/Install-App-bro.svg';
 
 export const recipesMegaMenu = [
     {
@@ -70,10 +72,10 @@ export const recipesMegaMenu = [
 ];
 
 export const featuredRecipes = {
-    imageUrl: megaMenuFeaturedImage,
-    title: 'Gesund essen & trinken.',
-    description: 'Lecker durch\'s Leben.',
-    label: '',
+    imageUrl: featuredImg,
+    title: 'Toby\'s Rezeptbuch als App',
+    description: 'Jetzt für iOS und Android erhältlich.',
+    href: '/app-installation',
+    label: 'App Installieren',
     icon: '',
-    href: '',
 };

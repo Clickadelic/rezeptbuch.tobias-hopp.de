@@ -38,4 +38,8 @@ class PageController extends Controller
             'cocktails' => $cocktails
         ]);
     }
+
+    public function appInstallation() {
+        return Inertia::render('AppInstallation');
+    }
 }

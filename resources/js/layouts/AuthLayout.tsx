@@ -66,10 +66,10 @@ export default function AuthLayout({
                                     {children}
                                     <div className="w-full my-3 flex justify-center items-center">
                                         <ul className="flex gap-2 text-xs">
-                                            <li><Link href="/nutzungsbedingungen" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Nutzungsbedingungen" aria-label="Nutzungsbedingungen">Nutzungsbedingungen</Link></li>
-                                            <li><Link href="/datenschutz" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Datenschutz" aria-label="Datenschutz">Datenschutz</Link></li>
-                                            <li><Link href="/cookie-hinweis" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Cookie-Hinweis" aria-label="Cookie-Hinweis">Cookie-Hinweis</Link></li>
-                                            <li><Link href="/impressum" className="flex items-center gap-2 text-gray-900 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400" title="Impressum" aria-label="Impressum">Impressum</Link></li>
+                                            <li><Link href="/nutzungsbedingungen" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Nutzungsbedingungen" aria-label="Nutzungsbedingungen">Nutzungsbedingungen</Link></li>
+                                            <li><Link href="/datenschutz" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Datenschutz" aria-label="Datenschutz">Datenschutz</Link></li>
+                                            <li><Link href="/cookie-hinweis" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Cookie-Hinweis" aria-label="Cookie-Hinweis">Cookie-Hinweis</Link></li>
+                                            <li><Link href="/impressum" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Impressum" aria-label="Impressum">Impressum</Link></li>
                                         </ul>
                                     </div>
                                 </div>

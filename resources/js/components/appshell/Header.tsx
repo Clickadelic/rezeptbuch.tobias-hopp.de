@@ -48,7 +48,7 @@ export default function Header() {
                 <div className="flex justify-between">
                     <div className="w-full flex justify-between">
                         <div className="relative flex shrink-0">
-                            <AppLogo className="mx-auto mt-2 mr-1 sm:mr-3" />
+                            <AppLogo className="mx-auto mt-2 lg:mt-[14px] mr-1 sm:mr-3" />
                         </div>
                         <div className="relative hidden lg:flex lg:gap-1 xl:gap-4 mx-auto">
                             <NavLink

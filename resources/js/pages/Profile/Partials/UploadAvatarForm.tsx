@@ -1,18 +1,28 @@
 import { useForm, usePage, router } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import InputError from '@/components/forms/inputs/InputError';
-import { Plus, Minus, Loader2 } from 'lucide-react';
+import { Plus, Loader2 } from 'lucide-react';
 import { SharedPageProps } from '@/types';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { VscTrash } from 'react-icons/vsc';
-import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
+
 import { PiUserCirclePlusFill } from 'react-icons/pi';
 import { FiUpload } from 'react-icons/fi';
 import cameraBro from "@images/svg/Camera-bro.svg";
 
+interface UpdateAvatarFormProps {
+    className?: string;
+}
 
-export default function UpdateAvatarForm() {
+/**
+ * A form to update the user's avatar.
+ *
+ * @param {string} [className] - An optional class name to apply to the form.
+ *
+ * @returns {JSX.Element} - The rendered form component.
+ */
+export default function UpdateAvatarForm({ className }: UpdateAvatarFormProps) {
     const user = usePage<SharedPageProps>().props.auth.user;
 
     const { data, setData, post, errors, processing, progress } = useForm({
@@ -49,15 +59,10 @@ export default function UpdateAvatarForm() {
     };
 
     return (
-        <section>
-            <header className="mb-2">
-                <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">
-                    Profilbild ändern
-                </h2>
-            </header>
+        <section className={cn("asd", className)}>
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5">
                 <div className="order-2 lg:order-1">
-                    <form onSubmit={handleSubmit} className="mt-6" encType="multipart/form-data">
+                    <form onSubmit={handleSubmit} className="mt-6 w-full sm:w-64" encType="multipart/form-data">
                         <div className="w-full flex justify-evenly items-center gap-4">
                             {(preview || user.avatar) && (
                                 <div className="relative">
@@ -135,7 +140,7 @@ export default function UpdateAvatarForm() {
                     </form>
                 </div>
                 <div className="flex justify-center items-center order-1 lg:order-2">
-                    <img src={cameraBro} className="size-32 mx-auto lg:size-52" alt="Chef Tobias" />
+                    <img src={cameraBro} className="size-32 mx-auto lg:size-48 lg:mg-5" alt="Chef Tobias" />
                 </div>
             </div>
         </section>

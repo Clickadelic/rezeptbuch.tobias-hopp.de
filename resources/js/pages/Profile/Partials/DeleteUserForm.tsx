@@ -64,7 +64,7 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
                 </p>
             </header>
 
-            <Button variant="destructive" className="w-full" onClick={confirmUserDeletion}>
+            <Button variant="danger" className="w-full" onClick={confirmUserDeletion}>
                 Profil löschen
             </Button>
 

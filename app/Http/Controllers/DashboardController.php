@@ -28,10 +28,15 @@ class DashboardController extends Controller
 
 
         // Global
-        $recipesCountByCategory = Recipe::join('categories', 'categories.id', '=', 'recipes.category_id')
-            ->groupBy('recipes.category_id', 'categories.name')
-            ->select('categories.name', DB::raw('COUNT(*) as total'))
-            ->pluck('total', 'name');
+        $recipesCountByCategory = Recipe::where('status', 'published')
+            ->with('category')
+            ->groupBy('category_id')
+            ->select('category_id')
+            ->selectRaw('COUNT(*) as total')
+            ->get()
+            ->mapWithKeys(function ($item) {
+                return [$item->category->name => $item->total];
+            });
 
         // Nur aktueller User (und nur published)
         $recipesUserCountByCategory = Recipe::join('categories', 'categories.id', '=', 'recipes.category_id')

@@ -3,6 +3,7 @@ import { useForm } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 import axios from 'axios';
 
+import { toast } from 'sonner';
 import Seperator from '@/components/reusables/Seperator';
 
 import InputLabel from '@/components/forms/inputs/InputLabel';
@@ -52,7 +53,8 @@ interface RecipeWizardProps {
 export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     const [step, setStep] = useState<number>(1);
     const formRef = useRef<HTMLFormElement>(null);
-    
+
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState<boolean>(false);
     /**
      * Smoothly scrolls the window to the top of the form.
      * @returns {void}
@@ -177,6 +179,10 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             );
         }
     };
+
+    const toggleIngredientDeleteDialog = (index: number) => {
+        setDeleteDialogOpen(true);
+    }
 
     return (
         <form onSubmit={handleSubmit} ref={formRef} className={cn('flex flex-col', className)}>
@@ -415,7 +421,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {step === 2 && (
                 <section className="space-y-5 mt-5">
                     <div className="w-full max-w-xl mx-auto">
-                        <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" />
+                        <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" description="Hier kannst du die Zutaten des Rezeptes bearbeiten. Dabei kannst du die Menge und die Einheit der Zutat angeben." />
                         <div className="w-full flex flex-col gap-5 md:gap-1 mb-3 sm:mb-0">
                             {data.recipe_ingredients?.map((di, idx) => (
                                 <div
@@ -502,21 +508,44 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             )}
                             
                             {/* Alle Zutaten löschen */}
-                            <Button
-                                type="button"
-                                variant="danger"
-                                disabled={!data.recipe_ingredients?.length}
-                                className="mt-3 md:mt-5 hover:cursor-pointer"
-                                onClick={() => {
-                                    if (confirm('Alle Zutaten wirklich löschen?')) {
-                                        setData('recipe_ingredients', []);
-                                    }
-                                }}
-                            >
-                                <BsTrash3 className="mr-1" />
-                                Alle Zutaten löschen
-                            </Button>
-                            
+                            <AlertDialog>
+                                <AlertDialogTrigger
+                                    disabled={!data.recipe_ingredients?.length}
+                                    className="flex gap-1 py-2 px-3 text-sm md:mt-5 hover:cursor-pointer text-white bg-rose-700 rounded-sm"
+                                    
+                                >
+                                    <BsTrash3 className="size-4 mt-.5 mr-1" />
+                                    Alle Zutaten löschen
+                                </AlertDialogTrigger>
+                                <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
+                                            Bist Du sicher, dass Du alle Zutaten löschen möchtest?
+                                        </AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                            Das Rezept kann auch ohne Zutaten gespeichert werden.
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel
+                                            className="dark:text-gray-200"
+                                            onClick={() => toggleIngredientDeleteDialog(0)}
+                                        >
+                                            Abbrechen
+                                        </AlertDialogCancel>
+                                        <AlertDialogAction
+                                            className="bg-rose-600 hover:bg-rose-700 text-white"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setData('recipe_ingredients', []);
+                                            }}
+                                        >
+                                            <BsTrash3 className="size-5" />
+                                            Löschen
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
                         </div>
                     </div>
                     <div className="flex justify-between gap-2 mt-8">

@@ -15,6 +15,10 @@ import { MdOutlineNearbyError } from "react-icons/md";
 import ContextMenu from '@/components/reusables/ContextMenu';
 import AuthUser from '@/types/AuthUser';
 
+import AdminContextMenu from '@/components/reusables/AdminContextMenu';
+
+
+
 import { cn } from '@/lib/utils';
 
 interface UserListProps {
@@ -89,7 +93,7 @@ export default function UsersTable({ title, icon, className, users }: UserListPr
 
 
                                 <TableCell className="text-right">
-                                    ACTION
+                                    <AdminContextMenu user={user} dotStyle="vertical" />
                                 </TableCell>
                             </TableRow>
                         ))}

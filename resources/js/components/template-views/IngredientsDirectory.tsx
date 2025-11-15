@@ -9,11 +9,11 @@ import { Separator } from '@/components/ui/separator';
 import { SharedPageProps } from '@/types';
 import { Ingredient } from '@/types/Ingredient';
 import { BsArrow90DegUp } from 'react-icons/bs';
-import { LuArrowUpFromLine } from 'react-icons/lu';
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
-import { cn } from '@/lib/utils';
 import { usePermissions } from '@/hooks/usePermissions';
+import { cn } from '@/lib/utils';
 
 export default function IngredientsDirectory() {
     const { hasRole } = usePermissions();

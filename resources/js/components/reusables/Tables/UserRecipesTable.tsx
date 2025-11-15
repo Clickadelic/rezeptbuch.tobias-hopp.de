@@ -133,7 +133,7 @@ export default function UserRecipesTable({
                                     {recipe.difficulty}
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    <ContextMenu recipe={recipe} dotStyle="horizontal" />
+                                    <ContextMenu recipe={recipe} />
                                 </TableCell>
                             </TableRow>
                         ))}

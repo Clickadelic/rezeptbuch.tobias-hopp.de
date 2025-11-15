@@ -116,7 +116,7 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                         type="text"
                         value={data.name}
                         className="mt-1 py-3 px-2 flex w-full"
-                        placeholder="z. B. Kartoffeln"
+                        placeholder="z.B. Nudeln, Tomaten, ..."
                         isFocused
                         onChange={(e) => setData('name', e.target.value)}
                     />

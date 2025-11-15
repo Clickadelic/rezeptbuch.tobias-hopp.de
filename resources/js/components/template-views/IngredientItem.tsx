@@ -32,8 +32,8 @@ export default function IngredientItem({ ingredient, onSelect }: IngredientItemP
                         {ingredient.name}
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>
-                    <p>Diese Zutat gehört Dir.</p>
+                <TooltipContent className="text-white">
+                    <p>Diese Zutat gehört Dir, klicke zum Bearbeiten.</p>
                     <TooltipArrow className="fill-primary dark:fill-primary" />
                 </TooltipContent>
             </Tooltip>

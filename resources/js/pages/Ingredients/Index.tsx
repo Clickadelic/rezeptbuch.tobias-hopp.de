@@ -3,7 +3,17 @@ import IngredientDirectory from '@/components/template-views/IngredientsDirector
 import Seperator from '@/components/reusables/Seperator';
 
 import srcUrl from "@images/svg/Hamburger-bro.svg";
-
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Link } from '@inertiajs/react';
+import TitleBlock from './Blocks/TitleBlock';
+import { FaQuora } from 'react-icons/fa';
+import { IoIosInformationCircleOutline } from 'react-icons/io';
+import { FaQ } from 'react-icons/fa6';
 export default function IngredientsIndex() {
     return (
         <NoSidebarsLayout title="Zutaten">
@@ -18,9 +28,21 @@ export default function IngredientsIndex() {
                     <br />
                     <p>In den Rezepten sind folgende Zutaten enthalten:</p>
                 </div>
+                
             </div>
-            <Seperator style="carrot" />
+            
             <IngredientDirectory />
+
+            <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                    <AccordionTrigger className="flex justify-between items-start p-3 border border-transparent border-b-gray-200 dark:border-b-gray-700 rounded-lg bg-gray-100 dark:bg-gray-900">
+                        <span className="flex gap-2"><IoIosInformationCircleOutline className="mt-1 size-5 text-primary" /> Zutatenverwaltung - so geht's.</span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <p>Online-Kochbücher sind mittlerweile mit Werbung und Pop-Ups überladen - findest Du nicht auch?!</p>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </NoSidebarsLayout>
     );
 }

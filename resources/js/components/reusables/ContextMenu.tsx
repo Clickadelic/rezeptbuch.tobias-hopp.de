@@ -99,7 +99,6 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                     Bearbeiten
                                 </Link>
                             </DropdownMenuItem>
-                            
                             <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
                                 <AlertDialog>
                                     <AlertDialogTrigger
@@ -148,7 +147,6 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                     </AlertDialogContent>
                                 </AlertDialog>
                             </DropdownMenuItem>
-
                             <DropdownMenuItem>
                                 <AlertDialog>
                                     <AlertDialogTrigger

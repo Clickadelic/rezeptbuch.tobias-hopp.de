@@ -2,7 +2,8 @@ import { usePage } from '@inertiajs/react';
 import { usePermissions } from '@/hooks/usePermissions';
 import { Ingredient } from '@/types/Ingredient';
 import { Button } from '@/components/ui/button';
-
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { TooltipArrow } from '@radix-ui/react-tooltip';
 import { SharedPageProps } from '@/types';
 
 interface IngredientItemProps {
@@ -19,13 +20,23 @@ export default function IngredientItem({ ingredient, onSelect }: IngredientItemP
     }
 
     return (
-        <Button
-            variant="link"
-            className="p-0 text-base"
-            onClick={onSelect}
-            title="Diese Zutat gehört Dir"
-        >
-            {ingredient.name}
-        </Button>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button
+                        variant="link"
+                        className="p-0 text-base"
+                        onClick={onSelect}
+                        aria-label="Diese Zutat gehört Dir."
+                    >
+                        {ingredient.name}
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Diese Zutat gehört Dir.</p>
+                    <TooltipArrow className="fill-primary dark:fill-primary" />
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     );
 }

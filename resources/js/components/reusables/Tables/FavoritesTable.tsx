@@ -91,7 +91,7 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
                                     {recipe.user?.name}
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    <ContextMenu recipe={recipe} dotStyle="horizontal" />
+                                    <ContextMenu recipe={recipe} />
                                 </TableCell>
                             </TableRow>
                         ))}

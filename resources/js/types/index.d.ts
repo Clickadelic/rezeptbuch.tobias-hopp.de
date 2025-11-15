@@ -43,6 +43,7 @@ export interface SharedPageProps extends InertiaPageProps {
     totalUserRecipes?: Paginated<Recipe>;
     totalUserRecipeCount: number;
     totalIngredientCount: number;
+    totalUserIngredientCount: number;
     totalRecipeCount: number;
     totalUserIngredientCount: number;
     totalUserFavorites: Recipe[];

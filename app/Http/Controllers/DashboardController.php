@@ -33,6 +33,17 @@ class DashboardController extends Controller
             ->get()
             ->pluck('total', 'category.name');
 
+        
+        $recipesUserCountByCategory = Recipe::where('user_id', auth()->id())
+            ->groupBy('category_id')
+            ->with('category')
+            ->select('category_id')
+            ->selectRaw('COUNT(*) as total')
+            ->get()
+            ->mapWithKeys(fn ($item) => [
+                $item->category->name => $item->total
+            ]);
+
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
 
         // Globale Counts
@@ -42,6 +53,8 @@ class DashboardController extends Controller
         // Benutzerbezogene Counts
         $totalUserRecipeCount = Recipe::where('user_id', Auth::id())->count();
         $totalUserRecipes = Recipe::where('user_id', Auth::id())->with(['category', 'user'])->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+
+        $totalUserIngredientCount = Ingredient::where('user_id', Auth::id())->count();
 
         // Alle Favoriten des Users:
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
@@ -54,9 +67,11 @@ class DashboardController extends Controller
             'totalUserRecipes'        => $totalUserRecipes,
             'totalRecipeCount'        => $totalRecipeCount,
             'totalIngredientCount'    => $totalIngredientCount,
+            'totalUserIngredientCount' => $totalUserIngredientCount,
             'userFavorites'           => $userFavorites,
             'userFavoritesCount'      => $userFavoritesCount,
             'recipesCountByCategory'  => $recipesCountByCategory,
+            'recipesUserCountByCategory' => $recipesUserCountByCategory
         ]);
     }
 }

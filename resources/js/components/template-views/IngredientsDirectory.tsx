@@ -67,8 +67,7 @@ export default function IngredientsDirectory() {
                     <ul className="list-decimal space-y-3 list-inside">
                         <li>Die Zutaten werden global für alle Benutzer angelegt und verwaltet. Dies hat den Vorteil, dass alle Benutzer aus dem ständig wachsenden Pool an Zutaten auswählen können.</li>
                         <li>Legst Du eine neue Zutat an, (egal ob hier einzeln oder beim Anlegen eines Rezeptes im Formular), wird sie automatisch in der Zutatenverwaltung angelegt und hier angezeigt.</li>
-                        <li>Wenn eine Zutat Dir gehört, kannst Du sie hier editieren und bearbeiten. </li>
-                        <li>Die Zutat ist per Klick auf den Namen/Link editierbar.</li>
+                        <li>Die Zutat ist dann per Klick auf den Namen/Link editierbar.</li>
                         <li>Sollte die Zutat noch in einem Rezept verwendet werden, wird das Löschen systemseitig nicht zugelassen.</li>
                     </ul>
                     </AccordionContent>

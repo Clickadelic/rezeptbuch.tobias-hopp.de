@@ -13,7 +13,7 @@ import { Link } from '@inertiajs/react';
  */
 export default function ContactPage() {
     return (
-        <NoSidebarsLayout title="Kontakt" description="Auf dieser Seite kannst in Kontakt mit mir treten und mir eine Nachricht schreiben.">
+        <NoSidebarsLayout title="Kontakt" showTitle={false} description="Auf dieser Seite kannst in Kontakt mit mir treten und mir eine Nachricht schreiben.">
             <ContactBlock />
         </NoSidebarsLayout>
     );

@@ -29,6 +29,7 @@ export default function Dashboard() {
         totalRecipeCount,
         totalUserRecipeCount,
         totalIngredientCount,
+        totalUserIngredientCount,
         totalUserRecipes,
         userFavorites,
         userFavoritesCount,
@@ -38,6 +39,7 @@ export default function Dashboard() {
 
     const { user } = usePage<SharedPageProps>().props.auth;
     console.log("Comments", comments?.total);
+    console.log("totalUserIngredientCount", totalUserIngredientCount);
     // Prepare data for charts
     const barData = [
         { name: 'Vorspeisen', value: recipesCountByCategory['Vorspeise'] },
@@ -71,9 +73,9 @@ export default function Dashboard() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <BsJournalBookmark className="size-4 mt-1.5 text-primary" /> Rezepte
+                                <BsJournalBookmark className="size-4 mt-1.5 text-primary" />Deine Rezepte
                             </span>{' '}
-                            <span>{totalRecipeCount}</span>
+                            <span>{totalUserRecipeCount}</span>
                         </h3>
                     </div>
                 </div>
@@ -83,7 +85,7 @@ export default function Dashboard() {
                             <span className="flex gap-2">
                                 <TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten
                             </span>{' '}
-                            <span>{totalIngredientCount}</span>
+                            <span>{totalUserIngredientCount}</span>
                         </h3>
                     </div>
                 </div>

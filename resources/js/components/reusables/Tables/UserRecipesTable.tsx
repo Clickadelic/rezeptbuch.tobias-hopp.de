@@ -116,6 +116,7 @@ export default function UserRecipesTable({
                                 <TableCell className="text-center">
                                     <Link
                                         href={route('recipes.show', recipe.slug)}
+                                        disabled={recipe.status === 'draft' }
                                         className="p-1 bg-transparent border border-primary text-primary rounded-md hover:bg-primary hover:text-white inline-flex items-center justify-center"
                                         title="Rezept ansehen"
                                     >

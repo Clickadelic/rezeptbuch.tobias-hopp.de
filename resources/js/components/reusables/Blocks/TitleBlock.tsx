@@ -14,7 +14,7 @@ interface TitleBlockProps {
  * @returns {JSX.Element} The welcome box component.
  */
 export default function TitleBlock({
-    icon = <FaRegHeart className="text-primary size-6 mt-1" />,
+    icon = null,
     title = 'Willkommen',
     punchline = 'Alles wird gut.',
     children,
@@ -25,9 +25,11 @@ export default function TitleBlock({
                 {icon}
                 {title}
             </h2>
-            <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
-                {punchline}
-            </h3>
+            {punchline && (
+                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
+                    {punchline}
+                </h3>
+            )}
             {children}
         </div>
     );

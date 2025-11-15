@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Recipe } from '@/types/Recipe';
 import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
-
+import AvatarBlock from '@/components/reusables/Blocks/AvatarBlock';
 import fallbackImage from '@images/webp/annie-spratt-R3LcfTvcGWY-unsplash.webp';
 
 interface OverhauledRecipeCardProps {
@@ -27,6 +27,7 @@ export default function OverhauledRecipeCard({ recipe, className }: OverhauledRe
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-card/80" />
                 </div>
+                <AvatarBlock recipe={recipe as Recipe} />
                 {/* <div className="relative -mt-16 flex justify-center px-6">
                     <div className="relative">
                         <Avatar

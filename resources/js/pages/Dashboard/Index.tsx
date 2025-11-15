@@ -154,12 +154,6 @@ export default function Dashboard() {
                     icon={<IoIosStats className="mt-1 text-primary" />}
                     className="col-span-1 xl:col-span-7"
                 />
-                <DonutChart
-                    data={donutData}
-                    title="Dein Anteil"
-                    icon={<TbCategory className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-5 xl:col-start-8"
-                />
             </div>
 
         </FullWidthLayout>

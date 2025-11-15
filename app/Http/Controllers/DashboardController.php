@@ -48,6 +48,8 @@ class DashboardController extends Controller
         $totalUserRecipeCount = Recipe::where('user_id', Auth::id())->count();
         $totalUserRecipes = Recipe::where('user_id', Auth::id())->with(['category', 'user'])->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
+        $totalUserIngredientCount = Ingredient::where('user_id', Auth::id())->count();
+
         // Alle Favoriten des Users:
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
         $userFavoritesCount = $userFavorites->count();
@@ -59,10 +61,12 @@ class DashboardController extends Controller
             'totalUserRecipes'        => $totalUserRecipes,
             'totalRecipeCount'        => $totalRecipeCount,
             'totalIngredientCount'    => $totalIngredientCount,
+            'totalUserIngredientCount' => $totalUserIngredientCount,
             'totalUserIngredientCount'=> $totalUserIngredientCount,
             'userFavorites'           => $userFavorites,
             'userFavoritesCount'      => $userFavoritesCount,
             'recipesCountByCategory'  => $recipesCountByCategory,
+            'recipesUserCountByCategory' => $recipesUserCountByCategory
         ]);
     }
 }

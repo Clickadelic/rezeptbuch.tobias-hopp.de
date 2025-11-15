@@ -10,7 +10,8 @@ import { SharedPageProps } from '@/types';
 import { Ingredient } from '@/types/Ingredient';
 import { BsArrow90DegUp } from 'react-icons/bs';
 import { LuArrowUpFromLine } from 'react-icons/lu';
-
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
+import { IoIosInformationCircleOutline } from 'react-icons/io';
 import { cn } from '@/lib/utils';
 import { usePermissions } from '@/hooks/usePermissions';
 
@@ -57,7 +58,23 @@ export default function IngredientsDirectory() {
                     </a>
                 ))}
             </nav>
-
+            {hasRole('user') && (
+                <Accordion type="single" collapsible className="p-0 rounded-sm my-8 border border-transparent border-b-gray-200 dark:border-b-gray-700 bg-gray-100 dark:bg-gray-900">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger className="px-3 py-2.5">
+                            <span className="flex gap-2"><IoIosInformationCircleOutline className="mt-1 size-5 text-primary" />Zutatenverwaltung - so geht's.</span>
+                        </AccordionTrigger>
+                        <AccordionContent className="px-5">
+                        <ul className="list-decimal space-y-3 list-inside">
+                            <li>Die Zutaten werden global für alle Benutzer angelegt und verwaltet. Dies hat den Vorteil, dass alle Benutzer aus dem ständig wachsenden Pool an Zutaten auswählen können.</li>
+                            <li>Legst Du eine neue Zutat an, (egal ob hier einzeln oder beim Anlegen eines Rezeptes im Formular), wird sie automatisch in der Zutatenverwaltung angelegt und hier angezeigt.</li>
+                            <li>Die Zutat ist dann per Klick auf den Namen/Link editierbar.</li>
+                            <li>Sollte die Zutat noch in einem Rezept verwendet werden, wird das Löschen systemseitig nicht zugelassen.</li>
+                        </ul>
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            )}
             {/* Inhaltsabschnitte */}
             {alphabet.map(
                 (letter) =>

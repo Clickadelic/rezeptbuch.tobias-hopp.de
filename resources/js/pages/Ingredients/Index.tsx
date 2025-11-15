@@ -1,7 +1,9 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
+
 import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 import IngredientDirectory from '@/components/template-views/IngredientsDirectory';
-import Seperator from '@/components/reusables/Seperator';
 
+import { IoIosInformationCircleOutline } from 'react-icons/io';
 import srcUrl from "@images/svg/Hamburger-bro.svg";
 
 export default function IngredientsIndex() {
@@ -19,8 +21,9 @@ export default function IngredientsIndex() {
                     <p>In den Rezepten sind folgende Zutaten enthalten:</p>
                 </div>
             </div>
-            <Seperator style="carrot" />
+            
             <IngredientDirectory />
+            
         </NoSidebarsLayout>
     );
 }

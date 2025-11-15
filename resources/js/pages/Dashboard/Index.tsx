@@ -120,20 +120,6 @@ export default function Dashboard() {
                 </div>
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <BarChart
-                    data={userBarData}
-                    title="Deine Rezepte nach Kategorie"
-                    icon={<IoIosStats className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-7"
-                />
-                <DonutChart
-                    data={donutData}
-                    title="Dein Anteil"
-                    icon={<TbCategory className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-5 xl:col-start-8"
-                />
-            </div>
-            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <RecipesTable
                     initialRecipes={totalUserRecipes}
                     title="Deine Rezepte"
@@ -149,13 +135,26 @@ export default function Dashboard() {
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <BarChart
-                    data={globalBarData}
-                    title="Rezeptbuch Gesamt"
+                    data={userBarData}
+                    title="Deine Rezepte nach Kategorie"
                     icon={<IoIosStats className="mt-1 text-primary" />}
                     className="col-span-1 xl:col-span-7"
                 />
+                <DonutChart
+                    data={donutData}
+                    title="Dein Anteil"
+                    icon={<TbCategory className="mt-1 text-primary" />}
+                    className="col-span-1 xl:col-span-5 xl:col-start-8"
+                />
             </div>
-
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <BarChart
+                    data={globalBarData}
+                    title="Rezeptbuch Gesamt"
+                    icon={<IoIosStats className="mt-1 text-primary" />}
+                    className="col-span-1 xl:col-span-7 xl:col-start-7"
+                />
+            </div>
         </FullWidthLayout>
     );
 }

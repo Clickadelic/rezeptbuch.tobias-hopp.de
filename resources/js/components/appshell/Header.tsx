@@ -39,9 +39,7 @@ import { SharedPageProps } from '@/types';
 export default function Header() {
     const { auth, drafts } = usePage<SharedPageProps>().props;
     const { hasRole } = usePermissions();
-
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState<boolean>(false);
-
     return (
         <header className="bg-white dark:bg-gray-800 shadow-lg">
             <div className="mx-auto container px-6 py-2 lg:py-0">

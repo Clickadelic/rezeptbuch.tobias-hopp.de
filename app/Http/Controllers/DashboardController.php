@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Comment;
 use App\Models\Recipe;
 use App\Models\Ingredient;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Comment;
 
 class DashboardController extends Controller
 {
@@ -26,27 +27,19 @@ class DashboardController extends Controller
             ->withQueryString();
 
 
-        $recipesCountByCategory = Recipe::where('user_id', auth()->id())
-            ->where('status', 'published') // falls du nur veröffentlichte willst
-            ->with('category')
-            ->groupBy('category_id')
-            ->select('category_id')
-            ->selectRaw('COUNT(*) as total')
-            ->get()
-            ->mapWithKeys(function ($item) {
-                return [$item->category->name => $item->total];
-            });
+        // Global
+        $recipesCountByCategory = Recipe::join('categories', 'categories.id', '=', 'recipes.category_id')
+            ->groupBy('recipes.category_id', 'categories.name')
+            ->select('categories.name', DB::raw('COUNT(*) as total'))
+            ->pluck('total', 'name');
 
-        $recipesUserCountByCategory = Recipe::where('user_id', auth()->id())
-            ->where('status', 'published') // falls du nur veröffentlichte willst
-            ->with('category')
-            ->groupBy('category_id')
-            ->select('category_id')
-            ->selectRaw('COUNT(*) as total')
-            ->get()
-            ->mapWithKeys(function ($item) {
-                return [$item->category->name => $item->total];
-            });
+        // Nur aktueller User (und nur published)
+        $recipesUserCountByCategory = Recipe::join('categories', 'categories.id', '=', 'recipes.category_id')
+            ->where('recipes.user_id', auth()->id())
+            ->where('recipes.status', 'published')
+            ->groupBy('recipes.category_id', 'categories.name')
+            ->select('categories.name', DB::raw('COUNT(*) as total'))
+            ->pluck('total', 'name');
 
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
 

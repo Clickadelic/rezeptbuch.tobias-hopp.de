@@ -29,23 +29,34 @@ export default function Dashboard() {
         totalRecipeCount,
         totalUserRecipeCount,
         totalIngredientCount,
+        totalUserIngredientCount,
         totalUserRecipes,
         userFavorites,
         userFavoritesCount,
         recipesCountByCategory,
+        recipesUserCountByCategory,
         comments,
     } = usePage<SharedPageProps>().props;
 
     const { user } = usePage<SharedPageProps>().props.auth;
     console.log("Comments", comments?.total);
     // Prepare data for charts
-    const barData = [
+    const globalBarData = [
         { name: 'Vorspeisen', value: recipesCountByCategory['Vorspeise'] },
         { name: 'Hauptgerichte', value: recipesCountByCategory['Hauptgericht'] },
         { name: 'Nachtisch', value: recipesCountByCategory['Nachtisch'] },
         { name: 'Cocktails', value: recipesCountByCategory['Cocktail'] },
         { name: 'Backen', value: recipesCountByCategory['Backen'] },
         { name: 'Snack', value: recipesCountByCategory['Snack'] },
+    ];
+
+    const userBarData = [
+        { name: 'Vorspeisen', value: recipesUserCountByCategory['Vorspeise'] },
+        { name: 'Hauptgerichte', value: recipesUserCountByCategory['Hauptgericht'] },
+        { name: 'Nachtisch', value: recipesUserCountByCategory['Nachtisch'] },
+        { name: 'Cocktails', value: recipesUserCountByCategory['Cocktail'] },
+        { name: 'Backen', value: recipesUserCountByCategory['Backen'] },
+        { name: 'Snack', value: recipesUserCountByCategory['Snack'] },
     ];
 
     const donutData = [
@@ -61,7 +72,7 @@ export default function Dashboard() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" />{' '}
+                                <TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" />
                                 Hi {user?.name}
                             </span>
                         </h3>
@@ -71,9 +82,9 @@ export default function Dashboard() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <BsJournalBookmark className="size-4 mt-1.5 text-primary" /> Rezepte
-                            </span>{' '}
-                            <span>{totalRecipeCount}</span>
+                                <BsJournalBookmark className="size-4 mt-1.5 text-primary" />Deine Rezepte
+                            </span>
+                            <span>{totalUserRecipeCount}</span>
                         </h3>
                     </div>
                 </div>
@@ -82,8 +93,8 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten
-                            </span>{' '}
-                            <span>{totalIngredientCount}</span>
+                            </span>
+                            <span>{totalUserIngredientCount}</span>
                         </h3>
                     </div>
                 </div>
@@ -92,7 +103,7 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <TfiCommentAlt className="size-4 mt-1.5 text-primary" /> Kommentare
-                            </span>{' '}
+                            </span>
                             <span>{comments?.total || 0}</span>
                         </h3>
                     </div>
@@ -102,7 +113,7 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten
-                            </span>{' '}
+                            </span>
                             <span>{userFavoritesCount}</span>
                         </h3>
                     </div>
@@ -110,8 +121,8 @@ export default function Dashboard() {
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <BarChart
-                    data={barData}
-                    title="Rezepte pro Kategorie"
+                    data={userBarData}
+                    title="Deine Rezepte nach Kategorie"
                     icon={<IoIosStats className="mt-1 text-primary" />}
                     className="col-span-1 xl:col-span-7"
                 />
@@ -136,6 +147,21 @@ export default function Dashboard() {
                     className="col-span-1 xl:col-span-6"
                 />
             </div>
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <BarChart
+                    data={globalBarData}
+                    title="Rezeptbuch Gesamt"
+                    icon={<IoIosStats className="mt-1 text-primary" />}
+                    className="col-span-1 xl:col-span-7"
+                />
+                <DonutChart
+                    data={donutData}
+                    title="Dein Anteil"
+                    icon={<TbCategory className="mt-1 text-primary" />}
+                    className="col-span-1 xl:col-span-5 xl:col-start-8"
+                />
+            </div>
+
         </FullWidthLayout>
     );
 }

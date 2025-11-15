@@ -14,6 +14,9 @@ import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 import CustomCarousel from '@/components/reusables/Carousel';
 
+import { TbSalt } from 'react-icons/tb';
+import { MdOutlineQueryStats } from "react-icons/md";
+
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoMdArrowForward } from 'react-icons/io';
 
@@ -28,7 +31,9 @@ import { IoMdArrowForward } from 'react-icons/io';
  */
 export default function Frontpage() {
     const recommendedRecipes = usePage<SharedPageProps>().props.recipes;
-    console.log("Recommended Recipes", recommendedRecipes);
+    const totalRecipeCount = usePage<SharedPageProps>().props.totalRecipeCount;
+
+    console.log("Total Recipe Count", totalRecipeCount);
     return (
         <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein.">
             <TitleBlock
@@ -47,7 +52,13 @@ export default function Frontpage() {
             <CategorySelectionBlock />
             <Seperator style="cocktail" />
             <AuthTeaserBlock />
-
+            <Seperator style="carrot" />
+            <div className="flex justify-between gap-2">
+                <div className="flex flex-col gap-2">
+                    <TitleBlock title="Statistiken" icon={<MdOutlineQueryStats className="text-primary size-6 mt-1" />} punchline="Rezeptbuch in Zahlen" />
+                    <h4 className="text-2xl mx-auto">{totalRecipeCount} Rezepte</h4>
+                </div>
+            </div>
         </FullWidthLayout>
     );
 }

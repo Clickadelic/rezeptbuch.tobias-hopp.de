@@ -84,142 +84,171 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                     <HiOutlineDotsHorizontal className="size-5" />
                 )}
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-                {isOwner(recipe?.user_id) && (
-                    <>
-                        <DropdownMenuItem>
-                            <Link
-                                href={route('recipes.edit', recipe?.slug)}
-                                className="flex flex-row items-center"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <MdOutlineEdit className="size-5 mr-2" />
-                                Bearbeiten
-                            </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            asChild
-                            className="focus:outline-none hover:outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
-                        >
-                            <Button
-                                variant="ghost"
-                                className="outline-none hover:outline-none focus:outline-none w-full flex flex-row justify-start items-start mb-0"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    router.post(route('recipes.duplicate', recipe?.slug), {}, {
-                                        onSuccess: () => {
-                                            toast.success('Rezept wurde kopiert! Siehe Dashboard.', { duration: 3000 });
-                                        },
-                                        onError: () => {
-                                            toast.error('Fehler beim Kopieren');
-                                        },
-                                    });
-                                }}
-                            >
-                                <PiCopySimpleLight className="size-5 mr-1" />
-                                Kopieren
-                            </Button>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
-                            <AlertDialog>
-                                <AlertDialogTrigger
-                                    className="w-full flex flex-row items-between gap-2 hover:cursor-pointer text-rose-600"
-                                    onClick={toggleDeleteDialog}
+            
+                <DropdownMenuContent align="end" className="bg-white/30 dark:bg-gray-800/30 p-1 rounded-xl backdrop backdrop-blur border-0">
+                    <div className="bg-white dark:bg-gray-800 rounded-lg p-1">
+                    {isOwner(recipe?.user_id) && (
+                        <>
+                            <DropdownMenuItem>
+                                <Link
+                                    href={route('recipes.edit', recipe?.slug)}
+                                    className="flex flex-row items-center hover:text-gray-200 dark:hover:text-gray-400 w-full"
+                                    onClick={(e) => e.stopPropagation()}
                                 >
-                                    <GoTrash className="size-5" />
-                                    <span>Löschen</span>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
-                                    <AlertDialogHeader>
-                                        <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
-                                            Bist Du sicher, dass Du das Rezept{' '}
-                                            <span className="font-bold">{recipe?.name}</span>{' '}
-                                            löschen möchtest?
-                                        </AlertDialogTitle>
-                                        <AlertDialogDescription>
-                                            Dies kann nicht rückgängig gemacht werden!
-                                        </AlertDialogDescription>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                        <AlertDialogCancel
-                                            className="dark:text-gray-200"
-                                            onClick={toggleDeleteDialog}
-                                        >
-                                            Abbrechen
-                                        </AlertDialogCancel>
-                                        <AlertDialogAction
-                                            className="bg-rose-700 hover:bg-rose-500 text-white"
-                                            onClick={deleteRecipe}
-                                        >
-                                            <GoTrash className="size-5" />
-                                            Löschen
-                                        </AlertDialogAction>
-                                    </AlertDialogFooter>
-                                </AlertDialogContent>
-                            </AlertDialog>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        
-                    </>
-                )}
-                <DropdownMenuItem>
-                    <AlertDialog>
-                        <AlertDialogTrigger
-                            className="w-full flex flex-row items-between gap-2 hover:cursor-pointer"
-                            onClick={toggleSocialShareDialog}
-                        >
-                            <IoShareSocialOutline className="size-5" />
-                            <span>Teilen</span>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
-                            <AlertDialogHeader>
-                                <AlertDialogTitle className=" text-gray-800 dark:text-gray-200">
-                                    Cool, dass Du <span className="font-bold">{recipe?.name}</span>{' '}
-                                    teilen möchtest, hier der Link:
-                                </AlertDialogTitle>
-                                <AlertDialogDescription className="mb-3">
-                                    <span id="recipe-link">
-                                        <a
-                                            href="https://rezeptbuch.tobias-hopp.de/rezepte/`${recipe?.slug}`"
-                                            className="hover:underline underline-offset-4"
-                                            title="Link öffnen"
-                                        >
-                                            https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}
-                                        </a>
-                                    </span>
-                                </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                                <AlertDialogCancel
-                                    className="dark:text-gray-200"
-                                    onClick={toggleSocialShareDialog}
-                                >
-                                    Abbrechen
-                                </AlertDialogCancel>
-                                <AlertDialogAction
-                                    className="border border-primary text-white bg-primary hover:bg-emerald-700 hover:text-white"
-                                    onClick={copyToClipboard}
-                                >
-                                    <RxClipboardCopy className="size-5" />
-                                    Link kopieren
-                                </AlertDialogAction>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-                    </AlertDialog>
-                </DropdownMenuItem>
-                {/* TODO: Drucken */}
+                                    <MdOutlineEdit className="size-5 mr-2" />
+                                    Bearbeiten
+                                </Link>
+                            </DropdownMenuItem>
+                            
+                            <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
+                                <AlertDialog>
+                                    <AlertDialogTrigger
+                                        className="w-full flex flex-row items-between gap-2 hover:cursor-pointer hover:text-gray-200 dark:hover:text-gray-400"
+                                        onClick={toggleDeleteDialog}
+                                    >
+                                        <PiCopySimpleLight className="size-5" />
+                                        <span>Kopieren</span>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
+                                                Bist Du sicher, dass Du das Rezept{' '}
+                                                <span className="font-bold">{recipe?.name}</span>{' '}
+                                                kopieren möchtest?
+                                            </AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                Die Kopie wird als Entwurf gespeichert!
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel
+                                                className="dark:text-gray-200"
+                                                onClick={toggleDeleteDialog}
+                                            >
+                                                Abbrechen
+                                            </AlertDialogCancel>
+                                            <AlertDialogAction
+                                                className="bg-primary hover:bg-emerald-700 text-white"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    router.post(route('recipes.duplicate', recipe?.slug), {}, {
+                                                        onSuccess: () => {
+                                                            toast.success('Rezept wurde kopiert! Siehe Dashboard.', { duration: 3000 });
+                                                        },
+                                                        onError: () => {
+                                                            toast.error('Fehler beim Kopieren');
+                                                        },
+                                                    });
+                                                }}
+                                            >
+                                                <PiCopySimpleLight className="size-5" />
+                                                Kopieren
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+                            </DropdownMenuItem>
 
-                {/* <DropdownMenuItem>
-                    <Link
-                        href="/"
-                        className="flex flex-row items-center"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <IoPrintOutline className="size-5 mr-2" />
-                        Drucken
-                    </Link>
-                </DropdownMenuItem> */}
-            </DropdownMenuContent>
+                            <DropdownMenuItem>
+                                <AlertDialog>
+                                    <AlertDialogTrigger
+                                        className="w-full flex flex-row items-between gap-2 hover:cursor-pointer text-rose-600 hover:text-rose-700"
+                                        onClick={toggleDeleteDialog}
+                                    >
+                                        <GoTrash className="size-4" />
+                                        <span>Löschen</span>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle className="text-gray-800 dark:text-gray-200">
+                                                Bist Du sicher, dass Du das Rezept{' '}
+                                                <span className="font-bold">{recipe?.name}</span>{' '}
+                                                löschen möchtest?
+                                            </AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                Dies kann nicht rückgängig gemacht werden!
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel
+                                                className="dark:text-gray-200"
+                                                onClick={toggleDeleteDialog}
+                                            >
+                                                Abbrechen
+                                            </AlertDialogCancel>
+                                            <AlertDialogAction
+                                                className="bg-rose-700 hover:bg-rose-500 text-white"
+                                                onClick={deleteRecipe}
+                                            >
+                                                <GoTrash className="size-5" />
+                                                Löschen
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                        </>
+                    )}
+                    <DropdownMenuItem>
+                        <AlertDialog>
+                            <AlertDialogTrigger
+                                className="w-full flex flex-row items-between gap-2 hover:cursor-pointer"
+                                onClick={toggleSocialShareDialog}
+                            >
+                                <IoShareSocialOutline className="size-5" />
+                                <span>Teilen</span>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle className=" text-gray-800 dark:text-gray-200">
+                                        Cool, dass Du <span className="font-bold">{recipe?.name}</span>{' '}
+                                        teilen möchtest, hier der Link:
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription className="mb-3">
+                                        <span id="recipe-link">
+                                            <a
+                                                href="https://rezeptbuch.tobias-hopp.de/rezepte/`${recipe?.slug}`"
+                                                className="hover:underline underline-offset-4"
+                                                title="Link öffnen"
+                                            >
+                                                https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}
+                                            </a>
+                                        </span>
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel
+                                        className="dark:text-gray-200"
+                                        onClick={toggleSocialShareDialog}
+                                    >
+                                        Abbrechen
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction
+                                        className="border border-primary text-white bg-primary hover:bg-emerald-700 hover:text-white"
+                                        onClick={copyToClipboard}
+                                    >
+                                        <RxClipboardCopy className="size-5" />
+                                        Link kopieren
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+                    </DropdownMenuItem>
+                    {/* TODO: Drucken */}
+
+                    {/* <DropdownMenuItem>
+                        <Link
+                            href="/"
+                            className="flex flex-row items-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <IoPrintOutline className="size-5 mr-2" />
+                            Drucken
+                        </Link>
+                    </DropdownMenuItem> */}
+                    </div>
+                </DropdownMenuContent>
         </DropdownMenu>
     );
 }

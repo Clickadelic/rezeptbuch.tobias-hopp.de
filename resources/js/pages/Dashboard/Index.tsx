@@ -30,7 +30,6 @@ export default function Dashboard() {
         totalUserRecipeCount,
         totalIngredientCount,
         totalUserIngredientCount,
-        totalUserIngredientCount,
         totalUserRecipes,
         userFavorites,
         userFavoritesCount,
@@ -73,7 +72,7 @@ export default function Dashboard() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" />{' '}
+                                <TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" />
                                 Hi {user?.name}
                             </span>
                         </h3>
@@ -84,7 +83,7 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <BsJournalBookmark className="size-4 mt-1.5 text-primary" />Deine Rezepte
-                            </span>{' '}
+                            </span>
                             <span>{totalUserRecipeCount}</span>
                         </h3>
                     </div>
@@ -94,7 +93,7 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten
-                            </span>{' '}
+                            </span>
                             <span>{totalUserIngredientCount}</span>
                         </h3>
                     </div>
@@ -104,7 +103,7 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <TfiCommentAlt className="size-4 mt-1.5 text-primary" /> Kommentare
-                            </span>{' '}
+                            </span>
                             <span>{comments?.total || 0}</span>
                         </h3>
                     </div>
@@ -114,11 +113,25 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten
-                            </span>{' '}
+                            </span>
                             <span>{userFavoritesCount}</span>
                         </h3>
                     </div>
                 </div>
+            </div>
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <BarChart
+                    data={userBarData}
+                    title="Deine Rezepte nach Kategorie"
+                    icon={<IoIosStats className="mt-1 text-primary" />}
+                    className="col-span-1 xl:col-span-7"
+                />
+                <DonutChart
+                    data={donutData}
+                    title="Dein Anteil"
+                    icon={<TbCategory className="mt-1 text-primary" />}
+                    className="col-span-1 xl:col-span-5 xl:col-start-8"
+                />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <RecipesTable
@@ -134,22 +147,10 @@ export default function Dashboard() {
                     className="col-span-1 xl:col-span-6"
                 />
             </div>
-
-            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <BarChart
-                    data={userBarData}
-                    title="Persönlicher Überblick"
-                    icon={<IoIosStats className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-7"
-                />
-                <div className="col-span-1 xl:col-span-5 xl:col-start-8">
-                    Zutaten
-                </div>
-            </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <BarChart
                     data={globalBarData}
-                    title="Rezeptbuch Insgesamt"
+                    title="Rezeptbuch Gesamt"
                     icon={<IoIosStats className="mt-1 text-primary" />}
                     className="col-span-1 xl:col-span-7"
                 />
@@ -160,7 +161,7 @@ export default function Dashboard() {
                     className="col-span-1 xl:col-span-5 xl:col-start-8"
                 />
             </div>
-            
+
         </FullWidthLayout>
     );
 }

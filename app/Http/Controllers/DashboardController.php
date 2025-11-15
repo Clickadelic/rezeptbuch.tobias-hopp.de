@@ -37,6 +37,17 @@ class DashboardController extends Controller
                 return [$item->category->name => $item->total];
             });
 
+        $recipesUserCountByCategory = Recipe::where('user_id', auth()->id())
+            ->where('status', 'published') // falls du nur veröffentlichte willst
+            ->with('category')
+            ->groupBy('category_id')
+            ->select('category_id')
+            ->selectRaw('COUNT(*) as total')
+            ->get()
+            ->mapWithKeys(function ($item) {
+                return [$item->category->name => $item->total];
+            });
+
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
 
         // Globale Counts
@@ -62,7 +73,6 @@ class DashboardController extends Controller
             'totalRecipeCount'        => $totalRecipeCount,
             'totalIngredientCount'    => $totalIngredientCount,
             'totalUserIngredientCount' => $totalUserIngredientCount,
-            'totalUserIngredientCount'=> $totalUserIngredientCount,
             'userFavorites'           => $userFavorites,
             'userFavoritesCount'      => $userFavoritesCount,
             'recipesCountByCategory'  => $recipesCountByCategory,

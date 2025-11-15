@@ -1,4 +1,3 @@
-import { GoZoomIn } from 'react-icons/go';
 import { BiDish } from 'react-icons/bi';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { Recipe } from '@/types/Recipe';

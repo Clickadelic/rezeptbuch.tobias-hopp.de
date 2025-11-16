@@ -41,13 +41,13 @@ export default function OverhauledRecipeCard({ recipe, className }: OverhauledRe
             </Link>
             <CardContent>
                 <CardDescription className="relative mt-2">
-                    <ContextMenu recipe={recipe as Recipe} className="absolute top-1 right-0 z-50" />
-                    <h3 className="text-lg text-gray-600 dark:text-gray-400 font-yellowtail line-clamp-1">{recipe?.punchline}</h3>
-                    <h4 className="text-lg text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">{recipe?.name}</h4>
+                    <ContextMenu recipe={recipe as Recipe} className="absolute top-1 -right-1 z-50" />
+                    <h3 className="text-base text-gray-600 dark:text-gray-400 font-yellowtail line-clamp-1">{recipe?.punchline}</h3>
+                    <h4 className="text-base text-gray-800 dark:text-gray-200 line-clamp-2 min-h-12 leading-snug mt-1">{recipe?.name}</h4>
                     {/* <AvatarBlock recipe={recipe as Recipe} /> */}
                     
                 </CardDescription>
-                    <CategoryCardBlock recipe={recipe as Recipe} />
+                <CategoryCardBlock recipe={recipe as Recipe} />
             </CardContent>
             <CardFooter className="flex gap-1 justify-between p-4">
                     <Button variant="primary" className="group" asChild>

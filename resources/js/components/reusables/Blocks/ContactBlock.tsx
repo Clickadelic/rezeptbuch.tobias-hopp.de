@@ -10,7 +10,7 @@ export default function ContactBlock() {
         <div className="max-w-xl mx-auto">
             <TitleBlock
                 title="Kontakt"
-                punchline="Schreib' mir."
+                punchline="Ich freu' mich auf Dein Feedback."
                 icon={<MdOutlineAlternateEmail className="text-primary size-6 mt-1" />}
             />
             <ContactForm />

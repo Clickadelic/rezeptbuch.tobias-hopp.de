@@ -3,7 +3,7 @@ import { SharedPageProps } from '@/types';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import cocktailBro from "@images/svg/Cocktail-bartender-bro.svg";
 
-import Carousel from '@/components/reusables/Carousel______/__old__Index';
+import Carousel from '@/components/reusables/Carousel/Index';
 
 /**
  * A component that displays a block of daily recommended recipes.

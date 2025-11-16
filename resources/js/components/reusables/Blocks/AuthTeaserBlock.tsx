@@ -24,7 +24,7 @@ export default function AuthTeaserBox({ className }: AuthTeaserBlockProps) {
                 <BsJournalBookmark className="text-primary size-6 mt-1" />
                 Rezeptbuch
             </h2>
-            <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
+            <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-yellowtail">
                 praktisch - digital
             </h3>
             <div className="flex gap-2 mt-5">

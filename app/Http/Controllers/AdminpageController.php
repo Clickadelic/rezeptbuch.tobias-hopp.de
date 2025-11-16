@@ -2,43 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-
-use App\Models\Recipe;
-use App\Models\Category;
-use App\Models\Ingredient;
-use App\Models\Media;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Middleware\CheckRole;
+use Spatie\Permission\Models\Role;
 
 class AdminpageController extends Controller
 {
     public function index()
     {
-
-        $user = Auth::user();
+        $authUser = Auth::user();
         $users = User::with('roles')->get();
-
         return Inertia::render('Admin/Index', [
-            'user' => [
+            'authUser' => [
+                'id' => $authUser->id,
+                'name' => $authUser->name,
+                'roles' => $authUser->getRoleNames(),
+                'permissions' => $authUser->getAllPermissions()->pluck('name'),
+            ],
+            'users' => $users->map(fn(User $user) => [
+                'id' => $user->id,
                 'name' => $user->name,
+                'avatar' => $user->avatar,
+                'email' => $user->email,
                 'roles' => $user->getRoleNames(),
                 'permissions' => $user->getAllPermissions()->pluck('name'),
-            ],
-            'users' => $users->map(fn($u) => [
-                'id' => $u->id,
-                'name' => $u->name,
-                'avatar' => $u->avatar,
-                'email' => $u->email,
-                'roles' => $u->getRoleNames(),
             ]),
+            'availableRoles' => Role::pluck('name'), // optional für Dropdown
         ]);
+    }
 
+    public function destroy(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return back()->withErrors(['message' => 'Du kannst dich nicht selbst löschen.']);
+        }
 
+        $user->delete();
+
+        return back()->with('success', 'Benutzer gelöscht.');
+    }
+
+    public function updateRole(Request $request, User $user)
+    {
+        // Erwartet ein Array von Rollen
+        $roles = $request->input('roles', []);
+        // Alle Rollen synchronisieren
+        $user->syncRoles($roles);
+
+        return response()->json(['success' => true]);
     }
 }

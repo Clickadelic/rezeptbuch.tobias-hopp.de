@@ -37,8 +37,7 @@ interface AdminContextMenuProps {
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
 export default function AdminContextMenu({ user, className, dotStyle = 'vertical' }: AdminContextMenuProps) {
-    const { isOwner } = usePermissions();
-    const { props } = usePage<SharedPageProps>();
+    const { hasRole } = usePermissions();
 
     const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
     const [isSocialShareOpen, setIsSocialShareOpen] = useState<boolean>(false);
@@ -53,6 +52,10 @@ export default function AdminContextMenu({ user, className, dotStyle = 'vertical
         e.stopPropagation();
     };
 
+    if(!hasRole('admin')) {
+        return null;
+    }
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger
@@ -61,7 +64,7 @@ export default function AdminContextMenu({ user, className, dotStyle = 'vertical
                     className,
                 )}
                 onClick={(e) => e.stopPropagation()}
-                aria-label="Rezept Optionen"
+                aria-label="Admin Optionen"
             >
                 {dotStyle === 'vertical' ? (
                     <HiOutlineDotsVertical className="size-5" />
@@ -69,7 +72,6 @@ export default function AdminContextMenu({ user, className, dotStyle = 'vertical
                     <HiOutlineDotsHorizontal className="size-5" />
                 )}
             </DropdownMenuTrigger>
-            
                 <DropdownMenuContent align="end" className="bg-white/30 dark:bg-gray-800/30 p-1 rounded-xl backdrop backdrop-blur border-0">
                     <div className="bg-white dark:bg-gray-800 rounded-lg p-1">
                     {/* {isOwner(user?.id) && (

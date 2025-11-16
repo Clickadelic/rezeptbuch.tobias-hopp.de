@@ -18,7 +18,7 @@ interface TitleBlockProps {
 export default function TitleBlock({
     title = 'Willkommen',
     icon = null,
-    punchline = 'Alles wird gut.',
+    punchline,
     className,
     children,
 }: TitleBlockProps) {
@@ -28,7 +28,7 @@ export default function TitleBlock({
                 <h2 className="flex gap-2 text-3xl font-roboto-condensed">{icon}{title}</h2>
             )}
             {punchline && (
-                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">{punchline}</h3>
+                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-yellowtail">{punchline}</h3>
             )}
             {children}
         </div>

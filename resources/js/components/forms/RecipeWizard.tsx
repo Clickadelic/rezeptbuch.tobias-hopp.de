@@ -729,14 +729,14 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         )}
                     </div>
                     
-                    <div className="w-full max-w-xl mx-auto space-y-3">
+                    {/* <div className="w-full max-w-xl mx-auto space-y-3">
                         <InputLabel
                             htmlFor="rating"
                             value="Deine Bewertung des Rezeptes"
                             description="Welche Bewertung gibst Du dem Rezept? Die Community kann später auch bewerten."
                         />
                         <UserStarRating rating={data.rating} onRatingChange={handleRatingChange} className="my-5" />
-                    </div>
+                    </div> */}
 
                     {/* Submit */}
                     <div className="flex justify-between gap-2">

@@ -16,19 +16,17 @@ import FavoriteButton from '@/components/reusables/FavoriteButton';
 import { LuUtensilsCrossed } from 'react-icons/lu';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 
-interface OverhauledRecipeCardProps {
+interface BigRecipeCardProps {
     className?: string
     recipe?: Recipe
 }
 
 /**
  * Displays an overhauled recipe card with a larger image and more details.
- * @param {OverhauledRecipeCardProps} props - properties of the component
+ * @param {BigRecipeCardProps} props - properties of the component
  * @returns {JSX.Element} - the rendered component
  */
-export default function OverhauledRecipeCard({ recipe, className }: OverhauledRecipeCardProps) {
-
-    console.log("Overhauled RecipeCard", recipe)
+export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps) {
     return (
         <Card className={cn('shadow-xs flex flex-col bg-gray-100 dark:bg-gray-900 p-0 rounded-b-xl border-b border-gray-200 dark:border-gray-700', className)}>
             <Link href={route('recipes.show', { recipe: recipe?.slug })} className="border border-transparent hover:border-primary animate ease-in-out duration-300 rounded-lg">

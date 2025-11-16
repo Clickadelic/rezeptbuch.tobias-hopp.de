@@ -50,7 +50,7 @@ interface MegaMenuProps {
  * @param {MegaMenuColumn[]} columns - List of columns to display in the menu
  * @param {{ title: string, description: string, imageUrl?: string, href: string, label: string, icon?: React.ReactNode }} [featured] - Featured item to display at the top of the menu
  */
-export default function MegaMenu({ icon, title, featuredIcon, className, columns, featured }: MegaMenuProps) {
+export default function MegaMenu({ icon, title, className, columns, featured }: MegaMenuProps) {
     const [active, setActive] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement>(null);
@@ -143,7 +143,7 @@ export default function MegaMenu({ icon, title, featuredIcon, className, columns
                                                 <li key={itemIdx}>
                                                     <Link
                                                         href={item.href}
-                                                        className="group block space-y-1 rounded-md p-2 pl-3 border border-transparent hover:border-primary"
+                                                        className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900 transition duration-150 ease-in-out"
                                                         aria-label={item.title}
                                                     >
                                                         <div className="flex flex-col">

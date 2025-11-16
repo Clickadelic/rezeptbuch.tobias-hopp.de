@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
-import { usePermissions } from '@/hooks/usePermissions';
 import { Button } from '@/components/ui/button';
 
 import AppLogo from '@/components/appshell/AppLogo';
@@ -13,9 +12,10 @@ import ModeToggle from '@/components/appshell/ModeToggle';
 import DraftAlert from "@/components/appshell/DraftAlert";
 import Avatar from '@/components/reusables/Avatar';
 import MegaMenu from '@/components/appshell/MegaMenu';
-import { FiUsers } from "react-icons/fi";
+
 import { recipesMegaMenu, featuredRecipes } from '@/components/appshell/MegaMenuColumns';
 
+import { FiUsers } from "react-icons/fi";
 import { LuUsersRound } from 'react-icons/lu';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
@@ -28,6 +28,8 @@ import { BiExit } from 'react-icons/bi';
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 import { BsBell } from 'react-icons/bs';
+
+import { usePermissions } from '@/hooks/usePermissions';
 
 import { SharedPageProps } from '@/types';
 

@@ -19,7 +19,6 @@ class DashboardController extends Controller
     public function index()
     {
         // Neueste Rezept
-        
         $comments = Comment::where('user_id', Auth::id())
             ->with(['recipe', 'user'])
             ->orderBy('created_at', 'desc')
@@ -45,18 +44,21 @@ class DashboardController extends Controller
             ->groupBy('recipes.category_id', 'categories.name')
             ->select('categories.name', DB::raw('COUNT(*) as total'))
             ->pluck('total', 'name');
-
+        
+        // Benutzerbezogene Favoriten
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
-
+        
         // Globale Counts
         $totalRecipeCount = Recipe::count();
         $totalIngredientCount = Ingredient::count();
         $totalUserIngredientCount = Ingredient::where('user_id', Auth::id())->count();
 
         // Benutzerbezogene Counts
-        $totalUserRecipeCount = Recipe::where('user_id', Auth::id())->count();
         $totalUserRecipes = Recipe::where('user_id', Auth::id())->with(['category', 'user'])->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-
+        $totalUserRecipeCount = Recipe::where('user_id', Auth::id())->count();
+        
+        // Benutzerbezogene Zutaten
+        $totalUserIngredients = Ingredient::where('user_id', Auth::id())->with(['recipes' => fn($q) => $q->where('status', 'published')])->get();
         $totalUserIngredientCount = Ingredient::where('user_id', Auth::id())->count();
 
         // Alle Favoriten des Users:
@@ -66,10 +68,11 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard/Index', [
             'alert' => 'Wichtige Ankündigung: Neue Rezepte verfügbar!',
             'comments'            => $comments,
-            'totalUserRecipeCount'    => $totalUserRecipeCount,
-            'totalUserRecipes'        => $totalUserRecipes,
             'totalRecipeCount'        => $totalRecipeCount,
             'totalIngredientCount'    => $totalIngredientCount,
+            'totalUserRecipes'        => $totalUserRecipes,
+            'totalUserRecipeCount'    => $totalUserRecipeCount,
+            'totalUserIngredients'    => $totalUserIngredients,
             'totalUserIngredientCount' => $totalUserIngredientCount,
             'userFavorites'           => $userFavorites,
             'userFavoritesCount'      => $userFavoritesCount,

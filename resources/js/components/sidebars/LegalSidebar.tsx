@@ -31,6 +31,11 @@ export default function LegalSidebar() {
                     active={window.location.pathname === '/impressum'}
                     title="Impressum"
                 />
+                <SidebarLink
+                    href="/kontakt"
+                    active={window.location.pathname === '/kontakt'}
+                    title="Kontakt"
+                />
             </ul>
         </aside>
     );

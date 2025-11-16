@@ -9,11 +9,10 @@ import { Recipe } from '@/types/Recipe';
 import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import AvatarBlock from '@/components/reusables/Blocks/AvatarBlock';
-import fallbackImage from '@images/webp/annie-spratt-R3LcfTvcGWY-unsplash.webp';
+import {IconMap} from '@/lib/icon-map';
+
 import FavoriteButton from '@/components/reusables/FavoriteButton';
-
-import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
-
+import { LuUtensilsCrossed } from 'react-icons/lu';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 
 interface OverhauledRecipeCardProps {
@@ -21,6 +20,11 @@ interface OverhauledRecipeCardProps {
     recipe?: Recipe
 }
 
+/**
+ * Displays an overhauled recipe card with a larger image and more details.
+ * @param {OverhauledRecipeCardProps} props - properties of the component
+ * @returns {JSX.Element} - the rendered component
+ */
 export default function OverhauledRecipeCard({ recipe, className }: OverhauledRecipeCardProps) {
     return (
         <Card className={cn('shadow-xs flex flex-col bg-gray-100 dark:bg-gray-900 p-0 rounded-b-xl border-b border-gray-200 dark:border-gray-700', className)}>
@@ -33,9 +37,22 @@ export default function OverhauledRecipeCard({ recipe, className }: OverhauledRe
                 </CardHeader>
             </Link>
             <CardContent>
-                <CardDescription className="h-32">
+                <CardDescription className="h-48">
+                    <AvatarBlock recipe={recipe as Recipe} />
                     <h3 className="text-lg text-gray-600 dark:text-gray-400 font-yellowtail line-clamp-1">{recipe?.punchline}</h3>
-                    <h4 className="text-lg text-gray-800 dark:text-gray-200 line-clamp-2 min-h-24 leading-snug">{recipe?.name}</h4>
+                    <h4 className="text-lg text-gray-800 dark:text-gray-200 line-clamp-2 min-h-16 leading-snug">{recipe?.name}</h4>
+                    <div className="flex gap-2 mt-3">
+                        {recipe && recipe.category && (
+                            <span className="text-primary">
+                                {IconMap[recipe.category.slug ?? ''] ?? (
+                                    <LuUtensilsCrossed className="size-4 text-primary" />
+                                )}
+                            </span>
+                        )}
+                        <span className="text-sm text-gray-800 dark:text-gray-200">
+                            {recipe?.category?.name ?? 'Nicht kategorisiert'}
+                        </span>
+                    </div>
                 </CardDescription>
             </CardContent>
             <CardFooter className="flex gap-1 justify-between p-4">

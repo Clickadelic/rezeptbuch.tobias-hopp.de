@@ -36,6 +36,24 @@
     font-display: swap;
 }
 
+/* Nothing You Could Do */
+@font-face {
+    font-family: 'Nothing You Could Do';
+    src: url('/fonts/Nothing_You_Could_Do/NothingYouCouldDo-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Oh Baby */
+@font-face {
+    font-family: 'Oooh Baby';
+    src: url('/fonts/Oooh_Baby/OoohBaby-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* La Belle Aurore */
 @font-face {
     font-family: 'La Belle Aurore';

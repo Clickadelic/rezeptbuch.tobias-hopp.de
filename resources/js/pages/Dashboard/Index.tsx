@@ -7,6 +7,9 @@ import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
 import RecipesTable from '@/components/reusables/Tables/UserRecipesTable';
 
+
+
+
 import { TfiCommentAlt } from 'react-icons/tfi';
 import { IoIosStats } from 'react-icons/io';
 import { BsJournalBookmark } from 'react-icons/bs';
@@ -16,6 +19,8 @@ import { TbCategory } from 'react-icons/tb';
 import { TfiLayoutListThumb } from 'react-icons/tfi';
 import { TfiCommentsSmiley } from 'react-icons/tfi';
 
+import { cn } from '@/lib/utils';
+import { Ingredient } from '@/types/Ingredient';
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
 
@@ -31,6 +36,7 @@ export default function Dashboard() {
         totalIngredientCount,
         totalUserIngredientCount,
         totalUserRecipes,
+        userIngredients,
         userFavorites,
         userFavoritesCount,
         recipesCountByCategory,
@@ -39,8 +45,6 @@ export default function Dashboard() {
     } = usePage<SharedPageProps>().props;
 
     const { user } = usePage<SharedPageProps>().props.auth;
-
-    console.log("Comments", comments?.total);
 
     // Prepare data for charts
     const globalBarData = [
@@ -66,7 +70,7 @@ export default function Dashboard() {
         { name: 'Favoriten', value: userFavoritesCount },
         { name: 'Andere Benutzer', value: totalRecipeCount - totalUserRecipeCount },
     ];
-
+    console.log(comments);
     return (
         <FullWidthLayout title="Dashboard">
             <div className="grid grid-cols-1 xl:grid-cols-10 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
@@ -138,17 +142,23 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <div className="col-span-1 xl:col-span-5 bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border border-transparent border-b-gray-200 dark:border-b-gray-700">
                     <h3 className="text-lg mb-3 flex gap-2"><TbSalt className="mt-1 text-primary" />Zutaten {totalUserIngredientCount}</h3>
-
-                </div>
-                <div className="col-span-1 xl:col-span-7 xl:col-start-6 bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border border-transparent border-b-gray-200 dark:border-b-gray-700">
-                    <h3 className="text-lg mb-3 flex gap-2"><TbSalt className="mt-1 text-primary" />Kommentare</h3>
-                    {/* <ul>
-                        {comments.data.map((comment:Comment) => (
-                            <li key={comment.id}>
-                                <span className="text-gray-500 dark:text-gray-400">{comment.comment}</span>
+                    <ul>
+                        {userIngredients?.map((ingredient:Ingredient) => (
+                            <li key={ingredient.id}>
+                                <span className="text-gray-500 dark:text-gray-400 text">{ingredient.name}</span>
                             </li>
                         ))}
-                    </ul> */}
+                    </ul>
+                </div>
+                <div className="col-span-1 xl:col-span-5 bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border border-transparent border-b-gray-200 dark:border-b-gray-700">
+                    <h3 className="text-lg mb-3 flex gap-2"><TfiCommentAlt className="mt-1 text-primary" /> Kommentare {comments?.total || 0}</h3>
+                    {comments?.data?.map((comment: Comment) => (
+                        <div key={comment.id} className="mb-2">
+                            <span className="text-gray-500 dark:text-gray-400">
+                                {comment.content}
+                            </span>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">

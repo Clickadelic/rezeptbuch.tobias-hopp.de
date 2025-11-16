@@ -84,7 +84,6 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                     <HiOutlineDotsHorizontal className="size-5" />
                 )}
             </DropdownMenuTrigger>
-            
                 <DropdownMenuContent align="end" className="bg-white/30 dark:bg-gray-800/30 p-1 rounded-xl backdrop backdrop-blur border-0">
                     <div className="bg-white dark:bg-gray-800 rounded-lg p-1">
                     {isOwner(recipe?.user_id) && (
@@ -92,7 +91,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                             <DropdownMenuItem>
                                 <Link
                                     href={route('recipes.edit', recipe?.slug)}
-                                    className="flex flex-row items-center hover:text-gray-200 dark:hover:text-gray-400 w-full"
+                                    className="w-full flex flex-row items-center"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <MdOutlineEdit className="size-5 mr-2" />
@@ -102,7 +101,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                             <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
                                 <AlertDialog>
                                     <AlertDialogTrigger
-                                        className="w-full flex flex-row items-between gap-2 hover:cursor-pointer hover:text-gray-200 dark:hover:text-gray-400"
+                                        className="w-full flex flex-row items-between gap-2 hover:cursor-pointer hover:text-gray-800 dark:hover:text-gray-400"
                                         onClick={toggleDeleteDialog}
                                     >
                                         <PiCopySimpleLight className="size-5" />
@@ -153,7 +152,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                         className="w-full flex flex-row items-between gap-2 hover:cursor-pointer text-rose-600 hover:text-rose-700"
                                         onClick={toggleDeleteDialog}
                                     >
-                                        <GoTrash className="size-4" />
+                                        <GoTrash className="size-4 ml-[2px] mt-px" />
                                         <span>Löschen</span>
                                     </AlertDialogTrigger>
                                     <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">

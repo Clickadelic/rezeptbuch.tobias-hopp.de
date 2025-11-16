@@ -22,8 +22,8 @@ class RecipeController extends Controller
      * Displays a list of all recipes.
      */
     public function index()
-    {
-        $recipes = Recipe::with('media', 'category', 'user')
+    {   
+        $recipes = Recipe::with('media', 'category', 'user', 'comments')
             ->orderBy('created_at', 'desc')->where('status', 'published')
             ->paginate(15);
 

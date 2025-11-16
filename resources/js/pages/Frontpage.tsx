@@ -13,7 +13,8 @@ import { SharedPageProps } from '@/types';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 import CustomCarousel from '@/components/reusables/Carousel';
-
+import RecipeCard from '@/components/reusables/RecipeCard';
+import OverhauledRecipeCard from '@/components/reusables/OverhauledRecipeCard';
 import { TbSalt } from 'react-icons/tb';
 import { MdOutlineQueryStats } from "react-icons/md";
 
@@ -30,10 +31,12 @@ import { IoMdArrowForward } from 'react-icons/io';
  * @return {JSX.Element} The frontpage component.
  */
 export default function Frontpage() {
+    const latestRecipe = usePage<SharedPageProps>().props.latestRecipe;
     const recommendedRecipes = usePage<SharedPageProps>().props.recipes;
     const totalRecipeCount = usePage<SharedPageProps>().props.totalRecipeCount;
 
     console.log("Total Recipe Count", totalRecipeCount);
+    console.log("Latest Recipe", latestRecipe);
     return (
         <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein.">
             <TitleBlock
@@ -57,8 +60,15 @@ export default function Frontpage() {
                 <div className="flex flex-col gap-2">
                     <TitleBlock title="Statistiken" icon={<MdOutlineQueryStats className="text-primary size-6 mt-1" />} punchline="Rezeptbuch in Zahlen" />
                     <h4 className="text-2xl mx-auto">{totalRecipeCount} Rezepte</h4>
+
+                    
                 </div>
             </div>
+            <h4>Das neueste Rezept</h4>
+            {latestRecipe && (
+                <RecipeCard recipe={latestRecipe} />
+            )}
+            <Seperator style="apple" />
         </FullWidthLayout>
     );
 }

@@ -88,7 +88,7 @@ export default function UpdateAvatarForm({ className }: UpdateAvatarFormProps) {
                                 htmlFor="avatar"
                                 title="Profilbild hochladen"
                                 className={cn(
-                                    'size-16 flex flex-col items-center justify-center rounded-full p-3 px-6 border-2 border-dashed border-gray-200 dark:border-gray-900 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition',
+                                    'size-16 flex flex-col items-center justify-center rounded-full p-3 px-6 border-2 border-dashed border-primary dark:border-primary cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition',
                                     data.avatar && 'border-primary',
                                 )}
                             >
@@ -98,7 +98,7 @@ export default function UpdateAvatarForm({ className }: UpdateAvatarFormProps) {
                                     <PiUserCirclePlusFill className="w-5 h-5 text-gray-500" />
                                 ) : (
                                     <div className="asd">
-                                        <Plus className="w-5 h-5 text-gray-500" />
+                                        <Plus className="w-5 h-5 text-primary" />
                                     </div>
                                 )}
                                 <input

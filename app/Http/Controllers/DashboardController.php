@@ -19,7 +19,6 @@ class DashboardController extends Controller
     public function index()
     {
         // Neueste Rezept
-        
         $comments = Comment::where('user_id', Auth::id())
             ->with(['recipe', 'user'])
             ->orderBy('created_at', 'desc')

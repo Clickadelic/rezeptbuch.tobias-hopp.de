@@ -47,7 +47,7 @@ export default function OverhauledRecipeCard({ recipe, className }: OverhauledRe
                     {/* <AvatarBlock recipe={recipe as Recipe} /> */}
                     
                 </CardDescription>
-                    <CategoryCardBlock recipe={recipe as Recipe} />
+                <CategoryCardBlock recipe={recipe as Recipe} />
             </CardContent>
             <CardFooter className="flex gap-1 justify-between p-4">
                     <Button variant="primary" className="group" asChild>

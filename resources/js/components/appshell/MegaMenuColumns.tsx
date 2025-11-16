@@ -11,7 +11,7 @@ import { GoPlus } from 'react-icons/go';
 // import featuredImg from '@images/svg/Top-Secret-bro.svg';
 // import featuredImg from '@images/svg/File-synchronization-bro.svg';
 
-import featuredImg from '@images/svg/Recipe-Book-bro.svg';
+import featuredImg from '@images/svg/Recipe-book-bro.svg';
 
 export const recipesMegaMenu = [
     {

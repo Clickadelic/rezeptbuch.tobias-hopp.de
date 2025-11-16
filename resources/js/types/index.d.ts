@@ -38,6 +38,8 @@ export interface SharedPageProps extends InertiaPageProps {
     cocktails?: Paginated<Recipe>;
     drafts?: number;
     users?: Paginated<AuthUser>;
+    // Frontpage
+    latestRecipe?: Recipe;
     // Dashboard Data Types
     latestRecipes?: Paginated<Recipe>;
     totalUserRecipes?: Paginated<Recipe>;

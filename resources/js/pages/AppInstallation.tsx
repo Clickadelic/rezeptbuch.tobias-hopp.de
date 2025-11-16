@@ -5,6 +5,7 @@ import Seperator from '@/components/reusables/Seperator';
 import imgSrc from "@images/svg/File-synchronization-bro.svg";
 import { MdOutlineInstallMobile } from "react-icons/md";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { RiApps2AddLine } from "react-icons/ri";
 /**
  * The contact page of the application.
  * Contains a contact form, a contact block, and a faq accordeon.

@@ -1,9 +1,10 @@
+import { Link } from '@inertiajs/react';
+
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 
 import ContactBlock from '@/components/reusables/Blocks/ContactBlock';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
-import { Link } from '@inertiajs/react';
 
 import LegalSidebar from '@/components/sidebars/LegalSidebar';
 

@@ -7,9 +7,6 @@ import DonutChart from '@/components/reusables/Charts/DonutChart';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
 import RecipesTable from '@/components/reusables/Tables/UserRecipesTable';
 
-
-
-
 import { TfiCommentAlt } from 'react-icons/tfi';
 import { IoIosStats } from 'react-icons/io';
 import { BsJournalBookmark } from 'react-icons/bs';
@@ -19,10 +16,11 @@ import { TbCategory } from 'react-icons/tb';
 import { TfiLayoutListThumb } from 'react-icons/tfi';
 import { TfiCommentsSmiley } from 'react-icons/tfi';
 
-import { cn } from '@/lib/utils';
 import { Ingredient } from '@/types/Ingredient';
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
+
+import { cn } from '@/lib/utils';
 
 /**
  * The Dashboard page displays a variety of information about the user's recipes.
@@ -70,7 +68,7 @@ export default function Dashboard() {
         { name: 'Favoriten', value: userFavoritesCount },
         { name: 'Andere Benutzer', value: totalRecipeCount - totalUserRecipeCount },
     ];
-    console.log(comments);
+    // console.log(comments);
     return (
         <FullWidthLayout title="Dashboard">
             <div className="grid grid-cols-1 xl:grid-cols-10 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">

@@ -10,6 +10,7 @@ import { AuthUser } from './AuthUser';
  * Globale Props, die Laravel/Inertia immer mitsendet
  */
 export interface SharedPageProps extends InertiaPageProps {
+    availableRoles: string[];
     auth: {
         user: AuthUser;
     };

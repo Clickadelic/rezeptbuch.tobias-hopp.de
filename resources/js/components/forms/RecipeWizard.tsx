@@ -511,7 +511,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             <AlertDialog>
                                 <AlertDialogTrigger
                                     disabled={!data.recipe_ingredients?.length}
-                                    className="flex gap-1 py-2 px-3 text-sm md:mt-5 hover:cursor-pointer text-white bg-rose-700 rounded-sm"
+                                    className="mt-3 md:mt-5 flex items-center justify-center gap-1 py-2 px-3 text-sm hover:cursor-pointer text-white bg-rose-700 rounded-sm"
                                     
                                 >
                                     <BsTrash3 className="size-4 mt-.5 mr-1" />

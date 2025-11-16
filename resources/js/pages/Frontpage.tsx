@@ -53,22 +53,12 @@ export default function Frontpage() {
                 }
             />
             <CategorySelectionBlock />
-            <Seperator style="cocktail" />
+            <Seperator style="journal" />
             <AuthTeaserBlock />
             <Seperator style="carrot" />
-            <div className="flex justify-between gap-2">
-                <div className="flex flex-col gap-2">
-                    <TitleBlock title="Statistiken" icon={<MdOutlineQueryStats className="text-primary size-6 mt-1" />} punchline="Rezeptbuch in Zahlen" />
-                    <h4 className="text-2xl mx-auto">{totalRecipeCount} Rezepte</h4>
+            <DailyRecommendationsBlock />
+            <Seperator style="cocktail" />
 
-                    
-                </div>
-            </div>
-            <h4>Das neueste Rezept</h4>
-            {latestRecipe && (
-                <RecipeCard recipe={latestRecipe} />
-            )}
-            <Seperator style="apple" />
         </FullWidthLayout>
     );
 }

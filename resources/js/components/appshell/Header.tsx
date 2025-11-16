@@ -13,8 +13,8 @@ import ModeToggle from '@/components/appshell/ModeToggle';
 import DraftAlert from "@/components/appshell/DraftAlert";
 import Avatar from '@/components/reusables/Avatar';
 import MegaMenu from '@/components/appshell/MegaMenu';
-
-import { recipesMegaMenu, featuredRecipes } from '@/lib/mega-menu-columns';
+import { FiUsers } from "react-icons/fi";
+import { recipesMegaMenu, featuredRecipes } from '@/components/appshell/MegaMenuColumns';
 
 import { LuUsersRound } from 'react-icons/lu';
 import { BsJournalBookmark } from 'react-icons/bs';
@@ -225,6 +225,7 @@ export default function Header() {
                                 <BsBell className="size-4 mt-1 " />{drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
                             </ResponsiveNavLink>
                         )}
+                        
                         <ResponsiveNavLink
                             href="/zutaten"
                             className="flex gap-2"
@@ -237,7 +238,7 @@ export default function Header() {
                             className="flex gap-2"
                             active={window.location.pathname === '/community'}
                         >
-                            <TbSalt className="size-4 mt-1" /> Community
+                            <FiUsers className="size-4 mt-1" /> Community
                         </ResponsiveNavLink>
                     </div>
 
@@ -252,6 +253,15 @@ export default function Header() {
                             </div>
 
                             <div className="mt-3 space-y-1">
+                                {hasRole('admin') && (
+                                    <ResponsiveNavLink
+                                        href="/admin"
+                                        className="flex gap-2"
+                                        active={window.location.pathname === '/admin'}
+                                    >
+                                        <MdOutlineAdminPanelSettings className="size-4 mt-1" /> Admin
+                                    </ResponsiveNavLink>
+                                )}
                                 <ResponsiveNavLink
                                     href="/dashboard"
                                     className="flex gap-2"

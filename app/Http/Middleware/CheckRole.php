@@ -19,16 +19,26 @@ class CheckRole
      * @param  string  $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $roles)
     {   
         /** @var User $user */
         $user = Auth::user();
 
-        if (!$user || !$user->hasRole($role)) {
-            // Inertia-Seite für unautorisierte Benutzer
+        if (!$user) {
             return Inertia::render('NotAuthorized');
         }
 
-        return $next($request);
+        // Mehrere Rollen aus Parameter parsen
+        $rolesArray = explode(',', $roles);
+
+        // Prüfen, ob der Benutzer eine der Rollen hat
+        foreach ($rolesArray as $role) {
+            if ($user->hasRole(trim($role))) {
+                return $next($request);
+            }
+        }
+
+        return Inertia::render('NotAuthorized');
     }
+
 }

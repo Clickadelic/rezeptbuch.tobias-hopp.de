@@ -47,7 +47,7 @@ export default function GridLinkItem({
                 {icon}
                 {title}
             </span>
-            <span className="font-la-belle-aurore text-sm sm:text-md md:text-xl text-gray-500 dark:text-gray-400">
+            <span className="font-yellowtail text-sm sm:text-md md:text-xl text-gray-500 dark:text-gray-400">
                 {punchline}
             </span>
             <Link

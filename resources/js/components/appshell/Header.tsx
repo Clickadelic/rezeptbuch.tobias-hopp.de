@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
-import { usePermissions } from '@/hooks/usePermissions';
 import { Button } from '@/components/ui/button';
 
 import AppLogo from '@/components/appshell/AppLogo';
@@ -14,8 +13,9 @@ import DraftAlert from "@/components/appshell/DraftAlert";
 import Avatar from '@/components/reusables/Avatar';
 import MegaMenu from '@/components/appshell/MegaMenu';
 
-import { recipesMegaMenu, featuredRecipes } from '@/lib/mega-menu-columns';
+import { recipesMegaMenu, featuredRecipes } from '@/components/appshell/MegaMenuColumns';
 
+import { FiUsers } from "react-icons/fi";
 import { LuUsersRound } from 'react-icons/lu';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
@@ -28,6 +28,8 @@ import { BiExit } from 'react-icons/bi';
 import { RiHomeLine } from 'react-icons/ri';
 import { RxExit } from 'react-icons/rx';
 import { BsBell } from 'react-icons/bs';
+
+import { usePermissions } from '@/hooks/usePermissions';
 
 import { SharedPageProps } from '@/types';
 
@@ -225,6 +227,7 @@ export default function Header() {
                                 <BsBell className="size-4 mt-1 " />{drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
                             </ResponsiveNavLink>
                         )}
+                        
                         <ResponsiveNavLink
                             href="/zutaten"
                             className="flex gap-2"
@@ -237,7 +240,7 @@ export default function Header() {
                             className="flex gap-2"
                             active={window.location.pathname === '/community'}
                         >
-                            <TbSalt className="size-4 mt-1" /> Community
+                            <FiUsers className="size-4 mt-1" /> Community
                         </ResponsiveNavLink>
                     </div>
 
@@ -252,6 +255,15 @@ export default function Header() {
                             </div>
 
                             <div className="mt-3 space-y-1">
+                                {hasRole('admin') && (
+                                    <ResponsiveNavLink
+                                        href="/admin"
+                                        className="flex gap-2"
+                                        active={window.location.pathname === '/admin'}
+                                    >
+                                        <MdOutlineAdminPanelSettings className="size-4 mt-1" /> Admin
+                                    </ResponsiveNavLink>
+                                )}
                                 <ResponsiveNavLink
                                     href="/dashboard"
                                     className="flex gap-2"

@@ -6,10 +6,12 @@ import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
-
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { GoPlus } from 'react-icons/go';
 // import featuredImg from '@images/svg/Top-Secret-bro.svg';
 // import featuredImg from '@images/svg/File-synchronization-bro.svg';
-import featuredImg from '@images/svg/Install-App-bro.svg';
+
+import featuredImg from '@images/svg/Recipe-Book-bro.svg';
 
 export const recipesMegaMenu = [
     {
@@ -67,15 +69,15 @@ export const recipesMegaMenu = [
                 description: 'für zwischendurch',
             },
         ],
-    },
-    
+    }
 ];
 
 export const featuredRecipes = {
     imageUrl: featuredImg,
-    title: 'Toby\'s Rezeptbuch als App',
-    description: 'Jetzt für iOS und Android erhältlich.',
-    href: '/app-installation',
-    label: 'App Installieren',
-    icon: '',
-};
+    featuredIcon: <BsJournalBookmark className="text-primary size-4 mt-[5px]" />,
+    title: 'Neues Rezept',
+    description: 'Klicke hier und leg\' los.',
+    href: '/rezepte/neu',
+    label: 'Neues Rezept',
+    icon: <GoPlus className="size-4 mt-[2px]" />,
+}

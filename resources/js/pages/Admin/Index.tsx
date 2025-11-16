@@ -1,16 +1,20 @@
 import { usePage } from '@inertiajs/react';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import { TfiCommentsSmiley } from 'react-icons/tfi';
-import { FiUsers } from "react-icons/fi";
-import { Recipe } from '@/types/Recipe';
-import { SharedPageProps } from '@/types';
 import UsersTable from '@/components/reusables/Tables/UsersTable';
+
+import { FiUsers } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
+import { TfiCommentsSmiley } from 'react-icons/tfi';
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+
+import { SharedPageProps } from '@/types';
+
 /**
  * The Dashboard page displays a variety of information about the user's recipes.
  * It includes a bar chart that shows the number of recipes, a donut chart that shows the distribution of recipes between the user and other users, and two tables that show the user's recipes and favorites.
  */
-export default function Admin() {
+export default function AdminPage() {
 
     const { user } = usePage<SharedPageProps>().props.auth;
     const { users } = usePage<SharedPageProps>().props;
@@ -43,8 +47,8 @@ export default function Admin() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" />{' '}
-                                Hi {user?.name}
+                                <FiUser className="size-4 mt-1 text-primary rotate-y-180" />{' '}
+                                User
                             </span>
                         </h3>
                     </div>
@@ -53,14 +57,14 @@ export default function Admin() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" />{' '}
-                                Hi {user?.name}
+                                <MdOutlineAdminPanelSettings className="size-4 mt-1 text-primary rotate-y-180" />{' '}
+                                Admin
                             </span>
                         </h3>
                     </div>
                 </div>
             </div>
-            <UsersTable users={users} />
+            <UsersTable users={users} icon={<FiUsers className="size-4 mt-1 text-primary" />} />
         </FullWidthLayout>
     );
 }

@@ -30,11 +30,12 @@ interface MegaMenuProps {
     className?: string;
     columns: MegaMenuColumn[];
     featured?: {
-        title: string;
-        description: string;
+        title?: string;
+        featuredIcon?: React.ReactNode;
+        description?: string;
         imageUrl?: string;
-        href: string;
-        label: string;
+        href?: string;
+        label?: string;
         icon?: React.ReactNode;
     };
 }
@@ -84,13 +85,13 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
         <div
             ref={menuRef}
             className={cn(
-                'inline-block mx-auto items-center justify-between md:gap-2 sm:px-1 md:px-2 rounded-sm',
+                'inline-block mx-auto sm:px-1 md:px-2',
             )}
         >
             <button
                 onClick={toggleMenu}
                 className={cn(
-                    'flex mt-px pt-4 pb-4 px-1 items-center gap-2 hover:cursor-pointer focus:outline-none border-b-2 border-transparent text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400',
+                    'flex items-center gap-2 mt-px pt-4 pb-4 px-1 hover:cursor-pointer focus:outline-none border-b-2 border-transparent text-gray-800 hover:text-primary dark:text-gray-200 text-base dark:hover:text-gray-400',
                     isOpen ? 'text-primary' : 'text-gray-800 dark:text-gray-200',
                     active ? 'border-b-primary' : 'border-b-transparent',
                 )}
@@ -142,10 +143,10 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                 <li key={itemIdx}>
                                                     <Link
                                                         href={item.href}
-                                                        className="group block space-y-1 rounded-md p-2 pl-3 border border-transparent hover:border-primary"
+                                                        className="group block space-y-1 rounded-md p-2 pl-3 hover:bg-gray-100 dark:hover:bg-gray-900 transition duration-150 ease-in-out"
                                                         aria-label={item.title}
                                                     >
-                                                        <div className="flex flex-col gap-1">
+                                                        <div className="flex flex-col">
                                                             <div className="flex items-center gap-2">
                                                                 <div className="flex gap-2 items-center">
                                                                     {item.icon}
@@ -156,7 +157,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                                 <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                                                             </div>
                                                             {item.description && (
-                                                                <p className="text-md font-la-belle-aurore text-gray-600 dark:text-gray-300">
+                                                                <p className="text-md font-yellowtail text-gray-600 dark:text-gray-300">
                                                                     {item.description}
                                                                 </p>
                                                             )}
@@ -172,17 +173,22 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                     <div className="rounded-lg bg-gray-100 dark:bg-gray-900 p-4">
                                         <div className="flex flex-col justify-between h-full">
                                             <div>
-                                                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                <h3 className="flex gap-2 text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                    {featured.featuredIcon}
                                                     {featured.title}
                                                 </h3>
-                                                <p className="text-sm text-gray-600 dark:text-gray-400">
-                                                    {featured.description}
-                                                </p>
-                                                <img
-                                                    src={featured.imageUrl}
-                                                    alt={featured.title}
-                                                    className="mt-6 size-36 mx-auto object-cover aspect-video"
-                                                />
+                                                { featured.description && (
+                                                    <p className="text-sm text-gray-600 dark:text-gray-400 font-yellowtail">
+                                                        {featured.description}
+                                                    </p>
+                                                )}
+                                                { featured.imageUrl && (
+                                                    <img
+                                                        src={featured.imageUrl}
+                                                        alt={featured.title}
+                                                        className="my-1 size-32 mx-auto object-cover aspect-video"
+                                                    />
+                                                )}
                                             </div>
                                             {featured.label && (
                                                 <Button asChild variant="primary" className="group">

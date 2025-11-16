@@ -1,9 +1,12 @@
-import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
+import { Link } from '@inertiajs/react';
+
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 
 import ContactBlock from '@/components/reusables/Blocks/ContactBlock';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
-import { Link } from '@inertiajs/react';
+
+import LegalSidebar from '@/components/sidebars/LegalSidebar';
 
 /**
  * The contact page of the application.
@@ -13,8 +16,8 @@ import { Link } from '@inertiajs/react';
  */
 export default function ContactPage() {
     return (
-        <NoSidebarsLayout title="Kontakt" showTitle={false} description="Auf dieser Seite kannst in Kontakt mit mir treten und mir eine Nachricht schreiben.">
+        <SidebarLeftLayout title="Kontakt" sidebar={<LegalSidebar />} showTitle={false} description="Auf dieser Seite kannst in Kontakt mit mir treten und mir eine Nachricht schreiben.">
             <ContactBlock />
-        </NoSidebarsLayout>
+        </SidebarLeftLayout>
     );
 }

@@ -1,9 +1,9 @@
 import { useState, useMemo, useEffect } from 'react';
 
 import Modal from '@/components/reusables/Modal';
-import FavoriteButton from '@/components/reusables/FavoriteButton';
-import { GoZoomIn } from 'react-icons/go';
 import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
+import { GoZoomIn } from 'react-icons/go';
+
 import { Recipe } from '@/types/Recipe';
 import { cn } from '@/lib/utils';
 
@@ -22,9 +22,8 @@ interface RecipeImageBlockProps {
 export default function RecipeImageBlock({ recipe, className, useModalWindow = false }: RecipeImageBlockProps) {
     
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
-
-
     const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
+
     const hero = useMemo(() => {
         return recipe?.media?.find((m) => m?.pivot?.is_primary) ?? recipe?.media?.[0];
     }, [recipe]);
@@ -32,12 +31,12 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
     return (
         <div
             className={cn(
-                'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-xl',
+                'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-xs',
                 className,
             )}
         >
             {hero ? (
-                <div className="w-full h-auto flex border border-transparent rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+                <div className="w-full h-auto flex border border-transparent rounded-lg overflow-hidden hover:border-primary transition-colors duration-300">
                     <img
                         src={hero.url}
                         alt={recipe.name}
@@ -57,7 +56,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
             ) : (
                 <>
                     <IconCategorySwitcher recipe={recipe} />
-                    <div className="absolute size-full bg-gray-100 dark:bg-gray-700 rounded-xl z-10"></div>
+                    <div className="absolute size-full bg-gray-100 dark:bg-gray-900 rounded-lg z-10"></div>
                 </>
             )}
 

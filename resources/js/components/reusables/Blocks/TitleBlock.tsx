@@ -1,9 +1,11 @@
-import { FaRegHeart } from 'react-icons/fa6';
+
+import { cn } from '@/lib/utils';
 
 interface TitleBlockProps {
     icon?: React.ReactNode;
     title?: string;
     punchline?: string | React.ReactNode | JSX.Element | null;
+    className?: string;
     children?: React.ReactNode;
 }
 
@@ -14,21 +16,19 @@ interface TitleBlockProps {
  * @returns {JSX.Element} The welcome box component.
  */
 export default function TitleBlock({
-    icon = null,
     title = 'Willkommen',
-    punchline = 'Alles wird gut.',
+    icon = null,
+    punchline,
+    className,
     children,
 }: TitleBlockProps) {
     return (
-        <div className="flex flex-col gap-2 items-center justify-center my-4 sm:my-6 md:my-8">
-            <h2 className="flex gap-2 text-3xl font-roboto-condensed">
-                {icon}
-                {title}
-            </h2>
+        <div className={cn("flex flex-col gap-2 items-center justify-center my-4 sm:my-6 md:my-8", className)}>
+            {title && (
+                <h2 className="flex gap-2 text-3xl font-roboto-condensed">{icon}{title}</h2>
+            )}
             {punchline && (
-                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
-                    {punchline}
-                </h3>
+                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-yellowtail">{punchline}</h3>
             )}
             {children}
         </div>

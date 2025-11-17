@@ -91,7 +91,6 @@ class RecipeController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created recipe in storage.
      */
@@ -279,8 +278,15 @@ class RecipeController extends Controller
             ->with('success', 'Rezept erfolgreich aktualisiert.');
     }
 
+    
     /**
-     * Delete the specified recipe.
+     * Destroy the specified recipe.
+     *
+     * @param  Recipe $recipe
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Recipe $recipe)
     {

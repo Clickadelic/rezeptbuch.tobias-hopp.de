@@ -1,20 +1,22 @@
 import { cn } from '@/lib/utils';
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link } from '@inertiajs/react';
-import AuthUser from '@/types/AuthUser';
-import Avatar from '@/components/reusables/Avatar';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Recipe } from '@/types/Recipe';
-import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
+
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import AvatarBlock from '@/components/reusables/Blocks/AvatarBlock';
-import {IconMap} from '@/lib/icon-map';
+import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
+
 import CategoryCardBlock from '@/components/reusables/CategoryCardBlock';
 import ContextMenu from '@/components/reusables/ContextMenu';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
-import { LuUtensilsCrossed } from 'react-icons/lu';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
+
+import Avatar from '@/components/reusables/Avatar';
+import AvatarBlock from '@/components/reusables/Blocks/AvatarBlock';
+
+import AuthUser from '@/types/AuthUser';
+import { IconMap } from '@/lib/icon-map';
 
 interface BigRecipeCardProps {
     className?: string

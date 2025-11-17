@@ -35,7 +35,6 @@ class Recipe extends Model
           'preparation_instructions',
           'difficulty',
           'is_veggy',
-          'rating',
           'community_rating',
           'community_votes',
           'user_id',
@@ -45,7 +44,6 @@ class Recipe extends Model
      protected $casts = [
           'preparation_time' => 'integer',
           'status' => 'string',
-          'rating' => 'integer',
           'community_rating' => 'integer',
           'community_votes' => 'integer',
           'category_id' => 'integer',

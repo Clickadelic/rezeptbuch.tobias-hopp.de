@@ -92,7 +92,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         description: recipe?.description ?? '',
         difficulty: recipe?.difficulty ?? 'einfach',
         is_veggy: recipe?.is_veggy ?? false,
-        rating: Number(recipe?.rating ?? 0),
+        community_rating: Number(recipe?.community_rating ?? 0), // Float?
+        community_votes: Number(recipe?.community_votes ?? 0),
         preparation_time: Number(recipe?.preparation_time ?? 5),
         preparation_instructions: recipe?.preparation_instructions ?? '',
         pending_key: recipe ? undefined : pendingKey,
@@ -149,10 +150,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         setTimeout(scrollToTop, 50);
     };
 
-    const handleRatingChange = (newRating: number) => {
-        setData('rating', newRating);
-    }
-
     // Submit Handler → unterscheidet Create vs Edit
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -187,8 +184,8 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     return (
         <form onSubmit={handleSubmit} ref={formRef} className={cn('flex flex-col', className)}>
             {/* Progress Bar */}
-            <ol className="flex justify-between items-center w-full space-y-4 sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-5">
-                <li className="relative w-full mb-6 sm:mb-0">
+            <ol className="flex justify-between items-center w-full space-y-4 sm:space-x-8 sm:space-y-0 rtl:space-x-reverse lg:mb-5">
+                <li className="relative w-full mb-5 sm:mb-0">
                     <div className="flex items-center">
                         <div
                             className={cn(
@@ -227,7 +224,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </p>
                     </div>
                 </li>
-                <li className="relative w-full mb-6 sm:mb-0">
+                <li className="relative w-full mb-5 sm:mb-0">
                     <div className="flex items-center">
                         <div
                             className={cn(
@@ -264,7 +261,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </p>
                     </div>
                 </li>
-                <li className="relative w-full mb-6 sm:mb-0">
+                <li className="relative w-full mb-5 sm:mb-0">
                     <div className="flex items-center">
                         <div
                             className={cn(
@@ -306,7 +303,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
             {/* STEP 1: Basics */}
             {step === 1 && (
 
-                <section className="space-y-5 mt-5">
+                <section className="space-y-5 sm:mt-5">
                     <CategorySelect className="w-full max-w-xl mx-auto" selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
                     
                     {/* Name */}
@@ -727,15 +724,6 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         {errors.preparation_instructions && (
                             <p className="text-red-500">{errors.preparation_instructions}</p>
                         )}
-                    </div>
-                    
-                    <div className="w-full max-w-xl mx-auto space-y-3">
-                        <InputLabel
-                            htmlFor="rating"
-                            value="Deine Bewertung des Rezeptes"
-                            description="Welche Bewertung gibst Du dem Rezept? Die Community kann später auch bewerten."
-                        />
-                        <UserStarRating rating={data.rating} onRatingChange={handleRatingChange} className="my-5" />
                     </div>
 
                     {/* Submit */}

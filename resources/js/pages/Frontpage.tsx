@@ -14,7 +14,7 @@ import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 import CustomCarousel from '@/components/reusables/Carousel';
 import RecipeCard from '@/components/reusables/RecipeCard';
-import OverhauledRecipeCard from '@/components/reusables/OverhauledRecipeCard';
+import OverhauledRecipeCard from '@/components/reusables/BigRecipeCard';
 import { TbSalt } from 'react-icons/tb';
 import { MdOutlineQueryStats } from "react-icons/md";
 

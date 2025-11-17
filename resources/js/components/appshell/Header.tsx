@@ -224,7 +224,7 @@ export default function Header() {
                                 className="flex gap-2"
                                 active={window.location.pathname.startsWith('/dashboard')}
                             >
-                                <BsBell className="size-4 mt-1 " />{drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
+                                <BsBell className="size-4 mt-1 text-rose-700" />{drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
                             </ResponsiveNavLink>
                         )}
                         

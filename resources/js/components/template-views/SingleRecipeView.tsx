@@ -9,7 +9,7 @@ import CommentsDirectory from '@/components/template-views/CommentsDirectory';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
-import UserStarRating from '@/components/forms/inputs/UserStarRating';
+
 import Seperator from '@/components/reusables/Seperator';
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
@@ -49,9 +49,8 @@ export default function SingleRecipeView({ recipe }: ShowRecipeProps) {
             <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-12" />
             <SingleRecipeIngredientsTable recipe={recipe} />
             <PreparationInstructions recipe={recipe} />
-            <Seperator style="star" />
-            <TitleBlock title="Deine Meinung" punchline="Was denkst Du?" icon={<FaRegFaceGrinStars className="text-primary size-6 mt-1" />} />
-            <UserStarRating rating={recipe?.rating || 0} readonly={true} />
+            
+
             <CommentsDirectory recipeId={recipe.id!} />
             <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
         </div>

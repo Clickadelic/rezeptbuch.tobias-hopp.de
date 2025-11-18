@@ -77,7 +77,7 @@ export default function IngredientsDirectory() {
                                     <CardContent>
                                         <ul className="px-5 flex flex-wrap gap-2">
                                             {grouped[letter].map((ingredient) => (
-                                                <li key={ingredient.id}>
+                                                <li key={ingredient.id} className="after:content-[',_'] last:after:content-['']">
                                                     <IngredientItem
                                                         ingredient={ingredient}
                                                         onSelect={() =>

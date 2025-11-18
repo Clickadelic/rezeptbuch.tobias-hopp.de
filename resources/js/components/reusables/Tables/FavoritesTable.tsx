@@ -57,7 +57,7 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
                             <TableHead>Name</TableHead>
                             <TableHead>Kategorie</TableHead>
                             <TableHead className="hidden sm:table-cell">Schwierigkeit</TableHead>
-                            <TableHead className="hidden sm:table-cell">Bewertung</TableHead>
+
                             <TableHead className="hidden sm:table-cell">Benutzer</TableHead>
                             <TableHead className="text-right">Aktion</TableHead>
                         </TableRow>
@@ -81,9 +81,7 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
                                 <TableCell className="hidden sm:table-cell cursor-default">
                                     {recipe.difficulty}
                                 </TableCell>
-                                <TableCell className="hidden sm:table-cell cursor-default">
-                                    {recipe.rating}
-                                </TableCell>
+
                                 <TableCell className="hidden sm:table-cell cursor-default">
                                     {recipe.user?.name}
                                 </TableCell>

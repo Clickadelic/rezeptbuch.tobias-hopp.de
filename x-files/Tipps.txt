@@ -1,2 +1,10 @@
 // MySQL Verzeichnis
 cd "C:\Program Files\MySQL\MySQL Server 8.1\bin"
+
+https://react-scan.com/
+
+NUQS URL State Manager
+https://nuqs.dev/
+
+fumadocs.dev
+https://fumadocs.dev/

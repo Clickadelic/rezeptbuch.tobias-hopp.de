@@ -1,6 +1,7 @@
 import { usePage } from '@inertiajs/react';
 
-import FullWidthLayout from '@/layouts/FullWidthLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
+import MainSidebar from '@/components/sidebars/MainSidebar';
 
 import BarChart from '@/components/reusables/Charts/BarChart';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
@@ -45,7 +46,7 @@ export default function Dashboard() {
     } = usePage<SharedPageProps>().props;
 
     const { user } = usePage<SharedPageProps>().props.auth;
-    console.log("User Ingredients", totalUserIngredients);
+    console.log('User Ingredients', totalUserIngredients);
     // Prepare data for charts
     const globalBarData = [
         { name: 'Vorspeisen', value: recipesCountByCategory['Vorspeise'] },
@@ -72,7 +73,7 @@ export default function Dashboard() {
     ];
     // console.log(comments);
     return (
-        <FullWidthLayout title="Dashboard">
+        <SidebarLeftLayout title="Dashboard" sidebar={<MainSidebar />}>
             <div className="grid grid-cols-1 xl:grid-cols-10 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <div className="col-span-1 xl:col-span-2">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
@@ -88,7 +89,8 @@ export default function Dashboard() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <BsJournalBookmark className="size-4 mt-1.5 text-primary" />Deine Rezepte
+                                <BsJournalBookmark className="size-4 mt-1.5 text-primary" />
+                                Deine Rezepte
                             </span>
                             <span>{totalUserRecipeCount}</span>
                         </h3>
@@ -141,9 +143,12 @@ export default function Dashboard() {
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <div className="col-span-1 xl:col-span-5 bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border border-transparent border-b-gray-200 dark:border-b-gray-700">
-                    <h3 className="text-lg mb-3 flex gap-2"><TbSalt className="mt-1 text-primary" />Zutaten {totalUserIngredientCount}</h3>
+                    <h3 className="text-lg mb-3 flex gap-2">
+                        <TbSalt className="mt-1 text-primary" />
+                        Zutaten {totalUserIngredientCount}
+                    </h3>
                     <ul className="flex flex-wrap gap-2">
-                        {totalUserIngredients?.map((ingredient:Ingredient) => (
+                        {totalUserIngredients?.map((ingredient: Ingredient) => (
                             <li key={ingredient.id} className="flex flex-wrap">
                                 <IngredientBadge ingredient={ingredient} />
                             </li>
@@ -151,7 +156,10 @@ export default function Dashboard() {
                     </ul>
                 </div>
                 <div className="col-span-1 xl:col-span-5 bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border border-transparent border-b-gray-200 dark:border-b-gray-700">
-                    <h3 className="text-lg mb-3 flex gap-2"><TfiCommentAlt className="mt-1 text-primary" /> Kommentare {comments?.total || 0}</h3>
+                    <h3 className="text-lg mb-3 flex gap-2">
+                        <TfiCommentAlt className="mt-1 text-primary" /> Kommentare{' '}
+                        {comments?.total || 0}
+                    </h3>
                     {/* {comments?.data?.map((comment: Comment) => (
                         <div key={comment?.id} className="mb-2">
                             <span className="text-gray-500 dark:text-gray-400">
@@ -183,6 +191,6 @@ export default function Dashboard() {
                     className="w-full"
                 />
             </div>
-        </FullWidthLayout>
+        </SidebarLeftLayout>
     );
 }

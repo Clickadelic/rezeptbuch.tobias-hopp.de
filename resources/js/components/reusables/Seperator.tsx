@@ -13,14 +13,14 @@ import { IoMailOpenOutline } from 'react-icons/io5';
 import { BsJournalBookmark, BsInfoCircle, BsCardImage } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';
 import { TfiCommentAlt } from 'react-icons/tfi';
-
+import { Moon, Sun } from 'lucide-react';
 import { RxMixerVertical } from 'react-icons/rx';
-
+import { MdOutlineQuestionMark } from "react-icons/md";
 import { Star } from 'lucide-react';
 import { RxGear } from 'react-icons/rx';
 import { GiScales } from 'react-icons/gi';
 import { TfiControlShuffle } from 'react-icons/tfi';
-
+import { GiMatchTip } from "react-icons/gi";
 import { cn } from '@/lib/utils';
 
 interface SeparatorProps {
@@ -32,7 +32,7 @@ interface SeparatorProps {
 /**
  * A separator component with an icon centered above a horizontal line.
  * @example
- * <Separator size={8} style="carrot |check-circle | cocktail | comment | comment-alt | cooking-pot | ghost | journal | cake | info | image | muffin | mail | mix | quote | salad | salt | snack | star | scale | gear " />
+ * <Separator size={8} style="carrot |check-circle | cocktail | comment | comment-alt | cooking-pot | ghost | journal | cake | info | image | muffin | mail | match-tip | mix | moon | quote | question-mark | salad | salt | snack | star | scale | gear " />
  */
 export default function Separator({ size = 5, style = 'fork-knife', margin }: SeparatorProps) {
     const baseStyle = { fontSize: `${size * 0.25}rem` };
@@ -76,6 +76,12 @@ export default function Separator({ size = 5, style = 'fork-knife', margin }: Se
         case 'mail':
             IconComponent = IoMailOpenOutline;
             break;
+        case 'match-tip':
+            IconComponent = GiMatchTip;
+            break;
+        case 'moon':
+            IconComponent = Moon;
+            break;
         case 'fork-knife':
             IconComponent = GiKnifeFork;
             break;
@@ -91,6 +97,9 @@ export default function Separator({ size = 5, style = 'fork-knife', margin }: Se
         case 'salt':
             IconComponent = TbSalt;
             break;
+        case 'sun':
+            IconComponent = Sun;
+            break;
         case 'mix':
             IconComponent = RxMixerVertical;
             break;
@@ -99,6 +108,9 @@ export default function Separator({ size = 5, style = 'fork-knife', margin }: Se
             break;
         case 'quote':
             IconComponent = FaQuoteLeft;
+            break;
+        case 'question-mark':
+            IconComponent = MdOutlineQuestionMark;
             break;
         case 'snack':
             IconComponent = GiCrystalBars;

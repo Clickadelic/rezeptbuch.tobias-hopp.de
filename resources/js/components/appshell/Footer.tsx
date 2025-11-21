@@ -4,6 +4,7 @@ import BackToTopButton from '@/components/appshell/BackToTopButton';
 import { BiCategory } from 'react-icons/bi';
 import { BsChevronCompactRight } from 'react-icons/bs';
 
+import { BsApp } from "react-icons/bs";
 import { VscSymbolMisc } from 'react-icons/vsc';
 import { GrNavigate } from 'react-icons/gr';
 import { TbSalad } from 'react-icons/tb';
@@ -14,10 +15,15 @@ import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { CircularMenu } from '@/components/appshell/CircularMenu';
-
+import { Button } from '@/components/ui/button';
 import FooterColumn from '@/components/appshell/FooterColumn';
 
+import { ChevronDown, ArrowRight } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
+
+import appBro from '@images/svg/Install-App-bro.svg';
+
 
 interface FooterProps {
     className?: string;
@@ -88,11 +94,27 @@ export default function Footer({ className }: FooterProps) {
 
     const column3 = [
         {
+            title: 'FAQ - Fragen und Antworten',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/faq',
+        },
+        {
             title: 'Mis en place',
             icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
             href: '/mis-en-place',
         },
+
     ];
+
+    const column4Content = (
+        <div className="text-center flex flex-col gap-2">
+            <p className="mx-auto inline-flex gap-2 text-primary"><span className="font-la-belle-aurore mt-[2px]">Toby's</span><span className="font-bold">Rezeptbuch</span></p>
+            <img src={appBro} className="w-52 mb-3 mx-auto" alt="App-Installation" />
+            <p>Jetzt für iOS und Android erhältlich.</p>
+            <Button asChild className="w-56 mx-auto" variant="primary"><Link href="/app-installation" className="flex gap-1"><ArrowRight className="mr-1" />Zur Installationsanleitung</Link></Button>
+        </div>
+    );  
+
 
     return (
         <>
@@ -118,16 +140,16 @@ export default function Footer({ className }: FooterProps) {
                             items={column2}
                         />
                         <FooterColumn
-                            title="Sonstiges"
+                            title="Weitere Themen"
                             columnIcon={<VscSymbolMisc />}
                             className="mx-auto max-w-[21.5rem] sm:w-full"
                             items={column3}
                         />
                         <FooterColumn
-                            title="Rezeptbuch-App"
-                            columnIcon={<AiOutlineAppstoreAdd />}
+                            title="Installier' die App"
+                            columnIcon={<BsApp />}
                             className="mx-auto max-w-[21.5rem] sm:w-full"
-                            children="bla"
+                            children={column4Content}
                         />
                     </div>
                     <div className="flex flex-row justify-center items-center border-t border-stone-700 pt-6">

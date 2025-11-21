@@ -115,11 +115,11 @@ export default function Dashboard() {
                             <span className="flex gap-1">
                                 <BsJournalBookmark className="size-4 mt-1.5 text-primary" />
                                 Deine Rezepte
+                                <PopoverInfo description="Entwürfe / Gesamt" />
                             </span>
                             <div className="flex gap-1">
                                 <span className="text-gray-600 dark:text-gray-400">{drafts}</span>/
                                 <span>{totalUserRecipeCount}</span>
-                                <PopoverInfo description="Die Anzahl Deiner Entwürfe und die Gesamtanzahl Deiner Rezepte." />
                             </div>
                         </h3>
                     </div>
@@ -130,10 +130,10 @@ export default function Dashboard() {
                             <span className="flex gap-1">
                                 <TbSalt className="size-4 mt-1.5 text-primary" />
                                 Deine Zutaten
+                                <PopoverInfo description="Die Anzahl Deiner Zutaten." />
                             </span>
                             <div className="flex gap-1">
                                 <span>{totalUserIngredientCount}</span>
-                                <PopoverInfo description="Die Anzahl Deiner Zutaten." />
                             </div>
                         </h3>
                     </div>
@@ -142,11 +142,12 @@ export default function Dashboard() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <TfiCommentAlt className="size-4 mt-1.5 text-primary" /> Kommentare
+                                <TfiCommentAlt className="size-4 mt-1.5 text-primary" />
+                                Kommentare
+                                <PopoverInfo description="Die Anzahl Deiner Kommentare." />
                             </span>
                             <div className="flex gap-1">
                                 <span>{comments?.total || 0}</span>
-                                <PopoverInfo description="Die Anzahl Deiner Kommentare." />
                             </div>
                         </h3>
                     </div>
@@ -156,37 +157,37 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten
+                                <PopoverInfo description="Die Anzahl Deiner Favoriten." />
                             </span>
 
                             <div className="flex gap-1">
                                 <span>{userFavoritesCount || 0}</span>
-                                <PopoverInfo description="Die Anzahl Deiner Favoriten." />
                             </div>
                         </h3>
                     </div>
                 </div>
             </div>
-            <div className="flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <CategoryBarChart
                     communityBarData={communityBarData}
                     userBarData={userBarData}
                     icon={<BsJournalBookmark className="mt-1 text-primary" />}
                     title="Rezepte nach Kategorie"
-                    className="col-span-1 xl:col-span-6"
+                    className="col-span-1 xl:col-span-7"
                 />
                 <DonutChart
                     data={donutData}
                     title="Dein Anteil"
                     icon={<TbCategory className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-6 xl:col-start-8"
+                    className="col-span-1 xl:col-span-7 xl:col-start-8"
                 />
             </div>
-            <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+            <div className="flex gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <RecipesTable
                     initialRecipes={totalUserRecipes}
                     title="Deine Rezepte"
                     icon={<TfiLayoutListThumb className="mt-1 text-primary" />}
-                    className="w-full"
+                    className="col-span-1 xl:col-span-7"
                 />
                 <FavoritesTable
                     favorites={userFavorites as Recipe[]}
@@ -194,10 +195,12 @@ export default function Dashboard() {
                     icon={<FaRegHeart className="mt-1 text-primary" />}
                     className="w-full"
                 />
+                
+                
             </div>
             <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <IngredientPanel
-                    className="w-full"
+                    className="col-span-1 xl:col-span-7 xl:col-start-8"
                     totalUserIngredients={totalUserIngredients}
                     totalUserIngredientCount={totalUserIngredientCount}
                 />

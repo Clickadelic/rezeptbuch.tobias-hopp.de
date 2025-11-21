@@ -46,7 +46,7 @@ export default function BarChart({
                 {title || 'Statistik'}
             </h3>
 
-            <div className="h-[220px]">
+            <div className="h-[247px]">
                 <ResponsiveContainer>
                     <RBarChart
                         data={data}

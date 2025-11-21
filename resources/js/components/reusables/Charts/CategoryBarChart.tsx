@@ -51,7 +51,7 @@ export default function BarChart({
                     <RBarChart
                         data={data}
                         margin={{ top: 8, right: 8, left: 0, bottom: 0 }}
-                        barSize={45}
+                        barSize={30}
                     >
                         <CartesianGrid strokeDasharray="4 4" opacity={1} />
                         <XAxis dataKey="name" />
@@ -59,7 +59,7 @@ export default function BarChart({
                         <Tooltip
                             contentStyle={{
                                 backgroundColor: '#f4f4f5',
-                                borderRadius: 4,
+                                borderRadius: 8,
                                 border: '1px solid #a1a1aa',
                             }}
                             labelStyle={{ color: '#111827', fontWeight: 400 }}
@@ -74,7 +74,7 @@ export default function BarChart({
                             dataKey="user"
                             name="Deine Rezepte"
                             fill="#034F3B"
-                            radius={[4, 4, 0, 0]}
+                            radius={[6, 6, 0, 0]}
                         />
 
                         {/* Community */}
@@ -82,7 +82,7 @@ export default function BarChart({
                             dataKey="community"
                             name="Community"
                             fill="#2D9966"
-                            radius={[4, 4, 0, 0]}
+                            radius={[6, 6, 0, 0]}
                         />
                     </RBarChart>
                 </ResponsiveContainer>

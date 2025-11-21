@@ -46,4 +46,12 @@ class PageController extends Controller
     public function appInstallation() {
         return Inertia::render('AppInstallation');
     }
+
+    public function misEnPlace() {
+        return Inertia::render('MisEnPlace');
+    }
+
+    public function faq() {
+        return Inertia::render('Faq');
+    }
 }

@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 
 import { Button } from '@/components/ui/button';
@@ -8,16 +9,17 @@ import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelect
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecommendationsBlock';
 import CocktailRecommendationsBlock from '@/components/reusables/Blocks/CocktailRecommendationsBlock';
-import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
+
 import CustomCarousel from '@/components/reusables/Carousel';
 import RecipeCard from '@/components/reusables/RecipeCard';
 import OverhauledRecipeCard from '@/components/reusables/BigRecipeCard';
+
+import { HiOutlineQuestionMarkCircle } from "react-icons/hi2";
 import { TbSalt } from 'react-icons/tb';
 import { MdOutlineQueryStats } from "react-icons/md";
-
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoMdArrowForward } from 'react-icons/io';
 
@@ -55,10 +57,10 @@ export default function Frontpage() {
             <CategorySelectionBlock />
             <Seperator style="journal" />
             <AuthTeaserBlock />
-            <Seperator style="carrot" />
+            <Seperator style="sun" />
             <DailyRecommendationsBlock />
-            <Seperator style="cocktail" />
-
+            <Seperator style="question-mark" />
+            <FaqAccordeon />
         </FullWidthLayout>
     );
 }

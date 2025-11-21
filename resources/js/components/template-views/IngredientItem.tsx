@@ -16,7 +16,7 @@ export default function IngredientItem({ ingredient, onSelect }: IngredientItemP
     const { auth } = usePage<SharedPageProps>().props;
 
     if (!hasRole('user') || ingredient.user_id !== auth.user?.id) {
-        return <div className="mt-1.5 inline">{ingredient.name}</div>;
+        return <div className="mt-1.5 inline-flex">{ingredient.name}</div>;
     }
 
     return (

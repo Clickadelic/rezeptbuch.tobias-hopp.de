@@ -51,7 +51,7 @@ export default function BarChart({
                     <RBarChart
                         data={data}
                         margin={{ top: 8, right: 8, left: 0, bottom: 0 }}
-                        barSize={45}
+                        barSize={35}
                     >
                         <CartesianGrid strokeDasharray="4 4" opacity={1} />
                         <XAxis dataKey="name" />

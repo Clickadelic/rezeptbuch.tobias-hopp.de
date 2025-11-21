@@ -1,7 +1,7 @@
 import { usePage } from '@inertiajs/react';
 
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
-import MainSidebar from '@/components/sidebars/MainSidebar';
+import UserSidebar from '@/components/sidebars/UserSidebar';
 
 import AreaChart from '@/components/reusables/Charts/AreaChart';
 import CategoryBarChart from '@/components/reusables/Charts/CategoryBarChart';
@@ -107,7 +107,7 @@ export default function Dashboard() {
     ];
     // console.log(comments);
     return (
-        <SidebarLeftLayout title="Dashboard" sidebar={<MainSidebar />}>
+        <SidebarLeftLayout title="Dashboard" sidebar={<UserSidebar />}>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
@@ -182,7 +182,7 @@ export default function Dashboard() {
                     className="col-span-1 xl:col-span-7 xl:col-start-8"
                 />
             </div>
-            <div className="flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+            <div className="flex flex-col sm:flex-row gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <RecipesTable
                     initialRecipes={totalUserRecipes}
                     title="Deine Rezepte"

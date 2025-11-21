@@ -65,11 +65,9 @@ export default function FrontpageCategoryGrid() {
                             Ist die Registrierung sicher?
                         </AccordionTrigger>
                         <AccordionContent>
-                            <p>
-                                Ja, ist sie.
-                            </p>
+                            <p>Ja, ist sie.</p>
                             <br />
-                            <p>Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung oder einen Registrierungsprozess, bei dem kein Passwort online versendet wird (nur Du gibst es einmal ein).</p>
+                            <p>Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung und einen sicheren Registrierungsprozess.</p>
                             <br />
                             <p>Weitere Informationen zu diesem Thema gibt es aus Sicherheitsgründen nicht.</p>
                         </AccordionContent>

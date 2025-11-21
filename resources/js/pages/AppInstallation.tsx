@@ -63,16 +63,11 @@ export default function AppInstallation() {
                         </div>
                         </div>
                     </li>
-                    <li className="asd">
+                    <li className="flex flex-col justify-center items-center">
                         <p className="inline-flex">Klicke entweder auf "App installieren" oder auf "Verknüpfung hinzufügen".</p>
-                        <div className="p-10">
-                            <MdOutlineInstallMobile className="text-primary size-9 mt-1 mx-auto" />
-                        </div>
-                    </li>
-                    <li className="flex flex-col items-center justify-center gap-2">
-                        <p className="inline-flex">Die App wird installiert als sogenannte "Progressive Web App".</p>
-                        <IoShieldCheckmarkOutline className="text-primary size-9 my-5 mx-auto" />
-                        <p className="inline-flex">Fertig - viel Spaß. 🙂</p>
+                        <IoShieldCheckmarkOutline className="text-primary size-9 my-8 mx-auto" />
+                        <p className="inline-flex mb-2">Die App wird nun als sogenannte "Progressive Web App" installiert.</p>
+                        <p className="inline-flex">Viel Spaß. 🙂 Du kannst das Rezeptbuch jetzt als App verwenden.</p>
                     </li>
                 </ul>
                 <div className="w-full my-5 flex gap-1 flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">

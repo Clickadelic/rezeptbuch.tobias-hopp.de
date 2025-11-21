@@ -44,7 +44,7 @@ export default function FrontpageCategoryGrid() {
                             <p>Ich stelle das Rezeptbuch der Allgemeinheit zur Verfügung - wer möchte, kann gerne mitmachen.</p>
                             <br />
                             <p>Updates, Verbesserungen oder Bugfixes in der Zukunft wird es geben.</p>
-                            <p>Allerdings ungeregelmäßig - je nach dem, wie ich Zeit hab und wie die technische Lage ist.</p>
+                            <p>Allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe und was gerade ansteht.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">

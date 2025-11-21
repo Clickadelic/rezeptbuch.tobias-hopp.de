@@ -3,25 +3,27 @@ import { usePage } from '@inertiajs/react';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
 
-import BarChart from '@/components/reusables/Charts/BarChart';
+import AreaChart from '@/components/reusables/Charts/AreaChart';
+import CategoryBarChart from '@/components/reusables/Charts/CategoryBarChart';
 import DonutChart from '@/components/reusables/Charts/DonutChart';
+import PopoverInfo from '@/components/reusables/PopoverInfo';
 import FavoritesTable from '@/components/reusables/Tables/FavoritesTable';
 import RecipesTable from '@/components/reusables/Tables/UserRecipesTable';
+import IngredientPanel from '@/components/reusables/IngredientPanel';
 
 import { TfiCommentAlt } from 'react-icons/tfi';
-import { IoIosStats } from 'react-icons/io';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FaRegHeart } from 'react-icons/fa';
 import { TbSalt } from 'react-icons/tb';
 import { TbCategory } from 'react-icons/tb';
 import { TfiLayoutListThumb } from 'react-icons/tfi';
-import { TfiCommentsSmiley } from 'react-icons/tfi';
+
+import CommentsPanel from '@/components/reusables/CommentsPanel';
 
 import { Ingredient } from '@/types/Ingredient';
 import { Recipe } from '@/types/Recipe';
+import { Comment } from '@/types/Comment';
 import { SharedPageProps } from '@/types';
-
-import IngredientBadge from '@/components/reusables/IngredientBadge';
 
 import { cn } from '@/lib/utils';
 
@@ -43,12 +45,11 @@ export default function Dashboard() {
         recipesCountByCategory,
         recipesUserCountByCategory,
         comments,
+        drafts,
     } = usePage<SharedPageProps>().props;
 
-    const { user } = usePage<SharedPageProps>().props.auth;
-    console.log('User Ingredients', totalUserIngredients);
     // Prepare data for charts
-    const globalBarData = [
+    const communityBarData = [
         { name: 'Vorspeisen', value: recipesCountByCategory['Vorspeise'] },
         { name: 'Hauptgerichte', value: recipesCountByCategory['Hauptgericht'] },
         { name: 'Nachtisch', value: recipesCountByCategory['Nachtisch'] },
@@ -66,6 +67,39 @@ export default function Dashboard() {
         { name: 'Snack', value: recipesUserCountByCategory['Snack'] },
     ];
 
+    const areaChartData = [
+        {
+            name: 'Vorspeise',
+            user: recipesUserCountByCategory['Vorspeise'],
+            global: recipesCountByCategory['Vorspeise'],
+        },
+        {
+            name: 'Hauptgerichte',
+            user: recipesUserCountByCategory['Hauptgericht'],
+            global: recipesCountByCategory['Hauptgericht'],
+        },
+        {
+            name: 'Nachtisch',
+            user: recipesUserCountByCategory['Nachtisch'],
+            global: recipesCountByCategory['Nachtisch'],
+        },
+        {
+            name: 'Cocktails',
+            user: recipesUserCountByCategory['Cocktail'],
+            global: recipesCountByCategory['Cocktail'],
+        },
+        {
+            name: 'Backen',
+            user: recipesUserCountByCategory['Backen'],
+            global: recipesCountByCategory['Backen'],
+        },
+        {
+            name: 'Snack',
+            user: recipesUserCountByCategory['Snack'],
+            global: recipesCountByCategory['Snack'],
+        },
+    ];
+
     const donutData = [
         { name: 'Eigene Rezepte', value: totalUserRecipeCount },
         { name: 'Favoriten', value: userFavoritesCount },
@@ -74,122 +108,102 @@ export default function Dashboard() {
     // console.log(comments);
     return (
         <SidebarLeftLayout title="Dashboard" sidebar={<MainSidebar />}>
-            <div className="grid grid-cols-1 xl:grid-cols-10 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <div className="col-span-1 xl:col-span-2">
+            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
-                            <span className="flex gap-2">
-                                <TfiCommentsSmiley className="size-4 mt-1 text-primary rotate-y-180" />
-                                Hi {user?.name}
-                            </span>
-                        </h3>
-                    </div>
-                </div>
-                <div className="col-span-1 xl:col-span-2">
-                    <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
-                        <h3 className="text-lg flex justify-between items-center cursor-default">
-                            <span className="flex gap-2">
+                            <span className="flex gap-1">
                                 <BsJournalBookmark className="size-4 mt-1.5 text-primary" />
                                 Deine Rezepte
                             </span>
-                            <span>{totalUserRecipeCount}</span>
+                            <div className="flex gap-1">
+                                <span className="text-gray-600 dark:text-gray-400">{drafts}</span>/
+                                <span>{totalUserRecipeCount}</span>
+                                <PopoverInfo description="Die Anzahl Deiner Entwürfe und die Gesamtanzahl Deiner Rezepte." />
+                            </div>
                         </h3>
                     </div>
                 </div>
-                <div className="col-span-1 xl:col-span-2">
+                <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
-                            <span className="flex gap-2">
-                                <TbSalt className="size-4 mt-1.5 text-primary" /> Zutaten
+                            <span className="flex gap-1">
+                                <TbSalt className="size-4 mt-1.5 text-primary" />
+                                Deine Zutaten
                             </span>
-                            <span>{totalUserIngredientCount}</span>
+                            <div className="flex gap-1">
+                                <span>{totalUserIngredientCount}</span>
+                                <PopoverInfo description="Die Anzahl Deiner Zutaten." />
+                            </div>
                         </h3>
                     </div>
                 </div>
-                <div className="col-span-1 xl:col-span-2">
+                <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <TfiCommentAlt className="size-4 mt-1.5 text-primary" /> Kommentare
                             </span>
-                            <span>{comments?.total || 0}</span>
+                            <div className="flex gap-1">
+                                <span>{comments?.total || 0}</span>
+                                <PopoverInfo description="Die Anzahl Deiner Kommentare." />
+                            </div>
                         </h3>
                     </div>
                 </div>
-                <div className="col-span-1 xl:col-span-2">
+                <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten
                             </span>
-                            <span>{userFavoritesCount}</span>
+
+                            <div className="flex gap-1">
+                                <span>{userFavoritesCount || 0}</span>
+                                <PopoverInfo description="Die Anzahl Deiner Favoriten." />
+                            </div>
                         </h3>
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <RecipesTable
-                    initialRecipes={totalUserRecipes}
-                    title="Deine Rezepte"
-                    icon={<TfiLayoutListThumb className="mt-1 text-primary" />}
+            <div className="flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <CategoryBarChart
+                    communityBarData={communityBarData}
+                    userBarData={userBarData}
+                    icon={<BsJournalBookmark className="mt-1 text-primary" />}
+                    title="Rezepte nach Kategorie"
                     className="col-span-1 xl:col-span-6"
-                />
-                <FavoritesTable
-                    favorites={userFavorites as Recipe[]}
-                    title="Deine Favoriten"
-                    icon={<FaRegHeart className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-6"
-                />
-            </div>
-            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <div className="col-span-1 xl:col-span-5 bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border border-transparent border-b-gray-200 dark:border-b-gray-700">
-                    <h3 className="text-lg mb-3 flex gap-2">
-                        <TbSalt className="mt-1 text-primary" />
-                        Zutaten {totalUserIngredientCount}
-                    </h3>
-                    <ul className="flex flex-wrap gap-2">
-                        {totalUserIngredients?.map((ingredient: Ingredient) => (
-                            <li key={ingredient.id} className="flex flex-wrap">
-                                <IngredientBadge ingredient={ingredient} />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div className="col-span-1 xl:col-span-5 bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border border-transparent border-b-gray-200 dark:border-b-gray-700">
-                    <h3 className="text-lg mb-3 flex gap-2">
-                        <TfiCommentAlt className="mt-1 text-primary" /> Kommentare{' '}
-                        {comments?.total || 0}
-                    </h3>
-                    {/* {comments?.data?.map((comment: Comment) => (
-                        <div key={comment?.id} className="mb-2">
-                            <span className="text-gray-500 dark:text-gray-400">
-                                {comment?.content}
-                            </span>
-                        </div>
-                    ))} */}
-                </div>
-            </div>
-            <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <BarChart
-                    data={userBarData}
-                    title="Deine Rezepte nach Kategorie"
-                    icon={<IoIosStats className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-7"
                 />
                 <DonutChart
                     data={donutData}
                     title="Dein Anteil"
                     icon={<TbCategory className="mt-1 text-primary" />}
-                    className="col-span-1 xl:col-span-5 xl:col-start-8"
+                    className="col-span-1 xl:col-span-6 xl:col-start-8"
                 />
             </div>
-            <div className="grid grid-cols-1 mb-2 xl:mb-5">
-                <BarChart
-                    data={globalBarData}
-                    title="Rezeptbuch Gesamt"
-                    icon={<IoIosStats className="mt-1 text-primary" />}
+            <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <RecipesTable
+                    initialRecipes={totalUserRecipes}
+                    title="Deine Rezepte"
+                    icon={<TfiLayoutListThumb className="mt-1 text-primary" />}
                     className="w-full"
                 />
+                <FavoritesTable
+                    favorites={userFavorites as Recipe[]}
+                    title="Deine Favoriten"
+                    icon={<FaRegHeart className="mt-1 text-primary" />}
+                    className="w-full"
+                />
+            </div>
+            <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <IngredientPanel
+                    className="w-full"
+                    totalUserIngredients={totalUserIngredients}
+                    totalUserIngredientCount={totalUserIngredientCount}
+                />
+            </div>
+            <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <CommentsPanel className="w-full" comments={comments} />
             </div>
         </SidebarLeftLayout>
     );

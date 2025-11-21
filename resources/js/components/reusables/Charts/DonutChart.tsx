@@ -25,7 +25,7 @@ export default function DonutChart({ data, title, icon, className }: DonutChartP
                 {icon}
                 {title || 'Verteilung'}
             </h3>
-            <div className="h-[260px]">
+            <div className="h-[300px]">
                 <ResponsiveContainer>
                     <PieChart>
                         <Pie

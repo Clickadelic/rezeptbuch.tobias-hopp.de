@@ -37,7 +37,7 @@ export default function BarChart({
     return (
         <div
             className={cn(
-                'w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl border-b border-gray-200 dark:border-gray-700',
+                'w-full flex flex-col gap-2 bg-gray-100 dark:bg-gray-900 p-4 rounded-xl border-b border-gray-200 dark:border-gray-700',
                 className,
             )}
         >

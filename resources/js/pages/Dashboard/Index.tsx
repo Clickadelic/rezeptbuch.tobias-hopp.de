@@ -182,7 +182,7 @@ export default function Dashboard() {
                     className="col-span-1 xl:col-span-7 xl:col-start-8"
                 />
             </div>
-            <div className="flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+            <div className="flex flex-col sm:flex-row gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <RecipesTable
                     initialRecipes={totalUserRecipes}
                     title="Deine Rezepte"

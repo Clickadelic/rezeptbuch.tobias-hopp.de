@@ -1,13 +1,7 @@
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from '@/components/ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Link } from '@inertiajs/react';
-import TitleBlock from './Blocks/TitleBlock';
-import { FaQuora } from 'react-icons/fa';
 
+import TitleBlock from './Blocks/TitleBlock';
 import { FaQ } from 'react-icons/fa6';
 
 /**
@@ -42,15 +36,15 @@ export default function FrontpageCategoryGrid() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Du kannst die Suchfunktion nutzen und leckere Rezepte finden (und diese für Dich verwenden). Darüber hinaus kannst Du Dich aber auch registrieren und
-                                eigene Rezepte anlegen, sie verwalten und mit anderen teilen. Zusätzlich kannst Du natürlich auch Rezepte von anderen Nutzern finden und sie zu Deinen
+                                Du kannst leckere Rezepte durchstöbern (und diese für Dich verwenden). Wenn Du Lust hast, kannst Du Dich auch registrieren und
+                                eigene Rezepte anlegen, sie verwalten und mit Anderen teilen. Zusätzlich kannst Du natürlich auch Rezepte von anderen Nutzern finden und sie zu Deinen
                                 Favoriten hinzufügen. Ganz ohne Werbung und Pop-Ups.
                             </p>
                             <br />
                             <p>Ich stelle das Rezeptbuch der Allgemeinheit zur Verfügung - wer möchte, kann gerne mitmachen.</p>
                             <br />
                             <p>Updates, Verbesserungen oder Bugfixes in der Zukunft wird es geben.</p>
-                            <p>Allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe und wie die technische Lage ist.</p>
+                            <p>Allerdings ungeregelmäßig - je nach dem, wie ich Zeit hab und wie die technische Lage ist.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">

@@ -1,9 +1,6 @@
 import { LabelHTMLAttributes } from 'react';
 
-import { IoIosInformationCircleOutline } from 'react-icons/io';
-
-import { Popover, PopoverContent, PopoverTrigger,
-} from "@/components/ui/popover"
+import PopoverInfo from '@/components/reusables/PopoverInfo';
 
 /**
  * A simple label component that uses the HTML <label> element.
@@ -26,15 +23,7 @@ export default function InputLabel({
 }: LabelHTMLAttributes<HTMLLabelElement> & { value?: string; description?: string }) {
     return (
         <span {...props} className={`flex gap-2 mb-1 ` + className}>
-            {description && (
-                <Popover>
-                    <PopoverTrigger><IoIosInformationCircleOutline className="size-5 text-gray-400 dark:text-gray-400" /></PopoverTrigger>
-                    <PopoverContent side="right">
-                        {description}
-                        
-                    </PopoverContent>
-                </Popover>
-            )}
+            {description && <PopoverInfo description={description} />}
             {value ? value : children}
         </span>
     );

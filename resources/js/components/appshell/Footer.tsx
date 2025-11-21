@@ -4,6 +4,7 @@ import BackToTopButton from '@/components/appshell/BackToTopButton';
 import { BiCategory } from 'react-icons/bi';
 import { BsChevronCompactRight } from 'react-icons/bs';
 
+import { VscSymbolMisc } from 'react-icons/vsc';
 import { GrNavigate } from 'react-icons/gr';
 import { TbSalad } from 'react-icons/tb';
 import { PiCookingPot } from 'react-icons/pi';
@@ -11,7 +12,7 @@ import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
-import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { CircularMenu } from '@/components/appshell/CircularMenu';
 
 import FooterColumn from '@/components/appshell/FooterColumn';
@@ -29,26 +30,69 @@ interface FooterProps {
  * adapts to different screen sizes using a grid layout.
  */
 export default function Footer({ className }: FooterProps) {
-
     const column1 = [
-        { title: "Start", icon: <BsChevronCompactRight className="mt-[2px] text-primary" />, href: "/" },
-        { title: "Rezepte", icon: <BsChevronCompactRight className="mt-[2px] text-primary" />, href: "/rezepte" },
-        { title: "Zutaten", icon: <BsChevronCompactRight className="mt-[2px] text-primary" />, href: "/zutaten" },
-        { title: "Community", icon: <BsChevronCompactRight className="mt-[2px] text-primary" />, href: "/community" },
-    ]
+        {
+            title: 'Start',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/',
+        },
+        {
+            title: 'Rezepte',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/rezepte',
+        },
+        {
+            title: 'Zutaten',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/zutaten',
+        },
+        {
+            title: 'Community',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/community',
+        },
+    ];
 
     const column2 = [
-        { title: "Vorspeisen", icon: <TbSalad className="mt-[2px] text-primary" />, href: route('recipes.search', { search: 'Vorspeise' }) },
-        { title: "Hauptgerichte", icon: <PiCookingPot className="mt-[2px] text-primary" />, href: route('recipes.search', { search: 'Hauptgericht' }) },
-        { title: "Nachtisch", icon: <GiCakeSlice className="mt-[2px] text-primary" />, href: route('recipes.search', { search: 'Nachtisch' }) },
-        { title: "Cocktails", icon: <LiaCocktailSolid className="mt-[2px] text-primary" />, href: route('recipes.search', { search: 'Cocktail' }) },
-        { title: "Backen", icon: <RiCake3Line className="mt-[2px] text-primary" />, href: route('recipes.search', { search: 'Backen' }) },
-        { title: "Snacks", icon: <GiCrystalBars className="mt-[2px] text-primary" />, href: route('recipes.search', { search: 'Snack' }) },
-    ]
+        {
+            title: 'Vorspeisen',
+            icon: <TbSalad className="mt-[2px] text-primary" />,
+            href: route('recipes.search', { search: 'Vorspeise' }),
+        },
+        {
+            title: 'Hauptgerichte',
+            icon: <PiCookingPot className="mt-[2px] text-primary" />,
+            href: route('recipes.search', { search: 'Hauptgericht' }),
+        },
+        {
+            title: 'Nachtisch',
+            icon: <GiCakeSlice className="mt-[2px] text-primary" />,
+            href: route('recipes.search', { search: 'Nachtisch' }),
+        },
+        {
+            title: 'Cocktails',
+            icon: <LiaCocktailSolid className="mt-[2px] text-primary" />,
+            href: route('recipes.search', { search: 'Cocktail' }),
+        },
+        {
+            title: 'Backen',
+            icon: <RiCake3Line className="mt-[2px] text-primary" />,
+            href: route('recipes.search', { search: 'Backen' }),
+        },
+        {
+            title: 'Snacks',
+            icon: <GiCrystalBars className="mt-[2px] text-primary" />,
+            href: route('recipes.search', { search: 'Snack' }),
+        },
+    ];
 
     const column3 = [
-        { title: "iOS & Android App", icon: <BsChevronCompactRight className="mt-[2px] text-primary" />, href: "/app-installation" },
-    ]
+        {
+            title: 'Mis en place',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/mis-en-place',
+        },
+    ];
 
     return (
         <>
@@ -61,10 +105,30 @@ export default function Footer({ className }: FooterProps) {
                 <BackToTopButton />
                 <footer className="mx-auto container px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-14 pb-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-6 border-b border-b-black">
-                        <FooterColumn title="Navigation" columnIcon={<GrNavigate />} className="mx-auto max-w-[21.5rem] sm:w-full" items={column1} />
-                        <FooterColumn title="Kategorien" columnIcon={<BiCategory />} className="mx-auto max-w-[21.5rem] sm:w-full" items={column2} />
-                        <FooterColumn title="App Installation" columnIcon={<AiOutlineAppstoreAdd />} className="mx-auto max-w-[21.5rem] sm:w-full" items={column3} />
-                        <FooterColumn title="asd" columnIcon={<AiOutlineAppstoreAdd />} className="mx-auto max-w-[21.5rem] sm:w-full" children="bla" />
+                        <FooterColumn
+                            title="Navigation"
+                            columnIcon={<GrNavigate />}
+                            className="mx-auto max-w-[21.5rem] sm:w-full"
+                            items={column1}
+                        />
+                        <FooterColumn
+                            title="Kategorien"
+                            columnIcon={<BiCategory />}
+                            className="mx-auto max-w-[21.5rem] sm:w-full"
+                            items={column2}
+                        />
+                        <FooterColumn
+                            title="Sonstiges"
+                            columnIcon={<VscSymbolMisc />}
+                            className="mx-auto max-w-[21.5rem] sm:w-full"
+                            items={column3}
+                        />
+                        <FooterColumn
+                            title="Rezeptbuch-App"
+                            columnIcon={<AiOutlineAppstoreAdd />}
+                            className="mx-auto max-w-[21.5rem] sm:w-full"
+                            children="bla"
+                        />
                     </div>
                     <div className="flex flex-row justify-center items-center border-t border-stone-700 pt-6">
                         <ul className="text-sm mx-auto text-center sm:flex space-y-3 sm:space-y-0 sm:space-x-3">

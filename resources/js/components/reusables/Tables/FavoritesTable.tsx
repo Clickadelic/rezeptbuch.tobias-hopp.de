@@ -1,12 +1,19 @@
 import { Link } from '@inertiajs/react';
 
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 
 import ContextMenu from '@/components/reusables/ContextMenu';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
 
-import { GoPlus } from 'react-icons/go';
 import { HiOutlineEye } from 'react-icons/hi2';
 
 import { Recipe } from '@/types/Recipe';
@@ -42,7 +49,11 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
                         Du hast noch keine Rezepte favorisiert.
                     </h3>
                     <Button asChild variant="primary" className="hover:bg-emerald-700">
-                        <Link href={route('recipes.index')} title="Rezepte ansehen" aria-label="Rezepte ansehen">
+                        <Link
+                            href={route('recipes.index')}
+                            title="Rezepte ansehen"
+                            aria-label="Rezepte ansehen"
+                        >
                             <HiOutlineEye /> Rezepte ansehen
                         </Link>
                     </Button>

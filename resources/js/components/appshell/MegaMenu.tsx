@@ -157,7 +157,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                                 <ArrowRight className="-mt-[3px] h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                                                             </div>
                                                             {item.description && (
-                                                                <p className="text-md font-nothing-you-could-do text-gray-600 dark:text-gray-300">
+                                                                <p className="text-md font-yellowtail text-gray-600 dark:text-gray-300">
                                                                     {item.description}
                                                                 </p>
                                                             )}

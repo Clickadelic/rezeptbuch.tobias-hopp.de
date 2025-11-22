@@ -36,7 +36,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
             )}
         >
             {hero ? (
-                <div className="w-full h-auto flex border border-transparent rounded-lg overflow-hidden hover:border-primary transition-colors duration-300">
+                <div className="w-full h-auto flex rounded-lg overflow-hidden transition-colors duration-300">
                     <img
                         src={hero.url}
                         alt={recipe.name}
@@ -56,7 +56,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
             ) : (
                 <>
                     <IconCategorySwitcher recipe={recipe} />
-                    <div className="absolute size-full bg-gray-100 border border-transparent border-b-gray-100 dark:border-b-gray-700 dark:bg-gray-900 rounded-lg z-10"></div>
+                    <div className="absolute size-full bg-gray-100 dark:bg-gray-900 border border-transparent border-b-gray-100 dark:border-b-gray-700 rounded-lg z-10"></div>
                 </>
             )}
 

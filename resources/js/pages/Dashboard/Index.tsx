@@ -105,7 +105,7 @@ export default function Dashboard() {
         { name: 'Favoriten', value: userFavoritesCount },
         { name: 'Andere Benutzer', value: totalRecipeCount - totalUserRecipeCount },
     ];
-    // console.log(comments);
+
     return (
         <SidebarLeftLayout title="Dashboard" sidebar={<UserSidebar />}>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
@@ -195,18 +195,21 @@ export default function Dashboard() {
                     icon={<FaRegHeart className="mt-1 text-primary" />}
                     className="w-full"
                 />
-                
-                
             </div>
             <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <IngredientPanel
-                    className="col-span-1 xl:col-span-7 xl:col-start-8"
+                    className="w-full"
                     totalUserIngredients={totalUserIngredients}
                     totalUserIngredientCount={totalUserIngredientCount}
                 />
             </div>
             <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <CommentsPanel className="w-full" comments={comments} />
+                <CommentsPanel comments={comments} className="w-full" />
+            </div>
+            <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
+                <AreaChart 
+                    data={areaChartData}
+                />
             </div>
         </SidebarLeftLayout>
     );

@@ -1,3 +1,7 @@
 export interface ContactSubmission {
-    [key: string]: string;
+    id: number;
+    name: string;
+    email: string;
+    message: string;
+    created_at?: string;
 }

@@ -15,10 +15,10 @@ class PageController extends Controller
      */
     public function index()
     {
-        $latestRecipe = Recipe::with('media', 'category', 'user')->where('status', 'published')->orderBy('created_at', 'desc')->first();
-        $cocktails = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->where('category_id', 4)->paginate(5);
+        $latestRecipe = Recipe::with('media', 'category', 'user:id,name,avatar')->where('status', 'published')->orderBy('created_at', 'desc')->first();
+        $cocktails = Recipe::with('media', 'category', 'user:id,name,avatar')->inRandomOrder()->where('status', 'published')->where('category_id', 4)->paginate(5);
         $totalRecipeCount = Recipe::where('status', 'published')->count();
-        $recipes = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->where('category_id', '!=', 4)->paginate(5);
+        $recipes = Recipe::with('media', 'category', 'user:id,name,avatar')->inRandomOrder()->where('status', 'published')->where('category_id', '!=', 4)->paginate(5);
         // TODO: FavoritenCheck eventuell in Service auslagern
         if ($user = Auth::user()) {
             $recipes->getCollection()->transform(function ($recipe) use ($user) {

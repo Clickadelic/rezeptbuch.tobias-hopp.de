@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Middleware\CheckRole;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+
+use App\Models\User;
+use App\Models\ContactSubmission;
 
 class AdminpageController extends Controller
 {
+    /**
+    * Show the admin dashboard.
+    *
+    * @return \Inertia\Response
+    */
     public function index()
     {
         $authUser = Auth::user();
@@ -34,6 +40,13 @@ class AdminpageController extends Controller
         ]);
     }
 
+    /**
+    * Destroy a user.
+    *
+    * @param User $user The user object, containing the user to be destroyed
+    *
+    * @return \Illuminate\Http\JsonResponse A JSON response, containing a success flag
+    */
     public function destroy(User $user)
     {
         if ($user->id === auth()->id()) {
@@ -45,6 +58,14 @@ class AdminpageController extends Controller
         return back()->with('success', 'Benutzer gelöscht.');
     }
 
+    /**
+     * Update the roles of a user.
+     *
+     * @param Request $request The request object, containing the roles to be updated.
+     * @param User $user The user object, containing the user to be updated.
+     *
+     * @return \Illuminate\Http\JsonResponse A JSON response, containing a success flag.
+     */
     public function updateRole(Request $request, User $user)
     {
         // Erwartet ein Array von Rollen
@@ -53,5 +74,19 @@ class AdminpageController extends Controller
         $user->syncRoles($roles);
 
         return response()->json(['success' => true]);
+    }
+
+    /**
+     * Return all contact submissions.
+     *
+     * @param ContactSubmission $request
+     * @return \Inertia\Response
+     */
+    public function contactSubmissions(ContactSubmission $request)
+    {
+        $contactSubmissions = ContactSubmission::all();
+        return Inertia::render('Admin/ContactSubmissions/Index', [
+            'contactSubmissions' => $contactSubmissions,
+        ]);
     }
 }

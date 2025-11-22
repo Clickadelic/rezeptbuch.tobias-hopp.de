@@ -94,14 +94,19 @@ export default function Footer({ className }: FooterProps) {
 
     const column3 = [
         {
-            title: 'FAQ - Fragen und Antworten',
+            title: 'Ausstattung',
             icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
-            href: '/faq',
+            href: '/ausstattung',
         },
         {
             title: 'Mis en place',
             icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
             href: '/mis-en-place',
+        },
+        {
+            title: 'FAQ',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/faq',
         },
 
     ];

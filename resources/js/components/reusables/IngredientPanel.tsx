@@ -24,7 +24,10 @@ export default function IngredientPanel({
         >
             <h3 className="text-lg mb-3 flex gap-2">
                 <TbSalt className="mt-1 text-primary" />
-                Deine Zutaten {totalUserIngredientCount}
+                Deine Zutaten
+                {totalUserIngredientCount >= 1 && (
+                    <span className="text-gray-400 dark:text-gray-400">({totalUserIngredientCount})</span>
+                )}
             </h3>
             <ul className="flex flex-wrap gap-2">
                 {totalUserIngredients?.map((ingredient: Ingredient) => (

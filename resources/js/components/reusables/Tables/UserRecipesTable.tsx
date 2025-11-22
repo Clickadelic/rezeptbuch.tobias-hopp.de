@@ -99,7 +99,7 @@ export default function UserRecipesTable({
                             <TableHead className="text-right">Aktion</TableHead>
                         </TableRow>
                     </TableHeader>
-
+                    
                     <TableBody>
                         {recipes.data.map((recipe: Recipe) => (
                             <TableRow

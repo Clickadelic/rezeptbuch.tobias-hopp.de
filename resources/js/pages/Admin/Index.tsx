@@ -1,7 +1,8 @@
 import { usePage } from '@inertiajs/react';
 
-import FullWidthLayout from '@/layouts/FullWidthLayout';
+import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import UsersTable from '@/components/reusables/Tables/UsersTable';
+import AdminSidebar from '@/components/sidebars/AdminSidebar';
 
 import { FiUsers } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
@@ -20,7 +21,7 @@ export default function AdminPage() {
     const { users } = usePage<SharedPageProps>().props;
     
     return (
-        <FullWidthLayout title="Admin">
+        <SidebarLeftLayout title="Admin" sidebar={<AdminSidebar />}>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
@@ -65,6 +66,6 @@ export default function AdminPage() {
                 </div>
             </div>
             <UsersTable users={users} icon={<FiUsers className="size-4 mt-1 text-primary" />} />
-        </FullWidthLayout>
+        </SidebarLeftLayout>
     );
 }

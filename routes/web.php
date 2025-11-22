@@ -22,9 +22,6 @@ require __DIR__.'/custom/upload.php';
 
 if (config('app.debug')) {
     require __DIR__.'/custom/email.php';
-
-
-
     Route::get('/mailable-test', function () {
         $data = [
             'name' => 'Max Mustermann',

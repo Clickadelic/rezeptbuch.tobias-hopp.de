@@ -54,4 +54,8 @@ class PageController extends Controller
     public function faq() {
         return Inertia::render('Faq');
     }
+
+    public function equipment() {
+        return Inertia::render('Equipment');
+    }
 }

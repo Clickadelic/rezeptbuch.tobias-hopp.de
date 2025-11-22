@@ -80,4 +80,16 @@ class DashboardController extends Controller
             'recipesUserCountByCategory' => $recipesUserCountByCategory
         ]);
     }
+
+    public function myRecipes () {
+        return Inertia::render('Dashboard/MyRecipes');
+    }
+
+    public function myIngredients () {
+        return Inertia::render('Dashboard/MyIngredients');
+    }
+
+    public function myFavorites () {
+        return Inertia::render('Dashboard/MyFavorites');
+    }
 }

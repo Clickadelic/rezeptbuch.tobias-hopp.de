@@ -15,6 +15,11 @@ export default function LeftSidebar() {
             <h2 className="text-xl font-medium mb-2">Navigation</h2>
             <ul className="flex flex-col">
                 <SidebarLink
+                    href="/"
+                    active={window.location.pathname === '/'}
+                    title="Start"
+                />
+                <SidebarLink
                     href="/rezepte"
                     active={window.location.pathname === '/rezepte'}
                     title="Rezepte"

@@ -2,6 +2,11 @@ import { Ingredient } from '@/types/Ingredient';
 import IngredientBadge from './IngredientBadge';
 import { TbSalt } from 'react-icons/tb';
 
+import { Button } from '@/components/ui/button';
+import { Link } from '@inertiajs/react';
+import { GoPlus } from 'react-icons/go';
+
+
 import { cn } from '@/lib/utils';
 
 interface IngredientPanelProps {
@@ -29,6 +34,19 @@ export default function IngredientPanel({
                     <span className="text-gray-400 dark:text-gray-400">({totalUserIngredientCount})</span>
                 )}
             </h3>
+            {/* Wenn keine Zutaten vorhanden */}
+            {(!totalUserIngredients || totalUserIngredients.length === 0) && (
+                <div className="flex flex-col gap-1 items-center justify-center">
+                    <h4 className="text-gray-600 dark:text-gray-400 text-center mb-2">
+                        Du hast noch keine eigenen Zutaten angelegt.
+                    </h4>
+                    <Button asChild variant="primary" className="hover:bg-emerald-700 mb-5">
+                        <Link href={route('ingredients.create')} title="Erstelle eine Zutat">
+                            <GoPlus /> Zutat erstellen
+                        </Link>
+                    </Button>
+                </div>
+            )}
             <ul className="flex flex-wrap gap-2">
                 {totalUserIngredients?.map((ingredient: Ingredient) => (
                     <li key={ingredient.id} className="flex flex-wrap">

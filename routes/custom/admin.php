@@ -10,8 +10,11 @@ use App\Models\User;
 use App\Http\Middleware\CheckRole;
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', [AdminpageController::class, 'index'])->name('admin.index');
-    Route::delete('/admin/users/{user}', [AdminpageController::class, 'destroy'])->name('admin.users.destroy');
-    Route::post('/admin/users/{user}/role', [AdminpageController::class, 'updateRole'])->name('admin.users.updateRole');
-    Route::get('/admin/kontaktanfragen', [AdminpageController::class, 'contactSubmissions'])->name('admin.contactSubmissions.index');
+    Route::prefix('/admin')->group(function () {
+        Route::get('/', [AdminpageController::class, 'index'])->name('admin.index');
+        Route::delete('/users/{user}', [AdminpageController::class, 'destroy'])->name('admin.users.destroy');
+        Route::post('/users/{user}/role', [AdminpageController::class, 'updateRole'])->name('admin.users.updateRole');
+        Route::get('/kontaktanfragen', [AdminpageController::class, 'contactSubmissions'])->name('admin.contactSubmissions.index');
+        Route::delete('/kontaktanfragen/{contactSubmission}', [AdminpageController::class, 'destroyContactSubmission'])->name('admin.contactSubmissions.destroy');
+    });
 });

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Recipe;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\RecipeResource;
+use App\Http\Resources\MediaResource;
+use App\Http\Resources\UserPublicResource;
 
 class PageController extends Controller
 {
+
     /**
      * Displays a list of all recipes.
      *
@@ -15,47 +18,89 @@ class PageController extends Controller
      */
     public function index()
     {
-        $latestRecipe = Recipe::with('media', 'category', 'user')->where('status', 'published')->orderBy('created_at', 'desc')->first();
-        $cocktails = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->where('category_id', 4)->paginate(5);
+
+        // Latest Recipe
+        $latestRecipe = Recipe::with(['media','category','user:id,name,avatar'])
+            ->where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        // Cocktails
+        $cocktails = Recipe::with(['media','category','user:id,name,avatar'])
+            ->inRandomOrder()
+            ->where('status', 'published')
+            ->where('category_id', 4)
+            ->paginate(5);
+
+        // Other Recipes
+        $recipes = Recipe::with(['media','category','user:id,name,avatar'])
+            ->inRandomOrder()
+            ->where('status', 'published')
+            ->where('category_id', '!=', 4)
+            ->paginate(5);
+
         $totalRecipeCount = Recipe::where('status', 'published')->count();
-        $recipes = Recipe::with('media', 'category', 'user')->inRandomOrder()->where('status', 'published')->where('category_id', '!=', 4)->paginate(5);
-        // TODO: FavoritenCheck eventuell in Service auslagern
-        if ($user = Auth::user()) {
-            $recipes->getCollection()->transform(function ($recipe) use ($user) {
-                $recipe->setAttribute(
-                    'is_favorite',
-                    $recipe->favoritedBy()->where('user_id', $user->id)->exists()
-                );
-                return $recipe;
-            });
-        } else {
-            // Nicht eingeloggt → alle auf false
-            $recipes->getCollection()->transform(function ($recipe) {
-                $recipe->setAttribute('is_favorite', false);
-                return $recipe;
-            });
-        }
+
         return Inertia::render('Frontpage', [
-            'latestRecipe' => $latestRecipe,
-            'totalRecipeCount' => $totalRecipeCount,
-            'recipes' => $recipes,
-            'cocktails' => $cocktails
+            'latestRecipe'    => $latestRecipe ? new RecipeResource($latestRecipe) : null,
+            'totalRecipeCount'=> $totalRecipeCount,
+            'recipes'         => RecipeResource::collection($recipes)->response()->getData(true),
+            'cocktails'       => RecipeResource::collection($cocktails)->response()->getData(true),
         ]);
     }
 
+    /**
+     * Displays the app installation page
+     *
+     * @return \Inertia\Response
+     */
     public function appInstallation() {
         return Inertia::render('AppInstallation');
     }
 
+    /**
+     * MisEnPlace Page (French for "everything in place")
+     *
+     * This page is the root route of the application and displays
+     * content blocks or seperators.
+     *
+     * @return \Inertia\Response
+     */
     public function misEnPlace() {
         return Inertia::render('MisEnPlace');
     }
 
+    /**
+     * Faq Page
+     *
+     * This page shows some frequent questions and answers. It includes an accordeon.
+     *
+     * @return \Inertia\Response
+     */
     public function faq() {
         return Inertia::render('Faq');
     }
 
+    /**
+     * Displays the equipment page
+     *
+     * This page shows information about the equipment used in the kitchen.
+     *
+     * @return \Inertia\Response
+     */
     public function equipment() {
         return Inertia::render('Equipment');
+    }
+
+    public function myRecipes () {
+        return Inertia::render('My/Recipes');
+    }
+
+    public function myIngredients () {
+        return Inertia::render('My/Ingredients');
+    }
+
+    public function myFavorites () {
+        return Inertia::render('My/Favorites');
     }
 }

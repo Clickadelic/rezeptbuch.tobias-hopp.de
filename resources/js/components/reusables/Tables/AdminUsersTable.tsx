@@ -18,6 +18,7 @@ import { FiUsers } from "react-icons/fi";
 import { router } from "@inertiajs/react";
 import { toast } from 'sonner';
 import { BsTrash } from 'react-icons/bs';
+import { usePermissions } from '@/hooks/usePermissions';
 
 import AuthUser from '@/types/AuthUser';
 
@@ -43,9 +44,11 @@ interface UsersTableProps {
  * @example
  * <UsersTable title="Benutzer" icon={<BsHouse />} users={users} />
  */
-export default function UsersTable({ title, icon, className, users }: UsersTableProps) {
+export default function AdminUsersTable({ title, icon, className, users }: UsersTableProps) {
 
     const availableRoles = usePage<SharedPageProps>().props.availableRoles;
+
+    console.log("Available Roles: ", availableRoles);
 
     const deleteUser = async (id: number) => {
         try {
@@ -87,7 +90,7 @@ export default function UsersTable({ title, icon, className, users }: UsersTable
                             <TableHead className="asd">E-Mail</TableHead>
                             <TableHead className="asd">Rollen</TableHead>
                             <TableHead className="asd">Rechte</TableHead>
-                            <TableHead className="asd">Rollen</TableHead>
+                            <TableHead className="asd">Rolle ändern</TableHead>
                             <TableHead className="text-right">Aktion</TableHead>
                         </TableRow>
                     </TableHeader>

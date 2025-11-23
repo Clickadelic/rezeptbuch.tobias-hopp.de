@@ -23,6 +23,7 @@ import { IoMdArrowForward } from 'react-icons/io';
 export default function Recipes() {
     const { props } = usePage<SharedPageProps>();
     const { recipes } = props;
+    console.log(recipes);
     return (
         <FullWidthLayout title="Rezepte" description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept.">
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5">
@@ -45,7 +46,7 @@ export default function Recipes() {
                 </>
             )}
             {recipes?.data.length && (
-                <Pagination links={recipes.links} className="mt-4 sm:mt-8 xl:mt-12" />
+                <Pagination links={recipes.meta.links} className="mt-4 sm:mt-8 xl:mt-12" />
             )}
         </FullWidthLayout>
     );

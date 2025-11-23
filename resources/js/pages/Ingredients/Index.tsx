@@ -1,6 +1,8 @@
 import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 import IngredientDirectory from '@/components/template-views/IngredientsDirectory';
-import imgUrl from "@images/svg/Hamburger-bro.svg";
+import imgUrl from "@images/svg/Fruit-Basket-bro.svg";
+import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
+import { TbSalt } from 'react-icons/tb';
 
 /**
  * A page that displays all the ingredients of the recipe book.

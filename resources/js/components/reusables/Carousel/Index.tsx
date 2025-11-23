@@ -35,9 +35,8 @@ export default function Carousel({
                 recipes?.length === 0 && 'carousel-empty',
                 wrapperClassname,
             )}
-            id="custom-card-carousel"
         >
-            <ul className={cn('carousel flex w-full overflow-x-auto', carouselClassName)}>
+            <ul className={cn('carousel-base flex w-full overflow-x-auto', carouselClassName)}>
                 {recipes?.map((recipe: Recipe) => (
                     <RecipeCard className={itemClassName} key={recipe.id} recipe={recipe} />
                 ))}

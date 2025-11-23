@@ -1,4 +1,3 @@
-import { Head } from '@inertiajs/react';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import LegalSidebar from '@/components/sidebars/LegalSidebar';
 import Seperator from '@/components/reusables/Seperator';

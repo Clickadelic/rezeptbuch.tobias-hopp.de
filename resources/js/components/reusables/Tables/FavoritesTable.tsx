@@ -35,7 +35,7 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
                 className,
             )}
         >
-            <h3 className={cn('text-lg flex gap-2', favorites && favorites?.length >= 1 && 'mb-3')}>
+            <h3 className={cn('text-lg mb-3 flex gap-2')}>
                 {icon}
                 {title || 'Deine Favoriten'}
                 {favorites && favorites?.length >= 1 && (
@@ -44,11 +44,11 @@ export default function FavoritesTable({ title, icon, className, favorites }: Fa
             </h3>
             {/* Wenn keine Favoriten vorhanden */}
             {(!favorites || favorites.length === 0) && (
-                <div className="h-[calc(100%-25px)] flex flex-col gap-2 items-center justify-center">
-                    <h3 className="text-gray-600 dark:text-gray-400 text-center mb-2">
+                <div className="flex flex-col gap-1 items-center justify-center">
+                    <h3 className="text-gray-600 dark:text-gray-400 text-center mb-1">
                         Du hast noch keine Rezepte favorisiert.
                     </h3>
-                    <Button asChild variant="primary" className="hover:bg-emerald-700">
+                    <Button asChild variant="primary" className="hover:bg-emerald-700 mb-4">
                         <Link
                             href={route('recipes.index')}
                             title="Rezepte ansehen"

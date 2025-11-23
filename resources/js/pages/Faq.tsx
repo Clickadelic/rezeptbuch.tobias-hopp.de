@@ -15,6 +15,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { IoMdArrowForward } from 'react-icons/io';
 
 import { SharedPageProps } from '@/types';
+import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 
 /**
  * Faq Page 
@@ -26,12 +27,7 @@ import { SharedPageProps } from '@/types';
 export default function Faq() {
     return (
         <SidebarLeftLayout sidebar={<MainSidebar />} title="FAQ" showTitle={false} description="FAQ - französisch für Alles an seinem Platz (vor Arbeitsbeginn). Hier geht's um den Umgang mit Küchenutensilien und Lebensmitteln in der Küche.">
-            <TitleBlock
-                icon={<FaRegHeart className="text-primary size-6 mt-1" />}
-                title="FAQ"
-                punchline="Alles an seinem Ort."
-            />
-            
+            <FaqAccordeon isExtendet={true} />
         </SidebarLeftLayout>
     );
 }

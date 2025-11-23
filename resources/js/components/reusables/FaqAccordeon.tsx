@@ -4,11 +4,20 @@ import { Link } from '@inertiajs/react';
 import TitleBlock from './Blocks/TitleBlock';
 import { FaQ } from 'react-icons/fa6';
 
+import { cn } from '@/lib/utils';
+
+
+interface FaqAccordeonProps {
+    className?: string
+    isExtendet?: boolean
+}
+
+
 /**
  * A component that displays a grid of categories with links to search for recipes that match that category.
  * The categories are hardcoded and are: Vorspeisen, Hauptgerichte, Nachtisch, Cocktails, Backen, and Snacks.
  */
-export default function FrontpageCategoryGrid() {
+export default function FaqAccordeon({ className, isExtendet = false }: FaqAccordeonProps) {
     return (
         <>
             <TitleBlock
@@ -16,7 +25,7 @@ export default function FrontpageCategoryGrid() {
                 punchline="und Antworten"
                 icon={<FaQ className="text-primary size-6 mt-1" />}
             />
-            <div className="w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8">
+            <div className={cn("w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8", className)}>
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="font-medium text-xl">
@@ -60,18 +69,33 @@ export default function FrontpageCategoryGrid() {
                             <p>Versteckte Kosten gibt es nicht. Schau' in die <Link href="/nutzungsbedingungen" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">Nutzungsbedingungen</Link>.</p>
                         </AccordionContent>
                     </AccordionItem>
-                    <AccordionItem value="item-4">
-                        <AccordionTrigger className="font-medium text-xl">
-                            Ist die Registrierung sicher?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                            <p>Ja, ist sie.</p>
-                            <br />
-                            <p>Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung und einen sicheren Registrierungsprozess.</p>
-                            <br />
-                            <p>Weitere Informationen zu diesem Thema gibt es aus Sicherheitsgründen nicht.</p>
-                        </AccordionContent>
-                    </AccordionItem>
+                    
+                    {isExtendet && (
+                    <>
+                        <AccordionItem value="item-4">
+                            <AccordionTrigger className="font-medium text-xl">
+                                Ist die Registrierung sicher?
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <p>Ja, ist sie.</p>
+                                <br />
+                                <p>Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung und einen sicheren Registrierungsprozess.</p>
+                                <br />
+                                <p>Weitere Informationen zu diesem Thema gibt es aus Sicherheitsgründen nicht.</p>
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-5">
+                            <AccordionTrigger className="font-medium text-xl">
+                                Frei
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <p>Freitext</p>
+                                <br />
+                                <p>Freitext</p>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </>
+                    )}
                 </Accordion>
             </div>
         </>

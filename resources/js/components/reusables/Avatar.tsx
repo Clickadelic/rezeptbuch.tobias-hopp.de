@@ -22,8 +22,8 @@ export default function Avatar({ url, name, className }: AvatarProps) {
 
     return (
         <ShadCnAvatar className={cn('border border-gray-200 dark:border-gray-700', className)}>
-            <AvatarImage src={avatarUrl} className="asd" alt={name ?? 'Benutzeravatar'} />
-            <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-300 flex items-center justify-center font-medium">
+            <AvatarImage src={avatarUrl} alt={name ?? 'Benutzeravatar'} />
+            <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-200 flex items-center justify-center font-medium">
                 {initials}
             </AvatarFallback>
         </ShadCnAvatar>

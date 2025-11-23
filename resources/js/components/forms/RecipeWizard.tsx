@@ -442,7 +442,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                                 updateIngredient(idx, 'unit', value)
                                             }
                                         >
-                                            <SelectTrigger className="w-full rounded-sm sm:w-20 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:border-primary focus:ring-primary">
+                                            <SelectTrigger className="w-full rounded-sm sm:w-32 cursor-pointer mt-1 py-.5 shadow-none border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:border-primary focus:ring-primary">
                                                 <SelectValue placeholder="Einheit auswählen" />
                                             </SelectTrigger>
                                             <SelectContent>
@@ -484,11 +484,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             >
                                 <GoPlus /> Zutat hinzufügen
                             </Button>
-                            
+                            {/* Bei Cocktail kein "vegetarisch" zeigen */}
                             {data.category_id != 4 && (
                                 <div>
                                     <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
-                                    <div className="flex items-start mt-3 md:mt-5 justify-start gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-[8px] rounded">
+                                    <div className="flex items-start mt-3 md:mt-5 justify-start gap-2 bg-gray-100 dark:bg-gray-900 px-3 py-[8px] rounded border border-transparent border-b-gray-200 dark:border-b-gray-700">
                                         <GiBroccoli className="size-4 text-primary" />
                                         <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
                                             Rezept ist vegetarisch
@@ -564,8 +564,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 );
 
                                 if (hasInvalid) {
-                                    alert('Keine Zutat ausgewählt, nur Menge angegeben.');
-                                    return;
+                                    return toast.error('Bitte eine Zutat auswählen oder neu anlegen.');
                                 }
 
                                 handleStepChange(3);

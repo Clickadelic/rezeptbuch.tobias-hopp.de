@@ -1,18 +1,20 @@
-import { usePage } from '@inertiajs/react';
-import { SharedPageProps } from '@/types';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import cocktailBro from "@images/svg/Cocktail-bartender-bro.svg";
 
 import Carousel from '@/components/reusables/Carousel/Index';
+import cocktailBro from "@images/svg/Cocktail-bartender-bro.svg";
+import { Recipe } from '@/types/Recipe';
+
+interface DailyRecommendationsBlockProps {
+    recipes: Recipe[];
+}
 
 /**
  * A component that displays a block of daily recommended recipes.
  * The block contains a title, a personal message from the chef, and a carousel of recipe cards.
  * The layout of the block is responsive and changes depending on the screen size.
  */
-export default function CocktailRecommendationsBlock() {
+export default function CocktailRecommendationsBlock({ recipes }: DailyRecommendationsBlockProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
-    const cocktails = usePage<SharedPageProps>().props.cocktails;
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3">
@@ -31,7 +33,7 @@ export default function CocktailRecommendationsBlock() {
                 wrapperClassname="lg:mt-40 col-span-2"
                 carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
                 itemClassName="card"
-                recipes={cocktails?.data}
+                recipes={recipes}
             />
         </div>
     );

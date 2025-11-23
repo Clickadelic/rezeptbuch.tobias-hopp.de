@@ -9,6 +9,12 @@ import CocktailRecommendationsBlock from '@/components/reusables/Blocks/Cocktail
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 
+import RecipeCard from '@/components/reusables/RecipeCard';
+
+import Pagination from '@/components/reusables/Pagination';
+import BigRecipeCard from '@/components/reusables/BigRecipeCard';
+import { Recipe } from '@/types/Recipe';
+
 import { SharedPageProps } from '@/types';
 
 /**
@@ -21,8 +27,8 @@ import { SharedPageProps } from '@/types';
  */
 export default function Frontpage() {
     const latestRecipe = usePage<SharedPageProps>().props.latestRecipe;
-    const recommendedRecipes = usePage<SharedPageProps>().props.recipes;
-    const recommendedCocktails = usePage<SharedPageProps>().props.cocktails;
+    const recommendedRecipes = usePage<SharedPageProps>().props.recipes.data;
+    const recommendedCocktails = usePage<SharedPageProps>().props.cocktails.data;
     const totalRecipeCount = usePage<SharedPageProps>().props.totalRecipeCount;
 
     return (
@@ -32,11 +38,19 @@ export default function Frontpage() {
             <Seperator style="journal" />
             <AuthTeaserBlock />
             <Seperator style="sun" />
-            <DailyRecommendationsBlock recipes={recommendedRecipes.data} />
+            <DailyRecommendationsBlock recipes={recommendedRecipes} />
             <Seperator style="cocktail" />
-            <CocktailRecommendationsBlock recipes={recommendedCocktails.data} />
+            <CocktailRecommendationsBlock recipes={recommendedCocktails} />
             <Seperator style="question-mark" />
             <FaqAccordeon />
+            <div className="w-full flex gap-5 border border-rose-500 p-4 testbox">
+                <div className="w-full">
+                    {/* <RecipeCard recipe={latestRecipe as Recipe} /> */}
+                </div>
+                <div className="w-full">
+                    {/* <BigRecipeCard recipe={latestRecipe as Recipe} /> */}
+                </div>
+            </div>
         </FullWidthLayout>
     );
 }

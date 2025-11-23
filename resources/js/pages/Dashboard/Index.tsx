@@ -115,7 +115,7 @@ export default function Dashboard() {
                             <span className="flex gap-1">
                                 <BsJournalBookmark className="size-4 mt-1.5 text-primary" />
                                 Deine Rezepte
-                                <PopoverInfo description="Entwürfe / Gesamt" />
+                                <PopoverInfo description="Entwürfe / Gesamt" side="top" />
                             </span>
                             <div className="flex gap-1">
                                 <span className="text-gray-600 dark:text-gray-400">{drafts}</span>/
@@ -130,7 +130,7 @@ export default function Dashboard() {
                             <span className="flex gap-1">
                                 <TbSalt className="size-4 mt-1.5 text-primary" />
                                 Deine Zutaten
-                                <PopoverInfo description="Die Anzahl Deiner Zutaten." />
+                                <PopoverInfo description="Die Anzahl Deiner Zutaten." side="top" />
                             </span>
                             <div className="flex gap-1">
                                 <span>{totalUserIngredientCount}</span>
@@ -144,7 +144,7 @@ export default function Dashboard() {
                             <span className="flex gap-2">
                                 <TfiCommentAlt className="size-4 mt-1.5 text-primary" />
                                 Kommentare
-                                <PopoverInfo description="Die Anzahl Deiner Kommentare." />
+                                <PopoverInfo description="Die Anzahl Deiner Kommentare." side="top" />
                             </span>
                             <div className="flex gap-1">
                                 <span>{comments?.total || 0}</span>
@@ -157,7 +157,7 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten
-                                <PopoverInfo description="Die Anzahl Deiner Favoriten." />
+                                <PopoverInfo description="Die Anzahl Deiner Favoriten." side="top" />
                             </span>
 
                             <div className="flex gap-1">

@@ -1,7 +1,7 @@
 import { usePage } from '@inertiajs/react';
 
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
-import UsersTable from '@/components/reusables/Tables/UsersTable';
+import AdminUsersTable from '@/components/reusables/Tables/AdminUsersTable';
 import AdminSidebar from '@/components/sidebars/AdminSidebar';
 
 import { FiUsers } from "react-icons/fi";
@@ -65,7 +65,7 @@ export default function AdminPage() {
                     </div>
                 </div>
             </div>
-            <UsersTable users={users} icon={<FiUsers className="size-4 mt-1 text-primary" />} />
+            <AdminUsersTable users={users} icon={<FiUsers className="size-4 mt-1 text-primary" />} />
         </SidebarLeftLayout>
     );
 }

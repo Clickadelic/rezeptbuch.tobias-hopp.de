@@ -1,9 +1,21 @@
+import { usePage } from '@inertiajs/react';
+
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
-import { Recipe } from '@/types/Recipe';
+import AvatarBlock from '@/components/reusables/Blocks/AvatarBlock';
+import AttributesBlock from '@/components/reusables/Blocks/AttributesBlock';
+import SingleRecipeIngredientsTable from '@/components/reusables/Tables/SingleRecipeIngredientsTable';
+import PreparationInstructions from '@/components/template-views/PreparationInstructsions';
+import RelatedRecipesCarousel from '@/components/reusables/RelatedRecipesCarousel';
+import CommentsDirectory from '@/components/template-views/CommentsDirectory';
+import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
+import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
+import FavoriteButton from '@/components/reusables/FavoriteButton';
 
-// TODO: Mal testen ob das so gut ist..
-import SingleRecipeView from '@/components/template-views/SingleRecipeView';
+import Seperator from '@/components/reusables/Seperator';
+
+import { Recipe } from '@/types/Recipe';
+import { SharedPageProps } from '@/types';
 
 interface ShowRecipeProps {
     recipe: Recipe;
@@ -19,9 +31,30 @@ interface ShowRecipeProps {
  * @returns {JSX.Element}
  */
 export default function Show({ recipe }: ShowRecipeProps) {
+    const { related, is_favorite } = usePage<SharedPageProps>().props;
     return (
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
-            <SingleRecipeView recipe={recipe} />
+            <div className="flex flex-col">
+                <div className="w-full flex flex-col sm:flex-row gap-5">
+                    <div className="w-full sm:1/2">
+                        <div className="flex flex-col items-start justify-start gap-1">
+                            <RecipeImageBlock recipe={recipe} className="w-full" useModalWindow={true} />
+                            <div className="w-full flex flex-row justify-between">
+                                <AvatarBlock recipe={recipe} />
+                                <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-full sm:1/2 flex flex-col gap-1 justify-between">
+                        <RecipeInfoBlock recipe={recipe} />
+                    </div>
+                </div>
+                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-12" />
+                <SingleRecipeIngredientsTable recipe={recipe} />
+                <PreparationInstructions recipe={recipe} />
+                <CommentsDirectory recipeId={recipe.id!} />
+                <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
+            </div>
         </SidebarLeftLayout>
     );
 }

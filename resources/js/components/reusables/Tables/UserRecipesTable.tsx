@@ -52,26 +52,25 @@ export default function UserRecipesTable({
     return (
         <div
             className={cn(
-                'w-full overflow-hidden min-h-44 bg-gray-100 dark:bg-gray-900 p-4 border-b border-gray-200 dark:border-gray-700 rounded-xl',
+                'w-full overflow-hidden bg-gray-100 dark:bg-gray-900 p-4 border-b border-gray-200 dark:border-gray-700 rounded-xl',
                 className,
             )}
         >
             <h3
                 className={cn(
-                    'text-lg flex gap-2',
-                    recipes && recipes?.data?.length >= 1 && 'mb-3',
+                    'text-lg mb-3 flex gap-2'
                 )}
             >
                 {icon}
-                {title || 'Deine Daten'}
+                {title || 'Daten'}
                 {recipes && recipes?.data?.length >= 1 && (
                     <span className="text-gray-400 dark:text-gray-400">({recipes.total})</span>
                 )}
             </h3>
             {/* Wenn keine Rezepte vorhanden */}
             {(!recipes || recipes.data.length === 0) && (
-                <div className="h-[calc(100%-25px)] flex flex-col gap-2 items-center justify-center">
-                    <h4 className="text-gray-600 dark:text-gray-400 text-center mb-2">
+                <div className="flex flex-col gap-1 items-center justify-center">
+                    <h4 className="text-gray-600 dark:text-gray-400 text-center mb-1">
                         Du hast noch keine eigenen Rezepte angelegt.
                     </h4>
                     <Button asChild variant="primary" className="hover:bg-emerald-700">

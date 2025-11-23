@@ -1,0 +1,17 @@
+// Datenbank
+// WSL2 / Git Bash Starten
+// dann: sudo service mysql start
+// pw eingeben, Server ist dann gestartet
+// Man kann 3 Datenbanken anlegen dev, stage und prod und per
+// php artisan env:switch dev, stage, prod umschalten
+
+// MySQL Verzeichnis
+cd "C:\Program Files\MySQL\MySQL Server 8.1\bin"
+
+https://react-scan.com/
+
+NUQS URL State Manager
+https://nuqs.dev/
+
+fumadocs.dev
+https://fumadocs.dev/

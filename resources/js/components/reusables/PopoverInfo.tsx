@@ -9,7 +9,7 @@ interface PopoverInfoProps {
     side?: 'top' | 'right' | 'bottom' | 'left';
 }
 
-export default function PopoverInfo({ className, description, side = 'right' }: PopoverInfoProps) {
+export default function PopoverInfo({ className, description, side = 'top' }: PopoverInfoProps) {
     return (
         <span className={cn('flex', className)}>
             <Popover>

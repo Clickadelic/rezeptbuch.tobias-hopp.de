@@ -82,14 +82,14 @@ class DashboardController extends Controller
     }
 
     public function myRecipes () {
-        return Inertia::render('Dashboard/MyRecipes');
+        return Inertia::render('Dashboard/Recipes');
     }
 
     public function myIngredients () {
-        return Inertia::render('Dashboard/MyIngredients');
+        return Inertia::render('Dashboard/Ingredients');
     }
 
     public function myFavorites () {
-        return Inertia::render('Dashboard/MyFavorites');
+        return Inertia::render('Dashboard/Favorites');
     }
 }

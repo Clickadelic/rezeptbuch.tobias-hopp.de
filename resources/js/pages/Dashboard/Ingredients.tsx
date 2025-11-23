@@ -34,7 +34,7 @@ import { cn } from '@/lib/utils';
 export default function MyIngredients() {
 
     return (
-        <SidebarLeftLayout title="Meine Rezepte" sidebar={<UserSidebar />}>
+        <SidebarLeftLayout title="Meine Zutaten" sidebar={<UserSidebar />}>
             <div>asd</div>
         </SidebarLeftLayout>
     );

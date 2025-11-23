@@ -1,11 +1,5 @@
-
-
-// TODO Profilbutton korrigieren
-// TODO Drafts excludieren
-
-// TODO Besseres Formular für Zutateneingabe (Löschen funktion)
+// TODO Profil korrigieren
 // TODO Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
-// TODO Alle Zutaten-Löschen Button im Wizard
 
 // Prio M
 // TODO WYSYWIG Editor für Zubereitungsfeld.
@@ -23,3 +17,7 @@
 // Stufe 3. Sous-Chef - 20 Rezepte Posten
 // Stufe 4. Chef - 30 Rezepte Posten
 // Stufe 5. Executive Chef
+
+// Sitemap Spatie Pack
+// Druckfunktion
+//

@@ -206,11 +206,7 @@ export default function Dashboard() {
             <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <CommentsPanel comments={comments} className="w-full" />
             </div>
-            <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
-                <AreaChart 
-                    data={areaChartData}
-                />
-            </div>
+
         </SidebarLeftLayout>
     );
 }

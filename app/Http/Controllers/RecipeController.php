@@ -13,7 +13,7 @@ use App\Models\Recipe;
 use App\Models\Category;
 use App\Models\Ingredient;
 use App\Models\Media;
-
+use App\Http\Resources\RecipeResource;
 use App\Http\Requests\StoreRecipeRequest;
 
 class RecipeController extends Controller
@@ -22,15 +22,14 @@ class RecipeController extends Controller
      * Displays a list of all recipes.
      */
     public function index()
-    {   
-        $recipes = Recipe::with('media', 'category', 'user', 'comments')
-            ->orderBy('created_at', 'desc')->where('status', 'published')
+    {
+        $recipes = Recipe::with(['media', 'category', 'user', 'comments'])
+            ->where('status', 'published')
+            ->orderBy('created_at', 'desc')
             ->paginate(15);
 
-        $recipes = $this->addFavoriteFlags($recipes);
-
         return Inertia::render('Recipes/Index', [
-            'recipes' => $recipes,
+            'recipes' => RecipeResource::collection($recipes)->response()->getData(true),
         ]);
     }
 
@@ -50,23 +49,18 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        // 1️⃣ Sicherheits-Check: Nur veröffentlichte Rezepte anzeigen
         if ($recipe->status !== 'published') {
             abort(404);
         }
 
-        // 2️⃣ Relationen laden
         $recipe->load([
-            'ingredients' => fn($q) => $q
-                ->withPivot(['quantity', 'unit'])
-                ->orderBy('quantity', 'desc'),
+            'ingredients' => fn($q) => $q->withPivot(['quantity','unit'])->orderBy('quantity','desc'),
             'category',
             'media',
             'user'
         ]);
 
-        // 3️⃣ Ähnliche Rezepte abrufen
-        $related = Recipe::with(['category', 'user', 'media'])
+        $related = Recipe::with(['category','user','media'])
             ->where('category_id', $recipe->category_id)
             ->where('id', '!=', $recipe->id)
             ->where('status', 'published')
@@ -74,20 +68,9 @@ class RecipeController extends Controller
             ->take(5)
             ->get();
 
-        // 4️⃣ Favoritenstatus prüfen (falls eingeloggt)
-        $is_favorite = false;
-        if (Auth::check()) {
-            $is_favorite = Auth::user()
-                ->favorites()
-                ->where('recipe_id', $recipe->id)
-                ->exists();
-        }
-
-        // 5️⃣ Inertia-Response mit Favoritenstatus
         return Inertia::render('Recipes/Show', [
-            'recipe' => $recipe,
-            'related' => $related,
-            'is_favorite' => $is_favorite,
+            'recipe'  => new RecipeResource($recipe),
+            'related' => RecipeResource::collection($related),
         ]);
     }
 
@@ -277,7 +260,6 @@ class RecipeController extends Controller
             ->route('recipes.index', $recipe->slug)
             ->with('success', 'Rezept erfolgreich aktualisiert.');
     }
-
     
     /**
      * Destroy the specified recipe.
@@ -358,47 +340,34 @@ class RecipeController extends Controller
             return redirect()->route('recipes.index');
         }
 
-        // 🧭 Kategorieprüfung
         $category = Category::where('name', 'LIKE', "%{$query}%")->first();
 
         if ($category) {
-            // Suche nach Kategorie
-            $recipes = Recipe::with(['media', 'category', 'user'])
+            $recipes = Recipe::with(['media','category','user'])
                 ->where('category_id', $category->id)
-                ->where('status', 'published') // ✅ hier korrigiert
+                ->where('status', 'published')
                 ->orderByDesc('created_at')
                 ->paginate(15);
         } else {
-            // 🔍 Volltextsuche (Scout) oder Fallback auf LIKE
-            try {
-                if (method_exists(Recipe::class, 'search')) {
-                    $ids = Recipe::search($query)->get()->pluck('id');
-                } else {
-                    throw new \Exception('Scout not available');
-                }
-            } catch (\Throwable $e) {
-                // Fallback auf klassische LIKE-Suche
-                $ids = Recipe::query()
-                    ->where(function ($q) use ($query) {
-                        $q->where('name', 'LIKE', "%{$query}%")
-                        ->orWhere('description', 'LIKE', "%{$query}%");
+            $ids = method_exists(Recipe::class,'search') 
+                ? Recipe::search($query)->get()->pluck('id') 
+                : Recipe::query()
+                    ->where('status','published')
+                    ->where(function($q) use ($query) {
+                        $q->where('name','LIKE',"%{$query}%")
+                        ->orWhere('description','LIKE',"%{$query}%");
                     })
-                    ->where('status', 'published') // ✅ auch hier
                     ->pluck('id');
-            }
 
-            $recipes = Recipe::with(['media', 'category', 'user'])
-                ->whereIn('id', $ids)
-                ->where('status', 'published') // ✅ erneut
+            $recipes = Recipe::with(['media','category','user'])
+                ->whereIn('id',$ids)
+                ->where('status','published')
                 ->orderByDesc('created_at')
                 ->paginate(15);
         }
 
-        // ❤️ Favoriten-Status anhängen (benutzerdefinierte Methode)
-        $recipes = $this->addFavoriteFlags($recipes);
-
         return Inertia::render('Recipes/Search', [
-            'recipes' => $recipes,
+            'recipes' => RecipeResource::collection($recipes)->response()->getData(true),
             'filters' => ['search' => $query],
         ]);
     }

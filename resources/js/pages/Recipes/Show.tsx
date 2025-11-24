@@ -32,7 +32,7 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     const { related, is_favorite  } = usePage<SharedPageProps>().props;
-    console.log("Recipe", recipe);
+
     return (
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
             <div className="flex flex-col">

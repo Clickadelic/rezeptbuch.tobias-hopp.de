@@ -1,7 +1,9 @@
 import StarRating from '@/components/reusables/StarRating';
 
+
 import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
+
 
 interface RecipeStarRatingProps {
     recipe: Recipe
@@ -9,6 +11,7 @@ interface RecipeStarRatingProps {
 }
 
 export default function RecipeStarRating({ recipe, className }: RecipeStarRatingProps) {
+
     return (
         <div className={cn("flex flex-col items-center justify-center p-4", className)}>
             <StarRating

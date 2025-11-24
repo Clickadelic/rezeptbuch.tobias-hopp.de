@@ -35,7 +35,6 @@ class RecipeResource extends JsonResource
             'created_at' => optional($this->created_at)->toDateTimeString(),
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
 
-            // FIXED: Media as array, not { data: [] }
             'media' => $this->whenLoaded('media', fn() =>
                 $this->media->map(fn($m) => (new MediaResource($m))->toArray($request))
             ),

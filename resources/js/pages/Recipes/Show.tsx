@@ -31,10 +31,10 @@ interface ShowRecipeProps {
  * @returns {JSX.Element}
  */
 export default function Show({ recipe }: ShowRecipeProps) {
-    const { related, is_favorite  } = usePage<SharedPageProps>().props;
+    const { related, is_favorite } = usePage<SharedPageProps>().props;
 
     return (
-        <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
+        <SidebarLeftLayout title={`${recipe.name} - Rezeptdetails`} sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
             <div className="flex flex-col">
                 <div className="w-full flex flex-col sm:flex-row gap-5">
                     <div className="w-full sm:1/2">

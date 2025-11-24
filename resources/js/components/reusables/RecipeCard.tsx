@@ -16,12 +16,14 @@ import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoHeart } from 'react-icons/io5';
+import { FaHeart } from 'react-icons/fa6';
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
+
 import FavoriteButton from '@/components/reusables/FavoriteButton';
 import ContextMenu from '@/components/reusables/ContextMenu';
+
 import { cn } from '@/lib/utils';
-import { FaHeart } from 'react-icons/fa6';
 
 
 interface RecipeCardProps {
@@ -58,13 +60,8 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
-                        <div className="absolute top-1 left-1 z-20 flex items-center justify-center">
-                            <FavoriteButton
-                                key={recipe.id}
-                                recipeId={recipe.id}
-                                isFavorite={recipe.is_favorite}
-                            />
-                        </div>
+
+                        <FavoriteButton key={recipe.id} recipeId={recipe.id} isFavorite={recipe.is_favorite} className="absolute top-1 left-1 z-20"/>
                         <RecipeImageBlock recipe={recipe} />
                     </CardHeader>
 

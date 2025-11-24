@@ -66,7 +66,7 @@ export default function StarRating({recipeId,initialRating = 0,communityRating =
         ))}
       </div>
 
-      <div className="text-sm text-gray-600 dark:text-gray-400">
+      <div className="text-sm text-gray-800 dark:text-gray-200">
         {community.votes > 0
           ? `Community: ${community.rating} / 5 (${community.votes} Stimmen)`
           : 'Noch keine Bewertungen'}

@@ -43,7 +43,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
     const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
     const [isSocialShareOpen, setIsSocialShareOpen] = useState<boolean>(false);
 
-    const toggleDeleteDialog = (e: React.MouseEvent) => {
+    const toggleCopyDialog = (e: React.MouseEvent) => {
         e.stopPropagation();
         setIsAlertOpen((prev) => !prev);
     };
@@ -102,7 +102,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                 <AlertDialog>
                                     <AlertDialogTrigger
                                         className="w-full flex flex-row items-between gap-2 hover:cursor-pointer hover:text-gray-800 dark:hover:text-gray-400"
-                                        onClick={toggleDeleteDialog}
+                                        onClick={toggleCopyDialog}
                                     >
                                         <PiCopySimpleLight className="size-5" />
                                         <span>Kopieren</span>
@@ -121,7 +121,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                         <AlertDialogFooter>
                                             <AlertDialogCancel
                                                 className="dark:text-gray-200"
-                                                onClick={toggleDeleteDialog}
+                                                onClick={toggleCopyDialog}
                                             >
                                                 Abbrechen
                                             </AlertDialogCancel>
@@ -150,7 +150,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                 <AlertDialog>
                                     <AlertDialogTrigger
                                         className="w-full flex flex-row items-between gap-2 hover:cursor-pointer text-rose-600 hover:text-rose-700"
-                                        onClick={toggleDeleteDialog}
+                                        onClick={toggleCopyDialog}
                                     >
                                         <GoTrash className="size-4 ml-[2px] mt-px" />
                                         <span>Löschen</span>
@@ -169,7 +169,7 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                         <AlertDialogFooter>
                                             <AlertDialogCancel
                                                 className="dark:text-gray-200"
-                                                onClick={toggleDeleteDialog}
+                                                onClick={toggleCopyDialog}
                                             >
                                                 Abbrechen
                                             </AlertDialogCancel>

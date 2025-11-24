@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 
 import Modal from '@/components/reusables/Modal';
 import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
@@ -10,29 +10,33 @@ import { cn } from '@/lib/utils';
 interface RecipeImageBlockProps {
     recipe: Recipe;
     className?: string;
-    useModalWindow?: boolean
+    useModalWindow?: boolean;
 }
 
 /**
  * Displays the hero image of a recipe with a button to open the image in a modal.
- *
- * @param {RecipeImageBlockProps} props - properties of the component
- * @returns {JSX.Element} - the rendered component
  */
 export default function RecipeImageBlock({ recipe, className, useModalWindow = false }: RecipeImageBlockProps) {
     
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
     const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
 
+    const mediaArray = useMemo(() => recipe?.media ?? [], [recipe]);
+
     const hero = useMemo(() => {
-        return recipe?.media?.find((m) => m?.pivot?.is_primary) ?? recipe?.media?.[0];
-    }, [recipe]);
+        return mediaArray[0] ?? null;
+    }, [mediaArray]);
+
+    const sortedMedia = useMemo(() => {
+        if (!hero) return mediaArray;
+        return [hero, ...mediaArray.filter(m => m.id !== hero.id)];
+    }, [mediaArray, hero]);
 
     return (
         <div
             className={cn(
                 'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-xs',
-                className,
+                className
             )}
         >
             {hero ? (
@@ -49,14 +53,14 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
                             className="absolute inset-0 bg-transparent opacity-0 hover:opacity-100 transition ease-in-out z-30 cursor-pointer text-white"
                             title="Bild vergrößern"
                         >
-                            <GoZoomIn className="size-5 absolute bottom-7 right-7" />
+                            <GoZoomIn className="w-5 h-5 absolute bottom-7 right-7" />
                         </button>
                     )}
                 </div>
             ) : (
                 <>
                     <IconCategorySwitcher recipe={recipe} />
-                    <div className="absolute size-full bg-gray-100 dark:bg-gray-900 border border-transparent border-b-gray-100 dark:border-b-gray-700 rounded-lg z-10"></div>
+                    <div className="absolute w-full h-full bg-gray-100 dark:bg-gray-900 border border-transparent border-b-gray-100 dark:border-b-gray-700 rounded-lg z-10"></div>
                 </>
             )}
 
@@ -69,7 +73,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
             >
                 <div className="rounded-xl p-1 bg-white/30 dark:bg-gray-900/30">
                     <div className="p-2 bg-white dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col">
-                        {recipe.media?.map((m) => (
+                        {sortedMedia.map((m) => (
                             <div key={m.id}>
                                 <img
                                     src={m.url}
@@ -85,7 +89,7 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
                                             {recipe.name}
                                         </h4>
                                     </div>
-                                    {/* <FavoriteButton recipeId={recipe.id} showLabel={true} isFavorite={isFavorite} className="mt-2 mr-3" /> */}
+                                    {/* FavoriteButton oder andere Controls können hier */}
                                 </div>
                             </div>
                         ))}

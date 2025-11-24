@@ -38,7 +38,7 @@ export default function AppInstallation() {
                     punchline="Eine App - alle Geräte."
                     icon={<AiOutlineAppstoreAdd className="text-primary size-6 mt-1" />}
                 />
-                <img src={imgSrc} className="w-84 mx-auto mb-8" alt="App-Installation Screen" />
+                <img src={imgSrc} className="w-84 mx-auto mb-8" width="auto" height="auto" alt="App-Installation Screen" />
                 <p className="mb-5">
                     Hier findest Du die Anleitung zur Installation der Rezeptbuch-App für Dein
                     Smarphone. So geht's:

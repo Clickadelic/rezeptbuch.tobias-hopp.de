@@ -11,7 +11,7 @@ import CommentsDirectory from '@/components/template-views/CommentsDirectory';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
-
+import RecipeStarRating from '@/components/reusables/RecipeStarRating';
 import Seperator from '@/components/reusables/Seperator';
 
 import { Recipe } from '@/types/Recipe';
@@ -31,7 +31,8 @@ interface ShowRecipeProps {
  * @returns {JSX.Element}
  */
 export default function Show({ recipe }: ShowRecipeProps) {
-    const { related, is_favorite } = usePage<SharedPageProps>().props;
+    const { related, is_favorite  } = usePage<SharedPageProps>().props;
+    console.log("Recipe", recipe);
     return (
         <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
             <div className="flex flex-col">
@@ -52,8 +53,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-12" />
                 <SingleRecipeIngredientsTable recipe={recipe} />
                 <PreparationInstructions recipe={recipe} />
+                <RecipeStarRating recipe={recipe} />
                 <CommentsDirectory recipeId={recipe.id!} />
-                <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
+                <RelatedRecipesCarousel recipes={related as Recipe[]} categoryName={recipe.category?.name} />
             </div>
         </SidebarLeftLayout>
     );

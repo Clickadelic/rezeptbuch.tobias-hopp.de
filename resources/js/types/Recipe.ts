@@ -19,13 +19,14 @@ export type Recipe = {
     is_veggy: boolean;
     ingredients?: Ingredient[];
     media?: Media[];
-    user_id?: number;
+    user_id?: string;
     user?: AuthUser;
     is_favorite: boolean;
     category_id?: number;
     category?: Category;
     community_rating: number;
     community_votes: number;
+    user_vote?: number | null;
     created_at: string;
     updated_at: string;
 };

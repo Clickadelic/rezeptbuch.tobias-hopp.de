@@ -9,12 +9,16 @@ import { SharedPageProps } from '@/types';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 
+import { cn } from '@/lib/utils';
+
 export default function UpdateProfileInformation({
     mustVerifyEmail,
     status,
+    className
 }: {
     mustVerifyEmail: boolean;
     status?: string;
+    className?: string;
 }) {
     const user = usePage<SharedPageProps>().props.auth.user;
 
@@ -34,14 +38,13 @@ export default function UpdateProfileInformation({
     };
 
     return (
-        <section>
+        <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">Informationen über Dich</h2>
                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                     Diese Dinge werden über Dich gezeigt.
                 </p>
             </header>
-
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
                     <div className="mt-4 flex flex-wrap justify-start gap-2">
@@ -54,7 +57,7 @@ export default function UpdateProfileInformation({
                 <div>
                     <InputLabel htmlFor="biotext" value="Bio" />
                     <Textarea
-                        id="name"
+                        id="biotext"
                         className="mt-1 py-3 bg-gray-100 dark:bg-gray-900 block w-full"
                         value={data.biotext}
                         rows={4}

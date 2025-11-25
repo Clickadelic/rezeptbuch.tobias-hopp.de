@@ -26,7 +26,7 @@ class RecipeController extends Controller
         $recipes = Recipe::with(['media', 'category', 'user', 'comments'])
             ->where('status', 'published')
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(25);
 
         return Inertia::render('Recipes/Index', [
             'recipes' => RecipeResource::collection($recipes)->response()->getData(true),

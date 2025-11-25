@@ -28,7 +28,7 @@ export default function Recipes() {
     console.log(recipes);
     return (
         <FullWidthLayout title="Rezepte" description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept.">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
                 {recipes?.data.map((recipe: Recipe) => (
                     <BigRecipeCard key={recipe.id} recipe={recipe} />
                 ))}

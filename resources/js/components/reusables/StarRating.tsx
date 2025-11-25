@@ -12,10 +12,11 @@ interface StarRatingProps {
   initialRating?: number;      // Bewertung des aktuellen Users
   communityRating?: number;    // Durchschnitt der Community
   communityVotes?: number;     // Anzahl Votes
-  userHasVoted?: boolean;      // True, wenn User bereits gevotet hat
+  userHasVoted?: boolean; 
+  readOnly?: boolean;          // True, wenn User bereits gevotet hat
 }
 
-export default function StarRating({recipeId,initialRating = 0,communityRating = 0,communityVotes = 0,userHasVoted = false }: StarRatingProps) {
+export default function StarRating({recipeId,initialRating = 0,communityRating = 0,communityVotes = 0,userHasVoted = false, readOnly = false }: StarRatingProps) {
     const { user } = usePage<SharedPageProps>().props.auth;
     const { hasRole } = usePermissions();
 
@@ -51,12 +52,12 @@ export default function StarRating({recipeId,initialRating = 0,communityRating =
             onClick={() => submitRating(star)}
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(0)}
-            disabled={!hasRole('user')}
+            disabled={!hasRole('user') || readOnly}
             className={cn("focus:outline-none", hasRole('user') && ' hover:cursor-pointer')}
           >
             <Star
               className={cn(
-                'w-6 h-6 transition-colors',
+                'size-5 transition-colors',
                 star <= (hover || rating)
                   ? 'text-yellow-400 fill-yellow-400'
                   : 'text-gray-400'

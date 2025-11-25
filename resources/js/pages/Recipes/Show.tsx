@@ -53,6 +53,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-12" />
                 <SingleRecipeIngredientsTable recipe={recipe} />
                 <PreparationInstructions recipe={recipe} />
+                <Seperator style="question-mark" />
                 <RecipeStarRating recipe={recipe} />
                 <CommentsDirectory recipeId={recipe.id!} />
                 <RelatedRecipesCarousel recipes={related as Recipe[]} categoryName={recipe.category?.name} />

@@ -26,13 +26,13 @@ export default function CocktailRecommendationsBlock({ recipes }: DailyRecommend
                 <img
                     src={cocktailBro}
                     className="w-full mx-auto sm:w-1/2 md:w-3/4"
-                    alt="Chefkoch Tobias"
+                    alt="Barkeeper Tobias"
                 />
             </div>
             <Carousel
                 wrapperClassname="lg:mt-40 col-span-2"
-                carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
-                itemClassName="card"
+                carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800 carousel-recommended-cocktails"
+                itemClassName="card-recommended-cocktail"
                 recipes={recipes}
             />
         </div>

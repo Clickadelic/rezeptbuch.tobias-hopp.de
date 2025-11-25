@@ -54,23 +54,24 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
                     <ContextMenu recipe={recipe as Recipe} className="absolute top-1 -right-1 z-50" />
                     <h3 className=" text-gray-600 dark:text-gray-400 font-yellowtail min-h-5 line-clamp-1 mr-8">{recipe?.punchline}</h3>
                     <h4 className="text-base text-gray-800 dark:text-gray-200 line-clamp-2 min-h-12 leading-snug mt-1">{recipe?.name}</h4>
-                    
                 </CardDescription>
                 <div className="flex gap-2 justify-between text-sm">
                     <CategoryCardBlock recipe={recipe as Recipe} />
-                    <div className="text-gray-800 dark:text-gray-200"><GoClock className="inline-flex size-4 mr-1 -mt-1 text-primary" />{recipe?.preparation_time} Minuten</div>
-                </div>
-                <div className="w-full flex justify-between gap-2 mt-3">
                     <div className="flex justify-center items-center gap-1 text-sm">
                         <Star className="inline-flex size-4 mr-1 -mt-.5 text-yellow-500 fill-yellow-500" />
-                        <span>{recipe?.community_rating}</span>
-                        <span>/</span>
-                        <span>{recipe?.community_votes}</span>
+                        <span className="text-gray-800 dark:text-gray-200">{recipe?.community_rating}</span>
+                        <span className="text-gray-800 dark:text-gray-200">/</span>
+                        <span className="text-gray-800 dark:text-gray-200">{recipe?.community_votes}</span>
                     </div>
-                    <div className=" text-sm">
-                        4 Kommentare
+                </div>
+                <div className="w-full flex justify-between gap-2 mt-3">
+                    <div className="text-gray-800 dark:text-gray-200 text-sm">
+                        <GoClock className="inline-flex size-4 mr-1 -mt-1 text-primary" />
+                        {recipe?.preparation_time} Minuten
                     </div>
-                    
+                    <div className="text-gray-800 dark:text-gray-200 text-sm">
+                        <span>{recipe?.comments?.total || 0} Kommentare</span>
+                    </div>
                 </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-1 justify-between p-4">

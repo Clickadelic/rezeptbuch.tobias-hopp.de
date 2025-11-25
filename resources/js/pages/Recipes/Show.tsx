@@ -32,6 +32,9 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     const { related, is_favorite } = usePage<SharedPageProps>().props;
+    
+    console.log("Related", is_favorite);
+    console.log("Is favorite", is_favorite);
 
     return (
         <SidebarLeftLayout title={`${recipe.name} - Rezeptdetails`} sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>

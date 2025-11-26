@@ -19,7 +19,7 @@ export function usePermissions() {
         return auth.user.permissions.includes(permission);
     };
 
-    const isOwner = (userId?: number | null) => {
+    const isOwner = (userId: string | null | undefined) => {
         if (!auth.user || userId == null) return false;
         return auth.user.id === userId;
     };

@@ -51,11 +51,15 @@ class RecipeResource extends JsonResource
                 'avatar' => $this->user->avatar_url,
             ]),
 
+            'user_id' => $this->user_id,
+
             // optional: expose here too
             'is_favorite' => Auth::check()
                 ? $this->favoritedBy()->where('user_id', Auth::id())->exists()
                 : false,
-
+            'user_vote' => optional(
+                    $this->votes()->where('user_id', Auth::id())->first()
+                )->rating,
             
         ];
     }

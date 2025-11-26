@@ -28,16 +28,25 @@ interface StarRatingProps {
  *
  * @returns {JSX.Element} StarRating component.
  */
-export default function StarRating({ recipeId, initialRating = 0, communityRating = 0, communityVotes = 0, userHasVoted = false, readOnly = false }: StarRatingProps) {
+export default function StarRating({
+  recipeId,
+  initialRating = 0,
+  communityRating = 0,
+  communityVotes = 0,
+  userHasVoted = false,
+  readOnly = false,
+}: StarRatingProps) {
   const { user } = usePage<SharedPageProps>().props.auth;
   const { hasRole } = usePermissions();
 
-  const [rating, setRating] = useState(initialRating);
-  const [hover, setHover] = useState(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [rating, setRating] = useState<number>(initialRating);
+  const [hover, setHover] = useState<number>(0);
   const [community, setCommunity] = useState({
     rating: communityRating,
     votes: communityVotes,
   });
+
   const [voted, setVoted] = useState(userHasVoted);
 
   const canVote = hasRole("user") && !readOnly && !voted;
@@ -48,6 +57,7 @@ export default function StarRating({ recipeId, initialRating = 0, communityRatin
     setRating(value);
 
     try {
+      setIsLoading(true);
       const response = await axios.post(`/rezepte/${recipeId}/rate`, {
         rating: value,
       });
@@ -60,10 +70,11 @@ export default function StarRating({ recipeId, initialRating = 0, communityRatin
       });
 
       setVoted(true);
-
       toast.success("Vielen Dank für Deine Bewertung!");
     } catch (error) {
       console.error("Fehler beim Absenden der Bewertung", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -79,7 +90,7 @@ export default function StarRating({ recipeId, initialRating = 0, communityRatin
             disabled={!canVote}
             className={cn(
               "focus:outline-none",
-              canVote && "hover:cursor-pointer"
+              canVote ? "hover:cursor-pointer" : "cursor-not-allowed"
             )}
           >
             <Star
@@ -92,7 +103,15 @@ export default function StarRating({ recipeId, initialRating = 0, communityRatin
             />
           </button>
         ))}
+        {isLoading && (
+          <span className="text-sm text-gray-600 dark:text-gray-400">
+            Bewertung wird gesendet...
+          </span>
+        )}
       </div>
+
+      {/* Nachricht, wenn User bereits gevotet hat */}
+      
 
       <div className="text-sm text-gray-800 dark:text-gray-200">
         {community.votes > 0
@@ -100,8 +119,10 @@ export default function StarRating({ recipeId, initialRating = 0, communityRatin
           : "Noch keine Bewertungen"}
       </div>
       <div className="text-sm text-gray-800 dark:text-gray-200">
-        {community.votes > 0 ? `Bewertungen: ${community.votes}` : ""}
+        <p><span>Sterne: {community.rating} / 5</span><span>{community.votes > 0 ? `Bewertungen: ${community.votes}` : ""}</span></p>
+        <span>{voted && (<>Du hast mit {rating} Sternen bewertet.</>)}</span>
       </div>
     </div>
   );
 }
+

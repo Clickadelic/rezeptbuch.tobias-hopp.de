@@ -31,20 +31,20 @@ export interface SharedPageProps extends InertiaPageProps {
     favorites?: {
         recipe: Recipe[];
     };
+    
     comments?: Paginated<Comment>;
     replies?: Comment[];
     categories: Category[];
     ingredients?: Ingredient[];
     recipes?: Paginated<Recipe>;
     cocktails?: Paginated<Recipe>;
-    drafts?: number;
+    drafts?: number; // Header alert
     users?: Paginated<AuthUser>;
-    // Frontpage
-    latestRecipe?: Recipe;
     // Dashboard Data Types
     latestRecipes?: Paginated<Recipe>;
-    totalRecipeCount: number;
-    totalIngredientCount: number;
+    totalRecipeCount: number; // Frontpage
+    totalIngredientCount: number; // Frontpage
+    totalCommentCount: number; // Frontpage
     totalUserRecipes?: Paginated<Recipe>;
     totalUserRecipeCount: number;
     totalUserIngredients: Ingredient[];

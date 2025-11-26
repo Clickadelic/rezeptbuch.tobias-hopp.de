@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import axios from 'axios';
@@ -41,6 +42,7 @@ import { FiUsers } from 'react-icons/fi';
 import { router } from '@inertiajs/react';
 import { toast } from 'sonner';
 import { BsTrash } from 'react-icons/bs';
+import { Loader2 } from 'lucide-react';
 import { usePermissions } from '@/hooks/usePermissions';
 
 import AuthUser from '@/types/AuthUser';
@@ -69,6 +71,7 @@ interface UsersTableProps {
  */
 export default function AdminUsersTable({ title, icon, className, users }: UsersTableProps) {
     const availableRoles = usePage<SharedPageProps>().props.availableRoles;
+    const [loadingUserId, setLoadingUserId] = useState<number | null>(null);
 
     console.log('Available Roles: ', availableRoles);
 
@@ -84,11 +87,14 @@ export default function AdminUsersTable({ title, icon, className, users }: Users
 
     const updateUserRoles = async (id: number, roles: string[]) => {
         try {
+            setLoadingUserId(id);
             await axios.post(route('admin.users.updateRole', id), { roles });
             router.reload({ only: ['users', 'admin'] });
             toast.success('Benutzerrolle erfolgreich geändert!');
         } catch (error) {
             toast.error('Fehler beim Ändern der Benutzerrolle!');
+        } finally {
+            setLoadingUserId(null);
         }
     };
     return (
@@ -125,92 +131,113 @@ export default function AdminUsersTable({ title, icon, className, users }: Users
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {users.map((user: AuthUser) => (
-                            <TableRow
-                                key={user.id}
-                                className="hover:bg-white dark:hover:bg-gray-900"
-                            >
-                                <TableCell className="cursor-default text-center">
-                                    {user.id}
-                                </TableCell>
-                                <TableCell className="cursor-default">
-                                    <Avatar url={user.avatar} name={user.name} />
-                                </TableCell>
-                                <TableCell className="cursor-default truncate">
-                                    {user.name}
-                                </TableCell>
-                                <TableCell className="cursor-default truncate">
-                                    {user.email}
-                                </TableCell>
-                                <TableCell className="cursor-default truncate">
-                                    {user.roles.map((role) => (
-                                        <Badge
-                                            key={role}
-                                            className="mt-1 mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize"
-                                        >
-                                            {role}
-                                        </Badge>
-                                    ))}
-                                </TableCell>
-                                <TableCell className="cursor-default truncate">
-                                    {(user.permissions ?? []).map((permission) => (
-                                        <Badge
-                                            key={permission}
-                                            className="mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize"
-                                        >
-                                            {permission}
-                                        </Badge>
-                                    ))}
-                                </TableCell>
-                                <TableCell className="cursor-default truncate">
-                                    {/* <Select
-                                        defaultValue={user.roles.map((role) => role)} // Array von Rollen
-                                        onValueChange={(values: string[]) => updateUserRoles(user.id, values)}
-                                        multiple
-                                    >
-                                        <SelectTrigger className="w-[120px] bg-gray-100 dark:bg-gray-900 rounded-sm inset">
-                                            <SelectValue placeholder="Rolle auswählen" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {availableRoles.map((role) => (
-                                                <SelectItem key={role} value={role}>
-                                                    {role}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select> */}
-                                </TableCell>
-                                <TableCell className="text-right">
-                                    <AlertDialog>
-                                        <AlertDialogTrigger className="text-white bg-rose-700 hover:bg-rose-800 rounded-sm p-2 hover:cursor-pointer">
-                                            <BsTrash />
-                                        </AlertDialogTrigger>
-                                        <AlertDialogContent>
-                                            <AlertDialogHeader>
-                                                <AlertDialogTitle>
-                                                    Bist Du Dir sicher, dass Du {user.name} löschen
-                                                    möchtest?
-                                                </AlertDialogTitle>
-                                                <AlertDialogDescription>
-                                                    Diese Aktion kann nicht rückgängig gemacht
-                                                    werden. Alle Daten des Benutzers werden
-                                                    gelöscht.
-                                                </AlertDialogDescription>
-                                            </AlertDialogHeader>
-                                            <AlertDialogFooter>
-                                                <AlertDialogCancel>Abbrechen</AlertDialogCancel>
-                                                <AlertDialogAction
-                                                    onClick={() => deleteUser(user.id)}
-                                                    className="text-white bg-rose-700 hover:bg-rose-800"
+                        {users.map((user: AuthUser) => {
+                            const isUpdating = loadingUserId === user.id;
+
+                            return (
+                                <TableRow
+                                    key={user.id}
+                                    className={cn(
+                                        'hover:bg-white dark:hover:bg-gray-900',
+                                        isUpdating && 'opacity-60',
+                                    )}
+                                    aria-busy={isUpdating}
+                                >
+                                    <TableCell className="cursor-default text-center">
+                                        {user.id}
+                                    </TableCell>
+                                    <TableCell className="cursor-default">
+                                        <Avatar url={user.avatar} name={user.name} />
+                                    </TableCell>
+                                    <TableCell className="cursor-default truncate">
+                                        {user.name}
+                                    </TableCell>
+                                    <TableCell className="cursor-default truncate">
+                                        {user.email}
+                                    </TableCell>
+                                    <TableCell className="cursor-default truncate">
+                                        {user.roles.map((role) => (
+                                            <Badge
+                                                key={role}
+                                                className="mt-1 mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize"
+                                            >
+                                                {role}
+                                            </Badge>
+                                        ))}
+                                    </TableCell>
+                                    <TableCell className="cursor-default truncate">
+                                        {(user.permissions ?? []).map((permission) => (
+                                            <Badge
+                                                key={permission}
+                                                className="mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize"
+                                            >
+                                                {permission}
+                                            </Badge>
+                                        ))}
+                                    </TableCell>
+                                    <TableCell className="cursor-default truncate">
+                                        <div className="flex items-center gap-2">
+                                            <Select
+                                                value={
+                                                    user.roles.includes('admin')
+                                                        ? 'admin'
+                                                        : user.roles[0] ?? undefined
+                                                }
+                                                onValueChange={(value: string) =>
+                                                    updateUserRoles(user.id, [value])
+                                                }
+                                            >
+                                                <SelectTrigger
+                                                    className="w-[140px] bg-gray-100 dark:bg-gray-900 rounded-sm"
+                                                    disabled={isUpdating}
                                                 >
-                                                    Benutzer löschen
-                                                </AlertDialogAction>
-                                            </AlertDialogFooter>
-                                        </AlertDialogContent>
-                                    </AlertDialog>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                                                    <SelectValue placeholder="Rolle auswählen" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {availableRoles.map((role) => (
+                                                        <SelectItem key={role} value={role}>
+                                                            {role}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                            {isUpdating && (
+                                                <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                                            )}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-right">
+                                        <AlertDialog>
+                                            <AlertDialogTrigger className="text-white bg-rose-700 hover:bg-rose-800 rounded-sm p-2 hover:cursor-pointer">
+                                                <BsTrash />
+                                            </AlertDialogTrigger>
+                                            <AlertDialogContent>
+                                                <AlertDialogHeader>
+                                                    <AlertDialogTitle>
+                                                        Bist Du Dir sicher, dass Du {user.name} löschen
+                                                        möchtest?
+                                                    </AlertDialogTitle>
+                                                    <AlertDialogDescription>
+                                                        Diese Aktion kann nicht rückgängig gemacht
+                                                        werden. Alle Daten des Benutzers werden
+                                                        gelöscht.
+                                                    </AlertDialogDescription>
+                                                </AlertDialogHeader>
+                                                <AlertDialogFooter>
+                                                    <AlertDialogCancel>Abbrechen</AlertDialogCancel>
+                                                    <AlertDialogAction
+                                                        onClick={() => deleteUser(user.id)}
+                                                        className="text-white bg-rose-700 hover:bg-rose-800"
+                                                    >
+                                                        Benutzer löschen
+                                                    </AlertDialogAction>
+                                                </AlertDialogFooter>
+                                            </AlertDialogContent>
+                                        </AlertDialog>
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
                     </TableBody>
                 </Table>
             )}

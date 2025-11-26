@@ -16,8 +16,11 @@ interface RecipeImageBlockProps {
 /**
  * Displays the hero image of a recipe with a button to open the image in a modal.
  */
-export default function RecipeImageBlock({ recipe, className, useModalWindow = false }: RecipeImageBlockProps) {
-    
+export default function RecipeImageBlock({
+    recipe,
+    className,
+    useModalWindow = false,
+}: RecipeImageBlockProps) {
     const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
     const toggleImageModal = () => setIsImageModalOpen((prev) => !prev);
 
@@ -29,23 +32,19 @@ export default function RecipeImageBlock({ recipe, className, useModalWindow = f
 
     const sortedMedia = useMemo(() => {
         if (!hero) return mediaArray;
-        return [hero, ...mediaArray.filter(m => m.id !== hero.id)];
+        return [hero, ...mediaArray.filter((m) => m.id !== hero.id)];
     }, [mediaArray, hero]);
 
     return (
         <div
             className={cn(
                 'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-xs',
-                className
+                className,
             )}
         >
             {hero ? (
                 <div className="w-full h-auto flex rounded-lg overflow-hidden transition-colors duration-300">
-                    <img
-                        src={hero.url}
-                        alt={recipe.name}
-                        className="size-full object-cover z-20"
-                    />
+                    <img src={hero.url} alt={recipe.name} className="size-full object-cover z-20" />
                     {useModalWindow && (
                         <button
                             onClick={toggleImageModal}

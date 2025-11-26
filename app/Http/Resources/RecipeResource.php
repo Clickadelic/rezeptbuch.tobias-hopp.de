@@ -3,11 +3,10 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\UserPublicResource;
-use App\Http\Resources\CategoryResource;
 use App\Http\Resources\MediaResource;
+
+use Illuminate\Support\Facades\Log;
 
 class RecipeResource extends JsonResource
 {
@@ -35,16 +34,29 @@ class RecipeResource extends JsonResource
             'created_at' => optional($this->created_at)->toDateTimeString(),
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
 
+            // Zutaten mit Pivot-Daten
+            'ingredients' => $this->ingredients->map(function ($ingredient) {
+                return [
+                    'id'       => $ingredient->id,
+                    'name'     => $ingredient->name,
+                    'quantity' => $ingredient->pivot->quantity,
+                    'unit'     => $ingredient->pivot->unit,
+                ];
+            }),
+
+            // Media wie bisher über Resource
             'media' => $this->whenLoaded('media', fn() =>
                 $this->media->map(fn($m) => (new MediaResource($m))->toArray($request))
             ),
 
+            // Kategorie
             'category' => $this->whenLoaded('category', fn() => [
                 'id' => $this->category->id,
                 'name' => $this->category->name,
                 'slug' => $this->category->slug,
             ]),
 
+            // User
             'user' => $this->whenLoaded('user', fn() => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
@@ -53,16 +65,15 @@ class RecipeResource extends JsonResource
 
             'user_id' => $this->user_id,
 
-            // optional: expose here too
+            // Favoriten-Status
             'is_favorite' => Auth::check()
                 ? $this->favoritedBy()->where('user_id', Auth::id())->exists()
                 : false,
+
+            // User-Vote, falls vorhanden
             'user_vote' => optional(
-                    $this->votes()->where('user_id', Auth::id())->first()
-                )->rating,
-            
+                $this->votes()->where('user_id', Auth::id())->first()
+            )->rating,
         ];
     }
-
-    
 }

@@ -20,7 +20,7 @@ interface ContactBlockProps {
  */
 export default function ContactBlock({ className }: ContactBlockProps) {
     return (
-        <div className={cn("max-w-xl mx-auto", className)}>
+        <div className={cn('max-w-xl mx-auto', className)}>
             <TitleBlock
                 title="Kontakt"
                 punchline="Du hast ein Anliegen? Schreib' Dein Feedback."

@@ -8,9 +8,9 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import Seperator from '@/components/reusables/Seperator';
 
-import { HiOutlineQuestionMarkCircle } from "react-icons/hi2";
+import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
 import { TbSalt } from 'react-icons/tb';
-import { MdOutlineQueryStats } from "react-icons/md";
+import { MdOutlineQueryStats } from 'react-icons/md';
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoMdArrowForward } from 'react-icons/io';
 
@@ -26,13 +26,17 @@ import { SharedPageProps } from '@/types';
  */
 export default function MisEnPlace() {
     return (
-        <SidebarLeftLayout sidebar={<MainSidebar />} title="Mis en place" showTitle={false} description="Mis en place - französisch für Alles an seinem Platz (vor Arbeitsbeginn). Hier geht's um den Umgang mit Küchenutensilien und Lebensmitteln in der Küche.">
+        <SidebarLeftLayout
+            sidebar={<MainSidebar />}
+            title="Mis en place"
+            showTitle={false}
+            description="Mis en place - französisch für Alles an seinem Platz (vor Arbeitsbeginn). Hier geht's um den Umgang mit Küchenutensilien und Lebensmitteln in der Küche."
+        >
             <TitleBlock
                 icon={<FaRegHeart className="text-primary size-6 mt-1" />}
                 title="Mis en place"
                 punchline="Alles an seinem Ort."
             />
-            
         </SidebarLeftLayout>
     );
 }

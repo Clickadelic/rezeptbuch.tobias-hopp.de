@@ -32,12 +32,9 @@ import { cn } from '@/lib/utils';
  * It includes a bar chart that shows the number of recipes, a donut chart that shows the distribution of recipes between the user and other users, and two tables that show the user's recipes and favorites.
  */
 export default function MyRecipes() {
-
     return (
         <SidebarLeftLayout title="Favoriten" sidebar={<UserSidebar />}>
-            <div className="asd">
-                asd
-            </div>
+            <div className="asd">asd</div>
         </SidebarLeftLayout>
     );
 }

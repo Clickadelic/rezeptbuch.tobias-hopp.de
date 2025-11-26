@@ -143,7 +143,7 @@ a.target-white[target='_blank']:after {
     content: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' class='bi bi-box-arrow-up-right' viewBox='0 0 16 16' %3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z' /%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z' /%3E%3C/svg%3E");
 }
 
-a.target-reset[target="_blank"]:after {
+a.target-reset[target='_blank']:after {
     display: none;
 }
 
@@ -180,40 +180,40 @@ a.target-reset[target="_blank"]:after {
 
 /* 1. Die @keyframes-Regel definieren */
 @keyframes bellshake {
-  0% {
-    transform: rotate(0deg);
-  } /* Startposition */
-  15% {
-    transform: rotate(10deg);
-  } /* Schwingt nach rechts */
-  30% {
-    transform: rotate(-10deg);
-  } /* Schwingt nach links */
-  45% {
-    transform: rotate(7deg);
-  } /* Schwingt etwas weniger stark nach rechts */
-  60% {
-    transform: rotate(-7deg);
-  } /* Schwingt etwas weniger stark nach links */
-  75% {
-    transform: rotate(4deg);
-  }
-  85% {
-    transform: rotate(-4deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  } /* Endposition */
+    0% {
+        transform: rotate(0deg);
+    } /* Startposition */
+    15% {
+        transform: rotate(10deg);
+    } /* Schwingt nach rechts */
+    30% {
+        transform: rotate(-10deg);
+    } /* Schwingt nach links */
+    45% {
+        transform: rotate(7deg);
+    } /* Schwingt etwas weniger stark nach rechts */
+    60% {
+        transform: rotate(-7deg);
+    } /* Schwingt etwas weniger stark nach links */
+    75% {
+        transform: rotate(4deg);
+    }
+    85% {
+        transform: rotate(-4deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    } /* Endposition */
 }
 
 /* 2. Die Animation auf das Element anwenden */
 .bell {
-  /* Wichtig: transform-origin festlegen, damit die Drehung von oben erfolgt */
-  transform-origin: top center;
-  
-  /* Animationseigenschaften */
-  animation-name: bellshake;
-  animation-duration: 0.8s; /* Wie lange die Schüttelbewegung dauert */
-  animation-timing-function: ease-in-out; /* Beschleunigung/Verlangsamung */
-  animation-iteration-count: 2; /* Wie oft sie läuft. Hier nur einmal. */
+    /* Wichtig: transform-origin festlegen, damit die Drehung von oben erfolgt */
+    transform-origin: top center;
+
+    /* Animationseigenschaften */
+    animation-name: bellshake;
+    animation-duration: 0.8s; /* Wie lange die Schüttelbewegung dauert */
+    animation-timing-function: ease-in-out; /* Beschleunigung/Verlangsamung */
+    animation-iteration-count: 2; /* Wie oft sie läuft. Hier nur einmal. */
 }

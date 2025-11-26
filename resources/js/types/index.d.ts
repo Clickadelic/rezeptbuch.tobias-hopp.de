@@ -31,7 +31,7 @@ export interface SharedPageProps extends InertiaPageProps {
     favorites?: {
         recipe: Recipe[];
     };
-    
+
     comments?: Paginated<Comment>;
     replies?: Comment[];
     categories: Category[];
@@ -52,7 +52,7 @@ export interface SharedPageProps extends InertiaPageProps {
     totalUserFavorites: Recipe[];
     userFavoritesCount: number;
     totalUserCount: number;
-    
+
     recipesUserCountByCategory: {
         [categoryName: string]: number;
     };

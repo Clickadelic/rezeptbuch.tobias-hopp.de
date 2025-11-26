@@ -106,10 +106,10 @@ class Recipe extends Model
 
      public function ingredients()
      {
-     return $this->belongsToMany(Ingredient::class, 'recipe_ingredient')
-          ->using(RecipeIngredient::class) // Pivot Model
-          ->withPivot('quantity', 'unit')
-          ->withTimestamps();
+          return $this->belongsToMany(Ingredient::class, 'recipe_ingredient')
+               // ->using(RecipeIngredient::class) // Pivot Model
+               ->withPivot('quantity', 'unit')
+               ->withTimestamps();
      }
 
      public function media()

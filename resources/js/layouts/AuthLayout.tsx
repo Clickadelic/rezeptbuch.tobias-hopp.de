@@ -9,7 +9,6 @@ import { Head } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import { BsArrowLeft } from 'react-icons/bs';
 
-
 interface AuthLayoutProps extends PropsWithChildren {
     showTitle?: boolean;
     title?: string;
@@ -66,10 +65,46 @@ export default function AuthLayout({
                                     {children}
                                     <div className="w-full my-3 sm:my-5 flex justify-center items-center">
                                         <ul className="flex flex-col sm:flex-row text-center gap-2 text-xs">
-                                            <li><Link href="/nutzungsbedingungen" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Nutzungsbedingungen" aria-label="Nutzungsbedingungen">Nutzungsbedingungen</Link></li>
-                                            <li><Link href="/datenschutz" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Datenschutz" aria-label="Datenschutz">Datenschutz</Link></li>
-                                            <li><Link href="/cookie-hinweis" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Cookie-Hinweis" aria-label="Cookie-Hinweis">Cookie-Hinweis</Link></li>
-                                            <li><Link href="/impressum" className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2" title="Impressum" aria-label="Impressum">Impressum</Link></li>
+                                            <li>
+                                                <Link
+                                                    href="/nutzungsbedingungen"
+                                                    className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+                                                    title="Nutzungsbedingungen"
+                                                    aria-label="Nutzungsbedingungen"
+                                                >
+                                                    Nutzungsbedingungen
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link
+                                                    href="/datenschutz"
+                                                    className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+                                                    title="Datenschutz"
+                                                    aria-label="Datenschutz"
+                                                >
+                                                    Datenschutz
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link
+                                                    href="/cookie-hinweis"
+                                                    className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+                                                    title="Cookie-Hinweis"
+                                                    aria-label="Cookie-Hinweis"
+                                                >
+                                                    Cookie-Hinweis
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link
+                                                    href="/impressum"
+                                                    className="text-sm text-emerald-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+                                                    title="Impressum"
+                                                    aria-label="Impressum"
+                                                >
+                                                    Impressum
+                                                </Link>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

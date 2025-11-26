@@ -2,11 +2,11 @@ import { Link } from '@inertiajs/react';
 import { cn } from '@/lib/utils';
 
 interface FooterColumnProps {
-    title?: string
-    columnIcon?: React.ReactNode
-    className?: string
-    items?: { title: string; icon: React.ReactNode; href: string }[]
-    children?: React.ReactNode
+    title?: string;
+    columnIcon?: React.ReactNode;
+    className?: string;
+    items?: { title: string; icon: React.ReactNode; href: string }[];
+    children?: React.ReactNode;
 }
 
 /**
@@ -32,15 +32,20 @@ interface FooterColumnProps {
  * @param {FooterColumnItem[]} [items] - List of links to display in the column.
  * @param {React.ReactNode} [children] - Additional children to render below the links.
  */
-export default function FooterColumn({ title, columnIcon, className, items, children}: FooterColumnProps) {
-    
+export default function FooterColumn({
+    title,
+    columnIcon,
+    className,
+    items,
+    children,
+}: FooterColumnProps) {
     return (
-        <div className={cn("w-72 sm:w-full", className)}>
+        <div className={cn('w-72 sm:w-full', className)}>
             <h2 className="pb-4 text-2xl text-gray-100 flex gap-2 font-secondary items-center justify-center sm:justify-start border-b border-b-black">
                 {columnIcon}
                 <span className="font-medium">{title}</span>
             </h2>
-            {items && ( 
+            {items && (
                 <ul className="sm:pl-1 pt-4 space-y-4 sm:space-y-3 flex flex-col justify-center items-center sm:justify-start sm:items-start border-t border-stone-700">
                     {items.map((item, i) => (
                         <li key={i}>
@@ -56,11 +61,7 @@ export default function FooterColumn({ title, columnIcon, className, items, chil
                     ))}
                 </ul>
             )}
-            {children && ( 
-                <div className="border-t border-stone-700 pt-4">
-                    {children}
-                </div>
-            )}
+            {children && <div className="border-t border-stone-700 pt-4">{children}</div>}
         </div>
-    )
+    );
 }

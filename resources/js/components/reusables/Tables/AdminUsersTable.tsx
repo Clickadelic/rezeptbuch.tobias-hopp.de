@@ -1,21 +1,44 @@
 import { usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
-import axios from "axios";
+import axios from 'axios';
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow,} from '@/components/ui/table';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import {
+    Select,
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+} from '@/components/ui/select';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { Badge } from '@/components/ui/badge';
 
 import Avatar from '@/components/reusables/Avatar';
 import AdminContextMenu from '@/components/reusables/AdminContextMenu';
 
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { HiOutlineEye } from 'react-icons/hi2';
-import { MdOutlineNearbyError } from "react-icons/md";
-import { FiUsers } from "react-icons/fi";
-import { router } from "@inertiajs/react";
+import { MdOutlineNearbyError } from 'react-icons/md';
+import { FiUsers } from 'react-icons/fi';
+import { router } from '@inertiajs/react';
 import { toast } from 'sonner';
 import { BsTrash } from 'react-icons/bs';
 import { usePermissions } from '@/hooks/usePermissions';
@@ -45,33 +68,40 @@ interface UsersTableProps {
  * <UsersTable title="Benutzer" icon={<BsHouse />} users={users} />
  */
 export default function AdminUsersTable({ title, icon, className, users }: UsersTableProps) {
-
     const availableRoles = usePage<SharedPageProps>().props.availableRoles;
 
-    console.log("Available Roles: ", availableRoles);
+    console.log('Available Roles: ', availableRoles);
 
     const deleteUser = async (id: number) => {
         try {
-            await axios.delete(route("admin.users.destroy", id));
-            router.reload({ only: ["users"] });
-            toast.success("Benutzer erfolgreich gelöscht!");
+            await axios.delete(route('admin.users.destroy', id));
+            router.reload({ only: ['users'] });
+            toast.success('Benutzer erfolgreich gelöscht!');
         } catch (error) {
-            toast.error("Fehler beim Löschen des Users!");
+            toast.error('Fehler beim Löschen des Users!');
         }
     };
 
     const updateUserRoles = async (id: number, roles: string[]) => {
         try {
-            await axios.post(route("admin.users.updateRole", id), { roles });
-            router.reload({ only: ["users", "admin"] });
-            toast.success("Benutzerrolle erfolgreich geändert!");
+            await axios.post(route('admin.users.updateRole', id), { roles });
+            router.reload({ only: ['users', 'admin'] });
+            toast.success('Benutzerrolle erfolgreich geändert!');
         } catch (error) {
-            toast.error("Fehler beim Ändern der Benutzerrolle!");
+            toast.error('Fehler beim Ändern der Benutzerrolle!');
         }
     };
     return (
-        <div className={cn('w-full bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-4 rounded-xl', className)}>
-            <h3 className={cn('text-lg flex gap-2', users && users?.length >= 1 && 'mb-3')}>{icon}{title || 'Benutzer'}</h3>
+        <div
+            className={cn(
+                'w-full bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-4 rounded-xl',
+                className,
+            )}
+        >
+            <h3 className={cn('text-lg flex gap-2', users && users?.length >= 1 && 'mb-3')}>
+                {icon}
+                {title || 'Benutzer'}
+            </h3>
             {/* Wenn keine User vorhanden */}
             {(!users || users.length === 0) && (
                 <div className="h-[calc(100%-25px)] flex flex-col gap-2 items-center justify-center">
@@ -99,8 +129,10 @@ export default function AdminUsersTable({ title, icon, className, users }: Users
                             <TableRow
                                 key={user.id}
                                 className="hover:bg-white dark:hover:bg-gray-900"
-                            > 
-                                <TableCell className="cursor-default text-center">{user.id}</TableCell>
+                            >
+                                <TableCell className="cursor-default text-center">
+                                    {user.id}
+                                </TableCell>
                                 <TableCell className="cursor-default">
                                     <Avatar url={user.avatar} name={user.name} />
                                 </TableCell>
@@ -112,14 +144,20 @@ export default function AdminUsersTable({ title, icon, className, users }: Users
                                 </TableCell>
                                 <TableCell className="cursor-default truncate">
                                     {user.roles.map((role) => (
-                                        <Badge key={role} className="mt-1 mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize">
+                                        <Badge
+                                            key={role}
+                                            className="mt-1 mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize"
+                                        >
                                             {role}
                                         </Badge>
                                     ))}
                                 </TableCell>
                                 <TableCell className="cursor-default truncate">
                                     {(user.permissions ?? []).map((permission) => (
-                                        <Badge key={permission} className="mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize">
+                                        <Badge
+                                            key={permission}
+                                            className="mr-1 last:mr-0 px-1.5 py-.5 text-xs rounded bg-primary text-white capitalize"
+                                        >
                                             {permission}
                                         </Badge>
                                     ))}
@@ -141,7 +179,6 @@ export default function AdminUsersTable({ title, icon, className, users }: Users
                                             ))}
                                         </SelectContent>
                                     </Select> */}
-
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <AlertDialog>
@@ -150,17 +187,27 @@ export default function AdminUsersTable({ title, icon, className, users }: Users
                                         </AlertDialogTrigger>
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
-                                            <AlertDialogTitle>Bist Du Dir sicher, dass Du {user.name} löschen möchtest?</AlertDialogTitle>
-                                            <AlertDialogDescription>
-                                                Diese Aktion kann nicht rückgängig gemacht werden. Alle Daten des Benutzers werden gelöscht.
-                                            </AlertDialogDescription>
+                                                <AlertDialogTitle>
+                                                    Bist Du Dir sicher, dass Du {user.name} löschen
+                                                    möchtest?
+                                                </AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    Diese Aktion kann nicht rückgängig gemacht
+                                                    werden. Alle Daten des Benutzers werden
+                                                    gelöscht.
+                                                </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
-                                            <AlertDialogCancel>Abbrechen</AlertDialogCancel>
-                                            <AlertDialogAction onClick={() => deleteUser(user.id)} className="text-white bg-rose-700 hover:bg-rose-800">Benutzer löschen</AlertDialogAction>
+                                                <AlertDialogCancel>Abbrechen</AlertDialogCancel>
+                                                <AlertDialogAction
+                                                    onClick={() => deleteUser(user.id)}
+                                                    className="text-white bg-rose-700 hover:bg-rose-800"
+                                                >
+                                                    Benutzer löschen
+                                                </AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
-                                        </AlertDialog>
+                                    </AlertDialog>
                                 </TableCell>
                             </TableRow>
                         ))}

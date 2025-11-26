@@ -8,7 +8,11 @@ import LegalSidebar from '@/components/sidebars/LegalSidebar';
  */
 export default function Nutzungsbedingungen() {
     return (
-        <SidebarLeftLayout title="Nutzungsbedingungen" description="Die Nutzungsbedingungen für das Rezeptbuch." sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout
+            title="Nutzungsbedingungen"
+            description="Die Nutzungsbedingungen für das Rezeptbuch."
+            sidebar={<LegalSidebar />}
+        >
             <section>
                 <h3 className="my-5 font-medium text-lg">1. Allgemeines</h3>
                 <p>
@@ -28,10 +32,11 @@ export default function Nutzungsbedingungen() {
             <section>
                 <h3 className="my-5 font-medium text-lg">3. Haftungsausschluss</h3>
                 <p>
-                    Ich, Tobias Hopp, nachfolgend "der Betreiber" genannt, übernehme keinen Gewähr für die Richtigkeit, Vollständigkeit oder
-                    Aktualität der bereitgestellten Inhalte. Die Nutzung der Website erfolgt auf
-                    eigene Gefahr. Es besteht keine Haftung für direkte oder indirekte Schäden, die
-                    durch die Nutzung oder Nichtnutzung der angebotenen Informationen entstehen.
+                    Ich, Tobias Hopp, nachfolgend "der Betreiber" genannt, übernehme keinen Gewähr
+                    für die Richtigkeit, Vollständigkeit oder Aktualität der bereitgestellten
+                    Inhalte. Die Nutzung der Website erfolgt auf eigene Gefahr. Es besteht keine
+                    Haftung für direkte oder indirekte Schäden, die durch die Nutzung oder
+                    Nichtnutzung der angebotenen Informationen entstehen.
                 </p>
             </section>
             <section>
@@ -56,8 +61,8 @@ export default function Nutzungsbedingungen() {
             <section>
                 <h3 className="my-5 font-medium text-lg">6. Änderungen</h3>
                 <p>
-                    Der Betreiber behält sich vor, diese Nutzungsbedingungen jederzeit
-                    ohne Ankündigung anzupassen. Es gilt jeweils die aktuelle, auf der Website
+                    Der Betreiber behält sich vor, diese Nutzungsbedingungen jederzeit ohne
+                    Ankündigung anzupassen. Es gilt jeweils die aktuelle, auf der Website
                     veröffentlichte Fassung.
                 </p>
             </section>

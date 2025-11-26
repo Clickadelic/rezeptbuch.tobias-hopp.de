@@ -26,7 +26,6 @@ export default function FavoriteButton({
     isFavorite = false,
     className,
     showLabel = false,
-
 }: FavoriteButtonProps) {
     const [active, setActive] = useState<boolean>(isFavorite);
     const [isHovered, setIsHovered] = useState<boolean>(false);

@@ -16,7 +16,12 @@ import LegalSidebar from '@/components/sidebars/LegalSidebar';
  */
 export default function ContactPage() {
     return (
-        <SidebarLeftLayout title="Kontakt" sidebar={<LegalSidebar />} showTitle={false} description="Auf dieser Seite kannst Du mit mir in Kontakt treten und mir eine Nachricht schreiben.">
+        <SidebarLeftLayout
+            title="Kontakt"
+            sidebar={<LegalSidebar />}
+            showTitle={false}
+            description="Auf dieser Seite kannst Du mit mir in Kontakt treten und mir eine Nachricht schreiben."
+        >
             <ContactBlock />
         </SidebarLeftLayout>
     );

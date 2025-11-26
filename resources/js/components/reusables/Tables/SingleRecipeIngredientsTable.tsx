@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Recipe } from '@/types/Recipe';
 
 import { Button } from '@/components/ui/button';
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@/components/ui/button-group';
 import { RiResetLeftFill } from 'react-icons/ri';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import Seperator from '@/components/reusables/Seperator';
@@ -21,7 +20,9 @@ interface IngredientsTableProps {
  */
 export default function SingleRecipeIngredientsTable({ recipe, className }: IngredientsTableProps) {
     const [count, setCount] = useState<number>(1);
-    if (recipe.ingredients?.length === 0) return null;
+
+    // Wenn keine Zutaten vorhanden
+    if (!recipe.ingredients || recipe.ingredients.length === 0) return null;
 
     return (
         <>
@@ -31,7 +32,9 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                     <div className="flex flex-col items-center justify-center gap-5 md:w-[22rem]">
                         <div>
                             <div className="cursor-default w-[14rem] font-medium text-xl flex gap-3 px-3 text-center">
-                                <span>Zutaten für {count > 1 ? `${count} Personen` : '1 Person'}</span>
+                                <span>
+                                    Zutaten für {count > 1 ? `${count} Personen` : '1 Person'}
+                                </span>
                             </div>
                         </div>
                         <div className="flex gap-5">
@@ -61,8 +64,8 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                                 className="py-2 px-2 hover:cursor-pointer shadow-none"
                                 variant="primary"
                                 size="sm"
-                                title="Personen erhöhen"
-                                aria-label="Personen erhöhen"
+                                title="Personen erhöhen"
+                                aria-label="Personen erhöhen"
                             >
                                 <PlusIcon />
                             </Button>
@@ -70,7 +73,7 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                     </div>
                 </div>
                 <table className="table rounded-lg bg-gray-100 dark:bg-gray-700 mx-auto w-full md:w-[28rem] overflow-x-auto text-gray-800">
-                    <thead className=" text-gray-800 dark:text-gray-200 font-normal">
+                    <thead className="text-gray-800 dark:text-gray-200 font-normal">
                         <tr>
                             <th className="p-3 font-normal">Menge</th>
                             <th className="p-3 text-left font-normal">Einheit</th>
@@ -78,18 +81,22 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                         </tr>
                     </thead>
                     <tbody className="dark:text-gray-200 divide-y divide-gray-100 dark:divide-gray-700">
-                        {recipe.ingredients?.map((ingredient) => (
-                            <tr
-                                key={ingredient.id}
-                                className="odd:bg-white even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
-                            >
-                                <td className="p-3 text-center">
-                                    {((ingredient.pivot?.quantity ?? 0) as number) * count}
-                                </td>
-                                <td className="p-3 text-left">{ingredient.pivot?.unit}</td>
-                                <td className="p-3">{ingredient.name}</td>
-                            </tr>
-                        ))}
+                        {recipe.ingredients.map((ingredient) => {
+                            const baseQuantity = ingredient.quantity ?? ingredient.pivot?.quantity ?? 0;
+                            const unit = ingredient.unit ?? ingredient.pivot?.unit ?? '';
+                            return (
+                                <tr
+                                    key={ingredient.id}
+                                    className="odd:bg-white even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
+                                >
+                                    <td className="p-3 text-center">
+                                        {Number(baseQuantity) * count}
+                                    </td>
+                                    <td className="p-3 text-left">{unit}</td>
+                                    <td className="p-3">{ingredient.name}</td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>

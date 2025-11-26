@@ -5,18 +5,13 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Recipe } from '@/types/Recipe';
 
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
-import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
 
-// Icons für Kategorien
 import { LuUtensilsCrossed } from 'react-icons/lu';
 import { PiCookingPot } from 'react-icons/pi';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { IoHeart } from 'react-icons/io5';
-import { FaHeart } from 'react-icons/fa6';
 import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
 
@@ -25,22 +20,12 @@ import ContextMenu from '@/components/reusables/ContextMenu';
 
 import { cn } from '@/lib/utils';
 
-
 interface RecipeCardProps {
     recipe: Recipe;
     className?: string;
 }
 
-/**
- * Displays a single recipe card.
- *
- * @param {RecipeCardProps} props - properties of the component
- * @returns {JSX.Element} - the rendered component
- */
 export default function RecipeCard({ recipe, className }: RecipeCardProps) {
-    /**
-     * Kategorie -> Icon Mapping
-     */
     const iconMap: Record<string, JSX.Element> = {
         vorspeise: <TbSalad className="inline-flex size-4 mr-1 text-primary" />,
         hauptgericht: <PiCookingPot className="inline-flex size-4 mr-1 text-primary" />,
@@ -52,7 +37,11 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
 
     return (
         <li className={cn('group max-w-96 mb-5', className)}>
-            <Link href={route('recipes.show', recipe.slug)} className="block" title={recipe.name}>
+            <Link 
+                href={route('recipes.show', { recipe: recipe.slug })} 
+                className="block" 
+                title={recipe.name}
+            >
                 <Card className="relative overflow-hidden">
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
@@ -60,12 +49,15 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
-
-                        <FavoriteButton key={recipe.id} recipeId={recipe.id} isFavorite={recipe.is_favorite} className="absolute top-1 left-1 z-20"/>
+                        <FavoriteButton
+                            key={recipe.id}
+                            recipeId={recipe.id}
+                            isFavorite={recipe.is_favorite}
+                            className="absolute top-1 left-1 z-20"
+                        />
                         <RecipeImageBlock recipe={recipe} />
                     </CardHeader>
 
-                    {/* Titel + Kategorie */}
                     <CardContent className="py-2 px-0 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
                         <div className="relative flex flex-row justify-between items-center gap-1">
                             <div className="w-full grow mr-8">
@@ -83,7 +75,6 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                         </div>
                     </CardContent>
 
-                    {/* Footer */}
                     <CardFooter className="flex flex-row items-center justify-between space-x-2">
                         <div>
                             {recipe.category && (
@@ -111,18 +102,15 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
     );
 }
 
-/**
- * Skeleton Loader für Rezepte
- */
 export function RecipeCardSkeleton() {
     return (
         <li className="w-full max-w-96 mb-5">
             <Card className="relative overflow-hidden">
                 <CardHeader
                     className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
-                                bg-gray-100 dark:bg-gray-700 text-gray-400 
-                                border border-transparent transition-colors duration-300 
-                                group-hover:bg-gray-200 group-hover:border-primary shadow-transparent hover:shadow-primary"
+                                 bg-gray-100 dark:bg-gray-700 text-gray-400 
+                                 border border-transparent transition-colors duration-300 
+                                 group-hover:bg-gray-200 group-hover:border-primary shadow-transparent hover:shadow-primary"
                 >
                     <Skeleton className="absolute inset-0 size-full object-cover" />
                 </CardHeader>

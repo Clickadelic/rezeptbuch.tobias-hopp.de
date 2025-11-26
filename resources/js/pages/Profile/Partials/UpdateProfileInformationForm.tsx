@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 export default function UpdateProfileInformation({
     mustVerifyEmail,
     status,
-    className
+    className,
 }: {
     mustVerifyEmail: boolean;
     status?: string;
@@ -40,7 +40,7 @@ export default function UpdateProfileInformation({
     };
 
     return (
-        <section className={cn("mb-6")}>
+        <section className={cn('mb-6')}>
             <header>
                 <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">Profil</h2>
                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">

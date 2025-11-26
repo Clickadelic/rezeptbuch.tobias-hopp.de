@@ -33,10 +33,10 @@ export default function Frontpage() {
     const recommendedCocktails = usePage<SharedPageProps>().props.cocktails.data;
     const totalRecipeCount = usePage<SharedPageProps>().props.totalRecipeCount;
     const totalIngredientCount = usePage<SharedPageProps>().props.totalIngredientCount;
-    console.log("totalIngredientCount", totalIngredientCount)
+
     return (
         <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein.">
-            <WelcomeBlock />
+            <WelcomeBlock className="my-6" />
             <CategorySelectionBlock />
             <Seperator style="sun" />
             <DailyRecommendationsBlock recipes={recommendedRecipes} />

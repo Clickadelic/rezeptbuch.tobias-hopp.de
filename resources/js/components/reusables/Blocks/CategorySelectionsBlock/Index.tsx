@@ -6,14 +6,18 @@ import { RiCake3Line } from 'react-icons/ri';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
 
+interface CategorySelectiopnsBlockProps {
+    className?: string;
+}
+
 /**
  * A component that displays a grid/block of categories with links to search for recipes that match that category.
  * The categories are hardcoded and are: Vorspeisen, Hauptgerichte, Nachtisch, Cocktails, Backen, and Snacks.
  */
 
-export default function CategorySelectionsBlock() {
+export default function CategorySelectionsBlock({ className }: CategorySelectiopnsBlockProps) {
     return (
-        <div className={cn('bg-gray-200 dark:bg-gray-700 transition-all duration-500 ease my-8')}>
+        <div className={cn('bg-gray-200 dark:bg-gray-700 my-8', className)}>
             <ul
                 className={cn('grid grid-cols-2 lg:grid-cols-3 sm:gap-px')}
                 aria-roledescription="navigation"

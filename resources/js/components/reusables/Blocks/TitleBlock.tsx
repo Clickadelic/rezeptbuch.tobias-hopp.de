@@ -23,12 +23,12 @@ export default function TitleBlock({
     children,
 }: TitleBlockProps) {
     return (
-        <div className={cn("flex flex-col gap-2 items-center justify-center my-4 sm:my-6 md:my-8", className)}>
+        <div className={cn("flex flex-col gap-1 items-center justify-center mb-8", className)}>
             {title && (
-                <h2 className="flex gap-2 text-3xl font-roboto-condensed">{icon}{title}</h2>
+                <h2 className="flex gap-2 text-2xl">{icon}{title}</h2>
             )}
             {punchline && (
-                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-yellowtail">{punchline}</h3>
+                <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">{punchline}</h3>
             )}
             {children}
         </div>

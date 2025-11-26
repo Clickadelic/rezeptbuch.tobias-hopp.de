@@ -19,7 +19,7 @@ Route::prefix('/rezepte')->group(function () {
     Route::post('/{recipe}/toggle-publish', [RecipeController::class, 'togglePublish'])->name('recipes.togglePublish');
 
     // Rate recipe
-    Route::post('/{recipe}/rate', [RecipeRatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
+    Route::post('/{recipe:id}/rate', [RecipeRatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
 
     // Comments (JSON + Create)
     Route::get('/{recipe}/comments', [CommentController::class, 'index'])->name('comments.index');
@@ -28,6 +28,6 @@ Route::prefix('/rezepte')->group(function () {
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
 
     // Duplicate Post
-    Route::post('/recipes/{recipe:slug}/duplicate', [RecipeController::class, 'duplicate'])->name('recipes.duplicate');
+    Route::post('/{recipe:slug}/duplicate', [RecipeController::class, 'duplicate'])->name('recipes.duplicate');
 });
 

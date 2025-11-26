@@ -55,6 +55,10 @@ class RecipeResource extends JsonResource
             'is_favorite' => Auth::check()
                 ? $this->favoritedBy()->where('user_id', Auth::id())->exists()
                 : false,
+
+            
         ];
     }
+
+    
 }

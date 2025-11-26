@@ -30,7 +30,7 @@ export default function RecipeStats({ title, punchline, className, totalRecipeCo
         <div className={cn("flex items-center justify-center", className)}>
             <div className="flex flex-col items-center justify-center">
                 <TitleBlock title="Statistik" punchline="Aktuelle Zahlen" icon={<IoIosStats className="text-primary size-6 mt-1" />} />
-                <div className="flex items-center justify-center gap-5">
+                <div className="flex items-center justify-center gap-24">
                     <div className="text-2xl flex flex-col items-center justify-center gap-1"><span>{totalRecipeCount}</span><span className="text-gray-600 dark:text-gray-400">Rezepte</span></div>
                     <div className="text-2xl flex flex-col items-center justify-center gap-1"><span>{totalIngredientCount || 0}</span><span className="text-gray-600 dark:text-gray-400">Zutaten</span></div>
                 </div>

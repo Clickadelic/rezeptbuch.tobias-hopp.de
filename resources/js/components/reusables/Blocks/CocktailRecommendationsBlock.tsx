@@ -25,8 +25,8 @@ export default function CocktailRecommendationsBlock({ recipes }: DailyRecommend
                 recipes={recipes}
             />
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
-                <h2 className="text-3xl">Leckere Cocktails</h2>
-                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-yellowtail">
+                <h2 className="text-2xl">Leckere Cocktails</h2>
+                <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">
                     für einen schönen Abend
                 </h3>
                 <img

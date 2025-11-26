@@ -45,7 +45,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             <RecipeImageBlock recipe={recipe} className="w-full" useModalWindow={true} />
                             <div className="w-full flex flex-row justify-between">
                                 <AvatarBlock recipe={recipe} />
-                                <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-2" />
+                                <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-[7px]" />
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <RecipeInfoBlock recipe={recipe} />
                     </div>
                 </div>
-                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-12" />
+                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-1 sm:my-6" />
                 <SingleRecipeIngredientsTable recipe={recipe} />
                 <PreparationInstructions recipe={recipe} />
                 <Seperator style="question-mark" />

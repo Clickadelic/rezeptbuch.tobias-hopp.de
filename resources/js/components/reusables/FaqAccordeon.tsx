@@ -67,6 +67,8 @@ export default function FaqAccordeon({ className, isExtendet = false }: FaqAccor
                             </p>
                             <br />
                             <p>Versteckte Kosten gibt es nicht. Schau' in die <Link href="/nutzungsbedingungen" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">Nutzungsbedingungen</Link>.</p>
+                            <br />
+                            <p>Hier geht's <Link href="/register" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">zur Registrierung</Link>.</p>
                         </AccordionContent>
                     </AccordionItem> 
                     {isExtendet && (
@@ -96,9 +98,6 @@ export default function FaqAccordeon({ className, isExtendet = false }: FaqAccor
                         </>
                     )}
                 </Accordion>
-                <Button asChild variant="primary" className="flex w-48 mx-auto">
-                    <Link href="/fragen-und-anworten" title="Zu den Tipps">Anleitung, so geht's<ArrowRight /></Link>
-                </Button>
             </div>
         </>
     );

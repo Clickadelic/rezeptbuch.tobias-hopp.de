@@ -48,7 +48,6 @@ export default function Frontpage() {
             <RecipeStats totalRecipeCount={totalRecipeCount} totalIngredientCount={totalIngredientCount} className="mb-12" />
             <Seperator style="question-mark" />
             <FaqAccordeon />
-
         </FullWidthLayout>
     );
 }

@@ -121,7 +121,6 @@ export default function Footer({ className }: FooterProps) {
         </div>
     );  
 
-
     return (
         <>
             <div

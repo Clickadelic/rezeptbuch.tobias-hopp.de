@@ -10,7 +10,12 @@ import { SharedPageProps } from '@/types';
 import { Ingredient } from '@/types/Ingredient';
 import { BsArrow90DegUp } from 'react-icons/bs';
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from '@/components/ui/accordion';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
 import { usePermissions } from '@/hooks/usePermissions';
 import { cn } from '@/lib/utils';
@@ -63,7 +68,11 @@ export default function IngredientsDirectory() {
                 (letter) =>
                     grouped[letter] && (
                         <>
-                            <section key={letter} id={letter} className="scroll-mt-24 p-4 rounded-md transition-all duration-200 border border-transparent hover:border-b-gray-200 dark:hover:border-b-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900 hover:cursor-default">
+                            <section
+                                key={letter}
+                                id={letter}
+                                className="scroll-mt-24 p-4 rounded-md transition-all duration-200 border border-transparent hover:border-b-gray-200 dark:hover:border-b-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900 hover:cursor-default"
+                            >
                                 <Card>
                                     <CardHeader className="text-lg font-bold w-full flex flex-row justify-between">
                                         <span>{letter}</span>
@@ -77,7 +86,10 @@ export default function IngredientsDirectory() {
                                     <CardContent>
                                         <ul className="px-5 flex flex-wrap gap-2">
                                             {grouped[letter].map((ingredient) => (
-                                                <li key={ingredient.id} className="after:content-[',_'] last:after:content-['']">
+                                                <li
+                                                    key={ingredient.id}
+                                                    className="after:content-[',_'] last:after:content-['']"
+                                                >
                                                     <IngredientItem
                                                         ingredient={ingredient}
                                                         onSelect={() =>
@@ -89,25 +101,42 @@ export default function IngredientsDirectory() {
                                         </ul>
                                     </CardContent>
                                 </Card>
-                                
                             </section>
                             <Separator className="my-4" />
                         </>
                     ),
             )}
             {hasRole('user') && (
-                <Accordion type="single" collapsible className="p-0 rounded-sm my-8 border border-transparent border-b-gray-200 dark:border-b-gray-700 bg-gray-100 dark:bg-gray-900">
+                <Accordion
+                    type="single"
+                    collapsible
+                    className="p-0 rounded-sm my-8 border border-transparent border-b-gray-200 dark:border-b-gray-700 bg-gray-100 dark:bg-gray-900"
+                >
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="px-3 py-2.5">
-                            <span className="flex gap-2"><IoIosInformationCircleOutline className="mt-1 size-5 text-primary" />Zutatenverwaltung - so geht's.</span>
+                            <span className="flex gap-2">
+                                <IoIosInformationCircleOutline className="mt-1 size-5 text-primary" />
+                                Zutatenverwaltung - so geht's.
+                            </span>
                         </AccordionTrigger>
                         <AccordionContent className="px-5">
-                        <ul className="list-decimal space-y-3 list-inside">
-                            <li>Die Zutaten werden global für alle Benutzer angelegt und verwaltet. Dies hat den Vorteil, dass alle Benutzer aus dem ständig wachsenden Pool an Zutaten auswählen können.</li>
-                            <li>Legst Du eine neue Zutat an, egal ob hier einzeln oder beim Anlegen eines Rezeptes im Formular, wird sie automatisch in der Zutatenverwaltung angelegt und hier angezeigt.</li>
-                            <li>Die Zutat ist dann per Klick auf den Namen/Link editierbar.</li>
-                            <li>Sollte die Zutat noch in einem Rezept verwendet werden, wird das Löschen systemseitig nicht zugelassen.</li>
-                        </ul>
+                            <ul className="list-decimal space-y-3 list-inside">
+                                <li>
+                                    Die Zutaten werden global für alle Benutzer angelegt und
+                                    verwaltet. Dies hat den Vorteil, dass alle Benutzer aus dem
+                                    ständig wachsenden Pool an Zutaten auswählen können.
+                                </li>
+                                <li>
+                                    Legst Du eine neue Zutat an, egal ob hier einzeln oder beim
+                                    Anlegen eines Rezeptes im Formular, wird sie automatisch in der
+                                    Zutatenverwaltung angelegt und hier angezeigt.
+                                </li>
+                                <li>Die Zutat ist dann per Klick auf den Namen/Link editierbar.</li>
+                                <li>
+                                    Sollte die Zutat noch in einem Rezept verwendet werden, wird das
+                                    Löschen systemseitig nicht zugelassen.
+                                </li>
+                            </ul>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

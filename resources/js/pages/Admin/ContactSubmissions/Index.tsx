@@ -13,10 +13,7 @@ import { SharedPageProps } from '@/types';
 export default function ContactSubmissions() {
     const { contactSubmissions } = usePage<SharedPageProps>().props;
     return (
-        <SidebarLeftLayout
-            title="Kontaktanfragen"
-            sidebar={<AdminSidebar />}
-        >
+        <SidebarLeftLayout title="Kontaktanfragen" sidebar={<AdminSidebar />}>
             <ContactSubmissionsTable
                 contactSubmissions={contactSubmissions as ContactSubmission[]}
                 className="mt-5"
@@ -25,4 +22,3 @@ export default function ContactSubmissions() {
         </SidebarLeftLayout>
     );
 }
-

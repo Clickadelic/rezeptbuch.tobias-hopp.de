@@ -9,7 +9,7 @@ import { VscTrash } from 'react-icons/vsc';
 
 import { PiUserCirclePlusFill } from 'react-icons/pi';
 import { FiUpload } from 'react-icons/fi';
-import cameraBro from "@images/svg/Camera-bro.svg";
+import cameraBro from '@images/svg/Camera-bro.svg';
 
 interface UpdateAvatarFormProps {
     className?: string;
@@ -59,10 +59,14 @@ export default function UpdateAvatarForm({ className }: UpdateAvatarFormProps) {
     };
 
     return (
-        <section className={cn("asd", className)}>
+        <section className={cn('asd', className)}>
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5">
                 <div className="order-2 lg:order-1">
-                    <form onSubmit={handleSubmit} className="mt-6 w-full sm:w-64" encType="multipart/form-data">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="mt-6 w-full sm:w-64"
+                        encType="multipart/form-data"
+                    >
                         <div className="w-full flex justify-evenly items-center gap-4">
                             {(preview || user.avatar) && (
                                 <div className="relative">
@@ -140,7 +144,11 @@ export default function UpdateAvatarForm({ className }: UpdateAvatarFormProps) {
                     </form>
                 </div>
                 <div className="flex justify-center items-center order-1 lg:order-2">
-                    <img src={cameraBro} className="size-32 mx-auto lg:size-48 lg:mg-5" alt="Chef Tobias" />
+                    <img
+                        src={cameraBro}
+                        className="size-32 mx-auto lg:size-48 lg:mg-5"
+                        alt="Chef Tobias"
+                    />
                 </div>
             </div>
         </section>

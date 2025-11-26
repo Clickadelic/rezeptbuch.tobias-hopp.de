@@ -75,7 +75,16 @@ export default function SidebarRightLayout({
                     </div>
                     <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] grid grid-cols-1 md:grid-cols-5 grid-rows-1 gap-4 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         <main className="pt-5 pb-24 col-span-4">
-                            {<h2 className={cn("text-xl font-medium mb-5", !showTitle && "sr-only" )}>{title}</h2>}
+                            {
+                                <h2
+                                    className={cn(
+                                        'text-xl font-medium mb-5',
+                                        !showTitle && 'sr-only',
+                                    )}
+                                >
+                                    {title}
+                                </h2>
+                            }
                             {children}
                         </main>
                         {sidebar}

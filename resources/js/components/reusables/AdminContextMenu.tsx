@@ -1,7 +1,23 @@
 import { useState } from 'react';
 import { router, usePage, Link } from '@inertiajs/react';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,} from '@/components/ui/dropdown-menu';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+    DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 import { HiOutlineDotsVertical, HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
@@ -14,7 +30,16 @@ import { PiCopySimpleLight } from 'react-icons/pi';
 import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { ResponsiveDialog } from '@/components/reusables/ResponsiveDialog';
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from '@/components/ui/drawer';
 
 import { SharedPageProps } from '@/types';
 
@@ -36,7 +61,11 @@ interface AdminContextMenuProps {
  * @param {Recipe} props.recipe - The recipe to be edited or deleted.
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
-export default function AdminContextMenu({ user, className, dotStyle = 'vertical' }: AdminContextMenuProps) {
+export default function AdminContextMenu({
+    user,
+    className,
+    dotStyle = 'vertical',
+}: AdminContextMenuProps) {
     const { hasRole } = usePermissions();
 
     const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
@@ -52,7 +81,7 @@ export default function AdminContextMenu({ user, className, dotStyle = 'vertical
         e.stopPropagation();
     };
 
-    if(!hasRole('admin')) {
+    if (!hasRole('admin')) {
         return null;
     }
 
@@ -72,8 +101,11 @@ export default function AdminContextMenu({ user, className, dotStyle = 'vertical
                     <HiOutlineDotsHorizontal className="size-5" />
                 )}
             </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-white/30 dark:bg-gray-800/30 p-1 rounded-xl backdrop backdrop-blur border-0">
-                    <div className="bg-white dark:bg-gray-800 rounded-lg p-1">
+            <DropdownMenuContent
+                align="end"
+                className="bg-white/30 dark:bg-gray-800/30 p-1 rounded-xl backdrop backdrop-blur border-0"
+            >
+                <div className="bg-white dark:bg-gray-800 rounded-lg p-1">
                     {/* {isOwner(user?.id) && (
                         <>
                             <DropdownMenuItem>
@@ -175,8 +207,8 @@ export default function AdminContextMenu({ user, className, dotStyle = 'vertical
                             <DropdownMenuSeparator />
                         </>
                     )} */}
-                    </div>
-                </DropdownMenuContent>
+                </div>
+            </DropdownMenuContent>
         </DropdownMenu>
     );
 }

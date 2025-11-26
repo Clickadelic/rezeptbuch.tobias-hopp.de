@@ -4,19 +4,35 @@ import LegalSidebar from '@/components/sidebars/LegalSidebar';
 import Seperator from '@/components/reusables/Seperator';
 
 /**
- * Impressum – Rechtliche Informationen
+ * Returns a SidebarLeftLayout component with a section containing text about equipment.
  *
- * Dieses Impressum gilt für das private, nicht-kommerzielle Rezeptbuch-Projekt.
+ * This component is used to display information about the general equipment, kitchen utensils and alternatives.
  */
 export default function Equipment() {
     return (
-        <SidebarLeftLayout title="Ausstattung" description="Informationen zur allgemeinen Ausstattung, Küchenutensilien und Allem was dazu gehört." sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout
+            title="Ausstattung"
+            description="Informationen zur allgemeinen Ausstattung, Küchenutensilien und Allem was dazu gehört."
+            sidebar={<LegalSidebar />}
+        >
             <section>
-                <p>Natürlich lässt sich jedes Thema im Bereich der Küche ins Extreme treiben. Hier ist primär das Ziel sein, mit einer normalen, durchschnittlichen Küchenausstattung ein leckeres Gericht oder etwas Anderes zuzubereiten.</p>
+                <p>
+                    Natürlich lässt sich jedes Thema im Bereich Kochen und Küche ins Extreme
+                    bezüglich Ausstattung und Küchentools. Hier ist primär das Ziel sein, mit einer
+                    normalen, durchschnittlichen Küchenausstattung ein leckeres Essen oder einen
+                    Drink zuzubereiten.
+                </p>
                 <br />
-                <p>Reguläre Dinge wie Töpfe, Pfannen, Teller usw. sollten ja bei jedem Zuhause vorhanden sein.</p>
+                <p>
+                    Reguläre Dinge wie Töpfe, Pfannen, Teller usw. sind ja in der Regel vorhanden.
+                    Dinge die darüber hinaus gehen wie z.B. Waffeleisen, Pizzaofen gehören dann
+                    schon zum erweiterten Werkzeugkasten.
+                </p>
                 <br />
-                <p>Wenn's exotisch wird, steht eine alternative Zubereitungsmethode/Möglichkeit dabei.</p>
+                <p>
+                    Wenn's exotisch wird, steht eine alternative Zubereitungsmethode/Möglichkeit
+                    dabei.
+                </p>
             </section>
         </SidebarLeftLayout>
     );

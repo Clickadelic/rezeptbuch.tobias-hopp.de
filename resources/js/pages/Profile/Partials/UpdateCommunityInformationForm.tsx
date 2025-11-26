@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 export default function UpdateProfileInformation({
     mustVerifyEmail,
     status,
-    className
+    className,
 }: {
     mustVerifyEmail: boolean;
     status?: string;
@@ -23,11 +23,9 @@ export default function UpdateProfileInformation({
     const user = usePage<SharedPageProps>().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<{
-
         biotext: string;
         website_url: string;
     }>({
-
         biotext: user.biotext ?? '',
         website_url: user.website_url ?? '',
     });
@@ -40,7 +38,9 @@ export default function UpdateProfileInformation({
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">Informationen über Dich</h2>
+                <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    Informationen über Dich
+                </h2>
                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                     Diese Dinge werden über Dich gezeigt.
                 </p>
@@ -77,7 +77,7 @@ export default function UpdateProfileInformation({
                     />
                     <InputError className="mt-2" message={errors.website_url} />
                 </div>
-                
+
                 <div className="flex items-center gap-4">
                     <Button variant="primary" disabled={processing}>
                         Speichern

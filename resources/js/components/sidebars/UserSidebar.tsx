@@ -1,13 +1,13 @@
-import SidebarLink from "@/components/sidebars/SidebarLink";
+import SidebarLink from '@/components/sidebars/SidebarLink';
 
 /**
- * A component that renders a sidebar with links to the user's dashboard, 
+ * A component that renders a sidebar with links to the user's dashboard,
  * recipes, ingredients, and favorites.
- * 
+ *
  * @example
  * <UserSidebar />
  */
-export default function UserSidebar (){
+export default function UserSidebar() {
     return (
         <aside className="py-5 space-y-5">
             <h2 className="text-xl font-medium mb-2">Persönlicher Bereich</h2>
@@ -34,5 +34,5 @@ export default function UserSidebar (){
                 />
             </ul>
         </aside>
-    )
+    );
 }

@@ -1,5 +1,5 @@
 // import { Task } from "../Task/Task"
-import "./Column.css"
+import './Column.css';
 // import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 
 // export const Column = ({ tasks }) => {

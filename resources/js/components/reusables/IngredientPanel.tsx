@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
 import { GoPlus } from 'react-icons/go';
 
-
 import { cn } from '@/lib/utils';
 
 interface IngredientPanelProps {
@@ -31,7 +30,9 @@ export default function IngredientPanel({
                 <TbSalt className="mt-1 text-primary" />
                 Deine Zutaten
                 {totalUserIngredientCount >= 1 && (
-                    <span className="text-gray-400 dark:text-gray-400">({totalUserIngredientCount})</span>
+                    <span className="text-gray-400 dark:text-gray-400">
+                        ({totalUserIngredientCount})
+                    </span>
                 )}
             </h3>
             {/* Wenn keine Zutaten vorhanden */}

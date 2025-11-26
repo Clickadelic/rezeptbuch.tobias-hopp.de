@@ -6,8 +6,8 @@ import imgSrc from '@images/svg/File-synchronization-bro.svg';
 import { MdOutlineInstallMobile } from 'react-icons/md';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { RiApps2AddLine } from 'react-icons/ri';
-import { MdOutlineInstallDesktop } from "react-icons/md";
-import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { MdOutlineInstallDesktop } from 'react-icons/md';
+import { IoShieldCheckmarkOutline } from 'react-icons/io5';
 import { RxClipboardCopy } from 'react-icons/rx';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -38,14 +38,23 @@ export default function AppInstallation() {
                     punchline="Eine App - alle Geräte."
                     icon={<AiOutlineAppstoreAdd className="text-primary size-6 mt-1" />}
                 />
-                <img src={imgSrc} className="w-84 mx-auto mb-8" width="auto" height="auto" alt="App-Installation Screen" />
+                <img
+                    src={imgSrc}
+                    className="w-84 mx-auto mb-8"
+                    width="auto"
+                    height="auto"
+                    alt="App-Installation Screen"
+                />
                 <p className="mb-5">
                     Hier findest Du die Anleitung zur Installation der Rezeptbuch-App für Dein
                     Smarphone. So geht's:
                 </p>
                 <ul className="list-decimal list-inside">
                     <li className="asd">
-                        <p className="inline-flex">Drücke in Deinem mobilen Browser auf die Schaltfläche für weitere Einstellungen.</p>
+                        <p className="inline-flex">
+                            Drücke in Deinem mobilen Browser auf die Schaltfläche für weitere
+                            Einstellungen.
+                        </p>
                         <div className="flex gap-2 justify-center items-center my-5">
                             <HiOutlineDotsVertical className="text-primary size-9 mt-1 mx-auto" />
                             oder
@@ -53,26 +62,38 @@ export default function AppInstallation() {
                         </div>
                     </li>
                     <li className="asd">
-                        <p className="inline-flex">Scrolle danach zu den Installationsoptionen im unteren Bereich und suche nach diesem Zeichen.</p>
+                        <p className="inline-flex">
+                            Scrolle danach zu den Installationsoptionen im unteren Bereich und suche
+                            nach diesem Zeichen.
+                        </p>
                         <div className="p-10">
                             <div className="flex gap-2 justify-center items-center my-5">
-                            <MdOutlineInstallMobile className="text-primary size-9 mt-1 mx-auto" />
-                            
-                            oder
-                            <MdOutlineInstallDesktop className="text-primary size-9 mt-1 mx-auto" />
-                        </div>
+                                <MdOutlineInstallMobile className="text-primary size-9 mt-1 mx-auto" />
+                                oder
+                                <MdOutlineInstallDesktop className="text-primary size-9 mt-1 mx-auto" />
+                            </div>
                         </div>
                     </li>
                     <li className="flex flex-col justify-center items-center">
-                        <p className="inline-flex">Klicke entweder auf "App installieren" oder auf "Verknüpfung hinzufügen".</p>
+                        <p className="inline-flex">
+                            Klicke entweder auf "App installieren" oder auf "Verknüpfung
+                            hinzufügen".
+                        </p>
                         <IoShieldCheckmarkOutline className="text-primary size-9 my-8 mx-auto" />
-                        <p className="inline-flex mb-2">Die App wird nun als sogenannte "Progressive Web App" installiert.</p>
-                        <p className="inline-flex">Viel Spaß. 🙂 Du kannst das Rezeptbuch jetzt als App verwenden.</p>
+                        <p className="inline-flex mb-2">
+                            Die App wird nun als sogenannte "Progressive Web App" installiert.
+                        </p>
+                        <p className="inline-flex">
+                            Viel Spaß. 🙂 Du kannst das Rezeptbuch jetzt als App verwenden.
+                        </p>
                     </li>
                 </ul>
                 <div className="w-full my-5 flex gap-1 flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                     <p>Dir gefällt die Rezeptbuch-App? Teile sie:</p>
-                    <Button variant="link" onClick={copyToClipboard} className="text-lg flex gap-2">https://rezeptbuch.tobias-hopp.de<RxClipboardCopy className="text-primary size-9 mt-1 mx-auto" /></Button>
+                    <Button variant="link" onClick={copyToClipboard} className="text-lg flex gap-2">
+                        https://rezeptbuch.tobias-hopp.de
+                        <RxClipboardCopy className="text-primary size-9 mt-1 mx-auto" />
+                    </Button>
                 </div>
             </div>
         </NoSidebarsLayout>

@@ -9,14 +9,15 @@ import { cn } from '@/lib/utils';
 import { Recipe } from '@/types/Recipe';
 
 interface CommentPreviewBlockProps {
-    className?: string
-    recipe: Recipe
+    className?: string;
+    recipe: Recipe;
 }
 
-export default function CommentPreviewBlock ({ recipe, className }: CommentPreviewBlockProps) {
+export default function CommentPreviewBlock({ recipe, className }: CommentPreviewBlockProps) {
     return (
-        <span className={cn("flex justify-start gap-2 items-center text-sm", className)}>
-           <TfiCommentAlt className="text-gray-600 dark:text-gray-400" /><span>12 Kommentare</span>
+        <span className={cn('flex justify-start gap-2 items-center text-sm', className)}>
+            <TfiCommentAlt className="text-gray-600 dark:text-gray-400" />
+            <span>12 Kommentare</span>
         </span>
-    )
+    );
 }

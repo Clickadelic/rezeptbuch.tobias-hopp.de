@@ -31,7 +31,9 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                     <div className="flex flex-col items-center justify-center gap-5 md:w-[22rem]">
                         <div>
                             <div className="cursor-default w-[14rem] font-medium text-xl flex gap-3 px-3 text-center">
-                                <span>Zutaten für {count > 1 ? `${count} Personen` : '1 Person'}</span>
+                                <span>
+                                    Zutaten für {count > 1 ? `${count} Personen` : '1 Person'}
+                                </span>
                             </div>
                         </div>
                         <div className="flex gap-5">

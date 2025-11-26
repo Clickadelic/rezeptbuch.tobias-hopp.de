@@ -120,7 +120,6 @@ export default function IngredientForm({ ingredient, className, onFinished }: In
                         isFocused
                         onChange={(e) => setData('name', e.target.value)}
                     />
-                    
                 </div>
                 <InputError message={errors.name} className="mt-2" />
             </div>

@@ -25,7 +25,6 @@ import ContextMenu from '@/components/reusables/ContextMenu';
 
 import { cn } from '@/lib/utils';
 
-
 interface RecipeCardProps {
     recipe: Recipe;
     className?: string;
@@ -60,8 +59,12 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                                     border border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
-
-                        <FavoriteButton key={recipe.id} recipeId={recipe.id} isFavorite={recipe.is_favorite} className="absolute top-1 left-1 z-20"/>
+                        <FavoriteButton
+                            key={recipe.id}
+                            recipeId={recipe.id}
+                            isFavorite={recipe.is_favorite}
+                            className="absolute top-1 left-1 z-20"
+                        />
                         <RecipeImageBlock recipe={recipe} />
                     </CardHeader>
 

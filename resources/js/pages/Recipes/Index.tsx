@@ -23,11 +23,14 @@ import { Recipe } from '@/types/Recipe';
  * This prop should contain an array of Recipe objects.
  */
 export default function Recipes() {
-    const recipes= usePage<SharedPageProps>().props.recipes;
+    const recipes = usePage<SharedPageProps>().props.recipes;
 
     console.log(recipes);
     return (
-        <FullWidthLayout title="Rezepte" description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept.">
+        <FullWidthLayout
+            title="Rezepte"
+            description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept."
+        >
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
                 {recipes?.data.map((recipe: Recipe) => (
                     <BigRecipeCard key={recipe.id} recipe={recipe} />

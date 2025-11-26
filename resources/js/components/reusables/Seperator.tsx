@@ -5,7 +5,7 @@ import { FaHeart, FaQuoteLeft } from 'react-icons/fa6';
 import { GiWhisk } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { FiCheckCircle } from 'react-icons/fi';
-import { PiCarrotLight } from "react-icons/pi";
+import { PiCarrotLight } from 'react-icons/pi';
 import { LiaCocktailSolid } from 'react-icons/lia';
 import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
@@ -15,12 +15,12 @@ import { GoCommentDiscussion } from 'react-icons/go';
 import { TfiCommentAlt } from 'react-icons/tfi';
 import { Moon, Sun } from 'lucide-react';
 import { RxMixerVertical } from 'react-icons/rx';
-import { MdOutlineQuestionMark } from "react-icons/md";
+import { MdOutlineQuestionMark } from 'react-icons/md';
 import { Star } from 'lucide-react';
 import { RxGear } from 'react-icons/rx';
 import { GiScales } from 'react-icons/gi';
 import { TfiControlShuffle } from 'react-icons/tfi';
-import { GiMatchTip } from "react-icons/gi";
+import { GiMatchTip } from 'react-icons/gi';
 import { cn } from '@/lib/utils';
 
 interface SeparatorProps {
@@ -135,7 +135,12 @@ export default function Separator({ size = 5, style = 'fork-knife', margin }: Se
     }
 
     return (
-        <div className={cn('relative my-2 sm:my-3 md:my-4 lg:my-5 mx-auto w-full max-w-[52rem] flex items-center justify-center', margin)}>
+        <div
+            className={cn(
+                'relative my-2 sm:my-3 md:my-4 lg:my-5 mx-auto w-full max-w-[52rem] flex items-center justify-center',
+                margin,
+            )}
+        >
             <div className="absolute left-0 right-0 top-1/2 h-px bg-gray-200  dark:bg-gray-700"></div>
             <div className="relative z-10 p-4 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center">
                 <IconComponent className={cn(iconColor)} style={baseStyle} />

@@ -8,7 +8,7 @@ import DailyRecommendationsBlock from '@/components/reusables/Blocks/DailyRecomm
 import CocktailRecommendationsBlock from '@/components/reusables/Blocks/CocktailRecommendationsBlock';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
-import RecipeStats from '@/components/reusables/RecipeStats';
+import StatsBlock from '@/components/reusables/Blocks/StatsBlock';
 import RecipeCard from '@/components/reusables/RecipeCard';
 import Pagination from '@/components/reusables/Pagination';
 import BigRecipeCard from '@/components/reusables/BigRecipeCard';
@@ -28,12 +28,11 @@ import { SharedPageProps } from '@/types';
  * @return {JSX.Element} The frontpage component.
  */
 export default function Frontpage() {
-    const latestRecipe = usePage<SharedPageProps>().props.latestRecipe;
     const recommendedRecipes = usePage<SharedPageProps>().props.recipes.data;
     const recommendedCocktails = usePage<SharedPageProps>().props.cocktails.data;
     const totalRecipeCount = usePage<SharedPageProps>().props.totalRecipeCount;
     const totalIngredientCount = usePage<SharedPageProps>().props.totalIngredientCount;
-
+    const totalCommentCount = usePage<SharedPageProps>().props.totalCommentCount;
     return (
         <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein.">
             <WelcomeBlock className="my-6" />
@@ -45,7 +44,7 @@ export default function Frontpage() {
             <Seperator style="cocktail" />
             <CocktailRecommendationsBlock recipes={recommendedCocktails} />
             <Seperator />
-            <RecipeStats totalRecipeCount={totalRecipeCount} totalIngredientCount={totalIngredientCount} className="mb-12" />
+            <StatsBlock totalRecipeCount={totalRecipeCount} totalIngredientCount={totalIngredientCount} totalCommentCount={totalCommentCount} className="mb-12" />
             <Seperator style="question-mark" />
             <FaqAccordeon />
         </FullWidthLayout>

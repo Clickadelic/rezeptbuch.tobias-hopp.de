@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Recipe;
 use App\Models\Ingredient;
+use App\Models\Comment;
+
 use App\Http\Resources\RecipeResource;
 use App\Http\Resources\MediaResource;
 use App\Http\Resources\UserPublicResource;
@@ -19,12 +21,6 @@ class PageController extends Controller
      */
     public function index()
     {
-
-        // Latest Recipe
-        $latestRecipe = Recipe::with(['media','category','user:id,name,avatar'])
-            ->where('status', 'published')
-            ->orderBy('created_at', 'desc')
-            ->first();
 
         // Cocktails
         $cocktails = Recipe::with(['media','category','user:id,name,avatar'])
@@ -42,10 +38,11 @@ class PageController extends Controller
 
         $totalRecipeCount = Recipe::where('status', 'published')->count();
         $totalIngredientCount = Ingredient::all()->count();
+        $totalCommentCount = Comment::all()->count();
         return Inertia::render('Frontpage', [
-            'latestRecipe'    => $latestRecipe ? new RecipeResource($latestRecipe) : null,
             'totalRecipeCount'=> $totalRecipeCount,
             'totalIngredientCount' => $totalIngredientCount,
+            'totalCommentCount' => $totalCommentCount,
             'recipes'         => RecipeResource::collection($recipes)->response()->getData(true),
             'cocktails'       => RecipeResource::collection($cocktails)->response()->getData(true),
         ]);

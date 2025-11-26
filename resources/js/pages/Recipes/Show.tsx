@@ -37,7 +37,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
     console.log("Is favorite", is_favorite);
 
     return (
-        <SidebarLeftLayout title={`${recipe.name} - Rezeptdetails`} sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
+        <SidebarLeftLayout title={`${recipe.name} - Rezeptdetails`} sidebar={<MainSidebar />} description={`Rezeptdetails`}>
             <div className="flex flex-col">
                 <div className="w-full flex flex-col sm:flex-row gap-5">
                     <div className="w-full sm:1/2">
@@ -53,7 +53,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <RecipeInfoBlock recipe={recipe} />
                     </div>
                 </div>
-                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-1 sm:my-6" />
+                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-3 sm:my-6" />
                 <SingleRecipeIngredientsTable recipe={recipe} />
                 <PreparationInstructions recipe={recipe} />
                 <Seperator style="question-mark" />

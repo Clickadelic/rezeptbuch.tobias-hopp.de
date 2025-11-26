@@ -148,6 +148,11 @@ class Recipe extends Model
           return $this->hasMany(RecipeRating::class);
      }
 
+     public function votes()
+     {
+          return $this->hasMany(RecipeRating::class);
+     }
+
      public function comments() {
           return $this->hasMany(Comment::class)->whereNull('parent_id'); // nur Top-Level-Kommentare
      }

@@ -11,6 +11,12 @@ export function usePermissions() {
 
     const hasRole = (role: string) => {
         if (!auth.user || role == null) return false;
+
+        // Admin is treated as a superset of the "user" role on the frontend
+        if (role === 'user' && auth.user.roles.includes('admin')) {
+            return true;
+        }
+
         return auth.user.roles.includes(role);
     };
 

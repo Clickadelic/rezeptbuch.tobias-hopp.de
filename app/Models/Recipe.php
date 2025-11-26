@@ -145,31 +145,22 @@ class Recipe extends Model
 
      public function ratings()
      {
-          return $this->hasMany(Rating::class);
-     }
-
-     public function updateCommunityRating(): void
-     {
-          $ratings = $this->ratings();
-          $count = $ratings->count();
-
-          if ($count === 0) {
-               $this->update([
-                    'community_rating' => 0,
-                    'community_votes' => 0,
-               ]);
-               return;
-          }
-
-          $avg = $ratings->avg('rating') ?? 0;
-
-          $this->update([
-               'community_rating' => round($avg, 1), // 1 Nachkommastelle schöner für Sterne
-               'community_votes' => $count,
-          ]);
+          return $this->hasMany(RecipeRating::class);
      }
 
      public function comments() {
           return $this->hasMany(Comment::class)->whereNull('parent_id'); // nur Top-Level-Kommentare
+     }
+
+     public function updateCommunityRating(): void
+     {
+          $stats = $this->ratings()
+                         ->selectRaw('COUNT(*) as votes, AVG(rating) as avg_rating')
+                         ->first();
+
+          $this->update([
+               'community_votes' => $stats->votes ?? 0,
+               'community_rating' => round($stats->avg_rating ?? 0, 2),
+          ]);
      }
 }

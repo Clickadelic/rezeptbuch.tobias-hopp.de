@@ -36,6 +36,7 @@ interface FooterProps {
  * adapts to different screen sizes using a grid layout.
  */
 export default function Footer({ className }: FooterProps) {
+
     const column1 = [
         {
             title: 'Start',
@@ -115,11 +116,10 @@ export default function Footer({ className }: FooterProps) {
         <div className="text-center flex flex-col gap-2">
             <p className="mx-auto inline-flex gap-2 text-primary"><span className="font-la-belle-aurore mt-[2px] text-xl">Toby's</span><span className="font-bold text-xl">Rezeptbuch</span></p>
             <img src={appBro} className="w-52 mb-3 mx-auto" alt="App-Installation" />
-            <Button asChild className="w-56 mx-auto" variant="primary"><Link href="/app-installation" className="flex gap-1"><ArrowRight className="mr-1" />Zur Installationsanleitung</Link></Button>
+            <Button asChild className="w-56 mx-auto" variant="primary"><Link href="/app-installation" className="flex gap-1"><ArrowRight /> Zur Installationsanleitung</Link></Button>
             <p className="text-sm mt-2">Jetzt für iOS und Android erhältlich.</p>
         </div>
     );  
-
 
     return (
         <>

@@ -26,7 +26,7 @@ class RecipeController extends Controller
         $recipes = Recipe::with(['media', 'category', 'user', 'comments'])
             ->where('status', 'published')
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(25);
 
         return Inertia::render('Recipes/Index', [
             'recipes' => RecipeResource::collection($recipes)->response()->getData(true),
@@ -57,20 +57,24 @@ class RecipeController extends Controller
             'ingredients' => fn($q) => $q->withPivot(['quantity','unit'])->orderBy('quantity','desc'),
             'category',
             'media',
-            'user'
+            'user:id,name,avatar',
+            
         ]);
-
-        $related = Recipe::with(['category','user','media'])
+        
+        $related = Recipe::with(['category','user:id,name,avatar','media'])
             ->where('category_id', $recipe->category_id)
             ->where('id', '!=', $recipe->id)
             ->where('status', 'published')
             ->inRandomOrder()
             ->take(5)
             ->get();
-
+        
         return Inertia::render('Recipes/Show', [
-            'recipe'  => new RecipeResource($recipe),
-            'related' => RecipeResource::collection($related),
+            'recipe'      => RecipeResource::make($recipe)->resolve(),
+            'related'     => RecipeResource::collection($related)->resolve(),
+            'is_favorite' => Auth::check()
+                ? $recipe->favoritedBy()->where('user_id', Auth::id())->exists()
+                : false,
         ]);
     }
 

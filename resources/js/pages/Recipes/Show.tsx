@@ -11,7 +11,7 @@ import CommentsDirectory from '@/components/template-views/CommentsDirectory';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
-
+import RecipeStarRating from '@/components/reusables/RecipeStarRating';
 import Seperator from '@/components/reusables/Seperator';
 
 import { Recipe } from '@/types/Recipe';
@@ -32,8 +32,12 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     const { related, is_favorite } = usePage<SharedPageProps>().props;
+    
+    console.log("Related", is_favorite);
+    console.log("Is favorite", is_favorite);
+
     return (
-        <SidebarLeftLayout title="Rezeptdetails" sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
+        <SidebarLeftLayout title={`${recipe.name} - Rezeptdetails`} sidebar={<MainSidebar />} description={`${recipe.name} - Rezeptdetails`}>
             <div className="flex flex-col">
                 <div className="w-full flex flex-col sm:flex-row gap-5">
                     <div className="w-full sm:1/2">
@@ -41,7 +45,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             <RecipeImageBlock recipe={recipe} className="w-full" useModalWindow={true} />
                             <div className="w-full flex flex-row justify-between">
                                 <AvatarBlock recipe={recipe} />
-                                <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-2" />
+                                <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-[7px]" />
                             </div>
                         </div>
                     </div>
@@ -49,11 +53,13 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <RecipeInfoBlock recipe={recipe} />
                     </div>
                 </div>
-                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-12" />
+                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-1 sm:my-6" />
                 <SingleRecipeIngredientsTable recipe={recipe} />
                 <PreparationInstructions recipe={recipe} />
+                <Seperator style="question-mark" />
+                <RecipeStarRating recipe={recipe} />
                 <CommentsDirectory recipeId={recipe.id!} />
-                <RelatedRecipesCarousel related={related as Recipe[]} categoryName={recipe.category?.name} />
+                <RelatedRecipesCarousel recipes={related as Recipe[]} categoryName={recipe.category?.name} />
             </div>
         </SidebarLeftLayout>
     );

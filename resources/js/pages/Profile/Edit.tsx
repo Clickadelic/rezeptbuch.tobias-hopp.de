@@ -16,21 +16,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function Edit({ mustVerifyEmail, status }: SharedPageProps) {
     return (
         <NoSidebarsLayout title="Dein Profil">
-            <UpdateAvatarForm className="mb-5" />
-            <Tabs defaultValue="community" className="w-full">
-                <TabsList className="w-full rounded-lg">
-                    <TabsTrigger value="community">Community</TabsTrigger>
-                    <TabsTrigger value="account">Account</TabsTrigger>
-                </TabsList>
-                <TabsContent value="community">
-                    <UpdateCommunityInformationForm mustVerifyEmail={mustVerifyEmail} status={status} />
-                </TabsContent>
-                <TabsContent value="account">
-                    <UpdateProfileInformationForm className="mb-6" mustVerifyEmail={mustVerifyEmail} status={status} />
-                    <UpdatePasswordForm className="w-full" />
-                    <DeleteUserForm className="w-full mt-6" />
-                </TabsContent>
-            </Tabs>
+            <UpdateAvatarForm className="w-full mb-5" />
+            <UpdateCommunityInformationForm className="w-full mb-5" mustVerifyEmail={mustVerifyEmail} status={status} />
+            <UpdateProfileInformationForm className="w-full mb-5" mustVerifyEmail={mustVerifyEmail} status={status} />
+            <UpdatePasswordForm className="w-full mb-5" />
+            <DeleteUserForm className="w-full" />
         </NoSidebarsLayout>
     );
 }

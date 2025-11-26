@@ -24,7 +24,7 @@ export default function PreparationInstructions({
     return (
         <>
             <Seperator style="whisk" />
-            <div className={cn('flex', className)}>
+            <div className={cn('flex mb-2 sm:mb-5', className)}>
                 <div className="w-full max-w-4xl mx-auto flex flex-col gap-2">
                     <h4 className="font-medium text-xl">Zubereitung</h4>
                     <div className="flex flex-col gap-2 whitespace-pre-line">

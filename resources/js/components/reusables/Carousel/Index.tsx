@@ -1,4 +1,6 @@
-import './carousel.css';
+// import './carousel.css';
+import './carousel-recommended-recipes.css';
+import './carousel-recommended-cocktails.css';
 
 import RecipeCard from '@/components/reusables/RecipeCard';
 
@@ -36,7 +38,7 @@ export default function Carousel({
                 wrapperClassname,
             )}
         >
-            <ul className={cn('carousel-base flex w-full overflow-x-auto', carouselClassName)}>
+            <ul className={cn('flex w-full overflow-x-auto', carouselClassName)}>
                 {recipes?.map((recipe: Recipe) => (
                     <RecipeCard className={itemClassName} key={recipe.id} recipe={recipe} />
                 ))}

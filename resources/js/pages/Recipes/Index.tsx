@@ -1,13 +1,15 @@
+import { Link } from 'lucide-react';
 import { usePage } from '@inertiajs/react';
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import RecipeCard from '@/components/reusables/RecipeCard';
-// import BigRecipeCard from '@/components/reusables/BigRecipeCard';
+import BigRecipeCard from '@/components/reusables/BigRecipeCard';
 import Pagination from '@/components/reusables/Pagination';
-import { Recipe } from '@/types/Recipe';
-import { SharedPageProps } from '@/types';
-import { Link } from 'lucide-react';
+
 import { IoMdArrowForward } from 'react-icons/io';
+
+import { SharedPageProps } from '@/types';
+import { Recipe } from '@/types/Recipe';
 
 /**
  * Displays a list of all recipes.
@@ -21,14 +23,14 @@ import { IoMdArrowForward } from 'react-icons/io';
  * This prop should contain an array of Recipe objects.
  */
 export default function Recipes() {
-    const { props } = usePage<SharedPageProps>();
-    const { recipes } = props;
+    const recipes= usePage<SharedPageProps>().props.recipes;
+
     console.log(recipes);
     return (
         <FullWidthLayout title="Rezepte" description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept.">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
                 {recipes?.data.map((recipe: Recipe) => (
-                    <RecipeCard key={recipe.id} recipe={recipe} />
+                    <BigRecipeCard key={recipe.id} recipe={recipe} />
                 ))}
             </ul>
             {recipes?.data.length === 0 && (

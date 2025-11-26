@@ -11,7 +11,10 @@ import ContextMenu from '@/components/reusables/ContextMenu';
 import Paginated from '@/types/Paginated';
 import Pagination from '@/components/reusables/Pagination';
 import PublishSwitch from '@/components/reusables/PublishSwitch';
+
 import { GoPlus } from 'react-icons/go';
+import { TfiEye } from "react-icons/tfi";
+import { GoEyeClosed } from "react-icons/go";
 import { IoEyeOutline } from 'react-icons/io5';
 
 import { Recipe } from '@/types/Recipe';
@@ -103,7 +106,7 @@ export default function UserRecipesTable({
                         {recipes.data.map((recipe: Recipe) => (
                             <TableRow
                                 key={recipe.id}
-                                className={cn("hover:bg-white dark:hover:bg-gray-700", recipe.status === 'draft' && 'bg-gray-100 dark:bg-gray-700')}
+                                className={cn("hover:bg-white dark:hover:bg-gray-700")}
                             >
                                 <TableCell>
                                     <PublishSwitch

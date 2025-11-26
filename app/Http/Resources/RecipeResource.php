@@ -21,33 +21,44 @@ class RecipeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => new UserPublicResource($this->whenLoaded('user_id')),
-            'category_id' => new CategoryResource($this->whenLoaded('category_id')),
             'name' => $this->name,
             'status' => $this->status,
             'slug' => $this->slug,
-            'punchline' => $this->when(isset($this->punchline), $this->punchline),
-            'description' => $this->when(isset($this->description), $this->description),
-            'difficulty' => $this->when(isset($this->difficulty), $this->difficulty),
-            'community_rating' => $this->community_rating,
-            'community_votes' => $this->community_votes,
+            'punchline' => $this->punchline,
+            'description' => $this->description,
+            'difficulty' => $this->difficulty,
             'is_veggy' => $this->is_veggy,
             'preparation_time' => $this->preparation_time,
             'preparation_instructions' => $this->preparation_instructions,
+            'community_rating' => $this->community_rating,
+            'community_votes' => $this->community_votes,
             'created_at' => optional($this->created_at)->toDateTimeString(),
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
-            // Relations: use whenLoaded or wrap in Resource to control fields
-            'media' => MediaResource::collection($this->whenLoaded('media')),
-            'is_favorite'=> $this->when(Auth::check(), function () {
-                return $this->favoritedBy()->where('user_id', Auth::id())->exists();
-            }, false),
-            'category' => $this->whenLoaded('category', function () {
-                return [
-                    'id' => $this->category->id,
-                    'name' => $this->category->name,
-                    'slug' => $this->category->slug,
-                ];
-            }),
+
+            'media' => $this->whenLoaded('media', fn() =>
+                $this->media->map(fn($m) => (new MediaResource($m))->toArray($request))
+            ),
+
+            'category' => $this->whenLoaded('category', fn() => [
+                'id' => $this->category->id,
+                'name' => $this->category->name,
+                'slug' => $this->category->slug,
+            ]),
+
+            'user' => $this->whenLoaded('user', fn() => [
+                'id' => $this->user->id,
+                'name' => $this->user->name,
+                'avatar' => $this->user->avatar_url,
+            ]),
+
+            // optional: expose here too
+            'is_favorite' => Auth::check()
+                ? $this->favoritedBy()->where('user_id', Auth::id())->exists()
+                : false,
+
+            
         ];
     }
+
+    
 }

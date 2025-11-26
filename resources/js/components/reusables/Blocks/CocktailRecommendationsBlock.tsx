@@ -18,23 +18,23 @@ export default function CocktailRecommendationsBlock({ recipes }: DailyRecommend
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3">
+            <Carousel
+                wrapperClassname="lg:mt-40 col-span-2"
+                carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800 carousel-recommended-cocktails"
+                itemClassName="card-recommended-cocktail"
+                recipes={recipes}
+            />
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
-                <h2 className="text-3xl">Leckere Cocktails</h2>
-                <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-la-belle-aurore">
-                    vom Chef persönlich
+                <h2 className="text-2xl">Leckere Cocktails</h2>
+                <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">
+                    für einen schönen Abend
                 </h3>
                 <img
                     src={cocktailBro}
-                    className="w-full mx-auto sm:w-1/2 md:w-3/4"
-                    alt="Chefkoch Tobias"
+                    className="w-full mx-auto sm:w-1/2 md:w-3/4 rotate-y-180"
+                    alt="Barkeeper Tobias"
                 />
             </div>
-            <Carousel
-                wrapperClassname="lg:mt-40 col-span-2"
-                carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800"
-                itemClassName="card"
-                recipes={recipes}
-            />
         </div>
     );
 }

@@ -81,18 +81,22 @@ export default function SingleRecipeIngredientsTable({ recipe, className }: Ingr
                         </tr>
                     </thead>
                     <tbody className="dark:text-gray-200 divide-y divide-gray-100 dark:divide-gray-700">
-                        {recipe.ingredients.map((ingredient) => (
-                            <tr
-                                key={ingredient.id}
-                                className="odd:bg-white even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
-                            >
-                                <td className="p-3 text-center">
-                                    {Number(ingredient.quantity ?? 0) * count}
-                                </td>
-                                <td className="p-3 text-left">{ingredient.unit}</td>
-                                <td className="p-3">{ingredient.name}</td>
-                            </tr>
-                        ))}
+                        {recipe.ingredients.map((ingredient) => {
+                            const baseQuantity = ingredient.quantity ?? ingredient.pivot?.quantity ?? 0;
+                            const unit = ingredient.unit ?? ingredient.pivot?.unit ?? '';
+                            return (
+                                <tr
+                                    key={ingredient.id}
+                                    className="odd:bg-white even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700"
+                                >
+                                    <td className="p-3 text-center">
+                                        {Number(baseQuantity) * count}
+                                    </td>
+                                    <td className="p-3 text-left">{unit}</td>
+                                    <td className="p-3">{ingredient.name}</td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>

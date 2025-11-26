@@ -34,7 +34,11 @@ export default function Frontpage() {
     const totalIngredientCount = usePage<SharedPageProps>().props.totalIngredientCount;
     const totalCommentCount = usePage<SharedPageProps>().props.totalCommentCount;
     return (
-        <FullWidthLayout title="Willkommen" showTitle={false} description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein.">
+        <FullWidthLayout
+            title="Willkommen"
+            showTitle={false}
+            description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein."
+        >
             <WelcomeBlock className="my-6" />
             <CategorySelectionBlock />
             <Seperator style="sun" />
@@ -44,7 +48,12 @@ export default function Frontpage() {
             <Seperator style="cocktail" />
             <CocktailRecommendationsBlock recipes={recommendedCocktails} />
             <Seperator />
-            <StatsBlock totalRecipeCount={totalRecipeCount} totalIngredientCount={totalIngredientCount} totalCommentCount={totalCommentCount} className="mb-12" />
+            <StatsBlock
+                totalRecipeCount={totalRecipeCount}
+                totalIngredientCount={totalIngredientCount}
+                totalCommentCount={totalCommentCount}
+                className="mb-12"
+            />
             <Seperator style="question-mark" />
             <FaqAccordeon />
         </FullWidthLayout>

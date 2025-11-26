@@ -4,10 +4,10 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import AdminUsersTable from '@/components/reusables/Tables/AdminUsersTable';
 import AdminSidebar from '@/components/sidebars/AdminSidebar';
 
-import { FiUsers } from "react-icons/fi";
-import { FiUser } from "react-icons/fi";
+import { FiUsers } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 import { TfiCommentsSmiley } from 'react-icons/tfi';
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 
 import { SharedPageProps } from '@/types';
 
@@ -16,10 +16,9 @@ import { SharedPageProps } from '@/types';
  * It includes a bar chart that shows the number of recipes, a donut chart that shows the distribution of recipes between the user and other users, and two tables that show the user's recipes and favorites.
  */
 export default function AdminPage() {
-
     const { user } = usePage<SharedPageProps>().props.auth;
     const { users } = usePage<SharedPageProps>().props;
-    
+
     return (
         <SidebarLeftLayout title="Admin" sidebar={<AdminSidebar />}>
             <div className="grid grid-cols-1 xl:grid-cols-12 grid-rows-2 xl:grid-rows-1 gap-2 xl:gap-5 mb-2 xl:mb-5">
@@ -37,8 +36,7 @@ export default function AdminPage() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <FiUsers className="size-4 mt-1 text-primary" />{' '}
-                                Benutzer
+                                <FiUsers className="size-4 mt-1 text-primary" /> Benutzer
                             </span>
                             {users.length}
                         </h3>
@@ -48,8 +46,7 @@ export default function AdminPage() {
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
-                                <FiUser className="size-4 mt-1 text-primary rotate-y-180" />{' '}
-                                User
+                                <FiUser className="size-4 mt-1 text-primary rotate-y-180" /> User
                             </span>
                         </h3>
                     </div>
@@ -65,7 +62,10 @@ export default function AdminPage() {
                     </div>
                 </div>
             </div>
-            <AdminUsersTable users={users} icon={<FiUsers className="size-4 mt-1 text-primary" />} />
+            <AdminUsersTable
+                users={users}
+                icon={<FiUsers className="size-4 mt-1 text-primary" />}
+            />
         </SidebarLeftLayout>
     );
 }

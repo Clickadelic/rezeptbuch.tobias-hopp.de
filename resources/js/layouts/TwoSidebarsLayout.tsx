@@ -88,7 +88,16 @@ export default function TwoSidebarsLayout({
                     <div className="mx-auto container grow px-6 min-h-[calc(100vh-705px)] md:grid md:grid-cols-5 md:grid-rows-1 md:gap-4 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         {isDesktop && leftSidebar}
                         <main className="pt-5 pb-24 col-span-3">
-                            {<h2 className={cn("text-xl font-medium mb-5", !showTitle && "sr-only" )}>{title}</h2>}
+                            {
+                                <h2
+                                    className={cn(
+                                        'text-xl font-medium mb-5',
+                                        !showTitle && 'sr-only',
+                                    )}
+                                >
+                                    {title}
+                                </h2>
+                            }
                             {children}
                         </main>
                         {!isDesktop && leftSidebar}

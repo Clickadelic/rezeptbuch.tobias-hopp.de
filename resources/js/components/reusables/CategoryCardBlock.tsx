@@ -1,4 +1,3 @@
-
 import { cn } from '@/lib/utils';
 
 import { LuUtensilsCrossed } from 'react-icons/lu';
@@ -7,13 +6,13 @@ import { Recipe } from '@/types/Recipe';
 import { IconMap } from '@/lib/icon-map';
 
 interface CategoryCardBlockProps {
-    recipe: Recipe
-    className?: string
+    recipe: Recipe;
+    className?: string;
 }
 
 export default function CategoryCardBlock({ recipe, className }: CategoryCardBlockProps) {
     return (
-        <div className={cn("flex gap-2", className)}>
+        <div className={cn('flex gap-2', className)}>
             {recipe && recipe.category && (
                 <span className="text-primary">
                     {IconMap[recipe.category.slug ?? ''] ?? (
@@ -25,5 +24,5 @@ export default function CategoryCardBlock({ recipe, className }: CategoryCardBlo
                 {recipe?.category?.name ?? 'Nicht kategorisiert'}
             </span>
         </div>
-    )
+    );
 }

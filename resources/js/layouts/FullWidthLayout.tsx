@@ -17,8 +17,6 @@ import { SharedPageProps } from '@/types';
 
 import { cn } from '@/lib/utils';
 
-
-
 interface FullWidthLayoutProps extends PropsWithChildren {
     title?: string;
     description?: string;
@@ -75,7 +73,16 @@ export default function FullWidthLayout({
                     </div>
                     <div className="mx-auto container grow px-6 transition-opacity opacity-100 duration-300 lg:grow starting:opacity-0">
                         <main className="pt-5 pb-24 overflow-hidden">
-                            {<h2 className={cn("text-xl font-medium mb-5", !showTitle && "sr-only" )}>{title}</h2>}
+                            {
+                                <h2
+                                    className={cn(
+                                        'text-xl font-medium mb-5',
+                                        !showTitle && 'sr-only',
+                                    )}
+                                >
+                                    {title}
+                                </h2>
+                            }
                             {children}
                         </main>
                     </div>

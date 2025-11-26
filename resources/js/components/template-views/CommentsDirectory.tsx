@@ -10,7 +10,6 @@ import { FaSpinner } from 'react-icons/fa6';
 
 import Seperator from '@/components/reusables/Seperator';
 
-
 import { cn } from '@/lib/utils';
 
 interface CommentsDirectoryProps {

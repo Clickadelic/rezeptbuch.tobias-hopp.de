@@ -1,7 +1,23 @@
 import { useState } from 'react';
 import { router, usePage, Link } from '@inertiajs/react';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,} from '@/components/ui/dropdown-menu';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+    DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 import { HiOutlineDotsVertical, HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
@@ -14,7 +30,16 @@ import { PiCopySimpleLight } from 'react-icons/pi';
 import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { ResponsiveDialog } from '@/components/reusables/ResponsiveDialog';
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from '@/components/ui/drawer';
 
 import { SharedPageProps } from '@/types';
 
@@ -36,7 +61,11 @@ interface ContextMenuProps {
  * @param {Recipe} props.recipe - The recipe to be edited or deleted.
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
-export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }: ContextMenuProps) {
+export default function ContextMenu({
+    recipe,
+    className,
+    dotStyle = 'vertical',
+}: ContextMenuProps) {
     const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
 
@@ -84,8 +113,11 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                     <HiOutlineDotsHorizontal className="size-5" />
                 )}
             </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-white/30 dark:bg-gray-800/30 p-1 rounded-xl backdrop backdrop-blur border-0">
-                    <div className="bg-white dark:bg-gray-800 rounded-lg p-1">
+            <DropdownMenuContent
+                align="end"
+                className="bg-white/30 dark:bg-gray-800/30 p-1 rounded-xl backdrop backdrop-blur border-0"
+            >
+                <div className="bg-white dark:bg-gray-800 rounded-lg p-1">
                     {isOwner(recipe?.user_id) && (
                         <>
                             <DropdownMenuItem>
@@ -129,14 +161,21 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                                 className="bg-primary hover:bg-emerald-700 text-white"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    router.post(route('recipes.duplicate', recipe?.slug), {}, {
-                                                        onSuccess: () => {
-                                                            toast.success('Rezept wurde kopiert! Siehe Dashboard.', { duration: 3000 });
+                                                    router.post(
+                                                        route('recipes.duplicate', recipe?.slug),
+                                                        {},
+                                                        {
+                                                            onSuccess: () => {
+                                                                toast.success(
+                                                                    'Rezept wurde kopiert! Siehe Dashboard.',
+                                                                    { duration: 3000 },
+                                                                );
+                                                            },
+                                                            onError: () => {
+                                                                toast.error('Fehler beim Kopieren');
+                                                            },
                                                         },
-                                                        onError: () => {
-                                                            toast.error('Fehler beim Kopieren');
-                                                        },
-                                                    });
+                                                    );
                                                 }}
                                             >
                                                 <PiCopySimpleLight className="size-5" />
@@ -199,8 +238,9 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                             <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
                                 <AlertDialogHeader>
                                     <AlertDialogTitle className=" text-gray-800 dark:text-gray-200">
-                                        Cool, dass Du <span className="font-bold">{recipe?.name}</span>{' '}
-                                        teilen möchtest, hier der Link:
+                                        Cool, dass Du{' '}
+                                        <span className="font-bold">{recipe?.name}</span> teilen
+                                        möchtest, hier der Link:
                                     </AlertDialogTitle>
                                     <AlertDialogDescription className="mb-3">
                                         <span id="recipe-link">
@@ -209,7 +249,8 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                                                 className="hover:underline underline-offset-4"
                                                 title="Link öffnen"
                                             >
-                                                https://rezeptbuch.tobias-hopp.de/rezepte/{recipe?.slug}
+                                                https://rezeptbuch.tobias-hopp.de/rezepte/
+                                                {recipe?.slug}
                                             </a>
                                         </span>
                                     </AlertDialogDescription>
@@ -244,8 +285,8 @@ export default function ContextMenu({ recipe, className, dotStyle = 'vertical' }
                             Drucken
                         </Link>
                     </DropdownMenuItem> */}
-                    </div>
-                </DropdownMenuContent>
+                </div>
+            </DropdownMenuContent>
         </DropdownMenu>
     );
 }

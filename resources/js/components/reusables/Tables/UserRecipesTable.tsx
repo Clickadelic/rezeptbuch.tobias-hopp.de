@@ -5,7 +5,14 @@ import { Link } from '@inertiajs/react';
 import axios from 'axios';
 
 import { Button } from '@/components/ui/button';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 
 import ContextMenu from '@/components/reusables/ContextMenu';
 import Paginated from '@/types/Paginated';
@@ -13,8 +20,8 @@ import Pagination from '@/components/reusables/Pagination';
 import PublishSwitch from '@/components/reusables/PublishSwitch';
 
 import { GoPlus } from 'react-icons/go';
-import { TfiEye } from "react-icons/tfi";
-import { GoEyeClosed } from "react-icons/go";
+import { TfiEye } from 'react-icons/tfi';
+import { GoEyeClosed } from 'react-icons/go';
 import { IoEyeOutline } from 'react-icons/io5';
 
 import { Recipe } from '@/types/Recipe';
@@ -59,11 +66,7 @@ export default function UserRecipesTable({
                 className,
             )}
         >
-            <h3
-                className={cn(
-                    'text-lg mb-3 flex gap-2'
-                )}
-            >
+            <h3 className={cn('text-lg mb-3 flex gap-2')}>
                 {icon}
                 {title || 'Daten'}
                 {recipes && recipes?.data?.length >= 1 && (
@@ -101,12 +104,12 @@ export default function UserRecipesTable({
                             <TableHead className="text-right">Aktion</TableHead>
                         </TableRow>
                     </TableHeader>
-                    
+
                     <TableBody>
                         {recipes.data.map((recipe: Recipe) => (
                             <TableRow
                                 key={recipe.id}
-                                className={cn("hover:bg-white dark:hover:bg-gray-700")}
+                                className={cn('hover:bg-white dark:hover:bg-gray-700')}
                             >
                                 <TableCell>
                                     <PublishSwitch
@@ -118,7 +121,7 @@ export default function UserRecipesTable({
                                 <TableCell className="text-center">
                                     <Link
                                         href={route('recipes.show', recipe.slug)}
-                                        disabled={recipe.status === 'draft' }
+                                        disabled={recipe.status === 'draft'}
                                         className="p-1 bg-transparent border border-primary text-primary rounded-md hover:bg-primary hover:text-white inline-flex items-center justify-center"
                                         title="Rezept ansehen"
                                     >

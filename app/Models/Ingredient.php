@@ -27,8 +27,8 @@ class Ingredient extends Model
     public function recipes()
     {
         return $this->belongsToMany(Recipe::class, 'recipe_ingredient')
-                    ->withPivot('quantity', 'unit')
-                    ->withTimestamps();
+                ->withPivot(['quantity', 'unit'])
+                ->withTimestamps();
     }
 
     public function user()
@@ -36,11 +36,4 @@ class Ingredient extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function ingredients()
-    {
-        return $this->belongsToMany(Ingredient::class, 'recipe_ingredient')
-            ->using(RecipeIngredient::class) // Pivot Model
-            ->withPivot('quantity', 'unit')
-            ->withTimestamps();
-    }
 }

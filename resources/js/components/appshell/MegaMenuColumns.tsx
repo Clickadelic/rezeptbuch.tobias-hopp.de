@@ -6,7 +6,7 @@ import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
-import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { GoPlus } from 'react-icons/go';
 // import featuredImg from '@images/svg/Top-Secret-bro.svg';
 // import featuredImg from '@images/svg/File-synchronization-bro.svg';
@@ -64,20 +64,20 @@ export const recipesMegaMenu = [
             },
             {
                 icon: <GiCrystalBars className="size-4 text-primary" />,
-                title: "Snacks",
+                title: 'Snacks',
                 href: route('recipes.search', { search: 'Snack' }),
                 description: 'für zwischendurch',
             },
         ],
-    }
+    },
 ];
 
 export const featuredRecipes = {
     imageUrl: featuredImg,
     featuredIcon: <BsJournalBookmark className="text-primary size-4 mt-[5px]" />,
     title: 'Neues Rezept',
-    description: 'Klicke hier und leg\' los.',
+    description: "Klicke hier und leg' los.",
     href: '/rezepte/neu',
     label: 'Neues Rezept',
     icon: <GoPlus className="size-4 mt-[2px]" />,
-}
+};

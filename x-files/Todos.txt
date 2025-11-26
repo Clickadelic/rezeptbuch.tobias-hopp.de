@@ -1,11 +1,6 @@
 // TODO Profil korrigieren
 // TODO Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
 
-// Prio M
-// TODO WYSYWIG Editor für Zubereitungsfeld.
-// TODO Image Delete Dialog
-// TODO Kochzeit noch einfügen ?
-
 // ----------------------------------------
 // TODO Social Media Fields, Webseite, Facebook, Instagram, What's App ?, Telegram, GitHub
 // ----------------------------------------

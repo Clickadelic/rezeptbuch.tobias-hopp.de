@@ -18,17 +18,40 @@ import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupButton,
+    InputGroupInput,
+    InputGroupText,
+    InputGroupTextarea,
+} from '@/components/ui/input-group';
 
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 import { GoArrowLeft, GoArrowRight, GoPencil, GoPlus } from 'react-icons/go';
 import { BsTrash3 } from 'react-icons/bs';
 import { Link } from '@inertiajs/react';
 import { TbCancel, TbNumber1, TbNumber2, TbNumber3 } from 'react-icons/tb';
 import { SlRefresh } from 'react-icons/sl';
-import { GiBroccoli } from "react-icons/gi";
+import { GiBroccoli } from 'react-icons/gi';
 
 import { IngredientComboBox } from '@/components/forms/IngredientComboBox';
 import { RecipeMediaUploader } from '@/components/forms/RecipeMediaUploader';
@@ -142,7 +165,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
     })();
 
     const hasInvalidIngredient = data.recipe_ingredients.some(
-        (i) => i.quantity && !i.ingredient_id
+        (i) => i.quantity && !i.ingredient_id,
     );
 
     const handleStepChange = (newStep: number) => {
@@ -179,7 +202,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
     const toggleIngredientDeleteDialog = (index: number) => {
         setDeleteDialogOpen(true);
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit} ref={formRef} className={cn('flex flex-col', className)}>
@@ -302,10 +325,13 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
             {/* STEP 1: Basics */}
             {step === 1 && (
-
                 <section className="space-y-5 sm:mt-5">
-                    <CategorySelect className="w-full max-w-xl mx-auto" selectedCategoryId={data.category_id} onChange={(id) => setData('category_id', id)} />
-                    
+                    <CategorySelect
+                        className="w-full max-w-xl mx-auto"
+                        selectedCategoryId={data.category_id}
+                        onChange={(id) => setData('category_id', id)}
+                    />
+
                     {/* Name */}
                     <div className="w-full max-w-xl mx-auto flex flex-col">
                         <InputLabel
@@ -334,12 +360,14 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 description="Pflichtfeld - die URL-Schreibweise für den Link."
                             />
                             <InputGroup className="py-6 bg-gray-100 dark:bg-gray-900">
-
-                                <InputGroupInput className="!text-lg" id="slug"
-                                        type="text"
-                                        value={`${data.slug || recipe.slug}`}
-                                        placeholder="nudeln-mit-sauce"
-                                        onChange={(e) => setData('slug', e.target.value)} />
+                                <InputGroupInput
+                                    className="!text-lg"
+                                    id="slug"
+                                    type="text"
+                                    value={`${data.slug || recipe.slug}`}
+                                    placeholder="nudeln-mit-sauce"
+                                    onChange={(e) => setData('slug', e.target.value)}
+                                />
                             </InputGroup>
                             {errors.slug && <p className="text-rose-700 mt-1">{errors.slug}</p>}
                         </div>
@@ -347,23 +375,41 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                     <div className="w-full max-w-xl mx-auto flex flex-col gap-5">
                         <div>
-                            <InputLabel htmlFor="difficulty" value="Schwierigkeitsgrad" description="Wähle wie aufwendig bzw. schwierig das Rezept ist." />
-                            <DifficultySelect selectedDifficulty={data.difficulty} onChange={(difficulty: string) => setData('difficulty', difficulty)} />
+                            <InputLabel
+                                htmlFor="difficulty"
+                                value="Schwierigkeitsgrad"
+                                description="Wähle wie aufwendig bzw. schwierig das Rezept ist."
+                            />
+                            <DifficultySelect
+                                selectedDifficulty={data.difficulty}
+                                onChange={(difficulty: string) => setData('difficulty', difficulty)}
+                            />
                             {errors.difficulty && (
                                 <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>
                             )}
                         </div>
                         <div>
-                            <InputLabel htmlFor="react-select-4-input" value="Status" description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."  />
-                            <StatusSelect selectedStatus={data.status} onChange={(status: string) => setData('status', status)} />
+                            <InputLabel
+                                htmlFor="react-select-4-input"
+                                value="Status"
+                                description="Du kannst das Rezept als Entwurf speichern und später veröffentlichen."
+                            />
+                            <StatusSelect
+                                selectedStatus={data.status}
+                                onChange={(status: string) => setData('status', status)}
+                            />
                             {errors.status && (
                                 <p className="text-red-500 text-sm mt-1">{errors.status}</p>
                             )}
                         </div>
                     </div>
-                    
+
                     <div className="w-full max-w-xl mx-auto flex flex-col">
-                        <InputLabel htmlFor="punchline" value="Punchline" description="Kleine Schlagzeile, die das Rezept gut beschreibt." />
+                        <InputLabel
+                            htmlFor="punchline"
+                            value="Punchline"
+                            description="Kleine Schlagzeile, die das Rezept gut beschreibt."
+                        />
                         <TextInput
                             id="punchline"
                             type="text"
@@ -376,7 +422,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     </div>
 
                     <div className="w-full max-w-xl mx-auto">
-                        <InputLabel htmlFor="description" value="Kurze Beschreibung" description="Ein kurzer Beschreibungstext der Lust darauf macht, das Gericht zu kochen." />
+                        <InputLabel
+                            htmlFor="description"
+                            value="Kurze Beschreibung"
+                            description="Ein kurzer Beschreibungstext der Lust darauf macht, das Gericht zu kochen."
+                        />
                         <Textarea
                             value={data.description}
                             rows={5}
@@ -411,14 +461,17 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </Button>
                     </div>
                 </section>
-
             )}
 
             {/* STEP 2: Zutaten */}
             {step === 2 && (
                 <section className="space-y-5 mt-5">
                     <div className="w-full max-w-xl mx-auto">
-                        <InputLabel htmlFor="ingredient-*-input" value="Zutaten bearbeiten" description="Hier kannst du die Zutaten des Rezeptes bearbeiten. Dabei kannst du die Menge und die Einheit der Zutat angeben." />
+                        <InputLabel
+                            htmlFor="ingredient-*-input"
+                            value="Zutaten bearbeiten"
+                            description="Hier kannst du die Zutaten des Rezeptes bearbeiten. Dabei kannst du die Menge und die Einheit der Zutat angeben."
+                        />
                         <div className="w-full flex flex-col gap-5 md:gap-1 mb-3 sm:mb-0">
                             {data.recipe_ingredients?.map((di, idx) => (
                                 <div
@@ -487,10 +540,17 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                             {/* Bei Cocktail kein "vegetarisch" zeigen */}
                             {data.category_id != 4 && (
                                 <div>
-                                    <InputLabel htmlFor="is_veggy" className="sr-only" value="vegetarisch" />
+                                    <InputLabel
+                                        htmlFor="is_veggy"
+                                        className="sr-only"
+                                        value="vegetarisch"
+                                    />
                                     <div className="flex items-start mt-3 md:mt-5 justify-start gap-2 bg-gray-100 dark:bg-gray-900 px-3 py-[8px] rounded border border-transparent border-b-gray-200 dark:border-b-gray-700">
                                         <GiBroccoli className="size-4 text-primary" />
-                                        <label htmlFor="is_veggy" className="text-sm text-gray-800 dark:text-gray-200">
+                                        <label
+                                            htmlFor="is_veggy"
+                                            className="text-sm text-gray-800 dark:text-gray-200"
+                                        >
                                             Rezept ist vegetarisch
                                         </label>
                                         <Switch
@@ -501,17 +561,16 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                             }
                                         />
                                     </div>
-                                </div> 
+                                </div>
                             )}
-                            
+
                             {/* Alle Zutaten löschen */}
                             <AlertDialog>
                                 <AlertDialogTrigger
                                     disabled={!data.recipe_ingredients?.length}
                                     className="mt-3 md:mt-5 flex items-center justify-center gap-1 py-2 px-3 text-sm hover:cursor-pointer text-white bg-rose-700 rounded-sm"
-                                    
                                 >
-                                    <BsTrash3 className="size-4 mt-.5 mr-1" />
+                                    <BsTrash3 className="size-4 mr-1" />
                                     Alle Zutaten löschen
                                 </AlertDialogTrigger>
                                 <AlertDialogContent className="bg-gray-100 dark:bg-gray-900">
@@ -546,25 +605,25 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                         </div>
                     </div>
                     <div className="flex justify-between gap-2 mt-8">
-                        <Button
-                            type="button"
-                            variant="primary"
-                            onClick={() => handleStepChange(1)}
-                        >
+                        <Button type="button" variant="primary" onClick={() => handleStepChange(1)}>
                             <GoArrowLeft className="ml-1" />
                             Zurück
                         </Button>
-                        
+
                         <Button
                             type="button"
-                            variant={data.recipe_ingredients?.length >= 1 ? 'primary' : 'primaryOutline'}
+                            variant={
+                                data.recipe_ingredients?.length >= 1 ? 'primary' : 'primaryOutline'
+                            }
                             onClick={() => {
                                 const hasInvalid = data.recipe_ingredients.some(
-                                    (i) => i.quantity && !i.ingredient_id
+                                    (i) => i.quantity && !i.ingredient_id,
                                 );
 
                                 if (hasInvalid) {
-                                    return toast.error('Bitte eine Zutat auswählen oder neu anlegen.');
+                                    return toast.error(
+                                        'Bitte eine Zutat auswählen oder neu anlegen.',
+                                    );
                                 }
 
                                 handleStepChange(3);
@@ -583,7 +642,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                     <div className="w-full max-w-xl mx-auto flex flex-col items-center justify-start sm:gap-4">
                         {/* Uploader */}
                         <div className="space-y-3">
-                            <InputLabel htmlFor="mediaUpload" value="Vorschaubild" description="(10 MB max.) Das Bild wird als Vorschau verwendet." />
+                            <InputLabel
+                                htmlFor="mediaUpload"
+                                value="Vorschaubild"
+                                description="(10 MB max.) Das Bild wird als Vorschau verwendet."
+                            />
                             <RecipeMediaUploader
                                 recipeId={recipe?.id}
                                 pendingKey={!recipe ? pendingKey : undefined}
@@ -598,7 +661,7 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 }}
                             />
                         </div>
-                                
+
                         {/* Vorschau */}
                         <div className="space-y-2 pt-5 sm:pt-2">
                             <InputLabel
@@ -626,7 +689,9 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                                 size="icon"
                                                 className="absolute top-1 right-1 bg-rose-700 hover:bg-rose-800 rounded"
                                                 onClick={() => {
-                                                    if (!confirm('Möchtest du dieses Bild löschen?'))
+                                                    if (
+                                                        !confirm('Möchtest du dieses Bild löschen?')
+                                                    )
                                                         return;
 
                                                     if (recipe) {
@@ -681,7 +746,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
 
                     {/* Koch-/Bearbeitungszeit */}
                     <div className="w-full max-w-xl mx-auto">
-                        <InputLabel htmlFor="preparation_time" value="Koch-/Bearbeitungszeit" description="Wie lange dauert die Zubereitung des Rezepts in etwa?" />
+                        <InputLabel
+                            htmlFor="preparation_time"
+                            value="Koch-/Bearbeitungszeit"
+                            description="Wie lange dauert die Zubereitung des Rezepts in etwa?"
+                        />
                         <div className="w-full flex flex-col xl:flex-row gap-5 mb-3 sm:mb-0">
                             <div className="flex justify-end items-end">
                                 <span className="w-12 px-3 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 focus:border-primary focus:ring-primary placeholder:text-gray-600 dark:placeholder:text-gray-600 mt-1 rounded-none border-r-0 rounded-tl rounded-bl">

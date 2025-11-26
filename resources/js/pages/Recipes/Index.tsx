@@ -1,55 +1,57 @@
-import { Link } from 'lucide-react';
+// Recipes/Index.tsx
+
 import { usePage } from '@inertiajs/react';
+// import { Link } from 'lucide-react'; // Nicht nötig, da Inertia-Link nicht von hier importiert wird
+// import { IoMdArrowForward } from 'react-icons/io'; // Nicht nötig, da die Links unten auskommentiert sind
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import RecipeCard from '@/components/reusables/RecipeCard';
-import BigRecipeCard from '@/components/reusables/BigRecipeCard';
+import BigRecipeCard from '@/components/reusables/BigRecipeCard'; // Nicht verwendet
 import Pagination from '@/components/reusables/Pagination';
-
-import { IoMdArrowForward } from 'react-icons/io';
 
 import { SharedPageProps } from '@/types';
 import { Recipe } from '@/types/Recipe';
 
+
 /**
- * Displays a list of all recipes.
- *
- * The list is rendered as a grid of 1 column on small screens,
- * 3 columns on medium screens, and 4 columns on large screens.
- *
- * Each recipe is rendered as a RecipeCard component.
- *
- * The component expects a prop called `recipe` to be defined on the page.
- * This prop should contain an array of Recipe objects.
+ * Displays a list of all recipes in a grid layout using RecipeCard.
+ * Data is fetched from Inertia page props in PagedData format.
  */
 export default function Recipes() {
-    const recipes= usePage<SharedPageProps>().props.recipes;
 
-    console.log(recipes);
+    const recipes = usePage<SharedPageProps>().props.recipes;
+    // Sicherstellen, dass das 'data'-Array existiert und ein Array ist
+    const recipeData = recipes?.data || [];
+    const hasRecipes = recipeData.length > 0;
+    
     return (
-        <FullWidthLayout title="Rezepte" description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept.">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
-                {recipes?.data.map((recipe: Recipe) => (
-                    <BigRecipeCard key={recipe.id} recipe={recipe} />
-                ))}
-            </ul>
-            {recipes?.data.length === 0 && (
-                <>
-                    <p className="text-xl my-12 col-span-5 text-center text-gray-600">
-                        Lege das erste Rezept an.
+        <FullWidthLayout
+            title="Rezepte"
+            description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept."
+        >
+
+            {hasRecipes ? (
+                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
+                    {/* Iteration mit der gewünschten RecipeCard und korrektem 'key' */}
+                    {recipeData.map((recipe: Recipe) => (
+                        <BigRecipeCard key={recipe.id} recipe={recipe} />
+                    ))}
+                </ul>
+            ) : (
+                <div className="flex flex-col items-center justify-center py-12">
+                    <p className="text-xl text-gray-600 mb-4">
+                        Zurzeit sind keine Rezepte vorhanden.
                     </p>
-                    <Link
-                        href={route('recipes.create')}
-                        className="flex items-center justify-center w-64 gap-2 text-base hover:text-primary font-medium text-white mt-4 font-roboto-condensed rounded bg-primary px-6 py-2"
-                    >
-                        Neues Rezept
-                        <IoMdArrowForward className="asd" />
-                    </Link>
-                </>
+                </div>
             )}
-            {recipes?.data.length && (
-                <Pagination links={recipes.meta.links} className="mt-4 sm:mt-8 xl:mt-12" />
+            
+            {recipes && recipes.links && hasRecipes && (
+                <Pagination 
+                    links={recipes.links} 
+                    className="mt-4 sm:mt-8 xl:mt-12" 
+                />
             )}
+            
         </FullWidthLayout>
     );
 }

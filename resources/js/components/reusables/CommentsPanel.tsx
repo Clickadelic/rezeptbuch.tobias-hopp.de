@@ -45,9 +45,7 @@ export default function CommentsPanel({ comments, className }: CommentsPanelProp
                     </span>
                 </div>
             ))}
-            {comments && comments?.data?.length >= 1 && (
-                <Pagination links={comments.links} />
-            )}
+            {comments && comments?.data?.length >= 1 && <Pagination links={comments.links} />}
         </div>
     );
 }

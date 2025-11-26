@@ -32,20 +32,33 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     const { related, is_favorite } = usePage<SharedPageProps>().props;
-    
-    console.log("Related", is_favorite);
-    console.log("Is favorite", is_favorite);
 
+    console.log('Related', is_favorite);
+    console.log('Is favorite', is_favorite);
+    console.log('Recipe', recipe);
     return (
-        <SidebarLeftLayout title={`${recipe.name} - Rezeptdetails`} sidebar={<MainSidebar />} description={`Rezeptdetails`}>
+        <SidebarLeftLayout
+            title={`${recipe.name} - Rezeptdetails`}
+            sidebar={<MainSidebar />}
+            description={`Rezeptdetails`}
+        >
             <div className="flex flex-col">
                 <div className="w-full flex flex-col sm:flex-row gap-5">
                     <div className="w-full sm:1/2">
                         <div className="flex flex-col items-start justify-start gap-1">
-                            <RecipeImageBlock recipe={recipe} className="w-full" useModalWindow={true} />
+                            <RecipeImageBlock
+                                recipe={recipe}
+                                className="w-full"
+                                useModalWindow={true}
+                            />
                             <div className="w-full flex flex-row justify-between">
                                 <AvatarBlock recipe={recipe} />
-                                <FavoriteButton recipeId={recipe.id!} isFavorite={is_favorite as boolean} showLabel={true} className="mt-[7px]" />
+                                <FavoriteButton
+                                    recipeId={recipe.id!}
+                                    isFavorite={is_favorite as boolean}
+                                    showLabel={true}
+                                    className="mt-[7px]"
+                                />
                             </div>
                         </div>
                     </div>
@@ -53,13 +66,19 @@ export default function Show({ recipe }: ShowRecipeProps) {
                         <RecipeInfoBlock recipe={recipe} />
                     </div>
                 </div>
-                <AttributesBlock recipe={recipe} className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-3 sm:my-6" />
+                <AttributesBlock
+                    recipe={recipe}
+                    className="flex flex-wrap lg:items-center lg:justify-center gap-3 my-3 sm:my-6"
+                />
                 <SingleRecipeIngredientsTable recipe={recipe} />
                 <PreparationInstructions recipe={recipe} />
                 <Seperator style="question-mark" />
                 <RecipeStarRating recipe={recipe} />
                 <CommentsDirectory recipeId={recipe.id!} />
-                <RelatedRecipesCarousel recipes={related as Recipe[]} categoryName={recipe.category?.name} />
+                {/* <RelatedRecipesCarousel
+                    recipes={related as Recipe[]}
+                    categoryName={recipe.category?.name}
+                /> */}
             </div>
         </SidebarLeftLayout>
     );

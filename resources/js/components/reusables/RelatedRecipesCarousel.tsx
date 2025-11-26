@@ -19,7 +19,13 @@ interface RelatedRecipesCarouselProps {
  * @param {Recipe[]} related - The related recipes to display
  * @returns {JSX.Element} - The carousel component
  */
-export default function RelatedRecipesCarousel({ recipes, categoryName, className, carouselClassName, itemClassName }: RelatedRecipesCarouselProps) {
+export default function RelatedRecipesCarousel({
+    recipes,
+    categoryName,
+    className,
+    carouselClassName,
+    itemClassName,
+}: RelatedRecipesCarouselProps) {
     return (
         <>
             <Seperator style="shuffle" />

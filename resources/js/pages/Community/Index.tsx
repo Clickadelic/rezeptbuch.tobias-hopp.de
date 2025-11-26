@@ -3,7 +3,6 @@ import { usePage } from '@inertiajs/react';
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 import UserCard from '@/components/reusables/UserCard';
 
-
 import { SharedPageProps } from '@/types';
 
 /**

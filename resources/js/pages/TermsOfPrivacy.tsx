@@ -8,7 +8,11 @@ import LegalSidebar from '@/components/sidebars/LegalSidebar';
  */
 export default function Datenschutz() {
     return (
-        <SidebarLeftLayout title="Datenschutz" description="Hinweise und Details zur Verwendung von Daten auf dieser Seite." sidebar={<LegalSidebar />}>
+        <SidebarLeftLayout
+            title="Datenschutz"
+            description="Hinweise und Details zur Verwendung von Daten auf dieser Seite."
+            sidebar={<LegalSidebar />}
+        >
             <section>
                 <h3 className="my-5 font-medium text-lg">1. Verantwortlicher</h3>
                 <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
@@ -31,10 +35,10 @@ export default function Datenschutz() {
             <section>
                 <h3 className="my-5 font-medium text-lg">2. Allgemeines zur Datenverarbeitung</h3>
                 <p>
-                    Der Schutz deiner bzw. Ihrer persönlichen Daten ist mir sehr wichtig. Personenbezogene Daten werden nur im
-                    notwendigen Umfang erhoben, verarbeitet und gespeichert – ausschließlich zum
-                    Betrieb dieser Anwendung. Es werden keine Tracking-, Analyse- oder Werbe-Cookies
-                    eingesetzt.
+                    Der Schutz deiner bzw. Ihrer persönlichen Daten ist mir sehr wichtig.
+                    Personenbezogene Daten werden nur im notwendigen Umfang erhoben, verarbeitet und
+                    gespeichert – ausschließlich zum Betrieb dieser Anwendung. Es werden keine
+                    Tracking-, Analyse- oder Werbe-Cookies eingesetzt.
                 </p>
             </section>
             <section>
@@ -112,7 +116,9 @@ export default function Datenschutz() {
             <section>
                 <h3 className="my-5 font-medium text-lg">9. Speicherdauer und Löschung</h3>
                 <p>
-                    Daten werden so lange gespeichert, wie das Benutzerkonto besteht. Das Benutzerkonto kann jeder Zeit problemlos, ohne Kosten oder Umwege gelöscht werden.
+                    Daten werden so lange gespeichert, wie das Benutzerkonto besteht. Das
+                    Benutzerkonto kann jeder Zeit problemlos, ohne Kosten oder Umwege gelöscht
+                    werden.
                 </p>
                 <p>
                     Nach der Löschung werden alle personenbezogenen Informationen vollständig
@@ -158,7 +164,8 @@ export default function Datenschutz() {
                         title="rezeptbuch@tobias-hopp.de"
                     >
                         rezeptbuch@tobias-hopp.de
-                    </a>.
+                    </a>
+                    .
                 </p>
             </section>
         </SidebarLeftLayout>

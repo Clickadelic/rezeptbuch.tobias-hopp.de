@@ -144,7 +144,10 @@ export default function Dashboard() {
                             <span className="flex gap-2">
                                 <TfiCommentAlt className="size-4 mt-1.5 text-primary" />
                                 Kommentare
-                                <PopoverInfo description="Die Anzahl Deiner Kommentare." side="top" />
+                                <PopoverInfo
+                                    description="Die Anzahl Deiner Kommentare."
+                                    side="top"
+                                />
                             </span>
                             <div className="flex gap-1">
                                 <span>{comments?.total || 0}</span>
@@ -157,7 +160,10 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <FaRegHeart className="size-4 mt-1.5 text-primary" /> Favoriten
-                                <PopoverInfo description="Die Anzahl Deiner Favoriten." side="top" />
+                                <PopoverInfo
+                                    description="Die Anzahl Deiner Favoriten."
+                                    side="top"
+                                />
                             </span>
 
                             <div className="flex gap-1">
@@ -206,7 +212,6 @@ export default function Dashboard() {
             <div className="w-full flex gap-2 xl:gap-5 mb-2 xl:mb-5">
                 <CommentsPanel comments={comments} className="w-full" />
             </div>
-
         </SidebarLeftLayout>
     );
 }

@@ -9,13 +9,13 @@ import NavButton from '@/components/reusables/NavButton';
 import ResponsiveNavLink from '@/components/reusables/ResponsiveNavLink';
 import Dropdown from '@/components/reusables/Dropdown';
 import ModeToggle from '@/components/appshell/ModeToggle';
-import DraftAlert from "@/components/appshell/DraftAlert";
+import DraftAlert from '@/components/appshell/DraftAlert';
 import Avatar from '@/components/reusables/Avatar';
 import MegaMenu from '@/components/appshell/MegaMenu';
 
 import { recipesMegaMenu, featuredRecipes } from '@/components/appshell/MegaMenuColumns';
 
-import { FiUsers } from "react-icons/fi";
+import { FiUsers } from 'react-icons/fi';
 import { LuUsersRound } from 'react-icons/lu';
 import { BsJournalBookmark } from 'react-icons/bs';
 import { FiCheckCircle } from 'react-icons/fi';
@@ -94,7 +94,7 @@ export default function Header() {
                                     icon={<RiDashboardHorizontalLine className="size-4" />}
                                     className="relative bg-primary text-white hover:bg-emerald-600"
                                 >
-                                    Dashboard         
+                                    Dashboard
                                 </NavButton>
                                 <div className="relative sm:flex sm:flex-row sm:gap-3">
                                     <Dropdown>
@@ -226,10 +226,11 @@ export default function Header() {
                                 className="flex gap-2"
                                 active={window.location.pathname.startsWith('/dashboard')}
                             >
-                                <BsBell className="size-4 mt-1 text-rose-700" />{drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
+                                <BsBell className="size-4 mt-1 text-rose-700" />
+                                {drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
                             </ResponsiveNavLink>
                         )}
-                        
+
                         <ResponsiveNavLink
                             href="/zutaten"
                             className="flex gap-2"
@@ -263,7 +264,8 @@ export default function Header() {
                                         className="flex gap-2"
                                         active={window.location.pathname === '/admin'}
                                     >
-                                        <MdOutlineAdminPanelSettings className="size-4 mt-1" /> Admin
+                                        <MdOutlineAdminPanelSettings className="size-4 mt-1" />{' '}
+                                        Admin
                                     </ResponsiveNavLink>
                                 )}
                                 <ResponsiveNavLink
@@ -308,4 +310,4 @@ export default function Header() {
             )}
         </header>
     );
-};
+}

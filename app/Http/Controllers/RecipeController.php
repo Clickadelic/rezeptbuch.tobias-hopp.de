@@ -23,13 +23,26 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with(['media', 'category', 'user', 'comments'])
+        $recipes = Recipe::with([
+                'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
+                'media',
+                'category',
+                'user:id,name,avatar',
+                'comments',
+            ])
             ->where('status', 'published')
             ->orderBy('created_at', 'desc')
             ->paginate(25);
 
+        // Transform each item in the paginator using the RecipeResource
+        $recipes->getCollection()->transform(function ($recipe) {
+            return (new RecipeResource($recipe))->toArray(request());
+        });
+
+        // Return the paginator as-is so frontend still receives
+        // the classic Inertia/Laravel pagination shape
         return Inertia::render('Recipes/Index', [
-            'recipes' => RecipeResource::collection($recipes)->response()->getData(true),
+            'recipes' => $recipes,
         ]);
     }
 
@@ -58,7 +71,6 @@ class RecipeController extends Controller
             'category',
             'media',
             'user:id,name,avatar',
-            
         ]);
         
         $related = Recipe::with(['category','user:id,name,avatar','media'])
@@ -70,8 +82,8 @@ class RecipeController extends Controller
             ->get();
         
         return Inertia::render('Recipes/Show', [
-            'recipe'      => RecipeResource::make($recipe)->resolve(),
-            'related'     => RecipeResource::collection($related)->resolve(),
+            'recipe' => (new RecipeResource($recipe))->resolve(),
+            'related'     => RecipeResource::collection($related),
             'is_favorite' => Auth::check()
                 ? $recipe->favoritedBy()->where('user_id', Auth::id())->exists()
                 : false,
@@ -111,7 +123,7 @@ class RecipeController extends Controller
                 }
 
                 $quantity = $item['quantity'] ?? null;
-                $unit = $item['unit'] ?? 'g';
+                $unit = $item['unit'] ?? 'cl';
 
                 if (Str::isUuid($ingredientValue)) {
                     $ingredient = Ingredient::find($ingredientValue);
@@ -370,8 +382,13 @@ class RecipeController extends Controller
                 ->paginate(15);
         }
 
+        // Transform each item in the paginator using the RecipeResource
+        $recipes->getCollection()->transform(function ($recipe) {
+            return (new RecipeResource($recipe))->toArray(request());
+        });
+
         return Inertia::render('Recipes/Search', [
-            'recipes' => RecipeResource::collection($recipes)->response()->getData(true),
+            'recipes' => $recipes,
             'filters' => ['search' => $query],
         ]);
     }

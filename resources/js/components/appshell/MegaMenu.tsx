@@ -7,7 +7,7 @@ import { ChevronDown, ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
-import decorationSvg from "@images/svg/Pina-colada-bro.svg";
+import decorationSvg from '@images/svg/Pina-colada-bro.svg';
 import { useBlurStore } from '@/stores/useBlurStore';
 import { cn } from '@/lib/utils';
 
@@ -82,12 +82,7 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
     const toggleMenu = () => setIsOpen((prev) => !prev);
 
     return (
-        <div
-            ref={menuRef}
-            className={cn(
-                'inline-block mx-auto sm:px-1 md:px-2',
-            )}
-        >
+        <div ref={menuRef} className={cn('inline-block mx-auto sm:px-1 md:px-2')}>
             <button
                 onClick={toggleMenu}
                 className={cn(
@@ -177,12 +172,12 @@ export default function MegaMenu({ icon, title, className, columns, featured }: 
                                                     {featured.featuredIcon}
                                                     {featured.title}
                                                 </h3>
-                                                { featured.description && (
+                                                {featured.description && (
                                                     <p className="text-sm text-gray-600 dark:text-gray-400 font-yellowtail">
                                                         {featured.description}
                                                     </p>
                                                 )}
-                                                { featured.imageUrl && (
+                                                {featured.imageUrl && (
                                                     <img
                                                         src={featured.imageUrl}
                                                         alt={featured.title}

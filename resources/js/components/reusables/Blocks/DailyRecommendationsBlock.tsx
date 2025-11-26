@@ -1,13 +1,13 @@
 import Carousel from '@/components/reusables/Carousel/Index';
 
-import cookingBro from "@images/svg/Cooking-bro.svg";
-import chefBro from "@images/svg/Chef-bro.svg";
+import cookingBro from '@images/svg/Cooking-bro.svg';
+import chefBro from '@images/svg/Chef-bro.svg';
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { Recipe } from '@/types/Recipe';
 
 interface DailyRecommendationsBlockProps {
-    recipes: Recipe[]
+    recipes: Recipe[];
 }
 
 /**
@@ -18,10 +18,12 @@ interface DailyRecommendationsBlockProps {
 export default function DailyRecommendationsBlock({ recipes }: DailyRecommendationsBlockProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 mb-8">
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
                 <h2 className="text-2xl">Tagestipps</h2>
-                <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">vom Chef persönlich</h3>
+                <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">
+                    vom Chef persönlich
+                </h3>
                 <img
                     src={isDesktop ? chefBro : cookingBro}
                     className="w-full mx-auto sm:w-1/2 md:w-3/4 mb-5 sm:mb-0"

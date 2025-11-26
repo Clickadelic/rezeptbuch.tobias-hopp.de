@@ -4,11 +4,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
-import { RiHome2Line } from "react-icons/ri";
+import { RiHome2Line } from 'react-icons/ri';
 import AuthUser from '@/types/AuthUser';
 import { RiHomeLine } from 'react-icons/ri';
 
-import { LiaHomeSolid } from "react-icons/lia";
+import { LiaHomeSolid } from 'react-icons/lia';
 import headerImageLight from '../../../images/webp/User-Card-Header-Background-Light.webp';
 import headerImageDark from '../../../images/webp/User-Card-Header-Background-Dark.webp';
 
@@ -16,9 +16,8 @@ import { cn } from '@/lib/utils';
 
 import { useDarkMode } from '@/hooks/useDarkMode';
 
-
 interface UserCardProps {
-    user: AuthUser
+    user: AuthUser;
 }
 
 export default function UserCard({ user }: UserCardProps) {
@@ -45,12 +44,17 @@ export default function UserCard({ user }: UserCardProps) {
                     />
                     {user.website_url && (
                         <div className="absolute -bottom-1 -right-1 rounded-full bg-accent border border-gray-200 dark:border-gray-800 p-1.5 shadow-lg">
-                            <a href={user.website_url} className="target-reset text-primary hover:text-emerald-600 dark:hover:text-emerald-600" title="Zur Webseite" target="_blank" aria-label="Zur Webseite">
+                            <a
+                                href={user.website_url}
+                                className="target-reset text-primary hover:text-emerald-600 dark:hover:text-emerald-600"
+                                title="Zur Webseite"
+                                target="_blank"
+                                aria-label="Zur Webseite"
+                            >
                                 <LiaHomeSolid className="size-4" />
                             </a>
                         </div>
                     )}
-                    
                 </div>
             </div>
 
@@ -58,7 +62,7 @@ export default function UserCard({ user }: UserCardProps) {
             <div className="px-6 pb-6 pt-4 text-center">
                 <h3 className="text-xl text-gray-800 dark:text-gray-200">{user?.name}</h3>
                 <p className="text-sm text-muted-foreground">@{user?.name}</p>
-                
+
                 {/* Rating
                 <div className="mt-2 flex items-center justify-center gap-1">
                     <span className="text-sm text-card-foreground">4.9</span>
@@ -75,9 +79,10 @@ export default function UserCard({ user }: UserCardProps) {
 
                 {/* Bio */}
                 <div className="h-12 mt-5 flex flex-col items-center justify-start">
-                    <p className="text-md leading-relaxed line-clamp-2 font-yellowtail text-gray-800 dark:text-gray-200">{user?.biotext || 'Profilbeschreibung'}</p>
+                    <p className="text-md leading-relaxed line-clamp-2 font-yellowtail text-gray-800 dark:text-gray-200">
+                        {user?.biotext || 'Profilbeschreibung'}
+                    </p>
                 </div>
-                
 
                 {/* Stats */}
                 <div className="mt-5 flex items-center justify-center gap-6 border-t border-gray-200 dark:border-gray-800 py-4">
@@ -90,7 +95,9 @@ export default function UserCard({ user }: UserCardProps) {
                         <div className="text-xl text-card-foreground">
                             {user?.comments_count || 0}
                         </div>
-                        <div className="text-xs text-muted-foreground">{user?.comments_count === 1 ? 'Kommentar' : 'Kommentare'}</div>
+                        <div className="text-xs text-muted-foreground">
+                            {user?.comments_count === 1 ? 'Kommentar' : 'Kommentare'}
+                        </div>
                     </div>
                 </div>
             </div>

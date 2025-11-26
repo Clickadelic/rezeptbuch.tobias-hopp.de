@@ -2,7 +2,7 @@ import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
-import decorationSvg from "@images/svg/Hamburger-bro.svg";
+import decorationSvg from '@images/svg/Hamburger-bro.svg';
 
 export default function UnnamedBlock() {
     const recommendedRecipes = usePage<SharedPageProps>().props.recipes;
@@ -20,7 +20,6 @@ export default function UnnamedBlock() {
                     alt="Chef Tobias"
                 />
             </div>
-            
         </div>
     );
 }

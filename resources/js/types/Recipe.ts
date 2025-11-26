@@ -27,6 +27,7 @@ export type Recipe = {
     community_rating: number;
     community_votes: number;
     user_vote?: number | null;
+    comments_count?: number;
     created_at: string;
     updated_at: string;
 };

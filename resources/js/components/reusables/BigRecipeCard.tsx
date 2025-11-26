@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
-
+import { TfiCommentAlt } from 'react-icons/tfi';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 import { LuUtensilsCrossed } from 'react-icons/lu';
@@ -61,12 +61,16 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
                 className="border border-transparent hover:border-primary animate ease-in-out duration-300 rounded-lg"
             >
                 <CardHeader className="relative w-full h-auto p-0 overflow-hidden rounded-lg">
-                    <FavoriteButton recipeId={recipe?.id} className="absolute top-1 left-1 z-50" />
+                    <FavoriteButton
+                        recipeId={recipe?.id}
+                        isFavorite={recipe?.is_favorite}
+                        className="absolute top-1 left-1 z-50"
+                    />
                     <RecipeImageBlock recipe={recipe as Recipe} />
                 </CardHeader>
             </Link>
             <CardContent className="relative">
-                <CardDescription className="relative mt-2">
+                <CardDescription className="relative mt-2 mb-20">
                     <ContextMenu
                         recipe={recipe as Recipe}
                         className="absolute top-1 -right-1 z-50"
@@ -78,8 +82,16 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
                         {recipe?.name}
                     </h4>
                 </CardDescription>
-                <div className="flex gap-2 justify-between text-sm">
+        
+                
+                <div className="flex gap-2 justify-between text-sm mb-1">
                     <CategoryCardBlock recipe={recipe as Recipe} />
+                    <div className="text-gray-800 dark:text-gray-200 text-sm">
+                        <GoClock className="inline-flex size-4 mr-1 -mt-1 text-primary" />
+                        {recipe?.preparation_time} Minuten
+                    </div>
+                </div>
+                <div className="w-full flex justify-between gap-2">
                     <div className="flex justify-center items-center gap-1 text-sm">
                         <Star className="inline-flex size-4 mr-1 -mt-.5 text-yellow-500 fill-yellow-500" />
                         <span className="text-gray-800 dark:text-gray-200">
@@ -90,14 +102,9 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
                             {recipe?.community_votes}
                         </span>
                     </div>
-                </div>
-                <div className="w-full flex justify-between gap-2 mt-3">
                     <div className="text-gray-800 dark:text-gray-200 text-sm">
-                        <GoClock className="inline-flex size-4 mr-1 -mt-1 text-primary" />
-                        {recipe?.preparation_time} Minuten
-                    </div>
-                    <div className="text-gray-800 dark:text-gray-200 text-sm">
-                        {/* <span>{recipe?.comments?.total || 0} Kommentare</span> */}
+                        {recipe?.comments_count ?? 0}{' '}
+                        {recipe?.comments_count === 1 ? 'Kommentar' : 'Kommentare'}
                     </div>
                 </div>
             </CardContent>

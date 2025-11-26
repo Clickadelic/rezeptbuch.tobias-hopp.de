@@ -24,6 +24,7 @@ class PageController extends Controller
 
         // Cocktails
         $cocktails = Recipe::with(['media','category','user:id,name,avatar'])
+            ->withCount('comments')
             ->inRandomOrder()
             ->where('status', 'published')
             ->where('category_id', 4)
@@ -31,6 +32,7 @@ class PageController extends Controller
 
         // Other Recipes
         $recipes = Recipe::with(['media','category','user:id,name,avatar'])
+            ->withCount('comments')
             ->inRandomOrder()
             ->where('status', 'published')
             ->where('category_id', '!=', 4)

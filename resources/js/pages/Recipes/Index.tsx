@@ -29,7 +29,7 @@ export default function Recipes() {
             title="Rezepte"
             description="Alle Rezepte in der Übersicht. Hier findest Du jedes Rezept."
         >
-            {/* 2. Grid-Layout mit Iteration */}
+
             {hasRecipes ? (
                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
                     {/* Iteration mit der gewünschten RecipeCard und korrektem 'key' */}
@@ -45,10 +45,8 @@ export default function Recipes() {
                 </div>
             )}
             
-            {/* 3. Paginierung */}
             {recipes && recipes.links && hasRecipes && (
                 <Pagination 
-                    // Annahme: links liegt direkt im recipes-Objekt (Inertia Paginator-Format)
                     links={recipes.links} 
                     className="mt-4 sm:mt-8 xl:mt-12" 
                 />

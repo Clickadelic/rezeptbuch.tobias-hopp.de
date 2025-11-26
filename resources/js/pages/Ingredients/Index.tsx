@@ -1,6 +1,6 @@
 import NoSidebarsLayout from '@/layouts/NoSidebarsLayout';
 import IngredientDirectory from '@/components/template-views/IngredientsDirectory';
-import imgUrl from "@images/svg/Fruit-basket-bro.svg";
+import imgUrl from "@images/svg/Taken-bro.svg";
 import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import { TbSalt } from 'react-icons/tb';
 

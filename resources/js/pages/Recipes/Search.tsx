@@ -2,6 +2,7 @@ import { usePage } from '@inertiajs/react';
 
 import Pagination from '@/components/reusables/Pagination';
 import RecipeCard from '@/components/reusables/RecipeCard';
+import BigRecipeCard from '@/components/reusables/BigRecipeCard';
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import { SharedPageProps } from '@/types';
@@ -22,7 +23,7 @@ export default function Search() {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-5">
                     {recipes.data.map((recipe: Recipe) => (
                         <li key={recipe.id}>
-                            <RecipeCard recipe={recipe} />
+                            <BigRecipeCard recipe={recipe} />
                         </li>
                     ))}
                 </ul>

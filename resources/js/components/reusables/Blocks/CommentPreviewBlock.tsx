@@ -17,7 +17,10 @@ export default function CommentPreviewBlock({ recipe, className }: CommentPrevie
     return (
         <span className={cn('flex justify-start gap-2 items-center text-sm', className)}>
             <TfiCommentAlt className="text-gray-600 dark:text-gray-400" />
-            <span>12 Kommentare</span>
+            <span>
+                {recipe.comments_count ?? 0}{' '}
+                {recipe.comments_count === 1 ? 'Kommentar' : 'Kommentare'}
+            </span>
         </span>
     );
 }

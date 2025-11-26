@@ -34,6 +34,9 @@ class RecipeResource extends JsonResource
             'created_at' => optional($this->created_at)->toDateTimeString(),
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
 
+            // Anzahl der Kommentare (Top-Level)
+            'comments_count' => $this->comments_count ?? $this->comments()->count(),
+
             // Zutaten mit Pivot-Daten
             'ingredients' => $this->ingredients->map(function ($ingredient) {
                 return [

@@ -28,8 +28,8 @@ class RecipeController extends Controller
                 'media',
                 'category',
                 'user:id,name,avatar',
-                'comments',
             ])
+            ->withCount('comments')
             ->where('status', 'published')
             ->orderBy('created_at', 'desc')
             ->paginate(25);

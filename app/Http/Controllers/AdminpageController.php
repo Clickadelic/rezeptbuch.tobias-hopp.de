@@ -45,11 +45,11 @@ class AdminpageController extends Controller
     *
     * @param User $user The user object, containing the user to be destroyed
     *
-    * @return \Illuminate\Http\JsonResponse A JSON response, containing a success flag
+    * @return \\Illuminate\\Http\\RedirectResponse Redirects back to the admin users view
     */
     public function destroy(User $user)
     {
-        if ($user->id === auth()->id()) {
+        if ($user->id === Auth::id()) {
             return back()->withErrors(['message' => 'Du kannst dich nicht selbst löschen.']);
         }
 
@@ -70,6 +70,15 @@ class AdminpageController extends Controller
     {
         // Erwartet ein Array von Rollen
         $roles = $request->input('roles', []);
+
+        // Optional: verhindern, dass sich ein Admin selbst die Admin-Rolle entzieht
+        if ($user->id === Auth::id() && !in_array('admin', $roles, true)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Du kannst deine eigene Admin-Rolle nicht entfernen.',
+            ], 422);
+        }
+
         // Alle Rollen synchronisieren
         $user->syncRoles($roles);
 

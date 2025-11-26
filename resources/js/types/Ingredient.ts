@@ -9,7 +9,13 @@ export type RecipeIngredientPivot = {
 export interface Ingredient {
     id: string;
     name: string;
-    user_id: number;
+    user_id?: number; // optional: RecipeResource ingredients do not include user_id
+
+    // For RecipeResource-mapped ingredients on the frontend
+    quantity?: string | number;
+    unit?: string;
+
+    // For Eloquent-loaded ingredients with pivot data (e.g. in edit forms)
     pivot?: {
         quantity: string;
         unit: string;

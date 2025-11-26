@@ -20,11 +20,11 @@ export default function AuthTeaserBox({ className }: AuthTeaserBlockProps) {
     const { auth } = usePage<SharedPageProps>().props;
     return (
         <div className={cn('flex flex-col gap-2 items-center justify-center my-16', className)}>
-            <h2 className="flex gap-2 text-3xl font-roboto-condensed">
+            <h2 className="flex gap-2 text-2xl font-roboto-condensed">
                 <BsJournalBookmark className="text-primary size-6 mt-1" />
                 Rezeptbuch
             </h2>
-            <h3 className="text-2xl text-gray-500 dark:text-gray-400 font-yellowtail">
+            <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">
                 praktisch - digital
             </h3>
             <div className="flex gap-2 mt-5">

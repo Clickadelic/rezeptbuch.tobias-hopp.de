@@ -13,7 +13,7 @@ interface CategoryCardBlockProps {
 
 export default function CategoryCardBlock({ recipe, className }: CategoryCardBlockProps) {
     return (
-        <div className={cn("flex gap-2 mt-3", className)}>
+        <div className={cn("flex gap-2", className)}>
             {recipe && recipe.category && (
                 <span className="text-primary">
                     {IconMap[recipe.category.slug ?? ''] ?? (

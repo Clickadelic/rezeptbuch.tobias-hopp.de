@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\RatingController;
+use App\Http\Controllers\RecipeRatingController;
 use App\Http\Controllers\CommentController;
 
 Route::prefix('/rezepte')->group(function () {
@@ -19,16 +19,15 @@ Route::prefix('/rezepte')->group(function () {
     Route::post('/{recipe}/toggle-publish', [RecipeController::class, 'togglePublish'])->name('recipes.togglePublish');
 
     // Rate recipe
-    Route::post('/{recipe}/rate', [RatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
+    Route::post('/{recipe:id}/rate', [RecipeRatingController::class, 'store'])->middleware('auth')->name('recipes.rate');
 
     // Comments (JSON + Create)
     Route::get('/{recipe}/comments', [CommentController::class, 'index'])->name('comments.index');
     Route::post('/{recipe}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
-
     Route::patch('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
 
     // Duplicate Post
-    Route::post('/recipes/{recipe:slug}/duplicate', [RecipeController::class, 'duplicate'])->name('recipes.duplicate');
+    Route::post('/{recipe:slug}/duplicate', [RecipeController::class, 'duplicate'])->name('recipes.duplicate');
 });
 

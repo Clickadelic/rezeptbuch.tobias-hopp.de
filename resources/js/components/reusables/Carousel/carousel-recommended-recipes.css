@@ -1,0 +1,76 @@
+.carousel-recommended-recipes {
+    scroll-behavior: smooth;
+    anchor-name: --carousel-recommended-recipes;
+    scroll-snap-type: x mandatory;
+    scroll-marker-group: after;
+}
+
+.carousel-recommended-recipes::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-recommended-recipes::scroll-marker-group {
+    position: relative;
+    top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.card-recommended-recipe::scroll-marker {
+    content: ' ';
+    height: 0.75rem;
+    width: 0.75rem;
+    background-color: var(--color-gray-200);
+    border-radius: 50%;
+}
+
+.card-recommended-recipe::scroll-marker:target-current {
+    background-color: var(--color-primary);
+}
+
+.carousel-recommended-recipes::scroll-button(left),
+.carousel-recommended-recipes::scroll-button(right) {
+    content: '\2039';
+    border: none;
+    font-size: 2rem;
+    color: var(--color-white);
+    height: 40px;
+    width: 40px;
+    background: var(--color-primary);
+    border-radius: 0.25rem;
+    padding-bottom: 0.1em;
+    cursor: pointer;
+    position: fixed;
+    position-anchor: --carousel-recommended-recipes;
+    position-area: left center;
+    translate: 50%;
+    border-radius: 50%;
+}
+
+.carousel-recommended-recipes::scroll-button(right) {
+    content: '\203A';
+    position-anchor: --carousel-recommended-recipes;
+    position-area: right center;
+    translate: -50%;
+}
+
+/* End of Cards / Disabled */
+.carousel-recommended-recipes::scroll-button(left):disabled,
+.carousel-recommended-recipes::scroll-button(right):disabled {
+    opacity: 0;
+    cursor: auto;
+}
+
+.card-recommended-recipe {
+    flex: 0 0 20em;
+    border-radius: 0.5em;
+    align-content: center;
+    scroll-snap-align: start;
+}
+
+@media (max-width: 500px) {
+    .card-recommended-recipe {
+        flex: 0 0 100%;
+    }
+}

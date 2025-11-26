@@ -3,9 +3,9 @@ import { Link } from '@inertiajs/react';
 
 import TitleBlock from './Blocks/TitleBlock';
 import { FaQ } from 'react-icons/fa6';
-
+import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
+import { Button } from '@/components/ui/button';
 
 interface FaqAccordeonProps {
     className?: string
@@ -26,7 +26,7 @@ export default function FaqAccordeon({ className, isExtendet = false }: FaqAccor
                 icon={<FaQ className="text-primary size-6 mt-1" />}
             />
             <div className={cn("w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8", className)}>
-                <Accordion type="single" collapsible>
+                <Accordion type="single" collapsible className="mb-8">
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="font-medium text-xl">
                             Warum diese Webseite?
@@ -68,35 +68,37 @@ export default function FaqAccordeon({ className, isExtendet = false }: FaqAccor
                             <br />
                             <p>Versteckte Kosten gibt es nicht. Schau' in die <Link href="/nutzungsbedingungen" title="Nutzungsbedingungen" className="underline underline-offset-2 text-primary hover:text-emerald-600">Nutzungsbedingungen</Link>.</p>
                         </AccordionContent>
-                    </AccordionItem>
-                    
+                    </AccordionItem> 
                     {isExtendet && (
-                    <>
-                        <AccordionItem value="item-4">
-                            <AccordionTrigger className="font-medium text-xl">
-                                Ist die Registrierung sicher?
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                <p>Ja, ist sie.</p>
-                                <br />
-                                <p>Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung und einen sicheren Registrierungsprozess.</p>
-                                <br />
-                                <p>Weitere Informationen zu diesem Thema gibt es aus Sicherheitsgründen nicht.</p>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-5">
-                            <AccordionTrigger className="font-medium text-xl">
-                                Frei
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                <p>Freitext</p>
-                                <br />
-                                <p>Freitext</p>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </>
+                        <>
+                            <AccordionItem value="item-4">
+                                <AccordionTrigger className="font-medium text-xl">
+                                    Ist die Registrierung sicher?
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <p>Ja, ist sie.</p>
+                                    <br />
+                                    <p>Die Webseite bzw. App verwendet moderne Sicherheitsstandards wie z.B. eine sichere Verbindung und einen sicheren Registrierungsprozess.</p>
+                                    <br />
+                                    <p>Weitere Informationen zu diesem Thema gibt es aus Sicherheitsgründen nicht.</p>
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-5">
+                                <AccordionTrigger className="font-medium text-xl">
+                                    Frei
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <p>Freitext</p>
+                                    <br />
+                                    <p>Freitext</p>
+                                </AccordionContent>
+                            </AccordionItem>
+                        </>
                     )}
                 </Accordion>
+                <Button asChild variant="primary" className="flex w-48 mx-auto">
+                    <Link href="/fragen-und-anworten" title="Zu den Tipps">Anleitung, so geht's<ArrowRight /></Link>
+                </Button>
             </div>
         </>
     );

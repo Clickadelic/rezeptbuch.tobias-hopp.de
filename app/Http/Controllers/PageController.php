@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Recipe;
+use App\Models\Ingredient;
 use App\Http\Resources\RecipeResource;
 use App\Http\Resources\MediaResource;
 use App\Http\Resources\UserPublicResource;
@@ -40,10 +41,11 @@ class PageController extends Controller
             ->paginate(5);
 
         $totalRecipeCount = Recipe::where('status', 'published')->count();
-
+        $totalIngredientCount = Ingredient::all()->count();
         return Inertia::render('Frontpage', [
             'latestRecipe'    => $latestRecipe ? new RecipeResource($latestRecipe) : null,
             'totalRecipeCount'=> $totalRecipeCount,
+            'totalIngredientCount' => $totalIngredientCount,
             'recipes'         => RecipeResource::collection($recipes)->response()->getData(true),
             'cocktails'       => RecipeResource::collection($cocktails)->response()->getData(true),
         ]);

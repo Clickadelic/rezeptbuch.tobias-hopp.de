@@ -43,8 +43,8 @@ export interface SharedPageProps extends InertiaPageProps {
     latestRecipe?: Recipe;
     // Dashboard Data Types
     latestRecipes?: Paginated<Recipe>;
-    totalIngredientCount: number;
     totalRecipeCount: number;
+    totalIngredientCount: number;
     totalUserRecipes?: Paginated<Recipe>;
     totalUserRecipeCount: number;
     totalUserIngredients: Ingredient[];

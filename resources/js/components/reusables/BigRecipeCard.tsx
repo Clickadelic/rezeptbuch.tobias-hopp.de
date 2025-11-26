@@ -32,7 +32,7 @@ import { Recipe } from '@/types/Recipe';
 
 interface BigRecipeCardProps {
     className?: string
-    recipe?: Recipe
+    recipe: Recipe
 }
 
 /**
@@ -70,21 +70,19 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
                         {recipe?.preparation_time} Minuten
                     </div>
                     <div className="text-gray-800 dark:text-gray-200 text-sm">
-                        <span>{recipe?.comments?.total || 0} Kommentare</span>
+                        {/* <span>{recipe?.comments?.total || 0} Kommentare</span> */}
                     </div>
                 </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-1 justify-between p-4">
-
-                    <Button variant="primary" className="group" asChild>
-                        <Link href={route('recipes.show', { recipe: recipe?.slug })} className="w-full shadow-lg" title="Zum Rezept">
-                            Zum Rezept
-                            <ArrowRight className="-mt-[1px] size-4 transition-all group-hover:translate-x-1" />
-                        </Link>
+                    <Button variant="primary" className="w-full group" asChild>
+                        {recipe?.slug && (
+                            <Link href={route('recipes.show', { recipe: recipe.slug })}>
+                                Zum Rezept
+                                <ArrowRight className="-mt-[1px] size-4 transition-all group-hover:translate-x-1" />
+                            </Link>
+                        )}
                     </Button>
-
-                        
-
             </CardFooter>
         </Card>
     )

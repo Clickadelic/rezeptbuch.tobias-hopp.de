@@ -35,7 +35,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
 
     console.log('Related', is_favorite);
     console.log('Is favorite', is_favorite);
-
+    console.log('Recipe', recipe);
     return (
         <SidebarLeftLayout
             title={`${recipe.name} - Rezeptdetails`}
@@ -75,10 +75,10 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 <Seperator style="question-mark" />
                 <RecipeStarRating recipe={recipe} />
                 <CommentsDirectory recipeId={recipe.id!} />
-                <RelatedRecipesCarousel
+                {/* <RelatedRecipesCarousel
                     recipes={related as Recipe[]}
                     categoryName={recipe.category?.name}
-                />
+                /> */}
             </div>
         </SidebarLeftLayout>
     );

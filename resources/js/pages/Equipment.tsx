@@ -17,15 +17,15 @@ export default function Equipment() {
         >
             <section>
                 <p>
-                    Natürlich lässt sich jedes Thema im Bereich Kochen und Küche ins Extreme
-                    bezüglich Ausstattung und Küchentools. Hier ist primär das Ziel sein, mit einer
+                    Natürlich kann jedes Thema im Bereich Kochen und Küche ins Extreme
+                    bezüglich Ausstattung und Küchentools ausarten. Hier ist primär das Ziel sein, mit einer
                     normalen, durchschnittlichen Küchenausstattung ein leckeres Essen oder einen
                     Drink zuzubereiten.
                 </p>
                 <br />
                 <p>
                     Reguläre Dinge wie Töpfe, Pfannen, Teller usw. sind ja in der Regel vorhanden.
-                    Dinge die darüber hinaus gehen wie z.B. Waffeleisen, Pizzaofen gehören dann
+                    Dinge die darüber hinaus gehen wie z.B. Waffeleisen, Pizzaofen oder Konvektomat gehören dann
                     schon zum erweiterten Werkzeugkasten.
                 </p>
                 <br />

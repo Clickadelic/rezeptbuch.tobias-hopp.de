@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\MediaResource;
 
+use Illuminate\Support\Facades\Log;
+
 class RecipeResource extends JsonResource
 {
     /**
@@ -32,6 +34,16 @@ class RecipeResource extends JsonResource
             'created_at' => optional($this->created_at)->toDateTimeString(),
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
 
+            // Zutaten mit Pivot-Daten
+            'ingredients' => $this->ingredients->map(function ($ingredient) {
+                return [
+                    'id'       => $ingredient->id,
+                    'name'     => $ingredient->name,
+                    'quantity' => $ingredient->pivot->quantity,
+                    'unit'     => $ingredient->pivot->unit,
+                ];
+            }),
+
             // Media wie bisher über Resource
             'media' => $this->whenLoaded('media', fn() =>
                 $this->media->map(fn($m) => (new MediaResource($m))->toArray($request))
@@ -50,18 +62,6 @@ class RecipeResource extends JsonResource
                 'name' => $this->user->name,
                 'avatar' => $this->user->avatar_url,
             ]),
-
-            // Zutaten mit Pivot-Daten
-            'ingredients' => $this->whenLoaded('ingredients', function () {
-                return $this->ingredients->map(function ($ingredient) {
-                    return [
-                        'id'       => $ingredient->id,
-                        'name'     => $ingredient->name,
-                        'quantity' => optional($ingredient->pivot)->quantity,
-                        'unit'     => optional($ingredient->pivot)->unit,
-                    ];
-                });
-            }),
 
             'user_id' => $this->user_id,
 

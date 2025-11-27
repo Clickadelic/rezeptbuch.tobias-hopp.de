@@ -39,11 +39,12 @@ class HandleInertiaRequests extends Middleware
                 'success' => fn() => $request->session()->get('success'),
                 'error' => fn() => $request->session()->get('error'),
             ],
-            'auth' => [
+'auth' => [
                 'user' => fn() => $request->user() ? [
                     'id' => $request->user()->id,
                     'name' => $request->user()->name,
-                    // 'email' => $request->user()->email,
+                    'email' => $request->user()->email,
+                    'email_verified_at' => $request->user()->email_verified_at,
                     'avatar' => $request->user()->avatar,
                     'biotext' => $request->user()->biotext,
                     'website_url' => $request->user()->website_url,

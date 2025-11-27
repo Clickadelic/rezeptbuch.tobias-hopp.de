@@ -123,7 +123,7 @@ export default function ContextMenu({
                             <DropdownMenuItem>
                                 <Link
                                     href={route('recipes.edit', recipe?.slug)}
-                                    className="w-full flex flex-row items-center"
+                                    className="w-full flex flex-row items-center hover:text-gray-800 dark:hover:text-gray-400"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <MdOutlineEdit className="size-5 mr-2" />

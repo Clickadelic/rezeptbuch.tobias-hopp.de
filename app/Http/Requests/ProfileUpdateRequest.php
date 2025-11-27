@@ -16,8 +16,10 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            // Allow partial updates: if a field is present, validate it; otherwise ignore
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
             'email' => [
+                'sometimes',
                 'required',
                 'string',
                 'lowercase',
@@ -26,9 +28,9 @@ class ProfileUpdateRequest extends FormRequest
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
             'avatar' => ['nullable', 'image', 'max:2048'],
-            'biotext' => ['nullable', 'string', 'max:255'],
-            'website_url' => ['nullable', 'string', 'max:255'],
-            'rank' => ['nullable', 'string', 'max:255'],
+            'biotext' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'website_url' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'rank' => ['sometimes', 'nullable', 'string', 'max:255'],
         ];
     }
 }

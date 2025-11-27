@@ -63,7 +63,8 @@ class RecipeResource extends JsonResource
             'user' => $this->whenLoaded('user', fn() => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
-                'avatar' => $this->user->avatar_url,
+                // use raw avatar path like other parts of the app (e.g. auth.user)
+                'avatar' => $this->user->avatar,
             ]),
 
             'user_id' => $this->user_id,

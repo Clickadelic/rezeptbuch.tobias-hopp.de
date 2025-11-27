@@ -156,7 +156,7 @@ export default function Footer({ className }: FooterProps) {
                         />
                         <FooterColumn
                             title="Installier' die App"
-                            columnIcon={<BsApp />}
+                            columnIcon={<AiOutlineAppstoreAdd />}
                             className="mx-auto max-w-[21.5rem] sm:w-full"
                             children={column4Content}
                         />

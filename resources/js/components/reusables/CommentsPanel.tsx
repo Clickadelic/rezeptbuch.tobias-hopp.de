@@ -25,7 +25,7 @@ export default function CommentsPanel({ comments, className }: CommentsPanelProp
             <h3 className="text-lg mb-3 flex gap-2">
                 <TfiCommentAlt className="mt-1 text-primary" /> Kommentare {comments?.total || 0}
             </h3>
-            {/* Wenn keine Rezepte vorhanden */}
+            {/* Wenn keine Kommentare vorhanden */}
             {(!comments || comments.data.length === 0) && (
                 <div className="flex flex-col gap-1 items-center justify-center">
                     <h4 className="text-gray-600 dark:text-gray-400 text-center mb-2">

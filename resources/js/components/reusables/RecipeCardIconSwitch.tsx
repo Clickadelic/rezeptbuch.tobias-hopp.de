@@ -9,15 +9,15 @@ import { GiCakeSlice } from 'react-icons/gi';
 import { GiCrystalBars } from 'react-icons/gi';
 import { cn } from '@/lib/utils';
 
-interface CategoryIconSwitcher {
+interface RecipeCardIconSwitchProps {
     recipe: Recipe;
     iconColor?: string;
 }
 
-export default function CategoryIconSwitcher({
+export default function RecipeCardIconSwitch({
     recipe,
     iconColor = 'text-gray-400',
-}: CategoryIconSwitcher) {
+}: RecipeCardIconSwitchProps) {
     let categoryIcon = (
         <BiDish
             className={cn(

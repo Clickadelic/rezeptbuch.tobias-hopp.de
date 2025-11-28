@@ -1,42 +1,24 @@
-import { cn } from '@/lib/utils';
-import {
-    Card,
-    CardAction,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
 import { Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
-import { TfiCommentAlt } from 'react-icons/tfi';
-import { ChevronDown, ArrowRight } from 'lucide-react';
-import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
-import { LuUtensilsCrossed } from 'react-icons/lu';
-import { PiCookingPot } from 'react-icons/pi';
-import { LiaCocktailSolid } from 'react-icons/lia';
-import { RiCake3Line } from 'react-icons/ri';
-import { GiCakeSlice, GiCrystalBars } from 'react-icons/gi';
-import { TbSalad } from 'react-icons/tb';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { IoHeart } from 'react-icons/io5';
-import { FaHeart } from 'react-icons/fa6';
-import { GoClock } from 'react-icons/go';
-import { VscSymbolEvent } from 'react-icons/vsc';
 
-import CategoryCardBlock from '@/components/reusables/CategoryCardBlock';
-import ContextMenu from '@/components/reusables/ContextMenu';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
-import RecipeStarRating from '@/components/reusables/RecipeStarRating';
-import Avatar from '@/components/reusables/Avatar';
-import AvatarBlock from '@/components/reusables/Blocks/AvatarBlock';
-import CommentPreviewBlock from '@/components/reusables/Blocks/CommentPreviewBlock';
+import RecipeContextMenu from '@/components/reusables/RecipeContextMenu';
 
-import AuthUser from '@/types/AuthUser';
-import { IconMap } from '@/lib/icon-map';
+import RecipeCardDifficulty from '@/components/reusables/RecipeCardDifficulty';
+import RecipeCardCategory from '@/components/reusables/RecipeCardCategory';
+import RecipeCardPreparationTime from '@/components/reusables/RecipeCardPreparationTime';
+import RecipeCardAuthor from '@/components/reusables/RecipeCardAuthor';
+import RecipeCardName from '@/components/reusables/RecipeCardName';
+import RecipeCardPunchline from '@/components/reusables/RecipeCardPunchline';
+import RecipeCardComment from '@/components/reusables/RecipeCardComment';
+import RecipeCardRating from '@/components/reusables/RecipeCardRating';
+
+import { ArrowRight } from 'lucide-react';
+
 import { Recipe } from '@/types/Recipe';
+import { cn } from '@/lib/utils';
 
 interface BigRecipeCardProps {
     className?: string;
@@ -52,7 +34,7 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
     return (
         <Card
             className={cn(
-                'shadow-xs hover:shadow-md animate ease-in-out duration-300 flex flex-col bg-gray-100 dark:bg-gray-900 p-0 rounded-b-xl border-b border-gray-200 dark:border-gray-700',
+                'shadow-xs hover:shadow-md animate ease-in-out duration-300 flex flex-col bg-gray-100 dark:bg-gray-900 p-0 rounded-b-xl border-b border-gray-200 dark:border-gray-700 mb-5 sm:mb-0',
                 className,
             )}
         >
@@ -61,54 +43,31 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
                 className="border border-transparent hover:border-primary animate ease-in-out duration-300 rounded-lg"
             >
                 <CardHeader className="relative w-full h-auto p-0 overflow-hidden rounded-lg">
-                    <FavoriteButton
-                        recipeId={recipe?.id}
-                        isFavorite={recipe?.is_favorite}
-                        className="absolute top-1 left-1 z-50"
-                    />
-                    <RecipeImageBlock recipe={recipe as Recipe} />
+                    <FavoriteButton recipeId={recipe.id} isFavorite={recipe?.is_favorite} className="absolute top-2 left-1 z-50" />
+                    <RecipeImageBlock recipe={recipe} />
                 </CardHeader>
             </Link>
-            <CardContent className="relative">
-                <CardDescription className="relative mt-2 mb-20">
-                    <ContextMenu
-                        recipe={recipe as Recipe}
-                        className="absolute top-1 -right-1 z-50"
-                    />
-                    <h3 className=" text-gray-600 dark:text-gray-400 font-yellowtail min-h-5 line-clamp-1 mr-8">
-                        {recipe?.punchline}
-                    </h3>
-                    <h4 className="text-base text-gray-800 dark:text-gray-200 line-clamp-2 min-h-12 leading-snug mt-1">
-                        {recipe?.name}
-                    </h4>
+            <CardContent>
+                <CardDescription className="p-4">
+                    <div className="relative flex gap-2 mb-2">
+                        <RecipeCardCategory recipe={recipe} />
+                        <RecipeContextMenu recipe={recipe} className="absolute -top-1 -right-1" />
+                    </div>
+                    <div className="flex flex-col justify-between mb-6">
+                        <RecipeCardPunchline recipe={recipe} />
+                        <RecipeCardName recipe={recipe} />
+                    </div>
+                    <div className="flex justify-between gap-2 mb-2">
+                        <RecipeCardDifficulty recipe={recipe} />
+                        <RecipeCardRating recipe={recipe} />
+                    </div>
+                    <div className="flex justify-between gap-2">
+                        <RecipeCardPreparationTime recipe={recipe} />
+                        <RecipeCardComment recipe={recipe} />
+                    </div>
                 </CardDescription>
-        
-                
-                <div className="flex gap-2 justify-between text-sm mb-1">
-                    <CategoryCardBlock recipe={recipe as Recipe} />
-                    <div className="text-gray-800 dark:text-gray-200 text-sm">
-                        <GoClock className="inline-flex size-4 mr-1 -mt-1 text-primary" />
-                        {recipe?.preparation_time} Minuten
-                    </div>
-                </div>
-                <div className="w-full flex justify-between gap-2">
-                    <div className="flex justify-center items-center gap-1 text-sm">
-                        <Star className="inline-flex size-4 mr-1 -mt-.5 text-yellow-500 fill-yellow-500" />
-                        <span className="text-gray-800 dark:text-gray-200">
-                            {recipe?.community_rating}
-                        </span>
-                        <span className="text-gray-800 dark:text-gray-200">/</span>
-                        <span className="text-gray-800 dark:text-gray-200">
-                            {recipe?.community_votes}
-                        </span>
-                    </div>
-                    <div className="text-gray-800 dark:text-gray-200 text-sm">
-                        {recipe?.comments_count ?? 0}{' '}
-                        {recipe?.comments_count === 1 ? 'Kommentar' : 'Kommentare'}
-                    </div>
-                </div>
             </CardContent>
-            <CardFooter className="flex flex-col gap-1 justify-between p-4">
+            <CardFooter className="px-4 pb-4">
                 <Button variant="primary" className="w-full group" asChild>
                     {recipe?.slug && (
                         <Link href={route('recipes.show', { recipe: recipe.slug })}>

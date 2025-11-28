@@ -1,4 +1,4 @@
-import ContextMenu from '@/components/reusables/ContextMenu';
+import ContextMenu from '@/components/reusables/RecipeContextMenu';
 import { Recipe } from '@/types/Recipe';
 
 import { cn } from '@/lib/utils';

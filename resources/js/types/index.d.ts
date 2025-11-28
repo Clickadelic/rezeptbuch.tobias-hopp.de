@@ -53,6 +53,9 @@ export interface SharedPageProps extends InertiaPageProps {
     userFavoritesCount: number;
     totalUserCount: number;
 
+    // Detailseite: verwandte Rezepte
+    related?: Recipe[];
+
     recipesUserCountByCategory: {
         [categoryName: string]: number;
     };

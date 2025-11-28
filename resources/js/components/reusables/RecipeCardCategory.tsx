@@ -14,7 +14,7 @@ export default function RecipeCardCategory({ recipe, className }: RecipeCardCate
     return (
         <div className={cn('flex gap-2', className)}>
             {recipe && recipe.category && (
-                <span className="text-primary">
+                <span className="text-primary mt-px">
                     {IconMap[recipe.category.slug ?? ''] ?? (
                         <LuUtensilsCrossed className="size-4 text-primary" />
                     )}

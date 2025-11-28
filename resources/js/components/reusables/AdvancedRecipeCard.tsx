@@ -33,7 +33,7 @@ export default function AdvancedRecipeCard({ recipe, className }: AdvancedRecipe
     return (
         <Card
             className={cn(
-                'animate ease-in-out duration-300flex flex-col p-0 bg-gray-100 dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700 shadow-xs mb-5 sm:mb-0',
+                'group hover:cursor-default animate ease-in-out duration-300flex flex-col p-0 bg-gray-100 dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700 shadow-xs hover:shadow mb-5 sm:mb-0',
                 className,
             )}
         >
@@ -53,8 +53,8 @@ export default function AdvancedRecipeCard({ recipe, className }: AdvancedRecipe
                         <RecipeContextMenu recipe={recipe} className="absolute -top-1 -right-1" />
                     </div>
                     <div className="flex flex-col justify-between mb-6">
-                        <RecipeCardPunchline recipe={recipe} />
-                        <RecipeCardName recipe={recipe} />
+                        <RecipeCardPunchline recipe={recipe} className="group-hover:text-primary text-gray-600 dark:text-gray-400" />
+                        <RecipeCardName recipe={recipe} className="group-hover:text-primary text-gray-800 dark:text-gray-200" />
                     </div>
                     <div className="flex justify-between gap-2 mb-2">
                         <RecipeCardDifficulty recipe={recipe} />
@@ -71,7 +71,7 @@ export default function AdvancedRecipeCard({ recipe, className }: AdvancedRecipe
                     {recipe?.slug && (
                         <Link href={route('recipes.show', { recipe: recipe.slug })}>
                             Zum Rezept
-                            <ArrowRight className="-mt-[1px] size-4 transition-all group-hover:translate-x-1" />
+                            <ArrowRight className="-mt-[1px] size-4 transition-all hover:translate-x-1" />
                         </Link>
                     )}
                 </Button>

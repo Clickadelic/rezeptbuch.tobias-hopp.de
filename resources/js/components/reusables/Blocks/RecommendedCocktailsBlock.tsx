@@ -15,7 +15,7 @@ export default function RecommendedCocktailsBlock({ recipes, className }: Recomm
             {/* Text & Image */}
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center order-1 lg:order-2">
                 <h2 className="text-2xl">Leckere Cocktails</h2>
-                <h3 className="text-xl text-gray-400 dark:text-gray-400 font-yellowtail">
+                <h3 className="text-xl text-gray-600 dark:text-gray-400 font-yellowtail">
                     für einen schönen Abend
                 </h3>
                 <img

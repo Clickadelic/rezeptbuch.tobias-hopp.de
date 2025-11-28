@@ -75,6 +75,7 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 <RelatedRecipesCarousel
                     recipes={related as Recipe[]}
                     categoryName={recipe.category?.name}
+                    carouselClassName="carousel"
                 />
             </div>
         </SidebarLeftLayout>

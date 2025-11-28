@@ -19,7 +19,7 @@ interface RecipeCardPreparationTimeProps {
  */
 export default function RecipeCardPreparationTime({ recipe, className }: RecipeCardPreparationTimeProps) {
     return (
-        <div className={cn("flex gap-2 items-center justify-start text-gray-800 dark:text-gray-200 text-sm", className)}>
+        <div className={cn("flex gap-2 items-center justify-start text-gray-800 dark:text-gray-200", className)}>
             <GoClock className="size-4 text-primary" />
             <span className="flex gap-1">
                 <span>{recipe?.preparation_time}</span>

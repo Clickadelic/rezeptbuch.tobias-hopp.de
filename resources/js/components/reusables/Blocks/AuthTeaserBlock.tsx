@@ -19,7 +19,7 @@ interface AuthTeaserBlockProps {
 export default function AuthTeaserBox({ className }: AuthTeaserBlockProps) {
     const { auth } = usePage<SharedPageProps>().props;
     return (
-        <div className={cn('flex flex-col gap-2 items-center justify-center my-16', className)}>
+        <div className={cn('flex flex-col gap-2 items-center justify-center', className)}>
             <h2 className="flex gap-2 text-2xl font-roboto-condensed">
                 <BsJournalBookmark className="text-primary size-6 mt-1" />
                 Rezeptbuch

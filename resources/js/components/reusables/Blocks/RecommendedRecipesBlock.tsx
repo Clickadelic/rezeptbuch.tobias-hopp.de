@@ -6,7 +6,7 @@ import chefBro from '@images/svg/Chef-bro.svg';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { Recipe } from '@/types/Recipe';
 
-interface DailyRecommendationsBlockProps {
+interface RecommendedRecipesBlockProps {
     recipes: Recipe[];
 }
 
@@ -15,10 +15,10 @@ interface DailyRecommendationsBlockProps {
  * The block contains a title, a personal message from the chef, and a carousel of recipe cards.
  * The layout of the block is responsive and changes depending on the screen size.
  */
-export default function DailyRecommendationsBlock({ recipes }: DailyRecommendationsBlockProps) {
+export default function RecommendedRecipesBlock({ recipes }: RecommendedRecipesBlockProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
                 <h2 className="text-2xl">Tagestipps</h2>
                 <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">
@@ -31,7 +31,7 @@ export default function DailyRecommendationsBlock({ recipes }: DailyRecommendati
                 />
             </div>
             <Carousel
-                wrapperClassname="lg:mt-40 col-span-2"
+                wrapperClassname="lg:mt-64 col-span-2"
                 carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800 carousel-recommended-recipes"
                 itemClassName="card-recommended-recipe"
                 recipes={recipes}

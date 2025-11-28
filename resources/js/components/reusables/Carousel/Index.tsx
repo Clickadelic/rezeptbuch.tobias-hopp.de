@@ -2,7 +2,7 @@
 import './carousel-recommended-recipes.css';
 import './carousel-recommended-cocktails.css';
 
-import RecipeCard from '@/components/reusables/RecipeCard';
+import SimpleRecipeCard from '@/components/reusables/SimpleRecipeCard';
 
 import { Recipe } from '@/types/Recipe';
 import { cn } from '@/lib/utils';
@@ -40,7 +40,7 @@ export default function Carousel({
         >
             <ul className={cn('flex w-full overflow-x-auto', carouselClassName)}>
                 {recipes?.map((recipe: Recipe) => (
-                    <RecipeCard className={itemClassName} key={recipe.id} recipe={recipe} />
+                    <SimpleRecipeCard className={itemClassName} key={recipe.id} recipe={recipe} />
                 ))}
                 {recipes?.length === 0 && (
                     <li

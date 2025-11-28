@@ -17,7 +17,7 @@ interface CategorySelectiopnsBlockProps {
 
 export default function CategorySelectionsBlock({ className }: CategorySelectiopnsBlockProps) {
     return (
-        <div className={cn('bg-gray-200 dark:bg-gray-700 my-8', className)}>
+        <div className={cn('bg-gray-200 dark:bg-gray-700', className)}>
             <ul
                 className={cn('grid grid-cols-2 lg:grid-cols-3 sm:gap-px')}
                 aria-roledescription="navigation"

@@ -19,17 +19,17 @@ import { ArrowRight } from 'lucide-react';
 import { Recipe } from '@/types/Recipe';
 import { cn } from '@/lib/utils';
 
-interface BigRecipeCardProps {
+interface AdvancedRecipeCardProps {
     className?: string;
     recipe: Recipe;
 }
 
 /**
  * Displays an overhauled recipe card with a larger image and more details.
- * @param {BigRecipeCardProps} props - properties of the component
+ * @param {AdvancedRecipeCardProps} props - properties of the component
  * @returns {JSX.Element} - the rendered component
  */
-export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps) {
+export default function AdvancedRecipeCard({ recipe, className }: AdvancedRecipeCardProps) {
     return (
         <Card
             className={cn(

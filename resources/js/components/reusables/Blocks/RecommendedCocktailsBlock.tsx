@@ -1,19 +1,21 @@
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Carousel from '@/components/reusables/Carousel/Index';
 import cocktailBro from '@images/svg/Cocktail-bartender-bro.svg';
 import { Recipe } from '@/types/Recipe';
 
-interface DailyRecommendationsBlockProps {
+import { cn } from '@/lib/utils';
+
+interface RecommendedCocktailsBlockProps {
     recipes: Recipe[];
+    className?: string;
 }
 
-export default function CocktailRecommendationsBlock({ recipes }: DailyRecommendationsBlockProps) {
+export default function RecommendedCocktailsBlock({ recipes, className }: RecommendedCocktailsBlockProps) {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8">
+        <div className={cn("grid grid-cols-1 lg:grid-cols-3 gap-5", className)}>
             {/* Text & Image */}
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center order-1 lg:order-2">
                 <h2 className="text-2xl">Leckere Cocktails</h2>
-                <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">
+                <h3 className="text-xl text-gray-400 dark:text-gray-400 font-yellowtail">
                     für einen schönen Abend
                 </h3>
                 <img
@@ -25,7 +27,7 @@ export default function CocktailRecommendationsBlock({ recipes }: DailyRecommend
 
             {/* Carousel */}
             <Carousel
-                wrapperClassname="col-span-1 lg:col-span-2 order-2 lg:order-1 lg:mt-40"
+                wrapperClassname="col-span-1 lg:col-span-2 order-2 lg:order-1 lg:mt-60"
                 carouselClassName="gap-5 rounded-lg bg-white dark:bg-gray-800 carousel-recommended-cocktails"
                 itemClassName="card-recommended-cocktail"
                 recipes={recipes}

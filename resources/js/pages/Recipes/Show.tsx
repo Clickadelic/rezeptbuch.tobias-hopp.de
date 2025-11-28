@@ -35,9 +35,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
     
     return (
         <SidebarLeftLayout
-            title={`${recipe.name} - Rezeptdetails`}
+            title="Rezeptdetails"
             sidebar={<MainSidebar />}
-            description={`Rezeptdetails`}
+            description={`Rezeptdetails - ${recipe.name}, ${recipe.punchline}, ${recipe.category?.name}`}
         >
             <div className="flex flex-col">
                 <div className="w-full flex flex-col sm:flex-row gap-5">

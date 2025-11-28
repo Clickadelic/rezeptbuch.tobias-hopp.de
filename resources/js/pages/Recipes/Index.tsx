@@ -37,7 +37,7 @@ export default function Recipes() {
                 </ul>
             ) : (
                 <div className="flex flex-col items-center justify-center py-12">
-                    <p className="text-xl text-gray-600 mb-4">
+                    <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
                         Zurzeit sind keine Rezepte vorhanden.
                     </p>
                 </div>

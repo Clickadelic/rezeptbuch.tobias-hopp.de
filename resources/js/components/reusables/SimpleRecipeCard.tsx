@@ -52,27 +52,29 @@ export default function SimpleRecipeCard({ recipe, className }: SimpleRecipeCard
                     </CardHeader>
                     <CardContent className="py-2 px-0 block text-lg font-medium transition-colors ease-in-out group-hover:text-primary leading-snug">
                         <div className="relative flex flex-row justify-between items-center gap-1 mb-5">
-                            <div className="w-full grow mr-8">
-                                <RecipeCardPunchline recipe={recipe} className="mx-2 transition-colors ease-in-out mt-2 text-gray-600 dark:text-gray-400 group-hover:text-primary" />
-                                <RecipeCardName recipe={recipe} className="mx-2 transition-colors ease-in-out mt-2 text-gray-600 dark:text-gray-400 group-hover:text-primary" />
+                            <div className="w-full grow px-2">
+                                <div className="relative flex justify-between items-center">
+                                    <RecipeCardPunchline recipe={recipe} className="transition-colors ease-in-out mt-2 text-gray-600 dark:text-gray-400 group-hover:text-primary" />
+                                    <RecipeContextMenu
+                                        recipe={recipe}
+                                        className="z-10"
+                                    />
+                                </div>
+                                <RecipeCardName recipe={recipe} className="transition-colors ease-in-out mt-2 text-gray-600 dark:text-gray-400 group-hover:text-primary" />
                             </div>
-                            <RecipeContextMenu
-                                recipe={recipe}
-                                className="absolute top-0 right-[1px] z-10"
-                            />
                         </div>
-                        <div className="flex flex-row items-center justify-between space-x-2 px-1">
+                        <div className="flex flex-row items-center justify-between space-x-2 px-2 mb-2">
                             <RecipeCardCategory recipe={recipe} />
                             <RecipeCardDifficulty recipe={recipe} className="text-sm" />
                         </div>
-                    </CardContent>
-                    <CardFooter className="flex flex-row items-center justify-between space-x-2 px-1">
+                        <div className="flex flex-row items-center justify-between space-x-2 px-2">
                             <RecipeCardPreparationTime recipe={recipe} />
                             <div className="flex gap-5">
                                 <RecipeCardRating recipe={recipe} />
                                 <RecipeCardComment recipe={recipe} style="icon" />
                             </div>
-                    </CardFooter>
+                        </div>
+                    </CardContent>
                 </Card>
             </Link>
         </li>

@@ -20,12 +20,12 @@ import ContextMenu from '@/components/reusables/RecipeContextMenu';
 
 import { cn } from '@/lib/utils';
 
-interface RecipeCardProps {
+interface SimpleRecipeCardProps {
     recipe: Recipe;
     className?: string;
 }
 
-export default function RecipeCard({ recipe, className }: RecipeCardProps) {
+export default function SimpleRecipeCard({ recipe, className }: SimpleRecipeCardProps) {
     const iconMap: Record<string, JSX.Element> = {
         vorspeise: <TbSalad className="inline-flex size-4 mr-1 text-primary" />,
         hauptgericht: <PiCookingPot className="inline-flex size-4 mr-1 text-primary" />,
@@ -46,7 +46,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
                     <CardHeader
                         className="relative flex flex-col items-center justify-center aspect-video overflow-hidden p-0 rounded-xl 
                                     bg-gray-100 dark:bg-gray-700 text-gray-400 group-hover:text-primary 
-                                    border border-transparent transition-colors duration-300 
+                                    border-2 border-transparent transition-colors duration-300 
                                     group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:border-primary shadow-transparent hover:shadow-primary"
                     >
                         <FavoriteButton
@@ -102,7 +102,7 @@ export default function RecipeCard({ recipe, className }: RecipeCardProps) {
     );
 }
 
-export function RecipeCardSkeleton() {
+export function SimpleRecipeCardSkeleton() {
     return (
         <li className="w-full max-w-96 mb-5">
             <Card className="relative overflow-hidden">

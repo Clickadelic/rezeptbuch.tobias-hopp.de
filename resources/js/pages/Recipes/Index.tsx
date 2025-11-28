@@ -1,12 +1,10 @@
-// Recipes/Index.tsx
-
 import { usePage } from '@inertiajs/react';
 // import { Link } from 'lucide-react'; // Nicht nötig, da Inertia-Link nicht von hier importiert wird
 // import { IoMdArrowForward } from 'react-icons/io'; // Nicht nötig, da die Links unten auskommentiert sind
 
 import FullWidthLayout from '@/layouts/FullWidthLayout';
-import RecipeCard from '@/components/reusables/RecipeCard';
-import BigRecipeCard from '@/components/reusables/BigRecipeCard'; // Nicht verwendet
+import RecipeCard from '@/components/reusables/SimpleRecipeCard';
+import AdvancedRecipeCard from '@/components/reusables/AdvancedRecipeCard'; // Nicht verwendet
 import Pagination from '@/components/reusables/Pagination';
 
 import { SharedPageProps } from '@/types';
@@ -31,10 +29,10 @@ export default function Recipes() {
         >
 
             {hasRecipes ? (
-                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 md:px-2">
                     {/* Iteration mit der gewünschten RecipeCard und korrektem 'key' */}
                     {recipeData.map((recipe: Recipe) => (
-                        <li key={recipe.id}><BigRecipeCard recipe={recipe} /></li>
+                        <li key={recipe.id}><AdvancedRecipeCard recipe={recipe} /></li>
                     ))}
                 </ul>
             ) : (

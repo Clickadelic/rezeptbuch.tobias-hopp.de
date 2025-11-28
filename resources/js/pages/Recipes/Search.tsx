@@ -1,8 +1,8 @@
 import { usePage } from '@inertiajs/react';
 
 import Pagination from '@/components/reusables/Pagination';
-import RecipeCard from '@/components/reusables/RecipeCard';
-import BigRecipeCard from '@/components/reusables/BigRecipeCard';
+import RecipeCard from '@/components/reusables/SimpleRecipeCard';
+import BigRecipeCard from '@/components/reusables/AdvancedRecipeCard';
 import FullWidthLayout from '@/layouts/FullWidthLayout';
 
 import { SharedPageProps } from '@/types';

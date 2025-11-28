@@ -34,7 +34,7 @@ export default function Recipes() {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-5 px-2">
                     {/* Iteration mit der gewünschten RecipeCard und korrektem 'key' */}
                     {recipeData.map((recipe: Recipe) => (
-                        <BigRecipeCard key={recipe.id} recipe={recipe} />
+                        <li key={recipe.id}><BigRecipeCard recipe={recipe} /></li>
                     ))}
                 </ul>
             ) : (

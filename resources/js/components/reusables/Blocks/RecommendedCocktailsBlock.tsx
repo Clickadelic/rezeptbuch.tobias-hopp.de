@@ -9,6 +9,14 @@ interface RecommendedCocktailsBlockProps {
     className?: string;
 }
 
+/**
+ * A component that displays a block of recommended cocktails.
+ * The block contains a title, a personal message from the bartender, and a carousel of recipe cards.
+ * The layout of the block is responsive and changes depending on the screen size.
+ * @param {Recipe[]} recipes - The recommended recipes to display
+ * @param {string} [className] - Additional CSS classes to apply to the component
+ * @returns {JSX.Element} - The recommended cocktails block
+ */
 export default function RecommendedCocktailsBlock({ recipes, className }: RecommendedCocktailsBlockProps) {
     return (
         <div className={cn("grid grid-cols-1 lg:grid-cols-3 gap-5", className)}>

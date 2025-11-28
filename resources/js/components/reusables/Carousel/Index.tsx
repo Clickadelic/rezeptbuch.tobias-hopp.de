@@ -1,4 +1,4 @@
-// import './carousel.css';
+import './carousel.css';
 import './carousel-recommended-recipes.css';
 import './carousel-recommended-cocktails.css';
 

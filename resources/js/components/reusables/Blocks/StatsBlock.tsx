@@ -5,7 +5,9 @@ import { IoIosStats } from 'react-icons/io';
 import { IoMdArrowForward } from 'react-icons/io';
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
-
+import { BsJournalBookmark } from "react-icons/bs";
+import { TbSalt } from "react-icons/tb";
+import { TfiCommentAlt } from "react-icons/tfi";
 interface StatsBlockProps {
     title?: string;
     punchline?: string;
@@ -34,28 +36,29 @@ export default function StatsBlock({
     totalCommentCount,
 }: StatsBlockProps) {
     return (
-        <div className={cn('flex items-center justify-center', className)}>
-            <div className="flex flex-col items-center justify-center">
-                <TitleBlock
-                    title="Statistik"
-                    punchline="Aktuelle Zahlen"
-                    icon={<IoIosStats className="text-primary size-6 mt-1" />}
-                />
-                <div className="flex items-center justify-center gap-8">
-                    <div className="text-2xl flex flex-col items-center justify-center gap-1">
-                        <span>{totalRecipeCount}</span>
-                        <span className="text-gray-600 dark:text-gray-400">Rezepte</span>
-                    </div>
-                    <div className="text-2xl flex flex-col items-center justify-center gap-1">
-                        <span>{totalIngredientCount || 0}</span>
-                        <span className="text-gray-600 dark:text-gray-400">Zutaten</span>
-                    </div>
-                    <div className="text-2xl flex flex-col items-center justify-center gap-1">
-                        <span>{totalCommentCount || 0}</span>
-                        <span className="text-gray-600 dark:text-gray-400">Kommentare</span>
-                    </div>
+        <div className={cn('flex flex-col items-center justify-center', className)}>
+            <TitleBlock
+                title={title || 'Statistik'}
+                punchline={punchline || 'Rezepte, Zutaten und Kommentare'}
+                icon={<IoIosStats className="text-primary size-6 mt-1" />}
+            />
+            <div className="grid gap-24 sm:grid-cols-3 mt-12">
+                <div className="flex flex-col items-center justify-center gap-2">
+                    <BsJournalBookmark className="size-6 text-primary mb-3" />
+                    <h5 className="text-2xl">{totalRecipeCount}</h5>
+                    <h6 className="text-gray-600 dark:text-gray-400">Rezepte</h6>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-2">
+                    <TbSalt className="size-6 text-primary mb-3" />
+                    <h5 className="text-2xl">{totalIngredientCount || 0}</h5>
+                    <h6 className="text-gray-600 dark:text-gray-400">Zutaten</h6>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-2">
+                    <TfiCommentAlt className="size-6 text-primary mb-3" />
+                    <h5 className="text-2xl">{totalCommentCount || 0}</h5>
+                    <h6 className="text-gray-600 dark:text-gray-400">Kommentare</h6>
                 </div>
             </div>
-        </div>
+        </div> 
     );
 }

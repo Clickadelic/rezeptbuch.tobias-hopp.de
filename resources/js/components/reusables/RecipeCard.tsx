@@ -16,7 +16,7 @@ import { GoClock } from 'react-icons/go';
 import { VscSymbolEvent } from 'react-icons/vsc';
 
 import FavoriteButton from '@/components/reusables/FavoriteButton';
-import ContextMenu from '@/components/reusables/ContextMenu';
+import ContextMenu from '@/components/reusables/RecipeContextMenu';
 
 import { cn } from '@/lib/utils';
 

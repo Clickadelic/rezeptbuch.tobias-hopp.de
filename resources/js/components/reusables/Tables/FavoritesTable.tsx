@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 
-import ContextMenu from '@/components/reusables/ContextMenu';
+import ContextMenu from '@/components/reusables/RecipeContextMenu';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
 
 import { HiOutlineEye } from 'react-icons/hi2';

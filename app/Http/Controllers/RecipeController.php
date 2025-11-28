@@ -80,10 +80,15 @@ class RecipeController extends Controller
             ->inRandomOrder()
             ->take(5)
             ->get();
+
+        // Transform related recipes via RecipeResource so frontend gets the same shape
+        $relatedTransformed = $related->map(function ($relatedRecipe) {
+            return (new RecipeResource($relatedRecipe))->toArray(request());
+        });
         
         return Inertia::render('Recipes/Show', [
             'recipe' => (new RecipeResource($recipe))->resolve(),
-            'related'     => RecipeResource::collection($related),
+            'related'     => $relatedTransformed,
             'is_favorite' => Auth::check()
                 ? $recipe->favoritedBy()->where('user_id', Auth::id())->exists()
                 : false,

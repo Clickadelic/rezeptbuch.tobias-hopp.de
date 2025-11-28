@@ -16,7 +16,7 @@ export function toHumanDate(dateString?: string | Date): string {
 
     return date.toLocaleDateString('de-DE', {
         day: '2-digit',
-        month: 'long',
+        month: 'short',
         year: 'numeric',
     });
 }

@@ -54,13 +54,13 @@ export default function SimpleRecipeCard({ recipe, className }: SimpleRecipeCard
                         <div className="relative flex flex-row justify-between items-center gap-1 mb-5">
                             <div className="w-full grow px-2">
                                 <div className="relative flex justify-between items-center">
-                                    <RecipeCardPunchline recipe={recipe} className="transition-colors ease-in-out mt-2 text-gray-600 dark:text-gray-400 group-hover:text-primary" />
+                                    <RecipeCardPunchline recipe={recipe} className="transition-colors ease-in-out mt-2 text-gray-600 dark:text-gray-200 group-hover:text-primary" />
                                     <RecipeContextMenu
                                         recipe={recipe}
                                         className="z-10"
                                     />
                                 </div>
-                                <RecipeCardName recipe={recipe} className="transition-colors ease-in-out mt-2 text-gray-600 dark:text-gray-400 group-hover:text-primary" />
+                                <RecipeCardName recipe={recipe} className="transition-colors ease-in-out mt-2 text-gray-800 dark:text-gray-200 group-hover:text-primary" />
                             </div>
                         </div>
                         <div className="flex flex-row items-center justify-between space-x-2 px-2 mb-2">

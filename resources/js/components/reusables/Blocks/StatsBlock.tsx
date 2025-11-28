@@ -45,17 +45,17 @@ export default function StatsBlock({
             <div className="grid gap-24 sm:grid-cols-3 mt-12">
                 <div className="flex flex-col items-center justify-center gap-2">
                     <BsJournalBookmark className="size-6 text-primary mb-3" />
-                    <h5 className="text-2xl">{totalRecipeCount}</h5>
+                    <h5 className="text-4xl">{totalRecipeCount}</h5>
                     <h6 className="text-gray-600 dark:text-gray-400">Rezepte</h6>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-2">
                     <TbSalt className="size-6 text-primary mb-3" />
-                    <h5 className="text-2xl">{totalIngredientCount || 0}</h5>
+                    <h5 className="text-4xl">{totalIngredientCount || 0}</h5>
                     <h6 className="text-gray-600 dark:text-gray-400">Zutaten</h6>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-2">
                     <TfiCommentAlt className="size-6 text-primary mb-3" />
-                    <h5 className="text-2xl">{totalCommentCount || 0}</h5>
+                    <h5 className="text-4xl">{totalCommentCount || 0}</h5>
                     <h6 className="text-gray-600 dark:text-gray-400">Kommentare</h6>
                 </div>
             </div>

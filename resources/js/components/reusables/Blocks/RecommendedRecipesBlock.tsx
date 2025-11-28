@@ -18,7 +18,7 @@ interface RecommendedRecipesBlockProps {
 export default function RecommendedRecipesBlock({ recipes }: RecommendedRecipesBlockProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 mb-8 md:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
             <div className="col-span-1 flex flex-col gap-2 items-center justify-center">
                 <h2 className="text-2xl">Tagestipps</h2>
                 <h3 className="text-xl text-gray-500 dark:text-gray-400 font-yellowtail">

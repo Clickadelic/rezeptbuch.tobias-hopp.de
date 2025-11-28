@@ -40,19 +40,14 @@ export default function Frontpage() {
             description="Willkommen auf Toby's Rezeptbuch. Was darf's sein? Hier gibt es leckere Rezepte aller Art für jeden Anlass und für jede Tageszeit. Vorspeisen, Hauptgerichte, Nachtisch, Cocktails sowie Backrezepte und Snacks. Schau' mal rein."
         >
             <WelcomeBlock className="mt-6" />
-            <CategorySelectionBlock className="my-12 md:my-20" />
+            <CategorySelectionBlock className="my-6 sm:my-10 md:my-16 lg:my-20" />
             <RecommendedRecipesBlock recipes={recommendedRecipes} />
             <Seperator style="journal" />
             <AuthTeaserBlock />
             <Seperator style="cocktail" />
             <RecommendedCocktailsBlock recipes={recommendedCocktails} />
             <Seperator />
-            <StatsBlock
-                totalRecipeCount={totalRecipeCount}
-                totalIngredientCount={totalIngredientCount}
-                totalCommentCount={totalCommentCount}
-                className="asd"
-            />
+            <StatsBlock totalRecipeCount={totalRecipeCount} totalIngredientCount={totalIngredientCount} totalCommentCount={totalCommentCount} className="asd" />
             <Seperator style="question-mark" />
             <FaqAccordeon />
         </FullWidthLayout>

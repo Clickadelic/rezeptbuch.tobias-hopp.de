@@ -137,7 +137,7 @@ export default function Separator({ size = 5, style = 'fork-knife', margin }: Se
     return (
         <div
             className={cn(
-                'relative my-2 sm:my-3 md:my-4 lg:my-5 mx-auto w-full max-w-[52rem] flex items-center justify-center',
+                'relative my-6 sm:my-8 md:my-10 lg:my-12 mx-auto w-full max-w-[52rem] flex items-center justify-center',
                 margin,
             )}
         >

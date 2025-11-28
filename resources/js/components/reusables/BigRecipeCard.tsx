@@ -49,11 +49,11 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
             </Link>
             <CardContent>
                 <CardDescription className="p-4">
-                    <div className="relative flex gap-2">
+                    <div className="relative flex gap-2 mb-2">
                         <RecipeCardCategory recipe={recipe} />
                         <RecipeContextMenu recipe={recipe} className="absolute -top-1 -right-1" />
                     </div>
-                    <div className="flex flex-col justify-between gap-2 mb-4">
+                    <div className="flex flex-col justify-between mb-6">
                         <RecipeCardPunchline recipe={recipe} />
                         <RecipeCardName recipe={recipe} />
                     </div>

@@ -46,7 +46,7 @@ import { SharedPageProps } from '@/types';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
-interface ContextMenuProps {
+interface RecipeContextMenuProps {
     recipe?: Recipe | null;
     className?: string;
     dotStyle?: 'vertical' | 'horizontal';
@@ -57,15 +57,15 @@ interface ContextMenuProps {
  * The menu is displayed when the user clicks on the three vertical dots in the top right corner of the recipe card.
  * If the user clicks on the "Löschen" button, a confirmation dialog is displayed, asking the user if they are sure they want to delete the recipe.
  * If the user clicks on the "Bearbeiten" button, the edit recipe page is opened.
- * @param {ContextMenuProps} props - The props for the context menu.
+ * @param {RecipeContextMenuProps} props - The props for the context menu.
  * @param {Recipe} props.recipe - The recipe to be edited or deleted.
  * @returns {JSX.Element} - The JSX element for the context menu.
  */
-export default function ContextMenu({
+export default function RecipeContextMenu({
     recipe,
     className,
     dotStyle = 'vertical',
-}: ContextMenuProps) {
+}: RecipeContextMenuProps) {
     const { isOwner } = usePermissions();
     const { props } = usePage<SharedPageProps>();
 

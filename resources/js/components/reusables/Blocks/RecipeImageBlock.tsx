@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 
 import Modal from '@/components/reusables/Modal';
-import IconCategorySwitcher from '@/components/reusables/IconCategorySwitcher';
+import IconCategorySwitcher from '@/components/reusables/RecipeCardIconSwitch';
 import { GoZoomIn } from 'react-icons/go';
 
 import { Recipe } from '@/types/Recipe';
@@ -38,7 +38,7 @@ export default function RecipeImageBlock({
     return (
         <div
             className={cn(
-                'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-xs',
+                'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-lg',
                 className,
             )}
         >

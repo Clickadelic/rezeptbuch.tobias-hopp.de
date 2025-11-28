@@ -4,13 +4,13 @@ import { Recipe } from '@/types/Recipe';
 import { IoIosStats } from 'react-icons/io';
 import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
 import { MdOutlineHowToVote } from 'react-icons/md';
-interface RecipeStarRatingProps {
+interface StarRatingBlockProps {
     recipe: Recipe;
     className?: string;
     readOnly?: boolean;
 }
 
-export default function RecipeStarRating({ recipe, className, readOnly }: RecipeStarRatingProps) {
+export default function StarRatingBlock({ recipe, className, readOnly }: StarRatingBlockProps) {
     return (
         <div className={cn('flex flex-col items-center justify-center', className)}>
             <TitleBlock

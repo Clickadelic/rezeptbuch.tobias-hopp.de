@@ -14,7 +14,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 
-import ContextMenu from '@/components/reusables/ContextMenu';
+import ContextMenu from '@/components/reusables/RecipeContextMenu';
 import Paginated from '@/types/Paginated';
 import Pagination from '@/components/reusables/Pagination';
 import PublishSwitch from '@/components/reusables/PublishSwitch';

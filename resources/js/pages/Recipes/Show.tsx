@@ -11,7 +11,7 @@ import CommentsDirectory from '@/components/template-views/CommentsDirectory';
 import RecipeImageBlock from '@/components/reusables/Blocks/RecipeImageBlock';
 import RecipeInfoBlock from '@/components/reusables/Blocks/RecipeInfoBlock';
 import FavoriteButton from '@/components/reusables/FavoriteButton';
-import RecipeStarRating from '@/components/reusables/RecipeStarRating';
+import RecipeStarRating from '@/components/reusables/Blocks/StarRatingBlock';
 import Seperator from '@/components/reusables/Seperator';
 
 import { Recipe } from '@/types/Recipe';
@@ -32,10 +32,7 @@ interface ShowRecipeProps {
  */
 export default function Show({ recipe }: ShowRecipeProps) {
     const { related, is_favorite } = usePage<SharedPageProps>().props;
-
-    console.log('Related', is_favorite);
-    console.log('Is favorite', is_favorite);
-    console.log('Recipe', recipe);
+    
     return (
         <SidebarLeftLayout
             title={`${recipe.name} - Rezeptdetails`}
@@ -75,10 +72,10 @@ export default function Show({ recipe }: ShowRecipeProps) {
                 <Seperator style="question-mark" />
                 <RecipeStarRating recipe={recipe} />
                 <CommentsDirectory recipeId={recipe.id!} />
-                {/* <RelatedRecipesCarousel
+                <RelatedRecipesCarousel
                     recipes={related as Recipe[]}
                     categoryName={recipe.category?.name}
-                /> */}
+                />
             </div>
         </SidebarLeftLayout>
     );

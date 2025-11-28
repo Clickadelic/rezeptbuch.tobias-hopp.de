@@ -5,12 +5,12 @@ import { Recipe } from '@/types/Recipe';
 
 import { IconMap } from '@/lib/icon-map';
 
-interface CategoryCardBlockProps {
+interface RecipeCardCategoryProps {
     recipe: Recipe;
     className?: string;
 }
 
-export default function CategoryCardBlock({ recipe, className }: CategoryCardBlockProps) {
+export default function RecipeCardCategory({ recipe, className }: RecipeCardCategoryProps) {
     return (
         <div className={cn('flex gap-2', className)}>
             {recipe && recipe.category && (

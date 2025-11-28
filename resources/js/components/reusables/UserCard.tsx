@@ -1,25 +1,34 @@
 import { Link } from '@inertiajs/react';
-import Avatar from '@/components/reusables/Avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+
 import { ChefHat, Heart, MessageCircle, Star } from 'lucide-react';
 import { RiHome2Line } from 'react-icons/ri';
-import AuthUser from '@/types/AuthUser';
 import { RiHomeLine } from 'react-icons/ri';
-
 import { LiaHomeSolid } from 'react-icons/lia';
-import headerImageLight from '../../../images/webp/User-Card-Header-Background-Light.webp';
-import headerImageDark from '../../../images/webp/User-Card-Header-Background-Dark.webp';
 
-import { cn } from '@/lib/utils';
+import Avatar from '@/components/reusables/Avatar';
+import headerImageLight from '@images/webp/User-Card-Header-Background-Light.webp';
+import headerImageDark from '@images/webp/User-Card-Header-Background-Dark.webp';
 
 import { useDarkMode } from '@/hooks/useDarkMode';
+import AuthUser from '@/types/AuthUser';
+import { cn } from '@/lib/utils';
 
 interface UserCardProps {
     user: AuthUser;
 }
 
+/**
+ * UserCard component.
+ *
+ * @param {UserCardProps} props - The UserCard component props.
+ * @returns {JSX.Element} - The rendered UserCard component.
+ *
+ * @example
+ * <UserCard user={user} />
+ */
 export default function UserCard({ user }: UserCardProps) {
     const isDark = useDarkMode();
     return (

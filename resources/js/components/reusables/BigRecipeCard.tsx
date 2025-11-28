@@ -9,7 +9,6 @@ import RecipeContextMenu from '@/components/reusables/RecipeContextMenu';
 import RecipeCardDifficulty from '@/components/reusables/RecipeCardDifficulty';
 import RecipeCardCategory from '@/components/reusables/RecipeCardCategory';
 import RecipeCardPreparationTime from '@/components/reusables/RecipeCardPreparationTime';
-import RecipeCardAuthor from '@/components/reusables/RecipeCardAuthor';
 import RecipeCardName from '@/components/reusables/RecipeCardName';
 import RecipeCardPunchline from '@/components/reusables/RecipeCardPunchline';
 import RecipeCardComment from '@/components/reusables/RecipeCardComment';
@@ -49,7 +48,7 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
             </Link>
             <CardContent>
                 <CardDescription className="p-4">
-                    <div className="relative flex gap-2 mb-2">
+                    <div className="relative flex gap-2 mb-4">
                         <RecipeCardCategory recipe={recipe} />
                         <RecipeContextMenu recipe={recipe} className="absolute -top-1 -right-1" />
                     </div>

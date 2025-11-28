@@ -10,7 +10,7 @@ export default function RecipeCardName({ recipe, className }: RecipeCardNameProp
     if(!recipe) return null
     return (
         <div className={cn("flex", className)}>
-            <h5 className="text-lg leading-tight text-gray-800 dark:text-gray-200 line-clamp-2 min-h-12 mt-1">
+            <h5 className="text-lg leading-tight text-gray-800 dark:text-gray-200 line-clamp-2 min-h-16 mt-1">
                 {recipe?.name}
             </h5>
         </div>

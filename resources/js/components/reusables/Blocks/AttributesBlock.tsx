@@ -1,4 +1,4 @@
-import { IconMap } from '@/lib/icon-map';
+import { CategoryIconMap } from '@/lib/icon-map';
 import { GoClock, GoZoomIn } from 'react-icons/go';
 import { LuUtensilsCrossed } from 'react-icons/lu';
 import { VscSymbolEvent } from 'react-icons/vsc';
@@ -18,7 +18,7 @@ export default function AttributesBlock({ recipe, className }: AttributesBlockPr
         <div className={cn('flex gap-2', className)}>
             <div className="w-24 aspect-video gap-2 cursor-default flex flex-col bg-gray-100 dark:bg-gray-900 rounded-lg border-b border-gray-200 dark:border-gray-700 text-gray-600 justify-between items-center p-3">
                 <span className="text-primary">
-                    {IconMap[recipe.category?.slug ?? ''] ?? (
+                    {CategoryIconMap[recipe.category?.slug ?? ''] ?? (
                         <LuUtensilsCrossed className="size-5" />
                     )}
                 </span>

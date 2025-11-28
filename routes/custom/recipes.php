@@ -13,6 +13,11 @@ Route::prefix('/rezepte')->group(function () {
     Route::put('/{recipe}', [RecipeController::class, 'update'])->middleware(['auth', 'verified'])->name('recipes.update');
     Route::delete('/{recipe}', [RecipeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recipes.destroy');
     Route::get('/suche', [RecipeController::class, 'search'])->name('recipes.search');
+
+    // Kategorie-Ansicht, z.B. /rezepte/kategorie/cocktail
+    Route::get('/kategorie/{category:slug}', [RecipeController::class, 'showByCategory'])
+        ->name('recipes.byCategory');
+
     Route::get('/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
 
     // Publish toggle

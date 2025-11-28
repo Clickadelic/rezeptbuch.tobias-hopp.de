@@ -398,26 +398,36 @@ class RecipeController extends Controller
         ]);
     }
 
-    /* ---------------------------------------------- */
-    /* 🧩 Helper Methods */
-    /* ---------------------------------------------- */
-
     /**
-     * Adds 'is_favorite' flags to recipe collections.
+     * Zeigt Rezepte einer bestimmten Kategorie anhand des Category-Slugs an.
      */
-    private function addFavoriteFlags($recipes)
+    public function showByCategory(Category $category)
     {
-        $user = Auth::user();
+        $recipes = Recipe::with([
+                'ingredients' => fn($q) => $q->withPivot(['quantity', 'unit']),
+                'media',
+                'category',
+                'user:id,name,avatar',
+            ])
+            ->withCount('comments')
+            ->where('status', 'published')
+            ->where('category_id', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(25);
 
-        $recipes->getCollection()->transform(function ($recipe) use ($user) {
-            $recipe->setAttribute(
-                'is_favorite',
-                $user ? $recipe->favoritedBy()->where('user_id', $user->id)->exists() : false
-            );
-            return $recipe;
+        // Transform each item in the paginator using the RecipeResource
+        $recipes->getCollection()->transform(function ($recipe) {
+            return (new RecipeResource($recipe))->toArray(request());
         });
 
-        return $recipes;
+        return Inertia::render('Recipes/Index', [
+            'recipes' => $recipes,
+            'currentCategory' => [
+                'id' => $category->id,
+                'name' => $category->name,
+                'slug' => $category->slug,
+            ],
+        ]);
     }
 
     /**

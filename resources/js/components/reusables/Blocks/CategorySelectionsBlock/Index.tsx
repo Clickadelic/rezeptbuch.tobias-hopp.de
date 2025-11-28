@@ -28,7 +28,7 @@ export default function CategorySelectionsBlock({ className }: CategorySelectiop
                         title="Vorspeisen"
                         punchline="für den kleinen Hunger"
                         buttonText="Zu den Vorspeisen"
-                        href={route('recipes.search', { search: 'Vorspeise' })}
+                        href={route('recipes.byCategory', { category: 'vorspeise' })}
                     />
                 </li>
                 <li>
@@ -37,7 +37,7 @@ export default function CategorySelectionsBlock({ className }: CategorySelectiop
                         title="Hauptgerichte"
                         punchline="für den großen Hunger"
                         buttonText="Zu den Hauptgerichten"
-                        href={route('recipes.search', { search: 'Hauptgericht' })}
+                        href={route('recipes.byCategory', { category: 'hauptgericht' })}
                     />
                 </li>
                 <li>
@@ -46,7 +46,7 @@ export default function CategorySelectionsBlock({ className }: CategorySelectiop
                         title="Nachtisch"
                         punchline="für ein süßes Ende"
                         buttonText="Zum Nachtisch"
-                        href={route('recipes.search', { search: 'Nachtisch' })}
+                        href={route('recipes.byCategory', { category: 'nachtisch' })}
                     />
                 </li>
                 <li>
@@ -55,7 +55,7 @@ export default function CategorySelectionsBlock({ className }: CategorySelectiop
                         title="Cocktails"
                         punchline="für einen schönen Abend"
                         buttonText="Zu den Cocktails"
-                        href={route('recipes.search', { search: 'Cocktail' })}
+                        href={route('recipes.byCategory', { category: 'cocktail' })}
                     />
                 </li>
                 <li>
@@ -64,7 +64,7 @@ export default function CategorySelectionsBlock({ className }: CategorySelectiop
                         title="Backen"
                         punchline="für eine gute Zeit"
                         buttonText="Zum Backen"
-                        href={route('recipes.search', { search: 'Backen' })}
+                        href={route('recipes.byCategory', { category: 'backen' })}
                     />
                 </li>
                 <li>
@@ -73,7 +73,7 @@ export default function CategorySelectionsBlock({ className }: CategorySelectiop
                         title="Snacks"
                         punchline="für zwischendurch"
                         buttonText="Zu den Snacks"
-                        href={route('recipes.search', { search: 'Snack' })}
+                        href={route('recipes.byCategory', { category: 'snack' })}
                     />
                 </li>
             </ul>

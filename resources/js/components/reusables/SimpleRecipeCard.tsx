@@ -65,15 +65,12 @@ export default function SimpleRecipeCard({ recipe, className }: SimpleRecipeCard
                             </div>
                         </div>
                         <div className="flex flex-row items-center justify-between space-x-2 px-2 mb-2 text-sm">
-                            
                             <RecipeCardDifficulty recipe={recipe} />
                             <RecipeCardRating recipe={recipe} />
                         </div>
                         <div className="flex flex-row items-center justify-between space-x-2 px-2 text-sm">
-                            
                             <RecipeCardPreparationTime recipe={recipe} />
-                            <RecipeCardComment recipe={recipe} style="icon" />
-                            
+                            <RecipeCardComment recipe={recipe} />
                         </div>
                     </CardContent>
                 </Card>

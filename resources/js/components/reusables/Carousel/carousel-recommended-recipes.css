@@ -45,15 +45,15 @@
     z-index: 50;
     position-anchor: --carousel-recommended-recipes;
     position-area: left center;
-    translate: 50%;
-    border-radius: 50%;
+    transform: translate(50%, 90px);
+    border-radius: .25rem;
 }
 
 .carousel-recommended-recipes::scroll-button(right) {
     content: '\203A';
     position-anchor: --carousel-recommended-recipes;
     position-area: right center;
-    translate: -50%;
+    transform: translate(-50%, 90px);
 }
 
 /* End of Cards / Disabled */

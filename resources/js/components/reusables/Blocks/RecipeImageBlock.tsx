@@ -38,7 +38,7 @@ export default function RecipeImageBlock({
     return (
         <div
             className={cn(
-                'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded-lg',
+                'relative z-0 flex flex-col items-center justify-center aspect-video w-full overflow-hidden rounded',
                 className,
             )}
         >

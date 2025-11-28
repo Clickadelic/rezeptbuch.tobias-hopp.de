@@ -9,7 +9,6 @@ import RecipeContextMenu from '@/components/reusables/RecipeContextMenu';
 import RecipeCardDifficulty from '@/components/reusables/RecipeCardDifficulty';
 import RecipeCardCategory from '@/components/reusables/RecipeCardCategory';
 import RecipeCardPreparationTime from '@/components/reusables/RecipeCardPreparationTime';
-import RecipeCardAuthor from '@/components/reusables/RecipeCardAuthor';
 import RecipeCardName from '@/components/reusables/RecipeCardName';
 import RecipeCardPunchline from '@/components/reusables/RecipeCardPunchline';
 import RecipeCardComment from '@/components/reusables/RecipeCardComment';
@@ -34,13 +33,13 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
     return (
         <Card
             className={cn(
-                'shadow-xs hover:shadow-md animate ease-in-out duration-300 flex flex-col bg-gray-100 dark:bg-gray-900 p-0 rounded-b-xl border-b border-gray-200 dark:border-gray-700 mb-5 sm:mb-0',
+                'animate ease-in-out duration-300flex flex-col p-0 bg-gray-100 dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700 shadow-xs mb-5 sm:mb-0',
                 className,
             )}
         >
             <Link
                 href={route('recipes.show', { recipe: recipe?.slug })}
-                className="border border-transparent hover:border-primary animate ease-in-out duration-300 rounded-lg"
+                className="border-2 border-transparent hover:border-primary animate ease-in-out duration-300 rounded-lg"
             >
                 <CardHeader className="relative w-full h-auto p-0 overflow-hidden rounded-lg">
                     <FavoriteButton recipeId={recipe.id} isFavorite={recipe?.is_favorite} className="absolute top-2 left-1 z-50" />
@@ -49,7 +48,7 @@ export default function BigRecipeCard({ recipe, className }: BigRecipeCardProps)
             </Link>
             <CardContent>
                 <CardDescription className="p-4">
-                    <div className="relative flex gap-2 mb-2">
+                    <div className="relative flex gap-2 mb-4">
                         <RecipeCardCategory recipe={recipe} />
                         <RecipeContextMenu recipe={recipe} className="absolute -top-1 -right-1" />
                     </div>

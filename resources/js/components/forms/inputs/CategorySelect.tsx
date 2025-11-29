@@ -61,7 +61,7 @@ export default function CategorySelect({
             <InputLabel
                 htmlFor="category"
                 value="Kategorie"
-                description="Wähle eine Kategorie unter der das Rezept gelistet wird."
+                description="Pflichtfeld - Wähle eine Kategorie unter der das Rezept gelistet wird."
             />
             <Select
                 id="category"

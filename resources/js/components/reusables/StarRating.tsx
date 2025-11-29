@@ -107,7 +107,7 @@ export default function StarRating({
                         />
                     </button>
                 ))}
-                
+                <span className="text-gray-600 dark:text-gray-400">({`${community.votes}`})</span>
             </div>
             {isLoading && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
@@ -118,8 +118,8 @@ export default function StarRating({
             {community.votes > 0 && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
                     <p>
-                        {community.votes === 1 && <p>{`Community Bewertung: ${community.rating} Sterne`}</p>}
-                        {community.votes > 1 && <p>{`Community Bewertung: ${community.rating} Sterne`}</p>}
+                        {community.votes === 1 && <p>{`Aktuelle Bewertung: ${community.rating} Sterne`}</p>}
+                        {community.votes > 1 && <p>{`Aktuelle Bewertung: ${community.rating} Sterne`}</p>}
                     </p>
                 </div>
             )}

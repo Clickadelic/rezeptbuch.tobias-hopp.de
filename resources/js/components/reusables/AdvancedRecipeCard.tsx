@@ -39,7 +39,7 @@ export default function AdvancedRecipeCard({ recipe, className }: AdvancedRecipe
         >
             <Link
                 href={route('recipes.show', { recipe: recipe?.slug })}
-                className="border-2 border-transparent hover:border-primary animate ease-in-out duration-300 rounded-lg"
+                className="border-2 border-transparent hover:border-primary animate ease-in-out duration-300 rounded-xl"
             >
                 <CardHeader className="relative w-full h-auto p-0 overflow-hidden rounded-lg">
                     <FavoriteButton recipeId={recipe.id} isFavorite={recipe?.is_favorite} className="absolute top-2 left-1 z-50" />

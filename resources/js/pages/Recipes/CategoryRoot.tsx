@@ -2,7 +2,7 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
 
 
-import CategorySelectionsBlock from '@/components/reusables/Blocks/CategorySelectionsBlock';
+import CategorySelectionsBlock from '@/components/reusables/Blocks/CategorySelectionsBlock/Index';
 /**
  * Page for creating a new recipe.
  *

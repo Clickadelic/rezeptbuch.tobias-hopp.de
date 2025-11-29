@@ -19,10 +19,11 @@
 
 .card-recommended-cocktail::scroll-marker {
     content: ' ';
-    height: 0.75rem;
-    width: 0.75rem;
+    display: flex;
+    width: 32px;
+    height: 4px;
     background-color: var(--color-gray-200);
-    border-radius: 50%;
+    border-radius: 2px;
 }
 
 .card-recommended-cocktail::scroll-marker:target-current {

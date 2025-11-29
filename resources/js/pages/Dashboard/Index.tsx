@@ -112,13 +112,14 @@ export default function Dashboard() {
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
-                            <span className="flex gap-1">
+                            <span className="flex gap-2">
                                 <BsJournalBookmark className="size-4 mt-1.5 text-primary" />
                                 Deine Rezepte
                                 <PopoverInfo description="Entwürfe / Gesamt" side="top" />
                             </span>
                             <div className="flex gap-1">
-                                <span className="text-gray-600 dark:text-gray-400">{drafts}</span>/
+                                <span className="text-gray-600 dark:text-gray-400">{drafts}</span>
+                                <span>/</span>
                                 <span>{totalUserRecipeCount}</span>
                             </div>
                         </h3>
@@ -127,12 +128,12 @@ export default function Dashboard() {
                 <div className="col-span-1 xl:col-span-3">
                     <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-lg flex justify-between items-center cursor-default">
-                            <span className="flex gap-1">
+                            <span className="flex gap-2">
                                 <TbSalt className="size-4 mt-1.5 text-primary" />
                                 Deine Zutaten
                                 <PopoverInfo description="Die Anzahl Deiner Zutaten." side="top" />
                             </span>
-                            <div className="flex gap-1">
+                            <div className="flex gap-2">
                                 <span>{totalUserIngredientCount}</span>
                             </div>
                         </h3>
@@ -166,7 +167,7 @@ export default function Dashboard() {
                                 />
                             </span>
 
-                            <div className="flex gap-1">
+                            <div className="flex gap-2">
                                 <span>{userFavoritesCount || 0}</span>
                             </div>
                         </h3>

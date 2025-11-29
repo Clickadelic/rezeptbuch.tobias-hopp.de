@@ -93,6 +93,11 @@ export default function Footer({ className }: FooterProps) {
 
     const column3 = [
         {
+            title: 'Leitfaden zur Benutzung',
+            icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
+            href: '/leitfaden',
+        },
+        {
             title: 'Ausstattung',
             icon: <BsChevronCompactRight className="mt-[2px] text-primary" />,
             href: '/ausstattung',

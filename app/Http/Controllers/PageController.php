@@ -67,6 +67,10 @@ class PageController extends Controller
      *
      * @return \Inertia\Response
      */
+    public function guide() {
+        return Inertia::render('Guide');
+    }
+
     public function misEnPlace() {
         return Inertia::render('MisEnPlace');
     }

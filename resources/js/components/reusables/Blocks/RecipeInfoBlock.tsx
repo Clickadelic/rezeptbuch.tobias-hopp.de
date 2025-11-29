@@ -1,4 +1,4 @@
-import ContextMenu from '@/components/reusables/RecipeContextMenu';
+import RecipeContextMenu from '@/components/reusables/RecipeContextMenu';
 import { Recipe } from '@/types/Recipe';
 
 import { cn } from '@/lib/utils';
@@ -24,7 +24,7 @@ export default function RecipeInfoBlock({ recipe, className }: RecipeInfoBlockPr
                     </span>
                     <h3 className="font-medium text-xl mb-3">{recipe.name}</h3>
                 </div>
-                <ContextMenu recipe={recipe} dotStyle="vertical" />
+
             </div>
             <p className="mb-3 text-gray-800 dark:text-gray-200">{recipe.description}</p>
         </div>

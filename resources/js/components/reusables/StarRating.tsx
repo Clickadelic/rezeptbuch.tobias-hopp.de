@@ -7,6 +7,9 @@ import { SharedPageProps } from '@/types';
 import { usePermissions } from '@/hooks/usePermissions';
 import { toast } from 'sonner';
 import { LuBookmarkCheck } from "react-icons/lu";
+import { FaHeart, FaSpinner } from 'react-icons/fa6';
+import { FaRankingStar } from "react-icons/fa6";
+import { PiShootingStarLight } from "react-icons/pi";
 interface StarRatingProps {
     recipeId: string | number;
     initialRating?: number;
@@ -88,6 +91,7 @@ export default function StarRating({
                         onMouseEnter={() => canVote && setHover(star)}
                         onMouseLeave={() => canVote && setHover(0)}
                         disabled={!canVote}
+                        title="Bewerten"
                         className={cn(
                             'focus:outline-none',
                             canVote ? 'hover:cursor-pointer' : 'cursor-not-allowed',
@@ -103,30 +107,38 @@ export default function StarRating({
                         />
                     </button>
                 ))}
-                {isLoading && (
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
-                        Bewertung wird gesendet...
-                    </span>
-                )}
+                
             </div>
-
+            {isLoading && (
+                <div className="text-sm text-gray-800 dark:text-gray-200">
+                    <p className="flex gap-2"><FaSpinner className="animate-spin size-4 text-primary" />sende Bewertung</p>
+                </div>
+            )}
             {/* Nachricht, wenn User bereits gevotet hat */}
             {community.votes > 0 && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
                     <p>
-                        {community.rating} / {community.votes} Bewertungen.
+                        {community.votes === 1 && <p>{`Community Bewertung: ${community.rating} Sterne`}</p>}
+                        {community.votes > 1 && <p>{`Community Bewertung: ${community.rating} Sterne`}</p>}
                     </p>
                 </div>
             )}
+            
 
             {community.votes > 0 && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
-                    <p>{community.votes > 0 ? `Bewertungen: ${community.votes}` : ''}</p>
+                    {community.votes === 1 && <p>{`${community.votes} Bewertung`}</p>}
+                    {community.votes > 1 && <p>{`${community.votes} Bewertungen`}</p>}
+                </div>
+            )}
+            {!voted && user && (
+                <div className="text-sm text-gray-800 dark:text-gray-200">
+                    <p className="flex gap-2"><PiShootingStarLight className="size-5 text-primary" />Gib' Deine Bewertung ab.</p>
                 </div>
             )}
             {voted && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
-                    <p className="flex gap-2"><LuBookmarkCheck className="size-5 text-primary" />{voted && <>Du hast mit {rating} Sternen bewertet.</>}</p>
+                    <p className="flex gap-2"><LuBookmarkCheck className="size-5 text-primary" />{voted && <>Du hast mit {rating === 1 ? `${rating} Stern` : `${rating} Sternen`} bewertet.</>}</p>
                 </div>
             )}
             

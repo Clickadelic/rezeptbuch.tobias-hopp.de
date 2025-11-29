@@ -12,7 +12,7 @@ import CategorySelectionsBlock from '@/components/reusables/Blocks/CategorySelec
  */
 export default function RecipesCreate() {
     return (
-        <SidebarLeftLayout title="Neues Rezept" sidebar={<MainSidebar />}>
+        <SidebarLeftLayout title="Kategorien" sidebar={<MainSidebar />}>
             <CategorySelectionsBlock />
         </SidebarLeftLayout>
     );

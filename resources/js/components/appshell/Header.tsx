@@ -220,17 +220,6 @@ export default function Header() {
                         >
                             <BsJournalBookmark className="size-4 mt-1" /> Rezepte
                         </ResponsiveNavLink>
-                        {drafts && auth.user && (
-                            <ResponsiveNavLink
-                                href="/dashboard"
-                                className="flex gap-2"
-                                active={window.location.pathname.startsWith('/dashboard')}
-                            >
-                                <BsBell className="size-4 mt-1 text-rose-700" />
-                                {drafts == 1 ? '1 Entwurf' : drafts + ' Entwürfe'}
-                            </ResponsiveNavLink>
-                        )}
-
                         <ResponsiveNavLink
                             href="/zutaten"
                             className="flex gap-2"

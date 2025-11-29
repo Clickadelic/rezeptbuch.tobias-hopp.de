@@ -114,8 +114,8 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <BsJournalBookmark className="size-4 mt-1.5 text-primary" />
-                                Deine Rezepte
-                                <PopoverInfo description="Entwürfe / Gesamt" side="top" />
+                                Rezepte
+                                <PopoverInfo description="Deine Rezepte Entwürfe / Gesamt." side="top" />
                             </span>
                             <div className="flex gap-1">
                                 <span className="text-gray-600 dark:text-gray-400">{drafts}</span>
@@ -130,7 +130,7 @@ export default function Dashboard() {
                         <h3 className="text-lg flex justify-between items-center cursor-default">
                             <span className="flex gap-2">
                                 <TbSalt className="size-4 mt-1.5 text-primary" />
-                                Deine Zutaten
+                                Zutaten
                                 <PopoverInfo description="Die Anzahl Deiner Zutaten." side="top" />
                             </span>
                             <div className="flex gap-2">

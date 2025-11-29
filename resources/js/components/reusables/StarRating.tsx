@@ -91,6 +91,7 @@ export default function StarRating({
                         onMouseEnter={() => canVote && setHover(star)}
                         onMouseLeave={() => canVote && setHover(0)}
                         disabled={!canVote}
+                        title="Bewerten"
                         className={cn(
                             'focus:outline-none',
                             canVote ? 'hover:cursor-pointer' : 'cursor-not-allowed',
@@ -117,10 +118,12 @@ export default function StarRating({
             {community.votes > 0 && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
                     <p>
-                        {community.rating} / {community.votes} Bewertungen.
+                        {community.votes === 1 && <p>{`Community Bewertung: ${community.rating} Sterne`}</p>}
+                        {community.votes > 1 && <p>{`Community Bewertung: ${community.rating} Sterne`}</p>}
                     </p>
                 </div>
             )}
+            
 
             {community.votes > 0 && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
@@ -128,14 +131,14 @@ export default function StarRating({
                     {community.votes > 1 && <p>{`${community.votes} Bewertungen`}</p>}
                 </div>
             )}
-            {!voted && (
+            {!voted && user && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
                     <p className="flex gap-2"><PiShootingStarLight className="size-5 text-primary" />Gib' Deine Bewertung ab.</p>
                 </div>
             )}
             {voted && (
                 <div className="text-sm text-gray-800 dark:text-gray-200">
-                    <p className="flex gap-2"><LuBookmarkCheck className="size-5 text-primary" />{voted && <>Du hast mit {rating} Sternen bewertet.</>}</p>
+                    <p className="flex gap-2"><LuBookmarkCheck className="size-5 text-primary" />{voted && <>Du hast mit {rating === 1 ? `${rating} Stern` : `${rating} Sternen`} bewertet.</>}</p>
                 </div>
             )}
             

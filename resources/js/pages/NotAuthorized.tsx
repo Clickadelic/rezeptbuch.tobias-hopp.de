@@ -18,7 +18,7 @@ export default function NotAuthorized() {
                     <h2 className="mb-3 text-xl">
                         Du bist nicht eingeloggt und möchtest einen geschützen Bereich besuchen.
                     </h2>
-                    <p>Bitte melde Dich an, um Zugriff auf diese Seite zu erhalten.</p>
+                    <p className="mb-8">Bitte melde Dich an, um Zugriff auf diese Seite zu erhalten.</p>
                     <AuthTeaserBlock />
                 </div>
             </div>

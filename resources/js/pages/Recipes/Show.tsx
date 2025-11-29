@@ -66,9 +66,9 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full sm:1/2 flex flex-col gap-5 justify-start">
+                    <div className="w-full sm:1/2 flex flex-col gap-3 justify-between">
                         <RecipeNavigationBlock recipe={recipe} />    
-                        <RecipeInfoBlock recipe={recipe} />
+                        <RecipeInfoBlock recipe={recipe} className="sm:mb-64" />
                     </div>
                 </div>
                 <AttributesBlock

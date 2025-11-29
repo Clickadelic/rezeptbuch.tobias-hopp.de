@@ -6,7 +6,7 @@ import { usePage } from '@inertiajs/react';
 import { SharedPageProps } from '@/types';
 import { usePermissions } from '@/hooks/usePermissions';
 import { toast } from 'sonner';
-
+import { LuBookmarkCheck } from "react-icons/lu";
 interface StarRatingProps {
     recipeId: string | number;
     initialRating?: number;
@@ -111,17 +111,25 @@ export default function StarRating({
             </div>
 
             {/* Nachricht, wenn User bereits gevotet hat */}
+            {community.votes > 0 && (
+                <div className="text-sm text-gray-800 dark:text-gray-200">
+                    <p>
+                        {community.rating} / {community.votes} Bewertungen.
+                    </p>
+                </div>
+            )}
 
-            <div className="text-sm text-gray-800 dark:text-gray-200">
-                {community.votes > 0 ? `Sterne: ${community.rating} / 5` : 'Noch keine Bewertungen'}
-            </div>
-            <div className="text-sm text-gray-800 dark:text-gray-200">
-                <p>
-                    <span>Sterne: {community.rating} / 5</span>
-                    <span>{community.votes > 0 ? `Bewertungen: ${community.votes}` : ''}</span>
-                </p>
-                <span>{voted && <>Du hast mit {rating} Sternen bewertet.</>}</span>
-            </div>
+            {community.votes > 0 && (
+                <div className="text-sm text-gray-800 dark:text-gray-200">
+                    <p>{community.votes > 0 ? `Bewertungen: ${community.votes}` : ''}</p>
+                </div>
+            )}
+            {voted && (
+                <div className="text-sm text-gray-800 dark:text-gray-200">
+                    <p className="flex gap-2"><LuBookmarkCheck className="size-5 text-primary" />{voted && <>Du hast mit {rating} Sternen bewertet.</>}</p>
+                </div>
+            )}
+            
         </div>
     );
 }

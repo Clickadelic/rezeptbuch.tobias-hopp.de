@@ -14,6 +14,13 @@ import FavoriteButton from '@/components/reusables/FavoriteButton';
 import RecipeStarRating from '@/components/reusables/Blocks/StarRatingBlock';
 import Seperator from '@/components/reusables/Seperator';
 
+import RecipeNavigationBlock from '@/components/reusables/Blocks/RecipeNavigationBlock';
+
+
+
+import { Button } from '@/components/ui/button';
+import { Link } from '@inertiajs/react';
+
 import { Recipe } from '@/types/Recipe';
 import { SharedPageProps } from '@/types';
 
@@ -59,7 +66,8 @@ export default function Show({ recipe }: ShowRecipeProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full sm:1/2 flex flex-col gap-1 justify-between">
+                    <div className="w-full sm:1/2 flex flex-col gap-5 justify-start">
+                        <RecipeNavigationBlock recipe={recipe} />    
                         <RecipeInfoBlock recipe={recipe} />
                     </div>
                 </div>

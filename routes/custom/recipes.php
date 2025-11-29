@@ -15,6 +15,9 @@ Route::prefix('/rezepte')->group(function () {
     Route::get('/suche', [RecipeController::class, 'search'])->name('recipes.search');
 
     // Kategorie-Ansicht, z.B. /rezepte/kategorie/cocktail
+    Route::get('/kategorie', [RecipeController::class, 'showByCategoryRoot'])
+        ->name('recipes.CategoryRoot');
+        
     Route::get('/kategorie/{category:slug}', [RecipeController::class, 'showByCategory'])
         ->name('recipes.byCategory');
 

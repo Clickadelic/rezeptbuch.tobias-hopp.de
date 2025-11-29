@@ -398,6 +398,11 @@ class RecipeController extends Controller
         ]);
     }
 
+    public function showByCategoryRoot(Request $request)
+    {
+        return Inertia::render('Recipes/CategoryRoot');
+    }
+
     /**
      * Zeigt Rezepte einer bestimmten Kategorie anhand des Category-Slugs an.
      */

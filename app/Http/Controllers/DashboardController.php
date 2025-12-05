@@ -81,20 +81,35 @@ class DashboardController extends Controller
         ]);
     }
 
+    /**
+     * Shows all recipes of the current user.
+     * 
+     * @return \Inertia\Response
+     */
     public function myRecipes () {
         $userRecipes = Recipe::where('user_id', Auth::id())->with(['category', 'media', 'comments'])->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
         $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
-        return Inertia::render('Dashboard/Recipes', [
+        return Inertia::render('Dashboard/MyRecipes', [
             'userRecipes' => $userRecipes,
             'userFavorites' => $userFavorites
         ]);
     }
 
+    /**
+     * Shows all ingredients of the current user.
+     * 
+     * @return \Inertia\Response
+     */
     public function myIngredients () {
-        return Inertia::render('Dashboard/Ingredients');
+        return Inertia::render('Dashboard/MyIngredients');
     }
 
+    /**
+     * Shows all favorites of the current user.
+     * 
+     * @return \Inertia\Response
+     */
     public function myFavorites () {
-        return Inertia::render('Dashboard/Favorites');
+        return Inertia::render('Dashboard/MyFavorites');
     }
 }

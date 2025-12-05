@@ -120,13 +120,13 @@ export default function Footer({ className }: FooterProps) {
                 <span className="font-la-belle-aurore mt-[2px] text-xl">Toby's</span>
                 <span className="font-bold text-xl">Rezeptbuch</span>
             </p>
+            <p className="text-sm mt-2">Jetzt für iOS und Android erhältlich.</p>
             <img src={appBro} className="w-52 mb-3 mx-auto" alt="App-Installation" />
             <Button asChild className="w-56 mx-auto" variant="primary">
                 <Link href="/app-installation" className="flex gap-1">
                     <ArrowRight /> Zur Installationsanleitung
                 </Link>
             </Button>
-            <p className="text-sm mt-2">Jetzt für iOS und Android erhältlich.</p>
         </div>
     );
 

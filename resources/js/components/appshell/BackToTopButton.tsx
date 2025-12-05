@@ -2,6 +2,10 @@ import { Button } from '@/components/ui/button';
 import { IoIosArrowUp } from 'react-icons/io';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 import { TooltipArrow } from '@radix-ui/react-tooltip';
+
+/**
+ * A button that scrolls the user to the top of the page.
+ */
 export default function BackToTopButton() {
     return (
         <div className="relative w-full flex flex-col justify-center items-center">

@@ -2,11 +2,9 @@ import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
 
 /**
- * Datenschutz – Rechtliche Informationen
- *
- * Dieser Datenschutz gilt für das private, nicht-kommerzielle Rezeptbuch-Projekt.
+ * Leitfaden – Informationen zur Benutzung
  */
-export default function Datenschutz() {
+export default function Leitfaden() {
     return (
         <SidebarLeftLayout
             title="Leitfaden zur Benutzung"
@@ -14,7 +12,12 @@ export default function Datenschutz() {
             sidebar={<MainSidebar />}
         >
             <section>
-                asd
+                In dieser Sektion findet Ihr einen kleinen Leitfaden zur Benutzung.
+            </section>
+            <section>
+                <h3>Allgemeines</h3>
+                <p>Im Prinzip geht es darum, den Besuchern dieser Webseite eine gute Zeit und eventuell ein wenig Inspiration zu liefern.</p>
+                <p>asd</p>
             </section>
         </SidebarLeftLayout>
     );

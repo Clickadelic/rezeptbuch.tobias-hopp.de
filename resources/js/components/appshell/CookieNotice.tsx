@@ -2,6 +2,14 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
+/**
+ * A component that displays a cookie notice at the bottom of the page.
+ *
+ * The notice will only be visible if the user has not given consent to the use of cookies.
+ * The notice will contain a link to the cookie policy page and a button to accept the use of cookies.
+ *
+ * The component uses the `useState` hook to store the visibility of the notice and the `useEffect` hook to check if the user has given consent.
+ */
 export default function CookieNotice() {
     const [visible, setVisible] = useState(false);
 

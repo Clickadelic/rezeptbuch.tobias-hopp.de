@@ -4,12 +4,10 @@ import { router } from '@inertiajs/react';
 import axios from 'axios';
 
 import { toast } from 'sonner';
-import Seperator from '@/components/reusables/Seperator';
 
 import InputLabel from '@/components/forms/inputs/InputLabel';
 import TextInput from '@/components/forms/inputs/TextInput';
 
-import UserStarRating from '@/components/forms/inputs/UserStarRating';
 import StatusSelect from '@/components/forms/inputs/StatusSelect';
 import CategorySelect from '@/components/forms/inputs/CategorySelect';
 import DifficultySelect from '@/components/forms/inputs/DifficultySelect';

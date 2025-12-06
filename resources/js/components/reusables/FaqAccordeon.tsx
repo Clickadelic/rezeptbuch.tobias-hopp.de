@@ -2,10 +2,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@
 import { Link } from '@inertiajs/react';
 
 import TitleBlock from './Blocks/TitleBlock';
+
 import { FaQ } from 'react-icons/fa6';
-import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 
 interface FaqAccordeonProps {
     className?: string;
@@ -51,25 +50,13 @@ export default function FaqAccordeon({ className, isExtendet = false }: FaqAccor
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>
-                                Du kannst leckere Rezepte durchstöbern (und diese für Dich
-                                verwenden). Wenn Du Lust hast, kannst Du Dich auch registrieren und
-                                eigene Rezepte anlegen, sie verwalten und mit Anderen teilen.
-                                Zusätzlich kannst Du natürlich auch Rezepte von anderen Nutzern
-                                finden und sie zu Deinen Favoriten hinzufügen. Ganz ohne Werbung und
-                                Pop-Ups.
+                                Du kannst leckere Rezepte durchstöbern und diese für Dich
+                                verwenden bzw. nachkochen. Ganz ohne Werbung und Pop-Ups.
                             </p>
                             <br />
                             <p>
                                 Ich stelle das Rezeptbuch der Allgemeinheit zur Verfügung - wer
                                 möchte, kann gerne mitmachen.
-                            </p>
-                            <br />
-                            <p>
-                                Updates, Verbesserungen oder Bugfixes in der Zukunft wird es geben.
-                            </p>
-                            <p>
-                                Allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe und was
-                                gerade ansteht.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
@@ -132,12 +119,13 @@ export default function FaqAccordeon({ className, isExtendet = false }: FaqAccor
                             </AccordionItem>
                             <AccordionItem value="item-5">
                                 <AccordionTrigger className="font-medium text-xl">
-                                    Frei
+                                    Gibt es Updates?
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <p>Freitext</p>
-                                    <br />
-                                    <p>Freitext</p>
+                                    <p>
+                                        Updates, Verbesserungen und Bugfixes wird es geben, allerdings ungeregelmäßig - je nach dem, wie ich Zeit habe und was
+                                        gerade ansteht.
+                                    </p>
                                 </AccordionContent>
                             </AccordionItem>
                         </>

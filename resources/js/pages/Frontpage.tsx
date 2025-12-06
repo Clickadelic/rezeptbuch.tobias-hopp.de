@@ -6,11 +6,10 @@ import CategorySelectionBlock from '@/components/reusables/Blocks/CategorySelect
 import AuthTeaserBlock from '@/components/reusables/Blocks/AuthTeaserBlock';
 import RecommendedRecipesBlock from '@/components/reusables/Blocks/RecommendedRecipesBlock';
 import RecommendedCocktailsBlock from '@/components/reusables/Blocks/RecommendedCocktailsBlock';
-
+import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 import StatsBlock from '@/components/reusables/Blocks/StatsBlock';
 
-import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import { SharedPageProps } from '@/types';
 
 /**
@@ -43,7 +42,7 @@ export default function Frontpage() {
             <Seperator />
             <StatsBlock totalRecipeCount={totalRecipeCount} totalIngredientCount={totalIngredientCount} totalCommentCount={totalCommentCount} className="asd" />
             <Seperator style="question-mark" />
-            <FaqAccordeon isExtendet={false} />
+            <FaqAccordeon />
         </FullWidthLayout>
     );
 }

@@ -1,6 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
 import TitleBlock from './Blocks/TitleBlock';
-import { FaQ } from 'react-icons/fa6';
 import { RiGuideLine } from "react-icons/ri";
 
 export default function GuideAccordeon() {
@@ -29,20 +28,23 @@ export default function GuideAccordeon() {
                             <br />
                             <p>Das Formular besteht aus 3 Schritten:</p>
                             <br />
-                            <ul>
+                            <ul className="list-disc list-inside">
                                 <li>Schritt 1: Kategorie, Name, Veröffentlichungsstatus und weitere Details.</li>
                                 <li>Schritt 2: Zutaten wie Menge, Einheit und Zutatenname</li>
                                 <li>Schritt 3: Vorschaubild und Zubereitung</li>
                             </ul>
+                            <br />
+                            <p>Du kannst ein Rezept anlegen und erstmal als Entwurf speichern. Wenn Du das Rezept später kochst oder sonst eine Gelegenheit für ein gutes Foto hast, machst Du flink mit dem Handy ein Foto und ergänzt das Rezept.</p>
                         </AccordionContent>
                     </AccordionItem>
-                    <AccordionItem value="item-3">
+                    <AccordionItem value="item-4">
                         <AccordionTrigger className="font-medium text-xl">
                             Bilder mit dem Smartphone
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>Die Benutzung der Rezeptbuch-App ist so angelegt, dass Du für Rezepte bequem Bilder bis zu 10 MB mit dem Handy machen kannst. Diese werden beim Upload automatisch direkt verkleinert.</p>
-                            <ul>
+                            <br />
+                            <ul className="list-disc list-inside">
                                 <li>Rezepte (und Zutaten) erstellen</li>
                                 <li>Rezepte favorisieren</li>
                                 <li>Jedes Rezept bewerten</li>
@@ -56,12 +58,8 @@ export default function GuideAccordeon() {
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>Um ein neues Rezept anzlegen, klicke nach dem Login einfach auf das Plus-Icon in der rechten unteren Ecke.</p>
-                            <ul>
-                                <li>Rezepte (und Zutaten) erstellen</li>
-                                <li>Rezepte favorisieren</li>
-                                <li>Rezepte erstellen</li>
-                                <li>Rezepte erstellen</li>
-                            </ul>
+                            <br />
+                            <p>Danach wirst Du zum Formular weiter geleitet, welches Dich durch die Erstellung führt.</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

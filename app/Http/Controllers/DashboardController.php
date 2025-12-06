@@ -6,8 +6,11 @@ use Inertia\Inertia;
 use App\Models\Comment;
 use App\Models\Recipe;
 use App\Models\Ingredient;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\JsonResponse;
 
 class DashboardController extends Controller
 {
@@ -84,14 +87,32 @@ class DashboardController extends Controller
     /**
      * Shows all recipes of the current user.
      * 
-     * @return \Inertia\Response
+     * @return JsonResponse
      */
-    public function myRecipes () {
-        $userRecipes = Recipe::where('user_id', Auth::id())->with(['category', 'media', 'comments'])->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-        $userFavorites = Auth::user()->favorites()->with(['media', 'category', 'user'])->where('status', 'published')->get();
-        return Inertia::render('Dashboard/MyRecipes', [
-            'userRecipes' => $userRecipes,
-            'userFavorites' => $userFavorites
+    public function myRecipes(Request $request): JsonResponse
+    {
+        $search = $request->get('search', '');
+        $page   = $request->get('page', 1);
+
+        $query = Recipe::query()
+            ->when($search, function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('status', 'like', "%{$search}%")
+                ->orWhere('difficulty', 'like', "%{$search}%");
+            })
+            ->with(['category'])
+            ->orderBy('created_at', 'desc');
+
+        $perPage = 25;
+        $recipes = $query->paginate($perPage, ['*'], 'page', $page);
+
+        // Asynchrones JSON-Response
+        return response()->json([
+            'data'       => $recipes->items(),
+            'current_page' => $recipes->currentPage(),
+            'per_page'     => $recipes->perPage(),
+            'total'        => $recipes->total(),
+            'last_page'    => $recipes->lastPage(),
         ]);
     }
 

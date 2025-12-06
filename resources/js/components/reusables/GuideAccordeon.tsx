@@ -1,9 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
 import TitleBlock from './Blocks/TitleBlock';
-
-import { RiGuideLine } from "react-icons/ri";
-
 import { FaQ } from 'react-icons/fa6';
+import { RiGuideLine } from "react-icons/ri";
 
 export default function GuideAccordeon() {
     return (
@@ -48,6 +46,20 @@ export default function GuideAccordeon() {
                                 <li>Rezepte (und Zutaten) erstellen</li>
                                 <li>Rezepte favorisieren</li>
                                 <li>Jedes Rezept bewerten</li>
+                                <li>Rezepte erstellen</li>
+                            </ul>
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger className="font-medium text-xl">
+                            Rezepte anlegen
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            <p>Um ein neues Rezept anzlegen, klicke nach dem Login einfach auf das Plus-Icon in der rechten unteren Ecke.</p>
+                            <ul>
+                                <li>Rezepte (und Zutaten) erstellen</li>
+                                <li>Rezepte favorisieren</li>
+                                <li>Rezepte erstellen</li>
                                 <li>Rezepte erstellen</li>
                             </ul>
                         </AccordionContent>

@@ -1,19 +1,27 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
 import TitleBlock from './Blocks/TitleBlock';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { RiGuideLine } from "react-icons/ri";
 =======
 import { FaQ } from 'react-icons/fa6';
 >>>>>>> 6a787f23 (Guide WIP)
+=======
+import { RiGuideLine } from "react-icons/ri";
+>>>>>>> d85b01c4 (Guide)
 
 export default function GuideAccordeon() {
     return (
         <>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <TitleBlock title="Leitfaden" icon={<RiGuideLine className="text-primary size-6 mt-1" />} punchline="Tipps und Tricks" />
 =======
             <TitleBlock title="Rezeptbuch" icon={<FaQ className="text-primary size-6 mt-1" />} punchline="Fragen und Antworten" />
 >>>>>>> 6a787f23 (Guide WIP)
+=======
+            <TitleBlock title="Leitfaden" icon={<RiGuideLine className="text-primary size-6 mt-1" />} punchline="Tipps und Tricks" />
+>>>>>>> d85b01c4 (Guide)
             <div className="w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8">
                 <Accordion type="single" collapsible className="mb-8">
                     <AccordionItem value="item-1">
@@ -28,6 +36,9 @@ export default function GuideAccordeon() {
                     <AccordionItem value="item-2">
                         <AccordionTrigger className="font-medium text-xl">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d85b01c4 (Guide)
                             Rezepte anlegen
                         </AccordionTrigger>
                         <AccordionContent>
@@ -47,9 +58,12 @@ export default function GuideAccordeon() {
                     <AccordionItem value="item-3">
                         <AccordionTrigger className="font-medium text-xl">
                             Bilder mit dem Smartphone
+<<<<<<< HEAD
 =======
                             Nutzung mit dem Smartphone
 >>>>>>> 6a787f23 (Guide WIP)
+=======
+>>>>>>> d85b01c4 (Guide)
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>Die Benutzung der Rezeptbuch-App ist so angelegt, dass Du für Rezepte bequem Bilder bis zu 10 MB mit dem Handy machen kannst. Diese werden beim Upload automatisch direkt verkleinert.</p>
@@ -61,6 +75,7 @@ export default function GuideAccordeon() {
                             </ul>
                         </AccordionContent>
                     </AccordionItem>
+<<<<<<< HEAD
 <<<<<<< HEAD
                     
 =======
@@ -79,6 +94,9 @@ export default function GuideAccordeon() {
                         </AccordionContent>
                     </AccordionItem>
 >>>>>>> 6a787f23 (Guide WIP)
+=======
+                    
+>>>>>>> d85b01c4 (Guide)
                 </Accordion>
             </div>
         </>

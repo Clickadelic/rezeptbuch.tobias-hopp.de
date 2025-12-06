@@ -1,11 +1,19 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
 import TitleBlock from './Blocks/TitleBlock';
+<<<<<<< HEAD
 import { RiGuideLine } from "react-icons/ri";
+=======
+import { FaQ } from 'react-icons/fa6';
+>>>>>>> c981c691 (Guide WIP)
 
 export default function GuideAccordeon() {
     return (
         <>
+<<<<<<< HEAD
             <TitleBlock title="Leitfaden" icon={<RiGuideLine className="text-primary size-6 mt-1" />} punchline="Tipps und Tricks" />
+=======
+            <TitleBlock title="Rezeptbuch" icon={<FaQ className="text-primary size-6 mt-1" />} punchline="Fragen und Antworten" />
+>>>>>>> c981c691 (Guide WIP)
             <div className="w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8">
                 <Accordion type="single" collapsible className="mb-8">
                     <AccordionItem value="item-1">
@@ -19,6 +27,7 @@ export default function GuideAccordeon() {
                     </AccordionItem>
                     <AccordionItem value="item-2">
                         <AccordionTrigger className="font-medium text-xl">
+<<<<<<< HEAD
                             Rezepte anlegen
                         </AccordionTrigger>
                         <AccordionContent>
@@ -38,6 +47,9 @@ export default function GuideAccordeon() {
                     <AccordionItem value="item-3">
                         <AccordionTrigger className="font-medium text-xl">
                             Bilder mit dem Smartphone
+=======
+                            Nutzung mit dem Smartphone
+>>>>>>> c981c691 (Guide WIP)
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>Die Benutzung der Rezeptbuch-App ist so angelegt, dass Du für Rezepte bequem Bilder bis zu 10 MB mit dem Handy machen kannst. Diese werden beim Upload automatisch direkt verkleinert.</p>
@@ -49,7 +61,24 @@ export default function GuideAccordeon() {
                             </ul>
                         </AccordionContent>
                     </AccordionItem>
+<<<<<<< HEAD
                     
+=======
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger className="font-medium text-xl">
+                            Rezepte anlegen
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            <p>Um ein neues Rezept anzlegen, klicke nach dem Login einfach auf das Plus-Icon in der rechten unteren Ecke.</p>
+                            <ul>
+                                <li>Rezepte (und Zutaten) erstellen</li>
+                                <li>Rezepte favorisieren</li>
+                                <li>Rezepte erstellen</li>
+                                <li>Rezepte erstellen</li>
+                            </ul>
+                        </AccordionContent>
+                    </AccordionItem>
+>>>>>>> c981c691 (Guide WIP)
                 </Accordion>
             </div>
         </>

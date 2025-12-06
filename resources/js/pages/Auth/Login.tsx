@@ -6,6 +6,10 @@ import TextInput from '@/components/forms/inputs/TextInput';
 import AuthLayout from '@/layouts/AuthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
+import { useState, useEffect } from 'react';
+import { TfiEye } from 'react-icons/tfi';
+import { GoEyeClosed } from 'react-icons/go';
+import { IoEyeOutline } from 'react-icons/io5';
 
 export default function Login({
     status,
@@ -20,12 +24,29 @@ export default function Login({
         remember: false as boolean,
     });
 
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
         post(route('login'), {
             onFinish: () => reset('password'),
         });
+    };
+
+    useEffect(() => {
+        const passwordInput = document.getElementById('password') as HTMLInputElement;
+        if (passwordInput) {
+            passwordInput.type = isPasswordVisible ? 'text' : 'password';
+        }
+    }, [isPasswordVisible]);
+
+    
+    const togglePasswordVisibility = () => {
+        const passwordInput = document.getElementById('password') as HTMLInputElement;
+        if (passwordInput) {
+            passwordInput.type = isPasswordVisible ? 'password' : 'text';
+            setIsPasswordVisible(!isPasswordVisible);
+        }
     };
 
     return (
@@ -52,20 +73,24 @@ export default function Login({
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
-
+                
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        placeholder="**********"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
+                    <div className="flex w-full rounded border border-gray-200 bg-gray-200 p-0">
+                        <TextInput
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            className="py-0 block w-full bg-transparent border-transparent rounded-none rounded-l-md text-gray-600 dark:bg-gray-200"
+                            autoComplete="current-password"
+                            placeholder="**********"
+                            onChange={(e) => setData('password', e.target.value)}
+                        />
+                        <Button variant="flat" type="button" onClick={togglePasswordVisibility} className="bg-[#e8f0fe] h-[2.625rem] flex hover:text-emerald-500 rounded-none rounded-r-md">
+                            {isPasswordVisible ? <TfiEye /> : <GoEyeClosed />}
+                        </Button>
+                    </div>
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
@@ -88,6 +113,7 @@ export default function Login({
                         Login
                     </Button>
                 </div>
+
                 <div className="flex items-center justify-center space-x-2">
                     <p>
                         Noch kein Account?&nbsp;
@@ -99,6 +125,7 @@ export default function Login({
                         </Link>
                     </p>
                 </div>
+
                 <div className="text-center my-3">
                     {canResetPassword && (
                         <Link

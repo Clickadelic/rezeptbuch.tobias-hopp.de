@@ -3,11 +3,9 @@ import MainSidebar from '@/components/sidebars/MainSidebar';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion';
 import { Link } from '@inertiajs/react';
 
-import TitleBlock from '@/components/reusables/Blocks/TitleBlock';
-import { FaQ } from 'react-icons/fa6';
 import { ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+
 /**
  * Leitfaden – Informationen zur Benutzung
  */
@@ -15,13 +13,11 @@ export default function Leitfaden() {
     return (
         <SidebarLeftLayout
             title="Leitfaden zur Benutzung"
+            showTitle={false}
             description="Hinweise und Details zur Verwendung des Rezeptbuchs."
             sidebar={<MainSidebar />}
         >
-            <section>
-                In dieser Sektion findet Ihr einen kleinen Leitfaden zur Benutzung.
-            </section>
-            <div className={cn('w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8')}>
+            <div className="w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8">
                 <Accordion type="single" collapsible className="mb-8">
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="font-medium text-xl">

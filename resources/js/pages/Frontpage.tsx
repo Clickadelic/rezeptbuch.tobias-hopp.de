@@ -13,6 +13,8 @@ import StatsBlock from '@/components/reusables/Blocks/StatsBlock';
 import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import { SharedPageProps } from '@/types';
 
+// Test
+
 /**
  * The frontpage of the application.
  *

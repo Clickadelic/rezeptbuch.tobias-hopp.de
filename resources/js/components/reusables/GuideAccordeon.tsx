@@ -3,6 +3,7 @@ import TitleBlock from './Blocks/TitleBlock';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { RiGuideLine } from "react-icons/ri";
 =======
 import { FaQ } from 'react-icons/fa6';
@@ -11,11 +12,19 @@ import { FaQ } from 'react-icons/fa6';
 import { RiGuideLine } from "react-icons/ri";
 >>>>>>> d85b01c4 (Guide)
 =======
+=======
+>>>>>>> d6d46434 (Guide)
 import { RiGuideLine } from "react-icons/ri";
 =======
 import { FaQ } from 'react-icons/fa6';
 >>>>>>> c981c691 (Guide WIP)
+<<<<<<< HEAD
 >>>>>>> f43d706b (Guide WIP)
+=======
+=======
+import { RiGuideLine } from "react-icons/ri";
+>>>>>>> 624de2bd (Guide)
+>>>>>>> d6d46434 (Guide)
 
 export default function GuideAccordeon() {
     return (
@@ -23,6 +32,7 @@ export default function GuideAccordeon() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <TitleBlock title="Leitfaden" icon={<RiGuideLine className="text-primary size-6 mt-1" />} punchline="Tipps und Tricks" />
 =======
             <TitleBlock title="Rezeptbuch" icon={<FaQ className="text-primary size-6 mt-1" />} punchline="Fragen und Antworten" />
@@ -31,11 +41,19 @@ export default function GuideAccordeon() {
             <TitleBlock title="Leitfaden" icon={<RiGuideLine className="text-primary size-6 mt-1" />} punchline="Tipps und Tricks" />
 >>>>>>> d85b01c4 (Guide)
 =======
+=======
+>>>>>>> d6d46434 (Guide)
             <TitleBlock title="Leitfaden" icon={<RiGuideLine className="text-primary size-6 mt-1" />} punchline="Tipps und Tricks" />
 =======
             <TitleBlock title="Rezeptbuch" icon={<FaQ className="text-primary size-6 mt-1" />} punchline="Fragen und Antworten" />
 >>>>>>> c981c691 (Guide WIP)
+<<<<<<< HEAD
 >>>>>>> f43d706b (Guide WIP)
+=======
+=======
+            <TitleBlock title="Leitfaden" icon={<RiGuideLine className="text-primary size-6 mt-1" />} punchline="Tipps und Tricks" />
+>>>>>>> 624de2bd (Guide)
+>>>>>>> d6d46434 (Guide)
             <div className="w-full lg:max-w-xl mx-auto my-4 sm:my-6 md:my-8">
                 <Accordion type="single" collapsible className="mb-8">
                     <AccordionItem value="item-1">
@@ -52,10 +70,15 @@ export default function GuideAccordeon() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> d85b01c4 (Guide)
 =======
 >>>>>>> f43d706b (Guide WIP)
+=======
+=======
+>>>>>>> 624de2bd (Guide)
+>>>>>>> d6d46434 (Guide)
                             Rezepte anlegen
                         </AccordionTrigger>
                         <AccordionContent>
@@ -77,6 +100,7 @@ export default function GuideAccordeon() {
                             Bilder mit dem Smartphone
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             Nutzung mit dem Smartphone
 >>>>>>> 6a787f23 (Guide WIP)
@@ -87,6 +111,13 @@ export default function GuideAccordeon() {
                             Nutzung mit dem Smartphone
 >>>>>>> c981c691 (Guide WIP)
 >>>>>>> f43d706b (Guide WIP)
+=======
+=======
+                            Nutzung mit dem Smartphone
+>>>>>>> c981c691 (Guide WIP)
+=======
+>>>>>>> 624de2bd (Guide)
+>>>>>>> d6d46434 (Guide)
                         </AccordionTrigger>
                         <AccordionContent>
                             <p>Die Benutzung der Rezeptbuch-App ist so angelegt, dass Du für Rezepte bequem Bilder bis zu 10 MB mit dem Handy machen kannst. Diese werden beim Upload automatisch direkt verkleinert.</p>
@@ -101,8 +132,11 @@ export default function GuideAccordeon() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f43d706b (Guide WIP)
+=======
+>>>>>>> d6d46434 (Guide)
                     
 =======
                     <AccordionItem value="item-3">
@@ -126,7 +160,13 @@ export default function GuideAccordeon() {
 >>>>>>> d85b01c4 (Guide)
 =======
 >>>>>>> c981c691 (Guide WIP)
+<<<<<<< HEAD
 >>>>>>> f43d706b (Guide WIP)
+=======
+=======
+                    
+>>>>>>> 624de2bd (Guide)
+>>>>>>> d6d46434 (Guide)
                 </Accordion>
             </div>
         </>

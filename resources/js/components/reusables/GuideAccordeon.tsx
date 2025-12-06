@@ -37,7 +37,7 @@ export default function GuideAccordeon() {
                             <p>Du kannst ein Rezept anlegen und erstmal als Entwurf speichern. Wenn Du das Rezept später kochst oder sonst eine Gelegenheit für ein gutes Foto hast, machst Du flink mit dem Handy ein Foto und ergänzt das Rezept.</p>
                         </AccordionContent>
                     </AccordionItem>
-                    <AccordionItem value="item-3">
+                    <AccordionItem value="item-4">
                         <AccordionTrigger className="font-medium text-xl">
                             Bilder mit dem Smartphone
                         </AccordionTrigger>

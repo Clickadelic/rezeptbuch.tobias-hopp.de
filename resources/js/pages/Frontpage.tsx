@@ -12,7 +12,7 @@ import StatsBlock from '@/components/reusables/Blocks/StatsBlock';
 
 import { SharedPageProps } from '@/types';
 
-// Test
+// Test, Test, Test
 
 /**
  * The frontpage of the application.

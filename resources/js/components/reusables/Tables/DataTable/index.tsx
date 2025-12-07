@@ -4,14 +4,15 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import Pagination from "@/components/reusables/Pagination"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     endpoint: string
-
 }
 
 export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<TData, TValue>) {
+
     const [data, setData] = useState<TData[]>([])
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1)
@@ -103,7 +104,7 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
                     <TableBody>
                     {loading ? (
                         <TableRow>
-                            <TableCell colSpan={columns.length} className="text-center h-24">
+                            <TableCell colSpan={columns.length} className="text-center h-24 my-24">
                                 Lade Daten…
                             </TableCell>
                         </TableRow>
@@ -127,7 +128,10 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
                     </TableBody>
                 </Table>
             </div>
-
+            
+            {/* <div className="asd">
+                <Pagination className="asd" />
+            </div> */}
             {/* PAGINATION */}
             <div className="flex justify-between items-center pt-2">
                 <button disabled={page <= 1} onClick={prevPage} className="btn">

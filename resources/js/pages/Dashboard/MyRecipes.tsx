@@ -1,13 +1,7 @@
-import { usePage } from '@inertiajs/react';
-
 import UserSidebar from '@/components/sidebars/UserSidebar';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import RecipesPanel from '@/components/reusables/Panels/RecipesPanel';
 import { TfiLayoutListThumb } from 'react-icons/tfi';
-import Paginated from '@/types/Paginated';
-
-import { SharedPageProps } from '@/types';
-import { Recipe } from '@/types/Recipe';
 
 /**
  * The user recipes page displays a variety of information about the user's recipes.

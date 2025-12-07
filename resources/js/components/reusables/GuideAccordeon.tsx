@@ -44,6 +44,23 @@ export default function GuideAccordeon() {
                         <AccordionContent>
                             <p>Die Benutzung der Rezeptbuch-App ist so angelegt, dass Du für Rezepte bequem Bilder bis zu 10 MB mit dem Handy machen kannst. Diese werden beim Upload automatisch direkt verkleinert.</p>
                             <br />
+                            <ul className="list-disc list-inside">
+                                <li>Rezepte (und Zutaten) erstellen</li>
+                                <li>Rezepte favorisieren</li>
+                                <li>Jedes Rezept bewerten</li>
+                                <li>Rezepte erstellen</li>
+                            </ul>
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger className="font-medium text-xl">
+                            Rezepte anlegen
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            <p>Um ein neues Rezept anzlegen, klicke nach dem Login einfach auf das Plus-Icon in der rechten unteren Ecke.</p>
+                            <br />
+                            <p>Danach wirst Du zum Formular weiter geleitet, welches Dich durch die Erstellung führt.</p>
+                            <br />
                             <p>Speichere das Rezept vorher als Entwurf, später kannst Du das Bild dann bequem hinzufügen.</p>
                         </AccordionContent>
                     </AccordionItem>

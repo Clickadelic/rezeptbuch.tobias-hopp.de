@@ -60,6 +60,8 @@ export default function GuideAccordeon() {
                             <p>Um ein neues Rezept anzlegen, klicke nach dem Login einfach auf das Plus-Icon in der rechten unteren Ecke.</p>
                             <br />
                             <p>Danach wirst Du zum Formular weiter geleitet, welches Dich durch die Erstellung führt.</p>
+                            <br />
+                            <p>Speichere das Rezept vorher als Entwurf, später kannst Du das Bild dann bequem hinzufügen.</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>

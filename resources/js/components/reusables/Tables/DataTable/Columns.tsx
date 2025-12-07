@@ -3,18 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Recipe } from "@/types/Recipe"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-
-type RecipeDataColumn = {
-  status: string
-  name: string
-  category: string
-  difficulty: string
-  is_veggy: string
-  preparation_time: string
-}
-
 export const columns: ColumnDef<Recipe>[] = [
   {
     accessorKey: "status",

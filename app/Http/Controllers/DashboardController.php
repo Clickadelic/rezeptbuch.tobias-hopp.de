@@ -85,11 +85,30 @@ class DashboardController extends Controller
     }
 
     /**
-     * Shows all recipes of the current user.
+     * Shows all ingredients of the current user.
      * 
-     * @return JsonResponse
+     * @return \Inertia\Response
      */
-    public function myRecipes(Request $request): JsonResponse
+    public function myRecipes () {
+        return Inertia::render('Dashboard/MyRecipes');
+    }
+
+    /**
+     * Shows all ingredients of the current user.
+     * 
+     * @return \Inertia\Response
+     */
+    public function myIngredients () {
+        return Inertia::render('Dashboard/MyIngredients');
+    }
+
+    /** 
+     * Returns a paginated list of recipes for the current user.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userRecipeData(Request $request): JsonResponse
     {
         $search = $request->get('search', '');
         $page   = $request->get('page', 1);
@@ -114,23 +133,5 @@ class DashboardController extends Controller
             'total'        => $recipes->total(),
             'last_page'    => $recipes->lastPage(),
         ]);
-    }
-
-    /**
-     * Shows all ingredients of the current user.
-     * 
-     * @return \Inertia\Response
-     */
-    public function myIngredients () {
-        return Inertia::render('Dashboard/MyIngredients');
-    }
-
-    /**
-     * Shows all favorites of the current user.
-     * 
-     * @return \Inertia\Response
-     */
-    public function myFavorites () {
-        return Inertia::render('Dashboard/MyFavorites');
     }
 }

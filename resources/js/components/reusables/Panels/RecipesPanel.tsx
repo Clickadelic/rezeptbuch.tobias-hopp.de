@@ -10,23 +10,19 @@ import { Recipe } from "@/types/Recipe"
 import { cn } from "@/lib/utils"
 
 interface RecipesPanelProps {
-    recipes: Paginated<Recipe>
     title?: string
     icon?: React.ReactNode
 }
 
-export default function RecipesPanel({ recipes, title, icon }: RecipesPanelProps) {
-    const { filters } = usePage().props as any
-    const [search, setSearch] = useState(filters?.search || "")
-    function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-        const value = e.target.value
-
-        router.get(route("recipes.index"), { search: value }, {
-            preserveState: true,
-            replace: true,
-        })
-    }
-
+/**
+ * A panel component that displays a list of recipes.
+ *
+ * @param {Paginated<Recipe>} recipes - A paginated list of recipes.
+ * @param {string} [title] - The title of the panel. Defaults to "Daten".
+ * @param {React.ReactNode} [icon] - The icon to display next to the title. Defaults to null.
+ * @returns {JSX.Element} - A JSX element representing the panel.
+ */
+export default function RecipesPanel({ title, icon }: RecipesPanelProps) {
 
     return (
         <div className="w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl">
@@ -34,21 +30,9 @@ export default function RecipesPanel({ recipes, title, icon }: RecipesPanelProps
                 <h3 className="text-lg flex gap-2">
                     {icon}
                     {title || "Daten"}
-                    {recipes.data?.length >= 1 && (
-                        <span className="text-gray-400">({recipes.total})</span>
-                    )}
                 </h3>
-
-                <input
-                    type="text"
-                    placeholder="Suche..."
-                    value={search}
-                    onChange={handleSearch}
-                    className="px-3 py-1 rounded border text-sm bg-white dark:bg-gray-800"
-                />
             </div>
-
-            <DataTable data={recipes.data} columns={columns} />
+            <DataTable columns={columns} endpoint="/dashboard/rezepte/data" />
         </div>
     )
 }

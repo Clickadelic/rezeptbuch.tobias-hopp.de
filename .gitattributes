@@ -1,3 +1,7 @@
+# Normalize line endings for TS/TSX to avoid churn across OSes
+*.ts  text eol=lf
+*.tsx text eol=lf
+
 * text=auto eol=lf
 
 *.blade.php diff=html

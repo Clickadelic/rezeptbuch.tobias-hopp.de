@@ -1,6 +1,6 @@
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
 import MainSidebar from '@/components/sidebars/MainSidebar';
-import GuideAccordeon from '@/components/reusables/GuideAccordeon';
+import GuideAccordion from '@/components/reusables/GuideAccordion';
 
 /**
  * Leitfaden – Informationen zur Benutzung
@@ -13,7 +13,7 @@ export default function Leitfaden() {
             description="Hinweise und Details zur Verwendung des Rezeptbuchs."
             sidebar={<MainSidebar />}
         >
-            <GuideAccordeon />
+            <GuideAccordion />
         </SidebarLeftLayout>
     );
 }

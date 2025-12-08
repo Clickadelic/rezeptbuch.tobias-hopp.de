@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react"
 import axios from "axios"
+
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import Pagination from "@/components/reusables/Pagination"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -15,9 +15,9 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
 
     const [data, setData] = useState<TData[]>([])
     const [search, setSearch] = useState("")
-    const [page, setPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(1)
-    const [loading, setLoading] = useState(false)
+    const [page, setPage] = useState<number>(1)
+    const [totalPages, setTotalPages] = useState<number>(1)
+    const [loading, setLoading] = useState<boolean>(false)
 
     // ---- Ladefunktion ----
     async function loadData(searchValue = search, pageValue = page) {

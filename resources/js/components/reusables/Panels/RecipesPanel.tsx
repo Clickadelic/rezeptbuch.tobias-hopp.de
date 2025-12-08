@@ -1,13 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import { router } from '@inertiajs/react'
-import { usePage } from "@inertiajs/react"
+
 import { DataTable } from "@/components/reusables/Tables/DataTable"
-import { columns } from "@/components/reusables/Tables/DataTable/Columns"
-import Paginated from "@/types/Paginated"
-import { Recipe } from "@/types/Recipe"
-import { cn } from "@/lib/utils"
+import { recipeColumns } from "@/components/reusables/Tables/DataTable/RecipeColumns"
 
 interface RecipesPanelProps {
     title?: string
@@ -32,7 +27,7 @@ export default function RecipesPanel({ title, icon }: RecipesPanelProps) {
                     {title || "Daten"}
                 </h3>
             </div>
-            <DataTable columns={columns} endpoint="/dashboard/rezepte/data" />
+            <DataTable columns={recipeColumns} endpoint="/dashboard/rezepte/data" />
         </div>
     )
 }

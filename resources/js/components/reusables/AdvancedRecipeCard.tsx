@@ -52,7 +52,7 @@ export default function AdvancedRecipeCard({ recipe, className }: AdvancedRecipe
                         <RecipeCardCategory recipe={recipe} />
                         <RecipeContextMenu recipe={recipe} className="absolute -top-1 -right-1" />
                     </div>
-                    <div className="flex flex-col justify-between mb-6">
+                    <div className="flex flex-col justify-between mb-4">
                         <RecipeCardPunchline recipe={recipe} className="text-gray-600 dark:text-gray-400" />
                         <RecipeCardName recipe={recipe} className="text-gray-800 dark:text-gray-200" />
                     </div>

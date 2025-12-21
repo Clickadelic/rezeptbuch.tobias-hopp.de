@@ -37,6 +37,7 @@ export default function MisEnPlace() {
                 title="Mis en place"
                 punchline="Alles an seinem Ort."
             />
+            <p>Ordnung muss sein, auch in der Küche.</p>
         </SidebarLeftLayout>
     );
 }

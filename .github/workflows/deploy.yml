@@ -36,7 +36,7 @@ jobs:
       - name: Build assets (Vite)
         run: npm run build
 
-- name: Write SSH key (base64 from secret)
+      - name: Write SSH key (base64 from secret)
         shell: bash
         run: |
           set -euo pipefail
@@ -47,12 +47,12 @@ jobs:
             echo "::error title=Missing secret::DEPLOY_SSH_PRIVATE_KEY_B64 is not set"
             exit 1
           fi
-# decode base64 (tolerant of line breaks/garbage)
+          # decode base64 (tolerant of line breaks/garbage)
           if ! printf "%s" "${{ secrets.DEPLOY_SSH_PRIVATE_KEY_B64 }}" | base64 -d -i > "$KEY" 2>/dev/null; then
             python3 - <<'PY'
-import base64,sys
-sys.stdout.buffer.write(base64.b64decode(sys.stdin.read()))
-PY
+          import base64,sys
+          sys.stdout.buffer.write(base64.b64decode(sys.stdin.read()))
+          PY
           fi
           tr -d '\r' < "$KEY" > "$KEY.tmp" && mv "$KEY.tmp" "$KEY"
           chmod 600 "$KEY"
@@ -61,7 +61,7 @@ PY
             exit 1
           fi
 
-- name: Add host key
+      - name: Add host key
         shell: bash
         run: |
           set -euo pipefail

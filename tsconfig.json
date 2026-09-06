@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": ".", // <-- hinzufügen
+        "baseUrl": ".",
         "allowJs": true,
         "module": "ESNext",
         "moduleResolution": "bundler",

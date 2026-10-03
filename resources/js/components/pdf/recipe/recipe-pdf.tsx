@@ -47,19 +47,8 @@ export function RecipePdf({ recipe }: RecipePdfProps) {
                         {recipe.punchline}
                     </Text>
                     {recipe.image && (
-                        <View
-                            style={{
-                                height: 160,
-                                overflow: 'hidden',
-                                marginBottom: '.5rem',
-                            }}
-                        >
-                            <PdfImage
-                                src={recipe.image}
-                                width="100%"
-                                height={160}
-                                fit="cover"
-                            />
+                        <View style={{ alignItems: 'center', marginBottom: '.5rem' }}>
+                            <PdfImage src={recipe.image} height={160} fit="contain" />
                         </View>
                     )}
                     <Text style={{ marginBottom: '.5rem', textAlign: 'center' }}>

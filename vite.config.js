@@ -17,6 +17,7 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, 'resources/js'),
             '@images': path.resolve(__dirname, 'resources/images'),
+            '~scripts': path.resolve(__dirname, 'scripts'),
             'ziggy-js': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/react'),
         },
     },

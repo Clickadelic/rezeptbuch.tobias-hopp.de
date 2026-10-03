@@ -8,6 +8,8 @@ FROM php:8.3-cli-alpine
 RUN apk add --no-cache \
         git \
         curl-dev \
+        nodejs \
+        npm \
         icu-dev \
         libzip-dev \
         oniguruma-dev \

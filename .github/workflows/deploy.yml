@@ -36,6 +36,9 @@ jobs:
       - name: Build assets (Vite)
         run: npm run build
 
+      - name: Build PDF renderer bundle
+        run: npm run build:pdf
+
       - name: Write SSH key (base64 from secret)
         shell: bash
         run: |
@@ -110,10 +113,14 @@ jobs:
           ssh -i "$HOME/.ssh/web_deploy_key" -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -p "$PORT" "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" bash -lc '
             set -e
             cd "${{ secrets.DEPLOY_PATH }}"
-            mkdir -p storage bootstrap/cache
+            mkdir -p storage/framework/{cache/data,sessions,views} storage/logs storage/app/temp bootstrap/cache
             composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+            NODE_BIN="$(ls -d /home/.nvm/versions/node/v22*/bin 2>/dev/null | tail -n 1)"
+            [ -n "$NODE_BIN" ] && export PATH="$NODE_BIN:$PATH"
+            npm ci --no-audit --no-fund
             php artisan key:generate --force || true
             php artisan migrate --force
+            php artisan optimize:clear
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache

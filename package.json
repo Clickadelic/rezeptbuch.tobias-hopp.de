@@ -4,6 +4,7 @@
     "type": "module",
     "scripts": {
         "build": "tsc && vite build",
+        "build:pdf": "esbuild scripts/render-recipe.tsx --bundle --platform=node --format=esm --jsx=automatic --packages=external --outfile=scripts/dist/render-recipe.mjs",
         "dev": "vite",
         "format": "prettier --write .",
         "format:check": "prettier --check .",

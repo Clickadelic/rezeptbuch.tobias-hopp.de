@@ -36,6 +36,9 @@ jobs:
       - name: Build assets (Vite)
         run: npm run build
 
+      - name: Build PDF renderer bundle
+        run: npm run build:pdf
+
       - name: Write SSH key (base64 from secret)
         shell: bash
         run: |

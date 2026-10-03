@@ -25,10 +25,16 @@ class RecipePdfService
 		try {
 			$nodeBinary = config('services.pdf.node_binary');
 
+			// Prefer the prebuilt bundle (no tsx/esbuild at runtime, works under tight FPM memory limits).
+			$bundle = base_path('scripts/dist/render-recipe.mjs');
+			$renderer = File::exists($bundle)
+				? [$bundle]
+				: [base_path('node_modules/tsx/dist/cli.mjs'), base_path('scripts/render-recipe.tsx')];
+
 			$process = new Process([
 				$nodeBinary,
-				base_path('node_modules/tsx/dist/cli.mjs'),
-				base_path('scripts/render-recipe.tsx'),
+				...config('services.pdf.node_args'),
+				...$renderer,
 				$inputPath,
 				$outputPath,
 			], base_path());

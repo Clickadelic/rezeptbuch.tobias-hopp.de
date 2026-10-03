@@ -30,6 +30,7 @@ return [
 
     'pdf' => [
         'node_binary' => env('PDF_NODE_BINARY', 'node'),
+        'node_args' => array_filter(explode(' ', (string) env('PDF_NODE_ARGS', ''))),
     ],
 
     'slack' => [

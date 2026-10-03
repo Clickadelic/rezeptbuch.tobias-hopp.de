@@ -78,14 +78,8 @@ export function RecipePdf({ recipe }: RecipePdfProps) {
                     </Heading>
 
                     <Text>{recipe.preparation_instructions}</Text>
-                    <Heading
-                        weight="bold"
-                        level={5}
-                        style={{ marginTop: '.5rem', marginBottom: '.5rem' }}
-                    >
-                        Online-Version:
-                    </Heading>
-
+                </View>
+                <View fixed style={{ bottom: 28, left: 28, right: 28 }}>
                     <PageFooter
                         variant="simple"
                         leftText={`https://rezeptbuch.tobias-hopp.de/rezepte/${recipe.slug}`}

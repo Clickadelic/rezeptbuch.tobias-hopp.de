@@ -1,5 +1,4 @@
 // TODO Profil korrigieren
-// TODO Null Prüfung Zutateneingabe Step 3 Blockieren bei Null Menge
 
 // ----------------------------------------
 // TODO Social Media Fields, Webseite, Facebook, Instagram, What's App ?, Telegram, GitHub

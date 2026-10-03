@@ -522,7 +522,8 @@ class RecipeController extends Controller
 
 		return response($pdf, 200, [
 			'Content-Type' => 'application/pdf',
-			'Content-Disposition' => 'attachment; filename="' . Str::slug($recipe->name) . '.pdf"',
+			'Content-Disposition' => 'inline; filename="' . Str::slug($recipe->name) . '.pdf"',
+			// 'Content-Disposition' => 'attachment; filename="' . Str::slug($recipe->name) . '.pdf"',
 		]);
 	}
 }

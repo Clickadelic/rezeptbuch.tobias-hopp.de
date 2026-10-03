@@ -27,15 +27,10 @@ export function RecipePdf({ recipe }: RecipePdfProps) {
     return (
         <Document title={recipe.name}>
             <Page>
-                <View
-                    style={{
-                        paddingTop: 3,
-                        paddingRight: 40,
-                        paddingBottom: 3,
-                        paddingLeft: 40,
-                    }}
-                >
-                    {/* Footer */}
+                <View>
+                    <Heading level={1} align="center" color="black" noMargin keepWithNext>
+                        {recipe.name}
+                    </Heading>
                     <PageFooter variant="simple" leftText="Toby's Rezeptbuch" />
                 </View>
             </Page>

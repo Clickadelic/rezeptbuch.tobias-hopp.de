@@ -162,8 +162,11 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
         return true;
     })();
 
-    const hasInvalidIngredient = data.recipe_ingredients.some(
-        (i) => i.quantity && !i.ingredient_id,
+    const hasMissingIngredient = data.recipe_ingredients.some(
+        (i) => i.quantity.trim() && !i.ingredient_id.trim(),
+    );
+    const hasMissingQuantity = data.recipe_ingredients.some(
+        (i) => i.ingredient_id.trim() && !i.quantity.trim(),
     );
 
     const handleStepChange = (newStep: number) => {
@@ -614,11 +617,12 @@ export default function RecipeWizard({ recipe, className }: RecipeWizardProps) {
                                 data.recipe_ingredients?.length >= 1 ? 'primary' : 'primaryOutline'
                             }
                             onClick={() => {
-                                const hasInvalid = data.recipe_ingredients.some(
-                                    (i) => i.quantity && !i.ingredient_id,
-                                );
-
-                                if (hasInvalid) {
+                                if (hasMissingQuantity) {
+                                    return toast.error(
+                                        'Bitte für jede ausgewählte Zutat eine Menge angeben.',
+                                    );
+                                }
+                                if (hasMissingIngredient) {
                                     return toast.error(
                                         'Bitte eine Zutat auswählen oder neu anlegen.',
                                     );

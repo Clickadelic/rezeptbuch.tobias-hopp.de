@@ -23,19 +23,23 @@ class RecipePdfService
 		);
 
 		try {
+			$nodeBinary = config('services.pdf.node_binary');
+
 			$process = new Process([
-				'npx',
-				'tsx',
+				$nodeBinary,
+				base_path('node_modules/tsx/dist/cli.mjs'),
 				base_path('scripts/render-recipe.tsx'),
 				$inputPath,
 				$outputPath,
-			]);
+			], base_path());
 
-			$process->setEnv([
-				'SystemRoot' => getenv('SystemRoot') ?: 'C:\\Windows',
-				'WINDIR' => getenv('WINDIR') ?: 'C:\\Windows',
-				'PATH' => getenv('PATH'),
-			]);
+			$process->setEnv(array_filter([
+				'SystemRoot' => getenv('SystemRoot') ?: null,
+				'WINDIR' => getenv('WINDIR') ?: null,
+				'PATH' => str_contains($nodeBinary, DIRECTORY_SEPARATOR)
+					? dirname($nodeBinary).PATH_SEPARATOR.getenv('PATH')
+					: getenv('PATH'),
+			]));
 
 			$process->setTimeout(120);
 			$process->run();

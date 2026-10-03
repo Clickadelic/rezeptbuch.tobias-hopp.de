@@ -19,10 +19,10 @@ class StoreRecipeRequest extends FormRequest
         return [
             // Oder einfacher:
             'name' => [
-                $this->isMethod('post') ? 'required' : 'sometimes', 
-                'string', 
+                $this->isMethod('post') ? 'required' : 'sometimes',
+                'string',
                 'max:255',
-                'required_with:name' // Stellt sicher, dass das Feld nicht leer ist, wenn es gesendet wird (für PATCH/PUT)
+                'required_with:name', // Stellt sicher, dass das Feld nicht leer ist, wenn es gesendet wird (für PATCH/PUT)
             ],
             'status' => ['nullable', 'string'],
 
@@ -44,7 +44,7 @@ class StoreRecipeRequest extends FormRequest
             // Zutaten
             'recipe_ingredients' => ['sometimes', 'array'],
             'recipe_ingredients.*.ingredient_id' => ['nullable', 'string'],
-            'recipe_ingredients.*.quantity' => ['nullable', 'string'],
+            'recipe_ingredients.*.quantity' => ['required_with:recipe_ingredients.*.ingredient_id', 'string'],
             'recipe_ingredients.*.unit' => ['nullable', 'string'],
 
             // Bilder & Zuordnung
@@ -62,6 +62,7 @@ class StoreRecipeRequest extends FormRequest
         return [
             'name.required' => 'Ein Name ist erforderlich.',
             'slug.unique' => 'Diese URL wird bereits verwendet.',
+            'recipe_ingredients.*.quantity.required_with' => 'Bitte gib für jede Zutat eine Menge an.',
         ];
     }
 }

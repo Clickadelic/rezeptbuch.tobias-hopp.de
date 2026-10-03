@@ -40,7 +40,8 @@ export function RecipePdf({ recipe }: RecipePdfProps) {
                     <Heading weight="normal" level={4} noMargin>
                         {recipe.name}
                     </Heading>
-
+                    <Text>{recipe.punchline}</Text>
+                    <Text>{recipe.instructions}</Text>
                     <PageFooter
                         variant="simple"
                         leftText={`Toby's Rezeptbuch &middot; https://rezeptbuch.tobias-hopp.de`}

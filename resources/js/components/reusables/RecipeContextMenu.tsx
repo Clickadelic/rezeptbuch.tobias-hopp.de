@@ -231,6 +231,7 @@ export default function RecipeContextMenu({
                             e.stopPropagation();
                             window.location.href = route('recipes.pdf', recipe?.slug);
                         }}
+                        className="hover:cursor-pointer"
                     >
                         <IoPrintOutline className="size-5 mr-2" />
                         PDF herunterladen

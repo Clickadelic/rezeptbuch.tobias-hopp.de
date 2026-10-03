@@ -24,7 +24,7 @@ export async function renderPdf(node: React.ReactElement): Promise<Uint8Array> {
 export async function downloadPdf(node: React.ReactElement, filename: string) {
     const pdf = await renderPdf(node);
 
-    const blob = new Blob([pdf], {
+    const blob = new Blob([pdf as BlobPart], {
         type: 'application/pdf',
     });
 

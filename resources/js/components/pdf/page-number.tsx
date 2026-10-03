@@ -6,16 +6,16 @@ import {
 import {
   usePdfcnTheme,
   useSafeMemo,
-} from "resources/js/components/pdf/theme-provider";
+} from "@/components/pdf/theme-provider";
 import {
   View,
   Text as PDFText,
   StyleSheet,
   flatten,
-} from "resources/js/lib/pdf-primitives";
-import type { Style } from "resources/js/lib/pdf-primitives";
-import type { PDFComponentProps } from "resources/types/pdf-components";
-import type { PdfcnTheme } from "resources/types/pdf-themes";
+} from "@/components/pdf/pdf-primitives";
+import type { Style } from "@/components/pdf/pdf-primitives";
+import type { PDFComponentProps } from "@/components/pdf/pdf-components";
+import type { PdfcnTheme } from "@/components/pdf/pdf-themes";
 
 export type PageNumberAlign = "left" | "center" | "right";
 export type PageNumberSize = "xs" | "sm" | "md";
@@ -113,7 +113,7 @@ export const PageNumber = ({
           return (
             <PageNumberPrimitive
               key={`page-${index}`}
-              style={flatten(textStyles)}
+              style={flatten(textStyles) as React.CSSProperties}
             />
           );
         }
@@ -121,7 +121,7 @@ export const PageNumber = ({
           return (
             <TotalPagesPrimitive
               key={`total-${index}`}
-              style={flatten(textStyles)}
+              style={flatten(textStyles) as React.CSSProperties}
             />
           );
         }

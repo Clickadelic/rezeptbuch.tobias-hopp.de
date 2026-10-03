@@ -28,6 +28,9 @@ RUN apk add --no-cache \
         pcntl \
         curl
 
+# The app validates uploads up to 10 MB, but PHP defaults to 2M/8M.
+RUN printf 'upload_max_filesize=12M\npost_max_size=16M\n' > /usr/local/etc/php/conf.d/uploads.ini
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app

@@ -226,6 +226,15 @@ export default function RecipeContextMenu({
                             <DropdownMenuSeparator />
                         </>
                     )}
+                    <DropdownMenuItem
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            window.location.href = route('recipes.pdf', recipe?.slug);
+                        }}
+                    >
+                        <IoPrintOutline className="size-5 mr-2" />
+                        PDF herunterladen
+                    </DropdownMenuItem>
                     <DropdownMenuItem>
                         <AlertDialog>
                             <AlertDialogTrigger

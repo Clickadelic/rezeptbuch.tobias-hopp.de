@@ -7,7 +7,7 @@ import FaqAccordeon from '@/components/reusables/FaqAccordeon';
 import Seperator from '@/components/reusables/Seperator';
 
 import LegalSidebar from '@/components/sidebars/LegalSidebar';
-
+import { PdfTest } from '@/components/pdf/pdf-test';
 /**
  * The contact page of the application.
  * Contains a contact form, a contact block, and a faq accordeon.
@@ -23,6 +23,8 @@ export default function ContactPage() {
             description="Auf dieser Seite kannst Du mit mir in Kontakt treten und mir eine Nachricht schreiben."
         >
             <ContactBlock />
+            <Seperator />
+            <PdfTest />
         </SidebarLeftLayout>
     );
 }

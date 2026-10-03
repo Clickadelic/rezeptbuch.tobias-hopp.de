@@ -8,6 +8,8 @@ FROM php:8.3-cli-alpine
 RUN apk add --no-cache \
         git \
         curl-dev \
+        nodejs \
+        npm \
         icu-dev \
         libzip-dev \
         oniguruma-dev \
@@ -25,6 +27,9 @@ RUN apk add --no-cache \
         exif \
         pcntl \
         curl
+
+# The app validates uploads up to 10 MB, but PHP defaults to 2M/8M.
+RUN printf 'upload_max_filesize=12M\npost_max_size=16M\n' > /usr/local/etc/php/conf.d/uploads.ini
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 

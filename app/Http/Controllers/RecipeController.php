@@ -500,9 +500,12 @@ class RecipeController extends Controller
 
 		$recipeData = [
 			'name' => $recipe->name,
+			'slug' => $recipe->slug,
 			'punchline' => $recipe->punchline,
 			'description' => $recipe->description,
-			'image' => $primaryMedia?->url,
+			'image' => $primaryMedia && Storage::disk($primaryMedia->disk ?: 'public')->exists($primaryMedia->path)
+				? 'data:' . $primaryMedia->mime_type . ';base64,' . base64_encode(Storage::disk($primaryMedia->disk ?: 'public')->get($primaryMedia->path))
+				: null,
 			'preparation_time' => $recipe->preparation_time,
 			'difficulty' => $recipe->difficulty,
 
@@ -515,7 +518,7 @@ class RecipeController extends Controller
 				->values()
 				->all(),
 
-			'instructions' => $recipe->preparation_instructions,
+			'preparation_instructions' => $recipe->preparation_instructions,
 		];
 
 		$pdf = $pdfService->render($recipeData);

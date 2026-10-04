@@ -4,8 +4,9 @@ import { RiCake3Line } from 'react-icons/ri';
 import { GiCakeSlice } from 'react-icons/gi';
 import { TbSalad } from 'react-icons/tb';
 import { GiCrystalBars } from 'react-icons/gi';
+import type { ReactElement } from 'react';
 
-export const CategoryIconMap: Record<string, JSX.Element> = {
+export const CategoryIconMap: Record<string, ReactElement> = {
     vorspeise: <TbSalad className="size-4" />,
     hauptgericht: <PiCookingPot className="size-4" />,
     nachtisch: <RiCake3Line className="size-4" />,

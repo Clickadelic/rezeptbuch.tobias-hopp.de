@@ -1,11 +1,12 @@
 import { cn } from '@/lib/utils';
+import type { ReactElement, ReactNode } from 'react';
 
 interface TitleBlockProps {
-    icon?: React.ReactNode;
+    icon?: ReactNode;
     title?: string;
-    punchline?: string | React.ReactNode | JSX.Element | null;
+    punchline?: string | ReactElement | null;
     className?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 
 /**

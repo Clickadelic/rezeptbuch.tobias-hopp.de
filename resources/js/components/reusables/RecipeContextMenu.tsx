@@ -233,7 +233,7 @@ export default function RecipeContextMenu({
                         }}
                         className="hover:cursor-pointer"
                     >
-                        <IoPrintOutline className="size-5 mr-2" />
+                        <IoPrintOutline className="size-5" />
                         PDF herunterladen
                     </DropdownMenuItem>
                     <DropdownMenuItem>

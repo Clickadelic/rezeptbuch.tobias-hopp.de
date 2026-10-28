@@ -14,20 +14,20 @@ class RolePermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Permissions anlegen (sprechende Namen a la "can ...")
-        $canEditRecipes = Permission::create(['name' => 'can edit recipes']);
-        $canDeleteRecipes = Permission::create(['name' => 'can delete recipes']);
-        $canPublishRecipes = Permission::create(['name' => 'can publish recipes']);
-        $canUnpublishRecipes = Permission::create(['name' => 'can unpublish recipes']);
+        $canEditRecipes = Permission::firstOrCreate(['name' => 'can edit recipes', 'guard_name' => 'web']);
+        $canDeleteRecipes = Permission::firstOrCreate(['name' => 'can delete recipes', 'guard_name' => 'web']);
+        $canPublishRecipes = Permission::firstOrCreate(['name' => 'can publish recipes', 'guard_name' => 'web']);
+        $canUnpublishRecipes = Permission::firstOrCreate(['name' => 'can unpublish recipes', 'guard_name' => 'web']);
 
         // Rolle "user" mit Rechten
-        $user = Role::create(['name' => 'user']);
+        $user = Role::firstOrCreate(['name' => 'user', 'guard_name' => 'web']);
         $user->givePermissionTo([
             $canEditRecipes,
             $canPublishRecipes,
         ]);
 
         // Rolle "admin" mit allen Rechten
-        $admin = Role::create(['name' => 'admin']);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         $admin->givePermissionTo(Permission::all());
     }
 }

@@ -5,6 +5,13 @@ import axios from "axios"
 
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import Pagination from "@/components/reusables/Pagination"
+
+interface PaginationLink {
+    url: string | null
+    label: string
+    active: boolean
+}
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -17,6 +24,7 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
     const [search, setSearch] = useState("")
     const [page, setPage] = useState<number>(1)
     const [totalPages, setTotalPages] = useState<number>(1)
+    const [links, setLinks] = useState<PaginationLink[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
     // ---- Ladefunktion ----
@@ -30,7 +38,15 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
         })
         setData(data.data)
         setTotalPages(data.last_page)
+        setLinks(data.links ?? [])
         setLoading(false)
+    }
+
+    // ---- Seitenwechsel über die Pagination-Links ----
+    function handlePageClick(url: string) {
+        const p = Number(new URL(url, window.location.origin).searchParams.get("page") ?? 1)
+        setPage(p)
+        loadData(search, p)
     }
 
     // ---- Suche ----
@@ -39,23 +55,6 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
         setSearch(value)
         setPage(1)
         loadData(value, 1)
-    }
-
-    // ---- Pagination ----
-    function nextPage() {
-        if (page < totalPages) {
-            const p = page + 1
-            setPage(p)
-            loadData(search, p)
-        }
-    }
-
-    function prevPage() {
-        if (page > 1) {
-            const p = page - 1
-            setPage(p)
-            loadData(search, p)
-        }
     }
 
     // ---- Initial load ----
@@ -75,7 +74,7 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
         <div className="space-y-3">
 
             {/* SEARCHFIELD */}
-            <div className="w-full mx-auto max-w-96 my-5">
+            <div className="w-full mx-auto max-w-96">
 				<input
 					type="text"
 					placeholder="Rezepte durchsuchen..."
@@ -86,6 +85,10 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
 					onChange={handleSearch}
 				/>
 			</div>
+
+			{totalPages > 1 && (
+                <Pagination links={links} onPageClick={handlePageClick} className="my-8" />
+            )}
 
             {/* TABLE */}
             <div className="overflow-hidden rounded-md bg-gray-100 dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700">
@@ -133,21 +136,9 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
                 </Table>
             </div>
             
-            {/* <div className="asd">
-                <Pagination className="asd" />
-            </div> */}
-            {/* PAGINATION */}
-            <div className="flex justify-between items-center pt-2">
-                <button disabled={page <= 1} onClick={prevPage} className="btn">
-                    ← Zurück
-                </button>
-                <span>
-                    Seite {page} / {totalPages}
-                </span>
-                <button disabled={page >= totalPages} onClick={nextPage} className="btn">
-                    Weiter →
-                </button>
-            </div>
+            {totalPages > 1 && (
+                <Pagination links={links} onPageClick={handlePageClick} className="mt-8" />
+            )}
         </div>
     )
 }

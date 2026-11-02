@@ -44,7 +44,7 @@ class Recipe extends Model
      protected $casts = [
           'preparation_time' => 'integer',
           'status' => 'string',
-          'community_rating' => 'integer',
+          'community_rating' => 'float',
           'community_votes' => 'integer',
           'category_id' => 'integer',
           'is_veggy' => 'boolean',

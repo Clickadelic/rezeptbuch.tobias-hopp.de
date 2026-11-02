@@ -12,7 +12,9 @@ RUN npm ci
 
 # Copy the rest of the source (overridden by the bind mount in docker-compose.yml at runtime).
 COPY . .
+RUN chmod +x docker/vite-entrypoint.sh
 
 EXPOSE 5174
 
+ENTRYPOINT ["sh", "docker/vite-entrypoint.sh"]
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5174"]

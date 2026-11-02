@@ -132,6 +132,7 @@ class DashboardController extends Controller
             'per_page'     => $recipes->perPage(),
             'total'        => $recipes->total(),
             'last_page'    => $recipes->lastPage(),
+            'links'        => $recipes->linkCollection(),
         ]);
     }
 }

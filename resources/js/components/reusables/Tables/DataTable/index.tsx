@@ -75,16 +75,20 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
         <div className="space-y-3">
 
             {/* SEARCHFIELD */}
-            <input
-                type="text"
-                placeholder="Suche..."
-                className="px-3 py-1 rounded border text-sm bg-white dark:bg-gray-800"
-                value={search}
-                onChange={handleSearch}
-            />
+            <div className="w-full mx-auto max-w-96 my-5">
+				<input
+					type="text"
+					placeholder="Rezepte durchsuchen..."
+					id="recipe-search"
+					name="recipe-search"
+					className="w-full px-3 py-2 rounded border text-sm bg-white dark:bg-gray-800"
+					value={search}
+					onChange={handleSearch}
+				/>
+			</div>
 
             {/* TABLE */}
-            <div className="overflow-hidden rounded-md border">
+            <div className="overflow-hidden rounded-md bg-gray-100 dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700">
                 <Table>
                     <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (

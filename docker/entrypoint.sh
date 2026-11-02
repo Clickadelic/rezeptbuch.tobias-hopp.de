@@ -3,6 +3,19 @@ set -e
 
 cd /app
 
+# The vendor/ directory is a named volume that survives image rebuilds, so it
+# can drift from composer.lock. Syncing is a fast no-op when already up to date.
+# If it fails (e.g. offline) and a vendor/autoload.php exists, continue with the
+# existing vendor/ instead of aborting.
+if ! composer install --no-interaction --prefer-dist --no-progress; then
+  if [ -f vendor/autoload.php ]; then
+    echo "composer install failed; continuing with existing vendor/" >&2
+  else
+    echo "composer install failed and vendor/ is empty; cannot start" >&2
+    exit 1
+  fi
+fi
+
 # Seed .env from the dev template on first run (the real .env is gitignored
 # and lives only inside the bind-mounted volume / container).
 if [ ! -f .env ]; then

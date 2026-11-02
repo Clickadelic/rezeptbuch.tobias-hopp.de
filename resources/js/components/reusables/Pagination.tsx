@@ -19,7 +19,7 @@ interface PaginationProps {
     loading?: boolean;
 }
 
-export default function Pagination({ className, links }: PaginationProps) {
+export default function Pagination({ className, links, onPageClick }: PaginationProps) {
     // Entferne ggf. "Previous" / "Next" aus den Links, falls vorhanden
     const cleanLinks = links.filter(
         (l) =>
@@ -33,7 +33,7 @@ export default function Pagination({ className, links }: PaginationProps) {
     return (
         <div className={cn('flex items-center justify-center space-x-2', className)}>
             {firstPages.map((link, i) => (
-                <PageLink key={i} link={link} />
+                <PageLink key={i} link={link} onPageClick={onPageClick} />
             ))}
 
             {showEllipsis && (
@@ -44,18 +44,32 @@ export default function Pagination({ className, links }: PaginationProps) {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="center" side="top">
                         {cleanLinks.slice(3, -2).map((link, i) => (
-                            <DropdownMenuItem key={i} asChild>
-                                <Link
-                                    href={link.url || '#'}
-                                    className={cn(
-                                        'block w-full text-sm px-2 py-1 rounded',
-                                        link.active
-                                            ? 'bg-primary text-white'
-                                            : 'hover:bg-gray-100 dark:hover:bg-gray-900 ',
-                                    )}
-                                    aria-label="Weitere Links"
-                                    dangerouslySetInnerHTML={{ __html: link.label }}
-                                />
+                            <DropdownMenuItem
+                                key={i}
+                                asChild={!onPageClick}
+                                onSelect={() => link.url && onPageClick?.(link.url)}
+                            >
+                                {onPageClick ? (
+                                    <span
+                                        className={cn(
+                                            'block w-full text-sm px-2 py-1 rounded',
+                                            link.active && 'bg-primary text-white',
+                                        )}
+                                        dangerouslySetInnerHTML={{ __html: link.label }}
+                                    />
+                                ) : (
+                                    <Link
+                                        href={link.url || '#'}
+                                        className={cn(
+                                            'block w-full text-sm px-2 py-1 rounded',
+                                            link.active
+                                                ? 'bg-primary text-white'
+                                                : 'hover:bg-gray-100 dark:hover:bg-gray-900 ',
+                                        )}
+                                        aria-label="Weitere Links"
+                                        dangerouslySetInnerHTML={{ __html: link.label }}
+                                    />
+                                )}
                             </DropdownMenuItem>
                         ))}
                     </DropdownMenuContent>
@@ -63,23 +77,44 @@ export default function Pagination({ className, links }: PaginationProps) {
             )}
 
             {lastPages.map((link, i) => (
-                <PageLink key={i} link={link} />
+                <PageLink key={i} link={link} onPageClick={onPageClick} />
             ))}
         </div>
     );
 }
 
-function PageLink({ link }: { link: { url: string | null; label: string; active: boolean } }) {
+function PageLink({
+    link,
+    onPageClick,
+}: {
+    link: { url: string | null; label: string; active: boolean };
+    onPageClick?: (url: string) => void;
+}) {
+    const className = cn(
+        'px-3 py-1 text-sm rounded transition-colors duration-200',
+        link.active
+            ? 'bg-primary text-white'
+            : 'bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 hover:bg-primary hover:text-white',
+        !link.url && 'pointer-events-none opacity-90',
+    );
+
+    // Client-side mode: the parent loads the page itself (e.g. JSON endpoints).
+    if (onPageClick) {
+        return (
+            <button
+                type="button"
+                disabled={!link.url}
+                onClick={() => link.url && onPageClick(link.url)}
+                className={cn(className, 'hover:cursor-pointer')}
+                dangerouslySetInnerHTML={{ __html: link.label }}
+            />
+        );
+    }
+
     return (
         <Link
             href={link.url || '#'}
-            className={cn(
-                'px-3 py-1 text-sm rounded transition-colors duration-200',
-                link.active
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 hover:bg-primary hover:text-white',
-                !link.url && 'pointer-events-none opacity-90',
-            )}
+            className={className}
             dangerouslySetInnerHTML={{ __html: link.label }}
         />
     );

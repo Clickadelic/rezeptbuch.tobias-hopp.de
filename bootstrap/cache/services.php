@@ -250,7 +250,7 @@
     'Illuminate\\Concurrency\\ConcurrencyServiceProvider' => 
     array (
     ),
-    'Illuminate\\Image\\ImageServiceProvider' =>
+    'Illuminate\\Image\\ImageServiceProvider' => 
     array (
     ),
     'Illuminate\\Hashing\\HashServiceProvider' => 

@@ -95,7 +95,7 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
             )}
 
             {/* TABLE */}
-            <div className="overflow-hidden rounded-md bg-gray-100 dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700">
+            <div className="p-4 overflow-hidden rounded-md bg-gray-100 dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700">
                 <Table>
                     <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (

@@ -1,9 +1,7 @@
 import UserSidebar from '@/components/sidebars/UserSidebar';
 import SidebarLeftLayout from '@/layouts/SidebarLeftLayout';
-import RecipesPanel from '@/components/reusables/Panels/RecipesPanel';
+import RecipesPanel from '@/components/reusables/Panels/IngredientsPanel';
 import { TfiLayoutListThumb } from 'react-icons/tfi';
-
-// Test
 
 /**
  * The user recipes page displays a variety of information about the user's recipes.

@@ -82,7 +82,7 @@ export default function SidebarLeftLayout({
                             {
                                 <h2
                                     className={cn(
-                                        'text-xl font-medium mb-5 line-clamp-1',
+                                        'text-lg font-medium mb-5 line-clamp-1',
                                         !showTitle && 'sr-only',
                                     )}
                                 >

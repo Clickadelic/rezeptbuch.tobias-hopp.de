@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
+import { RiSearchLine } from 'react-icons/ri';
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import Pagination from "@/components/reusables/Pagination"
@@ -71,19 +72,22 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
     console.log("Data", data);
 
     return (
-        <div className="space-y-3">
+        <>
 
             {/* SEARCHFIELD */}
-            <div className="w-full mx-auto max-w-96">
+            <div className="w-full mx-auto max-w-96 flex gap-0">
 				<input
 					type="text"
 					placeholder="Rezepte durchsuchen..."
 					id="recipe-search"
 					name="recipe-search"
-					className="w-full px-3 py-2 rounded border text-sm bg-white dark:bg-gray-800"
+					className="w-96 rounded-tl rounded-bl"
 					value={search}
 					onChange={handleSearch}
 				/>
+				<button onClick={() => loadData(search, 1)} className="px-4 py-2 bg-emerald-800 text-white rounded-tr rounded-br flex items-center gap-2">
+					<RiSearchLine />
+				</button>
 			</div>
 
 			{totalPages > 1 && (
@@ -139,6 +143,6 @@ export function DataTable<TData, TValue>({ columns, endpoint }: DataTableProps<T
             {totalPages > 1 && (
                 <Pagination links={links} onPageClick={handlePageClick} className="mt-8" />
             )}
-        </div>
+        </>
     )
 }

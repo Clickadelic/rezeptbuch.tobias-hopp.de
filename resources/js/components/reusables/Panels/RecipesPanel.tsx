@@ -20,14 +20,9 @@ interface RecipesPanelProps {
 export default function RecipesPanel({ title, icon }: RecipesPanelProps) {
 
     return (
-        <div className="w-full bg-gray-100 dark:bg-gray-900 p-4 rounded-xl">
-            <div className="flex justify-between mb-3">
-                <h3 className="text-lg flex gap-2">
-                    {icon}
-                    {title || "Daten"}
-                </h3>
-            </div>
+        <>
+            <h2 className="text-xl font-medium mb-5 line-clamp-1">{title || "Daten"}</h2>
             <DataTable columns={recipeColumns} endpoint="/dashboard/rezepte/data" />
-        </div>
+        </>
     )
 }
